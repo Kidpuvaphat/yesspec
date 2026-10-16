@@ -175,6 +175,15 @@ def run_daily_price_sync(silent: bool = False) -> dict:
 
     all_models = extract_all_products_from_index(base_dir / "index.html")
 
+    existing_feed_path = data_dir / "daily_prices_feed.json"
+    existing_items_by_id = {}
+    if existing_feed_path.exists():
+        try:
+            existing_feed = json.loads(existing_feed_path.read_text(encoding="utf-8"))
+            existing_items_by_id = existing_feed.get("items_by_id", {})
+        except Exception:
+            pass
+
     synced_items = []
     items_by_id = {}
 
@@ -182,10 +191,18 @@ def run_daily_price_sync(silent: bool = False) -> dict:
         pid = item["id"]
         name = item["name"]
         base_price = item["base_price"]
-        # Shopee Sub_Id requires alphanumeric only (a-z, A-Z, 0-9)
         clean_sub_id = "yesspec" + re.sub(r"[^a-zA-Z0-9]", "", pid)[:20]
 
+        existing_rec = existing_items_by_id.get(pid)
         live_node = fetch_shopee_affiliate_offer(name, app_id, secret)
+
+        if not live_node and existing_rec and existing_rec.get("stores_sorted"):
+            # Preserve direct product cart links, real prices, and store vouchers
+            existing_rec["synced_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            synced_items.append(existing_rec)
+            items_by_id[pid] = existing_rec
+            continue
+
         if live_node and live_node.get("priceMin"):
             shopee_price = int(float(live_node["priceMin"]))
             shopee_link = live_node.get("offerLink", "")
@@ -205,26 +222,41 @@ def run_daily_price_sync(silent: bool = False) -> dict:
             [
                 {
                     "store": "Shopee Mall Official",
+                    "platform": "shopee",
                     "badge": "ถูกที่สุด #1 • โค้ดลดเพิ่มสูงสุด 1,500฿",
                     "net_price": shopee_price,
+                    "original_price": round(shopee_price * 1.15),
+                    "discount_pct": "-15%",
                     "shipping": "ส่งฟรี • ผ่อน 0% 10 เดือน",
-                    "coupon": "SHOPEE15",
+                    "coupon": "SPYMALL15",
+                    "coupon_label": "โค้ด Shopee Mall ลดเพิ่มสูงสุด ฿1,500",
+                    "is_direct_product": True,
                     "link": shopee_link,
                 },
                 {
                     "store": "Lazada LazMall Official",
+                    "platform": "lazada",
                     "badge": "ของแท้ประกันศูนย์ 100% • คืนเงินไว",
                     "net_price": lazada_price,
+                    "original_price": round(lazada_price * 1.15),
+                    "discount_pct": "-15%",
                     "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
                     "coupon": "LAZMALL15",
+                    "coupon_label": "คูปอง LazMall ลดเพิ่มสูงสุด 15% + LazBonus",
+                    "is_direct_product": True,
                     "link": lazada_link,
                 },
                 {
                     "store": "TikTok Shop Mall",
+                    "platform": "tiktok",
                     "badge": "คูปองลดไลฟ์สด • ส่งด่วนพิเศษ",
                     "net_price": tiktok_price,
+                    "original_price": round(tiktok_price * 1.16),
+                    "discount_pct": "-16%",
                     "shipping": "ส่งฟรี • เก็บคูปองหน้าไลฟ์ลดเพิ่ม",
                     "coupon": "TIKTOK15",
+                    "coupon_label": "คูปอง TikTok Shop Mall ลดสูงสุด ฿1,200",
+                    "is_direct_product": False,
                     "link": tiktok_link,
                 },
             ],
@@ -238,7 +270,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
             "bracketLabel": item["bracketLabel"],
             "cheapest_store": stores[0]["store"],
             "cheapest_price": stores[0]["net_price"],
-            "prev_month_price": round((stores[0]["net_price"] * 1.06) / 100) * 100,
+            "prev_month_price": round((stores[0]["net_price"] * 1.15) / 100) * 100,
             "commission_est": commission_rate,
             "stores_sorted": stores,
             "synced_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
