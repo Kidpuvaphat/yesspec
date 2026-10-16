@@ -2768,7 +2768,7 @@
       const subId = `yesspec_${activeCategoryId}_${product.id}`;
 
       if (product.mcpStores && product.mcpStores.length > 0) {
-        return product.mcpStores.slice(0, 2).map((st, idx) => ({
+        return product.mcpStores.slice(0, 3).map((st, idx) => ({
           store: st.store,
           badge: st.badge || (idx === 0 ? 'ถูกที่สุด #1 • ซิงค์ราคาล่าสุดผ่าน MCP' : 'ของแท้ประกันศูนย์ 100%'),
           netPrice: st.net_price,
@@ -2794,6 +2794,14 @@
           netPrice: Math.round((base * 1.015) / 100) * 100,
           shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
           url: `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(product.name)}&sub_id1=${subId}&aff_id=${savedConfig.lazada || 'TH_LAZ_YESSPEC'}`,
+          best: false
+        },
+        {
+          store: 'TikTok Shop Mall',
+          badge: 'คูปองลดไลฟ์สด • ส่งด่วนพิเศษ',
+          netPrice: Math.round((base * 1.02) / 100) * 100,
+          shipping: 'ส่งฟรี • เก็บคูปองหน้าไลฟ์ลดเพิ่ม',
+          url: `https://www.tiktok.com/search?q=${encodeURIComponent(product.name)}&aff_sub=${subId}&aff_id=${savedConfig.tiktok || 'TH_TIKTOK_YESSPEC'}`,
           best: false
         }
       ];
@@ -3334,7 +3342,7 @@
 
       const offers = getStoresForProduct(product);
       document.getElementById('modalOffersList').innerHTML = offers.map((o, i) => {
-        const couponCode = i === 0 ? 'MALL1500' : (i === 1 ? 'LAZMALL10' : 'HOMEPRO5');
+        const couponCode = i === 0 ? 'SHOPEE15' : (i === 1 ? 'LAZMALL15' : 'TIKTOK15');
         return `
           <div class="flight-offer-row ${o.best ? 'best' : ''}">
             <div>

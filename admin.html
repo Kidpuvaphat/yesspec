@@ -147,9 +147,9 @@
 
     <!-- SECTION 2: AFFILIATE CONFIG -->
     <div class="card">
-      <h2 style="margin-top:0;">2. ตั้งค่ารหัส Affiliate ทั้ง 2 ช่องทางหลัก (Shopee & Lazada)</h2>
+      <h2 style="margin-top:0;">2. ตั้งค่ารหัส Affiliate ทั้ง 3 ช่องทางหลัก (Shopee, Lazada & TikTok Shop)</h2>
       <p style="color:var(--muted); font-size:0.92rem;">เมื่อบันทึกแล้ว ปุ่มเรดาร์เช็คราคาในหน้าเว็บลูกค้า (<code>index.html</code>) จะแนบรหัสของคุณพร้อม <code>sub_id</code> ให้อัตโนมัติทันที</p>
-      <div class="grid-2">
+      <div class="grid-3">
         <div>
           <label>🟠 Shopee Affiliate ID (<code>aff_id</code> / <code>af_siteid</code>)</label>
           <input type="text" id="shopee" value="TH_SHOPEE_YESSPEC">
@@ -158,8 +158,12 @@
           <label>🔵 Lazada Tracking ID (<code>aff_id</code> / <code>laz_trackid</code>)</label>
           <input type="text" id="lazada" value="TH_LAZ_YESSPEC">
         </div>
+        <div>
+          <label>⚫ TikTok Shop Affiliate ID</label>
+          <input type="text" id="tiktok" value="TH_TIKTOK_YESSPEC">
+        </div>
       </div>
-      <button class="btn-save" onclick="saveConfig()">💾 บันทึกรหัส Shopee & Lazada Affiliate</button>
+      <button class="btn-save" onclick="saveConfig()">💾 บันทึกรหัส Shopee, Lazada & TikTok Shop</button>
       <span id="save-msg" style="margin-left:12px; color:var(--green); font-weight:700;"></span>
     </div>
 
@@ -193,6 +197,7 @@
     const saved = JSON.parse(localStorage.getItem("yesspec_affiliate_config") || localStorage.getItem("lumina_affiliate_config") || "{}");
     if (saved.shopee) document.getElementById("shopee").value = saved.shopee;
     if (saved.lazada) document.getElementById("lazada").value = saved.lazada;
+    if (saved.tiktok) document.getElementById("tiktok").value = saved.tiktok;
 
     // Load Monthly Meta & Prices
     const savedMeta = JSON.parse(localStorage.getItem("yesspec_monthly_meta") || localStorage.getItem("lumina_monthly_meta") || "{}");
@@ -251,10 +256,11 @@
     function saveConfig() {
       const cfg = {
         shopee: document.getElementById("shopee").value.trim(),
-        lazada: document.getElementById("lazada").value.trim()
+        lazada: document.getElementById("lazada").value.trim(),
+        tiktok: document.getElementById("tiktok").value.trim()
       };
       localStorage.setItem("yesspec_affiliate_config", JSON.stringify(cfg));
-      document.getElementById("save-msg").textContent = "✓ บันทึกรหัส Shopee & Lazada สำเร็จ! เชื่อมกับหน้าเว็บลูกค้าเรียบร้อย";
+      document.getElementById("save-msg").textContent = "✓ บันทึกรหัส Shopee, Lazada & TikTok Shop สำเร็จ! เชื่อมกับหน้าเว็บลูกค้าเรียบร้อย";
     }
 
     function calc() {
