@@ -2768,7 +2768,7 @@
       const subId = `yesspec_${activeCategoryId}_${product.id}`;
 
       if (product.mcpStores && product.mcpStores.length > 0) {
-        return product.mcpStores.map((st, idx) => ({
+        return product.mcpStores.slice(0, 2).map((st, idx) => ({
           store: st.store,
           badge: st.badge || (idx === 0 ? 'ถูกที่สุด #1 • ซิงค์ราคาล่าสุดผ่าน MCP' : 'ของแท้ประกันศูนย์ 100%'),
           netPrice: st.net_price,
@@ -2785,31 +2785,15 @@
           badge: 'ถูกที่สุด #1 • โค้ดลดเพิ่มสูงสุด 1,500฿',
           netPrice: base,
           shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-          url: `https://shopee.co.th/search?keyword=${encodeURIComponent(product.name)}&aff_sub=${subId}&aff_id=${savedConfig.shopee || 'TH_SHOPEE_PRO'}`,
+          url: `https://shopee.co.th/search?keyword=${encodeURIComponent(product.name)}&aff_sub=${subId}&aff_id=${savedConfig.shopee || 'TH_SHOPEE_YESSPEC'}`,
           best: true
         },
         {
           store: 'Lazada LazMall Official',
-          badge: 'ของแท้ประกันศูนย์ 100%',
+          badge: 'ของแท้ประกันศูนย์ 100% • คืนสินค้าได้ใน 15 วัน',
           netPrice: Math.round((base * 1.015) / 100) * 100,
-          shipping: 'ส่งฟรี • คืนสินค้าได้ใน 15 วัน',
-          url: `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(product.name)}&sub_id1=${subId}&aff_id=${savedConfig.lazada || 'TH_LAZ_PRO'}`,
-          best: false
-        },
-        {
-          store: 'HomePro / Power Buy / Studio7',
-          badge: 'รับหน้าร้านด่วนใน 1 ชม. / ติดตั้งฟรี',
-          netPrice: Math.round((base * 1.035) / 100) * 100,
-          shipping: 'บริการมาตรฐานศูนย์ไทย',
-          url: `https://www.homepro.co.th/search?q=${encodeURIComponent(product.name)}&utm_source=involve&aff_sub=${subId}`,
-          best: false
-        },
-        {
-          store: 'TikTok Shop Mall',
-          badge: 'คูปองลดไลฟ์สด',
-          netPrice: Math.round((base * 1.02) / 100) * 100,
-          shipping: 'ส่งด่วนทั่วไทย',
-          url: `https://www.tiktok.com/search?q=${encodeURIComponent(product.name)}&aff_id=${savedConfig.tiktok || 'TH_TIKTOK_PRO'}`,
+          shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
+          url: `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(product.name)}&sub_id1=${subId}&aff_id=${savedConfig.lazada || 'TH_LAZ_YESSPEC'}`,
           best: false
         }
       ];
@@ -3528,7 +3512,7 @@
       const lines = [
         `📌 โพยเทียบสเปก & ราคา ${cat.icon} ${cat.name} (อัปเดตล่าสุดจาก yesspec):`,
         ...top3.map((p, i) => `${i + 1}. ${p.name} — ${formatTHB(p.price)} (ผ่อน 0% ${formatTHB(Math.round(p.price / 10))}/ด.) | จุดเด่น: ${p.eyebrow}`),
-        `✈️ เช็คราคาถูกสุด 4 ร้านค้าทางการได้ที่หน้าเว็บนี้เลย!`
+        `✈️ เช็คราคาถูกสุด Shopee Mall & Lazada LazMallได้ที่หน้าเว็บนี้เลย!`
       ].join('\n');
 
       if (navigator.clipboard) {
@@ -3767,7 +3751,7 @@
           อัปเดตข้อมูลล่าสุด: เดือน${mLabel} • โดยทีมบรรณาธิการ yesspec • ${art.readTime}
         </div>
         <p style="font-size:15px;color:var(--text-main);line-height:1.7;margin-bottom:20px;">
-          ${art.desc} สำหรับใครที่กำลังมองหา <strong>${cat.name}</strong> ในเดือน${mLabel} เราได้รวบรวมข้อมูลสเปกจริง และเปรียบเทียบราคาสุทธิหลังหักคูปองจากทั้ง Shopee Mall, Lazada LazMall และร้านค้าทางการมาให้ครบจบในหน้านี้แล้ว:
+          ${art.desc} สำหรับใครที่กำลังมองหา <strong>${cat.name}</strong> ในเดือน${mLabel} เราได้รวบรวมข้อมูลสเปกจริง และเปรียบเทียบราคาสุทธิหลังหักคูปองจากทั้ง Shopee Mall และ Lazada LazMallมาให้ครบจบในหน้านี้แล้ว:
         </p>
 
         <h3 style="font-size:19px;font-weight:700;margin-bottom:12px;">📌 สรุปโพยแยกตามช่วงงบประมาณ (อัปเดต ${mLabel})</h3>

@@ -1,4 +1,4 @@
-name: yesspec Daily Price & Monthly SEO Auto-Sync
+name: yesspec Daily Price & Monthly SEO Auto-Sync (Shopee & Lazada)
 
 on:
   schedule:
@@ -21,12 +21,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run Daily Price Sync (MCP Connector)
+      - name: Run Daily Price Sync (Shopee & Lazada MCP Connector)
         env:
+          SHOPEE_AFF_ID: ${{ secrets.SHOPEE_AFF_ID }}
           SHOPEE_APP_ID: ${{ secrets.SHOPEE_APP_ID }}
           SHOPEE_SECRET: ${{ secrets.SHOPEE_SECRET }}
           LAZADA_TRACKING_ID: ${{ secrets.LAZADA_TRACKING_ID }}
-          INVOLVE_AFF_ID: ${{ secrets.INVOLVE_AFF_ID }}
         run: python3 price_sync_mcp.py
 
       - name: Run Monthly Updater & SEO Article Generator
@@ -40,5 +40,5 @@ jobs:
           git config user.name "yesspec-auto-bot"
           git config user.email "bot@yesspec.com"
           git add data/ dist/
-          git diff --staged --quiet || git commit -m "⚡ Auto-sync daily prices & monthly SEO data"
+          git diff --staged --quiet || git commit -m "⚡ Auto-sync Shopee & Lazada daily prices & monthly SEO data"
           git push
