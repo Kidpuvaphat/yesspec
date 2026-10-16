@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-yesspec — Programmatic SEO & Multi-Store Price Radar Engine
+yespec — Programmatic SEO & Multi-Store Price Radar Engine
 --------------------------------------------------------------------------------
 อ่านข้อมูลจาก data/products.json (แอร์, ทีวี, ตู้เย็น, iPhone 18 Pro vs 17 Pro) แล้วสร้างหน้าเว็บ SEO อัตโนมัติ:
 1. หน้าเปรียบเทียบหมัดต่อหมัด พร้อมรูปสินค้า Studio Render และคำแนะนำฟันธง
@@ -23,7 +23,7 @@ DIST_DIR = BASE_DIR / "dist"
 def build_affiliate_url(raw_url: str, platform: str, config: dict, sub_id: str) -> str:
     parsed = urlparse(raw_url)
     query = dict(parse_qsl(parsed.query))
-    query["utm_source"] = "yesspec_seo"
+    query["utm_source"] = "yespec_seo"
     query["utm_medium"] = "affiliate"
     query["sub_id"] = sub_id
     if platform == "shopee":
@@ -63,7 +63,7 @@ def compare_specs(prod_a: dict, prod_b: dict, spec_labels: dict) -> list:
     return results
 
 
-YESSPEC_INLINE_LOGO = """<span style="display:inline-flex;align-items:center;gap:8px;"><svg width="24" height="24" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;flex-shrink:0;"><rect width="36" height="36" rx="9" fill="#0071e3"/><line x1="9" y1="12" x2="27" y2="12" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/><line x1="9" y1="12" x2="21" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="21" cy="12" r="3" fill="white"/><line x1="9" y1="18.5" x2="27" y2="18.5" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/><line x1="9" y1="18.5" x2="14" y2="18.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="14" cy="18.5" r="3" fill="#7cc4ff"/><line x1="9" y1="25" x2="27" y2="25" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/><line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/><circle cx="24" cy="25" r="4" fill="#34d399"/></svg><span>yesspec</span></span>"""
+YESPEC_INLINE_LOGO = """<span style="display:inline-flex;align-items:center;gap:8px;"><svg width="24" height="24" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;flex-shrink:0;"><rect width="36" height="36" rx="9" fill="#0071e3"/><line x1="9" y1="12" x2="27" y2="12" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/><line x1="9" y1="12" x2="21" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="21" cy="12" r="3" fill="white"/><line x1="9" y1="18.5" x2="27" y2="18.5" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/><line x1="9" y1="18.5" x2="14" y2="18.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="14" cy="18.5" r="3" fill="#7cc4ff"/><line x1="9" y1="25" x2="27" y2="25" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/><line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/><circle cx="24" cy="25" r="4" fill="#34d399"/></svg><span>yespec</span></span>"""
 
 
 SHARED_CSS = """
@@ -241,8 +241,8 @@ def render_vs_page(prod_a: dict, prod_b: dict, category: dict, config: dict) -> 
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <strong>{YESSPEC_INLINE_LOGO} <span style="font-weight:400;color:var(--muted);margin-left:6px;">Editorial & Price Radar</span></strong>
-      <a href="../index.html">← กลับหน้าหลัก yesspec</a>
+      <strong>{YESPEC_INLINE_LOGO} <span style="font-weight:400;color:var(--muted);margin-left:6px;">Editorial & Price Radar</span></strong>
+      <a href="../index.html">← กลับหน้าหลัก yespec</a>
     </div>
   </nav>
   <div class="container">
@@ -298,7 +298,7 @@ def render_vs_page(prod_a: dict, prod_b: dict, category: dict, config: dict) -> 
       </thead>
       <tbody>
         <tr>
-          <td>คะแนนรวม yesspec Score</td>
+          <td>คะแนนรวม yespec Score</td>
           <td class="{'winner-cell' if prod_a['overall_score'] >= prod_b['overall_score'] else ''}">{prod_a['overall_score']} / 10</td>
           <td class="{'winner-cell' if prod_b['overall_score'] > prod_a['overall_score'] else ''}">{prod_b['overall_score']} / 10</td>
         </tr>
@@ -349,7 +349,7 @@ def render_category_ranking_page(products: list, category: dict, config: dict) -
               <p style="margin:0;color:var(--muted);">{p['tagline']}</p>
             </div>
             <div style="text-align:right;">
-              <div style="font-size:0.78rem;color:var(--muted);font-weight:700;">YESSPEC SCORE</div>
+              <div style="font-size:0.78rem;color:var(--muted);font-weight:700;">YESPEC SCORE</div>
               <div style="font-size:1.8rem;font-weight:800;color:var(--blue);">{p['overall_score']}<span style="font-size:0.95rem;color:var(--muted);">/10</span></div>
             </div>
           </div>
@@ -372,8 +372,8 @@ def render_category_ranking_page(products: list, category: dict, config: dict) -
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <strong>{YESSPEC_INLINE_LOGO} <span style="font-weight:400;color:var(--muted);margin-left:6px;">Buying Guide 2026</span></strong>
-      <a href="../index.html">← กลับหน้าหลัก yesspec</a>
+      <strong>{YESPEC_INLINE_LOGO} <span style="font-weight:400;color:var(--muted);margin-left:6px;">Buying Guide 2026</span></strong>
+      <a href="../index.html">← กลับหน้าหลัก yespec</a>
     </div>
   </nav>
   <div class="container">
@@ -450,7 +450,7 @@ def main():
         json.dumps(manifest_summary, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    print(f"✅ สร้างหน้าเว็บ yesspec + รูปสินค้า + Price Radar สำเร็จทั้งหมด {len(manifest)} หน้า!")
+    print(f"✅ สร้างหน้าเว็บ yespec + รูปสินค้า + Price Radar สำเร็จทั้งหมด {len(manifest)} หน้า!")
 
 
 if __name__ == "__main__":

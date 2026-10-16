@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>yesspec Admin — ระบบจัดการลิงก์ Affiliate, อัปเดตราคารายเดือน & คำนวณรายได้</title>
+  <title>yespec Admin — ระบบจัดการลิงก์ Affiliate, อัปเดตราคารายเดือน & คำนวณรายได้</title>
   <style>
     :root {
       --bg: #f5f5f7;
@@ -56,7 +56,7 @@
     .checklist li { margin-bottom: 6px; }
     code { background: #f0f0f5; padding: 2px 6px; border-radius: 6px; font-size: 0.86rem; }
   </style>
-  <link rel="icon" type="image/svg+xml" href="assets/yesspec-logo.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/yespec-logo.svg">
 </head>
 <body>
   <header class="topbar">
@@ -74,7 +74,7 @@
           <line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/>
           <circle cx="24" cy="25" r="4" fill="#34d399"/>
         </svg>
-        <span>yesspec Admin Studio (สำหรับเจ้าของเว็บ)</span>
+        <span>yespec Admin Studio (สำหรับเจ้าของเว็บ)</span>
       </strong>
       <a href="index.html">← กลับไปหน้าเว็บลูกค้า (index.html)</a>
     </div>
@@ -194,13 +194,13 @@
 
   <script>
     // Load Affiliate IDs
-    const saved = JSON.parse(localStorage.getItem("yesspec_affiliate_config") || localStorage.getItem("lumina_affiliate_config") || "{}");
+    const saved = JSON.parse(localStorage.getItem("yespec_affiliate_config") || localStorage.getItem("lumina_affiliate_config") || "{}");
     if (saved.shopee) document.getElementById("shopee").value = saved.shopee;
     if (saved.lazada) document.getElementById("lazada").value = saved.lazada;
     if (saved.tiktok) document.getElementById("tiktok").value = saved.tiktok;
 
     // Load Monthly Meta & Prices
-    const savedMeta = JSON.parse(localStorage.getItem("yesspec_monthly_meta") || localStorage.getItem("lumina_monthly_meta") || "{}");
+    const savedMeta = JSON.parse(localStorage.getItem("yespec_monthly_meta") || localStorage.getItem("lumina_monthly_meta") || "{}");
     if (savedMeta.monthLabel) document.getElementById("monthLabelInput").value = savedMeta.monthLabel;
     if (savedMeta.campaign) document.getElementById("campaignInput").value = savedMeta.campaign;
 
@@ -213,7 +213,7 @@
       "iphone-17-pro": 32500,
       "iphone-18-pro": 39900
     };
-    const savedPrices = JSON.parse(localStorage.getItem("yesspec_monthly_prices") || localStorage.getItem("lumina_monthly_prices") || "{}");
+    const savedPrices = JSON.parse(localStorage.getItem("yespec_monthly_prices") || localStorage.getItem("lumina_monthly_prices") || "{}");
     trackedIds.forEach(id => {
       if (savedPrices[id]) document.getElementById("p_" + id).value = savedPrices[id];
     });
@@ -223,14 +223,14 @@
         monthLabel: document.getElementById("monthLabelInput").value.trim(),
         campaign: document.getElementById("campaignInput").value.trim()
       };
-      localStorage.setItem("yesspec_monthly_meta", JSON.stringify(meta));
+      localStorage.setItem("yespec_monthly_meta", JSON.stringify(meta));
 
       const priceMap = {};
       trackedIds.forEach(id => {
         const val = parseInt(document.getElementById("p_" + id).value, 10);
         if (!isNaN(val) && val > 0) priceMap[id] = val;
       });
-      localStorage.setItem("yesspec_monthly_prices", JSON.stringify(priceMap));
+      localStorage.setItem("yespec_monthly_prices", JSON.stringify(priceMap));
       document.getElementById("monthly-msg").textContent = "✓ อัปเดตราคา & แคมเปญประจำเดือนสำเร็จ! เปิดหน้า index.html ดูผลลัพธ์ได้เลย";
     }
 
@@ -243,8 +243,8 @@
     }
 
     function resetMonthlyUpdate() {
-      localStorage.removeItem("yesspec_monthly_meta");
-      localStorage.removeItem("yesspec_monthly_prices");
+      localStorage.removeItem("yespec_monthly_meta");
+      localStorage.removeItem("yespec_monthly_prices");
       localStorage.removeItem("lumina_monthly_meta");
       localStorage.removeItem("lumina_monthly_prices");
       document.getElementById("monthLabelInput").value = "";
@@ -259,7 +259,7 @@
         lazada: document.getElementById("lazada").value.trim(),
         tiktok: document.getElementById("tiktok").value.trim()
       };
-      localStorage.setItem("yesspec_affiliate_config", JSON.stringify(cfg));
+      localStorage.setItem("yespec_affiliate_config", JSON.stringify(cfg));
       document.getElementById("save-msg").textContent = "✓ บันทึกรหัส Shopee, Lazada & TikTok Shop สำเร็จ! เชื่อมกับหน้าเว็บลูกค้าเรียบร้อย";
     }
 

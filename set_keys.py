@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-yesspec (YesSpec.com) — 1-Click Shopee, Lazada & TikTok Shop Affiliate Key Installer
+yespec (Yespec.com) — 1-Click Shopee, Lazada & TikTok Shop Affiliate Key Installer
 ====================================================================================
 ใช้สำหรับอัปเดต Affiliate ID (Shopee, Lazada & TikTok Shop)
 และ Shopee Open API Key (App ID + Secret) พร้อมซิงค์ขึ้น GitHub Secrets อัตโนมัติ
@@ -14,7 +14,7 @@ def main():
     base_dir = Path(__file__).parent
     cfg = load_affiliate_config(base_dir)
     print("==========================================================")
-    print("🚀 ตั้งค่า Shopee, Lazada & TikTok Shop สำหรับ yesspec")
+    print("🚀 ตั้งค่า Shopee, Lazada & TikTok Shop สำหรับ yespec")
     print("   (กด Enter ข้ามช่องที่ยังไม่ต้องการเปลี่ยน)")
     print("==========================================================")
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-yesspec — Automated Monthly SEO Article Generator (seo_article_generator.py)
+yespec — Automated Monthly SEO Article Generator (seo_article_generator.py)
 สร้างบทความ SEO ประจำเดือนอัตโนมัติสำหรับทั้ง 22 หมวดสินค้า เช่น:
 - จัดอันดับ Top 10 มือถือน่าซื้อประจำเดือนตุลาคม 2026 (ครบทุกช่วงงบ)
 - แนะนำแอร์ Inverter ประหยัดไฟเบอร์ 5 ประจำเดือนตุลาคม 2026
@@ -78,7 +78,7 @@ def generate_monthly_seo_articles():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{t['title']} | yesspec</title>
+  <title>{t['title']} | yespec</title>
   <meta name="description" content="{t['excerpt']}">
   <style>
     body {{ font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans Thai', sans-serif; background:#f5f5f7; color:#1d1d1f; margin:0; line-height:1.65; }}

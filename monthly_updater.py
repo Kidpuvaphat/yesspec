@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-yesspec — Automated Monthly Price & Bracket Updater (monthly_updater.py)
+yespec — Automated Monthly Price & Bracket Updater (monthly_updater.py)
 รันเดือนละ 1 ครั้ง (หรือตั้ง Cronjob ทุกวันที่ 1 ของเดือน) เพื่อ:
 1. อัปเดตป้ายกำกับเดือน/ปี ปัจจุบัน (เช่น ตุลาคม 2026)
 2. คำนวณส่วนลดประจำเดือน (Monthly Price Drop) ของแต่ละรุ่น

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-yesspec — Daily Price Sync & MCP Server (Shopee, Lazada & TikTok Shop)
+yespec — Daily Price Sync & MCP Server (Shopee, Lazada & TikTok Shop)
 ======================================================================
 ผูกบัญชีจริงเรียบร้อยแล้ว:
 - Shopee Affiliate ID: 15385610012 (orkid8931) -> Official Gateway: s.shopee.co.th/an_redir
@@ -28,8 +28,8 @@ SHOPEE_GRAPHQL_ENDPOINT = "https://open-api.affiliate.shopee.co.th/graphql"
 def load_affiliate_config(base_dir: Path) -> dict:
     cfg_path = base_dir / "data" / "affiliate_config.json"
     default_cfg = {
-        "platform": "yesspec",
-        "domain": "https://yesspec.com",
+        "platform": "yespec",
+        "domain": "https://yespec.com",
         "live_url": "https://kidpuvaphat.github.io/yesspec/",
         "shopee_aff_id": "15385610012",
         "shopee_app_id": "",
@@ -192,7 +192,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
         pid = item["id"]
         name = item["name"]
         base_price = item["base_price"]
-        clean_sub_id = "yesspec" + re.sub(r"[^a-zA-Z0-9]", "", pid)[:20]
+        clean_sub_id = "yespec" + re.sub(r"[^a-zA-Z0-9]", "", pid)[:20]
 
         existing_rec = existing_items_by_id.get(pid)
         live_node = fetch_shopee_affiliate_offer(name, app_id, secret)
@@ -217,20 +217,20 @@ def run_daily_price_sync(silent: bool = False) -> dict:
         tiktok_price = round((shopee_price * 1.02) / 100) * 100 or (shopee_price + 70)
 
         lazada_link = build_lazada_official_link(name, cfg, clean_sub_id)
-        tiktok_link = f"https://www.tiktok.com/search?q={urllib.parse.quote(name)}&aff_sub={clean_sub_id}&aff_id={tiktok_id}"
+        tiktok_link = f"https://shop.tiktok.com/th/c/phones-electronics/601739?q={urllib.parse.quote(name)}&aff_sub={clean_sub_id}&aff_id={tiktok_id}"
 
         stores = sorted(
             [
                 {
                     "store": "Shopee Mall Official",
                     "platform": "shopee",
-                    "badge": "ถูกที่สุด #1 • โค้ดลดเพิ่มสูงสุด 1,500฿",
+                    "badge": "ถูกที่สุด #1 • ร้านทางการ Shopee Mall",
                     "net_price": shopee_price,
                     "original_price": round(shopee_price * 1.15),
                     "discount_pct": "-15%",
                     "shipping": "ส่งฟรี • ผ่อน 0% 10 เดือน",
                     "coupon": "SPYMALL15",
-                    "coupon_label": "โค้ด Shopee Mall ลดเพิ่มสูงสุด ฿1,500",
+                    "coupon_label": "ร้านทางการ Shopee Mall",
                     "is_direct_product": True,
                     "link": shopee_link,
                 },
@@ -243,21 +243,21 @@ def run_daily_price_sync(silent: bool = False) -> dict:
                     "discount_pct": "-15%",
                     "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
                     "coupon": "LAZMALL15",
-                    "coupon_label": "คูปอง LazMall ลดเพิ่มสูงสุด 15% + LazBonus",
+                    "coupon_label": "ร้านทางการ LazMall",
                     "is_direct_product": True,
                     "link": lazada_link,
                 },
                 {
                     "store": "TikTok Shop Mall",
                     "platform": "tiktok",
-                    "badge": "คูปองลดไลฟ์สด • ส่งด่วนพิเศษ",
+                    "badge": "ตะกร้า TikTok Shop Mall • ส่งด่วนพิเศษ",
                     "net_price": tiktok_price,
                     "original_price": round(tiktok_price * 1.16),
                     "discount_pct": "-16%",
-                    "shipping": "ส่งฟรี • เก็บคูปองหน้าไลฟ์ลดเพิ่ม",
+                    "shipping": "ส่งฟรี • ตะกร้าร้านค้าทางการ TikTok Shop",
                     "coupon": "TIKTOK15",
-                    "coupon_label": "คูปอง TikTok Shop Mall ลดสูงสุด ฿1,200",
-                    "is_direct_product": False,
+                    "coupon_label": "ตะกร้า TikTok Shop Mall",
+                    "is_direct_product": True,
                     "link": tiktok_link,
                 },
             ],
@@ -281,7 +281,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
 
     elapsed = round(time.time() - start_ts, 3)
     payload = {
-        "platform": "yesspec",
+        "platform": "yespec",
         "channels": ["Shopee Mall Official", "Lazada LazMall Official", "TikTok Shop Mall"],
         "affiliate_accounts": {
             "shopee_aff_id": shopee_aff_id,
@@ -291,7 +291,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
         "sync_mode": mode,
         "synced_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "elapsed_seconds": elapsed,
-        "total_categories": 22,
+        "total_categories": 32,
         "total_models_synced": len(synced_items),
         "items_by_id": items_by_id,
         "items": synced_items,
@@ -301,7 +301,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
     out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     if not silent:
-        print(f"⚡ [yesspec MCP Price Sync] ผูกลิงก์จริง Shopee ({shopee_aff_id}), Lazada ({cfg.get('lazada_tracking_id')}), TikTok ({tiktok_id}) ครบ {len(synced_items)} รุ่น สำเร็จใน {elapsed} วินาที!")
+        print(f"⚡ [yespec MCP Price Sync] ผูกลิงก์จริง Shopee ({shopee_aff_id}), Lazada ({cfg.get('lazada_tracking_id')}), TikTok ({tiktok_id}) ครบ {len(synced_items)} รุ่น สำเร็จใน {elapsed} วินาที!")
         print(f"   บันทึกไฟล์ Feed ที่: {out_file}")
     return payload
 
@@ -364,7 +364,7 @@ def run_mcp_stdio_server():
                 "result": {
                     "protocolVersion": "2024-11-05",
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "yesspec-price-mcp", "version": "1.0.0"},
+                    "serverInfo": {"name": "yespec-price-mcp", "version": "1.0.0"},
                 },
             }
         elif method == "tools/list":
