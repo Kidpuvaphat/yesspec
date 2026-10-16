@@ -1403,10 +1403,10 @@
        ============================================================ */
     .nbs-spec-finder-layout {
       display: grid;
-      grid-template-columns: 272px 1fr;
-      gap: 22px;
+      grid-template-columns: 248px 1fr;
+      gap: 20px;
       align-items: start;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
     @media (max-width: 960px) {
       .nbs-spec-finder-layout {
@@ -1415,13 +1415,13 @@
     }
     .nbs-sidebar {
       background: #fff;
-      border-radius: 22px;
-      padding: 20px 18px;
+      border-radius: 20px;
+      padding: 16px;
       border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: var(--shadow-card);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
       position: sticky;
-      top: 72px;
-      max-height: calc(100vh - 92px);
+      top: 68px;
+      max-height: calc(100vh - 86px);
       overflow-y: auto;
     }
     @media (max-width: 960px) {
@@ -1438,12 +1438,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 12px;
-      margin-bottom: 14px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
       border-bottom: 1px solid var(--border-hairline);
     }
     .nbs-sidebar-title {
-      font-size: 14.5px;
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--text-main);
       display: flex;
@@ -1451,8 +1451,8 @@
       gap: 6px;
     }
     .nbs-filter-group {
-      padding-bottom: 14px;
-      margin-bottom: 14px;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
       border-bottom: 1px solid var(--border-hairline);
     }
     .nbs-filter-group:last-child {
@@ -1461,10 +1461,10 @@
       padding-bottom: 0;
     }
     .nbs-filter-group-title {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
-      color: #1e293b;
-      margin-bottom: 9px;
+      color: #334155;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1472,19 +1472,19 @@
     .nbs-check-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
     .nbs-check-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      font-size: 12.5px;
+      gap: 6px;
+      font-size: 12px;
       color: var(--text-main);
       cursor: pointer;
       padding: 4px 6px;
       border-radius: 8px;
-      transition: background 0.15s ease;
+      transition: background 0.14s ease;
       user-select: none;
     }
     .nbs-check-item:hover {
@@ -1492,40 +1492,43 @@
     }
     .nbs-check-item input[type="checkbox"] {
       accent-color: #16a34a;
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       cursor: pointer;
       flex-shrink: 0;
     }
     .nbs-check-label {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       flex: 1;
       font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .nbs-check-item.checked .nbs-check-label {
       color: #15803d;
       font-weight: 700;
     }
     .nbs-check-count {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--text-light);
       background: #f1f5f9;
-      padding: 1px 7px;
+      padding: 1px 6px;
       border-radius: 99px;
       font-weight: 600;
     }
     .nbs-toolbar {
       background: #fff;
-      border-radius: 18px;
-      padding: 12px 16px;
+      border-radius: 16px;
+      padding: 10px 14px;
       border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-bottom: 12px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
       justify-content: space-between;
     }
@@ -1534,17 +1537,17 @@
       align-items: center;
       gap: 8px;
       background: #f5f5f7;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 12px;
-      padding: 7px 12px;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 10px;
+      padding: 6px 12px;
       flex: 1;
-      min-width: 210px;
+      min-width: 190px;
     }
     .nbs-search-input-wrap input {
       border: none;
       background: transparent;
       width: 100%;
-      font-size: 13px;
+      font-size: 12.5px;
       font-family: inherit;
       color: var(--text-main);
       outline: none;
@@ -1553,19 +1556,19 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       align-items: center;
     }
     .nbs-chip {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: #ecfdf5;
       color: #14532d;
       border: 1px solid #86efac;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 99px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -1578,8 +1581,8 @@
       color: #15803d;
       border: 1.5px solid #16a34a;
       border-radius: 10px;
-      padding: 7px 12px;
-      font-size: 12.5px;
+      padding: 6px 11px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
@@ -1588,47 +1591,47 @@
       .nbs-mobile-filter-btn {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
       }
     }
-    /* NotebookSpec-style Horizontal Spec List Row */
+    /* NotebookSpec-style Clean Scannable Spec Row */
     .nbs-spec-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
     .nbs-spec-row-card {
       background: #fff;
-      border-radius: 20px;
-      padding: 16px 20px;
-      border: 1px solid rgba(0,0,0,0.07);
-      box-shadow: 0 3px 14px rgba(0,0,0,0.03);
+      border-radius: 18px;
+      padding: 14px 18px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.025);
       display: grid;
-      grid-template-columns: 115px 1.45fr 1.65fr 205px;
-      gap: 16px;
+      grid-template-columns: 96px 1.25fr 1.65fr 185px;
+      gap: 14px;
       align-items: center;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       position: relative;
     }
     .nbs-spec-row-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.07);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
     }
     .nbs-spec-row-card.winner-green-row {
       border: 2px solid #16a34a;
-      background: linear-gradient(90deg, #f3fcf6 0%, #ffffff 28%);
-      box-shadow: 0 10px 28px rgba(22, 163, 74, 0.13);
+      background: linear-gradient(90deg, #f3fcf6 0%, #ffffff 26%);
+      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.11);
     }
     @media (max-width: 820px) {
       .nbs-spec-row-card {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
       }
     }
     .nbs-row-thumb {
-      width: 105px;
-      height: 105px;
-      border-radius: 14px;
+      width: 88px;
+      height: 88px;
+      border-radius: 12px;
       background: #f8f9fa;
       display: flex;
       align-items: center;
@@ -1639,39 +1642,45 @@
       margin: 0 auto;
     }
     .nbs-row-thumb img {
-      max-width: 92%;
-      max-height: 92%;
+      max-width: 90%;
+      max-height: 90%;
       object-fit: contain;
     }
+    /* 3 Scannable Spec Metric Chips Side-by-Side */
     .nbs-spec-matrix {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+    }
+    @media (max-width: 600px) {
+      .nbs-spec-matrix {
+        grid-template-columns: 1fr;
+      }
     }
     .nbs-spec-pill-box {
       background: #f8fafc;
       border: 1px solid rgba(0,0,0,0.06);
       border-radius: 10px;
-      padding: 6px 10px;
-      font-size: 12px;
+      padding: 7px 9px;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2px;
+      min-width: 0;
     }
     .nbs-spec-pill-box.spec-win-green {
       background: #ecfdf5;
-      border: 1px solid #86efac;
-      border-left: 3.5px solid #16a34a;
+      border: 1.5px solid #4ade80;
     }
     .nbs-vs-check-btn {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 5px 11px;
+      gap: 4px;
+      padding: 4px 10px;
       border-radius: 99px;
-      border: 1px solid rgba(0,0,0,0.14);
+      border: 1px solid rgba(0,0,0,0.12);
       background: #fff;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-main);
       cursor: pointer;
@@ -1686,6 +1695,33 @@
       background: #16a34a;
       color: #fff;
       border-color: #16a34a;
+    }
+    /* Compact 3-Podium Winner Strip */
+    .compact-winner-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 820px) {
+      .compact-winner-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+    .compact-winner-pill {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .compact-winner-pill.primary {
+      background: #f0fdf4;
+      border: 1.5px solid #16a34a;
     }
     /* Floating VS Compare Bar (Bottom Sticky Tray) */
     .floating-vs-tray {
@@ -1870,162 +1906,131 @@
          CATEGORY DEEP COMPARISON VIEW (Appears when a category is selected)
          ============================================================ -->
     <div id="categoryViewSection" style="display:none;">
-      <section class="apple-hero" style="padding:18px 0 14px;align-items:center;">
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <button class="budget-pill" onclick="showHomeHub()" style="padding:4px 12px;font-size:12px;">
-              ← หน้าแรก
-            </button>
-            <span id="activePillarBadge" style="font-size:12px;font-weight:600;color:var(--text-sub);"></span>
-          </div>
-          <h1 class="apple-hero-title" id="heroHeadline" style="font-size:clamp(24px, 3.4vw, 36px);">
-            มือถือ. <span class="muted">เลือกช่วงงบประมาณที่คุณตั้งไว้.</span>
-          </h1>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-          <button class="tool-trigger-btn" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})" style="border-color:#16a34a;color:#15803d;background:#f0fdf4;font-weight:700;padding:8px 14px;font-size:12.5px;">
-            ⚔️ เทียบ 2 รุ่นชนกัน
+      <section class="apple-hero" style="padding:12px 0 10px;align-items:center;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <button class="budget-pill" onclick="showHomeHub()" style="padding:5px 12px;font-size:12px;">
+            ← หน้าแรก
           </button>
-          <button class="line-share-btn" onclick="shareCurrentComparisonToLine()" style="padding:8px 14px;font-size:12.5px;">
-            💬 แชร์โพยลง LINE
+          <h1 class="apple-hero-title" id="heroHeadline" style="font-size:clamp(20px, 2.6vw, 28px);margin:0;">
+            มือถือ
+          </h1>
+          <span id="activePillarBadge" style="font-size:11.5px;font-weight:600;color:var(--text-light);"></span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+          <button class="budget-pill" onclick="toggleSmartCalculator()" id="btnCalcTrigger" style="padding:6px 12px;font-size:12px;background:#fff;">
+            🧮 คำนวณ
+          </button>
+          <button class="tool-trigger-btn" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})" style="border-color:#16a34a;color:#15803d;background:#f0fdf4;font-weight:700;padding:6px 12px;font-size:12px;">
+            ⚔️ เทียบ 2 รุ่น
           </button>
         </div>
       </section>
 
     <!-- ============================================================
-         5. COMPACT SINGLE-ROW PRIMARY DECISION BAR (+ Collapsible Drawer)
+         5. COMPACT SINGLE-ROW PRIMARY DECISION BAR
          ============================================================ -->
-    <section class="budget-engine-card" style="padding:14px 18px;margin-bottom:20px;">
-      <div class="budget-engine-top" style="margin-bottom:0;gap:10px;">
+    <section class="budget-engine-card" style="padding:10px 14px;margin-bottom:14px;border-radius:16px;">
+      <div class="budget-engine-top" style="margin-bottom:0;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1;">
-          <span id="primaryDecisionLabel" style="font-size:12.5px;font-weight:800;color:#14532d;background:#ecfdf5;border:1px solid #86efac;padding:5px 11px;border-radius:99px;white-space:nowrap;">💰 เลือกตามงบ:</span>
+          <span id="primaryDecisionLabel" style="font-size:12px;font-weight:800;color:#14532d;background:#ecfdf5;border:1px solid #86efac;padding:4px 10px;border-radius:99px;white-space:nowrap;">💰 เลือกตามงบ:</span>
           <div class="budget-pills" id="budgetFilterPills"></div>
         </div>
-
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <button class="budget-pill" id="btnAdvFilterToggle" onclick="toggleAdvancedFilters()" style="padding:7px 13px;font-size:12px;background:#f5f5f7;">
-            🎯 ตัวกรองเพิ่มเติม / กำหนดงบเอง ▾
-          </button>
-          <button class="budget-pill" onclick="toggleSmartCalculator()" id="btnCalcTrigger" style="padding:7px 13px;font-size:12px;background:#f5f5f7;">
-            🧮 เครื่องคำนวณ
-          </button>
-        </div>
+        <button class="budget-pill" id="btnAdvFilterToggle" onclick="toggleAdvancedFilters()" style="padding:5px 11px;font-size:11.5px;background:#f5f5f7;">
+          🎯 งบกำหนดเอง ▾
+        </button>
       </div>
 
-      <!-- Collapsible Advanced Filter Drawer (Hidden by default to keep top bar clean) -->
-      <div id="advancedFilterDrawer" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border-hairline);">
-        <!-- Custom Min-Max Price Range Input -->
-        <div class="custom-budget-bar" style="padding-top:0;border-top:none;margin-bottom:10px;">
+      <!-- Collapsible Advanced Filter Drawer (Hidden by default) -->
+      <div id="advancedFilterDrawer" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-hairline);">
+        <div class="custom-budget-bar" style="padding-top:0;border-top:none;margin-bottom:8px;">
           <div class="custom-inputs-group">
-            <span class="custom-input-label">🎯 กำหนดงบเอง:</span>
+            <span class="custom-input-label">🎯 งบ:</span>
             <div class="price-input-box">
-              <span>ต่ำสุด ฿</span>
+              <span>฿</span>
               <input type="number" id="customMinPrice" class="price-input" placeholder="0" step="1000" />
             </div>
-            <span style="color:var(--text-sub);font-weight:600;">ถึง</span>
+            <span style="color:var(--text-sub);font-weight:600;">–</span>
             <div class="price-input-box">
-              <span>สูงสุด ฿</span>
+              <span>฿</span>
               <input type="number" id="customMaxPrice" class="price-input" placeholder="50000" step="1000" />
             </div>
-            <button class="btn-apply-budget" onclick="applyCustomPriceRange()">กรองตามงบนี้</button>
-            <button class="btn-reset-budget" onclick="resetPriceFilter()">ล้างค่า</button>
+            <button class="btn-apply-budget" onclick="applyCustomPriceRange()">กรอง</button>
+            <button class="btn-reset-budget" onclick="resetPriceFilter()">ล้าง</button>
           </div>
-          <div id="activeBudgetSummary" style="font-size:12px;color:var(--text-sub);font-weight:500;">
-            แสดงครบทุกช่วงงบประมาณ
-          </div>
+          <div id="activeBudgetSummary" style="font-size:11.5px;color:var(--text-sub);"></div>
         </div>
-
-        <!-- Use-Case / Lifestyle Filter Pills + View Switcher -->
-        <div class="usecase-bar" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="custom-input-label">✨ สไตล์การใช้งาน:</span>
-            <div id="useCasePillsContainer" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
-          </div>
-          <div class="apple-view-seg">
-            <button class="seg-btn active" id="segLineup" onclick="setViewMode('lineup')">ตารางเทียบ</button>
-            <button class="seg-btn" id="segCompare" onclick="setViewMode('compare')">⚔️ เทียบ 2 รุ่น</button>
-            <button class="seg-btn" id="segStepup" onclick="setViewMode('stepup')">คู่มืองบ</button>
-            <button class="seg-btn" id="segArticles" onclick="setViewMode('articles')">📰 Top 10</button>
-          </div>
+        <div id="useCasePillsContainer" style="display:none;"></div>
+        <div style="display:none;">
+          <button id="segLineup"></button><button id="segCompare"></button><button id="segStepup"></button><button id="segArticles"></button>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Smart Calculator Drawer (Feature #4) -->
+    <!-- Interactive Smart Calculator Drawer -->
     <div class="smart-calc-drawer" id="smartCalcDrawer"></div>
 
-    <!-- Smart Stretch Recommendation Banner (Appears when filtering by budget) -->
+    <!-- Smart Stretch Recommendation Banner -->
     <div id="smartStretchContainer"></div>
 
-    <!-- YESPEC GREEN WINNER VERDICT SUMMARY BOX ("อันไหนชนะ & เพราะอะไร") -->
+    <!-- COMPACT 3-PODIUM WINNER STRIP -->
     <div id="categoryWinnerSummaryBox"></div>
 
-    <!-- VIEW 1: NOTEBOOKSPEC-STYLE 2-COLUMN FACETED SPEC FINDER + COMPACT/CARD LINEUP -->
+    <!-- VIEW 1: NOTEBOOKSPEC-STYLE 2-COLUMN FACETED SPEC FINDER -->
     <section id="viewLineup">
       <div class="nbs-spec-finder-layout">
-        <!-- LEFT SIDEBAR: DYNAMIC CATEGORY SPEC FILTERS (Like NotebookSpec) -->
+        <!-- LEFT SIDEBAR: CLEAN SPEC FILTERS -->
         <aside class="nbs-sidebar" id="nbsSpecSidebar">
           <div class="nbs-sidebar-header">
-            <div class="nbs-sidebar-title">🎛️ กรองสเปกละเอียด</div>
-            <button class="helper-link" style="font-size:12px;font-weight:700;color:#16a34a;" onclick="clearAllFacetFilters()">ล้างตัวกรอง</button>
+            <div class="nbs-sidebar-title">🎛️ ตัวกรองสเปก</div>
+            <button class="helper-link" style="font-size:11.5px;font-weight:700;color:#16a34a;" onclick="clearAllFacetFilters()">ล้างค่า</button>
           </div>
           <div id="nbsSidebarGroupsContainer"></div>
         </aside>
 
-        <!-- RIGHT MAIN AREA: SEARCH + SORT + VIEW MODE + SPEC RESULTS -->
+        <!-- RIGHT MAIN AREA: TOOLBAR + CLEAN SPEC ROWS -->
         <div>
           <div class="nbs-toolbar">
             <button class="nbs-mobile-filter-btn" onclick="toggleMobileSpecSidebar()">
-              🎛️ กรองสเปกละเอียด <span id="mobileFacetCountBadge"></span>
+              🎛️ กรองสเปก <span id="mobileFacetCountBadge"></span>
             </button>
             <div class="nbs-search-input-wrap">
               <span>🔍</span>
-              <input type="text" id="categorySpecSearchInput" placeholder="ค้นหาชื่อรุ่น, แบรนด์ หรือสเปกย่อยในหมวดนี้..." oninput="setCategorySpecSearch(this.value)" />
+              <input type="text" id="categorySpecSearchInput" placeholder="ค้นหาชื่อรุ่น หรือ สเปก..." oninput="setCategorySpecSearch(this.value)" />
             </div>
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-              <select id="categorySortSelect" class="apple-select" style="padding:7px 12px;font-size:12.5px;min-width:170px;" onchange="setCategorySortMode(this.value)">
-                <option value="recommended">🏆 แนะนำคุ้มสุด &amp; ขายดี #1</option>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+              <select id="categorySortSelect" class="apple-select" style="padding:6px 10px;font-size:12px;min-width:145px;" onchange="setCategorySortMode(this.value)">
+                <option value="recommended">🏆 แนะนำคุ้มสุด</option>
                 <option value="price_asc">💰 ราคา: ต่ำ → สูง</option>
                 <option value="price_desc">💎 ราคา: สูง → ต่ำ</option>
-                <option value="spec_score">🚀 คะแนนสเปกสูงสุด</option>
+                <option value="spec_score">🚀 สเปกแรงสุด</option>
               </select>
-              <div class="apple-view-seg" style="background:#f1f5f9;padding:3px;border-radius:12px;">
-                <button class="seg-btn active" id="btnLayoutList" onclick="setLineupDisplayLayout('list')" style="padding:5px 11px;font-size:12px;">📋 แถวสเปก (NotebookSpec)</button>
-                <button class="seg-btn" id="btnLayoutCard" onclick="setLineupDisplayLayout('card')" style="padding:5px 11px;font-size:12px;">🃏 การ์ด 3 คอลัมน์</button>
+              <div class="apple-view-seg" style="background:#f1f5f9;padding:2px;border-radius:10px;">
+                <button class="seg-btn active" id="btnLayoutList" onclick="setLineupDisplayLayout('list')" style="padding:4px 10px;font-size:11.5px;">📋 แถวสเปก</button>
+                <button class="seg-btn" id="btnLayoutCard" onclick="setLineupDisplayLayout('card')" style="padding:4px 10px;font-size:11.5px;">🃏 การ์ด</button>
               </div>
+              <span class="result-count-badge" id="resultCountBadge" style="font-size:11.5px;padding:4px 10px;"></span>
             </div>
           </div>
 
           <div class="nbs-active-chips" id="nbsActiveFilterChips"></div>
+          <div style="display:none;"><h2 id="lineupTitle"></h2><p id="lineupSubtitle"></p></div>
 
-          <div class="section-header-row" style="margin-bottom:14px;">
-            <div>
-              <h2 class="section-headline" id="lineupTitle" style="font-size:22px;">รุ่นไหนเหมาะกับคุณ?</h2>
-              <p class="section-subheadline" id="lineupSubtitle" style="font-size:13px;">ติ๊กเลือกสเปกด้านซ้ายเพื่อคัดรุ่นที่ตรงใจ • <strong style="color:#15803d;">🟢 กรอบสีเขียว = ชนะในเงื่อนไขที่คุณเลือก</strong></p>
-            </div>
-            <div class="result-count-badge" id="resultCountBadge">แสดงรุ่นแนะนำ</div>
-          </div>
-
-          <div id="lineupGrid" class="apple-lineup-grid"></div>
+          <div id="lineupGrid" class="nbs-spec-list"></div>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 2: APPLE HEAD-TO-HEAD COMPARE (Always Visible Inline Below Lineup) -->
-    <section id="viewCompare" style="display:block;margin-top:20px;">
-      <div class="apple-compare-box" style="border:2px solid rgba(22,163,74,0.28);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-          <div>
-            <div class="apple-eyebrow" style="color:#16a34a;font-weight:800;">YESSPEC.COM HEAD-TO-HEAD BATTLE • เทียบหมัดต่อหมัด</div>
-            <h2 class="section-headline">เทียบ 2 รุ่นตัวต่อตัว: <span style="color:#16a34a;">อันไหนชนะ &amp; เพราะอะไร?</span></h2>
-            <p class="section-subheadline">เลือก 2 รุ่นที่ลังเล ระบบจะเทียบสเปกทีละข้อ ไฮไลท์ <strong style="color:#15803d;">สีเขียว (🟢 ชนะข้อนี้)</strong> และสรุปฟันธงให้ทันที</p>
-          </div>
-          <button class="line-share-btn" onclick="shareHeadToHeadToLine()">
-            💬 ส่งผลเทียบ 2 รุ่นนี้เข้า LINE
+    <!-- VIEW 2: COMPACT HEAD-TO-HEAD COMPARE -->
+    <section id="viewCompare" style="display:block;margin-top:16px;">
+      <div class="apple-compare-box" style="border:2px solid rgba(22,163,74,0.25);padding:22px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+          <h2 class="section-headline" style="font-size:21px;margin:0;">⚔️ เทียบ 2 รุ่นหมัดต่อหมัด <span style="color:#16a34a;font-size:15px;">(🟢 สีเขียว = ชนะข้อนั้น)</span></h2>
+          <button class="line-share-btn" onclick="shareHeadToHeadToLine()" style="padding:6px 12px;font-size:12px;">
+            💬 ส่งเข้า LINE
           </button>
         </div>
-        <div id="quickRivalPills" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"></div>
-        <div class="compare-selectors">
+        <div id="quickRivalPills" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;"></div>
+        <div class="compare-selectors" style="margin-bottom:14px;">
           <select id="selectModelA" class="apple-select" onchange="renderHeadToHead()"></select>
           <select id="selectModelB" class="apple-select" onchange="renderHeadToHead()"></select>
         </div>
@@ -2033,26 +2038,15 @@
       </div>
     </section>
 
-    <!-- VIEW 3 / BENTO BANNER: SMART BUDGET STEP-UP GUIDE -->
-    <section class="apple-bento-banner" id="bentoStepupSection">
-      <div>
-        <div class="apple-eyebrow">SMART BUDGET GUIDE • เทียบตามงบประมาณ</div>
-        <h2 class="section-headline" id="stepupHeadline">จ่ายแพงขึ้นได้อะไรเพิ่ม? คุ้มไหมที่จะขยับงบ?</h2>
-      </div>
+    <!-- Hidden Secondary Guides (Collapsed to eliminate text bloat; accessible via modal/links) -->
+    <section class="apple-bento-banner" id="bentoStepupSection" style="display:none;">
+      <h2 class="section-headline" id="stepupHeadline"></h2>
       <div class="bento-steps-grid" id="stepupGrid"></div>
     </section>
-
-    <!-- VIEW 4: MONTHLY SEO ARTICLES ZONE (Top 10 & Budget Buying Guides per Category) -->
-    <section class="apple-bento-banner" id="seoArticlesSection" style="background:transparent;box-shadow:none;padding:10px 0 36px;">
-      <div class="section-header-row">
-        <div>
-          <div class="apple-eyebrow" id="seoZoneEyebrow">MONTHLY SEO BUYING GUIDES • อัปเดตใหม่ทุกเดือน</div>
-          <h2 class="section-headline" id="seoZoneHeadline">บทความจัดอันดับ & โพยคุ้มค่าประจำเดือน</h2>
-          <p class="section-subheadline" id="seoZoneSub">บทความเจาะลึกจัดอันดับ Top 10 และคู่มือเลือกซื้อตามงบประมาณ (สร้างและอัปเดตอัตโนมัติทุกเดือนเพื่อ SEO)</p>
-        </div>
-        <button class="budget-pill" onclick="toggleAllCategoriesArticles()" id="btnToggleAllArticles">📚 ดูบทความครบทุกหมวด (30+ บทความ)</button>
-      </div>
-      <div class="apple-lineup-grid" id="seoArticlesGrid" style="margin-bottom:16px;"></div>
+    <section class="apple-bento-banner" id="seoArticlesSection" style="display:none;">
+      <div id="seoZoneEyebrow"></div><h2 id="seoZoneHeadline"></h2><p id="seoZoneSub"></p>
+      <button id="btnToggleAllArticles"></button>
+      <div id="seoArticlesGrid"></div>
     </section>
     </div>
   </main>
@@ -4566,350 +4560,350 @@
     // =========================================================================
     const PRIMARY_DECISION_BY_CAT = {
       aircon: {
-        label: '❄️ เลือกขนาดแอร์ (BTU / ขนาดห้อง) ก่อน:',
-        heroSub: 'เลือกขนาด BTU ตามห้องของคุณก่อน แล้วเทียบว่าใน BTU เท่ากัน แอร์รุ่นไหนคุ้มสุด ประหยัดไฟสุด และประกันดีสุด',
+        label: '❄️ ขนาดแอร์ (BTU):',
+        heroSub: '',
         defaultId: 'btu_12k',
         options: [
-          { id: 'btu_9k', label: '🛏️ 9,000 BTU (ห้องนอนเล็ก 9–14 ตร.ม.)', btu: '9,000 BTU', btuShort: '9000 BTU', room: 'ห้อง 9–14 ตร.ม.', priceScale: 0.84, elecScale: 0.78 },
-          { id: 'btu_12k', label: '🏠 12,000 BTU ยอดฮิต (ห้องนอน/คอนโด 15–20 ตร.ม.)', btu: '12,000 BTU', btuShort: '12000 BTU', room: 'ห้อง 15–20 ตร.ม.', priceScale: 1.0, elecScale: 1.0 },
-          { id: 'btu_18k', label: '🛋️ 18,000 BTU (ห้องนั่งเล่น 22–28 ตร.ม.)', btu: '18,000 BTU', btuShort: '18000 BTU', room: 'ห้อง 22–28 ตร.ม.', priceScale: 1.48, elecScale: 1.45 },
-          { id: 'btu_24k', label: '🏢 24,000 BTU (ห้องโถงใหญ่ 30–36 ตร.ม.)', btu: '24,000 BTU', btuShort: '24000 BTU', room: 'ห้อง 30–36 ตร.ม.', priceScale: 1.92, elecScale: 1.88 }
+          { id: 'btu_9k', label: '🛏️ 9,000 BTU (9–14 ตร.ม.)', btu: '9,000 BTU', btuShort: '9000 BTU', room: 'ห้อง 9–14 ตร.ม.', priceScale: 0.84, elecScale: 0.78 },
+          { id: 'btu_12k', label: '🏠 12,000 BTU ยอดฮิต (15–20 ตร.ม.)', btu: '12,000 BTU', btuShort: '12000 BTU', room: 'ห้อง 15–20 ตร.ม.', priceScale: 1.0, elecScale: 1.0 },
+          { id: 'btu_18k', label: '🛋️ 18,000 BTU (22–28 ตร.ม.)', btu: '18,000 BTU', btuShort: '18000 BTU', room: 'ห้อง 22–28 ตร.ม.', priceScale: 1.48, elecScale: 1.45 },
+          { id: 'btu_24k', label: '🏢 24,000 BTU (30–36 ตร.ม.)', btu: '24,000 BTU', btuShort: '24000 BTU', room: 'ห้อง 30–36 ตร.ม.', priceScale: 1.92, elecScale: 1.88 }
         ]
       },
       tv: {
-        label: '📺 เลือกขนาดหน้าจอ / ระยะนั่งดู:',
-        heroSub: 'เลือกขนาดนิ้วตามระยะโซฟาก่อน แล้วเทียบว่าในขนาดจอเท่ากัน ทีวีรุ่นไหนภาพสวยคุ้มราคาที่สุด',
+        label: '📺 ขนาดหน้าจอ:',
+        heroSub: '',
         defaultId: 'tv_65',
         options: [
-          { id: 'tv_55', label: '📺 จอ 55 นิ้ว (คอนโด/ห้องนอน ระยะ 1.8–2.2 ม.)', tvSize: 55, room: 'คอนโด/ห้องนอน', priceScale: 0.76 },
-          { id: 'tv_65', label: '🏠 จอ 65 นิ้ว ยอดฮิต (ห้องรับแขก ระยะ 2.3–2.8 ม.)', tvSize: 65, room: 'ห้องรับแขกมาตรฐาน', priceScale: 1.0 },
-          { id: 'tv_75', label: '🛋️ จอ 75 นิ้ว (ห้องโถงใหญ่ ระยะ 3.0 ม.+)', tvSize: 75, room: 'บ้านเดี่ยว/โถงใหญ่', priceScale: 1.38 },
-          { id: 'tv_oled_mini', label: '🎬 เน้นจอเทพ Mini LED / OLED (ดูหนัง/PS5)', orderIds: ['tcl-c855-65', 'lg-oled-c6-65', 'samsung-qn90f-65', 'hisense-55e6n'], winReason: 'ได้พาเนล QD-Mini LED 144Hz สว่าง 3,500 nits ในราคาคุ้มกว่าแบรนด์อื่นเกือบเท่าตัว' }
+          { id: 'tv_55', label: '📺 55 นิ้ว (คอนโด/ห้องนอน)', tvSize: 55, room: 'คอนโด/ห้องนอน', priceScale: 0.76 },
+          { id: 'tv_65', label: '🏠 65 นิ้ว ยอดฮิต (ห้องรับแขก)', tvSize: 65, room: 'ห้องรับแขก', priceScale: 1.0 },
+          { id: 'tv_75', label: '🛋️ 75 นิ้ว (ห้องโถงใหญ่)', tvSize: 75, room: 'ห้องโถงใหญ่', priceScale: 1.38 },
+          { id: 'tv_oled_mini', label: '🎬 Mini LED / OLED ตัวท็อป', orderIds: ['tcl-c855-65', 'lg-oled-c6-65', 'samsung-qn90f-65', 'hisense-55e6n'], winReason: 'QD-Mini LED 144Hz 3,500 nits' }
         ]
       },
       smartphone: {
-        label: '💰 เลือกช่วงงบประมาณมือถือ:',
-        heroSub: 'เลือกงบในใจก่อน แล้วเทียบสเปกกล้อง-ชิป-แบตในงบเดียวกัน รุ่นไหนชนะขาด',
+        label: '💰 งบประมาณ:',
+        heroSub: '',
         defaultId: '10k_15k',
         useBudgets: true
       },
       tablet: {
-        label: '📟 เลือกจุดประสงค์การใช้งานหลัก:',
-        heroSub: 'เลือกงานที่ใช้ประจำก่อน แล้วเทียบว่าแท็บเล็ตรุ่นไหนคุ้มสุดและรองรับปากกา/คีย์บอร์ดดีสุด',
+        label: '📟 การใช้งาน:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่นยอดนิยม' },
-          { id: 'study_note', label: '✏️ จดโน้ตเรียน / อ่าน PDF คุ้มงบ', orderIds: ['ipad-gen11', 'redmi-pad-se', 'ipad-air-m3', 'ipad-pro-oled'], winReason: 'ชิป A16 ลื่นไหล ใช้งานจดโน้ต Goodnotes เรียนยาว 5 ปีในราคาเริ่มต้นคุ้มที่สุด' },
-          { id: 'ipad_eco', label: '🍎 สายเรียน-ทำงานจริงจัง ชิป M3 ใช้ยาว 5 ปี+', orderIds: ['ipad-air-m3', 'ipad-gen11', 'ipad-pro-oled', 'redmi-pad-se'], winReason: 'ชิป Apple M3 แรงระดับโน้ตบุ๊ก รองรับ Apple Pencil Pro ใช้ยาว 5-6 ปีคุ้มที่สุด' },
-          { id: 'pro_work', label: '🎨 วาดรูปโปร / จอ OLED 120Hz ตัวท็อป / หรือรุ่นประหยัดดูหนัง', orderIds: ['ipad-pro-oled', 'ipad-air-m3', 'ipad-gen11', 'redmi-pad-se'], winReason: 'จอ Ultra Retina XDR Tandem OLED 120Hz ชิป M4 บางเฉียบ 5.3 มม. ดีที่สุดในโลกแท็บเล็ต' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'study_note', label: '✏️ จดโน้ตเรียนคุ้มงบ', orderIds: ['ipad-gen11', 'redmi-pad-se', 'ipad-air-m3', 'ipad-pro-oled'], winReason: 'ชิป A16 ลื่นไหล คุ้มที่สุด' },
+          { id: 'ipad_eco', label: '🍎 ชิป M3 ทำงานจริงจัง', orderIds: ['ipad-air-m3', 'ipad-gen11', 'ipad-pro-oled', 'redmi-pad-se'], winReason: 'ชิป Apple M3 รองรับ Pencil Pro' },
+          { id: 'pro_work', label: '🎨 จอ OLED 120Hz ตัวท็อป', orderIds: ['ipad-pro-oled', 'ipad-air-m3', 'ipad-gen11', 'redmi-pad-se'], winReason: 'จอ Tandem OLED 120Hz ชิป M4' }
         ]
       },
       notebook: {
-        label: '💻 เลือกประเภทงานที่ใช้เป็นหลัก:',
-        heroSub: 'เลือกสไตล์การใช้งานก่อน แล้วเทียบซีพียู-จอ-น้ำหนัก-ประกัน Onsite ว่ารุ่นไหนชนะ',
+        label: '💻 ประเภทงาน:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'work_study', label: '📄 ทำงานเอกสาร / เรียนออนไลน์ คุ้มงบ', orderIds: ['asus-vivobook-15', 'acer-aspire-lite', 'macbook-air-13', 'lenovo-loq-rtx'], winReason: 'ได้จอ OLED สีสวยสด + RAM 16GB แท้ ในงบหมื่นกลาง คุ้มที่สุดสำหรับทำงาน-เรียน' },
-          { id: 'portable_bat', label: '🔋 พกพาง่าย แบตอึด 18 ชม. ไม่ต้องพกสายชาร์จ', orderIds: ['macbook-air-13', 'asus-vivobook-15', 'acer-aspire-lite', 'lenovo-loq-rtx'], winReason: 'ชิป Apple M4 แบตอึด 18 ชม. เครื่องบางเบาไร้พัดลม พกทำงานคาเฟ่ชนะขาด' },
-          { id: 'gaming_edit', label: '🎮 เล่นเกม AAA / ตัดต่อวิดีโอ การ์ดจอแยก RTX', orderIds: ['lenovo-loq-rtx', 'macbook-air-13', 'asus-vivobook-15', 'acer-aspire-lite'], winReason: 'ได้การ์ดจอแยก RTX 4050 + จอ 144Hz 100% sRGB พร้อมประกันซ่อมถึงบ้าน 3 ปีเต็ม' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'work_study', label: '📄 ทำงาน/เรียน คุ้มงบ', orderIds: ['asus-vivobook-15', 'acer-aspire-lite', 'macbook-air-13', 'lenovo-loq-rtx'], winReason: 'จอ OLED + RAM 16GB' },
+          { id: 'portable_bat', label: '🔋 บางเบา แบตอึด 18 ชม.', orderIds: ['macbook-air-13', 'asus-vivobook-15', 'acer-aspire-lite', 'lenovo-loq-rtx'], winReason: 'ชิป M4 แบตอึด 18 ชม.' },
+          { id: 'gaming_edit', label: '🎮 เกมมิ่ง / ตัดต่อ (RTX)', orderIds: ['lenovo-loq-rtx', 'macbook-air-13', 'asus-vivobook-15', 'acer-aspire-lite'], winReason: 'การ์ดจอแยก RTX 4050 + จอ 144Hz' }
         ]
       },
       fridge: {
-        label: '🧊 เลือกตามจำนวนสมาชิก / ขนาดครัว:',
-        heroSub: 'เลือกขนาดคิวและจำนวนประตูตามบ้านของคุณก่อน แล้วเทียบรุ่นไหนประหยัดไฟและประกันคอมเพรสเซอร์นานสุด',
+        label: '🧊 ขนาดตู้เย็น:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกขนาด' },
-          { id: 'condo_1_2', label: '🏢 คอนโด / อยู่ 1–2 คน (8–9 คิว ประหยัดพื้นที่)', orderIds: ['samsung-rt22-8q', 'lg-2door-14q', 'mitsu-4door-la70', 'hitachi-4door-wb640'], winReason: 'ขนาด 8.4 คิว กว้างพอดีช่องครัวคอนโด พร้อม Digital Inverter ประกันคอมฯ 20 ปี' },
-          { id: 'family_3_4', label: '🏠 ครอบครัว 3–4 คน (14 คิว ยอดฮิต)', orderIds: ['lg-2door-14q', 'samsung-rt22-8q', 'mitsu-4door-la70', 'hitachi-4door-wb640'], winReason: 'ความจุ 14.2 คิว ใส่ของสดได้ทั้งสัปดาห์ มี DoorCooling+ เย็นทั่วถึงทั้งตู้' },
-          { id: 'multi_4door', label: '👑 บ้านใหญ่ / 4 ประตู Multi-Door แช่เนื้อ-ผักแยกช่อง', orderIds: ['hitachi-4door-wb640', 'mitsu-4door-la70', 'lg-2door-14q', 'samsung-rt22-8q'], winReason: 'ตู้ 4 ประตู 20.1 คิว มีช่อง Vacuum Compartment ถนอมเนื้อสัตว์-ผักสดไม่เป็นน้ำแข็ง' }
+          { id: 'all', label: '✨ ทุกขนาด' },
+          { id: 'condo_1_2', label: '🏢 คอนโด 1–2 คน (8–9 คิว)', orderIds: ['samsung-rt22-8q', 'lg-2door-14q', 'mitsu-4door-la70', 'hitachi-4door-wb640'], winReason: '8.4 คิว ประกันคอมฯ 20 ปี' },
+          { id: 'family_3_4', label: '🏠 ครอบครัว 3–4 คน (14 คิว)', orderIds: ['lg-2door-14q', 'samsung-rt22-8q', 'mitsu-4door-la70', 'hitachi-4door-wb640'], winReason: '14.2 คิว DoorCooling+' },
+          { id: 'multi_4door', label: '👑 4 ประตู Multi-Door (20 คิว+)', orderIds: ['hitachi-4door-wb640', 'mitsu-4door-la70', 'lg-2door-14q', 'samsung-rt22-8q'], winReason: '4 ประตู 20.1 คิว Vacuum ช่องสุญญากาศ' }
         ]
       },
       washer: {
-        label: '🧺 เลือกตามปริมาณผ้า / รูปแบบถังซัก:',
-        heroSub: 'เลือกขนาดกิโลตามจำนวนคนในบ้านและผ้านวมก่อน แล้วเทียบมอเตอร์ต่อตรง-ไอน้ำร้อนรุ่นไหนคุ้มสุด',
+        label: '🧺 ขนาดถังซัก:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'top_load', label: '🪣 งบประหยัด ฝาหน้า Inverter เริ่มต้นไม่ถึงหมื่น', orderIds: ['hisense-front-9kg', 'samsung-ecobubble-10', 'lg-aidd-12kg', 'electrolux-uc700'], winReason: 'ฝาหน้า Inverter 9 กก. มีโหมดซักไอน้ำร้อน Allergy Steam ในราคาประหยัดที่สุด' },
-          { id: 'front_10kg', label: '🌀 ฝาหน้า 10–12 กก. ถนอมผ้า + ซักไอน้ำกำจัดสารก่อภูมิแพ้', orderIds: ['lg-aidd-12kg', 'samsung-ecobubble-10', 'electrolux-uc700', 'hisense-front-9kg'], winReason: 'มอเตอร์ AI DD ต่อตรงเสียงเงียบ + ไอน้ำร้อน Steam กำจัดไรฝุ่น 99.9% ขายดีอันดับ #1' },
-          { id: 'front_large', label: '👑 เน้นซักสะอาดล้ำลึก ผ้าสีไม่ซีด ถนอมเนื้อผ้าระดับยุโรป', orderIds: ['electrolux-uc700', 'lg-aidd-12kg', 'samsung-ecobubble-10', 'hisense-front-9kg'], winReason: 'เทคโนโลยี UltraMix ตีผงซักฟอกละลายก่อนเข้าถัง ผ้าสีไม่ซีด ถนอมเนื้อผ้าระดับพรีเมียม' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'top_load', label: '🪣 งบประหยัด (<10,000฿)', orderIds: ['hisense-front-9kg', 'samsung-ecobubble-10', 'lg-aidd-12kg', 'electrolux-uc700'], winReason: 'ฝาหน้า Inverter 9 กก. ไอน้ำร้อน' },
+          { id: 'front_10kg', label: '🌀 ฝาหน้า 10–12 กก. ยอดฮิต', orderIds: ['lg-aidd-12kg', 'samsung-ecobubble-10', 'electrolux-uc700', 'hisense-front-9kg'], winReason: 'มอเตอร์ AI DD ต่อตรง + Steam' },
+          { id: 'front_large', label: '👑 ถนอมผ้าพรีเมียม UltraMix', orderIds: ['electrolux-uc700', 'lg-aidd-12kg', 'samsung-ecobubble-10', 'hisense-front-9kg'], winReason: 'UltraMix ผ้าสีไม่ซีด' }
         ]
       },
       dryer: {
-        label: '👕 เลือกตามพื้นที่ตั้ง / เทคโนโลยีอบผ้า:',
-        heroSub: 'เลือกระบบอบผ้าตามพื้นที่คอนโดหรือบ้านก่อน แล้วเทียบรุ่นไหนถนอมผ้าและกินไฟน้อยที่สุด',
+        label: '👕 ระบบอบผ้า:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'heatpump_save', label: '⚡ ระบบ Heat Pump ประหยัดไฟสูงสุด & ถนอมผ้าไม่หด', orderIds: ['lg-dual-heatpump-10', 'samsung-heatpump-9', 'beko-condenser-8', 'haier-dryer-7kg'], winReason: 'Dual Inverter Heat Pump ประหยัดไฟเบอร์ 5 สูงสุด อบอุณหภูมิต่ำผ้าไม่หด ประกันคอมฯ 10 ปี' },
-          { id: 'condo_no_pipe', label: '🏢 ตั้งในคอนโด (ไม่ต้องเจาะผนังต่อท่อลมร้อน)', orderIds: ['samsung-heatpump-9', 'lg-dual-heatpump-10', 'beko-condenser-8', 'haier-dryer-7kg'], winReason: 'ระบบ Heat Pump ถังพักน้ำในตัว ตั้งในห้องคอนโดได้เลยโดยไม่ต้องต่อท่อระบายอากาศ' },
-          { id: 'budget_quick', label: '💰 เน้นงบประหยัด อบแห้งไวคุ้มราคาเริ่มต้น', orderIds: ['haier-dryer-7kg', 'beko-condenser-8', 'samsung-heatpump-9', 'lg-dual-heatpump-10'], winReason: 'ได้เครื่องอบผ้า 7 กก. มีโหมดลดรอยยับและฆ่าเชื้อโรค ในงบประหยัดที่สุด' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'heatpump_save', label: '⚡ Heat Pump ประหยัดไฟสุด', orderIds: ['lg-dual-heatpump-10', 'samsung-heatpump-9', 'beko-condenser-8', 'haier-dryer-7kg'], winReason: 'Dual Inverter Heat Pump ผ้าไม่หด' },
+          { id: 'condo_no_pipe', label: '🏢 ตั้งคอนโด (ไม่ต้องเจาะท่อ)', orderIds: ['samsung-heatpump-9', 'lg-dual-heatpump-10', 'beko-condenser-8', 'haier-dryer-7kg'], winReason: 'Heat Pump มีถังพักน้ำในตัว' },
+          { id: 'budget_quick', label: '💰 งบประหยัด คุ้มราคา', orderIds: ['haier-dryer-7kg', 'beko-condenser-8', 'samsung-heatpump-9', 'lg-dual-heatpump-10'], winReason: '7 กก. ลดรอยยับ งบประหยัดสุด' }
         ]
       },
       purifier: {
-        label: '🍃 เลือกตามขนาดห้อง (ตร.ม.) / ปัญหาภูมิแพ้-ขนสัตว์:',
-        heroSub: 'เลือกขนาดห้องของคุณก่อน แล้วเทียบอัตราฟอก CADR ความเงียบ และราคาไส้กรองว่ารุ่นไหนคุ้มสุด',
+        label: '🍃 ขนาดห้อง:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกขนาดห้อง' },
-          { id: 'room_small', label: '🛏️ ห้องนอน / คอนโด (20–48 ตร.ม.) เงียบกริบ', orderIds: ['xiaomi-purifier-4', 'xiaomi-purifier-compact', 'philips-ac1715', 'sharp-fp-j80'], winReason: 'รองรับห้องถึง 48 ตร.ม. มีจอ OLED บอกค่า PM2.5 แบบเรียลไทม์ ไส้กรองหาง่ายราคาประหยัด' },
-          { id: 'room_mid', label: '🛋️ ห้องนั่งเล่น / ภูมิแพ้-ขนสัตว์ (เซนเซอร์ละเอียดระดับยุโรป)', orderIds: ['philips-ac1715', 'xiaomi-purifier-4', 'sharp-fp-j80', 'xiaomi-purifier-compact'], winReason: 'กรอง NanoProtect HEPA ดักจับอนุภาคเล็กถึง 0.003 ไมครอน พร้อมเซนเซอร์สแกนฝุ่น 1,000 ครั้ง/วิ' },
-          { id: 'room_large', label: '🏢 บ้านโถงใหญ่ (60 ตร.ม.+) / ปล่อยประจุ Plasmacluster ฆ่าเชื้อ', orderIds: ['sharp-fp-j80', 'philips-ac1715', 'xiaomi-purifier-4', 'xiaomi-purifier-compact'], winReason: 'ครอบคลุมโถงใหญ่ 62 ตร.ม. ปล่อยประจุ Plasmacluster เข้มข้นยับยั้งเชื้อไวรัสและกลิ่นอับ' }
+          { id: 'all', label: '✨ ทุกขนาด' },
+          { id: 'room_small', label: '🛏️ ห้องนอน 20–48 ตร.ม.', orderIds: ['xiaomi-purifier-4', 'xiaomi-purifier-compact', 'philips-ac1715', 'sharp-fp-j80'], winReason: 'ห้อง 48 ตร.ม. จอ OLED' },
+          { id: 'room_mid', label: '🛋️ ภูมิแพ้ / สัตว์เลี้ยง', orderIds: ['philips-ac1715', 'xiaomi-purifier-4', 'sharp-fp-j80', 'xiaomi-purifier-compact'], winReason: 'กรองละเอียด 0.003 ไมครอน' },
+          { id: 'room_large', label: '🏢 โถงใหญ่ 60 ตร.ม.+', orderIds: ['sharp-fp-j80', 'philips-ac1715', 'xiaomi-purifier-4', 'xiaomi-purifier-compact'], winReason: '62 ตร.ม. Plasmacluster ฆ่าเชื้อ' }
         ]
       },
       robot: {
-        label: '🤖 เลือกตามสภาพบ้าน / การดูแลรักษา:',
-        heroSub: 'เลือกฟีเจอร์ที่ตรงกับบ้านคุณก่อน แล้วเทียบแรงดูด Pa และระบบซักม็อบอัตโนมัติรุ่นไหนจบจริง',
+        label: '🤖 รูปแบบการใช้งาน:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'auto_wash', label: '🧼 มีแท่นซักม็อบ+เป่าแห้งอัตโนมัติ คุ้มค่าอันดับ #1', orderIds: ['xiaomi-x20-plus', 'dreame-x40-ultra', 'roborock-s8-maxv', 'xiaomi-robot-s20'], winReason: 'ได้แท่น All-in-One เก็บฝุ่น ซักผ้าถู และเป่าแห้งอัตโนมัติครบจบในงบหมื่นต้นคุ้มที่สุด' },
-          { id: 'pet_hair', label: '🐾 บ้านเลี้ยงหมาแมว / เส้นผมเยอะ (แรงดูดสูง แขนกลยืดถูมุม)', orderIds: ['dreame-x40-ultra', 'roborock-s8-maxv', 'xiaomi-x20-plus', 'xiaomi-robot-s20'], winReason: 'แรงดูด 12,000 Pa + แขนกลยืดถูซอกมุม ขจัดขนสัตว์ตามขอบบัวและใต้ตู้ได้เกลี้ยงที่สุด' },
-          { id: 'budget_station', label: '💰 คอนโดงบประหยัด (เน้นนำทางเลเซอร์ LDS แม่นยำ)', orderIds: ['xiaomi-robot-s20', 'xiaomi-x20-plus', 'dreame-x40-ultra', 'roborock-s8-maxv'], winReason: 'แรงดูด 5,000 Pa นำทางเลเซอร์ LDS สแกนห้องแม่นยำในงบเพียง 5 พันกว่าบาท' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'auto_wash', label: '🧼 ซักม็อบ+เป่าแห้งอัตโนมัติ', orderIds: ['xiaomi-x20-plus', 'dreame-x40-ultra', 'roborock-s8-maxv', 'xiaomi-robot-s20'], winReason: 'แท่น All-in-One คุ้มที่สุด' },
+          { id: 'pet_hair', label: '🐾 บ้านเลี้ยงสัตว์ / แรงดูดสูง', orderIds: ['dreame-x40-ultra', 'roborock-s8-maxv', 'xiaomi-x20-plus', 'xiaomi-robot-s20'], winReason: 'แรงดูด 12,000 Pa แขนกลยืดถูมุม' },
+          { id: 'budget_station', label: '💰 คอนโดงบประหยัด', orderIds: ['xiaomi-robot-s20', 'xiaomi-x20-plus', 'dreame-x40-ultra', 'roborock-s8-maxv'], winReason: 'แรงดูด 5,000 Pa นำทาง LDS' }
         ]
       },
       cordlessvac: {
-        label: '🧹 เลือกตามรูปแบบการทำความสะอาด:',
-        heroSub: 'เลือกแบบดูดฝุ่นแห้งอย่างเดียวหรือดูด+ถูเปียกก่อน แล้วเทียบน้ำหนักและแรงดูดรุ่นไหนชนะ',
+        label: '🧹 รูปแบบดูดฝุ่น:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'laser_dust', label: '🔦 มีไฟส่องฝุ่นละเอียด น้ำหนักเบา ดูดเตียง-โซฟา', orderIds: ['dreame-r10', 'dyson-v12-slim', 'xiaomi-g20-lite', 'dreame-h14-wetdry'], winReason: 'มีไฟส่องฝุ่นหน้าแปรง + หัวดูดไรฝุ่นที่นอนครบชุด ในราคาประหยัดกว่าเรือธงเกินครึ่ง' },
-          { id: 'wet_dry', label: '💦 ดูดฝุ่น + ถูพื้นเปียกพร้อมกัน (คราบอาหาร/กางราบ 180 องศา)', orderIds: ['dreame-h14-wetdry', 'dyson-v12-slim', 'dreame-r10', 'xiaomi-g20-lite'], winReason: 'เอนราบได้ 180 องศาเข้าใต้เตียง ดูดเศษอาหาร+ถูพื้นพร้อมซักแปรงด้วยน้ำร้อน 60°C' },
-          { id: 'condo_budget', label: '🏢 คอนโดเน้นเบา คล่องตัว งบประหยัด หรือตัวท็อป Dyson', orderIds: ['xiaomi-g20-lite', 'dyson-v12-slim', 'dreame-r10', 'dreame-h14-wetdry'], winReason: 'น้ำหนักเบา มีไฟ LED ส่องฝุ่นหน้าแปรง ดูดฝุ่นคอนโดสะอาดครบในงบไม่กี่พันบาท' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'laser_dust', label: '🔦 มีไฟส่องฝุ่น น้ำหนักเบา', orderIds: ['dreame-r10', 'dyson-v12-slim', 'xiaomi-g20-lite', 'dreame-h14-wetdry'], winReason: 'ไฟส่องฝุ่น + หัวดูดไรฝุ่น' },
+          { id: 'wet_dry', label: '💦 ดูดฝุ่น + ถูเปียกพร้อมกัน', orderIds: ['dreame-h14-wetdry', 'dyson-v12-slim', 'dreame-r10', 'xiaomi-g20-lite'], winReason: 'เอนราบ 180° ซักแปรงน้ำร้อน 60°C' },
+          { id: 'condo_budget', label: '🏢 งบประหยัด / ตัวท็อป', orderIds: ['xiaomi-g20-lite', 'dyson-v12-slim', 'dreame-r10', 'dreame-h14-wetdry'], winReason: 'น้ำหนักเบา มีไฟ LED ส่องฝุ่น' }
         ]
       },
       waterheater: {
-        label: '🚿 เลือกตามแรงดันน้ำ / สภาพอากาศ:',
-        heroSub: 'เลือกกำลังวัตต์และวัสดุหม้อต้มก่อน แล้วเทียบระบบตัดไฟนิรภัยและประกันหม้อต้มรุ่นไหนอุ่นใจสุด',
+        label: '🚿 กำลังไฟ & หม้อต้ม:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'std_3500', label: '🏠 บ้านทั่วไป / คอนโด (3,500W ประหยัดไฟ ปลอดภัย 9 ชั้น)', orderIds: ['pana-dh-3ns', 'sharp-wh34', 'stiebel-copper-45', 'pana-pump-45'], winReason: '9 ระบบนิรภัยมาตรฐานญี่ปุ่น หม้อต้มทนทาน ตัดไฟไวภายในเสี้ยววินาที ขายดีอันดับ #1' },
-          { id: 'copper_4500', label: '❄️ เมืองหนาว / น้ำไหลเบา (4,500W หม้อต้มทองแดง หรือมีปั๊มในตัว)', orderIds: ['stiebel-copper-45', 'pana-pump-45', 'pana-dh-3ns', 'sharp-wh34'], winReason: 'หม้อต้มทองแดงแท้ 100% ร้อนไว ทนแรงดันน้ำสูง ไม่รั่วซึมตลอดอายุการใช้งาน' },
-          { id: 'budget_safe', label: '💰 เน้นคุ้มงบ ได้มาตรฐานมอก. & ELB ตัดไฟครบ', orderIds: ['sharp-wh34', 'pana-dh-3ns', 'stiebel-copper-45', 'pana-pump-45'], winReason: 'คุ้มราคาที่สุด ได้ระบบนิรภัย ELB ตัดไฟอัตโนมัติและหัวฝักบัวปรับได้ 3 ระดับ' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'std_3500', label: '🏠 3,500W มาตรฐานยอดฮิต', orderIds: ['pana-dh-3ns', 'sharp-wh34', 'stiebel-copper-45', 'pana-pump-45'], winReason: '9 ระบบนิรภัย มาตรฐานญี่ปุ่น' },
+          { id: 'copper_4500', label: '❄️ 4,500W หม้อต้มทองแดง/มีปั๊ม', orderIds: ['stiebel-copper-45', 'pana-pump-45', 'pana-dh-3ns', 'sharp-wh34'], winReason: 'หม้อต้มทองแดงแท้ 100%' },
+          { id: 'budget_safe', label: '💰 งบประหยัด ปลอดภัย ELB', orderIds: ['sharp-wh34', 'pana-dh-3ns', 'stiebel-copper-45', 'pana-pump-45'], winReason: 'คุ้มราคาสุด มีระบบตัดไฟ ELB' }
         ]
       },
       waterpurifier: {
-        label: '💧 เลือกรูปแบบการติดตั้ง (เจาะท่อ vs ไม่ต้องติดตั้ง):',
-        heroSub: 'เลือกก่อนว่าบ้านคุณสะดวกร้อยท่อหรือวางเสียบปลั๊กใช้ได้เลย แล้วเทียบความละเอียดไส้กรอง RO/UV',
+        label: '💧 รูปแบบติดตั้ง:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'no_install', label: '🏢 คอนโด / หอพัก (วางเสียบปลั๊ก กดน้ำร้อน-เย็นได้เลยไม่ต้องเดินท่อ)', orderIds: ['philips-hotcold-ro', 'mazuma-uf-easy', 'philips-uv-purifier', 'xiaomi-ro-600g'], winReason: 'กรอง RO + UV ในตัว เติมน้ำใส่ถังเสียบปลั๊กกดน้ำร้อนชงกาแฟและน้ำเย็นได้ทันที ไม่ต้องเดินท่อ' },
-          { id: 'ro_under', label: '🏠 บ้านติดตั้งถาวร กรอง RO บริสุทธิ์สูงสุด 0.0001 ไมครอน', orderIds: ['xiaomi-ro-600g', 'philips-hotcold-ro', 'philips-uv-purifier', 'mazuma-uf-easy'], winReason: 'อัตราไหลเร็ว 600G ไม่ต้องมีถังพักน้ำเก่าเก็บ เช็คอายุไส้กรองผ่านแอปมือถือได้ทันที' },
-          { id: 'mineral_uv', label: '✨ เน้นคงแร่ธาตุธรรมชาติ + ฆ่าเชื้อ UV ติดตั้งง่าย', orderIds: ['philips-uv-purifier', 'mazuma-uf-easy', 'xiaomi-ro-600g', 'philips-hotcold-ro'], winReason: 'กรองละเอียดพร้อมหลอด UV-C LED ฆ่าเชื้อแบคทีเรีย 99.9% คงแร่ธาตุธรรมชาติในน้ำดื่ม' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'no_install', label: '🏢 เสียบปลั๊กใช้เลย (น้ำร้อน-เย็น)', orderIds: ['philips-hotcold-ro', 'mazuma-uf-easy', 'philips-uv-purifier', 'xiaomi-ro-600g'], winReason: 'RO + UV กดน้ำร้อน-เย็นไม่ต้องเดินท่อ' },
+          { id: 'ro_under', label: '🏠 กรอง RO ติดตั้งถาวร', orderIds: ['xiaomi-ro-600g', 'philips-hotcold-ro', 'philips-uv-purifier', 'mazuma-uf-easy'], winReason: 'RO 600G เช็คไส้กรองผ่านแอป' },
+          { id: 'mineral_uv', label: '✨ กรองแร่ธาตุ + ฆ่าเชื้อ UV', orderIds: ['philips-uv-purifier', 'mazuma-uf-easy', 'xiaomi-ro-600g', 'philips-hotcold-ro'], winReason: 'UV-C LED ฆ่าเชื้อ 99.9%' }
         ]
       },
       airfryer: {
-        label: '🍗 เลือกขนาดความจุ (ลิตร) ตามจำนวนคนทาน:',
-        heroSub: 'เลือกขนาดความจุและช่องมองอาหารก่อน แล้วเทียบวัสดุเคลือบและกำลังไฟรุ่นไหนอบกรอบทั่วถึงสุด',
+        label: '🍗 ความจุหม้อทอด:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกขนาด' },
-          { id: 'window_6l', label: '👀 ความจุ 6.5 ลิตร ยอดฮิต + มีช่องมองอาหารไม่ต้องดึงตะกร้า', orderIds: ['xiaomi-airfryer-65', 'philips-airfryer-xxl', 'samsung-grill-mw', 'gaabor-airfryer-5l'], winReason: 'ความจุใหญ่ 6.5 ลิตร มีช่องกระจกใสเช็คความกรอบได้ทันที + โหมดรีดไขมันส่วนเกิน' },
-          { id: 'dual_grill', label: '🥩 ครอบครัวใหญ่ ตัวท็อป XXL รีดไขมัน / หรือไมโครเวฟย่างกรอบ', orderIds: ['philips-airfryer-xxl', 'samsung-grill-mw', 'xiaomi-airfryer-65', 'gaabor-airfryer-5l'], winReason: 'เทคโนโลยี Rapid Air ลิขสิทธิ์แท้ Philips รีดน้ำมันได้สูงสุด 90% ทนทานนานหลายปี' },
-          { id: 'compact_1_2', label: '🏢 อยู่ 1–2 คน เน้นประหยัดงบ ใช้งานง่ายคุ้มราคา', orderIds: ['gaabor-airfryer-5l', 'xiaomi-airfryer-65', 'samsung-grill-mw', 'philips-airfryer-xxl'], winReason: 'ได้หม้อทอด 5 ลิตรในงบไม่ถึงพันบาท อบเฟรนช์ฟรายส์และหมูสามชั้นกรอบนอกนุ่มในคุ้มสุด' }
+          { id: 'all', label: '✨ ทุกขนาด' },
+          { id: 'window_6l', label: '👀 6.5 ลิตร มีช่องมองอาหาร', orderIds: ['xiaomi-airfryer-65', 'philips-airfryer-xxl', 'samsung-grill-mw', 'gaabor-airfryer-5l'], winReason: '6.5 ลิตร มีช่องกระจกใส' },
+          { id: 'dual_grill', label: '🥩 ครอบครัวใหญ่ XXL ตัวท็อป', orderIds: ['philips-airfryer-xxl', 'samsung-grill-mw', 'xiaomi-airfryer-65', 'gaabor-airfryer-5l'], winReason: 'Rapid Air รีดน้ำมัน 90%' },
+          { id: 'compact_1_2', label: '🏢 ประหยัดงบ (<1,000฿)', orderIds: ['gaabor-airfryer-5l', 'xiaomi-airfryer-65', 'samsung-grill-mw', 'philips-airfryer-xxl'], winReason: '5 ลิตร คุ้มงบเริ่มต้น' }
         ]
       },
       coffee: {
-        label: '☕ เลือกสไตล์การชงกาแฟของคุณ:',
-        heroSub: 'เลือกก่อนว่าชอบกดปุ่มเดียวจบ (แคปซูล/อัตโนมัติ) หรือด้ามชงบาริสต้า แล้วเทียบแรงดันบาร์และฟองนม',
+        label: '☕ สไตล์การชง:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกแบบ' },
-          { id: 'capsule_fast', label: '⚡ สายเร่งด่วน กดปุ่มเดียวได้กาแฟแท้ใน 30 วินาที', orderIds: ['nespresso-essenza', 'delonghi-dedica', 'duchess-cm5000', 'delonghi-magnifica'], winReason: 'แรงดัน 19 บาร์ สกัดครีม่าหอมเข้มข้น เครื่องจิ๋วประหยัดพื้นที่ ไม่ต้องล้างกากกาแฟ' },
-          { id: 'semi_barista', label: '☕ สายโฮมคาเฟ่ ด้ามชงสกัดช็อต + ตีฟองนมลาเต้อาร์ต', orderIds: ['delonghi-dedica', 'duchess-cm5000', 'nespresso-essenza', 'delonghi-magnifica'], winReason: 'ตัวเครื่องสแตนเลสบางเพียง 15 ซม. ระบบทำความร้อน Thermoblock สกัดเอสเพรสโซ่คงที่ระดับคาเฟ่' },
-          { id: 'bean_to_cup', label: '👑 อัตโนมัติบดเมล็ดสดแก้วต่อแก้ว (ประหยัดค่าแคปซูลระยะยาว)', orderIds: ['delonghi-magnifica', 'delonghi-dedica', 'nespresso-essenza', 'duchess-cm5000'], winReason: 'บดเมล็ดกาแฟสดใหม่ทุกแก้วด้วยหัวชงอิตาลีแท้ ต้นทุนต่อแก้วถูกเพียง 8–12 บาท' }
+          { id: 'all', label: '✨ ทุกแบบ' },
+          { id: 'capsule_fast', label: '⚡ แคปซูล กดปุ่มเดียวจบ', orderIds: ['nespresso-essenza', 'delonghi-dedica', 'duchess-cm5000', 'delonghi-magnifica'], winReason: 'แรงดัน 19 บาร์ สกัดไว 30 วิ' },
+          { id: 'semi_barista', label: '☕ ด้ามชงบาริสต้า + ตีฟองนม', orderIds: ['delonghi-dedica', 'duchess-cm5000', 'nespresso-essenza', 'delonghi-magnifica'], winReason: 'บอดี้สแตนเลส Thermoblock' },
+          { id: 'bean_to_cup', label: '👑 อัตโนมัติบดเมล็ดสด', orderIds: ['delonghi-magnifica', 'delonghi-dedica', 'nespresso-essenza', 'duchess-cm5000'], winReason: 'บดเมล็ดสดแก้วต่อแก้ว' }
         ]
       },
       smartwatch: {
-        label: '⌚ เลือกตามมือถือที่ใช้ / สไตล์การออกกำลังกาย:',
-        heroSub: 'เลือกตามระบบมือถือ (iPhone/Android) หรือเน้นวิ่งมาราธอนก่อน แล้วเทียบ GPS และความอึดแบต',
+        label: '⌚ การใช้งานหลัก:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'runner_gps', label: '🏃 สายวิ่งจริงจัง / มาราธอน / แบตอึด 13–14 วัน', orderIds: ['garmin-fr265', 'huawei-gt5', 'watch-s11', 'redmi-watch-5-lite'], winReason: 'GPS Dual-Frequency แม่นยำสูงสุด + จอ AMOLED สู้แดด + วิเคราะห์ Training Readiness ครบ' },
-          { id: 'iphone_user', label: '🍎 ใช้คู่ iPhone ตอบแชท-รับสาย-วัดคลื่นหัวใจ ECG', orderIds: ['watch-s11', 'garmin-fr265', 'huawei-gt5', 'redmi-watch-5-lite'], winReason: 'ตัวเรือนบางลง จอใหญ่ขึ้น ชาร์จไว 80% ใน 30 นาที แจ้งเตือนสุขภาพครบวงจร' },
-          { id: 'battery_fashion', label: '🔋 ดีไซน์หรูใส่ทำงานได้ แบตอึด 2 สัปดาห์ คุ้มราคา', orderIds: ['huawei-gt5', 'redmi-watch-5-lite', 'garmin-fr265', 'watch-s11'], winReason: 'แบตอึดสูงสุด 14 วัน ใช้ได้ทั้ง iOS และ Android ดีไซน์เหลี่ยมหรูพร้อมวัดสุขภาพครบ' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'runner_gps', label: '🏃 สายวิ่งจริงจัง / GPS แม่นยำ', orderIds: ['garmin-fr265', 'huawei-gt5', 'watch-s11', 'redmi-watch-5-lite'], winReason: 'Dual-Frequency GPS + AMOLED' },
+          { id: 'iphone_user', label: '🍎 ใช้คู่ iPhone ครบวงจร', orderIds: ['watch-s11', 'garmin-fr265', 'huawei-gt5', 'redmi-watch-5-lite'], winReason: 'ชาร์จไว วัดคลื่นหัวใจ ECG' },
+          { id: 'battery_fashion', label: '🔋 แบตอึด 14 วัน คุ้มราคา', orderIds: ['huawei-gt5', 'redmi-watch-5-lite', 'garmin-fr265', 'watch-s11'], winReason: 'แบตอึด 14 วัน ใช้ได้ทั้ง iOS/Android' }
         ]
       },
       headphone: {
-        label: '🎧 เลือกตามรูปแบบการสวมใส่ & การใช้งาน:',
-        heroSub: 'เลือกแบบครอบหู (Over-Ear) หรืออินเอียร์พกพาก่อน แล้วเทียบความเงียบ ANC และคุณภาพไมค์คุยสาย',
+        label: '🎧 รูปแบบหูฟัง:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'over_ear_anc', label: '✈️ ครอบหูตัดเสียงเงียบกริบ (นั่งเครื่องบิน / ทำงานสมาธิ)', orderIds: ['sony-wh1000xm5', 'bose-qc-ultra', 'airpods-pro-2', 'soundcore-space-one'], winReason: 'ชิปตัดเสียง 2 ตัว + ไมค์ 8 ตัว ตัดเสียงพูดคุยและเสียงเครื่องยนต์เงียบที่สุดในคลาส' },
-          { id: 'in_ear_apple', label: '🍎 อินเอียร์พกพาง่าย คุยงานชัด ตัดเสียงเทพ', orderIds: ['airpods-pro-2', 'sony-wh1000xm5', 'soundcore-space-one', 'bose-qc-ultra'], winReason: 'ชิป H2 ตัดเสียงดีขึ้น 2 เท่า โหมด Transparency ธรรมชาติที่สุด พอร์ต USB-C กันฝุ่น IP54' },
-          { id: 'budget_anc', label: '💰 งบ 3,xxx บาท ได้ครอบหู ANC ตัดเสียงจริงจัง + LDAC', orderIds: ['soundcore-space-one', 'sony-wh1000xm5', 'airpods-pro-2', 'bose-qc-ultra'], winReason: 'ตัดเสียงรบกวนได้ถึง 98% รองรับ Hi-Res LDAC แบตอึด 40 ชม. คุ้มค่าเกินราคาที่สุด' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'over_ear_anc', label: '✈️ ครอบหู ANC เงียบกริบ', orderIds: ['sony-wh1000xm5', 'bose-qc-ultra', 'airpods-pro-2', 'soundcore-space-one'], winReason: 'ชิปตัดเสียง 2 ตัว + ไมค์ 8 ตัว' },
+          { id: 'in_ear_apple', label: '🍎 อินเอียร์พกพา คุยสายชัด', orderIds: ['airpods-pro-2', 'sony-wh1000xm5', 'soundcore-space-one', 'bose-qc-ultra'], winReason: 'ชิป H2 ตัดเสียงเทพ พอร์ต USB-C' },
+          { id: 'budget_anc', label: '💰 งบ 3,xxx฿ คุ้มเกินราคา', orderIds: ['soundcore-space-one', 'sony-wh1000xm5', 'airpods-pro-2', 'bose-qc-ultra'], winReason: 'ANC 98% รองรับ LDAC แบต 40 ชม.' }
         ]
       },
       monitor: {
-        label: '🖥️ เลือกตามงานหลัก (ทำงาน/แต่งภาพ vs เล่นเกม):',
-        heroSub: 'เลือกความละเอียดและอัตรารีเฟรชตามงานที่ใช้ก่อน แล้วเทียบความแม่นสีและพอร์ต USB-C',
+        label: '🖥️ การใช้งานจอ:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'work_usbc', label: '💼 ทำงาน / ต่อ MacBook สายเดียวชาร์จไฟ USB-C 4K คมกริบ', orderIds: ['dell-ultrasharp-4k', 'lg-27-ips', 'lg-ultragear-27', 'xiaomi-a24i-100hz'], winReason: 'พาเนล IPS Black 4K คอนทราสต์ลึก สีตรง 98% DCI-P3 ต่อสาย USB-C เส้นเดียวชาร์จไฟ 90W' },
-          { id: 'gaming_2k', label: '🎮 เล่นเกมลื่น + ดูหนังคมชัด (27" 2K QHD 180Hz คุ้มสุด)', orderIds: ['lg-ultragear-27', 'lg-27-ips', 'xiaomi-a24i-100hz', 'dell-ultrasharp-4k'], winReason: 'พาเนล IPS 2K 180Hz สีสด อัตราตอบสนอง 1ms แท้ เล่นเกมและทำงานกราฟิกจบในตัวเดียว' },
-          { id: 'esport_oled', label: '💰 จอทำงาน 24"–27" IPS 100Hz ถนอมสายตา งบประหยัด', orderIds: ['lg-27-ips', 'xiaomi-a24i-100hz', 'lg-ultragear-27', 'dell-ultrasharp-4k'], winReason: 'จอ IPS 27 นิ้ว 100Hz สีตรงอ่านเอกสารสบายตาไม่ปวดตาในงบประหยัดสุดคุ้ม' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'work_usbc', label: '💼 ต่อ MacBook USB-C 4K', orderIds: ['dell-ultrasharp-4k', 'lg-27-ips', 'lg-ultragear-27', 'xiaomi-a24i-100hz'], winReason: 'IPS Black 4K ต่อ USB-C ชาร์จ 90W' },
+          { id: 'gaming_2k', label: '🎮 เกมมิ่ง 27" 2K 180Hz', orderIds: ['lg-ultragear-27', 'lg-27-ips', 'xiaomi-a24i-100hz', 'dell-ultrasharp-4k'], winReason: 'IPS 2K 180Hz 1ms แท้' },
+          { id: 'esport_oled', label: '💰 ทำงานถนอมสายตา งบประหยัด', orderIds: ['lg-27-ips', 'xiaomi-a24i-100hz', 'lg-ultragear-27', 'dell-ultrasharp-4k'], winReason: 'IPS 27" 100Hz สบายตาคุ้มงบ' }
         ]
       },
       chair: {
-        label: '🪑 เลือกตามสรีระ / อาการปวดหลัง:',
-        heroSub: 'เลือกการรับน้ำหนักและระบบดันเอว Lumbar Support ก่อน แล้วเทียบโครงสร้างและระยะประกันศูนย์',
+        label: '🪑 สรีระ & การนั่ง:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'back_pain', label: '🩺 แก้ปวดเอว/หลังล่าง (พนักพิงแยกส่วนดันหลังอัตโนมัติ)', orderIds: ['bewell-ergo-lite', 'ergotrend-dual-mesh', 'furradec-ergo-mesh', 'steelcase-series'], winReason: 'พนักพิงรองรับสรีระหลังล่าง เบาะกระจายแรงกดทับ นั่งทำงาน WFH ทั้งวันไม่ปวดเอว' },
-          { id: 'mesh_cool', label: '🌬️ ตาข่ายโปร่งระบายอากาศ นั่งทั้งวันไม่ร้อนหลัง + ปรับละเอียด', orderIds: ['ergotrend-dual-mesh', 'bewell-ergo-lite', 'steelcase-series', 'furradec-ergo-mesh'], winReason: 'พนักพิง Dual-Back กระจายแรงดันหลังอัตโนมัติ ตาข่ายระบายอากาศดีเยี่ยม ประกันศูนย์ไทยยาวนาน' },
-          { id: 'global_brand', label: '👑 แบรนด์ระดับโลก ประกันโครงสร้าง 12 ปี / หรือรุ่นเริ่มต้นคุ้มงบ', orderIds: ['steelcase-series', 'furradec-ergo-mesh', 'bewell-ergo-lite', 'ergotrend-dual-mesh'], winReason: 'มาตรฐานออฟฟิศระดับโลก LiveBack ขยับตามกระดูกสันหลัง รับประกันศูนย์ไทยยาวนาน 12 ปี' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'back_pain', label: '🩺 แก้ปวดเอว/หลังล่าง', orderIds: ['bewell-ergo-lite', 'ergotrend-dual-mesh', 'furradec-ergo-mesh', 'steelcase-series'], winReason: 'พนักพิงดันเอวอัตโนมัติ' },
+          { id: 'mesh_cool', label: '🌬️ ตาข่ายระบายอากาศดีเยี่ยม', orderIds: ['ergotrend-dual-mesh', 'bewell-ergo-lite', 'steelcase-series', 'furradec-ergo-mesh'], winReason: 'Dual-Back กระจายแรงดันหลัง' },
+          { id: 'global_brand', label: '👑 แบรนด์ระดับโลก ประกัน 12 ปี', orderIds: ['steelcase-series', 'furradec-ergo-mesh', 'bewell-ergo-lite', 'ergotrend-dual-mesh'], winReason: 'LiveBack ประกัน 12 ปี' }
         ]
       },
       speaker: {
-        label: '🔊 เลือกตามสถานที่ใช้งานหลัก:',
-        heroSub: 'เลือกก่อนว่าเน้นตั้งโต๊ะแต่งห้องหรือพกพาปาร์ตี้ริมสระ แล้วเทียบมิติเสียงและแบตเตอรี่',
+        label: '🔊 รูปแบบลำโพง:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'portable_cafe', label: '🏊 พกพาปาร์ตี้ริมสระ / แคมป์ปิ้ง เบสแน่น กันน้ำ IP67', orderIds: ['jbl-charge-5', 'jbl-go-4', 'marshall-acton-3', 'samsung-soundbar-q600'], winReason: 'พลังเสียง JBL Original Pro เบสลูกโต กันน้ำกันฝุ่น IP67 แบตอึด 20 ชม. ชาร์จมือถือได้' },
-          { id: 'home_decor', label: '🛋️ ตั้งโชว์ห้องรับแขก / คอนโด มิติเสียงกว้างมีปุ่มปรับ Bass/Treble', orderIds: ['marshall-acton-3', 'samsung-soundbar-q600', 'jbl-charge-5', 'jbl-go-4'], winReason: 'เวทีเสียงกว้างขึ้นด้วยทวีตเตอร์ทำมุมเอียง ปรับเสียงทุ้ม-แหลมแบบอนาล็อกได้ละเอียดสะใจ' },
-          { id: 'bass_party', label: '🎬 ดูหนังกระหึ่ม Dolby Atmos หน้าทีวี / หรือลำโพงพกพาจิ๋ว', orderIds: ['samsung-soundbar-q600', 'jbl-go-4', 'marshall-acton-3', 'jbl-charge-5'], winReason: 'ระบบเสียง 3.1.2ch Dolby Atmos แท้ พร้อมซับวูฟเฟอร์ไร้สาย เปลี่ยนห้องนั่งเล่นเป็นโรงหนัง' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'portable_cafe', label: '🏊 พกพากันน้ำ IP67 เบสแน่น', orderIds: ['jbl-charge-5', 'jbl-go-4', 'marshall-acton-3', 'samsung-soundbar-q600'], winReason: 'JBL Pro Sound กันน้ำ IP67 แบต 20 ชม.' },
+          { id: 'home_decor', label: '🛋️ ตั้งแต่งบ้าน Marshall', orderIds: ['marshall-acton-3', 'samsung-soundbar-q600', 'jbl-charge-5', 'jbl-go-4'], winReason: 'เวทีเสียงกว้าง ปรับ Bass/Treble' },
+          { id: 'bass_party', label: '🎬 Soundbar ดูหนัง Dolby Atmos', orderIds: ['samsung-soundbar-q600', 'jbl-go-4', 'marshall-acton-3', 'jbl-charge-5'], winReason: '3.1.2ch Dolby Atmos + ซับวูฟเฟอร์' }
         ]
       },
       camera: {
-        label: '📹 เลือกตามสไตล์การถ่ายคอนเทนต์:',
-        heroSub: 'เลือกก่อนว่าเน้นถ่าย Vlog หน้าสวย, แอคชั่นลุยน้ำ หรือติดหน้ารถ แล้วเทียบเซนเซอร์และกันสั่น',
+        label: '📹 สไตล์การถ่าย:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'vlog_creator', label: '🎬 ถ่าย Vlog / ท่องเที่ยว / รีวิวสินค้า (เซนเซอร์ 1 นิ้ว + กิมบอล)', orderIds: ['dji-pocket-3', 'dji-action-5', '70mai-a810', '70mai-m310'], winReason: 'เซนเซอร์ใหญ่ 1 นิ้ว ถ่ายกลางคืนสวยคมกริบ + กิมบอล 3 แกนในตัว หมุนจอถ่ายแนวตั้ง TikTok/Reels ได้ทันที' },
-          { id: 'action_water', label: '🏄 สายลุย / ดำน้ำ / มอเตอร์ไซค์ (กันสั่นโหด แบตอึด 4 ชม.)', orderIds: ['dji-action-5', 'dji-pocket-3', '70mai-a810', '70mai-m310'], winReason: 'Dynamic Range 13.5 สต็อป ดำน้ำลึก 20 ม. ไม่ต้องใส่เคส แบตอึดถึง 4 ชม. ทนความร้อนสูง' },
-          { id: 'dashcam_4k', label: '🚗 กล้องติดรถยนต์ 4K หน้า-หลัง ชัดทะลุฟิล์มมืด', orderIds: ['70mai-a810', '70mai-m310', 'dji-action-5', 'dji-pocket-3'], winReason: 'เซนเซอร์ Sony STARVIS 2 แท้ อ่านป้ายทะเบียนกลางคืนคมชัด มี GPS และระบบเฝ้ารถตอนจอด' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'vlog_creator', label: '🎬 ถ่าย Vlog เซนเซอร์ 1 นิ้ว', orderIds: ['dji-pocket-3', 'dji-action-5', '70mai-a810', '70mai-m310'], winReason: 'เซนเซอร์ 1 นิ้ว + กิมบอล 3 แกน' },
+          { id: 'action_water', label: '🏄 Action Cam ลุยน้ำลึก 20 ม.', orderIds: ['dji-action-5', 'dji-pocket-3', '70mai-a810', '70mai-m310'], winReason: 'ดำน้ำ 20 ม. แบตอึด 4 ชม.' },
+          { id: 'dashcam_4k', label: '🚗 กล้องติดรถยนต์ 4K ชัดกลางคืน', orderIds: ['70mai-a810', '70mai-m310', 'dji-action-5', 'dji-pocket-3'], winReason: 'Sony STARVIS 2 คมชัดทะลุฟิล์ม' }
         ]
       },
       hairdryer: {
-        label: '💇‍♀️ เลือกตามสภาพเส้นผม & ความเร่งด่วน:',
-        heroSub: 'เลือกตามความหนาของผมและการดูแลผมเสียก่อน แล้วเทียบแรงลม m/s และน้ำหนักตัวเครื่อง',
+        label: '💇‍♀️ สภาพเส้นผม:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรุ่น' },
-          { id: 'fast_dry_val', label: '💨 ผมหนา/ยาว เป่าแห้งไวใน 2 นาที + ประจุไอออนลดผมชี้ฟู คุ้มสุด', orderIds: ['dreame-hair-glory', 'xiaomi-h500-dryer', 'xiaomi-h101-dryer', 'dyson-supersonic-nural'], winReason: 'มอเตอร์ 110,000 รอบ/นาที ลมแรง 70 m/s เป่าผมยาวแห้งใน 2 นาที น้ำหนักเบาเพียง 345 กรัม' },
-          { id: 'frizz_care', label: '✨ ประจุไอออนน้ำคู่ Double Water Ion บำรุงผมนุ่มลื่นในงบพันต้น', orderIds: ['xiaomi-h500-dryer', 'dreame-hair-glory', 'dyson-supersonic-nural', 'xiaomi-h101-dryer'], winReason: 'เทคโนโลยีประจุไอออนน้ำคู่ เติมความชุ่มชื้นให้เส้นผมไม่แห้งชี้ฟู บอดี้โลหะทนทานคุ้มราคา' },
-          { id: 'flagship_scalp', label: '👑 ตัวท็อปมีเซนเซอร์ถนอมหนังศีรษะ / หรือรุ่นพับได้พกเที่ยว', orderIds: ['dyson-supersonic-nural', 'xiaomi-h101-dryer', 'dreame-hair-glory', 'xiaomi-h500-dryer'], winReason: 'เซนเซอร์ Nural ปรับลดอุณหภูมิเหลือ 55°C อัตโนมัติเมื่อเข้าใกล้ศีรษะ ไม่ทำร้ายรากผม' }
+          { id: 'all', label: '✨ ทุกรุ่น' },
+          { id: 'fast_dry_val', label: '💨 เป่าแห้งไวใน 2 นาที คุ้มสุด', orderIds: ['dreame-hair-glory', 'xiaomi-h500-dryer', 'xiaomi-h101-dryer', 'dyson-supersonic-nural'], winReason: 'ลมแรง 70 m/s เบา 345 กรัม' },
+          { id: 'frizz_care', label: '✨ ไอออนน้ำคู่ลดผมชี้ฟู', orderIds: ['xiaomi-h500-dryer', 'dreame-hair-glory', 'dyson-supersonic-nural', 'xiaomi-h101-dryer'], winReason: 'Double Water Ion บอดี้โลหะ' },
+          { id: 'flagship_scalp', label: '👑 ตัวท็อปถนอมหนังศีรษะ', orderIds: ['dyson-supersonic-nural', 'xiaomi-h101-dryer', 'dreame-hair-glory', 'xiaomi-h500-dryer'], winReason: 'เซนเซอร์ Nural คุมอุณหภูมิ 55°C' }
         ]
       },
       sunscreen: {
-        label: '☀️ เลือกตามสภาพผิว & กิจกรรมประจำวัน:',
-        heroSub: 'คนเลือกกันแดดจาก "สภาพผิวและเนื้อสัมผัส" ก่อนเสมอ! เลือกสภาพผิวของคุณเพื่อดูรุ่นที่ชนะขาด',
+        label: '☀️ สภาพผิวของคุณ:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสภาพผิว' },
-          { id: 'oily_acne', label: '🌿 ผิวมัน / เป็นสิวง่าย / ผิวแพ้ง่าย (ไม่อุดตัน ไร้แอลกอฮอล์)', orderIds: ['mizumi-uv-water', 'laroche-anthelios', 'biore-uv-aqua', 'anessa-gold-milk'], winReason: 'สูตรน้ำ 100% Physical ปราศจากสารระคายเคือง 5 ชนิด (5-Free) ไม่อุดตันรูขุมขน คนเป็นสิวใช้ได้สบาย' },
-          { id: 'daily_light', label: '💧 ทาทุกวันในเมือง เนื้อเซรั่มแตกตัวเป็นน้ำ ซึมไวไม่วอก', orderIds: ['biore-uv-aqua', 'mizumi-uv-water', 'laroche-anthelios', 'anessa-gold-milk'], winReason: 'เนื้อเอสเซนส์บางเบาที่สุด ทาทับเมคอัพไม่เป็นคราบ กันแดด SPF50+ PA++++ ราคาต่อมล.คุ้มอันดับ #1' },
-          { id: 'outdoor_spot', label: '🏖️ ออกแดดจัด / กันน้ำกันเหงื่อ / ป้องกันฝ้ากระ UVA ลึกสุด', orderIds: ['laroche-anthelios', 'anessa-gold-milk', 'biore-uv-aqua', 'mizumi-uv-water'], winReason: 'สารกรอง Mexoryl 400 กันรังสี Long-UVA ต้นเหตุฝ้าแดดและริ้วรอยลึก พร้อมคุมมันยาวนาน 12 ชม.' }
+          { id: 'all', label: '✨ ทุกสภาพผิว' },
+          { id: 'oily_acne', label: '🌿 ผิวมัน / เป็นสิว / แพ้ง่าย', orderIds: ['mizumi-uv-water', 'laroche-anthelios', 'biore-uv-aqua', 'anessa-gold-milk'], winReason: '100% Physical 5-Free ไม่อุดตัน' },
+          { id: 'daily_light', label: '💧 ทาทุกวัน ซึมไวไม่วอก', orderIds: ['biore-uv-aqua', 'mizumi-uv-water', 'laroche-anthelios', 'anessa-gold-milk'], winReason: 'เนื้อเซรั่มแตกตัวเป็นน้ำ คุ้มสุด' },
+          { id: 'outdoor_spot', label: '🏖️ ออกแดดจัด / กันน้ำ / กันฝ้า', orderIds: ['laroche-anthelios', 'anessa-gold-milk', 'biore-uv-aqua', 'mizumi-uv-water'], winReason: 'Mexoryl 400 กัน Long-UVA ลึกสุด' }
         ]
       },
       shampoo: {
-        label: '🧴 เลือกตามปัญหาเส้นผม & หนังศีรษะ:',
-        heroSub: 'เลือกปัญหาผมที่ต้องการแก้ก่อน แล้วเทียบสารสกัดเวชสำอางและค่า pH ว่ารุ่นไหนเห็นผลจริง',
+        label: '🧴 ปัญหาเส้นผม:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสูตร' },
-          { id: 'hair_fall', label: '🍂 ลดผมร่วง / ผมบาง / รากผมไม่แข็งแรง (เวชสำอาง Aminexil)', orderIds: ['vichy-dercos', 'daeng-gi-meo-ri', 'alodia-bergamot', 'sunsilk-smooth'], winReason: 'มีโมเลกุล Aminexil 1.5% ช่วยยึดเกาะรากผมกับหนังศีรษะ ลดผมขาดหลุดร่วงผ่านการวิจัยทางคลินิก' },
-          { id: 'dandruff_itch', label: '🌿 หนังศีรษะมัน / คันรังแค / สมุนไพรมะกรูดสกัดเย็นอ่อนโยน', orderIds: ['alodia-bergamot', 'vichy-dercos', 'daeng-gi-meo-ri', 'sunsilk-smooth'], winReason: 'สารสกัดมะกรูดสกัดเย็น ปราศจากซิลิโคนและพาราเบน ลดความมันและอาการคันหนังศีรษะอย่างธรรมชาติ' },
-          { id: 'oily_herbal', label: '👑 สมุนไพรโสมเกาหลีเข้มข้นบำรุงรากผม / หรือขวดปั๊มครอบครัว', orderIds: ['daeng-gi-meo-ri', 'sunsilk-smooth', 'vichy-dercos', 'alodia-bergamot'], winReason: 'สมุนไพรเกาหลีต้มสกัดเข้มข้น 33% คุมความมันหนังศีรษะและช่วยให้เส้นผมดกดำมีวอลลุ่ม' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'hair_fall', label: '🍂 ลดผมร่วง / ผมบาง', orderIds: ['vichy-dercos', 'daeng-gi-meo-ri', 'alodia-bergamot', 'sunsilk-smooth'], winReason: 'Aminexil 1.5% ยึดรากผมแข็งแรง' },
+          { id: 'dandruff_itch', label: '🌿 หนังศีรษะมัน / คันรังแค', orderIds: ['alodia-bergamot', 'vichy-dercos', 'daeng-gi-meo-ri', 'sunsilk-smooth'], winReason: 'มะกรูดสกัดเย็น ไร้ซิลิโคน' },
+          { id: 'oily_herbal', label: '👑 สมุนไพรโสมเกาหลีเข้มข้น', orderIds: ['daeng-gi-meo-ri', 'sunsilk-smooth', 'vichy-dercos', 'alodia-bergamot'], winReason: 'สมุนไพรเกาหลีเข้มข้น 33%' }
         ]
       },
       toothpaste: {
-        label: '🦷 เลือกตามปัญหาช่องปากหลัก:',
-        heroSub: 'เลือกปัญหาช่องปากที่กังวลก่อน แล้วเทียบตัวยาสำคัญและปริมาณฟลูออไรด์ว่ารุ่นไหนตอบโจทย์ที่สุด',
+        label: '🦷 ปัญหาช่องปาก:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสูตร' },
-          { id: 'bad_breath', label: '🌿 ลดกลิ่นปากตอนเช้า / แปรงแห้งป้องกันฟันผุ ಫลูออไรด์ 1,500 ppm', orderIds: ['dentiste-anticavity', 'marvis-whitening', 'sensodyne-repair', 'colgate-optic'], winReason: '14 Botanical Extracts ยับยั้งแบคทีเรียขณะหลับ + ฟลูออไรด์ 1,500 ppm ป้องกันฟันผุสูงสุด' },
-          { id: 'sensitive_teeth', label: '⚡ ลดอาการเสียวฟัน (ดื่มน้ำเย็น/ของเปรี้ยวแล้วจี๊ด)', orderIds: ['sensodyne-repair', 'dentiste-anticavity', 'colgate-optic', 'marvis-whitening'], winReason: 'เทคโนโลยี NovaMin สร้างเกราะคล้ายเนื้อฟันธรรมชาติอุดท่อเนื้อฟันที่เปิด ลดเสียวฟันอย่างตรงจุด' },
-          { id: 'gum_white', label: '✨ ขจัดคราบชา-กาแฟให้ฟันขาวกระจ่างใสไม่ทำลายเคลือบฟัน', orderIds: ['colgate-optic', 'marvis-whitening', 'dentiste-anticavity', 'sensodyne-repair'], winReason: 'พลังออกซิเจนแอคทีฟขจัดคราบเหลืองฝังลึกจากชาและกาแฟ ให้ฟันดูขาวขึ้นใน 7 วัน' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'bad_breath', label: '🌿 ลดกลิ่นปาก / ป้องกันฟันผุ', orderIds: ['dentiste-anticavity', 'marvis-whitening', 'sensodyne-repair', 'colgate-optic'], winReason: 'ฟลูออไรด์ 1,500 ppm + สมุนไพร 14 ชนิด' },
+          { id: 'sensitive_teeth', label: '⚡ ลดอาการเสียวฟันตรงจุด', orderIds: ['sensodyne-repair', 'dentiste-anticavity', 'colgate-optic', 'marvis-whitening'], winReason: 'NovaMin ฟื้นฟูเกราะป้องกันเสียวฟัน' },
+          { id: 'gum_white', label: '✨ ขจัดคราบชา-กาแฟ ฟันขาว', orderIds: ['colgate-optic', 'marvis-whitening', 'dentiste-anticavity', 'sensodyne-repair'], winReason: 'ขจัดคราบเหลืองฝังลึกใน 7 วัน' }
         ]
       },
       bodywash: {
-        label: '🚿 เลือกตามสภาพผิวกายของคุณ:',
-        heroSub: 'เลือกสภาพผิวหรือปัญหาสิวที่หลังก่อน แล้วเทียบความอ่อนโยน (pH 5.5) และการเก็บความชุ่มชื้น',
+        label: '🚿 สภาพผิวกาย:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสภาพผิว' },
-          { id: 'dry_sensitive', label: '💧 ผิวแห้งคัน / แพ้ง่าย / อาบด้วยออยล์บำรุงปราการผิว 24 ชม.', orderIds: ['bioderma-atoderm', 'loccitane-almond', 'shokubutsu-monogatari', 'dettol-shower-gel'], winReason: 'คลีนซิ่งออยล์เวชสำอางฝรั่งเศส เติมไขมันจำเป็นให้ผิวชุ่มชื้นยาวนาน 24 ชม. ลดอาการคันจากผิวแห้ง' },
-          { id: 'family_clean', label: '👨‍👩‍👧‍👦 อาบสะอาดสดชื่น ลดแบคทีเรีย 99.9% / ขวดปั๊มครอบครัวคุ้มค่า', orderIds: ['shokubutsu-monogatari', 'dettol-shower-gel', 'bioderma-atoderm', 'loccitane-almond'], winReason: 'สารทำความสะอาดสกัดจากพืชธรรมชาติ 99% ฟองนุ่มละเอียด ล้างออกง่าย ราคาคุ้มค่าที่สุด' },
-          { id: 'spa_glow', label: '✨ ผิวเนียนนุ่มโกลว์ / กลิ่นหอมอัลมอนด์สปาหรูติดผิวยาวนาน', orderIds: ['loccitane-almond', 'bioderma-atoderm', 'shokubutsu-monogatari', 'dettol-shower-gel'], winReason: 'ออยล์อัลมอนด์แท้จากโพรวองซ์ แตกตัวเป็นน้ำนมเมื่อโดนน้ำ บำรุงผิวเนียนนุ่มและหอมติดทนนาน' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'dry_sensitive', label: '💧 ผิวแห้งคัน / แพ้ง่าย', orderIds: ['bioderma-atoderm', 'loccitane-almond', 'shokubutsu-monogatari', 'dettol-shower-gel'], winReason: 'ออยล์เวชสำอาง ชุ่มชื้น 24 ชม.' },
+          { id: 'family_clean', label: '👨‍👩‍👧‍👦 สะอาดสดชื่น คุ้มทั้งบ้าน', orderIds: ['shokubutsu-monogatari', 'dettol-shower-gel', 'bioderma-atoderm', 'loccitane-almond'], winReason: 'สารสกัดพืชธรรมชาติ 99% คุ้มสุด' },
+          { id: 'spa_glow', label: '✨ ผิวเนียนนุ่ม กลิ่นสปาหรู', orderIds: ['loccitane-almond', 'bioderma-atoderm', 'shokubutsu-monogatari', 'dettol-shower-gel'], winReason: 'ออยล์อัลมอนด์แท้จากฝรั่งเศส' }
         ]
       },
       vitamin: {
-        label: '🍊 เลือกตามเป้าหมายสุขภาพที่ต้องการดูแล:',
-        heroSub: 'เลือกอาการหรือเป้าหมายสุขภาพก่อน แล้วเทียบปริมาณสารสำคัญ (mg) และต้นทุนเฉลี่ยต่อวัน',
+        label: '🍊 เป้าหมายสุขภาพ:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกเป้าหมาย' },
-          { id: 'immune_skin', label: '🛡️ เสริมภูมิคุ้มกัน / ลดหวัดภูมิแพ้ / ผิวกระจ่างใส (Vit C 1,000mg)', orderIds: ['blackmores-bio-c', 'mega-nat-c', 'vistras-b-complex', 'swisse-ultivite'], winReason: 'สูตร Buffered C ค่อยๆ ดูดซึมตลอดวัน ไม่ระคายเคืองกระเพาะอาหาร ผสาน Bioflavonoids เพิ่มการดูดซึม' },
-          { id: 'work_brain', label: '🧠 วัยทำงานสมองล้า / นอนดึก / เครียดสะสม (B-Complex เข้มข้น)', orderIds: ['vistras-b-complex', 'swisse-ultivite', 'blackmores-bio-c', 'mega-nat-c'], winReason: 'วิตามินบีรวมครบ 8 ชนิด + โคลีนและอิโนซิทอล บำรุงระบบประสาท ลดอาการสมองล้าในราคาคุ้มมาก' },
-          { id: 'heart_lipid', label: '🌟 วิตามินรวม 50+ ชนิดจบในเม็ดเดียว / หรือวิตามินซีขวดใหญ่สุดคุ้ม', orderIds: ['swisse-ultivite', 'mega-nat-c', 'blackmores-bio-c', 'vistras-b-complex'], winReason: 'รวมวิตามิน แร่ธาตุ และสารสกัดสมุนไพรกว่า 50 ชนิดจากออสเตรเลีย ดูแลสุขภาพองค์รวมในเม็ดเดียว' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'immune_skin', label: '🛡️ เสริมภูมิคุ้มกัน / ผิวใส (Vit C)', orderIds: ['blackmores-bio-c', 'mega-nat-c', 'vistras-b-complex', 'swisse-ultivite'], winReason: 'Buffered C 1,000mg ไม่กัดกระเพาะ' },
+          { id: 'work_brain', label: '🧠 วัยทำงานสมองล้า (B-Complex)', orderIds: ['vistras-b-complex', 'swisse-ultivite', 'blackmores-bio-c', 'mega-nat-c'], winReason: 'วิตามินบีรวมครบ 8 ชนิด + โคลีน' },
+          { id: 'heart_lipid', label: '🌟 วิตามินรวม 50+ ชนิดในเม็ดเดียว', orderIds: ['swisse-ultivite', 'mega-nat-c', 'blackmores-bio-c', 'vistras-b-complex'], winReason: 'รวมวิตามิน-แร่ธาตุ 50+ ชนิด' }
         ]
       },
       whey: {
-        label: '💪 เลือกตามเป้าหมายหุ่น & การย่อยแลคโตส:',
-        heroSub: 'เลือกก่อนว่าเน้นเพิ่มกล้ามเนื้อ ลีนไขมัน หรือแพ้นมวัว แล้วเทียบกรัมโปรตีนต่อช้อนและราคาต่อแก้ว',
+        label: '💪 เป้าหมายหุ่น & การย่อย:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสูตร' },
-          { id: 'muscle_all', label: '🏋️ เพิ่มกล้ามเนื้อ / ฟื้นฟูหลังเวท (Whey ขายดีอันดับ #1)', orderIds: ['on-gold-standard', 'matell-whey', 'dymatize-iso100', 'plantae-plant-protein'], winReason: 'โปรตีน 24g + BCAA 5.5g ต่อช้อน ละลายง่าย รส Double Rich Chocolate อร่อยมาตรฐานโลก' },
-          { id: 'lean_isolate', label: '🔥 ลีนไขมัน / คุมแคลอรี / แพ้แลคโตสในนมเล็กน้อย (Hydrolyzed Isolate)', orderIds: ['dymatize-iso100', 'on-gold-standard', 'plantae-plant-protein', 'matell-whey'], winReason: 'เวย์ Hydrolyzed Isolate ย่อยเร็วที่สุด โปรตีน 25g น้ำตาลและไขมันต่ำกว่า 1g ลีนกล้ามคมชัด' },
-          { id: 'lactose_free_plant', label: '🌱 แพ้นมวัว / ท้องอืดเป็นสิวง่ายจากเวย์นม (โปรตีนพืช 100%)', orderIds: ['plantae-plant-protein', 'matell-whey', 'dymatize-iso100', 'on-gold-standard'], winReason: 'โปรตีนพืช 5 ชนิด ปราศจากนมวัวและแลคโตส 100% รสชาติอร่อยเหมือนดื่มน้ำเต้าหู้มอลต์ ท้องไม่อืด' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'muscle_all', label: '🏋️ เพิ่มกล้ามเนื้อ ขายดีอันดับ #1', orderIds: ['on-gold-standard', 'matell-whey', 'dymatize-iso100', 'plantae-plant-protein'], winReason: 'โปรตีน 24g + BCAA 5.5g มาตรฐานโลก' },
+          { id: 'lean_isolate', label: '🔥 ลีนไขมัน / ย่อยไว (Isolate)', orderIds: ['dymatize-iso100', 'on-gold-standard', 'plantae-plant-protein', 'matell-whey'], winReason: 'Hydrolyzed Isolate น้ำตาล <1g' },
+          { id: 'lactose_free_plant', label: '🌱 แพ้นมวัว (โปรตีนพืช 100%)', orderIds: ['plantae-plant-protein', 'matell-whey', 'dymatize-iso100', 'on-gold-standard'], winReason: 'โปรตีนพืช 5 ชนิด ไร้แลคโตส' }
         ]
       },
       collagen: {
-        label: '✨ เลือกตามผลลัพธ์ที่ต้องการ (ผิวใส vs ขับถ่ายสมดุล):',
-        heroSub: 'เลือกเป้าหมายหลักก่อน แล้วเทียบขนาดโมเลกุล (Dalton) หรือจำนวนสายพันธุ์จุลินทรีย์ต่อซอง',
+        label: '✨ ผลลัพธ์ที่ต้องการ:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสูตร' },
-          { id: 'skin_joint', label: '🌸 ผิวเนียนชุ่มชื้น / ลดริ้วรอย / บำรุงข้อเข่า (Collagen Peptide ญี่ปุ่น)', orderIds: ['meiji-amino-collagen', 'swisse-glow-collagen', 'vida-collagen-q10', 'chame-probiotic'], winReason: 'คอลลาเจนเปปไทด์แท้จากญี่ปุ่น ผสาน Arginine & Vitamin C ชงละลายง่ายไม่คาว ขายดีตลอดกาล' },
-          { id: 'gut_probiotic', label: '🦠 ปรับสมดุลลำไส้ / ท้องผูก / เสริมภูมิคุ้มกัน (Probiotics + Prebiotic)', orderIds: ['chame-probiotic', 'vida-collagen-q10', 'swisse-glow-collagen', 'meiji-amino-collagen'], winReason: 'โพรไบโอติกส์สายพันธุ์เฉพาะพร้อมใยอาหารพรีไบโอติกส์ ช่วยปรับสมดุลการขับถ่ายและลดพุงป่อง' },
-          { id: 'glow_q10', label: '✨ ผิวไบรท์โกลว์สู้แดด ผสม CoQ10 & Grape Seed ทานง่าย', orderIds: ['vida-collagen-q10', 'swisse-glow-collagen', 'meiji-amino-collagen', 'chame-probiotic'], winReason: 'รวมคอลลาเจนไตรเปปไทด์ + CoQ10 + วิตามินบำรุงผิวครบในเม็ดเดียว ไม่ต้องชง พกพาสะดวก' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'skin_joint', label: '🌸 ผิวชุ่มชื้น & บำรุงข้อเข่า', orderIds: ['meiji-amino-collagen', 'swisse-glow-collagen', 'vida-collagen-q10', 'chame-probiotic'], winReason: 'Collagen Peptide ญี่ปุ่น ละลายไว' },
+          { id: 'gut_probiotic', label: '🦠 ปรับสมดุลลำไส้ & ขับถ่าย', orderIds: ['chame-probiotic', 'vida-collagen-q10', 'swisse-glow-collagen', 'meiji-amino-collagen'], winReason: 'Probiotics + Prebiotic ลดพุงป่อง' },
+          { id: 'glow_q10', label: '✨ ผิวโกลว์ใส ผสม CoQ10', orderIds: ['vida-collagen-q10', 'swisse-glow-collagen', 'meiji-amino-collagen', 'chame-probiotic'], winReason: 'Tripeptide + CoQ10 ทานง่าย' }
         ]
       },
       catfood: {
-        label: '🐱 เลือกสูตรตามไลฟ์สไตล์ & สุขภาพน้องแมว:',
-        heroSub: 'ทาสแมวเลือกจาก "สูตรถนอมไต/เลี้ยงในบ้าน/บำรุงขน" ก่อนเสมอ! เลือกสูตรที่เหมาะกับเจ้านายของคุณ',
+        label: '🐱 สูตรอาหารแมว:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสูตร' },
-          { id: 'indoor_kidney', label: '🏠 แมวเลี้ยงในบ้าน (Indoor) / คุมโซเดียมถนอมไต / ลดกลิ่นอึ', orderIds: ['kaniva-indoor', 'royal-canin-indoor', 'purina-one-cat', 'maxima-cat'], winReason: 'ใช้เนื้อไก่งวงและแซลมอนแท้ ไร้ข้าวโพดและกลูเตน คุมโซเดียมต่ำไม่เค็ม ช่วยลดกลิ่นมูลและถนอมไต' },
-          { id: 'coat_hairball', label: '✨ บำรุงขนสวยนุ่มแน่น / ลดก้อนขนอุดตัน (Hairball Control)', orderIds: ['purina-one-cat', 'kaniva-indoor', 'royal-canin-indoor', 'maxima-cat'], winReason: 'ใยอาหารธรรมชาติช่วยขับก้อนขนออกทางระบบขับถ่าย + โอเมก้า 3 & 6 บำรุงขนเงางาม' },
-          { id: 'multi_cat_15kg', label: '📦 บ้านเลี้ยงแมวหลายตัว (กระสอบใหญ่ 15 กก. เฉลี่ยโลละ ~70฿)', orderIds: ['maxima-cat', 'kaniva-indoor', 'purina-one-cat', 'royal-canin-indoor'], winReason: 'โปรตีนเนื้อแกะและปลา บำรุงขนและป้องกันนิ่ว กระสอบ 15 กก. ประหยัดค่าอาหารรายเดือนได้เกินครึ่ง' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'indoor_kidney', label: '🏠 แมวเลี้ยงในบ้าน / ถนอมไต', orderIds: ['kaniva-indoor', 'royal-canin-indoor', 'purina-one-cat', 'maxima-cat'], winReason: 'ไก่งวง+แซลมอน โซเดียมต่ำถนอมไต' },
+          { id: 'coat_hairball', label: '✨ บำรุงขนแน่น & ลดก้อนขน', orderIds: ['purina-one-cat', 'kaniva-indoor', 'royal-canin-indoor', 'maxima-cat'], winReason: 'ขับก้อนขน + โอเมก้า 3 & 6' },
+          { id: 'multi_cat_15kg', label: '📦 กระสอบใหญ่ 15 กก. สุดคุ้ม', orderIds: ['maxima-cat', 'kaniva-indoor', 'purina-one-cat', 'royal-canin-indoor'], winReason: 'เนื้อแกะและปลา เฉลี่ยโลละ ~70฿' }
         ]
       },
       dogfood: {
-        label: '🐶 เลือกตามขนาดสายพันธุ์ & ปัญหาแพ้อาหาร:',
-        heroSub: 'เลือกตามขนาดตัวน้องหมาหรืออาการแพ้ไก่/คราบน้ำตาก่อน แล้วเทียบแหล่งโปรตีนและราคาเฉลี่ยต่อกก.',
+        label: '🐶 สูตรอาหารสุนัข:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกสูตร' },
-          { id: 'allergy_tear', label: '🐑 สุนัขแพ้ไก่ / คันผิวหนัง / ลดคราบน้ำตา (Holistic Grain-Free)', orderIds: ['buzz-netura-dog', 'smartheart-gold', 'royal-canin-mini', 'hills-science-diet'], winReason: 'Holistic Grain-Free โปรตีนจากปลาและเนื้อแกะ ปราศจากเนื้อไก่และธัญพืช ลดอาการคันและคราบน้ำตาชัดเจน' },
-          { id: 'small_breed', label: '🐕 สุนัขพันธุ์เล็ก (ชิสุ/ปอม/ชิวาวา/พุดเดิ้ล) เม็ดเล็กเคี้ยวง่าย', orderIds: ['royal-canin-mini', 'buzz-netura-dog', 'hills-science-diet', 'smartheart-gold'], winReason: 'ขนาดเม็ดออกแบบเฉพาะกรามสุนัขพันธุ์เล็ก ความน่ากินสูง พลังงานเหมาะสมไม่ทำให้อ้วนง่าย' },
-          { id: 'large_pack', label: '🏥 เกรดสัตวแพทย์แนะนำ (Hill\'s) / หรือสูตรเนื้อแกะและข้าวคุ้มราคา', orderIds: ['hills-science-diet', 'smartheart-gold', 'buzz-netura-dog', 'royal-canin-mini'], winReason: 'โภชนาการ клиниกสัตวแพทย์ ย่อยและดูดซึมง่าย บำรุงผิวหนังและระบบภูมิคุ้มกันระยะยาว' }
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'allergy_tear', label: '🐑 แพ้ไก่ / ลดคราบน้ำตา', orderIds: ['buzz-netura-dog', 'smartheart-gold', 'royal-canin-mini', 'hills-science-diet'], winReason: 'Holistic Grain-Free เนื้อปลาและแกะ' },
+          { id: 'small_breed', label: '🐕 สุนัขพันธุ์เล็ก เม็ดเล็กเคี้ยวง่าย', orderIds: ['royal-canin-mini', 'buzz-netura-dog', 'hills-science-diet', 'smartheart-gold'], winReason: 'เม็ดเล็กเคี้ยวง่าย พลังงานสมดุล' },
+          { id: 'large_pack', label: '🏥 เกรดสัตวแพทย์แนะนำ', orderIds: ['hills-science-diet', 'smartheart-gold', 'buzz-netura-dog', 'royal-canin-mini'], winReason: 'โภชนาการคลินิก ย่อยง่าย' }
         ]
       },
       catlitter: {
-        label: '🐾 เลือกประเภททรายแมว / อุปกรณ์ที่ต้องการ:',
-        heroSub: 'เลือกชนิดทรายแมวหรือห้องน้ำอัตโนมัติตามเวลาดูแลของคุณก่อน แล้วเทียบการจับก้อนและเก็บกลิ่น',
+        label: '🐾 ประเภททรายแมว:',
+        heroSub: '',
         defaultId: 'all',
         options: [
-          { id: 'all', label: '✨ เทียบครบทุกรายการ' },
-          { id: 'tofu_flush', label: '🌱 ทรายแมวเต้าหู้ธรรมชาติ 100% (ไร้ฝุ่น • ตักทิ้งชักโครกได้)', orderIds: ['kasty-tofu-litter', 'catbest-original', 'ciaochuru-variety', 'pethroom-litter-box'], winReason: 'ถั่วลันเตาธรรมชาติ จับตัวเป็นก้อนใน 3 วินาที เก็บกลิ่นแอมโมเนียอยู่หมัด ย่อยสลายในชักโครกได้ไม่อุดตัน' },
-          { id: 'auto_box', label: '🤖 ห้องน้ำแมวเก็บกลิ่นพรีเมียม / ทรายไม้สนธรรมชาติเก็บกลิ่น 7 วัน', orderIds: ['catbest-original', 'pethroom-litter-box', 'kasty-tofu-litter', 'ciaochuru-variety'], winReason: 'เส้นใยพืชธรรมชาติจากเยอรมนี ดูดซับของเหลวได้ 700% ประหยัดกว่าทรายทั่วไปถึง 3 เท่า' },
-          { id: 'snack_value', label: '🐟 ขนมแมวเลียแพ็กใหญ่สุดคุ้มเอาใจเจ้านาย', orderIds: ['ciaochuru-variety', 'kasty-tofu-litter', 'catbest-original', 'pethroom-litter-box'], winReason: 'รวมรสชาติยอดฮิตในกระปุกเดียว ปราศจากวัตถุกันเสีย เอาใจเจ้านายได้คุ้มที่สุด' }
+          { id: 'all', label: '✨ ทุกรายการ' },
+          { id: 'tofu_flush', label: '🌱 ทรายเต้าหู้ ทิ้งชักโครกได้', orderIds: ['kasty-tofu-litter', 'catbest-original', 'ciaochuru-variety', 'pethroom-litter-box'], winReason: 'จับก้อนใน 3 วิ ทิ้งชักโครกได้' },
+          { id: 'auto_box', label: '🤖 ทรายไม้สน / ห้องน้ำเก็บกลิ่น', orderIds: ['catbest-original', 'pethroom-litter-box', 'kasty-tofu-litter', 'ciaochuru-variety'], winReason: 'ดูดซับ 700% ประหยัด 3 เท่า' },
+          { id: 'snack_value', label: '🐟 ขนมแมวเลียแพ็กใหญ่สุดคุ้ม', orderIds: ['ciaochuru-variety', 'kasty-tofu-litter', 'catbest-original', 'pethroom-litter-box'], winReason: 'รวมรสยอดฮิต ไร้สารกันเสีย' }
         ]
       }
     };
@@ -5313,13 +5307,12 @@
     function renderHeroAndControls(cat) {
       const decCfg = getPrimaryDecisionConfig(cat);
       document.getElementById('heroHeadline').innerHTML = `
-        ${cat.icon} ${cat.name}. <span class="muted">${decCfg.heroSub || cat.heroSub}</span>
+        ${cat.icon} ${cat.name}
       `;
 
       const pillarBadge = document.getElementById('activePillarBadge');
       if (pillarBadge) {
-        const pillarCount = CATEGORIES.filter(c => c.pillar === cat.pillar).length;
-        pillarBadge.textContent = `${PILLAR_LABELS[cat.pillar] || ''} (${pillarCount} หมวดในโซนนี้)`;
+        pillarBadge.textContent = `${PILLAR_LABELS[cat.pillar] || ''}`;
       }
 
       const primaryLabelEl = document.getElementById('primaryDecisionLabel');
@@ -5348,11 +5341,11 @@
       // Update Smart Calculator button text by category (compact label)
       const calcBtn = document.getElementById('btnCalcTrigger');
       if (calcBtn) {
-        if (cat.id === 'aircon') calcBtn.innerHTML = '🧮 คำนวณ BTU แอร์ & ค่าไฟ';
+        if (cat.id === 'aircon') calcBtn.innerHTML = '🧮 คำนวณ BTU & ค่าไฟ';
         else if (cat.id === 'tv') calcBtn.innerHTML = '🧮 คำนวณขนาดจอทีวี';
-        else if (cat.pillar === 'pet') calcBtn.innerHTML = '🐾 คำนวณค่าอาหารต่อเดือน';
-        else if (cat.pillar === 'supplement') calcBtn.innerHTML = '💊 คำนวณต้นทุนต่อมื้อ';
-        else if (cat.pillar === 'personal') calcBtn.innerHTML = '🧴 คำนวณความคุ้มค่าต่อมล.';
+        else if (cat.pillar === 'pet') calcBtn.innerHTML = '🐾 คำนวณค่าอาหาร/เดือน';
+        else if (cat.pillar === 'supplement') calcBtn.innerHTML = '💊 คำนวณต้นทุน/มื้อ';
+        else if (cat.pillar === 'personal') calcBtn.innerHTML = '🧴 คำนวณราคา/มล.';
         else calcBtn.innerHTML = '🧮 คำนวณผ่อน 0%';
       }
     }
@@ -5374,11 +5367,11 @@
           document.getElementById('customMinPrice').value = bObj.min || 0;
           document.getElementById('customMaxPrice').value = bObj.max < 900000 ? bObj.max : '';
         }
-        if (sumEl) sumEl.textContent = `กำลังเทียบตามโจทย์หลัก: ${bObj.label}`;
+        if (sumEl) sumEl.textContent = `${bObj.label}`;
       } else {
         document.getElementById('customMinPrice').value = '';
         document.getElementById('customMaxPrice').value = '';
-        if (sumEl) sumEl.textContent = `แสดงครบทุกรุ่น (${cat.products.length} รุ่น)`;
+        if (sumEl) sumEl.textContent = `ทุกรุ่น (${cat.products.length})`;
       }
       renderHeroAndControls(cat);
       renderLineup(cat);
@@ -5394,7 +5387,7 @@
 
       const cat = getCategory(activeCategoryId);
       document.getElementById('activeBudgetSummary').innerHTML =
-        `กำลังกรองตามงบที่คุณกำหนด: <strong>${formatTHB(customMin)} – ${customMax >= 999999 ? 'ไม่จำกัด' : formatTHB(customMax)}</strong>`;
+        `งบ: <strong>${formatTHB(customMin)} – ${customMax >= 999999 ? 'ไม่จำกัด' : formatTHB(customMax)}</strong>`;
 
       renderHeroAndControls(cat);
       renderLineup(cat);
@@ -5415,60 +5408,61 @@
       const segArt = document.getElementById('segArticles');
       if (segArt) segArt.classList.toggle('active', mode === 'articles');
 
-      // Keep both Lineup and Head-to-Head Compare visible so shoppers always see side-by-side comparison!
       document.getElementById('viewLineup').style.display = 'block';
       document.getElementById('viewCompare').style.display = 'block';
 
       if (mode === 'compare') {
         document.getElementById('viewCompare').scrollIntoView({ behavior: 'smooth' });
       } else if (mode === 'stepup') {
-        document.getElementById('bentoStepupSection').scrollIntoView({ behavior: 'smooth' });
+        const stEl = document.getElementById('bentoStepupSection');
+        if (stEl) { stEl.style.display = 'block'; stEl.scrollIntoView({ behavior: 'smooth' }); }
       } else if (mode === 'articles') {
-        document.getElementById('seoArticlesSection').scrollIntoView({ behavior: 'smooth' });
+        const arEl = document.getElementById('seoArticlesSection');
+        if (arEl) { arEl.style.display = 'block'; arEl.scrollIntoView({ behavior: 'smooth' }); }
       }
     }
 
     // =========================================================================
-    // STANDARDIZED APPLES-TO-APPLES COMPARISON TOPICS (3 ROWS PER CATEGORY)
+    // STANDARDIZED SHORT SPEC TOPICS (CRISP 2-WORD LABELS FOR CLEAN UI)
     // =========================================================================
     const SPEC_TOPICS_BY_CAT = {
-      smartphone: ['📱 หน้าจอ & ความลื่นไหล (Hz)', '⚡ ชิปประมวลผล & ความจุ (RAM/ROM)', '📸 กล้อง, แบตเตอรี่ & การรับประกันศูนย์'],
-      tablet: ['📟 หน้าจอ & อัตรารีเฟรช', '⚡ ชิปประมวลผล & การรองรับปากกา', '🔋 แบตเตอรี่ & การรับประกันศูนย์ไทย'],
-      aircon: ['⚡ ความประหยัดไฟ (ค่า SEER & ค่าไฟเฉลี่ย)', '🔧 แผงคอยล์ & ระบบกระจายลม', '🛡️ การรับประกันศูนย์ไทย (คอมเพรสเซอร์ & อะไหล่)'],
-      notebook: ['💻 หน้าจอ & ความแม่นยำสี', '⚡ ซีพียู / การ์ดจอ & ความจุ RAM/SSD', '🛡️ แบตเตอรี่ & การรับประกันศูนย์ไทย'],
-      tv: ['📺 พาเนลหน้าจอ & ความคมชัด/ความสว่าง', '🔊 ระบบเสียง & ฟีเจอร์ Smart TV / เกมมิ่ง', '🛡️ การรับประกันศูนย์ไทย & ความทนทาน'],
-      fridge: ['🧊 ความจุ (คิว/ลิตร) & ดีไซน์ประตู', '❄️ เทคโนโลยีทำความเย็น & ถนอมอาหาร', '🛡️ ประหยัดไฟเบอร์ 5 & การรับประกันคอมเพรสเซอร์'],
-      washer: ['🧺 ความจุถังซัก & มอเตอร์ Inverter', '♨️ เทคโนโลยีซักสะอาด & ไอน้ำร้อน', '🛡️ การรับประกันมอเตอร์ & อะไหล่ศูนย์ไทย'],
-      dryer: ['👕 ความจุถังอบ & ระบบทำความร้อน', '🌡️ เซนเซอร์ถนอมผ้า & ลดรอยยับ/ภูมิแพ้', '🛡️ ความประหยัดไฟ & การรับประกันศูนย์ไทย'],
-      purifier: ['🍃 ขนาดห้องที่รองรับ & อัตราฟอกอากาศ (CADR)', '🔬 ความละเอียดไส้กรอง HEPA & ระดับเสียง', '🛡️ อายุไส้กรอง & การรับประกันศูนย์ไทย'],
-      robot: ['🌪️ แรงดูด (Pa) & ระบบนำทางเลเซอร์/AI', '🧽 ระบบถูพื้น & แท่นซักม็อบอัตโนมัติ', '🛡️ แบตเตอรี่ & การรับประกันศูนย์ไทย'],
-      cordlessvac: ['🌪️ แรงดูด & หัวแปรงส่องฝุ่น/ถูพื้น', '🔋 แบตเตอรี่ใช้งาน & ระบบกรองฝุ่น', '🛡️ น้ำหนักตัวเครื่อง & การรับประกันศูนย์ไทย'],
-      waterheater: ['⚡ กำลังไฟ (วัตต์) & วัสดุหม้อต้ม', '🛡️ ระบบนิรภัยตัดไฟ (ELCB/ELB) & กันน้ำ', '🔧 การรับประกันหม้อต้ม & อะไหล่ศูนย์ไทย'],
-      waterpurifier: ['💧 ความละเอียดการกรอง & ระบบฆ่าเชื้อ', '🚰 การติดตั้ง & ระบบน้ำร้อน-น้ำเย็น', '🛡️ อายุไส้กรอง & การรับประกันศูนย์ไทย'],
-      airfryer: ['🍗 ความจุ (ลิตร) & ช่องมองอาหาร', '🔥 กำลังไฟ & เทคโนโลยีกระจายความร้อน', '🛡️ วัสดุเคลือบภายใน & การรับประกันศูนย์ไทย'],
-      coffee: ['☕ แรงดันสกัด (บาร์) & ระบบชงกาแฟ', '🥛 ระบบตีฟองนม & ความเร็วทำน้ำร้อน', '🛡️ ต้นทุนต่อแก้ว & การรับประกันศูนย์ไทย'],
-      smartwatch: ['⌚ หน้าจอแสดงผล & ระบบนำทาง GPS', '❤️ เซนเซอร์วัดสุขภาพ & โหมดออกกำลังกาย', '🔋 แบตเตอรี่, กันน้ำ & การรับประกันศูนย์ไทย'],
-      headphone: ['🔇 ระบบตัดเสียงรบกวน (ANC) & ไมโครโฟน', '🎵 คุณภาพเสียง & ความสบายในการสวมใส่', '🔋 แบตเตอรี่ใช้งาน & การรับประกันศูนย์ไทย'],
-      monitor: ['🖥️ ขนาดจอ, ความละเอียด & Refresh Rate', '🎨 ความแม่นยำสี (sRGB/IPS) & ถนอมสายตา', '🔌 พอร์ตเชื่อมต่อ & การรับประกันศูนย์ไทย'],
-      chair: ['🪑 พนักพิงหลัง & ระบบดันเอว (Lumbar Support)', '☁️ เบาะรองนั่ง & ที่รองคอ/ที่วางพักเท้า', '🛡️ โครงสร้างรับน้ำหนัก & การรับประกันศูนย์ไทย'],
-      speaker: ['🔊 พลังเสียง & มิติเวทีเสียง', '💧 การเชื่อมต่อ & มาตรฐานกันน้ำ', '🔋 แบตเตอรี่ใช้งาน & การรับประกันศูนย์ไทย'],
-      camera: ['📹 ความละเอียดวิดีโอ & เซนเซอร์รับภาพ', '⚖️ ระบบกันสั่น / มุมมองหน้า-หลัง', '🛡️ แบตเตอรี่/ความทนทาน & การรับประกันศูนย์ไทย'],
-      hairdryer: ['💨 ความเร็วลม (m/s) & มอเตอร์เป่าแห้งไว', '✨ ประจุไอออนบำรุงผม & เซนเซอร์คุมอุณหภูมิ', '🛡️ น้ำหนักตัวเครื่อง & การรับประกันศูนย์ไทย'],
-      sunscreen: ['☀️ ค่าการปกป้องรังสี UV (SPF50+ PA++++)', '💧 เนื้อสัมผัส, การคุมมัน & การกันน้ำ', '💰 ปริมาณสุทธิ & ความอ่อนโยนต่อผิว'],
-      shampoo: ['🌿 สารสกัดสำคัญลดผมร่วง & ขจัดรังแค', '✨ การดูแลหนังศีรษะ & ความนุ่มลื่นของเส้นผม', '💰 ความอ่อนโยน (pH/Paraben-Free) & ความคุ้มค่า'],
-      toothpaste: ['🦷 สารสำคัญดูแลเหงือก, ลดเสียวฟัน & กลิ่นปาก', '✨ ประสิทธิภาพขจัดคราบพลัค & ป้องกันฟันผุ', '💰 ขนาดบรรจุ & ความคุ้มค่าต่อหลอด'],
-      bodywash: ['🧼 สารทำความสะอาดผิว & ลดแบคทีเรีย/ความอ่อนโยน', '💧 การล็อกความชุ่มชื้น & กลิ่นหอมติดผิว', '💰 ค่าสมดุลผิว (pH) & ความคุ้มค่าต่อขวด'],
-      vitamin: ['🍊 ปริมาณสารอาหารสำคัญต่อเม็ด (mg)', '🧬 สูตรการดูดซึม & ความอ่อนโยนต่อกระเพาะ', '💰 จำนวนเม็ดต่อขวด & ความคุ้มค่าต่อวัน'],
-      whey: ['💪 ปริมาณโปรตีน (g) & BCAA ต่อช้อน', '⚡ ชนิดโปรตีน, การดูดซึม & น้ำตาล/แลคโตส', '💰 ขนาดบรรจุ & ความคุ้มค่าต่อแก้ว'],
-      collagen: ['✨ ชนิดคอลลาเจน / สายพันธุ์จุลินทรีย์สำคัญ', '🧬 วิตามินผสานการดูดซึม & ผลลัพธ์ดูแลผิว/ลำไส้', '💰 จำนวนมื้อต่อกระปุก & ความคุ้มค่าต่อวัน'],
-      catfood: ['🐟 แหล่งโปรตีนหลัก & สารอาหารบำรุงขน/ลดก้อนขน', '🛡️ การควบคุมโซเดียม (ถนอมไต/ลดกลิ่นมูล)', '💰 ขนาดบรรจุ & ความคุ้มค่าราคาเฉลี่ยต่อกก.'],
-      dogfood: ['🥩 แหล่งโปรตีนหลัก & สารบำรุงผิวหนัง/ลดคราบน้ำตา', '🦴 การย่อยง่าย, ไร้ข้าวโพด & บำรุงข้อต่อ/สมอง', '💰 ขนาดบรรจุ & ความคุ้มค่าราคาเฉลี่ยต่อกก.'],
-      catlitter: ['🌱 วัตถุดิบหลัก & ประสิทธิภาพจับก้อน/ความน่ากิน', '🍃 การเก็บกลิ่นแอมโมเนีย & ไร้ฝุ่นฟุ้งกระจาย', '💰 ขนาดแพ็กสุดคุ้ม & ความสะดวกในการทิ้ง/ใช้งาน']
+      smartphone: ['📱 หน้าจอ', '⚡ ชิป & ความจุ', '📸 กล้อง & แบต'],
+      tablet: ['📟 หน้าจอ', '⚡ ชิป & ปากกา', '🔋 แบต & ประกัน'],
+      aircon: ['⚡ ประหยัดไฟ (SEER)', '🔧 คอยล์ & ลมเย็น', '🛡️ ประกันศูนย์'],
+      notebook: ['💻 หน้าจอ', '⚡ ซีพียู & RAM', '🛡️ แบต & ประกัน'],
+      tv: ['📺 พาเนลจอ', '🔊 เสียง & เกมมิ่ง', '🛡️ ประกันศูนย์'],
+      fridge: ['🧊 ความจุ (คิว)', '❄️ ระบบทำความเย็น', '🛡️ ประหยัดไฟ & ประกัน'],
+      washer: ['🧺 ความจุถังซัก', '♨️ ระบบซักสะอาด', '🛡️ ประกันมอเตอร์'],
+      dryer: ['👕 ความจุถังอบ', '🌡️ ระบบถนอมผ้า', '🛡️ ประหยัดไฟ & ประกัน'],
+      purifier: ['🍃 ขนาดห้อง (CADR)', '🔬 ไส้กรอง & เสียง', '🛡️ อายุกรอง & ประกัน'],
+      robot: ['🌪️ แรงดูด & นำทาง', '🧽 ระบบซักม็อบ', '🛡️ แบต & ประกัน'],
+      cordlessvac: ['🌪️ แรงดูด & หัวแปรง', '🔋 แบตเตอรี่', '🛡️ น้ำหนัก & ประกัน'],
+      waterheater: ['⚡ กำลังไฟ & หม้อต้ม', '🛡️ ระบบตัดไฟนิรภัย', '🔧 ประกันหม้อต้ม'],
+      waterpurifier: ['💧 ระบบกรองน้ำ', '🚰 น้ำร้อน-น้ำเย็น', '🛡️ อายุกรอง & ประกัน'],
+      airfryer: ['🍗 ความจุ (ลิตร)', '🔥 กำลังไฟ & ลมร้อน', '🛡️ วัสดุ & ประกัน'],
+      coffee: ['☕ แรงดันสกัด (บาร์)', '🥛 ระบบตีฟองนม', '🛡️ ต้นทุน & ประกัน'],
+      smartwatch: ['⌚ หน้าจอ & GPS', '❤️ เซนเซอร์สุขภาพ', '🔋 แบต & ประกัน'],
+      headphone: ['🔇 ตัดเสียง (ANC)', '🎵 คุณภาพเสียง', '🔋 แบต & ประกัน'],
+      monitor: ['🖥️ จอ & Refresh Rate', '🎨 ค่าสี & พอร์ต', '🛡️ ประกันศูนย์'],
+      chair: ['🪑 พนักพิง & ดันเอว', '☁️ เบาะ & ที่พักขา', '🛡️ โครงสร้าง & ประกัน'],
+      speaker: ['🔊 พลังเสียง (W)', '💧 กันน้ำ & เชื่อมต่อ', '🔋 แบต & ประกัน'],
+      camera: ['📹 ความละเอียด & เซนเซอร์', '⚖️ กันสั่น & เลนส์', '🛡️ แบต & ประกัน'],
+      hairdryer: ['💨 ความเร็วลม', '✨ ไอออนบำรุงผม', '🛡️ น้ำหนัก & ประกัน'],
+      sunscreen: ['☀️ ค่ากันแดด SPF', '💧 เนื้อสัมผัส & คุมมัน', '💰 ปริมาณ & อ่อนโยน'],
+      shampoo: ['🌿 สารสกัดหลัก', '✨ ดูแลหนังศีรษะ', '💰 ความอ่อนโยน & ขนาด'],
+      toothpaste: ['🦷 สารสำคัญดูแลฟัน', '✨ ลดเสียวฟัน/คราบ', '💰 ขนาด & ความคุ้ม'],
+      bodywash: ['🧼 สูตรทำความสะอาด', '💧 ความชุ่มชื้น & กลิ่น', '💰 ค่า pH & ขนาด'],
+      vitamin: ['🍊 ปริมาณสารสำคัญ', '🧬 การดูดซึม', '💰 จำนวนเม็ด & ราคา/วัน'],
+      whey: ['💪 โปรตีนต่อช้อน', '⚡ ชนิดเวย์ & น้ำตาล', '💰 ขนาด & ราคา/ช้อน'],
+      collagen: ['✨ ชนิดคอลลาเจน', '🧬 สารผสานดูดซึม', '💰 จำนวนมื้อ & ราคา/วัน'],
+      catfood: ['🐟 โปรตีนหลัก', '🛡️ โซเดียมต่ำ/ถนอมไต', '💰 ขนาด & ราคา/กก.'],
+      dogfood: ['🥩 โปรตีนหลัก', '🦴 ย่อยง่าย/บำรุงข้อ', '💰 ขนาด & ราคา/กก.'],
+      catlitter: ['🌱 วัตถุดิบจับก้อน', '🍃 เก็บกลิ่น & ไร้ฝุ่น', '💰 ขนาดแพ็กสุดคุ้ม']
     };
 
     function getSpecTopic(catId, specIdx) {
-      const list = SPEC_TOPICS_BY_CAT[catId] || ['📌 หัวข้อเทียบที่ 1', '📌 หัวข้อเทียบที่ 2', '🛡️ การรับประกัน & ความคุ้มค่า'];
-      return list[specIdx] || `📌 หัวข้อเทียบที่ ${specIdx + 1}`;
+      const list = SPEC_TOPICS_BY_CAT[catId] || ['📌 สเปกหลัก 1', '📌 สเปกหลัก 2', '🛡️ ประกัน & ความคุ้ม'];
+      return list[specIdx] || `📌 สเปก ${specIdx + 1}`;
     }
 
     // =========================================================================
@@ -5479,53 +5473,51 @@
       let score = 0;
       let reason = specObj.big || 'สเปกเด่นกว่า';
 
-      // Lower is better metrics: decibels (dB), nm process
       const dbMatch = text.match(/(\d+(?:\.\d+)?)\s*(?:db|เดซิเบล)/);
       if (dbMatch) {
         score += (60 - parseFloat(dbMatch[1])) * 10;
-        reason = `เสียงเงียบกว่า (${dbMatch[1]} dB)`;
+        reason = `เงียบกว่า (${dbMatch[1]} dB)`;
       }
       const nmMatch = text.match(/(\d+)\s*nm/);
       if (nmMatch) {
         score += (10 - parseInt(nmMatch[1], 10)) * 25;
-        reason = `สถาปัตยกรรมชิปใหม่กว่า (${nmMatch[1]}nm)`;
+        reason = `ชิป ${nmMatch[1]}nm`;
       }
 
-      // Higher is better metrics: SEER, Hz, nits, mAh, MP, W, Pa, Warranty (Compressor/Motor + Parts)
       const seerMatch = text.match(/seer\s*(\d+(?:\.\d+)?)/);
       if (seerMatch) {
         score += parseFloat(seerMatch[1]) * 18;
-        reason = `ประหยัดไฟกว่า (SEER ${seerMatch[1]})`;
+        reason = `SEER ${seerMatch[1]}`;
       }
       const hzMatch = text.match(/(\d+)\s*hz/);
       if (hzMatch) {
         score += parseInt(hzMatch[1], 10) * 1.5;
-        reason = `จอรีเฟรชเรตลื่นกว่า (${hzMatch[1]}Hz)`;
+        reason = `จอ ${hzMatch[1]}Hz`;
       }
       const nitsMatch = text.match(/(\d[\d,]*)\s*nits/);
       if (nitsMatch) {
         score += parseInt(nitsMatch[1].replace(/,/g, ''), 10) * 0.08;
-        reason = `จอสว่างสู้แสงกว่า (${nitsMatch[1]} nits)`;
+        reason = `${nitsMatch[1]} nits`;
       }
       const mahMatch = text.match(/(\d[\d,]*)\s*mah/);
       if (mahMatch) {
         score += parseInt(mahMatch[1].replace(/,/g, ''), 10) * 0.04;
-        reason = `แบตเตอรี่อึดกว่า (${mahMatch[1]} mAh)`;
+        reason = `แบต ${mahMatch[1]} mAh`;
       }
       const mpMatch = text.match(/(\d+)\s*mp/);
       if (mpMatch) {
         score += parseInt(mpMatch[1], 10) * 1.2;
-        reason = `ความละเอียดกล้องสูงกว่า (${mpMatch[1]}MP)`;
+        reason = `กล้อง ${mpMatch[1]}MP`;
       }
       const wattMatch = text.match(/(\d+)\s*w\b/);
       if (wattMatch) {
         score += parseInt(wattMatch[1], 10) * 1.5;
-        reason = `กำลังไฟ/ชาร์จไวสูงกว่า (${wattMatch[1]}W)`;
+        reason = `${wattMatch[1]}W`;
       }
       const paMatch = text.match(/(\d[\d,]*)\s*pa\b/);
       if (paMatch) {
         score += parseInt(paMatch[1].replace(/,/g, ''), 10) * 0.02;
-        reason = `แรงดูดสูงกว่า (${paMatch[1]} Pa)`;
+        reason = `${paMatch[1]} Pa`;
       }
       const yrMatch = text.match(/ประกัน[^\d]*(\d+)\s*ปี/);
       const partsMatch = text.match(/อะไหล่[^\d]*(\d+)\s*ปี/);
@@ -5534,12 +5526,10 @@
         const mainYrs = parseInt(yrMatch[1], 10);
         const partsYrs = partsMatch ? parseInt(partsMatch[1], 10) : 0;
         score += mainYrs * 22 + partsYrs * 9;
-        reason = partsYrs > 0
-          ? `รับประกันคุ้มกว่า (หลัก ${mainYrs} ปี • อะไหล่ ${partsYrs} ปี)`
-          : `รับประกันศูนย์นานกว่า (${mainYrs} ปี)`;
+        reason = partsYrs > 0 ? `ประกัน ${mainYrs} ปี (อะไหล่ ${partsYrs} ปี)` : `ประกัน ${mainYrs} ปี`;
       } else if (monthMatch) {
         score += parseInt(monthMatch[1], 10) * 1.8;
-        reason = `รับประกันศูนย์นานกว่า (${monthMatch[1]} เดือน)`;
+        reason = `ประกัน ${monthMatch[1]} เดือน`;
       }
       if (text.includes('oled') || text.includes('mini led') || text.includes('amoled')) score += 45;
       if (text.includes('ทองแดง') || text.includes('100%')) score += 35;
@@ -5547,7 +5537,6 @@
       if (text.includes('ip68') || text.includes('ip69')) score += 35;
       if (text.includes('5 ดาว') || text.includes('⭐⭐⭐⭐⭐')) score += 45;
 
-      // Tie-breaker using product spec tier & index so every spec row has a clear deterministic winner
       score += (product.price || 1000) * 0.001 + (specIdx % 2 === 0 ? 2 : -1);
       return { score, reason };
     }
@@ -5571,7 +5560,6 @@
 
     function getBestValueProduct(products, cat) {
       if (!products || products.length === 0) return null;
-      // High-sales volume champions prioritized at #1
       const highVolumeIds = [
         'tcl-tpro-12k', 'samsung-a55-5g', 'tcl-55-4k-smart', 'ipad-air-m3',
         'asus-vivobook-15', 'lg-2door-14q', 'lg-fv1410-10kg', 'roborock-qrevo',
@@ -5585,8 +5573,16 @@
       return products[Math.min(1, products.length - 1)] || products[0];
     }
 
+    // Helper: make a short 1-line summary from product specs
+    function getShortSpecWinHighlight(p) {
+      const s0 = p.specs?.[0]?.big || '';
+      const s1 = p.specs?.[1]?.big || '';
+      const s2 = p.specs?.[2]?.big || '';
+      return [s0, s1, s2].filter(Boolean).join(' • ');
+    }
+
     // =========================================================================
-    // RENDER FACETED SIDEBAR + LINEUP + GREEN WINNER SUMMARY
+    // RENDER FACETED SIDEBAR + LINEUP + COMPACT WINNER STRIP
     // =========================================================================
     function renderSpecSidebarAndChips(cat, baseProducts, facetSchema) {
       const sbContainer = document.getElementById('nbsSidebarGroupsContainer');
@@ -5603,7 +5599,7 @@
         html += `
           <div class="nbs-filter-group">
             <div class="nbs-filter-group-title">
-              <span>🏷️ แบรนด์ (${facetSchema.brands.length})</span>
+              <span>🏷️ แบรนด์</span>
             </div>
             <div class="nbs-check-list">
               ${facetSchema.brands.map(b => {
@@ -5678,7 +5674,7 @@
 
       // Active Filter Chips Bar
       const activeChips = [];
-      activeFacetFilters.brands.forEach(v => activeChips.push({ group: 'brands', val: v, label: `แบรนด์: ${v}` }));
+      activeFacetFilters.brands.forEach(v => activeChips.push({ group: 'brands', val: v, label: v }));
       activeFacetFilters.priceTiers.forEach(v => {
         const pb = facetSchema.priceBrackets.find(b => b.id === v);
         activeChips.push({ group: 'priceTiers', val: v, label: pb ? pb.label : v });
@@ -5696,7 +5692,6 @@
           chipsContainer.innerHTML = '';
         } else {
           chipsContainer.innerHTML = `
-            <span style="font-size:12px;font-weight:700;color:var(--text-sub);">ตัวกรองที่เลือก:</span>
             ${categorySpecSearchQuery ? `
               <span class="nbs-chip" onclick="setCategorySpecSearch(''); document.getElementById('categorySpecSearchInput').value='';">
                 🔍 "${categorySpecSearchQuery}" ✕
@@ -5707,7 +5702,7 @@
                 ✓ ${c.label} ✕
               </span>
             `).join('')}
-            <button class="helper-link" style="font-size:12px;color:#dc2626;font-weight:700;margin-left:4px;" onclick="clearAllFacetFilters()">ล้างทั้งหมด</button>
+            <button class="helper-link" style="font-size:11.5px;color:#dc2626;font-weight:700;margin-left:4px;" onclick="clearAllFacetFilters()">ล้างตัวกรอง</button>
           `;
         }
       }
@@ -5730,11 +5725,9 @@
         }
       }
 
-      // Build facet schema from the active decision set & render left sidebar
       const facetSchema = buildFacetSchemaForCategory(cat, baseProducts);
       renderSpecSidebarAndChips(cat, baseProducts, facetSchema);
 
-      // Apply Faceted Checkboxes & Keyword Search
       let filtered = baseProducts.filter(p => {
         if (activeFacetFilters.brands.length > 0) {
           const b = extractProductBrand(p);
@@ -5767,7 +5760,6 @@
         return true;
       });
 
-      // Apply Sort Order
       if (categorySortMode === 'price_asc') {
         filtered = [...filtered].sort((a, b) => a.price - b.price);
       } else if (categorySortMode === 'price_desc') {
@@ -5776,29 +5768,12 @@
         filtered = [...filtered].sort((a, b) => getTotalProductSpecScore(b) - getTotalProductSpecScore(a));
       }
 
-      // Smart Stretch Advisor
       const stretchBox = document.getElementById('smartStretchContainer');
-      const nextStepProduct = cat.products
-        .filter(p => p.price > currentMaxPrice && p.price <= currentMaxPrice + 4500)
-        .sort((a, b) => a.price - b.price)[0];
+      if (stretchBox) stretchBox.innerHTML = '';
 
-      if (nextStepProduct && currentMaxPrice < 900000) {
-        const extraDiff = nextStepProduct.price - currentMaxPrice;
-        stretchBox.innerHTML = `
-          <div class="smart-stretch-banner">
-            <div class="stretch-text">
-              💡 <strong>ขยับงบอีกนิดคุ้มไหม?:</strong> หากเพิ่มงบอีก <strong>${formatTHB(extraDiff)}</strong> จะได้ <strong>${nextStepProduct.name} (${formatTHB(nextStepProduct.price)})</strong> ซึ่งชนะเรื่อง <em>"${nextStepProduct.tagline}"</em>
-            </div>
-            <button class="btn-apple-link" onclick="openPriceModal('${nextStepProduct.id}')">เช็คราคา Shopee vs LazMall &gt;</button>
-          </div>
-        `;
-      } else {
-        stretchBox.innerHTML = '';
-      }
-
-      const activeChoiceTitle = (activeDecOpt && activeDecOpt.id !== 'all') ? ` (${activeDecOpt.label})` : '';
-      document.getElementById('lineupTitle').textContent = `ค้นหาและเทียบสเปก${cat.name}${activeChoiceTitle}`;
-      document.getElementById('resultCountBadge').textContent = `พบ ${filtered.length} รุ่น (จาก ${baseProducts.length} รุ่น)`;
+      const activeChoiceTitle = (activeDecOpt && activeDecOpt.id !== 'all') ? ` • ${activeDecOpt.label}` : '';
+      document.getElementById('lineupTitle').textContent = `${cat.name}${activeChoiceTitle}`;
+      document.getElementById('resultCountBadge').textContent = `${filtered.length} รุ่น`;
 
       const summaryBox = document.getElementById('categoryWinnerSummaryBox');
       const grid = document.getElementById('lineupGrid');
@@ -5806,20 +5781,17 @@
         if (summaryBox) summaryBox.innerHTML = '';
         grid.className = 'apple-lineup-grid';
         grid.innerHTML = `
-          <div style="grid-column:1/-1;background:#fff;border-radius:22px;padding:40px;text-align:center;">
-            <div style="font-size:40px;margin-bottom:10px;">🔍</div>
-            <h3 style="font-size:20px;margin-bottom:6px;">ไม่พบรุ่นที่ตรงกับสเปกที่ติ๊กเลือก</h3>
-            <p style="color:var(--text-sub);font-size:14px;margin-bottom:16px;">ลองเอาเครื่องหมายถูกบางข้อในแถบด้านซ้ายออก หรือกดล้างตัวกรองเพื่อดูทุกรุ่น</p>
-            <button class="btn-apple-primary" onclick="clearAllFacetFilters()" style="max-width:220px;">ล้างตัวกรองสเปกทั้งหมด</button>
+          <div style="grid-column:1/-1;background:#fff;border-radius:18px;padding:32px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:8px;">🔍</div>
+            <h3 style="font-size:17px;margin-bottom:6px;">ไม่พบรุ่นที่ตรงกับตัวกรอง</h3>
+            <button class="btn-apple-primary" onclick="clearAllFacetFilters()" style="max-width:180px;margin-top:8px;">ล้างตัวกรองทั้งหมด</button>
           </div>
         `;
         return;
       }
 
-      // Determine winners for the Category Verdict Summary Box ("อันไหนชนะ & เพราะอะไร")
       const ucList = getUseCasesForCategory(cat.id);
       const selectedUcObj = ucList.find(u => u.id === activeUseCase);
-      const isEverydayCat = ['personal', 'supplement', 'pet'].includes(cat.pillar);
 
       const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
       const budgetWinner = sortedByPrice[0];
@@ -5844,83 +5816,49 @@
       const spcOffers = getStoresForProduct(specWinner);
       const spcBestOffer = spcOffers[0] || { store: 'Shopee Mall', netPrice: specWinner.price, url: '#' };
 
+      // COMPACT 3-PODIUM WINNER STRIP (Clean, zero paragraph bloat)
       if (summaryBox) {
-        const primaryWinHeading = (activeDecOpt && activeDecOpt.id !== 'all')
-          ? `🏆 ชนะอันดับ #1 สำหรับ "${activeDecOpt.label}"`
-          : `🏆 ชนะความคุ้มค่า &amp; ยอดขายอันดับ #1`;
         summaryBox.innerHTML = `
-          <div class="yespec-verdict-box">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-              <div>
-                <span style="background:#16a34a;color:#fff;font-size:11.5px;font-weight:800;padding:4px 12px;border-radius:99px;display:inline-block;margin-bottom:6px;">
-                  🟢 สรุปฟันธงจาก yesspec.com • อันไหนชนะ &amp; เพราะอะไร?
-                </span>
-                <h3 style="font-size:21px;font-weight:800;color:#14532d;margin:0;">
-                  โพยตัวชนะหมวด${cat.name}${activeChoiceTitle} (คำนวณสดตามตัวกรองที่คุณเลือก • ${filtered.length} รุ่น)
-                </h3>
+          <div class="compact-winner-strip">
+            <div class="compact-winner-pill primary-win">
+              <div class="cwp-tag">🏆 อันดับ #1 แนะนำคุ้มสุด</div>
+              <div class="cwp-name">${valueWinner.name}</div>
+              <div class="cwp-why">🟢 ${getShortSpecWinHighlight(valueWinner)}</div>
+              <div class="cwp-bottom">
+                <span class="cwp-price">${formatTHB(valBestOffer.netPrice)}</span>
+                <a href="${valBestOffer.url}" target="_blank" rel="noopener" class="cwp-btn">🛒 ตะกร้าถูกสุด &gt;</a>
               </div>
-              <button class="budget-pill" style="border-color:#16a34a;color:#15803d;font-weight:700;background:#fff;" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})">
-                ⚔️ ดูตารางเทียบหมัดต่อหมัดด้านล่าง &darr;
-              </button>
             </div>
-            <div class="yespec-verdict-grid">
-              <div class="yespec-verdict-item primary-win">
-                <div style="font-size:12px;font-weight:800;color:#15803d;margin-bottom:4px;">
-                  ${primaryWinHeading}
-                </div>
-                <div style="font-size:17px;font-weight:800;color:var(--text-main);margin-bottom:4px;">
-                  ${valueWinner.name}
-                </div>
-                <div style="font-size:15px;font-weight:800;color:#16a34a;margin-bottom:6px;">
-                  ถูกสุด ${formatTHB(valBestOffer.netPrice)} (${valBestOffer.shopName || valBestOffer.store})
-                </div>
-                <div style="font-size:12.5px;color:var(--text-main);line-height:1.5;margin-bottom:10px;">
-                  <strong>ทำไมถึงชนะ:</strong> ${valueWinner.verdict}
-                </div>
-                <a href="${valBestOffer.url}" target="_blank" rel="noopener" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;">
-                  🛒 ไปที่ตะกร้าที่ถูกสุด &gt;
-                </a>
-              </div>
 
-              <div class="yespec-verdict-item">
-                <div style="font-size:12px;font-weight:800;color:#15803d;margin-bottom:4px;">
-                  🟢 ชนะเรื่องราคาประหยัดสุด (คุ้มงบเริ่มต้น)
-                </div>
-                <div style="font-size:16.5px;font-weight:800;color:var(--text-main);margin-bottom:4px;">
-                  ${budgetWinner.name}
-                </div>
-                <div style="font-size:14.5px;font-weight:800;color:#16a34a;margin-bottom:6px;">
-                  เริ่มต้นเพียง ${formatTHB(budBestOffer.netPrice)} (ประหยัดสูงสุด ${formatTHB(Math.max(300, specWinner.price - budgetWinner.price))})
-                </div>
-                <div style="font-size:12.5px;color:var(--text-sub);line-height:1.5;margin-bottom:10px;">
-                  <strong>ทำไมถึงชนะ:</strong> ได้ ${budgetWinner.specs[0]?.big || budgetWinner.eyebrow} ในราคาประหยัดที่สุดในกลุ่ม
-                </div>
-                <a href="${budBestOffer.url}" target="_blank" rel="noopener" style="display:inline-block;background:#1d1d1f;color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;">
-                  🛒 ดูตะกร้า ${formatTHB(budBestOffer.netPrice)} &gt;
-                </a>
+            <div class="compact-winner-pill">
+              <div class="cwp-tag">💰 ประหยัดงบสุด</div>
+              <div class="cwp-name">${budgetWinner.name}</div>
+              <div class="cwp-why">🟢 ถูกสุดในกลุ่ม • ${budgetWinner.specs?.[0]?.big || ''}</div>
+              <div class="cwp-bottom">
+                <span class="cwp-price">${formatTHB(budBestOffer.netPrice)}</span>
+                <a href="${budBestOffer.url}" target="_blank" rel="noopener" class="cwp-btn" style="background:#1d1d1f;">🛒 ดูตะกร้า &gt;</a>
               </div>
+            </div>
 
-              <div class="yespec-verdict-item">
-                <div style="font-size:12px;font-weight:800;color:#15803d;margin-bottom:4px;">
-                  🚀 ชนะเรื่องสเปกตัวท็อปสุด (จบทุกฟีเจอร์)
-                </div>
-                <div style="font-size:16.5px;font-weight:800;color:var(--text-main);margin-bottom:4px;">
-                  ${specWinner.name}
-                </div>
-                <div style="font-size:14.5px;font-weight:800;color:#16a34a;margin-bottom:6px;">
-                  ราคาถูกสุด ${formatTHB(spcBestOffer.netPrice)}
-                </div>
-                <div style="font-size:12.5px;color:var(--text-sub);line-height:1.5;margin-bottom:10px;">
-                  <strong>ทำไมถึงชนะ:</strong> เด่นสุดด้วย ${specWinner.specs[0]?.big || ''} และ ${specWinner.specs[1]?.big || specWinner.eyebrow}
-                </div>
-                <a href="${spcBestOffer.url}" target="_blank" rel="noopener" style="display:inline-block;background:#0071e3;color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;">
-                  🛒 ดูตะกร้า ${formatTHB(spcBestOffer.netPrice)} &gt;
-                </a>
+            <div class="compact-winner-pill">
+              <div class="cwp-tag">🚀 สเปกตัวท็อปสุด</div>
+              <div class="cwp-name">${specWinner.name}</div>
+              <div class="cwp-why">🟢 ${getShortSpecWinHighlight(specWinner)}</div>
+              <div class="cwp-bottom">
+                <span class="cwp-price">${formatTHB(spcBestOffer.netPrice)}</span>
+                <a href="${spcBestOffer.url}" target="_blank" rel="noopener" class="cwp-btn" style="background:#0071e3;">🛒 ดูตะกร้า &gt;</a>
               </div>
             </div>
           </div>
         `;
       }
+
+      // Helper: clean short sub-label (max 28 chars) so spec chips never wrap into paragraphs
+      const cleanShortSub = (lbl) => {
+        if (!lbl) return '';
+        const firstPart = String(lbl).split(/•|\(|—/)[0].trim();
+        return firstPart.length > 28 ? firstPart.slice(0, 26) + '…' : firstPart;
+      };
 
       // MODE A: NOTEBOOKSPEC-STYLE COMPACT HORIZONTAL SPEC ROWS
       if (lineupDisplayLayout === 'list') {
@@ -5941,43 +5879,40 @@
           const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || Math.round(livePrice * 1.16));
           const imgUrl = p.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
           const thumbHtml = imgUrl
-            ? `<img src="${imgUrl}" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" onerror="this.outerHTML='<span style=\\'font-size:38px;\\'>${cat.icon}</span>'" />`
-            : `<span style="font-size:38px;">${p.emoji || cat.icon}</span>`;
+            ? `<img src="${imgUrl}" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" onerror="this.outerHTML='<span style=\\'font-size:34px;\\'>${cat.icon}</span>'" />`
+            : `<span style="font-size:34px;">${p.emoji || cat.icon}</span>`;
 
           const isVsSelected = vsCompareQueue.includes(p.id);
           const brandName = extractProductBrand(p);
 
           return `
             <article class="nbs-spec-row-card ${isCardWinner ? 'winner-green-row' : ''}">
-              <!-- Col 1: Product Image + Rank/Brand -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <!-- Col 1: Product Image + +VS Button -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
                 <a href="${bestOffer.url}" target="_blank" rel="noopener" class="nbs-row-thumb" title="ไปที่ตะกร้าสินค้าจริง">
                   ${thumbHtml}
                 </a>
                 <button class="nbs-vs-check-btn ${isVsSelected ? 'active' : ''}" onclick="toggleVsCompareItem('${p.id}')">
-                  ${isVsSelected ? '✓ เลือกเทียบแล้ว' : '+ เทียบ VS'}
+                  ${isVsSelected ? '✓ เลือกแล้ว' : '+ เทียบ VS'}
                 </button>
               </div>
 
-              <!-- Col 2: Title, Brand Tag, Winner Verdict -->
-              <div style="display:flex;flex-direction:column;gap:5px;">
-                <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-                  <span style="font-size:11px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
-                  ${p.bracketLabel ? `<span style="font-size:11px;font-weight:700;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:99px;">${p.bracketLabel}</span>` : ''}
-                  ${isCardWinner ? `<span style="font-size:11px;font-weight:800;background:#16a34a;color:#fff;padding:2px 10px;border-radius:99px;">🏆 อันดับ #1 แนะนำในตัวกรองนี้</span>` : ''}
+              <!-- Col 2: Brand Pill + Product Title + 1-Line Key Strength -->
+              <div style="display:flex;flex-direction:column;gap:4px;min-width:0;">
+                <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;">
+                  <span style="font-size:10.5px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
+                  ${p.bracketLabel ? `<span style="font-size:10.5px;font-weight:700;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:99px;">${p.bracketLabel}</span>` : ''}
+                  ${isCardWinner ? `<span style="font-size:10.5px;font-weight:800;background:#16a34a;color:#fff;padding:2px 9px;border-radius:99px;">🏆 แนะนำอันดับ #1</span>` : ''}
                 </div>
-                <h3 style="font-size:17px;font-weight:800;color:var(--text-main);margin:0;line-height:1.3;">
+                <h3 style="font-size:15.5px;font-weight:800;color:var(--text-main);margin:0;line-height:1.25;">
                   ${p.name}
                 </h3>
-                <div style="font-size:12.5px;color:var(--text-sub);line-height:1.4;">
-                  ${p.tagline}
-                </div>
-                <div style="font-size:12px;color:#14532d;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:6px 10px;margin-top:2px;line-height:1.45;">
-                  🟢 <strong>ทำไมรุ่นนี้ชนะ:</strong> ${p.verdict}
+                <div style="font-size:11.5px;color:#15803d;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                  🟢 เด่นสุด: ${p.eyebrow || getShortSpecWinHighlight(p)}
                 </div>
               </div>
 
-              <!-- Col 3: Standardized 3-Row Spec Matrix with Green Highlights -->
+              <!-- Col 3: 3 Side-by-Side Spec Metric Chips (Visual & Scannable) -->
               <div class="nbs-spec-matrix">
                 ${p.specs.map((s, sIdx) => {
                   const myScore = extractSpecScore(s, p, sIdx).score;
@@ -5989,40 +5924,35 @@
                   const topicLabel = getSpecTopic(cat.id, sIdx);
                   return `
                     <div class="nbs-spec-pill-box ${isSpecWin ? 'spec-win-green' : ''}">
-                      <div style="display:flex;justify-content:space-between;align-items:center;gap:4px;">
-                        <span style="font-size:10.5px;font-weight:700;color:${isSpecWin ? '#14532d' : '#64748b'};">${topicLabel}</span>
-                        ${isSpecWin ? `<span style="background:#16a34a;color:#fff;font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:99px;">🟢 ชนะข้อนี้</span>` : ''}
+                      <div class="nbs-spec-pill-top">
+                        <span>${topicLabel}</span>
+                        ${isSpecWin ? `<span class="nbs-win-dot">🟢 ชนะ</span>` : ''}
                       </div>
-                      <div style="font-size:12.5px;font-weight:800;color:${isSpecWin ? '#15803d' : 'var(--text-main)'};">
-                        ${s.big} <span style="font-weight:500;color:var(--text-sub);font-size:11.5px;">• ${s.label}</span>
-                      </div>
+                      <div class="nbs-spec-pill-val">${s.big}</div>
+                      <div class="nbs-spec-pill-sub">${cleanShortSub(s.label)}</div>
                     </div>
                   `;
                 }).join('')}
               </div>
 
               <!-- Col 4: Price + Direct Shopee Mall vs LazMall Cart Buttons -->
-              <div style="display:flex;flex-direction:column;gap:6px;align-items:stretch;">
-                <div style="text-align:right;">
-                  <div style="font-size:11px;color:var(--text-sub);font-weight:600;">ราคาตะกร้าถูกสุด</div>
-                  <div style="font-size:21px;font-weight:800;color:#15803d;line-height:1.15;">
+              <div style="display:flex;flex-direction:column;gap:5px;align-items:stretch;">
+                <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:6px;">
+                  <span style="font-size:19px;font-weight:800;color:#15803d;line-height:1.1;">
                     ${formatTHB(livePrice)}
-                  </div>
-                  <div style="font-size:11.5px;color:var(--text-light);text-decoration:line-through;">
+                  </span>
+                  <span style="font-size:11px;color:var(--text-light);text-decoration:line-through;">
                     ${formatTHB(prevMonthPrice)}
-                  </div>
+                  </span>
                 </div>
-                <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:8px 10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+                <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
                   <span>🟠 Shopee ${isShopeeCheapest ? '🏆' : ''}</span>
                   <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
                 </a>
-                <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:8px 10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+                <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
                   <span>🔵 LazMall ${isLazadaCheapest ? '🏆' : ''}</span>
                   <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
                 </a>
-                <button class="btn-apple-link" style="font-size:11.5px;font-weight:700;text-align:center;margin-top:2px;" onclick="jumpToCompareWith('${p.id}')">
-                  ⚔️ เทียบตัวต่อตัว &gt;
-                </button>
               </div>
             </article>
           `;
@@ -6030,24 +5960,12 @@
         return;
       }
 
-      // MODE B: 3-COLUMN APPLE CARD VIEW
+      // MODE B: 3-COLUMN APPLE CARD VIEW (Streamlined low-text cards)
       grid.className = 'apple-lineup-grid';
       grid.innerHTML = filtered.map((p, idx) => {
-        const isCardWinner = (p.id === valueWinner.id) || (
-          selectedUcObj && selectedUcObj.id !== 'all' && (
-            (selectedUcObj.id === 'budget_win' && (p.tier === 'ultra_low' || p.tier === 'budget' || idx === 0)) ||
-            (selectedUcObj.id === 'balance_win' && (p.tier === 'mid' || idx === 1)) ||
-            (selectedUcObj.id === 'flagship_win' && (p.tier === 'high' || idx === filtered.length - 1)) ||
-            (selectedUcObj.id !== 'budget_win' && selectedUcObj.id !== 'balance_win' && selectedUcObj.id !== 'flagship_win' && (idx % 3 === selectedUcObj.matchIdx))
-          )
-        );
-
+        const isCardWinner = (p.id === valueWinner.id);
         const groupStart = Math.floor(idx / 3) * 3;
         const groupPeers = filtered.slice(groupStart, groupStart + 3);
-
-        const dotsHtml = (p.colors || ['#1d1d1f','#d2d2d7']).map(col =>
-          `<span class="color-dot" style="background:${col};"></span>`
-        ).join('');
 
         const offers = getStoresForProduct(p);
         const bestOffer = offers[0] || { netPrice: p.price, originalPrice: Math.round(p.price * 1.15), url: '#', platform: 'shopee' };
@@ -6060,70 +5978,41 @@
 
         const imgUrl = p.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
         const visualHtml = imgUrl
-          ? `<a href="${bestOffer.url}" target="_blank" rel="noopener" title="กดที่รูปเพื่อเข้าหน้าตะกร้าสินค้าจริง (${bestOffer.shopName || 'Official Mall'})" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:relative;text-decoration:none;">
+          ? `<a href="${bestOffer.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:relative;text-decoration:none;">
                <img src="${imgUrl}" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" style="border-radius:12px;" onerror="this.outerHTML='<div class=\\'apple-card-emoji-fallback\\'>${cat.icon}</div>'" />
-               <span style="position:absolute;bottom:6px;right:8px;background:rgba(22,163,74,0.92);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;backdrop-filter:blur(4px);">🛒 ตะกร้าจริง ${formatTHB(minStorePrice)}</span>
              </a>`
           : `<div class="apple-card-emoji-fallback">${p.emoji || cat.icon}</div>`;
 
         const livePrice = bestOffer.netPrice || p.price;
         const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || Math.round(livePrice * 1.16));
-        const monthlyDrop = Math.max(25, prevMonthPrice - livePrice);
-        const installment10m = Math.round(livePrice / 10);
-        const dailyCost = Math.max(2, Math.round(livePrice / 30));
-
-        const subValueLine = (isEverydayCat && livePrice < 3000)
-          ? `⚡ เฉลี่ยเพียง ~฿${dailyCost}/วัน • ตะกร้าถูกสุด: ${bestOffer.shopName || bestOffer.store}`
-          : `💳 ผ่อน 0% 10 เดือน เพียง ${formatTHB(installment10m)}/ด. • ถูกสุดที่ ${bestOffer.shopName || bestOffer.store}`;
-
-        const ribbonText = (selectedUcObj && selectedUcObj.id !== 'all' && isCardWinner)
-          ? `🏆 ชนะโจทย์ "${selectedUcObj.label}"`
-          : (activeDecOpt && activeDecOpt.id !== 'all' && isCardWinner)
-            ? `🏆 อันดับ #1 สำหรับ "${activeDecOpt.label}"`
-            : `🏆 อันดับ #1 คุ้มค่า & ขายดีสุด — แนะนำตัวนี้!`;
 
         return `
-          <article class="apple-card ${isCardWinner ? 'winner-green-card' : ''}">
+          <article class="apple-card ${isCardWinner ? 'winner-green-card' : ''}" style="padding:20px 18px;">
             ${p.bracketLabel ? `<span class="bracket-tag">${p.bracketLabel}</span>` : ''}
-            ${isCardWinner ? `<div class="winner-ribbon">${ribbonText}</div>` : ''}
-            <div class="apple-card-visual">
+            ${isCardWinner ? `<div class="winner-ribbon">🏆 อันดับ #1 แนะนำคุ้มสุด</div>` : ''}
+            <div class="apple-card-visual" style="height:150px;margin-bottom:10px;">
               ${visualHtml}
             </div>
-            <div class="color-dots">${dotsHtml}</div>
             <div class="apple-eyebrow" style="${isCardWinner ? 'color:#15803d;font-weight:800;' : ''}">${p.eyebrow}</div>
-            <h3 class="apple-product-name">${p.name}</h3>
-            <p class="apple-product-tagline">${p.tagline}</p>
-            <div class="apple-price-line" style="${isCardWinner ? 'color:#15803d;' : ''}">
+            <h3 class="apple-product-name" style="font-size:17.5px;min-height:auto;margin-bottom:6px;">${p.name}</h3>
+            <div class="apple-price-line" style="${isCardWinner ? 'color:#15803d;' : ''}margin-bottom:12px;">
               ${formatTHB(livePrice)}
-              <span style="font-size:12.5px;color:var(--text-light);text-decoration:line-through;font-weight:500;margin-left:6px;">${formatTHB(prevMonthPrice)}</span>
+              <span style="font-size:12px;color:var(--text-light);text-decoration:line-through;font-weight:500;margin-left:6px;">${formatTHB(prevMonthPrice)}</span>
             </div>
-            <div style="font-size:12px;color:#15803d;font-weight:700;margin-bottom:4px;">
-              ${subValueLine}
-            </div>
-            <div class="apple-price-sub" style="margin-bottom:12px;">📉 ประหยัดกว่าหน้าร้าน -${formatTHB(monthlyDrop)}</div>
 
-            <div class="apple-cta-group" style="gap:7px;">
-              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};border:${isShopeeCheapest ? '2px solid #14532d' : 'none'};text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;max-width:100%;font-size:12.5px;">
-                <span>🟠 Shopee Mall ${isShopeeCheapest ? '<span class="store-win-pill" style="background:#fff;color:#15803d;">🏆 ถูกสุด ชนะ!</span>' : ''}</span>
+            <div class="apple-cta-group" style="gap:6px;margin-bottom:14px;padding-bottom:14px;">
+              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;max-width:100%;font-size:12px;">
+                <span>🟠 Shopee Mall ${isShopeeCheapest ? '🏆 ถูกสุด' : ''}</span>
                 <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
               </a>
-              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};border:${isLazadaCheapest ? '2px solid #14532d' : 'none'};text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;max-width:100%;font-size:12.5px;">
-                <span>🔵 LazMall ${isLazadaCheapest ? '<span class="store-win-pill" style="background:#fff;color:#15803d;">🏆 ถูกสุด ชนะ!</span>' : ''}</span>
+              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;max-width:100%;font-size:12px;">
+                <span>🔵 LazMall ${isLazadaCheapest ? '🏆 ถูกสุด' : ''}</span>
                 <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
               </a>
-              <div style="display:flex;gap:12px;justify-content:center;width:100%;margin-top:4px;">
-                <button class="btn-apple-link" style="font-size:12.5px;font-weight:700;color:#15803d;" onclick="openPriceModal('${p.id}')">
-                  🛒 เทียบราคา Shopee vs LazMall
-                </button>
-                <button class="btn-apple-link" style="font-size:12.5px;font-weight:700;" onclick="jumpToCompareWith('${p.id}')">
-                  ⚔️ เทียบหมัดต่อหมัด &gt;
-                </button>
-              </div>
             </div>
 
-            <div class="apple-spec-stack">
+            <div class="apple-spec-stack" style="gap:8px;">
               ${p.specs.map((s, sIdx) => {
-                // Highlight in GREEN if this product wins this spec row among its 3-card peer group
                 const myScore = extractSpecScore(s, p, sIdx).score;
                 const maxPeerScore = Math.max(...groupPeers.map(peer => {
                   const ps = peer.specs[sIdx] || { big: '', label: '' };
@@ -6132,21 +6021,16 @@
                 const isSpecWin = myScore >= maxPeerScore - 0.01;
                 const topicLabel = getSpecTopic(cat.id, sIdx);
                 return `
-                  <div class="apple-spec-row ${isSpecWin ? 'spec-win-green' : ''}">
-                    <div class="spec-topic-pill">
+                  <div class="apple-spec-row ${isSpecWin ? 'spec-win-green' : ''}" style="padding:8px 10px;">
+                    <div class="spec-topic-pill" style="margin-bottom:2px;">
                       <span>${topicLabel}</span>
-                      ${isSpecWin ? `<span class="spec-win-badge" style="margin-bottom:0;">🟢 ชนะข้อนี้</span>` : ''}
+                      ${isSpecWin ? `<span class="spec-win-badge" style="margin-bottom:0;">🟢 ชนะ</span>` : ''}
                     </div>
-                    <div class="spec-row-big">${s.big}</div>
-                    <div class="spec-row-label">${s.label}</div>
+                    <div class="spec-row-big" style="font-size:14.5px;">${s.big}</div>
+                    <div class="spec-row-label" style="font-size:11.5px;">${cleanShortSub(s.label)}</div>
                   </div>
                 `;
               }).join('')}
-            </div>
-
-            <div class="apple-verdict-chip" style="${isCardWinner ? 'background:#ecfdf5;border:1px solid #86efac;color:#14532d;' : ''}">
-              <strong>🟢 สรุปทำไมรุ่นนี้ถึงน่าซื้อ:</strong>
-              ${p.verdict}
             </div>
           </article>
         `;
@@ -6180,19 +6064,18 @@
         selB.value = list[1].id;
       }
 
-      // Render 1-Click Quick Rival Matchup Pills (#quickRivalPills)
       const rivalEl = document.getElementById('quickRivalPills');
       if (rivalEl && list.length >= 2) {
         const pairs = [];
-        pairs.push({ a: list[0], b: list[1], tag: '🔥 คู่ขายดีอันดับ #1' });
+        pairs.push({ a: list[0], b: list[1], tag: '🔥 คู่ฮิต #1' });
         if (list.length >= 4) {
-          pairs.push({ a: list[1], b: list[2], tag: '⚖️ คู่คุ้มค่ากลางตาราง' });
-          pairs.push({ a: list[list.length - 2], b: list[list.length - 1], tag: '👑 คู่ชิงตัวท็อป' });
+          pairs.push({ a: list[1], b: list[2], tag: '⚖️ คู่คุ้มค่า' });
+          pairs.push({ a: list[list.length - 2], b: list[list.length - 1], tag: '👑 คู่ตัวท็อป' });
         } else if (list.length === 3) {
-          pairs.push({ a: list[1], b: list[2], tag: '👑 คู่ชิงตัวท็อป' });
+          pairs.push({ a: list[1], b: list[2], tag: '👑 คู่ตัวท็อป' });
         }
         rivalEl.innerHTML = pairs.map(pr => `
-          <button class="clean-quick-pill" style="border-color:#86efac;background:#f0fdf4;color:#14532d;font-weight:700;font-size:12px;" onclick="selectComparePair('${pr.a.id}', '${pr.b.id}')">
+          <button class="clean-quick-pill" style="border-color:#86efac;background:#f0fdf4;color:#14532d;font-weight:700;font-size:11.5px;padding:5px 11px;" onclick="selectComparePair('${pr.a.id}', '${pr.b.id}')">
             ${pr.tag}: ${pr.a.name.split('(')[0].trim()} vs ${pr.b.name.split('(')[0].trim()}
           </button>
         `).join('');
@@ -6241,7 +6124,6 @@
 
       const diffPrice = Math.abs(bestA.netPrice - bestB.netPrice);
       const isACheaper = bestA.netPrice <= bestB.netPrice;
-      const cheaperProd = isACheaper ? pA : pB;
 
       let winsA = isACheaper ? 1 : 0;
       let winsB = !isACheaper ? 1 : 0;
@@ -6249,23 +6131,21 @@
       const reasonsB = [];
 
       if (diffPrice > 0) {
-        if (isACheaper) reasonsA.push(`ราคาประหยัดกว่าทันที ${formatTHB(diffPrice)} (${formatTHB(bestA.netPrice)} vs ${formatTHB(bestB.netPrice)})`);
-        else reasonsB.push(`ราคาประหยัดกว่าทันที ${formatTHB(diffPrice)} (${formatTHB(bestB.netPrice)} vs ${formatTHB(bestA.netPrice)})`);
+        if (isACheaper) reasonsA.push(`ถูกกว่า ${formatTHB(diffPrice)}`);
+        else reasonsB.push(`ถูกกว่า ${formatTHB(diffPrice)}`);
       }
 
       const maxSpecs = Math.max(pA.specs.length, pB.specs.length);
       let rowsHtml = `
-        <div class="compare-row">
-          <div class="compare-topic-banner">💰 หัวข้อที่ 1: เทียบราคาตะกร้าจริง (Shopee Mall vs LazMall)</div>
-          <div class="compare-cell-box ${isACheaper ? 'compare-cell-win' : ''}">
-            ${isACheaper ? `<div class="spec-win-badge">🟢 ชนะเรื่องราคาประหยัดกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
-            <div class="compare-cell-val">${formatTHB(bestA.netPrice)}</div>
-            <div class="spec-row-label">ราคาถูกสุดที่ ${bestA.shopName || bestA.store} • ผ่อน ${formatTHB(Math.round(bestA.netPrice / 10))}/ด.</div>
+        <div class="compare-row" style="padding:14px 0;">
+          <div class="compare-topic-banner">💰 ราคาตะกร้าถูกสุด</div>
+          <div class="compare-cell-box ${isACheaper ? 'compare-cell-win' : ''}" style="padding:12px;">
+            ${isACheaper ? `<div class="spec-win-badge">🟢 ถูกกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
+            <div class="compare-cell-val" style="font-size:20px;">${formatTHB(bestA.netPrice)}</div>
           </div>
-          <div class="compare-cell-box ${!isACheaper ? 'compare-cell-win' : ''}">
-            ${!isACheaper ? `<div class="spec-win-badge">🟢 ชนะเรื่องราคาประหยัดกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
-            <div class="compare-cell-val">${formatTHB(bestB.netPrice)}</div>
-            <div class="spec-row-label">ราคาถูกสุดที่ ${bestB.shopName || bestB.store} • ผ่อน ${formatTHB(Math.round(bestB.netPrice / 10))}/ด.</div>
+          <div class="compare-cell-box ${!isACheaper ? 'compare-cell-win' : ''}" style="padding:12px;">
+            ${!isACheaper ? `<div class="spec-win-badge">🟢 ถูกกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
+            <div class="compare-cell-val" style="font-size:20px;">${formatTHB(bestB.netPrice)}</div>
           </div>
         </div>
       `;
@@ -6278,23 +6158,21 @@
         const topicLabel = getSpecTopic(cat.id, i);
         if (aWin) {
           winsA++;
-          reasonsA.push(`${topicLabel}: ${sA.big} (${sA.label})`);
+          reasonsA.push(sA.big);
         } else {
           winsB++;
-          reasonsB.push(`${topicLabel}: ${sB.big} (${sB.label})`);
+          reasonsB.push(sB.big);
         }
         rowsHtml += `
-          <div class="compare-row">
-            <div class="compare-topic-banner">หัวข้อที่ ${i + 2}: ${topicLabel}</div>
-            <div class="compare-cell-box ${aWin ? 'compare-cell-win' : ''}">
-              ${aWin ? `<div class="spec-win-badge">🟢 ชนะข้อนี้ — ${res.reasonA}</div>` : ''}
-              <div class="compare-cell-val">${sA.big}</div>
-              <div class="spec-row-label">${sA.label}</div>
+          <div class="compare-row" style="padding:14px 0;">
+            <div class="compare-topic-banner">${topicLabel}</div>
+            <div class="compare-cell-box ${aWin ? 'compare-cell-win' : ''}" style="padding:12px;">
+              ${aWin ? `<div class="spec-win-badge">🟢 ชนะ (${res.reasonA})</div>` : ''}
+              <div class="compare-cell-val" style="font-size:17px;">${sA.big}</div>
             </div>
-            <div class="compare-cell-box ${!aWin ? 'compare-cell-win' : ''}">
-              ${!aWin ? `<div class="spec-win-badge">🟢 ชนะข้อนี้ — ${res.reasonB}</div>` : ''}
-              <div class="compare-cell-val">${sB.big}</div>
-              <div class="spec-row-label">${sB.label}</div>
+            <div class="compare-cell-box ${!aWin ? 'compare-cell-win' : ''}" style="padding:12px;">
+              ${!aWin ? `<div class="spec-win-badge">🟢 ชนะ (${res.reasonB})</div>` : ''}
+              <div class="compare-cell-val" style="font-size:17px;">${sB.big}</div>
             </div>
           </div>
         `;
@@ -6306,13 +6184,13 @@
 
       const renderStoreButtonsMini = (offers) => {
         const minP = Math.min(...offers.map(o => o.netPrice));
-        return `<div style="display:flex;flex-direction:column;gap:6px;margin-top:10px;">` +
+        return `<div style="display:flex;flex-direction:column;gap:5px;margin-top:8px;">` +
           offers.slice(0, 2).map(o => {
             const isWin = o.netPrice === minP;
             const bg = isWin ? '#16a34a' : (o.platform === 'shopee' ? '#ee4d2d' : '#0f146d');
-            const icon = o.platform === 'shopee' ? '🟠 Shopee Mall' : '🔵 LazMall';
-            return `<a href="${o.url}" target="_blank" rel="noopener" style="background:${bg};color:#fff;text-decoration:none;padding:8px 12px;border-radius:99px;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center;">
-              <span>${icon} ${isWin ? '<span style="background:#fff;color:#15803d;padding:1px 6px;border-radius:99px;font-size:10px;margin-left:4px;">🏆 ถูกสุด!</span>' : ''}</span>
+            const icon = o.platform === 'shopee' ? '🟠 Shopee' : '🔵 LazMall';
+            return `<a href="${o.url}" target="_blank" rel="noopener" style="background:${bg};color:#fff;text-decoration:none;padding:7px 11px;border-radius:99px;font-size:11.5px;font-weight:700;display:flex;justify-content:space-between;align-items:center;">
+              <span>${icon} ${isWin ? '🏆' : ''}</span>
               <strong>${formatTHB(o.netPrice)} &gt;</strong>
             </a>`;
           }).join('') +
@@ -6320,56 +6198,34 @@
       };
 
       document.getElementById('headToHeadContent').innerHTML = `
-        <!-- VERDICT SUMMARY BANNER AT TOP OF HEAD-TO-HEAD -->
-        <div style="background:linear-gradient(135deg,#ecfdf5 0%,#f0fdf4 100%);border:2px solid #16a34a;border-radius:20px;padding:20px 24px;margin-bottom:20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
-            <span style="background:#16a34a;color:#fff;font-size:12px;font-weight:800;padding:4px 12px;border-radius:99px;">
-              🏆 สรุปผลเทียบหมัดต่อหมัด (คะแนนรวม ${winsA} ต่อ ${winsB} ข้อ)
+        <div style="background:#f0fdf4;border:1.5px solid #22c55e;border-radius:16px;padding:14px 18px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div>
+            <span style="background:#16a34a;color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;margin-right:8px;">
+              🏆 ชนะ ${winsA >= winsB ? winsA : winsB}/${winsA + winsB} หัวข้อ
             </span>
-            <span style="font-size:12.5px;font-weight:700;color:#15803d;">
-              ส่วนต่างราคา: ${diffPrice > 0 ? formatTHB(diffPrice) : 'ราคาเท่ากัน'}
-            </span>
+            <strong style="font-size:16px;color:#14532d;">🟢 ${overallWinner.name}</strong>
+            <span style="font-size:12.5px;color:#15803d;margin-left:6px;">(${overallReasons.join(' • ')})</span>
           </div>
-          <div style="font-size:19px;font-weight:800;color:#14532d;margin-bottom:6px;">
-            🟢 ผู้ชนะคือ: ${overallWinner.name} (ถูกสุด ${formatTHB(overallWinnerBest.netPrice)})
-          </div>
-          <div style="font-size:13.5px;color:var(--text-main);line-height:1.6;">
-            <strong>ทำไม ${overallWinner.name} ถึงชนะ:</strong>
-            <ul style="margin:6px 0 8px 20px;padding:0;">
-              ${overallReasons.map(r => `<li>${r}</li>`).join('')}
-              <li>${overallWinner.verdict}</li>
-            </ul>
-            ${overallWinner.id !== cheaperProd.id ? `<div style="margin-top:6px;padding-top:6px;border-top:1px dashed #86efac;color:#15803d;">💰 <strong>แต่ถ้าเน้นประหยัดงบ:</strong> เลือก <strong>${cheaperProd.name}</strong> จะเซฟเงินในกระเป๋าได้ทันที <strong>${formatTHB(diffPrice)}</strong> (${cheaperProd.verdict})</div>` : ''}
-          </div>
+          <a href="${overallWinnerBest.url}" target="_blank" rel="noopener" style="background:#16a34a;color:#fff;text-decoration:none;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;">
+            🛒 ตะกร้าผู้ชนะ ${formatTHB(overallWinnerBest.netPrice)} &gt;
+          </a>
         </div>
 
-        <div class="compare-row">
-          <div class="compare-cell-box ${winsA >= winsB ? 'compare-cell-win' : ''}">
-            ${winsA >= winsB ? `<div class="spec-win-badge">🏆 ชนะคะแนนรวม (${winsA}/${winsA + winsB} ข้อ)</div>` : ''}
-            ${imgA ? `<div style="height:135px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><img src="${imgA}" alt="${pA.name}" referrerpolicy="no-referrer" loading="lazy" style="max-height:130px;max-width:100%;object-fit:contain;border-radius:10px;" /></div>` : ''}
-            <div class="apple-eyebrow">${pA.eyebrow}</div>
-            <div style="font-size:19px;font-weight:800;margin-bottom:4px;">${pA.name}</div>
-            <div style="font-size:18px;font-weight:800;color:#15803d;margin-bottom:6px;">ถูกสุด ${formatTHB(bestA.netPrice)}</div>
+        <div class="compare-row" style="padding:14px 0;">
+          <div class="compare-cell-box ${winsA >= winsB ? 'compare-cell-win' : ''}" style="padding:14px;">
+            ${winsA >= winsB ? `<div class="spec-win-badge">🏆 ชนะคะแนนรวม (${winsA}/${winsA + winsB})</div>` : ''}
+            ${imgA ? `<div style="height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;"><img src="${imgA}" alt="${pA.name}" referrerpolicy="no-referrer" loading="lazy" style="max-height:105px;max-width:100%;object-fit:contain;border-radius:8px;" /></div>` : ''}
+            <div style="font-size:16px;font-weight:800;margin-bottom:4px;">${pA.name}</div>
             ${renderStoreButtonsMini(offersA)}
           </div>
-          <div class="compare-cell-box ${winsB > winsA ? 'compare-cell-win' : ''}">
-            ${winsB > winsA ? `<div class="spec-win-badge">🏆 ชนะคะแนนรวม (${winsB}/${winsA + winsB} ข้อ)</div>` : ''}
-            ${imgB ? `<div style="height:135px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><img src="${imgB}" alt="${pB.name}" referrerpolicy="no-referrer" loading="lazy" style="max-height:130px;max-width:100%;object-fit:contain;border-radius:10px;" /></div>` : ''}
-            <div class="apple-eyebrow">${pB.eyebrow}</div>
-            <div style="font-size:19px;font-weight:800;margin-bottom:4px;">${pB.name}</div>
-            <div style="font-size:18px;font-weight:800;color:#15803d;margin-bottom:6px;">ถูกสุด ${formatTHB(bestB.netPrice)}</div>
+          <div class="compare-cell-box ${winsB > winsA ? 'compare-cell-win' : ''}" style="padding:14px;">
+            ${winsB > winsA ? `<div class="spec-win-badge">🏆 ชนะคะแนนรวม (${winsB}/${winsA + winsB})</div>` : ''}
+            ${imgB ? `<div style="height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;"><img src="${imgB}" alt="${pB.name}" referrerpolicy="no-referrer" loading="lazy" style="max-height:105px;max-width:100%;object-fit:contain;border-radius:8px;" /></div>` : ''}
+            <div style="font-size:16px;font-weight:800;margin-bottom:4px;">${pB.name}</div>
             ${renderStoreButtonsMini(offersB)}
           </div>
         </div>
         ${rowsHtml}
-        <div class="compare-row" style="border-bottom:none;">
-          <div class="apple-verdict-chip" style="${winsA >= winsB ? 'background:#ecfdf5;border:1px solid #86efac;color:#14532d;' : ''}">
-            <strong>สรุป ${pA.name} เหมาะกับใคร:</strong> ${pA.verdict}
-          </div>
-          <div class="apple-verdict-chip" style="${winsB > winsA ? 'background:#ecfdf5;border:1px solid #86efac;color:#14532d;' : ''}">
-            <strong>สรุป ${pB.name} เหมาะกับใคร:</strong> ${pB.verdict}
-          </div>
-        </div>
       `;
     }
 
