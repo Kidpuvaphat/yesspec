@@ -1435,8 +1435,7 @@
       </ul>
 
       <div class="global-nav-actions">
-        <button class="nav-icon-btn" onclick="toggleCurtain(true, true)">🔍 ค้นหา</button>
-        <button class="nav-icon-btn" onclick="toggleCurtain()">🗂️ 32 หมวด</button>
+        <button class="nav-icon-btn" onclick="toggleCurtain(undefined, true)" style="background:rgba(0,0,0,0.05);padding:5px 12px;font-weight:600;">🔍 ค้นหา / 32 หมวด</button>
       </div>
     </div>
   </nav>
@@ -1455,9 +1454,9 @@
     </div>
   </div>
 
-  <!-- 3. APPLE CHAPTER NAV (Clean Horizontal Icon Ribbon) -->
-  <div class="chapter-nav">
-    <div class="chapter-nav-inner" id="chapterNavRibbon"></div>
+  <!-- 3. CONTEXTUAL CHAPTER NAV (Hidden on Home; shows ONLY active Pillar sub-categories when browsing a zone) -->
+  <div class="chapter-nav" id="chapterNavWrapper" style="display:none;">
+    <div class="chapter-nav-inner" id="chapterNavRibbon" style="justify-content:safe center;"></div>
   </div>
 
   <!-- 4. MAIN APPLE STORE CONTENT AREA -->
@@ -1555,86 +1554,86 @@
          CATEGORY DEEP COMPARISON VIEW (Appears when a category is selected)
          ============================================================ -->
     <div id="categoryViewSection" style="display:none;">
-      <div style="margin-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-        <button class="budget-pill" onclick="showHomeHub()" style="padding:6px 14px;font-size:12.5px;">
-          ← หน้าแรก yespec
-        </button>
-      </div>
-
-      <section class="apple-hero" style="padding:16px 0 22px;">
-        <div>
-          <h1 class="apple-hero-title" id="heroHeadline">
+      <section class="apple-hero" style="padding:18px 0 14px;align-items:center;">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <button class="budget-pill" onclick="showHomeHub()" style="padding:4px 12px;font-size:12px;">
+              ← หน้าแรก
+            </button>
+            <span id="activePillarBadge" style="font-size:12px;font-weight:600;color:var(--text-sub);"></span>
+          </div>
+          <h1 class="apple-hero-title" id="heroHeadline" style="font-size:clamp(24px, 3.4vw, 36px);">
             มือถือ. <span class="muted">เลือกช่วงงบประมาณที่คุณตั้งไว้.</span>
           </h1>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <button class="tool-trigger-btn" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})" style="border-color:#16a34a;color:#15803d;background:#f0fdf4;font-weight:700;padding:8px 14px;font-size:12.5px;">
+            ⚔️ เทียบ 2 รุ่นชนกัน
+          </button>
+          <button class="line-share-btn" onclick="shareCurrentComparisonToLine()" style="padding:8px 14px;font-size:12.5px;">
+            💬 แชร์โพยลง LINE
+          </button>
         </div>
       </section>
 
     <!-- ============================================================
-         5. HYBRID BUDGET ENGINE (Quick Price Brackets + Custom Min/Max + Use-Case Matcher)
+         5. COMPACT SINGLE-ROW BUDGET & FILTER BAR (+ Collapsible Drawer)
          ============================================================ -->
-    <section class="budget-engine-card">
-      <div class="budget-engine-top">
-        <div>
-          <div class="budget-engine-label" style="margin-bottom:10px;">
-            <span>💰 วิธีที่ 1: กดเลือกช่วงงบยอดฮิต (1 คลิกดูตัวจบประจำงบ)</span>
-          </div>
+    <section class="budget-engine-card" style="padding:14px 18px;margin-bottom:20px;">
+      <div class="budget-engine-top" style="margin-bottom:0;gap:10px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1;">
+          <span style="font-size:12.5px;font-weight:700;color:var(--text-sub);white-space:nowrap;">💰 งบประมาณ:</span>
           <div class="budget-pills" id="budgetFilterPills"></div>
         </div>
 
-        <div class="apple-view-seg">
-          <button class="seg-btn active" id="segLineup" onclick="setViewMode('lineup')">รุ่นไหนชนะในงบนี้</button>
-          <button class="seg-btn" id="segCompare" onclick="setViewMode('compare')">⚔️ เทียบ 2 รุ่นชนกัน</button>
-          <button class="seg-btn" id="segStepup" onclick="setViewMode('stepup')">คู่มือเทียบตามงบ</button>
-          <button class="seg-btn" id="segArticles" onclick="setViewMode('articles')">📰 บทความ Top 10</button>
-        </div>
-      </div>
-
-      <!-- Custom Min-Max Price Range Input -->
-      <div class="custom-budget-bar">
-        <div class="custom-inputs-group">
-          <span class="custom-input-label">🎯 วิธีที่ 2: กำหนดงบเองตามใจคุณ:</span>
-          <div class="price-input-box">
-            <span>ต่ำสุด ฿</span>
-            <input type="number" id="customMinPrice" class="price-input" placeholder="0" step="1000" />
-          </div>
-          <span style="color:var(--text-sub);font-weight:600;">ถึง</span>
-          <div class="price-input-box">
-            <span>สูงสุด ฿</span>
-            <input type="number" id="customMaxPrice" class="price-input" placeholder="50000" step="1000" />
-          </div>
-          <button class="btn-apply-budget" onclick="applyCustomPriceRange()">กรองตามงบนี้</button>
-          <button class="btn-reset-budget" onclick="resetPriceFilter()">ล้างค่า (ดูทั้งหมด)</button>
-        </div>
-        <div id="activeBudgetSummary" style="font-size:12.5px;color:var(--text-sub);font-weight:500;">
-          แสดงครบทุกช่วงงบประมาณ
-        </div>
-      </div>
-
-      <!-- Feature #3: Use-Case / Lifestyle Filter Pills -->
-      <div class="usecase-bar">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="custom-input-label">✨ วิธีที่ 3: เน้นใช้งานแบบไหน? (ระบบไฮไลท์ตัวชนะสีเขียวให้ทันที):</span>
-          <div id="useCasePillsContainer" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+          <button class="budget-pill" id="btnAdvFilterToggle" onclick="toggleAdvancedFilters()" style="padding:7px 13px;font-size:12px;background:#f5f5f7;">
+            🎯 ตัวกรองเพิ่มเติม / กำหนดงบเอง ▾
+          </button>
+          <button class="budget-pill" onclick="toggleSmartCalculator()" id="btnCalcTrigger" style="padding:7px 13px;font-size:12px;background:#f5f5f7;">
+            🧮 เครื่องคำนวณ
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Advanced Filter Drawer (Hidden by default to keep top bar clean) -->
+      <div id="advancedFilterDrawer" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border-hairline);">
+        <!-- Custom Min-Max Price Range Input -->
+        <div class="custom-budget-bar" style="padding-top:0;border-top:none;margin-bottom:10px;">
+          <div class="custom-inputs-group">
+            <span class="custom-input-label">🎯 กำหนดงบเอง:</span>
+            <div class="price-input-box">
+              <span>ต่ำสุด ฿</span>
+              <input type="number" id="customMinPrice" class="price-input" placeholder="0" step="1000" />
+            </div>
+            <span style="color:var(--text-sub);font-weight:600;">ถึง</span>
+            <div class="price-input-box">
+              <span>สูงสุด ฿</span>
+              <input type="number" id="customMaxPrice" class="price-input" placeholder="50000" step="1000" />
+            </div>
+            <button class="btn-apply-budget" onclick="applyCustomPriceRange()">กรองตามงบนี้</button>
+            <button class="btn-reset-budget" onclick="resetPriceFilter()">ล้างค่า</button>
+          </div>
+          <div id="activeBudgetSummary" style="font-size:12px;color:var(--text-sub);font-weight:500;">
+            แสดงครบทุกช่วงงบประมาณ
+          </div>
+        </div>
+
+        <!-- Use-Case / Lifestyle Filter Pills + View Switcher -->
+        <div class="usecase-bar" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="custom-input-label">✨ สไตล์การใช้งาน:</span>
+            <div id="useCasePillsContainer" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+          </div>
+          <div class="apple-view-seg">
+            <button class="seg-btn active" id="segLineup" onclick="setViewMode('lineup')">ตารางเทียบ</button>
+            <button class="seg-btn" id="segCompare" onclick="setViewMode('compare')">⚔️ เทียบ 2 รุ่น</button>
+            <button class="seg-btn" id="segStepup" onclick="setViewMode('stepup')">คู่มืองบ</button>
+            <button class="seg-btn" id="segArticles" onclick="setViewMode('articles')">📰 Top 10</button>
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- Smart Calculator Trigger + Jump to Head-to-Head + 1-Click Share to LINE -->
-    <div class="smart-tools-strip">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="tool-trigger-btn" onclick="toggleSmartCalculator()" id="btnCalcTrigger">
-          🧮 เครื่องคำนวณขนาดห้อง / ค่าไฟ / ผ่อน 0% ประจำหมวดนี้
-        </button>
-        <button class="tool-trigger-btn" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})" style="border-color:#16a34a;color:#15803d;background:#f0fdf4;font-weight:700;">
-          ⚔️ เทียบสเปก 2 รุ่นหมัดต่อหมัด (ข้อไหนชนะขึ้นสีเขียว 🟢)
-        </button>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="line-share-btn" onclick="shareCurrentComparisonToLine()">
-          💬 คัดลอกโพยเทียบนี้ส่งให้แฟน/ครอบครัวใน LINE
-        </button>
-      </div>
-    </div>
 
     <!-- Interactive Smart Calculator Drawer (Feature #4) -->
     <div class="smart-calc-drawer" id="smartCalcDrawer"></div>
@@ -4065,30 +4064,41 @@
 
     let isHomeMode = true;
 
+    const PILLAR_LABELS = {
+      tech: '📱 โซนมือถือ • ไอที',
+      home: '❄️ โซนเครื่องใช้ไฟฟ้า • บ้าน',
+      personal: '🧴 โซนของใช้ • สกินแคร์',
+      supplement: '💊 โซนอาหารเสริม • สุขภาพ',
+      pet: '🐾 โซนสัตว์เลี้ยง'
+    };
+
     function renderChapterNav() {
-      const activeCat = getCategory(activeCategoryId);
-      const activePillar = !isHomeMode && activeCat ? activeCat.pillar : null;
-      const sorted = [...CATEGORIES].sort((a, b) => {
-        if (activePillar) {
-          const aMatch = a.pillar === activePillar ? 0 : 1;
-          const bMatch = b.pillar === activePillar ? 0 : 1;
-          if (aMatch !== bMatch) return aMatch - bMatch;
-        }
-        return a.num - b.num;
-      });
+      const wrapper = document.getElementById('chapterNavWrapper');
       const ribbon = document.getElementById('chapterNavRibbon');
-      const homeItemHtml = `
-        <button class="chapter-item ${isHomeMode ? 'active' : ''}" id="chap_home" onclick="showHomeHub()">
-          <span class="chapter-icon">🏠</span>
-          <span class="chapter-label">หน้าแรก</span>
-        </button>
-      `;
-      ribbon.innerHTML = homeItemHtml + sorted.map(c => `
-        <button class="chapter-item ${(!isHomeMode && c.id === activeCategoryId) ? 'active' : ''}" id="chap_${c.id}" onclick="selectCategory('${c.id}')" style="${(!isHomeMode && activePillar && c.pillar === activePillar && c.id !== activeCategoryId) ? 'opacity:1;background:rgba(0,113,227,0.06);border-radius:12px;' : ''}">
+      if (!ribbon) return;
+
+      // Hide the sub-category icon ribbon completely on the Home Hub to keep top bar ultra-clean
+      if (isHomeMode) {
+        if (wrapper) wrapper.style.display = 'none';
+        return;
+      }
+
+      if (wrapper) wrapper.style.display = 'block';
+      const activeCat = getCategory(activeCategoryId);
+      const activePillar = activeCat ? activeCat.pillar : 'tech';
+      const pillarCats = CATEGORIES.filter(c => c.pillar === activePillar).sort((a, b) => a.num - b.num);
+
+      ribbon.innerHTML = pillarCats.map(c => `
+        <button class="chapter-item ${c.id === activeCategoryId ? 'active' : ''}" id="chap_${c.id}" onclick="selectCategory('${c.id}')">
           <span class="chapter-icon">${c.icon}</span>
           <span class="chapter-label">${c.name}</span>
         </button>
-      `).join('');
+      `).join('') + `
+        <button class="chapter-item" onclick="toggleCurtain(true, false)" style="opacity:0.85;">
+          <span class="chapter-icon" style="font-size:21px;">🗂️</span>
+          <span class="chapter-label" style="color:var(--apple-blue);font-weight:600;">ดูครบ 32 หมวด</span>
+        </button>
+      `;
     }
 
     function selectPillar(pillarId) {
@@ -4097,6 +4107,18 @@
         selectCategory(firstCat.id);
         const ribbon = document.getElementById('chapterNavRibbon');
         if (ribbon) ribbon.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+    }
+
+    function toggleAdvancedFilters(forceState) {
+      const drawer = document.getElementById('advancedFilterDrawer');
+      const btn = document.getElementById('btnAdvFilterToggle');
+      if (!drawer) return;
+      const isOpen = drawer.style.display !== 'none';
+      const nextState = typeof forceState === 'boolean' ? forceState : !isOpen;
+      drawer.style.display = nextState ? 'block' : 'none';
+      if (btn) {
+        btn.classList.toggle('active', nextState);
       }
     }
 
@@ -4185,6 +4207,9 @@
       const navHomeBtn = document.getElementById('navBtnHome');
       if (navHomeBtn) navHomeBtn.classList.remove('active');
 
+      // Collapse advanced filters drawer by default when entering a new category
+      toggleAdvancedFilters(false);
+
       // For Smartphone, default to the 10k-15k popular bracket so user immediately sees 3 clean cards, or 'all' for others
       activeBudgetTier = (catId === 'smartphone') ? '10k_15k' : 'all';
 
@@ -4226,9 +4251,15 @@
         ${cat.icon} ${cat.name}. <span class="muted">${cat.heroSub}</span>
       `;
 
+      const pillarBadge = document.getElementById('activePillarBadge');
+      if (pillarBadge) {
+        const pillarCount = CATEGORIES.filter(c => c.pillar === cat.pillar).length;
+        pillarBadge.textContent = `${PILLAR_LABELS[cat.pillar] || ''} (${pillarCount} หมวดในโซนนี้)`;
+      }
+
       const pillsEl = document.getElementById('budgetFilterPills');
       pillsEl.innerHTML = cat.budgets.map(b => `
-        <button class="budget-pill ${(activeBudgetTier === b.id && customMin === null && customMax === null) ? 'active' : ''}" onclick="setBudgetTier('${b.id}')">
+        <button class="budget-pill ${(activeBudgetTier === b.id && customMin === null && customMax === null) ? 'active' : ''}" onclick="setBudgetTier('${b.id}')" style="padding:7px 14px;font-size:12.5px;">
           ${b.label}
         </button>
       `).join('');
@@ -4244,15 +4275,15 @@
         `).join('');
       }
 
-      // Update Smart Calculator button text by category
+      // Update Smart Calculator button text by category (compact label)
       const calcBtn = document.getElementById('btnCalcTrigger');
       if (calcBtn) {
-        if (cat.id === 'aircon') calcBtn.innerHTML = '🧮 คำนวณขนาด BTU แอร์ตามขนาดห้อง & ค่าไฟต่อเดือน';
-        else if (cat.id === 'tv') calcBtn.innerHTML = '🧮 คำนวณขนาดนิ้วทีวีตามระยะโซฟา & แสงห้อง';
-        else if (cat.pillar === 'pet') calcBtn.innerHTML = `🐾 คำนวณปริมาณอาหารต่อเดือน & ค่าอาหารเฉลี่ยต่อวัน (${cat.name})`;
-        else if (cat.pillar === 'supplement') calcBtn.innerHTML = `💊 คำนวณต้นทุนต่อมื้อ/ต่อเม็ด & ความคุ้มค่ารายเดือน (${cat.name})`;
-        else if (cat.pillar === 'personal') calcBtn.innerHTML = `🧴 คำนวณความคุ้มค่าต่อมล. & โปรแพ็กคู่ประหยัดเพิ่ม (${cat.name})`;
-        else calcBtn.innerHTML = `🧮 คำนวณค่างวดผ่อน 0% 10 เดือน & ความคุ้มค่ารายวัน (${cat.name})`;
+        if (cat.id === 'aircon') calcBtn.innerHTML = '🧮 คำนวณ BTU แอร์ & ค่าไฟ';
+        else if (cat.id === 'tv') calcBtn.innerHTML = '🧮 คำนวณขนาดจอทีวี';
+        else if (cat.pillar === 'pet') calcBtn.innerHTML = '🐾 คำนวณค่าอาหารต่อเดือน';
+        else if (cat.pillar === 'supplement') calcBtn.innerHTML = '💊 คำนวณต้นทุนต่อมื้อ';
+        else if (cat.pillar === 'personal') calcBtn.innerHTML = '🧴 คำนวณความคุ้มค่าต่อมล.';
+        else calcBtn.innerHTML = '🧮 คำนวณผ่อน 0%';
       }
     }
 
