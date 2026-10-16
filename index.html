@@ -3949,6 +3949,15 @@
         ? product.mcpStores
         : (feedItem && feedItem.stores_sorted ? feedItem.stores_sorted : null);
 
+      const lazExlaz = 'e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D';
+      const buildScaledLink = (platform, queryText) => {
+        if (platform === 'shopee') {
+          const spOrigin = `https://shopee.co.th/search?keyword=${encodeURIComponent(queryText)}&shopType=1`;
+          return `https://s.shopee.co.th/an_redir?origin_link=${encodeURIComponent(spOrigin)}&affiliate_id=${shopeeAffId}&sub_id=${cleanSubId}----`;
+        }
+        return `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(queryText)}&service=official&exlaz=${lazExlaz}&dsource=share&laz_share_info=4161151791_1_9300_110172189818_4161153791_null&laz_token=08d572ad001a0d070782467eba3d16d9&sub_id1=${cleanSubId}&aff_id=${lazadaId}`;
+      };
+
       if (rawStores && rawStores.length > 0) {
         const twoStores = rawStores.filter(st => {
           const pf = (st.platform || st.store || '').toLowerCase();
@@ -3958,17 +3967,19 @@
         return list.map((st, idx) => {
           const netP = scalePrice(st.net_price);
           const origP = scalePrice(st.original_price || Math.round(st.net_price * 1.15));
+          const pf = st.platform || (st.store.toLowerCase().includes('shopee') ? 'shopee' : 'lazada');
+          const finalUrl = product._scaledQuery ? buildScaledLink(pf, product._scaledQuery) : st.link;
           return {
             store: st.store,
-            platform: st.platform || (st.store.toLowerCase().includes('shopee') ? 'shopee' : 'lazada'),
+            platform: pf,
             shopName: st.shop_name || st.store,
             badge: st.badge || (idx === 0 ? 'ถูกที่สุด #1 • ราคาจริงหน้าตะกร้า' : 'ของแท้ประกันศูนย์ 100%'),
             netPrice: netP,
             originalPrice: origP,
             discountPct: st.discount_pct || '-15%',
             shipping: st.shipping || 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-            imageUrl: st.image_url || (feedItem && feedItem.image_url) || product.img || '',
-            url: st.link,
+            imageUrl: product.img || st.image_url || (feedItem && feedItem.image_url) || '',
+            url: finalUrl,
             best: idx === 0
           };
         });
@@ -4582,11 +4593,13 @@
             }
             return { ...s };
           });
+          const newName = p.name.replace(/12,?[025]00\s*BTU/i, opt.btu);
           return {
             ...p,
             _priceScale: opt.priceScale,
+            _scaledQuery: opt.priceScale === 1 ? null : newName,
             bracketLabel: `${opt.btu} • ${opt.room}`,
-            name: p.name.replace(/12,?[025]00\s*BTU/i, opt.btu),
+            name: newName,
             price: scaledPrice,
             prevPrice: scaledPrev,
             specs: scaledSpecs
@@ -4617,6 +4630,7 @@
           return {
             ...p,
             _priceScale: baseScale,
+            _scaledQuery: Math.abs(baseScale - 1) < 0.01 ? null : `${newName} ${opt.tvSize} นิ้ว`,
             bracketLabel: `จอ ${opt.tvSize} นิ้ว • ${opt.room}`,
             name: newName,
             price: scaledPrice,
@@ -5931,7 +5945,7 @@
                 if (!savedPrices[p.id] && cp && cp >= p.price * 0.88 && cp <= p.price * 1.12) {
                   p.price = cp;
                 }
-                if (mcpItem.image_url) {
+                if (!p.img && mcpItem.image_url) {
                   p.img = mcpItem.image_url;
                 }
                 if (mcpItem.stores_sorted) {
