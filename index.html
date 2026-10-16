@@ -2765,7 +2765,10 @@
 
     function getStoresForProduct(product) {
       const savedConfig = JSON.parse(localStorage.getItem('yesspec_affiliate_config') || localStorage.getItem('lumina_affiliate_config') || '{}');
-      const subId = `yesspec_${activeCategoryId}_${product.id}`;
+      const cleanSubId = 'yesspec' + String(product.id).replace(/[^a-zA-Z0-9]/g, '').slice(0, 20);
+      const shopeeAffId = savedConfig.shopee || '15385610012';
+      const lazadaId = savedConfig.lazada || '267671179';
+      const tiktokId = savedConfig.tiktok || '7494223478418605779';
 
       if (product.mcpStores && product.mcpStores.length > 0) {
         return product.mcpStores.slice(0, 3).map((st, idx) => ({
@@ -2779,13 +2782,18 @@
       }
 
       const base = product.price;
+      const shopeeOrigin = `https://shopee.co.th/search?keyword=${encodeURIComponent(product.name)}`;
+      const shopeeUrl = `https://s.shopee.co.th/an_redir?origin_link=${encodeURIComponent(shopeeOrigin)}&affiliate_id=${shopeeAffId}&sub_id=${cleanSubId}----`;
+      const lazExlaz = 'e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D';
+      const lazadaUrl = `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(product.name)}&exlaz=${lazExlaz}&dsource=share&laz_share_info=4161151791_1_9300_110172189818_4161153791_null&laz_token=08d572ad001a0d070782467eba3d16d9&sub_id1=${cleanSubId}&aff_id=${lazadaId}`;
+
       return [
         {
           store: 'Shopee Mall Official',
           badge: 'ถูกที่สุด #1 • โค้ดลดเพิ่มสูงสุด 1,500฿',
           netPrice: base,
           shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-          url: `https://shopee.co.th/search?keyword=${encodeURIComponent(product.name)}&aff_sub=${subId}&aff_id=${savedConfig.shopee || 'TH_SHOPEE_YESSPEC'}`,
+          url: shopeeUrl,
           best: true
         },
         {
@@ -2793,7 +2801,7 @@
           badge: 'ของแท้ประกันศูนย์ 100% • คืนสินค้าได้ใน 15 วัน',
           netPrice: Math.round((base * 1.015) / 100) * 100,
           shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-          url: `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(product.name)}&sub_id1=${subId}&aff_id=${savedConfig.lazada || 'TH_LAZ_YESSPEC'}`,
+          url: lazadaUrl,
           best: false
         },
         {
@@ -2801,7 +2809,7 @@
           badge: 'คูปองลดไลฟ์สด • ส่งด่วนพิเศษ',
           netPrice: Math.round((base * 1.02) / 100) * 100,
           shipping: 'ส่งฟรี • เก็บคูปองหน้าไลฟ์ลดเพิ่ม',
-          url: `https://www.tiktok.com/search?q=${encodeURIComponent(product.name)}&aff_sub=${subId}&aff_id=${savedConfig.tiktok || 'TH_TIKTOK_YESSPEC'}`,
+          url: `https://www.tiktok.com/search?q=${encodeURIComponent(product.name)}&aff_sub=${cleanSubId}&aff_id=${tiktokId}`,
           best: false
         }
       ];
