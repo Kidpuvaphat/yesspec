@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
+  <defs>
+    <linearGradient id="okidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0071e3" />
+      <stop offset="100%" stop-color="#00a8ff" />
+    </linearGradient>
+  </defs>
+  <!-- Squircle Icon Mark: Spec Sliders + OK Check Radar -->
+  <rect x="2" y="4" width="40" height="40" rx="11" fill="url(#okidGrad)" />
+  <!-- Top & Bottom Spec Comparison Bars + Checkmark Node -->
+  <path d="M12 16.5H23M29 16.5H32" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="26" cy="16.5" r="2.8" fill="#ffffff"/>
+  <path d="M12 31.5H15M21 31.5H32" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-opacity="0.85"/>
+  <circle cx="18" cy="31.5" r="2.8" fill="#ffffff"/>
+  <!-- Center Winner Check / Pulse -->
+  <path d="M15.5 24L19.8 27.8L29.5 19.5" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Brand Wordmark: okidspec -->
+  <text x="52" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="25" font-weight="800" letter-spacing="-0.8" fill="#1d1d1f">okid<tspan fill="#0071e3">spec</tspan></text>
+</svg>

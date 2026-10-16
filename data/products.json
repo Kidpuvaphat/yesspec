@@ -1,0 +1,793 @@
+{
+  "affiliate_config": {
+    "site_name": "yesspec — เทียบสเปกเชิงลึก & เรดาร์เช็คราคาถูกสุดทุกช่องทาง",
+    "domain": "https://yesspec.com",
+    "shopee_affiliate_id": "TH_SHOPEE_AFF_998877",
+    "lazada_affiliate_id": "TH_LAZADA_AFF_112233",
+    "tiktok_affiliate_id": "TH_TIKTOK_AFF_556677",
+    "involve_asia_id": "TH_INVOLVE_889900",
+    "accesstrade_id": "TH_ACCESSTRADE_443322"
+  },
+  "trending_comparisons": [
+    {
+      "id": "trend-ac-daikin-vs-mitsu",
+      "badge": "❄️ คนเทียบเยอะสุดหน้าร้อน/ทำบ้านใหม่",
+      "category_id": "air-conditioners",
+      "prod_a_id": "mitsubishi-heavy-srk13yvs",
+      "prod_b_id": "daikin-zesth-ftkz13",
+      "headline": "แอร์ Mitsubishi Heavy Duty vs Daikin FTKZ (12,000 BTU)",
+      "subline": "ศึกแอร์เจ้าตลาด! ตัวไหนเย็นฉ่ำทันใจคอยล์ทองแดงแท้ ตัวไหนประหยัดไฟเบอร์ 5 ห้าดาวและเงียบกว่า?",
+      "monthly_searches": "168,000 ครั้ง/เดือน"
+    },
+    {
+      "id": "trend-tv-lg-oled-vs-samsung-miniled",
+      "badge": "📺 คู่เอกทีวี 65 นิ้วแห่งปี",
+      "category_id": "smart-tvs",
+      "prod_a_id": "lg-oled-c6-65",
+      "prod_b_id": "samsung-qn90f-65",
+      "headline": "ทีวี LG OLED evo C6 vs Samsung Neo QLED QN90F",
+      "subline": "ห้องนั่งเล่นสว่างเลือก Mini-LED หรือห้องดูหนังเลือก OLED? เทียบความสว่าง มิติสีดำ และราคาถูกสุด",
+      "monthly_searches": "94,500 ครั้ง/เดือน"
+    },
+    {
+      "id": "trend-fridge-hitachi-vs-mitsu",
+      "badge": "🧊 ตู้เย็นครอบครัว 4 ประตูยอดฮิต",
+      "category_id": "refrigerators",
+      "prod_a_id": "hitachi-wb640vf",
+      "prod_b_id": "mitsubishi-mr-la70er",
+      "headline": "ตู้เย็น Hitachi ช่องสุญญากาศ vs Mitsubishi Neuro Inverter",
+      "subline": "เทียบช่องแช่เนื้อสัตว์ไม่ต้องละลายน้ำแข็ง ความเงียบคอมเพรสเซอร์ และค่าไฟต่อปี รุ่นไหนทนกว่ากัน?",
+      "monthly_searches": "82,300 ครั้ง/เดือน"
+    },
+    {
+      "id": "trend-ip18pro-vs-ip17pro",
+      "badge": "📱 กระแสมือถืออันดับ 1 ตอนนี้",
+      "category_id": "flagship-phones",
+      "prod_a_id": "iphone-18-pro",
+      "prod_b_id": "iphone-17-pro",
+      "headline": "iPhone 18 Pro vs iPhone 17 Pro (256GB)",
+      "subline": "อัปเกรดชิป A20 Pro 2nm คุ้มไหม หรือช้อน iPhone 17 Pro ตอนลดล้างสต็อกประหยัดไป 7,500 บาท?",
+      "monthly_searches": "195,000 ครั้ง/เดือน"
+    }
+  ],
+  "categories": [
+    {
+      "id": "air-conditioners",
+      "name": "แอร์บ้าน Inverter",
+      "full_name": "แอร์บ้าน Inverter ประหยัดไฟเบอร์ 5 (ขนาดยอดนิยม 12,000 BTU)",
+      "slug": "inverter-air-conditioners",
+      "icon": "ac",
+      "hero_line": "ผ่าสเปกคอยล์ทองแดงแท้ ค่าประหยัดไฟ SEER เสียงรบกวน (dB) และเปรียบเทียบราคาพร้อมติดตั้งฟรีทุกแพลตฟอร์ม",
+      "expert_buying_guide": {
+        "summary_headline": "ฟันธงแอร์ 12,000 BTU ปี 2026: ซื้อยี่ห้อไหนดีที่สุดและเพราะอะไร?",
+        "best_overall_pick": "Mitsubishi Heavy Duty (SRK13YVS-W1)",
+        "best_overall_reason": "ดีกว่าเพราะใช้ 'คอยล์ทองแดงแท้ 100% เคลือบสารกันสนิม Blue Fin' ทนทานต่ออากาศเมืองไทยที่สุด พัดลม Jet Flow ส่งลมไกล 15 เมตร เย็นฉ่ำสะใจไม่อึดอัด และปัญหางอแงจุกจิกน้อยที่สุดในระยะยาว 5-10 ปี",
+        "best_energy_pick": "Daikin Max Inverter Zesth (FTKZ13YV2S)",
+        "best_energy_reason": "ดีกว่าถ้าคุณเปิดแอร์นอนยาว 10-12 ชม. ทุกวันและเน้นประหยัดค่าไฟขั้นสุด เพราะค่า SEER สูงถึง 24.00 (เบอร์ 5 ห้าดาว) ประหยัดค่าไฟกว่าแอร์ทั่วไปปีละเกือบ 3,000 บาท พร้อมระบบตาอัจฉริยะและเสียงเงียบกริบเพียง 19 dB",
+        "best_value_pick": "Carrier XInverter Plus (42TVAB013)",
+        "best_value_reason": "ดีกว่าถ้าเน้นความคุ้มค่าในงบหมื่นกลางๆ ได้ครบทั้งคอยล์ทองแดง ฟีเจอร์สั่งงานผ่าน Wi-Fi วัดค่าไฟในแอปได้แบบเรียลไทม์ และรับประกันคอมเพรสเซอร์ยาวนานถึง 10 ปี"
+      },
+      "spec_labels": {
+        "seer_rating": "ค่าประหยัดไฟ SEER (ยิ่งสูงยิ่งกินไฟน้อย)",
+        "yearly_elec_baht": "ค่าไฟเฉลี่ยต่อปี กฟผ. (บาท - ยิ่งน้อยยิ่งดี)",
+        "noise_db": "ระดับเสียงเงียบสุด (dB - ยิ่งน้อยยิ่งเงียบ)",
+        "warranty_comp_yrs": "ประกันคอมเพรสเซอร์ (ปี)",
+        "cooling_durability_score": "ความเย็นฉ่ำ & ความทนทานคอยล์ (เต็ม 10)"
+      }
+    },
+    {
+      "id": "smart-tvs",
+      "name": "ทีวี 4K OLED & Mini-LED",
+      "full_name": "สมาร์ททีวี 4K OLED และ QD-Mini LED จอใหญ่ 65 นิ้ว",
+      "slug": "4k-oled-miniled-tvs",
+      "icon": "tv",
+      "hero_line": "เทียบความดำลึก ความสว่างสู้แสงแดด ชิปอัปสเกลภาพ และเรดาร์เช็คราคาถูกสุดพร้อมส่งติดตั้งถึงบ้าน",
+      "expert_buying_guide": {
+        "summary_headline": "ฟันธงทีวี 65 นิ้ว ปี 2026: ห้องแบบคุณควรซื้อรุ่นไหนดีที่สุด?",
+        "best_overall_pick": "LG OLED evo C6 (65 นิ้ว)",
+        "best_overall_reason": "ดีกว่าสำหรับคอหนังและเกมเมอร์ เพราะเม็ดพิกเซล OLED เปล่งแสงเองอิสระ ให้สีดำสนิทแท้ 100% ไม่มีอาการแสงรั่วฟุ้ง (Blooming) รอบซับไตเติลสีขาวเลย ชิป Alpha 9 AI อัปสเกลภาพคมกริบ และรองรับ 4K 144Hz ทุกพอร์ต",
+        "best_bright_room_pick": "Samsung Neo QLED QN90F (65 นิ้ว)",
+        "best_bright_room_pick_reason": "ดีกว่าชัดเจนถ้าวางทีวีในห้องรับแขกที่มีหน้าต่างบานใหญ่หรือเปิดไฟเพดานสว่างจ้า เพราะให้ความสว่างสูงถึง 2,200 Nits พร้อมแผ่นเคลือบจอ Glare-Free ตัดแสงสะท้อนหลอดไฟได้เนียนกริบ และไม่ต้องกังวลเรื่องจอเบิร์นแม้เปิดช่องข่าวทิ้งไว้ทั้งวัน",
+        "best_value_pick": "TCL QD-Mini LED C855 (65 นิ้ว)",
+        "best_value_reason": "ดีกว่าถ้าคุณต้องการสเปกโหดระดับเรือธงในราคาประหยัดไปเกือบ 20,000 บาท! ได้ความสว่าง 3,500 Nits ลำโพง Onkyo 2.2.2 ในตัว และระบบ Smart TV ในงบไม่ถึงสามหมื่นบาท"
+      },
+      "spec_labels": {
+        "peak_nits": "ความสว่างสูงสุดสู้แสง (Nits)",
+        "refresh_hz": "อัตรารีเฟรชเรตหน้าจอ (Hz)",
+        "contrast_score": "มิติสีดำและการคุมแสงรั่ว (เต็ม 10)",
+        "anti_reflection_score": "การตัดแสงสะท้อนในห้องสว่าง (เต็ม 10)",
+        "value_score": "ความคุ้มค่าราคาต่อคุณภาพ (เต็ม 10)"
+      }
+    },
+    {
+      "id": "refrigerators",
+      "name": "ตู้เย็น Inverter",
+      "full_name": "ตู้เย็น Multi-Door & 2 ประตูขนาดใหญ่ ประหยัดไฟเบอร์ 5",
+      "slug": "inverter-refrigerators",
+      "icon": "fridge",
+      "hero_line": "เทียบเทคโนโลยีถนอมอาหารสด ช่องแช่แข็งไม่ต้องละลายน้ำแข็ง อัตราการกินไฟต่อปี และความทนทานของคอมเพรสเซอร์",
+      "expert_buying_guide": {
+        "summary_headline": "ฟันธงตู้เย็นครอบครัว ปี 2026: ยี่ห้อไหนเก็บของสดดีสุดและทนสุด?",
+        "best_overall_pick": "Hitachi 4 ประตู (R-WB640VF)",
+        "best_overall_reason": "ดีกว่าเพราะมี 'ช่องสุญญากาศ Vacuum Compartment (-1°C)' ที่ดูดอากาศออกเพื่อชะลอการเกิดออกซิเดชัน ทำให้แช่เนื้อปลา ซาชิมิ หรือเนื้อวัวได้สดนานโดยไม่เป็นน้ำแข็งเกาะ หยิบมาหั่นทำอาหารได้ทันที พร้อมระบบทำน้ำแข็งอัตโนมัติ",
+        "best_durability_pick": "Mitsubishi Electric Neuro Inverter (MR-LA70ER)",
+        "best_durability_reason": "ดีกว่าถ้าคุณเน้นความอึดทนทานระดับตำนานและค่าไฟถูกที่สุด! ระบบสมองกล Neuro Fuzzy เรียนรู้พฤติกรรมการเปิด-ปิดตู้เย็นของคนในบ้านเพื่อลดรอบไฟตอนกลางคืน มีช่อง Soft Freezing และช่องผักมีไฟ LED สีส้มช่วยสังเคราะห์วิตามินในผักใบเขียว",
+        "best_smart_pick": "Samsung Bespoke AI 4-Door Flex",
+        "best_smart_pick_reason": "ดีกว่าถ้าชอบดีไซน์มินิมอลหน้ากระจกเรียบหรู ระบบทำความเย็นแยก 3 คอยล์อิสระ (Triple Cooling) กลิ่นทุเรียนหรืออาหารคาวไม่ปนเปื้อนไปช่องทำน้ำแข็ง และโหมด AI Energy ลดการใช้พลังงานอัตโนมัติ"
+      },
+      "spec_labels": {
+        "capacity_liters": "ความจุรวมภายใน (ลิตร)",
+        "yearly_elec_baht": "ค่าไฟเฉลี่ยต่อปี กฟผ. (บาท - ยิ่งน้อยยิ่งดี)",
+        "fresh_tech_score": "เทคโนโลยีแช่เนื้อสัตว์ไม่เป็นน้ำแข็ง (เต็ม 10)",
+        "deodorize_score": "การกำจัดกลิ่นปนเปื้อนและเชื้อโรค (เต็ม 10)",
+        "durability_score": "ความทนทานคอมเพรสเซอร์และอะไหล่ (เต็ม 10)"
+      }
+    },
+    {
+      "id": "flagship-phones",
+      "name": "สมาร์ทโฟนเรือธง",
+      "full_name": "สมาร์ทโฟนเรือธง (iPhone 18 Pro vs 17 Pro & Galaxy S26 Ultra)",
+      "slug": "flagship-smartphones",
+      "icon": "phone",
+      "hero_line": "เปรียบเทียบสเปกเชิงลึกและเรดาร์เช็คราคาเครื่องศูนย์ไทยถูกสุดจากทุกแพลตฟอร์ม",
+      "expert_buying_guide": {
+        "summary_headline": "ฟันธงมือถือเรือธง 2026: ซื้อ iPhone 18 Pro รุ่นใหม่ หรือช้อน 17 Pro คุ้มกว่า?",
+        "best_overall_pick": "iPhone 18 Pro (256GB)",
+        "best_overall_reason": "ดีกว่าสำหรับคนที่ถือ iPhone 15 Pro หรือรุ่นเก่ากว่า เพราะชิป A20 Pro (2nm) เย็นขึ้น แบตเตอรี่อึดขึ้นถึง 4 ชั่วโมง กล้อง Telephoto 48MP ซูมที่แสงน้อยคมกริบ และใช้ยาวได้อีก 5-6 ปีแบบไม่ตกรุ่น",
+        "best_value_pick": "iPhone 17 Pro (256GB)",
+        "best_value_reason": "ดีกว่าแบบชนะขาดในแง่ความคุ้มค่าเงิน (Value for Money)! เพราะหลัง 18 Pro เปิดตัว ราคาเครื่องศูนย์มือหนึ่งของ 17 Pro ลดลงมาเหลือ ~32,990 บาท (ประหยัดไป 7,500 บาท) แต่ได้ความลื่นไหลและกล้องที่ทำได้ถึง 93% ของรุ่นใหม่",
+        "best_zoom_pick": "Samsung Galaxy S26 Ultra (256GB)",
+        "best_zoom_reason": "ดีกว่าถ้าคุณชอบถ่ายภาพซูมคอนเสิร์ต ต้องการปากกา S-Pen จดงาน และชอบจอใหญ่ไร้เงาสะท้อนพร้อม Galaxy AI แปลภาษาไทยสุดฉลาด"
+      },
+      "spec_labels": {
+        "battery_hours": "แบตเตอรี่เล่นวิดีโอต่อเนื่อง (ชม.)",
+        "weight_grams": "น้ำหนักตัวเครื่อง (กรัม - ยิ่งเบายิ่งดี)",
+        "camera_score": "คะแนนกล้องถ่ายภาพและวิดีโอ (เต็ม 10)",
+        "perf_score": "ความแรงชิปและระบบระบายความร้อน (เต็ม 10)",
+        "display_score": "ความสว่างและการตัดแสงสะท้อนจอ (เต็ม 10)"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "mitsubishi-heavy-srk13yvs",
+      "category_id": "air-conditioners",
+      "rank": 1,
+      "award": "Best Overall AC — อันดับ 1 เย็นฉ่ำ ทนทานคอยล์ทองแดงแท้",
+      "award_type": "gold",
+      "brand": "Mitsubishi Heavy Duty",
+      "name": "Mitsubishi Heavy Duty 12,000 BTU (SRK13YVS-W1)",
+      "tagline": "ฉายาแอร์อึดถึกทน พัดลม Jet Flow ส่งลมไกล 15 เมตร คอยล์ทองแดงแท้ 100% เย็นเร็วทันใจ",
+      "overall_score": 9.7,
+      "rating": 4.9,
+      "review_count": 4120,
+      "normal_price": 23900,
+      "commission_pct": 7.5,
+      "why_better": "ชนะเลิศเรื่อง 'ความเย็นฉ่ำสะใจและความทนทานระยะยาว' เพราะใช้แผงคอยล์ทองแดงแท้เคลือบสารกันสนิมและเทคโนโลยีใบพัดแบบเครื่องบินเจ็ท ทำให้อากาศในห้องเย็นลงเร็วที่สุดแม้วันที่แดดเมืองไทยร้อนจัด 40°C",
+      "best_for": ["คนที่ชอบแอร์เย็นฉ่ำทันใจ ไม่ชอบแอร์ลมเอื่อย", "บ้านหรือคอนโดที่ต้องการความทนทาน ไม่อยากซ่อมจุกจิก", "ห้องนอนหรือห้องนั่งเล่นขนาด 14-18 ตร.ม."],
+      "specs": {
+        "seer_rating": 22.05,
+        "yearly_elec_baht": 6150,
+        "noise_db": 21,
+        "warranty_comp_yrs": 5,
+        "cooling_durability_score": 9.9
+      },
+      "pros": [
+        "แผงคอยล์ทองแดงแท้ 100% ทนทานต่อการกัดกร่อนและซ่อมบำรุงง่ายกว่าคอยล์อะลูมิเนียม",
+        "ระบบ Jet Flow ส่งลมเย็นพุ่งไกลและกระจายทั่วห้องแบบ 3D Auto",
+        "รับประกันอะไหล่ทุกชิ้นส่วนยาวนาน 5 ปีเต็ม (เจ้าอื่นส่วนใหญ่รับประกันอะไหล่แค่ 1-3 ปี)"
+      ],
+      "cons": [
+        "ดีไซน์ตัวเครื่องภายในบ้านเน้นความเรียบง่ายมาตรฐาน ไม่มีไฟแสดงอุณหภูมิ LED บนหน้ากาก"
+      ],
+      "offers": [
+        {
+          "store": "Shopee Mall",
+          "seller": "Mitsubishi Heavy Duty Official",
+          "platform": "shopee",
+          "price": 15490,
+          "coupon_text": "🔥 โค้ดเครื่องใช้ไฟฟ้าลด ฿2,500 (ถูกสุดวันนี้!)",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรีทั่วไทย",
+          "delivery": "ส่งภายใน 1-3 วัน",
+          "url": "https://shopee.co.th/search?keyword=Mitsubishi+Heavy+Duty+SRK13YVS"
+        },
+        {
+          "store": "Lazada LazMall",
+          "seller": "Authorized Air Dealer Mall",
+          "platform": "lazada",
+          "price": 15790,
+          "coupon_text": "คูปอง LazBonus ลด ฿2,200",
+          "perks": "ผ่อน 0% 10 เดือน • เลือกแพ็กเกจติดตั้งเพิ่มได้",
+          "delivery": "ส่งด่วน 1-2 วัน",
+          "url": "https://www.lazada.co.th/catalog/?q=Mitsubishi+Heavy+Duty+SRK13YVS"
+        },
+        {
+          "store": "HomePro Online",
+          "seller": "HomePro Official",
+          "platform": "accesstrade",
+          "price": 17990,
+          "coupon_text": "🛠️ รวมติดตั้งฟรีมาตรฐาน HomePro + ท่อทองแดง 4 เมตร",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันงานติดตั้ง 180 วัน",
+          "delivery": "นัดวันช่างเข้าติดตั้งได้ทันที",
+          "url": "https://www.homepro.co.th/search?q=Mitsubishi+Heavy+Duty"
+        },
+        {
+          "store": "Power Buy Online",
+          "seller": "Power Buy Official",
+          "platform": "involve",
+          "price": 18290,
+          "coupon_text": "รวมติดตั้งฟรี + เก่าแลกใหม่ลดเพิ่ม ฿1,000",
+          "perks": "ผ่อน 0% นานสูงสุด 18 เดือน",
+          "delivery": "นัดวันติดตั้งได้",
+          "url": "https://www.powerbuy.co.th/th/search/Mitsubishi+Heavy+Duty"
+        }
+      ]
+    },
+    {
+      "id": "daikin-zesth-ftkz13",
+      "category_id": "air-conditioners",
+      "rank": 2,
+      "award": "Best Energy Saving — ประหยัดไฟเบอร์ 5 (5 ดาว) เงียบอันดับ 1",
+      "award_type": "blue",
+      "brand": "Daikin",
+      "name": "Daikin Max Inverter Zesth 12,000 BTU (FTKZ13YV2S)",
+      "tagline": "แชมป์ประหยัดไฟ SEER 24.00 เงียบกริบ 19 dB พร้อมฟอกอากาศ Streamer ยับยั้งเชื้อโรค",
+      "overall_score": 9.6,
+      "rating": 4.9,
+      "review_count": 3580,
+      "normal_price": 26900,
+      "commission_pct": 7.0,
+      "why_better": "ชนะเลิศเรื่อง 'ความประหยัดไฟสูงสุดและความเงียบในห้องนอน' ด้วยค่า SEER 24.00 (ฉลากเบอร์ 5 ห้าดาวสูงสุด) กินไฟเพียงปีละ ~5,650 บาท และมีแผงวงจร Super PCB Pro ทนไฟตกไฟกระชากได้ถึง 440V",
+      "best_for": ["ห้องนอนของคนตื่นง่ายที่ต้องการความเงียบกริบ 19 dB", "คนที่เปิดแอร์ยาววันละ 10-15 ชม. เน้นคืนทุนค่าไฟเร็ว", "คนเป็นภูมิแพ้ที่ต้องการระบบ Streamer ฟอกอากาศและไล่ความชื้นกันเชื้อรา"],
+      "specs": {
+        "seer_rating": 24.00,
+        "yearly_elec_baht": 5650,
+        "noise_db": 19,
+        "warranty_comp_yrs": 5,
+        "cooling_durability_score": 9.6
+      },
+      "pros": [
+        "ประหยัดไฟระดับเบอร์ 5 ห้าดาว (SEER 24.00) ช่วยเซฟค่าไฟรายเดือนได้ชัดเจนที่สุด",
+        "ส่งลมเลียดเพดาน Coanda ไม่เป่าโดนตัวตรงๆ นอนหลับสบายไม่เป็นหวัด",
+        "มีระบบไล่ความชื้น Mold Proof หลังปิดแอร์ ป้องกันกลิ่นอับชื้นและเชื้อราในโพรงกระรอก"
+      ],
+      "cons": [
+        "แนวความเย็นจะเน้นความนุ่มนวลสม่ำเสมอ ไม่ได้พุ่งแรงปะทะตัวจี๊ดจ๊าดเหมือน Mitsubishi Heavy Duty"
+      ],
+      "offers": [
+        {
+          "store": "Lazada LazMall",
+          "seller": "Daikin Official Partner",
+          "platform": "lazada",
+          "price": 17290,
+          "coupon_text": "🔥 โค้ดลด LazMall ฿3,200 (ถูกสุดวันนี้!)",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันศูนย์สยามไดกิ้น",
+          "delivery": "ส่งด่วน 1-2 วัน",
+          "url": "https://www.lazada.co.th/catalog/?q=Daikin+FTKZ13"
+        },
+        {
+          "store": "Shopee Mall",
+          "seller": "Daikin Authorized Mall",
+          "platform": "shopee",
+          "price": 17590,
+          "coupon_text": "ใช้โค้ดลด ฿2,500 + คืน Coins",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรี",
+          "delivery": "ส่งภายใน 1-3 วัน",
+          "url": "https://shopee.co.th/search?keyword=Daikin+FTKZ13"
+        },
+        {
+          "store": "HomePro Online",
+          "seller": "HomePro Official",
+          "platform": "accesstrade",
+          "price": 19900,
+          "coupon_text": "🛠️ ฟรีค่าติดตั้งมาตรฐาน + ล้างแอร์ฟรี 1 ครั้ง",
+          "perks": "ผ่อน 0% 10 เดือน • ช่างมาตรฐานโฮมโปร",
+          "delivery": "เลือกวันและเวลาติดตั้งได้",
+          "url": "https://www.homepro.co.th/search?q=Daikin+Inverter"
+        }
+      ]
+    },
+    {
+      "id": "carrier-xinverter-plus-12k",
+      "category_id": "air-conditioners",
+      "rank": 3,
+      "award": "Best Smart Value AC — คุ้มค่าอันดับ 1 ประกันคอมฯ 10 ปี",
+      "award_type": "emerald",
+      "brand": "Carrier",
+      "name": "Carrier XInverter Plus 12,200 BTU (42TVAB013)",
+      "tagline": "คอยล์ทองแดง + Wi-Fi เช็คค่าไฟเรียลไทม์ผ่านมือถือ พร้อมประกันคอมเพรสเซอร์ยาว 10 ปี",
+      "overall_score": 9.4,
+      "rating": 4.8,
+      "review_count": 6290,
+      "normal_price": 21900,
+      "commission_pct": 8.0,
+      "why_better": "ชนะเลิศเรื่อง 'ฟังก์ชันล้ำเกินราคาและประกันยาวนานที่สุด' จ่ายเพียง ~13,990 บาท แต่ได้ทั้งคอยล์ทองแดงแท้ ระบบ X-Ionizer ฟอกฝุ่น PM2.5 สั่งเปิดแอร์ก่อนถึงบ้านผ่านแอป พร้อมดูกราฟค่าไฟรายวันได้ทันที",
+      "best_for": ["คนวัยทำงานยุคใหม่ที่อยากสั่งเปิดแอร์รอไว้ก่อนกลับถึงคอนโด", "คนที่มีงบไม่เกิน 15,000 บาทแต่อยากได้แอร์เบอร์ 5 สเปกท็อป", "ต้องการความอุ่นใจด้วยประกันคอมเพรสเซอร์ 10 ปี และอะไหล่ 5 ปี"],
+      "specs": {
+        "seer_rating": 22.50,
+        "yearly_elec_baht": 6020,
+        "noise_db": 22,
+        "warranty_comp_yrs": 10,
+        "cooling_durability_score": 9.4
+      },
+      "pros": [
+        "ราคาคุ้มค่าที่สุดในกลุ่มแอร์คอยล์ทองแดงเบอร์ 5 ติดดาว",
+        "แอป Carrier In The Air บอกจำนวนหน่วยไฟ (kWh) และคำนวณค่าไฟเป็นบาทให้เห็นทุกวัน",
+        "มีให้เลือกหลายสี (ขาว, ดำ, เขียวมิ้นต์, ชมพู) แต่งห้องสวยสไตล์มินิมอล"
+      ],
+      "cons": [
+        "หน้ากากตัวเครื่องค่อนข้างมีเหลี่ยมมุม ต้องเผื่อพื้นที่เหนือฝ้าเพดานเล็กน้อย"
+      ],
+      "offers": [
+        {
+          "store": "Shopee Mall",
+          "seller": "Carrier Thailand Official",
+          "platform": "shopee",
+          "price": 13990,
+          "coupon_text": "🔥 โค้ดลด Flash Sale ฿3,000 (ขายดีอันดับ 1!)",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันศูนย์ 10 ปี",
+          "delivery": "ส่งฟรีทั่วไทย",
+          "url": "https://shopee.co.th/search?keyword=Carrier+XInverter+Plus+12000"
+        },
+        {
+          "store": "Lazada LazMall",
+          "seller": "Carrier Official Store",
+          "platform": "lazada",
+          "price": 14290,
+          "coupon_text": "คูปอง LazBonus ลด ฿2,700",
+          "perks": "ผ่อน 0% 10 เดือน • ของแท้จากโรงงานโดยตรง",
+          "delivery": "ส่งด่วน 1-2 วัน",
+          "url": "https://www.lazada.co.th/catalog/?q=Carrier+XInverter+Plus+12000"
+        },
+        {
+          "store": "Power Buy Online",
+          "seller": "Power Buy Official",
+          "platform": "involve",
+          "price": 16490,
+          "coupon_text": "🛠️ รวมติดตั้งฟรีถึงบ้าน + ผ่อน 0% 15 เดือน",
+          "perks": "ติดตั้งฟรีพร้อมอุปกรณ์ครบชุด",
+          "delivery": "นัดวันติดตั้งได้",
+          "url": "https://www.powerbuy.co.th/th/search/Carrier+XInverter"
+        }
+      ]
+    },
+    {
+      "id": "lg-oled-c6-65",
+      "category_id": "smart-tvs",
+      "rank": 1,
+      "award": "Best Overall TV — ทีวี OLED อันดับ 1 ภาพสวยมิติลึกที่สุด",
+      "award_type": "gold",
+      "brand": "LG",
+      "name": "LG OLED evo C6 (65 นิ้ว) 4K 144Hz",
+      "tagline": "สีดำสนิทแท้ระดับพิกเซล ชิป Alpha 9 AI Gen 9 พร้อม 4 พอร์ต HDMI 2.1 สำหรับคอหนังและ PS5",
+      "overall_score": 9.8,
+      "rating": 4.9,
+      "review_count": 2180,
+      "normal_price": 69990,
+      "commission_pct": 6.5,
+      "why_better": "ดีกว่าทีวี LED/Mini-LED ทั่วไปเพราะ 'เม็ดพิกเซลกว่า 8 ล้านจุดเปิด-ปิดแสงเองได้อิสระ' ทำให้ฉากอวกาศหรือฉากกลางคืนดำสนิทไร้แสงฟุ้งรอบตัวละคร ภาพมีมิติเหมือนของจริงตรงหน้า และตอบสนองไว 0.1ms สำหรับเล่นเกม",
+      "best_for": ["คนที่ชอบดูหนัง Netflix / Disney+ ระบบ Dolby Vision", "เกมเมอร์สาย PS5 Pro และ PC ที่ต้องการ 4K 144Hz G-Sync แท้", "ห้องนั่งเล่นหรือห้องนอนที่สามารถคุมแสงไฟหรือมีผ้าม่านบังแดด"],
+      "specs": {
+        "peak_nits": 1250,
+        "refresh_hz": 144,
+        "contrast_score": 10.0,
+        "anti_reflection_score": 9.2,
+        "value_score": 9.5
+      },
+      "pros": [
+        "คอนทราสต์อนันต์ (Infinite Contrast) สีดำสนิท 100% ไม่มีอาการแสงรั่วรอบซับไตเติล",
+        "รีโมท Magic Remote ชี้คลิกเหมือนเมาส์ไร้สาย พิมพ์ค้นหาและสั่งงานเสียงภาษาไทยง่ายที่สุด",
+        "ดีไซน์ขอบจอบางเฉียบเหมือนแผ่นกระจก แขวนผนังแล้วแนบสนิทหรูหรามาก"
+      ],
+      "cons": [
+        "หากตั้งในห้องกระจกที่แดดส่องเข้าจอตรงๆ ตอนเที่ยงวัน ความสว่างจะยังเป็นรอง Samsung QN90F"
+      ],
+      "offers": [
+        {
+          "store": "Lazada LazMall",
+          "seller": "LG Official Store",
+          "platform": "lazada",
+          "price": 46990,
+          "coupon_text": "🔥 โปรใหญ่ลด ฿23,000 + ส่งติดตั้งฟรี",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันศูนย์ LG 3 ปี",
+          "delivery": "นัดวันส่งและติดตั้งได้",
+          "url": "https://www.lazada.co.th/catalog/?q=LG+OLED+65+C"
+        },
+        {
+          "store": "Shopee Mall",
+          "seller": "LG Thailand Official",
+          "platform": "shopee",
+          "price": 47490,
+          "coupon_text": "โค้ดเครื่องใช้ไฟฟ้าลด ฿2,500",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรีทั่วไทย",
+          "delivery": "ส่งภายใน 2-3 วัน",
+          "url": "https://shopee.co.th/search?keyword=LG+OLED+65"
+        },
+        {
+          "store": "Power Buy Online",
+          "seller": "Power Buy Official",
+          "platform": "accesstrade",
+          "price": 49990,
+          "coupon_text": "แถมฟรีขาแขวนผนังพร้อมช่างติดตั้งถึงบ้าน",
+          "perks": "ผ่อน 0% นานสูงสุด 24 เดือน",
+          "delivery": "ส่งด่วนพร้อมติดตั้ง",
+          "url": "https://www.powerbuy.co.th/th/search/LG+OLED+65"
+        }
+      ]
+    },
+    {
+      "id": "samsung-qn90f-65",
+      "category_id": "smart-tvs",
+      "rank": 2,
+      "award": "Best Bright Room TV — สว่างสู้แสงแดด & ไร้เงาสะท้อนอันดับ 1",
+      "award_type": "blue",
+      "brand": "Samsung",
+      "name": "Samsung Neo QLED 4K QN90F (65 นิ้ว)",
+      "tagline": "ขุมพลัง Quantum Mini-LED สว่างสะใจ 2,200 Nits พร้อมจอ Glare-Free ไม่สะท้อนไฟเพดาน",
+      "overall_score": 9.6,
+      "rating": 4.8,
+      "review_count": 1640,
+      "normal_price": 64990,
+      "commission_pct": 7.0,
+      "why_better": "ดีกว่าถ้าบ้านของคุณสว่างมาก! เพราะหลอด Quantum Mini-LED อัดความสว่างได้สูงถึง 2,200 Nits พร้อมชั้นเคลือบจอ Glare-Free ที่ตัดเงาสะท้อนของหลอดไฟเพดานและหน้าต่างออกไปจนหมด และเปิดแช่ช่องข่าวได้ทั้งวันโดยจอไม่เบิร์น 100%",
+      "best_for": ["ห้องรับแขกที่มีประตูกระจกบานใหญ่หรือเปิดไฟสว่างตลอดเวลา", "ดูถ่ายทอดสดฟุตบอล กีฬา และรายการทีวีสีสันสดใส", "ครอบครัวที่เปิดทีวีทิ้งไว้ทั้งวันโดยไม่อยากกังวลเรื่องจอเบิร์น"],
+      "specs": {
+        "peak_nits": 2200,
+        "refresh_hz": 144,
+        "contrast_score": 9.4,
+        "anti_reflection_score": 9.9,
+        "value_score": 9.5
+      },
+      "pros": [
+        "ชั้นเคลือบหน้าจอ Glare-Free ตัดแสงสะท้อนไฟบ้านและแดดได้ดีที่สุดในวงการทีวี",
+        "ความสว่าง 2,200 Nits ทำให้ภาพ HDR สว่างเจิดจ้า สีสันอิ่มสด",
+        "อายุการใช้งานพาเนลยาวนาน ไม่มีความเสี่ยงเรื่องภาพค้าง (Burn-in)"
+      ],
+      "cons": [
+        "ไม่รองรับฟอร์แมต Dolby Vision (ใช้ HDR10+ แทน)"
+      ],
+      "offers": [
+        {
+          "store": "Shopee Mall",
+          "seller": "Samsung Official Store",
+          "platform": "shopee",
+          "price": 41990,
+          "coupon_text": "🔥 โค้ดลดเพิ่ม ฿3,000 (ถูกกว่าห้าง 2 หมื่น!)",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งและติดตั้งฟรี",
+          "delivery": "ส่งภายใน 2-3 วัน",
+          "url": "https://shopee.co.th/search?keyword=Samsung+Neo+QLED+65+QN90"
+        },
+        {
+          "store": "Lazada LazMall",
+          "seller": "Samsung Flagship Store",
+          "platform": "lazada",
+          "price": 42490,
+          "coupon_text": "คูปอง LazBonus ลด ฿2,500",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันศูนย์ไทย 3 ปี",
+          "delivery": "นัดวันจัดส่งได้",
+          "url": "https://www.lazada.co.th/catalog/?q=Samsung+Neo+QLED+65+QN90"
+        },
+        {
+          "store": "HomePro Online",
+          "seller": "HomePro Official",
+          "platform": "accesstrade",
+          "price": 44990,
+          "coupon_text": "แถมฟรี Soundbar Samsung + ติดตั้งฟรี",
+          "perks": "ผ่อน 0% 10 เดือน",
+          "delivery": "นัดวันส่งได้",
+          "url": "https://www.homepro.co.th/search?q=Samsung+Neo+QLED+65"
+        }
+      ]
+    },
+    {
+      "id": "tcl-c855-65",
+      "category_id": "smart-tvs",
+      "rank": 3,
+      "award": "Best Value Giant TV — สเปกเรือธงในราคาครึ่งเดียว!",
+      "award_type": "emerald",
+      "brand": "TCL",
+      "name": "TCL QD-Mini LED C855 (65 นิ้ว) 144Hz",
+      "tagline": "สว่างสูงสุด 3,500 Nits ลำโพง Onkyo 2.2.2 ในงบไม่ถึงสามหมื่นบาท!",
+      "overall_score": 9.4,
+      "rating": 4.8,
+      "review_count": 3290,
+      "normal_price": 44990,
+      "commission_pct": 8.0,
+      "why_better": "ดีกว่าในแง่ 'ความคุ้มค่าต่อบาทที่จ่าย' เพราะคุณจ่ายเพียง ~27,990 บาท แต่ได้เทคโนโลยี QD-Mini LED ที่มีโซนหรี่ไฟกว่าพันโซน ลำโพงซับวูฟเฟอร์ Onkyo ในตัว และรองรับครบทั้ง Dolby Vision และ HDR10+",
+      "best_for": ["คนที่อยากได้จอ 65 นิ้ว ภาพระดับไฮเอนด์ในงบไม่เกิน 28,000 บาท", "ชอบระบบ Smart TV โหลดแอปง่ายและแคสต์จอจากมือถือสะดวก", "ต้องการลำโพงทีวีเสียงแน่นกระหึ่มโดยไม่ต้องซื้อ Soundbar เพิ่ม"],
+      "specs": {
+        "peak_nits": 3500,
+        "refresh_hz": 144,
+        "contrast_score": 9.3,
+        "anti_reflection_score": 9.0,
+        "value_score": 9.9
+      },
+      "pros": [
+        "สเปกต่อราคาคุ้มค่าที่สุดในตลาดทีวีเมืองไทยตอนนี้",
+        "รองรับครบทุกฟอร์แมต HDR ทั้ง Dolby Vision IQ, HDR10+ และ IMAX Enhanced",
+        "ลำโพง Onkyo 2.2.2 แชนแนล ให้เสียงเบสอิ่มแน่นกว่าทีวีทั่วไปมาก"
+      ],
+      "cons": [
+        "ชิปอัปสเกลภาพรายการทีวีความละเอียดต่ำยังเป็นรอง LG และ Samsung เล็กน้อย"
+      ],
+      "offers": [
+        {
+          "store": "Shopee Mall",
+          "seller": "TCL Official Store",
+          "platform": "shopee",
+          "price": 27990,
+          "coupon_text": "🔥 โค้ดลดโหด ฿4,000 + คืน Coins",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันศูนย์ 3 ปีถึงบ้าน",
+          "delivery": "ส่งฟรีทั่วประเทศ",
+          "url": "https://shopee.co.th/search?keyword=TCL+C855+65"
+        },
+        {
+          "store": "Lazada LazMall",
+          "seller": "TCL Flagship Store",
+          "platform": "lazada",
+          "price": 28490,
+          "coupon_text": "เก็บโค้ดลด ฿3,500",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรี",
+          "delivery": "ส่งภายใน 2-3 วัน",
+          "url": "https://www.lazada.co.th/catalog/?q=TCL+C855+65"
+        }
+      ]
+    },
+    {
+      "id": "hitachi-wb640vf",
+      "category_id": "refrigerators",
+      "rank": 1,
+      "award": "Best Overall Fridge — อันดับ 1 ช่องสุญญากาศถนอมเนื้อสัตว์",
+      "award_type": "gold",
+      "brand": "Hitachi",
+      "name": "Hitachi Multi-Door 4 ประตู 19.9 คิว (R-WB640VF)",
+      "tagline": "เอกสิทธิ์ช่องแช่สุญญากาศ Vacuum Compartment (-1°C) เนื้อสดไม่เป็นน้ำแข็ง หั่นได้ทันที",
+      "overall_score": 9.7,
+      "rating": 4.9,
+      "review_count": 1850,
+      "normal_price": 46900,
+      "commission_pct": 6.5,
+      "why_better": "ดีกว่าตู้เย็นทุกยี่ห้อสำหรับคนชอบทำอาหาร เพราะมีปั๊มดูดอากาศในช่อง Vacuum Compartment เหลือความดัน 0.8 atm ทำให้เก็บเนื้อหมู เนื้อวัว ปลาดิบ ได้สดฉ่ำนาน 7 วันโดยไม่ต้องแช่แข็ง ไม่เสียรสชาติและไม่ต้องรอละลายน้ำแข็ง!",
+      "best_for": ["ครอบครัวที่ชอบซื้อเนื้อสัตว์ ปลาสด และผักผลไม้มาทำอาหารทานเอง", "คนที่ต้องการช่อง Selectable Zone ปรับเปลี่ยนเป็นช่องแช่ไวน์ ช่องผัก หรือช่องฟรีซเพิ่มได้ตามใจ", "ต้องการระบบทำน้ำแข็งก้อนอัตโนมัติแค่เติมน้ำใส่แท็งก์"],
+      "specs": {
+        "capacity_liters": 569,
+        "yearly_elec_baht": 1950,
+        "fresh_tech_score": 9.9,
+        "deodorize_score": 9.7,
+        "durability_score": 9.6
+      },
+      "pros": [
+        "ช่อง Vacuum (-1°C / +1°C) เก็บความสดและคุณค่าอาหารได้ดีที่สุดในโลก",
+        "ฉนวนสุญญากาศ VIP เก็บความเย็นได้นานถึง 15 ชม. แม้เกิดเหตุไฟดับ",
+        "แผ่นกรอง Triple Power Filter ขจัดกลิ่นคาวปลา กลิ่นกระเทียม และกลิ่นทุเรียนได้ 99%"
+      ],
+      "cons": [
+        "ขนาดตัวเครื่องกว้าง 90 ซม. ต้องวัดพื้นที่ช่องวางในห้องครัวก่อนสั่งซื้อ"
+      ],
+      "offers": [
+        {
+          "store": "Lazada LazMall",
+          "seller": "Hitachi Official Store",
+          "platform": "lazada",
+          "price": 34990,
+          "coupon_text": "🔥 โปรลดพิเศษ ฿11,910 + ส่งติดตั้งฟรี!",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันคอมเพรสเซอร์ 10 ปี",
+          "delivery": "ส่งพร้อมยกขึ้นบ้านฟรี",
+          "url": "https://www.lazada.co.th/catalog/?q=Hitachi+WB640VF"
+        },
+        {
+          "store": "Shopee Mall",
+          "seller": "Hitachi Home Appliances Mall",
+          "platform": "shopee",
+          "price": 35490,
+          "coupon_text": "โค้ดเครื่องใช้ไฟฟ้าลด ฿2,500",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรีทั่วไทย",
+          "delivery": "ส่งภายใน 2-4 วัน",
+          "url": "https://shopee.co.th/search?keyword=Hitachi+WB640VF"
+        },
+        {
+          "store": "Power Buy Online",
+          "seller": "Power Buy Official",
+          "platform": "accesstrade",
+          "price": 36900,
+          "coupon_text": "ลดเพิ่มบัตรเครดิต 10% + ผ่อน 0% 18 ด.",
+          "perks": "ส่งฟรีถึงบ้าน • บริการยกติดตั้งถึงจุดวาง",
+          "delivery": "นัดวันจัดส่งได้",
+          "url": "https://www.powerbuy.co.th/th/search/Hitachi+4+Door"
+        }
+      ]
+    },
+    {
+      "id": "mitsubishi-mr-la70er",
+      "category_id": "refrigerators",
+      "rank": 2,
+      "award": "Best Durability & Energy — อึดทนทานอันดับ 1 ประหยัดไฟขั้นสุด",
+      "award_type": "emerald",
+      "brand": "Mitsubishi Electric",
+      "name": "Mitsubishi Electric 4 ประตู 20.5 คิว (MR-LA70ER)",
+      "tagline": "สมองกล Neuro Inverter เรียนรู้พฤติกรรมผู้ใช้ ประหยัดไฟเบอร์ 5 ห้าดาว ทนทานนับสิบปี",
+      "overall_score": 9.6,
+      "rating": 4.9,
+      "review_count": 2410,
+      "normal_price": 42900,
+      "commission_pct": 7.0,
+      "why_better": "ดีกว่าถ้าคุณต้องการ 'ตู้เย็นที่อึดทนทานใช้ยาว 10-15 ปีแบบไม่จุกจิกและกินไฟน้อยที่สุด' ระบบ Neuro Fuzzy จะจำเวลาที่คุณเปิดตู้เย็นบ่อยๆ และลดรอบการทำงานช่วงดึก ทำให้ค่าไฟทั้งปีตกเพียง ~1,780 บาท (เดือนละร้อยกว่าบาทเท่านั้น!)",
+      "best_for": ["คนที่ให้ความสำคัญกับความทนทานของคอมเพรสเซอร์และแผงวงจรเป็นอันดับ 1", "บ้านที่ชอบเก็บผักสด เพราะมีช่อง Vitamin Factory ใช้แสงไฟ LED สีส้มช่วยให้ผักสดกรอบนาน", "ต้องการช่อง Supercool Chilling แช่เนื้อสัตว์พร้อมปรุงโดยไม่แข็งเป็นหิน"],
+      "specs": {
+        "capacity_liters": 580,
+        "yearly_elec_baht": 1780,
+        "fresh_tech_score": 9.5,
+        "deodorize_score": 9.5,
+        "durability_score": 9.9
+      },
+      "pros": [
+        "ขึ้นชื่อเรื่องความทนทานของคอมเพรสเซอร์และอะไหล่มาตรฐานญี่ปุ่นอันดับ 1 ในไทย",
+        "กินไฟต่ำมากเพียง ~1,780 บาทต่อปี แม้ความจุใหญ่ถึง 580 ลิตร",
+        "ขอบยางประตูผสมสารยับยั้งเชื้อรา พร้อมผนังภายในยับยั้งแบคทีเรีย"
+      ],
+      "cons": [
+        "รุ่นนี้ทำน้ำแข็งแบบบิดถาด (Twist Ice) ไม่ใช่ปั๊มดูดน้ำอัตโนมัติ จึงดูแลความสะอาดง่ายไม่มีท่อตัน"
+      ],
+      "offers": [
+        {
+          "store": "Shopee Mall",
+          "seller": "Mitsubishi Electric Official",
+          "platform": "shopee",
+          "price": 31490,
+          "coupon_text": "🔥 โค้ดลดใหญ่ ฿3,000 (ถูกสุดวันนี้!)",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันคอมเพรสเซอร์ 10 ปี",
+          "delivery": "ส่งฟรีทั่วไทย",
+          "url": "https://shopee.co.th/search?keyword=Mitsubishi+MR-LA70ER"
+        },
+        {
+          "store": "Lazada LazMall",
+          "seller": "Mitsubishi Kang Yong Watana",
+          "platform": "lazada",
+          "price": 31890,
+          "coupon_text": "คูปอง LazBonus ลด ฿2,600",
+          "perks": "ผ่อน 0% 10 เดือน • ของแท้ศูนย์ไทย",
+          "delivery": "ส่งภายใน 2-3 วัน",
+          "url": "https://www.lazada.co.th/catalog/?q=Mitsubishi+MR-LA70ER"
+        },
+        {
+          "store": "HomePro Online",
+          "seller": "HomePro Official",
+          "platform": "accesstrade",
+          "price": 33900,
+          "coupon_text": "ส่งพร้อมยกติดตั้งถึงห้องครัวฟรี",
+          "perks": "ผ่อน 0% 10 เดือน • เก่าแลกใหม่ลดเพิ่ม",
+          "delivery": "เลือกวันและเวลาส่งได้",
+          "url": "https://www.homepro.co.th/search?q=Mitsubishi+MR-LA70ER"
+        }
+      ]
+    },
+    {
+      "id": "iphone-18-pro",
+      "category_id": "flagship-phones",
+      "rank": 1,
+      "award": "Best Flagship 2026 — เรือธงตัวจบแห่งปี",
+      "award_type": "gold",
+      "brand": "iPhone",
+      "name": "iPhone 18 Pro (256GB)",
+      "tagline": "ชิป A20 Pro สถาปัตยกรรม 2nm กล้องซูม 48MP ทั้ง 3 เลนส์ แบตอึดขึ้น 4 ชม.",
+      "overall_score": 9.8,
+      "rating": 4.9,
+      "review_count": 4820,
+      "normal_price": 43900,
+      "commission_pct": 4.5,
+      "why_better": "ดีกว่า iPhone 17 Pro ตรงที่ 'ชิป A20 Pro (2nm) จัดการความร้อนได้ดีเยี่ยมและแบตอึดขึ้นถึง 4 ชั่วโมงเต็ม' พร้อมหน้าจอเคลือบสารตัดแสงสะท้อนรุ่นใหม่และกล้องซูม Telephoto ที่ถ่ายคนในที่แสงน้อยได้คมกริบไร้ Noise",
+      "best_for": ["คนที่ใช้ iPhone 15 Pro หรือเก่ากว่าแล้วอยากอัปเกรดครั้งใหญ่", "สายถ่ายวิดีโอ ProRes และคอนเทนต์ครีเอเตอร์", "ใช้งานระบบ AI อัจฉริยะภาษาไทยเต็มรูปแบบ"],
+      "specs": {
+        "battery_hours": 31,
+        "weight_grams": 199,
+        "camera_score": 9.8,
+        "perf_score": 9.9,
+        "display_score": 9.8
+      },
+      "pros": [
+        "ชิป A20 Pro (2nm) เร็วแรงและจัดการความร้อนดีกว่าเดิมชัดเจน แบตอึดขึ้นมาก",
+        "หน้าจอเคลือบสารลดแสงสะท้อนรุ่นใหม่ สู้แดดเมืองไทยได้สบายตา",
+        "กล้อง Telephoto 48MP ซูมคมชัดทั้งกลางวันและกลางคืน"
+      ],
+      "cons": [
+        "ราคาเปิดตัวสูง หากมี iPhone 17 Pro อยู่แล้วอาจยังไม่จำเป็นต้องเปลี่ยนทันที"
+      ],
+      "offers": [
+        {
+          "store": "Shopee Mall",
+          "seller": "Official Flagship Store",
+          "platform": "shopee",
+          "price": 40490,
+          "coupon_text": "🔥 ลดเพิ่ม ฿3,410 โค้ด Mall Midnight",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรีถึงบ้าน",
+          "delivery": "ส่งภายใน 1-2 วัน",
+          "url": "https://shopee.co.th/search?keyword=iPhone+18+Pro+256GB"
+        },
+        {
+          "store": "Lazada LazMall",
+          "seller": "Authorized Reseller Mall",
+          "platform": "lazada",
+          "price": 40890,
+          "coupon_text": "เก็บคูปอง LazBonus ลด ฿3,010",
+          "perks": "ผ่อน 0% 10 เดือน • คืนสินค้าใน 15 วัน",
+          "delivery": "ส่งด่วนพรุ่งนี้",
+          "url": "https://www.lazada.co.th/catalog/?q=iPhone+18+Pro+256GB"
+        },
+        {
+          "store": "Studio 7 / BaNANA",
+          "seller": "COM7 Official Online",
+          "platform": "involve",
+          "price": 42500,
+          "coupon_text": "แลกพอยท์บัตรเครดิตลด 15%",
+          "perks": "ผ่อน 0% นานสูงสุด 24 เดือน • รับที่สาขาได้ใน 1 ชม.",
+          "delivery": "รับหน้าร้านใน 1 ชม.",
+          "url": "https://www.bnn.in.th/th/p/smartphone"
+        }
+      ]
+    },
+    {
+      "id": "iphone-17-pro",
+      "category_id": "flagship-phones",
+      "rank": 2,
+      "award": "Best Value Flagship — คุ้มที่สุดหลังรุ่นใหม่เปิดตัว!",
+      "award_type": "emerald",
+      "brand": "iPhone",
+      "name": "iPhone 17 Pro (256GB)",
+      "tagline": "ราคาดิ่งลงเกือบหมื่นหลัง 18 Pro ออก! สเปกยังแรงเหลือเฟือไปอีก 4 ปี",
+      "overall_score": 9.5,
+      "rating": 4.9,
+      "review_count": 9640,
+      "normal_price": 41900,
+      "commission_pct": 5.0,
+      "why_better": "ดีกว่าในแง่ 'ความฉลาดซื้อและคุ้มเม็ดเงินที่สุดตอนนี้' เพราะคุณประหยัดเงินสดในกระเป๋าไปได้ถึง 7,500 บาท (เอาส่วนต่างไปซื้อ AirPods ได้เลย 1 คู่!) ในขณะที่การใช้งานโซเชียล ถ่ายรูป และเล่นเกม แทบแยกความต่างด้วยตาเปล่าไม่ออก",
+      "best_for": ["คนฉลาดซื้อที่เน้นความคุ้มค่า ประหยัดงบไปกว่า 7,500 บาท", "ได้จอ ProMotion 120Hz และบอดี้ไทเทเนียมครบเครื่อง", "ใช้งานลื่นไหลแทบไม่ต่างจากรุ่นใหม่ในชีวิตประจำวัน"],
+      "specs": {
+        "battery_hours": 27,
+        "weight_grams": 199,
+        "camera_score": 9.5,
+        "perf_score": 9.6,
+        "display_score": 9.6
+      },
+      "pros": [
+        "ราคาโปรโมชั่นลดล้างสต็อกเหลือ ~32,990 บาท คุ้มค่าตัวที่สุดในตระกูล Pro",
+        "สเปกกล้องและหน้าจอ 120Hz ทำได้ 93% ของ iPhone 18 Pro ในราคาถูกกว่ามาก",
+        "เคสและฟิล์มกันรอยมีให้เลือกเยอะและราคาถูก"
+      ],
+      "cons": [
+        "สินค้ามือหนึ่งเครื่องศูนย์เริ่มมีจำนวนจำกัดในบางสี ต้องรีบกดช่วงโปรฯ"
+      ],
+      "offers": [
+        {
+          "store": "Lazada LazMall",
+          "seller": "Official Flagship Store",
+          "platform": "lazada",
+          "price": 32990,
+          "coupon_text": "🔥 Clearance ลดล้างสต็อก ฿8,910 (ถูกสุด!)",
+          "perks": "ผ่อน 0% 10 เดือน • ประกันศูนย์ไทยเต็มปี",
+          "delivery": "ส่งด่วนพรุ่งนี้",
+          "url": "https://www.lazada.co.th/catalog/?q=iPhone+17+Pro+256GB"
+        },
+        {
+          "store": "Shopee Mall",
+          "seller": "Studio 7 Official",
+          "platform": "shopee",
+          "price": 33290,
+          "coupon_text": "โค้ดคืน Coins 2,000 เหรียญ",
+          "perks": "ผ่อน 0% 10 เดือน • ส่งฟรี",
+          "delivery": "ส่งภายใน 1-2 วัน",
+          "url": "https://shopee.co.th/search?keyword=iPhone+17+Pro+256GB"
+        },
+        {
+          "store": "TikTok Shop Mall",
+          "seller": "BaNANA Official",
+          "platform": "tiktok",
+          "price": 33500,
+          "coupon_text": "Flash Sale ลดทันที ฿8,400",
+          "perks": "ส่งฟรีด่วน • ของแท้ 100%",
+          "delivery": "ส่งภายใน 2 วัน",
+          "url": "https://www.tiktok.com/search?q=iPhone+17+Pro"
+        }
+      ]
+    }
+  ]
+}

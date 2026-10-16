@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yesspec Admin — ระบบจัดการลิงก์ Affiliate, อัปเดตราคารายเดือน & คำนวณรายได้</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0,0,0,0.08);
+      --blue: #0071e3;
+      --green: #137333;
+      --green-bg: #e6f4ea;
+      --orange: #bf4800;
+    }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Sukhumvit Set", "Kanit", sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .topbar {
+      background: rgba(255,255,255,0.86); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line); padding: 14px 24px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-inner { max-width: 1020px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .container { max-width: 1020px; margin: 0 auto; padding: 36px 24px 80px; }
+    .card {
+      background: var(--card); border-radius: 24px; padding: 28px;
+      border: 1px solid var(--line); box-shadow: 0 8px 26px rgba(0,0,0,0.04); margin-bottom: 24px;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    label { display: block; font-size: 0.84rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+    input, select {
+      width: 100%; padding: 11px 14px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--bg); font-size: 0.95rem;
+    }
+    .btn-save {
+      background: var(--blue); color: #fff; border: none; padding: 11px 22px;
+      border-radius: 99px; font-weight: 700; cursor: pointer; margin-top: 16px; font-size: 0.92rem;
+    }
+    .btn-secondary {
+      background: #e8e8ed; color: var(--text); border: none; padding: 11px 20px;
+      border-radius: 99px; font-weight: 600; cursor: pointer; margin-top: 16px; font-size: 0.9rem; margin-left: 8px;
+    }
+    .income-box {
+      background: var(--green-bg); color: var(--green); padding: 20px;
+      border-radius: 18px; margin-top: 18px; font-weight: 800; font-size: 1.3rem;
+    }
+    .checklist {
+      background: #fbfbfd; border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; margin-top: 16px;
+      font-size: 0.9rem;
+    }
+    .checklist li { margin-bottom: 6px; }
+    code { background: #f0f0f5; padding: 2px 6px; border-radius: 6px; font-size: 0.86rem; }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="assets/yesspec-logo.svg">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <strong style="display:inline-flex;align-items:center;gap:8px;">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;flex-shrink:0;">
+          <rect width="36" height="36" rx="9" fill="#0071e3"/>
+          <line x1="9" y1="12" x2="27" y2="12" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="9" y1="12" x2="21" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="21" cy="12" r="3" fill="white"/>
+          <line x1="9" y1="18.5" x2="27" y2="18.5" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="9" y1="18.5" x2="14" y2="18.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="14" cy="18.5" r="3" fill="#7cc4ff"/>
+          <line x1="9" y1="25" x2="27" y2="25" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="24" cy="25" r="4" fill="#34d399"/>
+        </svg>
+        <span>yesspec Admin Studio (สำหรับเจ้าของเว็บ)</span>
+      </strong>
+      <a href="index.html">← กลับไปหน้าเว็บลูกค้า (index.html)</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- SECTION 1: MONTHLY UPDATE CENTER -->
+    <div class="card" id="monthly-center">
+      <div style="color:var(--orange);font-size:0.8rem;font-weight:800;letter-spacing:0.04em;">MONTHLY FRESHNESS ENGINE • อัปเดตทุกวันที่ 1 ของเดือน</div>
+      <h2 style="margin:4px 0 8px;">1. ระบบอัปเดตราคา & จัดช่วงงบใหม่ประจำเดือน</h2>
+      <p style="color:var(--muted); font-size:0.92rem; margin-top:0;">
+        ราคามือถือและเครื่องใช้ไฟฟ้าปรับลดลงทุกเดือน เมื่อคุณปรับราคารุ่นใดลดลง ระบบในหน้าเว็บ <code>index.html</code> จะ<strong>คำนวณส่วนลดประจำเดือน</strong>และ<strong>ย้ายรุ่นนั้นเข้าสู่ช่วงงบประมาณใหม่ที่ถูกลงให้อัตโนมัติทันที</strong> (เช่น รุ่นที่ลดจาก 15,990฿ เหลือ 14,900฿ จะย้ายเข้าหมวดงบ 10,000–15,000฿ ทันที)
+      </p>
+
+      <div class="grid-2" style="margin-bottom:18px;">
+        <div>
+          <label>📅 เดือน/ปี ที่แสดงบนหัวเว็บ (ปล่อยว่างเพื่อให้ดึงเดือนปัจจุบันอัตโนมัติ)</label>
+          <input type="text" id="monthLabelInput" placeholder="เช่น ตุลาคม 2026 หรือ พฤศจิกายน 2026">
+        </div>
+        <div>
+          <label>🔥 แคมเปญโปรโมชั่นประจำเดือนนี้</label>
+          <input type="text" id="campaignInput" placeholder="เช่น โปร 10.10 Brand Festival & Payday สิ้นเดือน">
+        </div>
+      </div>
+
+      <label style="margin-bottom:10px;">📱 ทดลองปรับราคามือถือประจำเดือนนี้ (ระบบจะย้ายช่วงงบอัตโนมัติเมื่อราคาเปลี่ยน):</label>
+      <div class="grid-3">
+        <div>
+          <label>Samsung Galaxy A06 (เดิม 3,690฿)</label>
+          <input type="number" id="p_samsung-a06" placeholder="3690" step="100">
+        </div>
+        <div>
+          <label>Redmi Note 14 5G (เดิม 8,990฿)</label>
+          <input type="number" id="p_redmi-note-14-5g" placeholder="8990" step="100">
+        </div>
+        <div>
+          <label>Samsung A55/A56 (เดิม 11,990฿)</label>
+          <input type="number" id="p_samsung-a55-5g" placeholder="11990" step="100">
+        </div>
+        <div>
+          <label>Xiaomi 14T (เดิม 17,990฿)</label>
+          <input type="number" id="p_xiaomi-14t" placeholder="17990" step="100">
+        </div>
+        <div>
+          <label>iPhone 17 Pro (เดิม 32,500฿)</label>
+          <input type="number" id="p_iphone-17-pro" placeholder="32500" step="500">
+        </div>
+        <div>
+          <label>iPhone 18 Pro (เดิม 39,900฿)</label>
+          <input type="number" id="p_iphone-18-pro" placeholder="39900" step="500">
+        </div>
+      </div>
+
+      <div>
+        <button class="btn-save" onclick="saveMonthlyUpdate()">🔄 บันทึกการอัปเดตประจำเดือน</button>
+        <button class="btn-secondary" onclick="simulateNewMonthDrop()">⚡ จำลองโปรเดือนใหม่ (ลดราคาทุกรุ่น 5% อัตโนมัติ)</button>
+        <button class="btn-secondary" onclick="resetMonthlyUpdate()">คืนค่าเริ่มต้น</button>
+        <span id="monthly-msg" style="margin-left:12px; color:var(--green); font-weight:700;"></span>
+      </div>
+
+      <div class="checklist">
+        <strong>📋 เช็คลิสต์สิ่งที่ควรทำเดือนละ 1 ครั้ง (ใช้เวลาแค่ 10 นาที ทุกวันที่ 1 ของเดือน):</strong>
+        <ol style="margin:8px 0 0 18px; padding:0;">
+          <li>รันคำสั่ง <code>python3 monthly_updater.py</code> ในโฟลเดอร์โปรเจกต์ หรือกดปุ่มซิงค์ราคาด้านบน</li>
+          <li>เช็ครุ่นที่ราคาปรับลดลงจนข้ามช่วงงบ (เช่น จากหมื่นกลางลงมาหมื่นต้น) ระบบจะย้ายป้ายช่วงงบให้เองอัตโนมัติ</li>
+          <li>อัปเดตชื่อแคมเปญประจำเดือน (เช่น <code>11.11 Mega Sale</code> หรือ <code>Payday สิ้นเดือน</code>) เพื่อกระตุ้นให้คนกดเช็คราคา</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- SECTION 2: AFFILIATE CONFIG -->
+    <div class="card">
+      <h2 style="margin-top:0;">2. ตั้งค่ารหัส Affiliate ทั้ง 5 ช่องทาง</h2>
+      <p style="color:var(--muted); font-size:0.92rem;">เมื่อบันทึกแล้ว ปุ่มเรดาร์เช็คราคาในหน้าเว็บลูกค้า (<code>index.html</code>) จะแนบรหัสของคุณพร้อม <code>sub_id</code> ให้อัตโนมัติทันที</p>
+      <div class="grid-2">
+        <div>
+          <label>🟠 Shopee Affiliate ID (<code>af_siteid</code>)</label>
+          <input type="text" id="shopee" value="TH_SHOPEE_AFF_998877">
+        </div>
+        <div>
+          <label>🔵 Lazada Tracking ID (<code>laz_trackid</code>)</label>
+          <input type="text" id="lazada" value="TH_LAZADA_AFF_112233">
+        </div>
+        <div>
+          <label>⚫ TikTok Shop Affiliate ID</label>
+          <input type="text" id="tiktok" value="TH_TIKTOK_AFF_556677">
+        </div>
+        <div>
+          <label>🟢 Involve Asia ID (Studio 7 / Power Buy)</label>
+          <input type="text" id="involve" value="TH_INVOLVE_889900">
+        </div>
+        <div>
+          <label>🟡 Accesstrade ID (HomePro / Mercular)</label>
+          <input type="text" id="accesstrade" value="TH_ACCESSTRADE_443322">
+        </div>
+      </div>
+      <button class="btn-save" onclick="saveConfig()">💾 บันทึกรหัส Affiliate</button>
+      <span id="save-msg" style="margin-left:12px; color:var(--green); font-weight:700;"></span>
+    </div>
+
+    <!-- SECTION 3: INCOME SIMULATOR -->
+    <div class="card">
+      <h2 style="margin-top:0;">3. เครื่องคำนวณรายได้คาดการณ์ (Passive Income Simulator)</h2>
+      <div class="grid-2">
+        <div>
+          <label>คนเข้าเว็บจากระบบค้นหา SEO (คน/วัน)</label>
+          <input type="number" id="v-day" value="800" oninput="calc()">
+        </div>
+        <div>
+          <label>อัตรากดปุ่มเช็คราคา (%)</label>
+          <input type="number" id="ctr" value="25" oninput="calc()">
+        </div>
+        <div>
+          <label>อัตราซื้อสำเร็จ (%)</label>
+          <input type="number" id="cr" value="3.0" step="0.5" oninput="calc()">
+        </div>
+        <div>
+          <label>ค่าคอมมิชชันเฉลี่ยต่อชิ้น (บาท)</label>
+          <input type="number" id="comm" value="1450" oninput="calc()">
+        </div>
+      </div>
+      <div class="income-box" id="income-out"></div>
+    </div>
+  </main>
+
+  <script>
+    // Load Affiliate IDs
+    const saved = JSON.parse(localStorage.getItem("yesspec_affiliate_config") || localStorage.getItem("lumina_affiliate_config") || "{}");
+    if (saved.shopee) document.getElementById("shopee").value = saved.shopee;
+    if (saved.lazada) document.getElementById("lazada").value = saved.lazada;
+    if (saved.tiktok) document.getElementById("tiktok").value = saved.tiktok;
+    if (saved.involve) document.getElementById("involve").value = saved.involve;
+    if (saved.accesstrade) document.getElementById("accesstrade").value = saved.accesstrade;
+
+    // Load Monthly Meta & Prices
+    const savedMeta = JSON.parse(localStorage.getItem("yesspec_monthly_meta") || localStorage.getItem("lumina_monthly_meta") || "{}");
+    if (savedMeta.monthLabel) document.getElementById("monthLabelInput").value = savedMeta.monthLabel;
+    if (savedMeta.campaign) document.getElementById("campaignInput").value = savedMeta.campaign;
+
+    const trackedIds = ["samsung-a06", "redmi-note-14-5g", "samsung-a55-5g", "xiaomi-14t", "iphone-17-pro", "iphone-18-pro"];
+    const defaultPrices = {
+      "samsung-a06": 3690,
+      "redmi-note-14-5g": 8990,
+      "samsung-a55-5g": 11990,
+      "xiaomi-14t": 17990,
+      "iphone-17-pro": 32500,
+      "iphone-18-pro": 39900
+    };
+    const savedPrices = JSON.parse(localStorage.getItem("yesspec_monthly_prices") || localStorage.getItem("lumina_monthly_prices") || "{}");
+    trackedIds.forEach(id => {
+      if (savedPrices[id]) document.getElementById("p_" + id).value = savedPrices[id];
+    });
+
+    function saveMonthlyUpdate() {
+      const meta = {
+        monthLabel: document.getElementById("monthLabelInput").value.trim(),
+        campaign: document.getElementById("campaignInput").value.trim()
+      };
+      localStorage.setItem("yesspec_monthly_meta", JSON.stringify(meta));
+
+      const priceMap = {};
+      trackedIds.forEach(id => {
+        const val = parseInt(document.getElementById("p_" + id).value, 10);
+        if (!isNaN(val) && val > 0) priceMap[id] = val;
+      });
+      localStorage.setItem("yesspec_monthly_prices", JSON.stringify(priceMap));
+      document.getElementById("monthly-msg").textContent = "✓ อัปเดตราคา & แคมเปญประจำเดือนสำเร็จ! เปิดหน้า index.html ดูผลลัพธ์ได้เลย";
+    }
+
+    function simulateNewMonthDrop() {
+      trackedIds.forEach(id => {
+        const discounted = Math.round((defaultPrices[id] * 0.94) / 100) * 100;
+        document.getElementById("p_" + id).value = discounted;
+      });
+      saveMonthlyUpdate();
+    }
+
+    function resetMonthlyUpdate() {
+      localStorage.removeItem("yesspec_monthly_meta");
+      localStorage.removeItem("yesspec_monthly_prices");
+      localStorage.removeItem("lumina_monthly_meta");
+      localStorage.removeItem("lumina_monthly_prices");
+      document.getElementById("monthLabelInput").value = "";
+      document.getElementById("campaignInput").value = "";
+      trackedIds.forEach(id => { document.getElementById("p_" + id).value = ""; });
+      document.getElementById("monthly-msg").textContent = "✓ คืนค่าเริ่มต้นเรียบร้อย";
+    }
+
+    function saveConfig() {
+      const cfg = {
+        shopee: document.getElementById("shopee").value.trim(),
+        lazada: document.getElementById("lazada").value.trim(),
+        tiktok: document.getElementById("tiktok").value.trim(),
+        involve: document.getElementById("involve").value.trim(),
+        accesstrade: document.getElementById("accesstrade").value.trim()
+      };
+      localStorage.setItem("yesspec_affiliate_config", JSON.stringify(cfg));
+      document.getElementById("save-msg").textContent = "✓ บันทึกสำเร็จ! เชื่อมกับหน้าเว็บลูกค้าเรียบร้อย";
+    }
+
+    function calc() {
+      const v = parseFloat(document.getElementById("v-day").value) || 0;
+      const ctr = parseFloat(document.getElementById("ctr").value) || 0;
+      const cr = parseFloat(document.getElementById("cr").value) || 0;
+      const comm = parseFloat(document.getElementById("comm").value) || 0;
+      const mVisits = v * 30;
+      const clicks = Math.round(mVisits * (ctr / 100));
+      const orders = Math.round(clicks * (cr / 100));
+      const baht = Math.round(orders * comm);
+      document.getElementById("income-out").innerHTML =
+        `💰 รายได้คาดการณ์: ฿${baht.toLocaleString()} / เดือน <div style="font-size:0.88rem; font-weight:500;">(คนเข้า ${mVisits.toLocaleString()} คน/เดือน ➔ กดเช็คราคา ${clicks.toLocaleString()} คลิก ➔ ซื้อสำเร็จ ~${orders.toLocaleString()} ออเดอร์)</div>`;
+    }
+    calc();
+  </script>
+</body>
+</html>

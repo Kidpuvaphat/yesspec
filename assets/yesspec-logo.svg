@@ -1,0 +1,28 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="yesspecBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0077ED"/>
+      <stop offset="55%" stop-color="#0055D4"/>
+      <stop offset="100%" stop-color="#1D1D1F"/>
+    </linearGradient>
+    <linearGradient id="yesCheck" x1="22" y1="36" x2="48" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="100%" stop-color="#22C55E"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded Squircle Icon Base -->
+  <rect width="64" height="64" rx="16" fill="url(#yesspecBg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" stroke="white" stroke-opacity="0.16" stroke-width="1.5"/>
+
+  <!-- Spec Comparison Sliders (Left/Top subtle tracks) -->
+  <line x1="15" y1="20" x2="36" y2="20" stroke="white" stroke-opacity="0.35" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="15" y1="20" x2="28" y2="20" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="28" cy="20" r="4.5" fill="white"/>
+
+  <line x1="15" y1="31" x2="32" y2="31" stroke="white" stroke-opacity="0.35" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="15" y1="31" x2="22" y2="31" stroke="#7CC4FF" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="22" cy="31" r="4.5" fill="#7CC4FF"/>
+
+  <!-- Bold "YES" Checkmark Badge on Bottom-Right -->
+  <path d="M22 43.5L30.5 51L49.5 27" stroke="url(#yesCheck)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
