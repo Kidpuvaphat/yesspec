@@ -1397,6 +1397,320 @@
       border-bottom: none;
       padding-bottom: 0;
     }
+
+    /* ============================================================
+       11. NOTEBOOKSPEC-STYLE FACETED SPEC FINDER & COMPACT SPEC ROWS
+       ============================================================ */
+    .nbs-spec-finder-layout {
+      display: grid;
+      grid-template-columns: 272px 1fr;
+      gap: 22px;
+      align-items: start;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 960px) {
+      .nbs-spec-finder-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .nbs-sidebar {
+      background: #fff;
+      border-radius: 22px;
+      padding: 20px 18px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: var(--shadow-card);
+      position: sticky;
+      top: 72px;
+      max-height: calc(100vh - 92px);
+      overflow-y: auto;
+    }
+    @media (max-width: 960px) {
+      .nbs-sidebar {
+        position: static;
+        max-height: none;
+        display: none;
+      }
+      .nbs-sidebar.mobile-open {
+        display: block;
+      }
+    }
+    .nbs-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .nbs-sidebar-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nbs-filter-group {
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .nbs-filter-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .nbs-filter-group-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 9px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nbs-check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .nbs-check-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 8px;
+      transition: background 0.15s ease;
+      user-select: none;
+    }
+    .nbs-check-item:hover {
+      background: #f5f5f7;
+    }
+    .nbs-check-item input[type="checkbox"] {
+      accent-color: #16a34a;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nbs-check-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex: 1;
+      font-weight: 500;
+    }
+    .nbs-check-item.checked .nbs-check-label {
+      color: #15803d;
+      font-weight: 700;
+    }
+    .nbs-check-count {
+      font-size: 11px;
+      color: var(--text-light);
+      background: #f1f5f9;
+      padding: 1px 7px;
+      border-radius: 99px;
+      font-weight: 600;
+    }
+    .nbs-toolbar {
+      background: #fff;
+      border-radius: 18px;
+      padding: 12px 16px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nbs-search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f5f5f7;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 7px 12px;
+      flex: 1;
+      min-width: 210px;
+    }
+    .nbs-search-input-wrap input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+    }
+    .nbs-active-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+    .nbs-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ecfdf5;
+      color: #14532d;
+      border: 1px solid #86efac;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .nbs-chip:hover {
+      background: #dcfce7;
+    }
+    .nbs-mobile-filter-btn {
+      display: none;
+      background: #f0fdf4;
+      color: #15803d;
+      border: 1.5px solid #16a34a;
+      border-radius: 10px;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    @media (max-width: 960px) {
+      .nbs-mobile-filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+    }
+    /* NotebookSpec-style Horizontal Spec List Row */
+    .nbs-spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nbs-spec-row-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 16px 20px;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 3px 14px rgba(0,0,0,0.03);
+      display: grid;
+      grid-template-columns: 115px 1.45fr 1.65fr 205px;
+      gap: 16px;
+      align-items: center;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      position: relative;
+    }
+    .nbs-spec-row-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.07);
+    }
+    .nbs-spec-row-card.winner-green-row {
+      border: 2px solid #16a34a;
+      background: linear-gradient(90deg, #f3fcf6 0%, #ffffff 28%);
+      box-shadow: 0 10px 28px rgba(22, 163, 74, 0.13);
+    }
+    @media (max-width: 820px) {
+      .nbs-spec-row-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+    .nbs-row-thumb {
+      width: 105px;
+      height: 105px;
+      border-radius: 14px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+      margin: 0 auto;
+    }
+    .nbs-row-thumb img {
+      max-width: 92%;
+      max-height: 92%;
+      object-fit: contain;
+    }
+    .nbs-spec-matrix {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .nbs-spec-pill-box {
+      background: #f8fafc;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .nbs-spec-pill-box.spec-win-green {
+      background: #ecfdf5;
+      border: 1px solid #86efac;
+      border-left: 3.5px solid #16a34a;
+    }
+    .nbs-vs-check-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 99px;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: #fff;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+    .nbs-vs-check-btn:hover {
+      border-color: #16a34a;
+      color: #15803d;
+    }
+    .nbs-vs-check-btn.active {
+      background: #16a34a;
+      color: #fff;
+      border-color: #16a34a;
+    }
+    /* Floating VS Compare Bar (Bottom Sticky Tray) */
+    .floating-vs-tray {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 990;
+      background: rgba(20, 20, 23, 0.95);
+      backdrop-filter: blur(16px);
+      color: #fff;
+      border: 1.5px solid #16a34a;
+      border-radius: 999px;
+      padding: 10px 18px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      gap: 12px;
+      max-width: 94vw;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .floating-vs-tray.open {
+      display: flex;
+    }
   </style>
 </head>
 <body>
@@ -1646,16 +1960,55 @@
     <!-- YESPEC GREEN WINNER VERDICT SUMMARY BOX ("อันไหนชนะ & เพราะอะไร") -->
     <div id="categoryWinnerSummaryBox"></div>
 
-    <!-- VIEW 1: APPLE "WHICH ONE IS RIGHT FOR YOU?" 3-COLUMN LINEUP -->
+    <!-- VIEW 1: NOTEBOOKSPEC-STYLE 2-COLUMN FACETED SPEC FINDER + COMPACT/CARD LINEUP -->
     <section id="viewLineup">
-      <div class="section-header-row">
+      <div class="nbs-spec-finder-layout">
+        <!-- LEFT SIDEBAR: DYNAMIC CATEGORY SPEC FILTERS (Like NotebookSpec) -->
+        <aside class="nbs-sidebar" id="nbsSpecSidebar">
+          <div class="nbs-sidebar-header">
+            <div class="nbs-sidebar-title">🎛️ กรองสเปกละเอียด</div>
+            <button class="helper-link" style="font-size:12px;font-weight:700;color:#16a34a;" onclick="clearAllFacetFilters()">ล้างตัวกรอง</button>
+          </div>
+          <div id="nbsSidebarGroupsContainer"></div>
+        </aside>
+
+        <!-- RIGHT MAIN AREA: SEARCH + SORT + VIEW MODE + SPEC RESULTS -->
         <div>
-          <h2 class="section-headline" id="lineupTitle">รุ่นไหนเหมาะกับคุณ?</h2>
-          <p class="section-subheadline" id="lineupSubtitle">เทียบสเปกจริงบรรทัดต่อบรรทัด • <strong style="color:#15803d;">🟢 กรอบสีเขียว = ชนะในหัวข้อนั้น</strong> • กดเข้าตะกร้าร้านที่ถูกสุดได้ทันที</p>
+          <div class="nbs-toolbar">
+            <button class="nbs-mobile-filter-btn" onclick="toggleMobileSpecSidebar()">
+              🎛️ กรองสเปกละเอียด <span id="mobileFacetCountBadge"></span>
+            </button>
+            <div class="nbs-search-input-wrap">
+              <span>🔍</span>
+              <input type="text" id="categorySpecSearchInput" placeholder="ค้นหาชื่อรุ่น, แบรนด์ หรือสเปกย่อยในหมวดนี้..." oninput="setCategorySpecSearch(this.value)" />
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <select id="categorySortSelect" class="apple-select" style="padding:7px 12px;font-size:12.5px;min-width:170px;" onchange="setCategorySortMode(this.value)">
+                <option value="recommended">🏆 แนะนำคุ้มสุด &amp; ขายดี #1</option>
+                <option value="price_asc">💰 ราคา: ต่ำ → สูง</option>
+                <option value="price_desc">💎 ราคา: สูง → ต่ำ</option>
+                <option value="spec_score">🚀 คะแนนสเปกสูงสุด</option>
+              </select>
+              <div class="apple-view-seg" style="background:#f1f5f9;padding:3px;border-radius:12px;">
+                <button class="seg-btn active" id="btnLayoutList" onclick="setLineupDisplayLayout('list')" style="padding:5px 11px;font-size:12px;">📋 แถวสเปก (NotebookSpec)</button>
+                <button class="seg-btn" id="btnLayoutCard" onclick="setLineupDisplayLayout('card')" style="padding:5px 11px;font-size:12px;">🃏 การ์ด 3 คอลัมน์</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="nbs-active-chips" id="nbsActiveFilterChips"></div>
+
+          <div class="section-header-row" style="margin-bottom:14px;">
+            <div>
+              <h2 class="section-headline" id="lineupTitle" style="font-size:22px;">รุ่นไหนเหมาะกับคุณ?</h2>
+              <p class="section-subheadline" id="lineupSubtitle" style="font-size:13px;">ติ๊กเลือกสเปกด้านซ้ายเพื่อคัดรุ่นที่ตรงใจ • <strong style="color:#15803d;">🟢 กรอบสีเขียว = ชนะในเงื่อนไขที่คุณเลือก</strong></p>
+            </div>
+            <div class="result-count-badge" id="resultCountBadge">แสดงรุ่นแนะนำ</div>
+          </div>
+
+          <div id="lineupGrid" class="apple-lineup-grid"></div>
         </div>
-        <div class="result-count-badge" id="resultCountBadge">แสดงรุ่นแนะนำ</div>
       </div>
-      <div class="apple-lineup-grid" id="lineupGrid"></div>
     </section>
 
     <!-- VIEW 2: APPLE HEAD-TO-HEAD COMPARE (Always Visible Inline Below Lineup) -->
@@ -1726,6 +2079,9 @@
       <div id="articleModalBody"></div>
     </div>
   </div>
+
+  <!-- FLOATING VS COMPARE TRAY (NotebookSpec-style quick compare bar) -->
+  <div class="floating-vs-tray" id="floatingVsTray"></div>
 
   <!-- Toast Notification -->
   <div class="apple-toast" id="appleToast">✓ คัดลอกเรียบร้อยแล้ว</div>
@@ -3986,10 +4342,8 @@
       }
 
       const base = product.price;
-      const shopeeOrigin = `https://shopee.co.th/search?keyword=${encodeURIComponent(product.name)}`;
-      const shopeeUrl = `https://s.shopee.co.th/an_redir?origin_link=${encodeURIComponent(shopeeOrigin)}&affiliate_id=${shopeeAffId}&sub_id=${cleanSubId}----`;
-      const lazExlaz = 'e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D';
-      const lazadaUrl = `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(product.name)}&exlaz=${lazExlaz}&dsource=share&laz_share_info=4161151791_1_9300_110172189818_4161153791_null&laz_token=08d572ad001a0d070782467eba3d16d9&sub_id1=${cleanSubId}&aff_id=${lazadaId}`;
+      const shopeeUrl = buildScaledLink('shopee', product._scaledQuery || product.name);
+      const lazadaUrl = buildScaledLink('lazada', product._scaledQuery || product.name);
 
       return [
         {
@@ -4682,12 +5036,230 @@
       renderLineup(cat);
     }
 
+    // =========================================================================
+    // NOTEBOOKSPEC-STYLE FACETED SPEC SEARCH ENGINE (ALL 32 CATEGORIES)
+    // =========================================================================
+    let activeFacetFilters = {
+      brands: [],
+      priceTiers: [],
+      spec0: [],
+      spec1: [],
+      spec2: []
+    };
+    let categorySpecSearchQuery = '';
+    let categorySortMode = 'recommended';
+    let lineupDisplayLayout = 'list'; // 'list' (NotebookSpec compact row) or 'card' (3-column card)
+    let vsCompareQueue = []; // Up to 2 product IDs for instant VS comparison
+
+    const KNOWN_BRANDS = [
+      'Apple', 'Samsung', 'Xiaomi', 'POCO', 'Vivo', 'iQOO', 'OPPO', 'Realme', 'Honor', 'Infinix',
+      'TCL', 'Hisense', 'Mitsubishi Heavy', 'Mitsubishi', 'Daikin', 'Carrier', 'Haier',
+      'LG', 'Sony', 'ASUS', 'Lenovo', 'HP', 'Acer', 'Dell', 'MSI',
+      'Hitachi', 'Toshiba', 'Electrolux', 'Roborock', 'Dreame', 'Ecovacs', 'Dyson', 'Deerma',
+      'Stiebel Eltron', 'Panasonic', 'Sharp', 'Coway', 'Philips', 'Tefal', 'Gaabor', 'Simplus',
+      'Nespresso', 'DeLonghi', 'Duchess', 'Garmin', 'Huawei', 'Amazfit',
+      'Bose', 'Edifier', 'JBL', 'Marshall', 'Harman Kardon',
+      'DJI', 'Insta360', 'GoPro', 'Sihoo', 'Anda Seat', 'Ergotrend', 'Furradec', 'Lesasha',
+      'Biore', 'MizuMi', 'La Roche-Posay', 'Anessa', 'Smooth E', 'Vichy', 'AloEx', 'Clear',
+      'Dentiste', 'Sensodyne', 'Colgate', 'Tepthai', 'Eucerin', 'Bioderma', 'Dettol', 'Babi Mild',
+      'Blackmores', 'DHC', 'Vistra', 'MEGA We care', 'Optimum Nutrition', 'Dymatize', 'Matell', 'Plantae',
+      'Swisse', 'Life Space', 'Bomi', 'Kaniva', 'Purina ONE', 'Royal Canin', 'Maxima',
+      'SmartHeart', 'JerHigh', 'Kasty', 'Ciao', 'Me-O'
+    ];
+
+    function extractProductBrand(p) {
+      const text = `${p.name || ''} ${p.eyebrow || ''}`;
+      for (const b of KNOWN_BRANDS) {
+        if (text.toLowerCase().includes(b.toLowerCase())) {
+          if (b === 'Mitsubishi' && text.toLowerCase().includes('heavy')) return 'Mitsubishi Heavy';
+          if (b === 'Apple' || text.toLowerCase().includes('iphone') || text.toLowerCase().includes('ipad') || text.toLowerCase().includes('macbook') || text.toLowerCase().includes('airpods')) return 'Apple';
+          return b;
+        }
+      }
+      if (/iphone|ipad|macbook|airpods/i.test(text)) return 'Apple';
+      return (p.name || '').split(' ')[0] || 'อื่นๆ';
+    }
+
+    function buildFacetSchemaForCategory(cat, decisionProducts) {
+      const products = decisionProducts && decisionProducts.length > 0 ? decisionProducts : cat.products;
+      const brandsMap = new Map();
+      const spec0Map = new Map();
+      const spec1Map = new Map();
+      const spec2Map = new Map();
+
+      products.forEach(p => {
+        const b = extractProductBrand(p);
+        brandsMap.set(b, (brandsMap.get(b) || 0) + 1);
+
+        const s0 = (p.specs[0]?.big || '').trim();
+        if (s0) spec0Map.set(s0, (spec0Map.get(s0) || 0) + 1);
+
+        const s1 = (p.specs[1]?.big || '').trim();
+        if (s1) spec1Map.set(s1, (spec1Map.get(s1) || 0) + 1);
+
+        const s2 = (p.specs[2]?.big || '').trim();
+        if (s2) spec2Map.set(s2, (spec2Map.get(s2) || 0) + 1);
+      });
+
+      // Price sub-brackets based on category price range
+      const prices = products.map(p => p.price);
+      const minP = Math.min(...prices);
+      const maxP = Math.max(...prices);
+      let priceBrackets = [];
+      if (cat.id === 'smartphone' && cat.budgets) {
+        priceBrackets = cat.budgets.filter(b => b.id !== 'all').map(b => ({
+          id: b.id,
+          label: b.label.replace(/🔥\s*/, '').replace(/\s*\(.*?\)/, ''),
+          min: b.min,
+          max: b.max,
+          count: products.filter(p => p.price >= b.min && p.price <= b.max).length
+        })).filter(b => b.count > 0);
+      } else if (maxP - minP > 100) {
+        const mid1 = Math.round((minP + (maxP - minP) * 0.36) / 50) * 50;
+        const mid2 = Math.round((minP + (maxP - minP) * 0.72) / 50) * 50;
+        priceBrackets = [
+          { id: 'p_low', label: `ประหยัดคุ้มงบ (≤ ${formatTHB(mid1)})`, min: 0, max: mid1 },
+          { id: 'p_mid', label: `กลางตารางขายดี (${formatTHB(mid1 + 1)} – ${formatTHB(mid2)})`, min: mid1 + 1, max: mid2 },
+          { id: 'p_high', label: `ตัวท็อปพรีเมียม (> ${formatTHB(mid2)})`, min: mid2 + 1, max: 9999999 }
+        ].map(b => ({
+          ...b,
+          count: products.filter(p => p.price >= b.min && p.price <= b.max).length
+        })).filter(b => b.count > 0);
+      }
+
+      const topics = SPEC_TOPICS_BY_CAT[cat.id] || ['📌 สเปกหลักที่ 1', '📌 สเปกหลักที่ 2', '🛡️ การรับประกัน / ความคุ้มค่า'];
+      return {
+        brands: Array.from(brandsMap.entries()).map(([val, count]) => ({ val, count })),
+        priceBrackets,
+        specGroups: [
+          { key: 'spec0', title: topics[0], items: Array.from(spec0Map.entries()).map(([val, count]) => ({ val, count })) },
+          { key: 'spec1', title: topics[1], items: Array.from(spec1Map.entries()).map(([val, count]) => ({ val, count })) },
+          { key: 'spec2', title: topics[2], items: Array.from(spec2Map.entries()).map(([val, count]) => ({ val, count })) }
+        ]
+      };
+    }
+
+    function toggleFacetCheckbox(groupKey, val) {
+      const arr = activeFacetFilters[groupKey] || [];
+      const idx = arr.indexOf(val);
+      if (idx >= 0) {
+        arr.splice(idx, 1);
+      } else {
+        arr.push(val);
+      }
+      activeFacetFilters[groupKey] = arr;
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function clearAllFacetFilters() {
+      activeFacetFilters = { brands: [], priceTiers: [], spec0: [], spec1: [], spec2: [] };
+      categorySpecSearchQuery = '';
+      const sInput = document.getElementById('categorySpecSearchInput');
+      if (sInput) sInput.value = '';
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function setCategorySpecSearch(val) {
+      categorySpecSearchQuery = (val || '').trim();
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function setCategorySortMode(mode) {
+      categorySortMode = mode || 'recommended';
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function setLineupDisplayLayout(layout) {
+      lineupDisplayLayout = layout === 'card' ? 'card' : 'list';
+      const btnList = document.getElementById('btnLayoutList');
+      const btnCard = document.getElementById('btnLayoutCard');
+      if (btnList) btnList.classList.toggle('active', lineupDisplayLayout === 'list');
+      if (btnCard) btnCard.classList.toggle('active', lineupDisplayLayout === 'card');
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function toggleMobileSpecSidebar() {
+      const sb = document.getElementById('nbsSpecSidebar');
+      if (sb) sb.classList.toggle('mobile-open');
+    }
+
+    function toggleVsCompareItem(prodId) {
+      const idx = vsCompareQueue.indexOf(prodId);
+      if (idx >= 0) {
+        vsCompareQueue.splice(idx, 1);
+      } else {
+        if (vsCompareQueue.length >= 2) {
+          vsCompareQueue.shift();
+        }
+        vsCompareQueue.push(prodId);
+      }
+      renderFloatingVsTray();
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function launchVsFromTray() {
+      if (vsCompareQueue.length === 0) return;
+      const cat = getCategory(activeCategoryId);
+      const idA = vsCompareQueue[0];
+      const idB = vsCompareQueue[1] || (cat.products.find(p => p.id !== idA)?.id || idA);
+      selectComparePair(idA, idB);
+      setViewMode('compare');
+      document.getElementById('viewCompare').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function clearVsTray() {
+      vsCompareQueue = [];
+      renderFloatingVsTray();
+      renderLineup(getCategory(activeCategoryId));
+    }
+
+    function renderFloatingVsTray() {
+      const tray = document.getElementById('floatingVsTray');
+      if (!tray) return;
+      if (vsCompareQueue.length === 0 || isHomeMode) {
+        tray.classList.remove('open');
+        tray.innerHTML = '';
+        return;
+      }
+      const cat = getCategory(activeCategoryId);
+      const items = vsCompareQueue.map(id => cat.products.find(p => p.id === id)).filter(Boolean);
+      if (items.length === 0) {
+        tray.classList.remove('open');
+        return;
+      }
+      tray.classList.add('open');
+      tray.innerHTML = `
+        <span style="font-size:12.5px;font-weight:800;color:#86efac;">⚖️ เทียบหมัดต่อหมัด (${items.length}/2):</span>
+        ${items.map(item => `
+          <span style="background:rgba(255,255,255,0.12);padding:4px 10px;border-radius:99px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+            ${item.name.split('(')[0].trim()}
+            <button onclick="toggleVsCompareItem('${item.id}')" style="background:none;border:none;color:#fca5a5;cursor:pointer;font-weight:800;font-size:12px;">✕</button>
+          </span>
+        `).join('<span style="color:#86efac;font-weight:800;font-size:11px;">VS</span>')}
+        <button onclick="launchVsFromTray()" style="background:#16a34a;color:#fff;border:none;padding:6px 14px;border-radius:99px;font-size:12px;font-weight:800;cursor:pointer;">
+          ⚔️ ดูตารางเทียบสเปกทันที &gt;
+        </button>
+        <button onclick="clearVsTray()" style="background:transparent;border:none;color:#9ca3af;font-size:11.5px;cursor:pointer;">ล้าง</button>
+      `;
+    }
+
     function selectCategory(catId, skipScroll = false, initialDecisionId = null) {
       isHomeMode = false;
       activeCategoryId = catId;
       customMin = null;
       customMax = null;
       activeUseCase = 'all';
+      activeFacetFilters = { brands: [], priceTiers: [], spec0: [], spec1: [], spec2: [] };
+      categorySpecSearchQuery = '';
+      categorySortMode = 'recommended';
+      vsCompareQueue = [];
+      renderFloatingVsTray();
+
+      const sInput = document.getElementById('categorySpecSearchInput');
+      if (sInput) sInput.value = '';
+      const sSort = document.getElementById('categorySortSelect');
+      if (sSort) sSort.value = 'recommended';
+
       const cat = getCategory(catId);
       const decCfg = getPrimaryDecisionConfig(cat);
 
@@ -4702,8 +5274,8 @@
       // Collapse advanced filters drawer by default when entering a new category
       toggleAdvancedFilters(false);
 
-      // Default to the category's real-world primary decision option (e.g. 12,000 BTU for Aircon, 65" for TV, 10k-15k for Smartphone)
-      activeBudgetTier = initialDecisionId || decCfg.defaultId || 'all';
+      // Default to 'all' on Smartphones when browsing the NotebookSpec-style finder unless a specific bracket was clicked from Home
+      activeBudgetTier = initialDecisionId || (catId === 'smartphone' ? 'all' : (decCfg.defaultId || 'all'));
 
       document.querySelectorAll('#globalNavPillars .global-nav-item[data-pillar]').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.pillar === cat.pillar);
@@ -4789,6 +5361,10 @@
       activeBudgetTier = tierId;
       customMin = null;
       customMax = null;
+      // Clear spec0/spec1/spec2 facets when switching BTU or TV size so scaled specs don't conflict
+      activeFacetFilters.spec0 = [];
+      activeFacetFilters.spec1 = [];
+      activeFacetFilters.spec2 = [];
       const cat = getCategory(activeCategoryId);
       const decCfg = getPrimaryDecisionConfig(cat);
       const bObj = (decCfg.options || []).find(b => b.id === tierId);
@@ -4827,7 +5403,8 @@
     function resetPriceFilter() {
       const cat = getCategory(activeCategoryId);
       const decCfg = getPrimaryDecisionConfig(cat);
-      setBudgetTier(decCfg.defaultId || 'all');
+      clearAllFacetFilters();
+      setBudgetTier(cat.id === 'smartphone' ? 'all' : (decCfg.defaultId || 'all'));
     }
 
     function setViewMode(mode) {
@@ -4975,6 +5552,10 @@
       return { score, reason };
     }
 
+    function getTotalProductSpecScore(p) {
+      return (p.specs || []).reduce((acc, s, idx) => acc + extractSpecScore(s, p, idx).score, 0);
+    }
+
     function evaluateSpecWinner(sA, sB, pA, pB, specIdx) {
       const evalA = extractSpecScore(sA, pA, specIdx);
       const evalB = extractSpecScore(sB, pB, specIdx + 1);
@@ -5005,23 +5586,194 @@
     }
 
     // =========================================================================
-    // RENDER LINEUP + GREEN WINNER SUMMARY + SPEC GREEN HIGHLIGHTS
+    // RENDER FACETED SIDEBAR + LINEUP + GREEN WINNER SUMMARY
     // =========================================================================
+    function renderSpecSidebarAndChips(cat, baseProducts, facetSchema) {
+      const sbContainer = document.getElementById('nbsSidebarGroupsContainer');
+      const chipsContainer = document.getElementById('nbsActiveFilterChips');
+      const mobileBadge = document.getElementById('mobileFacetCountBadge');
+      if (!sbContainer) return;
+
+      const escapeAttr = (str) => String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+      let html = '';
+
+      // Group 1: Brand Filter
+      if (facetSchema.brands.length > 0) {
+        html += `
+          <div class="nbs-filter-group">
+            <div class="nbs-filter-group-title">
+              <span>🏷️ แบรนด์ (${facetSchema.brands.length})</span>
+            </div>
+            <div class="nbs-check-list">
+              ${facetSchema.brands.map(b => {
+                const isChecked = activeFacetFilters.brands.includes(b.val);
+                return `
+                  <label class="nbs-check-item ${isChecked ? 'checked' : ''}">
+                    <span class="nbs-check-label">
+                      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleFacetCheckbox('brands', '${escapeAttr(b.val)}')" />
+                      <span>${b.val}</span>
+                    </span>
+                    <span class="nbs-check-count">${b.count}</span>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Group 2: Price Range Sub-Brackets
+      if (facetSchema.priceBrackets.length > 0) {
+        html += `
+          <div class="nbs-filter-group">
+            <div class="nbs-filter-group-title">
+              <span>💰 ช่วงราคา</span>
+            </div>
+            <div class="nbs-check-list">
+              ${facetSchema.priceBrackets.map(pb => {
+                const isChecked = activeFacetFilters.priceTiers.includes(pb.id);
+                return `
+                  <label class="nbs-check-item ${isChecked ? 'checked' : ''}">
+                    <span class="nbs-check-label">
+                      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleFacetCheckbox('priceTiers', '${escapeAttr(pb.id)}')" />
+                      <span>${pb.label}</span>
+                    </span>
+                    <span class="nbs-check-count">${pb.count}</span>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Groups 3, 4, 5: Category-Specific Spec Rows (Spec 0, Spec 1, Spec 2)
+      facetSchema.specGroups.forEach(sg => {
+        if (!sg.items || sg.items.length === 0) return;
+        html += `
+          <div class="nbs-filter-group">
+            <div class="nbs-filter-group-title">
+              <span>${sg.title}</span>
+            </div>
+            <div class="nbs-check-list">
+              ${sg.items.map(it => {
+                const isChecked = (activeFacetFilters[sg.key] || []).includes(it.val);
+                return `
+                  <label class="nbs-check-item ${isChecked ? 'checked' : ''}">
+                    <span class="nbs-check-label">
+                      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleFacetCheckbox('${sg.key}', '${escapeAttr(it.val)}')" />
+                      <span>${it.val}</span>
+                    </span>
+                    <span class="nbs-check-count">${it.count}</span>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      sbContainer.innerHTML = html;
+
+      // Active Filter Chips Bar
+      const activeChips = [];
+      activeFacetFilters.brands.forEach(v => activeChips.push({ group: 'brands', val: v, label: `แบรนด์: ${v}` }));
+      activeFacetFilters.priceTiers.forEach(v => {
+        const pb = facetSchema.priceBrackets.find(b => b.id === v);
+        activeChips.push({ group: 'priceTiers', val: v, label: pb ? pb.label : v });
+      });
+      ['spec0', 'spec1', 'spec2'].forEach(k => {
+        (activeFacetFilters[k] || []).forEach(v => activeChips.push({ group: k, val: v, label: v }));
+      });
+
+      if (mobileBadge) {
+        mobileBadge.textContent = activeChips.length > 0 ? `(${activeChips.length})` : '';
+      }
+
+      if (chipsContainer) {
+        if (activeChips.length === 0 && !categorySpecSearchQuery) {
+          chipsContainer.innerHTML = '';
+        } else {
+          chipsContainer.innerHTML = `
+            <span style="font-size:12px;font-weight:700;color:var(--text-sub);">ตัวกรองที่เลือก:</span>
+            ${categorySpecSearchQuery ? `
+              <span class="nbs-chip" onclick="setCategorySpecSearch(''); document.getElementById('categorySpecSearchInput').value='';">
+                🔍 "${categorySpecSearchQuery}" ✕
+              </span>
+            ` : ''}
+            ${activeChips.map(c => `
+              <span class="nbs-chip" onclick="toggleFacetCheckbox('${c.group}', '${escapeAttr(c.val)}')">
+                ✓ ${c.label} ✕
+              </span>
+            `).join('')}
+            <button class="helper-link" style="font-size:12px;color:#dc2626;font-weight:700;margin-left:4px;" onclick="clearAllFacetFilters()">ล้างทั้งหมด</button>
+          `;
+        }
+      }
+    }
+
     function renderLineup(cat) {
-      let filtered = [];
+      let baseProducts = [];
       let currentMaxPrice = 999999;
       const decCfg = getPrimaryDecisionConfig(cat);
       const activeDecOpt = (decCfg.options || []).find(o => o.id === activeBudgetTier);
       const decisionProducts = getProductsForCategoryDecision(cat, activeBudgetTier);
 
       if (customMin !== null || customMax !== null) {
-        filtered = decisionProducts.filter(p => p.price >= customMin && p.price <= customMax);
+        baseProducts = decisionProducts.filter(p => p.price >= customMin && p.price <= customMax);
         currentMaxPrice = customMax;
       } else {
-        filtered = decisionProducts;
+        baseProducts = decisionProducts;
         if (decCfg.useBudgets && activeDecOpt && activeDecOpt.max) {
           currentMaxPrice = activeDecOpt.max;
         }
+      }
+
+      // Build facet schema from the active decision set & render left sidebar
+      const facetSchema = buildFacetSchemaForCategory(cat, baseProducts);
+      renderSpecSidebarAndChips(cat, baseProducts, facetSchema);
+
+      // Apply Faceted Checkboxes & Keyword Search
+      let filtered = baseProducts.filter(p => {
+        if (activeFacetFilters.brands.length > 0) {
+          const b = extractProductBrand(p);
+          if (!activeFacetFilters.brands.includes(b)) return false;
+        }
+        if (activeFacetFilters.priceTiers.length > 0) {
+          const matchesPriceTier = activeFacetFilters.priceTiers.some(tid => {
+            const pb = facetSchema.priceBrackets.find(b => b.id === tid);
+            return pb && p.price >= pb.min && p.price <= pb.max;
+          });
+          if (!matchesPriceTier) return false;
+        }
+        if (activeFacetFilters.spec0.length > 0) {
+          const s0 = (p.specs[0]?.big || '').trim();
+          if (!activeFacetFilters.spec0.includes(s0)) return false;
+        }
+        if (activeFacetFilters.spec1.length > 0) {
+          const s1 = (p.specs[1]?.big || '').trim();
+          if (!activeFacetFilters.spec1.includes(s1)) return false;
+        }
+        if (activeFacetFilters.spec2.length > 0) {
+          const s2 = (p.specs[2]?.big || '').trim();
+          if (!activeFacetFilters.spec2.includes(s2)) return false;
+        }
+        if (categorySpecSearchQuery) {
+          const q = categorySpecSearchQuery.toLowerCase();
+          const hay = `${p.name} ${p.eyebrow} ${p.tagline} ${p.verdict} ${(p.specs || []).map(s => `${s.big} ${s.label}`).join(' ')}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      // Apply Sort Order
+      if (categorySortMode === 'price_asc') {
+        filtered = [...filtered].sort((a, b) => a.price - b.price);
+      } else if (categorySortMode === 'price_desc') {
+        filtered = [...filtered].sort((a, b) => b.price - a.price);
+      } else if (categorySortMode === 'spec_score') {
+        filtered = [...filtered].sort((a, b) => getTotalProductSpecScore(b) - getTotalProductSpecScore(a));
       }
 
       // Smart Stretch Advisor
@@ -5045,19 +5797,20 @@
       }
 
       const activeChoiceTitle = (activeDecOpt && activeDecOpt.id !== 'all') ? ` (${activeDecOpt.label})` : '';
-      document.getElementById('lineupTitle').textContent = `เทียบ${cat.name}${activeChoiceTitle}: รุ่นไหนชนะ?`;
-      document.getElementById('resultCountBadge').textContent = `เทียบทั้งหมด ${filtered.length} รุ่น`;
+      document.getElementById('lineupTitle').textContent = `ค้นหาและเทียบสเปก${cat.name}${activeChoiceTitle}`;
+      document.getElementById('resultCountBadge').textContent = `พบ ${filtered.length} รุ่น (จาก ${baseProducts.length} รุ่น)`;
 
       const summaryBox = document.getElementById('categoryWinnerSummaryBox');
       const grid = document.getElementById('lineupGrid');
       if (filtered.length === 0) {
         if (summaryBox) summaryBox.innerHTML = '';
+        grid.className = 'apple-lineup-grid';
         grid.innerHTML = `
           <div style="grid-column:1/-1;background:#fff;border-radius:22px;padding:40px;text-align:center;">
             <div style="font-size:40px;margin-bottom:10px;">🔍</div>
-            <h3 style="font-size:20px;margin-bottom:6px;">ไม่พบรุ่นในช่วงงบที่ระบุ</h3>
-            <p style="color:var(--text-sub);font-size:14px;margin-bottom:16px;">ลองปรับขยายช่วงงบประมาณ หรือกดดูทุกรุ่นที่แนะนำในหมวดนี้</p>
-            <button class="btn-apple-primary" onclick="resetPriceFilter()" style="max-width:200px;">ดูทุกรุ่นในหมวดนี้</button>
+            <h3 style="font-size:20px;margin-bottom:6px;">ไม่พบรุ่นที่ตรงกับสเปกที่ติ๊กเลือก</h3>
+            <p style="color:var(--text-sub);font-size:14px;margin-bottom:16px;">ลองเอาเครื่องหมายถูกบางข้อในแถบด้านซ้ายออก หรือกดล้างตัวกรองเพื่อดูทุกรุ่น</p>
+            <button class="btn-apple-primary" onclick="clearAllFacetFilters()" style="max-width:220px;">ล้างตัวกรองสเปกทั้งหมด</button>
           </div>
         `;
         return;
@@ -5070,7 +5823,7 @@
 
       const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
       const budgetWinner = sortedByPrice[0];
-      const specWinner = sortedByPrice[sortedByPrice.length - 1];
+      const specWinner = [...filtered].sort((a, b) => getTotalProductSpecScore(b) - getTotalProductSpecScore(a))[0] || sortedByPrice[sortedByPrice.length - 1];
       let valueWinner = (filtered[0] && filtered[0]._isDecisionWinner)
         ? filtered[0]
         : getBestValueProduct(filtered, cat);
@@ -5103,7 +5856,7 @@
                   🟢 สรุปฟันธงจาก yespec • อันไหนชนะ &amp; เพราะอะไร?
                 </span>
                 <h3 style="font-size:21px;font-weight:800;color:#14532d;margin:0;">
-                  โพยตัวชนะหมวด${cat.name}${activeChoiceTitle} (เทียบสเปกจริง + ชี้เป้าตะกร้าที่ถูกที่สุด)
+                  โพยตัวชนะหมวด${cat.name}${activeChoiceTitle} (คำนวณสดตามตัวกรองที่คุณเลือก • ${filtered.length} รุ่น)
                 </h3>
               </div>
               <button class="budget-pill" style="border-color:#16a34a;color:#15803d;font-weight:700;background:#fff;" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})">
@@ -5169,7 +5922,116 @@
         `;
       }
 
-      // Compute winning product per spec row index (0, 1, 2) within each 3-card group so every card shows green winning specs
+      // MODE A: NOTEBOOKSPEC-STYLE COMPACT HORIZONTAL SPEC ROWS
+      if (lineupDisplayLayout === 'list') {
+        grid.className = 'nbs-spec-list';
+        grid.innerHTML = filtered.map((p, idx) => {
+          const isCardWinner = (p.id === valueWinner.id);
+          const groupStart = Math.floor(idx / 3) * 3;
+          const groupPeers = filtered.slice(groupStart, groupStart + 3);
+
+          const offers = getStoresForProduct(p);
+          const bestOffer = offers[0] || { netPrice: p.price, originalPrice: Math.round(p.price * 1.15), url: '#', platform: 'shopee' };
+          const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
+          const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
+          const isShopeeCheapest = shopeeOffer.netPrice <= lazadaOffer.netPrice;
+          const isLazadaCheapest = !isShopeeCheapest;
+
+          const livePrice = bestOffer.netPrice || p.price;
+          const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || Math.round(livePrice * 1.16));
+          const imgUrl = p.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
+          const thumbHtml = imgUrl
+            ? `<img src="${imgUrl}" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" onerror="this.outerHTML='<span style=\\'font-size:38px;\\'>${cat.icon}</span>'" />`
+            : `<span style="font-size:38px;">${p.emoji || cat.icon}</span>`;
+
+          const isVsSelected = vsCompareQueue.includes(p.id);
+          const brandName = extractProductBrand(p);
+
+          return `
+            <article class="nbs-spec-row-card ${isCardWinner ? 'winner-green-row' : ''}">
+              <!-- Col 1: Product Image + Rank/Brand -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <a href="${bestOffer.url}" target="_blank" rel="noopener" class="nbs-row-thumb" title="ไปที่ตะกร้าสินค้าจริง">
+                  ${thumbHtml}
+                </a>
+                <button class="nbs-vs-check-btn ${isVsSelected ? 'active' : ''}" onclick="toggleVsCompareItem('${p.id}')">
+                  ${isVsSelected ? '✓ เลือกเทียบแล้ว' : '+ เทียบ VS'}
+                </button>
+              </div>
+
+              <!-- Col 2: Title, Brand Tag, Winner Verdict -->
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                  <span style="font-size:11px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
+                  ${p.bracketLabel ? `<span style="font-size:11px;font-weight:700;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:99px;">${p.bracketLabel}</span>` : ''}
+                  ${isCardWinner ? `<span style="font-size:11px;font-weight:800;background:#16a34a;color:#fff;padding:2px 10px;border-radius:99px;">🏆 อันดับ #1 แนะนำในตัวกรองนี้</span>` : ''}
+                </div>
+                <h3 style="font-size:17px;font-weight:800;color:var(--text-main);margin:0;line-height:1.3;">
+                  ${p.name}
+                </h3>
+                <div style="font-size:12.5px;color:var(--text-sub);line-height:1.4;">
+                  ${p.tagline}
+                </div>
+                <div style="font-size:12px;color:#14532d;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:6px 10px;margin-top:2px;line-height:1.45;">
+                  🟢 <strong>ทำไมรุ่นนี้ชนะ:</strong> ${p.verdict}
+                </div>
+              </div>
+
+              <!-- Col 3: Standardized 3-Row Spec Matrix with Green Highlights -->
+              <div class="nbs-spec-matrix">
+                ${p.specs.map((s, sIdx) => {
+                  const myScore = extractSpecScore(s, p, sIdx).score;
+                  const maxPeerScore = Math.max(...groupPeers.map(peer => {
+                    const ps = peer.specs[sIdx] || { big: '', label: '' };
+                    return extractSpecScore(ps, peer, sIdx).score;
+                  }));
+                  const isSpecWin = myScore >= maxPeerScore - 0.01;
+                  const topicLabel = getSpecTopic(cat.id, sIdx);
+                  return `
+                    <div class="nbs-spec-pill-box ${isSpecWin ? 'spec-win-green' : ''}">
+                      <div style="display:flex;justify-content:space-between;align-items:center;gap:4px;">
+                        <span style="font-size:10.5px;font-weight:700;color:${isSpecWin ? '#14532d' : '#64748b'};">${topicLabel}</span>
+                        ${isSpecWin ? `<span style="background:#16a34a;color:#fff;font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:99px;">🟢 ชนะข้อนี้</span>` : ''}
+                      </div>
+                      <div style="font-size:12.5px;font-weight:800;color:${isSpecWin ? '#15803d' : 'var(--text-main)'};">
+                        ${s.big} <span style="font-weight:500;color:var(--text-sub);font-size:11.5px;">• ${s.label}</span>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <!-- Col 4: Price + Direct Shopee Mall vs LazMall Cart Buttons -->
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:stretch;">
+                <div style="text-align:right;">
+                  <div style="font-size:11px;color:var(--text-sub);font-weight:600;">ราคาตะกร้าถูกสุด</div>
+                  <div style="font-size:21px;font-weight:800;color:#15803d;line-height:1.15;">
+                    ${formatTHB(livePrice)}
+                  </div>
+                  <div style="font-size:11.5px;color:var(--text-light);text-decoration:line-through;">
+                    ${formatTHB(prevMonthPrice)}
+                  </div>
+                </div>
+                <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:8px 10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+                  <span>🟠 Shopee ${isShopeeCheapest ? '🏆' : ''}</span>
+                  <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
+                </a>
+                <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:8px 10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+                  <span>🔵 LazMall ${isLazadaCheapest ? '🏆' : ''}</span>
+                  <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
+                </a>
+                <button class="btn-apple-link" style="font-size:11.5px;font-weight:700;text-align:center;margin-top:2px;" onclick="jumpToCompareWith('${p.id}')">
+                  ⚔️ เทียบตัวต่อตัว &gt;
+                </button>
+              </div>
+            </article>
+          `;
+        }).join('');
+        return;
+      }
+
+      // MODE B: 3-COLUMN APPLE CARD VIEW
+      grid.className = 'apple-lineup-grid';
       grid.innerHTML = filtered.map((p, idx) => {
         const isCardWinner = (p.id === valueWinner.id) || (
           selectedUcObj && selectedUcObj.id !== 'all' && (
@@ -6119,6 +6981,7 @@
     // =========================================================================
     function showHomeHub() {
       isHomeMode = true;
+      renderFloatingVsTray();
       const homeSec = document.getElementById('homeHubSection');
       const catSec = document.getElementById('categoryViewSection');
       if (homeSec) homeSec.style.display = 'block';
@@ -6139,8 +7002,16 @@
     }
 
     function jumpToCategoryBracket(catId, tierId) {
-      selectCategory(catId, true);
+      selectCategory(catId, true, tierId);
       setBudgetTier(tierId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function jumpToCategoryWithSearch(catId, queryText) {
+      selectCategory(catId, true, 'all');
+      const sInput = document.getElementById('categorySpecSearchInput');
+      if (sInput) sInput.value = queryText;
+      setCategorySpecSearch(queryText);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -6156,19 +7027,34 @@
       const matchedCats = CATEGORIES.filter(c =>
         c.name.toLowerCase().includes(q) ||
         c.heroSub.toLowerCase().includes(q) ||
-        c.products.some(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q))
+        c.products.some(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q) || (p.specs || []).some(s => `${s.big} ${s.label}`.toLowerCase().includes(q)))
       ).slice(0, 6);
 
-      if (matchedCats.length === 0) {
+      const matchedProds = [];
+      CATEGORIES.forEach(c => {
+        c.products.forEach(p => {
+          if (matchedProds.length < 4 && (p.name.toLowerCase().includes(q) || p.eyebrow.toLowerCase().includes(q))) {
+            matchedProds.push({ cat: c, prod: p });
+          }
+        });
+      });
+
+      if (matchedCats.length === 0 && matchedProds.length === 0) {
         resBox.innerHTML = `<div style="font-size:13px;color:var(--text-sub);">ไม่พบหมวดที่ตรงกัน — กดปุ่ม "ค้นหา" เพื่อดูสารบัญทั้งหมด 32 หมวด</div>`;
         return;
       }
 
+      const safeQ = q.replace(/'/g, "\\'");
       resBox.innerHTML = `
         <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:4px;">
           ${matchedCats.map(c => `
-            <button class="clean-quick-pill" style="background:#16a34a;color:#fff;border-color:#16a34a;" onclick="selectCategory('${c.id}')">
-              ${c.icon} ${c.name} &gt;
+            <button class="clean-quick-pill" style="background:#16a34a;color:#fff;border-color:#16a34a;font-weight:700;" onclick="selectCategory('${c.id}')">
+              🎛️ กรองสเปกหมวด ${c.icon} ${c.name} (${c.products.length} รุ่น) &gt;
+            </button>
+          `).join('')}
+          ${matchedProds.map(mp => `
+            <button class="clean-quick-pill" style="background:#f0fdf4;color:#14532d;border-color:#86efac;font-weight:700;" onclick="jumpToCategoryWithSearch('${mp.cat.id}', '${safeQ}')">
+              ${mp.cat.icon} ${mp.prod.name} (${formatTHB(mp.prod.price)}) &gt;
             </button>
           `).join('')}
         </div>
