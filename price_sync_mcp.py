@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
-yespec — Daily Price Sync & MCP Server (Shopee, Lazada & TikTok Shop)
+yespec — Daily Price Sync & MCP Server (Shopee Mall & Lazada LazMall)
 ======================================================================
 ผูกบัญชีจริงเรียบร้อยแล้ว:
 - Shopee Affiliate ID: 15385610012 (orkid8931) -> Official Gateway: s.shopee.co.th/an_redir
 - Lazada Member ID:    267671179 (kidpuvaphat / Referral: AM86gKgj) -> Official exlaz Tracking
-- TikTok Shop ID:      7494223478418605779 (Kid Puvaphat)
 """
 
 from __future__ import annotations
@@ -39,7 +38,6 @@ def load_affiliate_config(base_dir: Path) -> dict:
         "lazada_exlaz": "e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D",
         "lazada_share_info": "4161151791_1_9300_110172189818_4161153791_null",
         "lazada_token": "08d572ad001a0d070782467eba3d16d9",
-        "tiktok_aff_id": "7494223478418605779",
     }
     if cfg_path.exists():
         try:
@@ -159,7 +157,7 @@ def build_lazada_official_link(product_name: str, cfg: dict, clean_sub_id: str) 
 
 def run_daily_price_sync(silent: bool = False) -> dict:
     """
-    รันอัปเดตราคาสินค้าครบทั้ง 22 หมวด (100 รุ่น) สำหรับ 3 ช่องทาง (Shopee, Lazada, TikTok Shop)
+    รันอัปเดตราคาสินค้าครบทั้ง 32 หมวดสำหรับ 2 ช่องทางหลัก (Shopee Mall & Lazada LazMall)
     """
     start_ts = time.time()
     base_dir = Path(__file__).parent
@@ -170,7 +168,6 @@ def run_daily_price_sync(silent: bool = False) -> dict:
     app_id = os.environ.get("SHOPEE_APP_ID") or cfg.get("shopee_app_id", "")
     secret = os.environ.get("SHOPEE_SECRET") or cfg.get("shopee_secret", "")
     shopee_aff_id = os.environ.get("SHOPEE_AFF_ID") or cfg.get("shopee_aff_id", "15385610012")
-    tiktok_id = os.environ.get("TIKTOK_AFF_ID") or cfg.get("tiktok_aff_id", "7494223478418605779")
 
     mode = "LIVE_SHOPEE_GRAPHQL_API" if (app_id and secret) else "OFFICIAL_AFFILIATE_GATEWAY_ACTIVE"
 
@@ -198,7 +195,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
         live_node = fetch_shopee_affiliate_offer(name, app_id, secret)
 
         if not live_node and existing_rec and existing_rec.get("stores_sorted"):
-            # Preserve direct product cart links, real prices, and store vouchers
+            existing_rec["stores_sorted"] = [s for s in existing_rec["stores_sorted"] if s.get("platform") != "tiktok"]
             existing_rec["synced_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             synced_items.append(existing_rec)
             items_by_id[pid] = existing_rec
@@ -214,10 +211,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
             commission_rate = "3.5% - 8.0%"
 
         lazada_price = round((shopee_price * 1.015) / 100) * 100 or (shopee_price + 50)
-        tiktok_price = round((shopee_price * 1.02) / 100) * 100 or (shopee_price + 70)
-
         lazada_link = build_lazada_official_link(name, cfg, clean_sub_id)
-        tiktok_link = f"https://shop.tiktok.com/th/c/phones-electronics/601739?q={urllib.parse.quote(name)}&aff_sub={clean_sub_id}&aff_id={tiktok_id}"
 
         stores = sorted(
             [
@@ -229,8 +223,6 @@ def run_daily_price_sync(silent: bool = False) -> dict:
                     "original_price": round(shopee_price * 1.15),
                     "discount_pct": "-15%",
                     "shipping": "ส่งฟรี • ผ่อน 0% 10 เดือน",
-                    "coupon": "SPYMALL15",
-                    "coupon_label": "ร้านทางการ Shopee Mall",
                     "is_direct_product": True,
                     "link": shopee_link,
                 },
@@ -242,23 +234,8 @@ def run_daily_price_sync(silent: bool = False) -> dict:
                     "original_price": round(lazada_price * 1.15),
                     "discount_pct": "-15%",
                     "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
-                    "coupon": "LAZMALL15",
-                    "coupon_label": "ร้านทางการ LazMall",
                     "is_direct_product": True,
                     "link": lazada_link,
-                },
-                {
-                    "store": "TikTok Shop Mall",
-                    "platform": "tiktok",
-                    "badge": "ตะกร้า TikTok Shop Mall • ส่งด่วนพิเศษ",
-                    "net_price": tiktok_price,
-                    "original_price": round(tiktok_price * 1.16),
-                    "discount_pct": "-16%",
-                    "shipping": "ส่งฟรี • ตะกร้าร้านค้าทางการ TikTok Shop",
-                    "coupon": "TIKTOK15",
-                    "coupon_label": "ตะกร้า TikTok Shop Mall",
-                    "is_direct_product": True,
-                    "link": tiktok_link,
                 },
             ],
             key=lambda x: x["net_price"],
@@ -282,11 +259,10 @@ def run_daily_price_sync(silent: bool = False) -> dict:
     elapsed = round(time.time() - start_ts, 3)
     payload = {
         "platform": "yespec",
-        "channels": ["Shopee Mall Official", "Lazada LazMall Official", "TikTok Shop Mall"],
+        "channels": ["Shopee Mall Official", "Lazada LazMall Official"],
         "affiliate_accounts": {
             "shopee_aff_id": shopee_aff_id,
             "lazada_member_id": cfg.get("lazada_tracking_id", "267671179"),
-            "tiktok_seller_id": tiktok_id,
         },
         "sync_mode": mode,
         "synced_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -301,7 +277,7 @@ def run_daily_price_sync(silent: bool = False) -> dict:
     out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     if not silent:
-        print(f"⚡ [yespec MCP Price Sync] ผูกลิงก์จริง Shopee ({shopee_aff_id}), Lazada ({cfg.get('lazada_tracking_id')}), TikTok ({tiktok_id}) ครบ {len(synced_items)} รุ่น สำเร็จใน {elapsed} วินาที!")
+        print(f"⚡ [yespec MCP Price Sync] ผูกลิงก์จริง Shopee ({shopee_aff_id}) & Lazada ({cfg.get('lazada_tracking_id')}) ครบ {len(synced_items)} รุ่น สำเร็จใน {elapsed} วินาที!")
         print(f"   บันทึกไฟล์ Feed ที่: {out_file}")
     return payload
 
@@ -310,7 +286,7 @@ def update_affiliate_credentials(new_vals: dict) -> str:
     base_dir = Path(__file__).parent
     cfg_path = base_dir / "data" / "affiliate_config.json"
     cfg = load_affiliate_config(base_dir)
-    for k in ("shopee_aff_id", "shopee_app_id", "shopee_secret", "lazada_tracking_id", "tiktok_aff_id"):
+    for k in ("shopee_aff_id", "shopee_app_id", "shopee_secret", "lazada_tracking_id"):
         if k in new_vals and new_vals[k] is not None:
             cfg[k] = str(new_vals[k]).strip()
     cfg["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -321,7 +297,6 @@ def update_affiliate_credentials(new_vals: dict) -> str:
         "shopee_app_id": "SHOPEE_APP_ID",
         "shopee_secret": "SHOPEE_SECRET",
         "lazada_tracking_id": "LAZADA_TRACKING_ID",
-        "tiktok_aff_id": "TIKTOK_AFF_ID",
     }
     for field, gh_secret in secret_map.items():
         val = cfg.get(field, "")
@@ -338,7 +313,7 @@ def update_affiliate_credentials(new_vals: dict) -> str:
                 pass
 
     data = run_daily_price_sync(silent=True)
-    return f"บันทึก Shopee, Lazada & TikTok Shop Affiliate ID และซิงค์ลิงก์ใหม่ครบ {data['total_models_synced']} รุ่นเรียบร้อยแล้ว! (โหมด: {data['sync_mode']})"
+    return f"บันทึก Shopee & Lazada Affiliate ID และซิงค์ลิงก์ใหม่ครบ {data['total_models_synced']} รุ่นเรียบร้อยแล้ว! (โหมด: {data['sync_mode']})"
 
 
 def run_mcp_stdio_server():
@@ -375,12 +350,12 @@ def run_mcp_stdio_server():
                     "tools": [
                         {
                             "name": "sync_all_prices",
-                            "description": "ซิงค์ราคาสินค้าทั้ง 22 หมวด (100 รุ่น) จาก Shopee, Lazada & TikTok Shop ลงไฟล์ data/daily_prices_feed.json",
+                            "description": "ซิงค์ราคาสินค้าทั้ง 32 หมวดจาก Shopee Mall & Lazada LazMall ลงไฟล์ data/daily_prices_feed.json",
                             "inputSchema": {"type": "object", "properties": {}},
                         },
                         {
                             "name": "get_product_price",
-                            "description": "ค้นหาราคาและลิงก์ร้านค้า Shopee / Lazada / TikTok Shop ที่ถูกที่สุดของสินค้าตาม ID หรือชื่อรุ่น",
+                            "description": "ค้นหาราคาและลิงก์ร้านค้า Shopee / Lazada ที่ถูกที่สุดของสินค้าตาม ID หรือชื่อรุ่น",
                             "inputSchema": {
                                 "type": "object",
                                 "properties": {"query": {"type": "string", "description": "ID หรือชื่อรุ่นสินค้า"}},
@@ -401,7 +376,7 @@ def run_mcp_stdio_server():
                         },
                         {
                             "name": "set_affiliate_credentials",
-                            "description": "ตั้งค่า Shopee Affiliate ID, Lazada Tracking ID, TikTok Shop ID และ Shopee Open API Keys แล้วอัปเดตลิงก์ทั้ง 100 รุ่นทันที",
+                            "description": "ตั้งค่า Shopee Affiliate ID, Lazada Tracking ID และ Shopee Open API Keys แล้วอัปเดตลิงก์ทันที",
                             "inputSchema": {
                                 "type": "object",
                                 "properties": {
@@ -409,7 +384,6 @@ def run_mcp_stdio_server():
                                     "shopee_app_id": {"type": "string"},
                                     "shopee_secret": {"type": "string"},
                                     "lazada_tracking_id": {"type": "string"},
-                                    "tiktok_aff_id": {"type": "string"},
                                 },
                             },
                         },
@@ -423,7 +397,7 @@ def run_mcp_stdio_server():
 
             if tname == "sync_all_prices":
                 data = run_daily_price_sync(silent=True)
-                text = f"ซิงค์ราคา Shopee, Lazada & TikTok Shop สำเร็จ {data['total_models_synced']} รุ่น ใน {data['elapsed_seconds']} วินาที (โหมด: {data['sync_mode']})"
+                text = f"ซิงค์ราคา Shopee & Lazada สำเร็จ {data['total_models_synced']} รุ่น ใน {data['elapsed_seconds']} วินาที (โหมด: {data['sync_mode']})"
             elif tname == "get_product_price":
                 q = str(args.get("query", "")).lower()
                 if not feed_path.exists():

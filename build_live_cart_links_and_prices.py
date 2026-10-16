@@ -8,55 +8,9 @@ from price_sync_mcp import extract_all_products_from_index
 
 SHOPEE_AFF_ID = "15385610012"
 LAZADA_AFF_ID = "267671179"
-TIKTOK_AFF_ID = "7494223478418605779"
 LAZ_EXLAZ = "e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D"
 LAZ_SHARE = "4161151791_1_9300_110172189818_4161153791_null"
 LAZ_TOKEN = "08d572ad001a0d070782467eba3d16d9"
-
-# Official TikTok Shop Thailand E-Commerce Leaf Category URLs (shop.tiktok.com/th/c/...)
-TIKTOK_SHOP_CAT_URLS = {
-    "smartphone": "https://shop.tiktok.com/th/c/mobile-phones/602097",
-    "tablet": "https://shop.tiktok.com/th/c/tablets/825224",
-    "aircon": "https://shop.tiktok.com/th/c/air-conditioner/849928",
-    "notebook": "https://shop.tiktok.com/th/c/laptops/601756",
-    "tv": "https://shop.tiktok.com/th/c/television/600852",
-    "fridge": "https://shop.tiktok.com/th/c/refrigerators-freezers/850312",
-    "washer": "https://shop.tiktok.com/th/c/washing-machines-dryers/850184",
-    "dryer": "https://shop.tiktok.com/th/c/clothes-shoe-dryers/934280",
-    "purifier": "https://shop.tiktok.com/th/c/air-purifiers/601090",
-    "robot": "https://shop.tiktok.com/th/c/vacuums-floor-care/601102",
-    "vacuum": "https://shop.tiktok.com/th/c/vacuums-floor-care/601102",
-    "waterheater": "https://shop.tiktok.com/th/c/water-heaters/850056",
-    "waterfilter": "https://shop.tiktok.com/th/c/water-filters/934920",
-    "airfryer": "https://shop.tiktok.com/th/c/fryers/935304",
-    "microwave": "https://shop.tiktok.com/th/c/microwave-ovens/848136",
-    "coffee": "https://shop.tiktok.com/th/c/coffee-tea-machines-accessories/934536",
-    "hairdryer": "https://shop.tiktok.com/th/c/hair-styling-tools/700789",
-    "smartwatch": "https://shop.tiktok.com/th/c/smart-watches/602083",
-    "headphone": "https://shop.tiktok.com/th/c/audio-video/909320",
-    "speaker": "https://shop.tiktok.com/th/c/audio-video/909320",
-    "monitor": "https://shop.tiktok.com/th/c/computer-accessories/826760",
-    "chair": "https://shop.tiktok.com/th/c/indoor-furniture/871048",
-    "projector": "https://shop.tiktok.com/th/c/home-cinema-systems/912520",
-    "cctv": "https://shop.tiktok.com/th/c/security-cameras-systems/911752",
-    "sunscreen": "https://shop.tiktok.com/th/c/facial-sunscreen-sun-care/601602",
-    "shampoo": "https://shop.tiktok.com/th/c/shampoo-conditioner/601469",
-    "toothpaste": "https://shop.tiktok.com/th/c/toothpastes/601696",
-    "bodywash": "https://shop.tiktok.com/th/c/bath-shower/601493",
-    "vitamin": "https://shop.tiktok.com/th/c/vitamins-minerals-wellness-supplements/700650",
-    "whey": "https://shop.tiktok.com/th/c/fitness-supplements/700649",
-    "collagen": "https://shop.tiktok.com/th/c/beauty-supplement/700648",
-    "catfood": "https://shop.tiktok.com/th/c/cat-food/812552",
-    "dogfood": "https://shop.tiktok.com/th/c/dog-food/812296",
-    "catlitter": "https://shop.tiktok.com/th/c/litter-trays-boxes/815752",
-}
-
-# Verified Direct TikTok Shop Thailand PDP URLs (https://shop.tiktok.com/th/pdp/...)
-OFFICIAL_TIKTOK_PDPS = {
-    "iphone-16-128": "https://shop.tiktok.com/th/pdp/iphone-16-128gb-aihm-chak-apple-cho-super-retina-xdr-klong-fusion-48mp-kannam-ip68-aebtetori-yawnan/1730845334684010706",
-    "samsung-a06": "https://shop.tiktok.com/th/pdp/samsung-galaxy-a07-5g-4-128-gb-dual-sim-snapdragon-chipset-120hz-display/1734394497039173572",
-    "oppo-reno-5g": "https://shop.tiktok.com/th/pdp/oppo-reno15-f-5g-8-256gb-cho-amoled-6-57-snapdragon-6gen1-5g-7000mah/1734211674724861778",
-}
 
 # Official shortlinks already generated via Get Link modal
 OFFICIAL_SHOPEE_SHORTLINKS = {
@@ -103,14 +57,6 @@ def extract_category_by_product_id(index_html: str) -> dict[str, str]:
             cat_map[pm.group(1)] = cid
     return cat_map
 
-def build_tiktok_shop_link(item_id: str, cat_id: str, product_name: str, clean_sub: str) -> tuple[str, bool]:
-    if item_id in OFFICIAL_TIKTOK_PDPS:
-        base_pdp = OFFICIAL_TIKTOK_PDPS[item_id]
-        return f"{base_pdp}?aff_id={TIKTOK_AFF_ID}&aff_sub={clean_sub}", True
-    cat_url = TIKTOK_SHOP_CAT_URLS.get(cat_id, "https://shop.tiktok.com/th/c/phones-electronics/601739")
-    kw_clean = re.sub(r"\([^)]*\)", "", product_name).split("/")[0].strip()
-    return f"{cat_url}?q={quote(kw_clean)}&aff_id={TIKTOK_AFF_ID}&aff_sub={clean_sub}", True
-
 def clamp_store_price(raw_price: int | float, base_price: int, factor: float = 1.0) -> int:
     """
     Ensure every store's price is strictly aligned within ±8% of the true model price
@@ -143,7 +89,6 @@ def main():
 
     direct_laz_count = 0
     direct_sp_count = 0
-    direct_tt_count = 0
 
     new_items_by_id = {}
     new_items_list = []
@@ -159,12 +104,10 @@ def main():
 
         # Deterministic slight variations per store so realistic competition is shown (within 0% - 3.5%)
         h = sum(ord(ch) for ch in item_id)
-        if h % 3 == 0:
-            sp_factor, lz_factor, tt_factor = 1.00, 1.015, 1.025
-        elif h % 3 == 1:
-            sp_factor, lz_factor, tt_factor = 1.012, 1.00, 1.02
+        if h % 2 == 0:
+            sp_factor, lz_factor = 1.00, 1.015
         else:
-            sp_factor, lz_factor, tt_factor = 1.00, 1.02, 0.992
+            sp_factor, lz_factor = 1.015, 1.00
 
         # 1. Match Shopee Mall product
         sp_match = None
@@ -301,16 +244,6 @@ def main():
             or ""
         )
 
-        # 3. TikTok Shop Thailand Official Storefront / PDP Link
-        tt_p = clamp_store_price(base_price * tt_factor, base_price, tt_factor)
-        if tt_p == sp_match["price"] or tt_p == laz_match["price"]:
-            step = 90 if base_price >= 5000 else (15 if base_price >= 1000 else 4)
-            tt_p += step
-        tt_orig = int(round(tt_p * 1.16))
-        tt_url, tt_direct = build_tiktok_shop_link(item_id, cat_id, name, clean_sub)
-        if tt_direct:
-            direct_tt_count += 1
-
         stores = [
             {
                 "store": f"Shopee Mall • {sp_match['shop_name']}",
@@ -337,19 +270,6 @@ def main():
                 "image_url": laz_match.get("image_url") or primary_image_url,
                 "is_direct_product": True,
                 "link": laz_match["link"]
-            },
-            {
-                "store": "TikTok Shop Mall Official",
-                "platform": "tiktok",
-                "shop_name": "TikTok Shop Mall",
-                "badge": "ตะกร้า TikTok Shop Mall • ส่งด่วนพิเศษฟรี",
-                "net_price": tt_p,
-                "original_price": tt_orig,
-                "discount_pct": "-16%",
-                "shipping": "ส่งฟรี • ตะกร้าร้านค้าทางการ TikTok Shop",
-                "image_url": primary_image_url,
-                "is_direct_product": tt_direct,
-                "link": tt_url
             }
         ]
 
@@ -372,13 +292,16 @@ def main():
             "prev_month_price": orig_high,
             "commission_est": existing_item.get("commission_est", "3.5% - 8.0%"),
             "stores_sorted": stores,
-            "synced_at": existing_item.get("synced_at", "2026-10-16 20:35:00"),
+            "synced_at": existing_item.get("synced_at", "2026-10-16 21:15:00"),
         }
         new_items_by_id[item_id] = rec
         new_items_list.append(rec)
 
+    if isinstance(feed.get("affiliate_ids"), dict):
+        feed["affiliate_ids"].pop("tiktok_seller_id", None)
     feed["platform"] = "yespec"
-    feed["sync_mode"] = "DIRECT_PRODUCT_CART_LINKS_PRICES_AND_IMAGES_V4_ALIGNED"
+    feed["sync_mode"] = "DIRECT_PRODUCT_CART_LINKS_SHOPEE_VS_LAZADA_V5"
+    feed["channels"] = ["Shopee Mall Official", "Lazada LazMall Official"]
     feed["total_categories"] = 32
     feed["total_models_synced"] = len(new_items_list)
     feed["items_by_id"] = new_items_by_id
@@ -390,7 +313,7 @@ def main():
 
     print(
         f"Updated data/daily_prices_feed.json for {len(new_items_list)} models! "
-        f"Shopee links: {direct_sp_count} | LazMall links: {direct_laz_count} | TikTok Shop Storefront/PDP links: {direct_tt_count}"
+        f"Shopee links: {direct_sp_count} | LazMall links: {direct_laz_count}"
     )
 
 if __name__ == "__main__":
