@@ -1906,74 +1906,37 @@
          CATEGORY DEEP COMPARISON VIEW (Appears when a category is selected)
          ============================================================ -->
     <div id="categoryViewSection" style="display:none;">
-      <section class="apple-hero" style="padding:12px 0 10px;align-items:center;">
+      <section class="apple-hero" style="padding:10px 0 8px;align-items:center;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
           <button class="budget-pill" onclick="showHomeHub()" style="padding:5px 12px;font-size:12px;">
             ← หน้าแรก
           </button>
-          <h1 class="apple-hero-title" id="heroHeadline" style="font-size:clamp(20px, 2.6vw, 28px);margin:0;">
+          <h1 class="apple-hero-title" id="heroHeadline" style="font-size:clamp(20px, 2.4vw, 26px);margin:0;">
             มือถือ
           </h1>
           <span id="activePillarBadge" style="font-size:11.5px;font-weight:600;color:var(--text-light);"></span>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-          <button class="budget-pill" onclick="toggleSmartCalculator()" id="btnCalcTrigger" style="padding:6px 12px;font-size:12px;background:#fff;">
-            🧮 คำนวณ
-          </button>
           <button class="tool-trigger-btn" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})" style="border-color:#16a34a;color:#15803d;background:#f0fdf4;font-weight:700;padding:6px 12px;font-size:12px;">
-            ⚔️ เทียบ 2 รุ่น
+            ⚔️ ตารางเทียบ 2 รุ่น
           </button>
         </div>
       </section>
 
-    <!-- ============================================================
-         5. COMPACT SINGLE-ROW PRIMARY DECISION BAR
-         ============================================================ -->
-    <section class="budget-engine-card" style="padding:10px 14px;margin-bottom:14px;border-radius:16px;">
-      <div class="budget-engine-top" style="margin-bottom:0;gap:8px;">
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1;">
-          <span id="primaryDecisionLabel" style="font-size:12px;font-weight:800;color:#14532d;background:#ecfdf5;border:1px solid #86efac;padding:4px 10px;border-radius:99px;white-space:nowrap;">💰 เลือกตามงบ:</span>
-          <div class="budget-pills" id="budgetFilterPills"></div>
-        </div>
-        <button class="budget-pill" id="btnAdvFilterToggle" onclick="toggleAdvancedFilters()" style="padding:5px 11px;font-size:11.5px;background:#f5f5f7;">
-          🎯 งบกำหนดเอง ▾
-        </button>
+    <!-- Legacy top bars hidden so users focus 100% on the 2-column Spec Finder & Comparison -->
+    <div style="display:none;">
+      <button id="btnCalcTrigger"></button>
+      <span id="primaryDecisionLabel"></span>
+      <div id="budgetFilterPills"></div>
+      <button id="btnAdvFilterToggle"></button>
+      <div id="advancedFilterDrawer">
+        <div id="useCasePillsContainer"></div>
+        <button id="segLineup"></button><button id="segCompare"></button><button id="segStepup"></button><button id="segArticles"></button>
       </div>
-
-      <!-- Collapsible Advanced Filter Drawer (Hidden by default) -->
-      <div id="advancedFilterDrawer" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-hairline);">
-        <div class="custom-budget-bar" style="padding-top:0;border-top:none;margin-bottom:8px;">
-          <div class="custom-inputs-group">
-            <span class="custom-input-label">🎯 งบ:</span>
-            <div class="price-input-box">
-              <span>฿</span>
-              <input type="number" id="customMinPrice" class="price-input" placeholder="0" step="1000" />
-            </div>
-            <span style="color:var(--text-sub);font-weight:600;">–</span>
-            <div class="price-input-box">
-              <span>฿</span>
-              <input type="number" id="customMaxPrice" class="price-input" placeholder="50000" step="1000" />
-            </div>
-            <button class="btn-apply-budget" onclick="applyCustomPriceRange()">กรอง</button>
-            <button class="btn-reset-budget" onclick="resetPriceFilter()">ล้าง</button>
-          </div>
-          <div id="activeBudgetSummary" style="font-size:11.5px;color:var(--text-sub);"></div>
-        </div>
-        <div id="useCasePillsContainer" style="display:none;"></div>
-        <div style="display:none;">
-          <button id="segLineup"></button><button id="segCompare"></button><button id="segStepup"></button><button id="segArticles"></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Smart Calculator Drawer -->
-    <div class="smart-calc-drawer" id="smartCalcDrawer"></div>
-
-    <!-- Smart Stretch Recommendation Banner -->
-    <div id="smartStretchContainer"></div>
-
-    <!-- COMPACT 3-PODIUM WINNER STRIP -->
-    <div id="categoryWinnerSummaryBox"></div>
+      <div id="smartCalcDrawer"></div>
+      <div id="smartStretchContainer"></div>
+      <div id="categoryWinnerSummaryBox"></div>
+    </div>
 
     <!-- VIEW 1: NOTEBOOKSPEC-STYLE 2-COLUMN FACETED SPEC FINDER -->
     <section id="viewLineup">
@@ -1982,9 +1945,23 @@
         <aside class="nbs-sidebar" id="nbsSpecSidebar">
           <div class="nbs-sidebar-header">
             <div class="nbs-sidebar-title">🎛️ ตัวกรองสเปก</div>
-            <button class="helper-link" style="font-size:11.5px;font-weight:700;color:#16a34a;" onclick="clearAllFacetFilters()">ล้างค่า</button>
+            <button class="helper-link" style="font-size:11.5px;font-weight:700;color:#16a34a;" onclick="resetPriceFilter()">ล้างค่า</button>
           </div>
           <div id="nbsSidebarGroupsContainer"></div>
+          <!-- Compact Custom Price Filter inside Left Sidebar -->
+          <div class="nbs-filter-group" style="padding-top:10px;border-top:1px solid var(--border-hairline);margin-top:8px;">
+            <div class="nbs-filter-group-title"><span>🎯 กำหนดงบเอง (บาท)</span></div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
+              <input type="number" id="customMinPrice" class="price-input" placeholder="ต่ำสุด" step="500" style="width:100%;padding:6px 8px;font-size:12px;border:1px solid #d2d2d7;border-radius:8px;" />
+              <span style="color:var(--text-sub);font-size:12px;">–</span>
+              <input type="number" id="customMaxPrice" class="price-input" placeholder="สูงสุด" step="500" style="width:100%;padding:6px 8px;font-size:12px;border:1px solid #d2d2d7;border-radius:8px;" />
+            </div>
+            <div style="display:flex;gap:6px;margin-top:6px;">
+              <button class="btn-apply-budget" onclick="applyCustomPriceRange()" style="flex:1;padding:5px 8px;font-size:11.5px;border-radius:8px;">กรองราคา</button>
+              <button class="btn-reset-budget" onclick="resetPriceFilter()" style="padding:5px 8px;font-size:11.5px;border-radius:8px;">ล้าง</button>
+            </div>
+            <div id="activeBudgetSummary" style="font-size:11px;color:#15803d;margin-top:4px;font-weight:700;"></div>
+          </div>
         </aside>
 
         <!-- RIGHT MAIN AREA: TOOLBAR + CLEAN SPEC ROWS -->
@@ -2319,7 +2296,7 @@
             id: 'iphone-18-pro', tier: '30k_plus', bracketLabel: 'งบ 30,000฿ ขึ้นไป',
             eyebrow: 'รุ่นใหม่ล่าสุด • อันดับ 1', name: 'iPhone 18 Pro (256GB)',
             tagline: 'ชิป A20 Pro 2nm เร็วแรง พร้อมกล้อง 48MP ครบทั้ง 3 เลนส์ และแบตอึดที่สุด',
-            price: 39900, img: 'https://down-aka-th.img.susercontent.com/sg-11134301-8258i-msxn1spdrv9h16.webp', colors: ['#c5b4a5','#3a3a3c','#e3e4e5'],
+            price: 47900, img: 'https://down-aka-th.img.susercontent.com/sg-11134301-8258i-msxn1spdrv9h16.webp', colors: ['#c5b4a5','#3a3a3c','#e3e4e5'],
             specs: [
               { big: 'จอ 6.3 นิ้ว ProMotion 120Hz สว่างสูงสุด 3,000 nits', label: 'ระบายความร้อนดีขึ้น จอไม่ดรอปแสงเวลาใช้งานกลางแดด' },
               { big: 'ชิป A20 Pro (2nm) รุ่นใหม่ล่าสุด + ความจุ 256GB', label: 'ประหยัดพลังงานและประมวลผล AI เร็วที่สุดในโลก' },
@@ -2371,7 +2348,7 @@
           },
           {
             id: 'ipad-gen11', tier: 'budget', bracketLabel: 'งบ 10,000 – 15,000฿', eyebrow: 'ขวัญใจนักเรียนนักศึกษา', name: 'iPad Gen 11 (128GB)',
-            tagline: 'เริ่มต้นความจุ 128GB จดโน้ต ดูซีรีส์ คุ้มค่าทุกบาท', price: 11500, emoji: '📟', colors: ['#6699cc','#f4d068','#e57399'],
+            tagline: 'เริ่มต้นความจุ 128GB จดโน้ต ดูซีรีส์ คุ้มค่าทุกบาท', price: 15590, emoji: '📟', colors: ['#6699cc','#f4d068','#e57399'],
             img: 'https://down-aka-th.img.susercontent.com/th-11134207-7rase-m7fy2ic92uoq3e.webp', specs: [
               { big: 'จอ 10.9 นิ้ว Liquid Retina สีสวยสดใส', label: 'กล้องหน้าวางแนวนอนตรงกลาง เหมาะกับเรียนออนไลน์และประชุม' },
               { big: 'ชิป A16 Bionic (128GB) + รองรับ Apple Pencil', label: 'จดเลคเชอร์ใน Goodnotes และ Notability ลื่นไหล ใช้งานยาว 5 ปี' },
@@ -2459,7 +2436,7 @@
           },
           {
             id: 'daikin-zesth', tier: 'high', bracketLabel: 'งบ 16,500฿+', eyebrow: 'เงียบกริบสำหรับห้องนอน', name: 'Daikin Zesth Inverter (12,000 BTU)',
-            tagline: 'ลม Coanda เลียดเพดานไม่เป่าโดนตัว พร้อมแผงวงจรกันจิ้งจกและไฟกระชาก', price: 17900, img: 'https://th-live-01.slatic.net/p/b925d2a92ea4f0ba5932c0d5a3ba1b14.jpg', colors: ['#ffffff'],
+            tagline: 'ลม Coanda เลียดเพดานไม่เป่าโดนตัว พร้อมแผงวงจรกันจิ้งจกและไฟกระชาก', price: 17699, img: 'https://th-live-01.slatic.net/p/b925d2a92ea4f0ba5932c0d5a3ba1b14.jpg', colors: ['#ffffff'],
             specs: [
               { big: 'SEER 21.50 (เบอร์ 5 ⭐⭐⭐)', label: 'ค่าไฟเฉลี่ย ~840 บาท/เดือน • เสียงเดินเครื่องเงียบกริบเพียง 19 dB' },
               { big: 'คอยล์ทองแดงแท้ + ส่งลม Coanda เลียดเพดาน', label: 'ลมเย็นไม่เป่าโดนตัว พร้อมแผงวงจร Super PCB Pro กันไฟตกและจิ้งจก' },
@@ -2497,7 +2474,7 @@
           },
           {
             id: 'asus-vivobook-15', tier: 'budget', bracketLabel: 'งบ 15,000 – 20,000฿', eyebrow: 'คุ้มค่างบทำงานออฟฟิศ', name: 'ASUS Vivobook 15 (RAM 16GB)',
-            tagline: 'โน้ตบุ๊กทำงานจอใหญ่ มีแป้นตัวเลข Numpad พร้อม Windows แท้', price: 17900, emoji: '💻', colors: ['#2b3440','#d2d5d9'],
+            tagline: 'โน้ตบุ๊กทำงานจอใหญ่ มีแป้นตัวเลข Numpad พร้อม Windows แท้', price: 18130, emoji: '💻', colors: ['#2b3440','#d2d5d9'],
             img: 'https://th-live-01.slatic.net/p/4a054a39077c96f47b4cd849f3bb1802.jpg', specs: [
               { big: 'จอ 15.6 นิ้ว Full HD IPS กางได้ 180 องศา', label: 'ถนอมสายตา TÜV Rheinland พร้อมบานพับกางราบแชร์หน้าจอสะดวก' },
               { big: 'Ryzen 5 / Core i5 + RAM 16GB / SSD 512GB', label: 'ได้ RAM 16GB แท้ เปิด Chrome 30 แท็บคู่กับ Excel ไม่ค้าง' },
@@ -2507,7 +2484,7 @@
           },
           {
             id: 'lenovo-loq-rtx', tier: 'mid', bracketLabel: 'งบ 20,000 – 30,000฿', eyebrow: 'แชมป์ Gaming & ตัดต่อ', name: 'Lenovo LOQ 15 (RTX 4050)',
-            tagline: 'ระบายความร้อนดีเยี่ยม จอสีตรง 100% sRGB ประกันซ่อมถึงบ้าน', price: 27900, emoji: '🎮', colors: ['#4a4d52'],
+            tagline: 'ระบายความร้อนดีเยี่ยม จอสีตรง 100% sRGB ประกันซ่อมถึงบ้าน', price: 33390, emoji: '🎮', colors: ['#4a4d52'],
             img: 'https://th-live-01.slatic.net/p/6a2e908bf6435c38ff8bde6d47575e2a.jpg', specs: [
               { big: 'จอ 15.6 นิ้ว FHD 144Hz ค่าสีตรง 100% sRGB', label: 'ทั้งลื่นไหล 144Hz สำหรับเล่นเกม และสีตรงสำหรับตัดต่อวิดีโอ' },
               { big: 'การ์ดจอแยก RTX 4050 (6GB) + RAM 16GB / SSD 512GB', label: 'ระบบระบายความร้อน HyperChamber เล่นเกมหนักและเรนเดอร์งานไว' },
@@ -2517,7 +2494,7 @@
           },
           {
             id: 'macbook-air-13', tier: 'high', bracketLabel: 'งบ 30,000฿+', eyebrow: 'แบตอึดอันดับ 1 • บางเบา', name: 'MacBook Air 13" (RAM 16GB)',
-            tagline: 'ไร้พัดลมเงียบกริบ แบตเตอรี่อยู่ได้ทั้งวัน 18 ชั่วโมงจริง', price: 33900, emoji: '💻', colors: ['#2e3642','#e3e4e5','#f0e4d3'],
+            tagline: 'ไร้พัดลมเงียบกริบ แบตเตอรี่อยู่ได้ทั้งวัน 18 ชั่วโมงจริง', price: 42990, emoji: '💻', colors: ['#2e3642','#e3e4e5','#f0e4d3'],
             img: 'https://th-live-01.slatic.net/p/5c6ec5eddfeee75b6b48cdfb897b2e78.jpg', specs: [
               { big: 'จอ 13.6 นิ้ว Liquid Retina (500 nits / สี P3)', label: 'ความละเอียดสูง ตัวหนังสือคมกริบและสีสันแม่นยำระดับสตูดิโอ' },
               { big: 'ชิป Apple M-Series + RAM 16GB / SSD 256GB', label: 'ทำงานเงียบกริบไร้พัดลม ถอดสายชาร์จความเร็วไม่ตกแม้แต่นิดเดียว' },
@@ -2545,7 +2522,7 @@
         products: [
           {
             id: 'tcl-55-4k-smart', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 12,000฿ (เน้นถูกสุด)', eyebrow: 'ทีวี 4K จอใหญ่ราคาถูกที่สุด', name: 'TCL 55" 4K UHD Smart TV (55P655)',
-            tagline: 'ทีวี 55 นิ้ว ขอบจอบางเฉียบ Metallic Bezel-Less รองรับ HDR10 และสั่งงานด้วยเสียงภาษาไทย', price: 9490, emoji: '📺', colors: ['#1d1d1f'],
+            tagline: 'ทีวี 55 นิ้ว ขอบจอบางเฉียบ Metallic Bezel-Less รองรับ HDR10 และสั่งงานด้วยเสียงภาษาไทย', price: 10590, emoji: '📺', colors: ['#1d1d1f'],
             img: 'https://filebroker-cdn.lazada.co.th/kf/S88ee07ad36284e659bcc89a2f3f1fcb9k.jpg', specs: [
               { big: 'จอ 55 นิ้ว 4K UHD HDR10 (60Hz)', label: 'ขอบจอบางเฉียบ Metallic Bezel-Less คมชัดกว่า Full HD 4 เท่า' },
               { big: 'Google TV แท้ + ระบบเสียง Dolby Audio', label: 'โหลดแอป Netflix, YouTube, Disney+ ครบ พร้อมสั่งงานเสียงภาษาไทย' },
@@ -2585,7 +2562,7 @@
           },
           {
             id: 'lg-oled-c6-65', tier: 'high', bracketLabel: 'งบ 45,000฿+', eyebrow: 'อันดับ 1 ดูหนัง & เล่นเกม PS5', name: 'LG 65" OLED evo AI C6',
-            tagline: 'พิกเซลเปล่งแสงเองอิสระ สีดำสนิทไร้แสงรั่ว พร้อมรีโมทชี้เมาส์ Magic Remote', price: 46500, img: 'https://sg-test-11.slatic.net/p/665ef69d3d380c52b0db6a20522fe59e.jpg', colors: ['#111113'],
+            tagline: 'พิกเซลเปล่งแสงเองอิสระ สีดำสนิทไร้แสงรั่ว พร้อมรีโมทชี้เมาส์ Magic Remote', price: 45900, img: 'https://sg-test-11.slatic.net/p/665ef69d3d380c52b0db6a20522fe59e.jpg', colors: ['#111113'],
             specs: [
               { big: 'จอ 65 นิ้ว OLED evo 4K 144Hz (เม็ดพิกเซลเปล่งแสงเอง)', label: 'สีดำสนิท 100% ไร้แสงรั่วรอบตัวหนังสือ มิติภาพลึกสมจริงที่สุด' },
               { big: 'ชิป Alpha 9 AI + HDMI 2.1 ครบ 4 ช่อง (0.1ms)', label: 'มาพร้อม LG Magic Remote ชี้เมาส์ง่าย รองรับ PS5 / G-Sync เต็มสูบ' },
@@ -2633,7 +2610,7 @@
           },
           {
             id: 'mitsu-4door-la70', tier: 'mid', bracketLabel: 'งบ 35,000 – 42,000฿', eyebrow: 'โดดเด่นช่อง Soft Freezing', name: 'Mitsubishi 4 ประตู 20.5 คิว (MR-LA70ER)',
-            tagline: 'หน้ากระจกนิรภัยหรูหรา พร้อมช่องแช่แข็งเนื้อสัตว์แบบหั่นได้ทันทีไม่ต้องรอละลาย', price: 41500, img: 'https://sg-test-11.slatic.net/p/526c23c687dcc216f53ec79e5310601a.jpg', colors: ['#d8d4cc','#1d1d1f'],
+            tagline: 'หน้ากระจกนิรภัยหรูหรา พร้อมช่องแช่แข็งเนื้อสัตว์แบบหั่นได้ทันทีไม่ต้องรอละลาย', price: 32390, img: 'https://sg-test-11.slatic.net/p/526c23c687dcc216f53ec79e5310601a.jpg', colors: ['#d8d4cc','#1d1d1f'],
             specs: [
               { big: 'ความจุ 20.5 คิว (580 ลิตร) ดีไซน์ 4 ประตูกระจกนิรภัย', label: 'เปิดหยิบของง่าย กว้างขวาง จัดระเบียบอาหารได้เป็นสัดส่วน' },
               { big: 'ช่อง Soft Freezing -7°C + Vitamin Factory', label: 'แช่เนื้อสัตว์โดยไม่แข็งเป็นหิน หั่นทำอาหารได้ทันทีไม่ต้องรอละลาย' },
@@ -2643,7 +2620,7 @@
           },
           {
             id: 'hitachi-4door-wb640', tier: 'high', bracketLabel: 'งบ 42,000฿+', eyebrow: 'ตัวท็อปช่องสุญญากาศแท้', name: 'Hitachi 4 ประตู 20.1 คิว (R-WB640VF)',
-            tagline: 'เทคโนโลยี Vacuum Compartment 0.8 atm ถนอมอาหารระดับภัตตาคาร', price: 42900, img: 'https://sg-test-11.slatic.net/p/337dc96e6a018eb60bab6a79179cb4cd.jpg', colors: ['#1c1c1e','#3a3a3c'],
+            tagline: 'เทคโนโลยี Vacuum Compartment 0.8 atm ถนอมอาหารระดับภัตตาคาร', price: 37790, img: 'https://sg-test-11.slatic.net/p/337dc96e6a018eb60bab6a79179cb4cd.jpg', colors: ['#1c1c1e','#3a3a3c'],
             specs: [
               { big: 'ความจุ 20.1 คิว (569 ลิตร) ดีไซน์ 4 ประตูเรียบหรู', label: 'มาพร้อมระบบทำน้ำแข็งอัตโนมัติ มีน้ำแข็งสะอาดพร้อมดื่มตลอดเวลา' },
               { big: 'ช่องสุญญากาศ Vacuum Compartment 0.8 atm', label: 'ดูดอากาศออกเพื่อชะลอการเกิดออกซิเดชัน คงความสดเนื้อปลา-ผักนาน 7 วัน' },
@@ -2701,7 +2678,7 @@
           },
           {
             id: 'electrolux-uc700', tier: 'high', bracketLabel: 'งบ 17,000฿+', eyebrow: 'แชมป์ถนอมเสื้อผ้าราคาแพง', name: 'Electrolux UltimateCare 700 (11 กก.)',
-            tagline: 'ระบบ UltraMix ตีน้ำยาละลาย 100% สีผ้าสดใสเหมือนใหม่แม้ซักหลายปี', price: 19900, emoji: '👕', colors: ['#3a3d42'],
+            tagline: 'ระบบ UltraMix ตีน้ำยาละลาย 100% สีผ้าสดใสเหมือนใหม่แม้ซักหลายปี', price: 19521, emoji: '👕', colors: ['#3a3d42'],
             img: 'https://th-live-01.slatic.net/p/19a7b1779c357adb41af232ae94ed902.jpg', specs: [
               { big: 'ความจุ 11 กก. ฝาหน้า + EcoInverter Motor', label: 'ผ่านมาตรฐานสากล Woolmark Blue ซักผ้าขนสัตว์และผ้าไหมไม่หด' },
               { big: 'UltraMix ผสมน้ำยา 100% + SensorWash ตรวจคราบ', label: 'ป้องกันคราบผงซักฟอกตกค้าง สีผ้าสดใสเหมือนใหม่ + VapourRefresh อบไอน้ำ' },
@@ -2739,7 +2716,7 @@
           },
           {
             id: 'beko-condenser-8', tier: 'budget', bracketLabel: 'งบ 10,000 – 14,000฿', eyebrow: 'เริ่มต้นคุ้มค่าสำหรับคอนโด', name: 'Electrolux / Beko Condenser (8 กก.)',
-            tagline: 'ไม่ต้องเจาะผนังต่อท่อลม เพียงเทน้ำทิ้งจากกล่องเก็บน้ำก็ใช้งานได้ทันที', price: 11900, emoji: '♨️', colors: ['#ffffff'],
+            tagline: 'ไม่ต้องเจาะผนังต่อท่อลม เพียงเทน้ำทิ้งจากกล่องเก็บน้ำก็ใช้งานได้ทันที', price: 11397, emoji: '♨️', colors: ['#ffffff'],
             img: 'https://th-live-01.slatic.net/p/0a11fee1bdf1447849371c663a4d8094.jpg', specs: [
               { big: 'ความจุ 8 กก. ระบบควบแน่น (Condenser ไม่ต้องต่อท่อ)', label: 'ตั้งในคอนโดได้ทันที เพียงเทน้ำทิ้งจากกล่องเก็บน้ำ ไม่ต้องเจาะผนัง' },
               { big: 'AquaWave ถังอบถนอมใยผ้า + ฟิลเตอร์ดักขนสัตว์', label: 'หมุนสลับทิศทางให้ผ้าแห้งสม่ำเสมอ ดักฝุ่นขุยผ้าและขนแมวเกลี้ยง' },
@@ -2759,7 +2736,7 @@
           },
           {
             id: 'lg-dual-heatpump-10', tier: 'high', bracketLabel: 'งบ 19,000฿+', eyebrow: 'อันดับ 1 เครื่องอบผ้าในไทย', name: 'LG Dual Inverter Heat Pump (10 กก.)',
-            tagline: 'ล้างแผงคอยล์อัตโนมัติ Auto Cleaning Condenser วางซ้อนเครื่องซักผ้าได้', price: 21900, emoji: '🏆', colors: ['#2b2b2e','#ffffff'],
+            tagline: 'ล้างแผงคอยล์อัตโนมัติ Auto Cleaning Condenser วางซ้อนเครื่องซักผ้าได้', price: 31491, emoji: '🏆', colors: ['#2b2b2e','#ffffff'],
             img: 'https://th-live-01.slatic.net/p/f1ad23099412ad2c40ba85b6a1824c60.png', specs: [
               { big: 'ความจุใหญ่ 10 กก. ระบบ Dual Inverter Heat Pump', label: 'ปั๊มความร้อนโรตารี่คู่ อบผ้าแห้งไวขึ้นและประหยัดพลังงานสูงสุด' },
               { big: 'Auto Cleaning Condenser + โหมด Allergy Care 99.9%', label: 'ฉีดน้ำล้างฝุ่นที่แผงคอยล์เองอัตโนมัติ พร้อมขจัดไรฝุ่นผ้านุ่มฟู' },
@@ -2817,7 +2794,7 @@
           },
           {
             id: 'sharp-fp-j80', tier: 'high', bracketLabel: 'งบ 9,000฿+', eyebrow: 'ตัวจบห้องโถงใหญ่ 62 ตร.ม.', name: 'Sharp Plasmacluster (FP-J80TA)',
-            tagline: 'ปล่อยประจุพลาสมาคลัสเตอร์เข้มข้น 25,000 ไอออน สลายกลิ่นอับและเชื้อโรค', price: 11900, emoji: '🍃', colors: ['#1d1d1f'],
+            tagline: 'ปล่อยประจุพลาสมาคลัสเตอร์เข้มข้น 25,000 ไอออน สลายกลิ่นอับและเชื้อโรค', price: 10390, emoji: '🍃', colors: ['#1d1d1f'],
             img: 'https://th-live-01.slatic.net/p/cd119cb7637c9b8965ac4b64b15460a3.jpg', specs: [
               { big: 'รองรับห้องโถงใหญ่ 62 ตร.ม. (CADR 480 ลบ.ม./ชม.)', label: 'กระจายลม Coanda หมุนเวียนอากาศทั่วห้องรับแขกบ้านเดี่ยวได้รวดเร็ว' },
               { big: 'Plasmacluster 25,000 ไอออน + แผ่นกรอง HEPA/คาร์บอน', label: 'สลายเชื้อรา แบคทีเรีย ไวรัสในอากาศ และกลิ่นอาหาร/สัตว์เลี้ยง' },
@@ -2845,7 +2822,7 @@
         products: [
           {
             id: 'xiaomi-robot-s20', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 6,000฿ (เน้นถูกสุด)', eyebrow: 'ถูกสุดคุ้มสุด • มีเลเซอร์ LDS แท้', name: 'Xiaomi Robot Vacuum S20 (ดูด+ถู)',
-            tagline: 'แรงดูดสูง 5,000 Pa พร้อมระบบนำทางเลเซอร์ LDS สร้างแผนที่ 3 มิติในงบไม่ถึง 5 พันบาท', price: 4990, emoji: '🤖', colors: ['#ffffff','#1d1d1f'],
+            tagline: 'แรงดูดสูง 5,000 Pa พร้อมระบบนำทางเลเซอร์ LDS สร้างแผนที่ 3 มิติในงบไม่ถึง 5 พันบาท', price: 4890, emoji: '🤖', colors: ['#ffffff','#1d1d1f'],
             img: 'https://th-live-01.slatic.net/p/fa667159e87770f4c898cb05720969d9.png', specs: [
               { big: 'แรงดูด 5,000 Pa + นำทางเลเซอร์ LDS 360°', label: 'สแกนสร้างแผนที่บ้านแม่นยำ ไม่เดินชนมั่ว กั้นเขตห้ามเข้าในแอปได้' },
               { big: 'ระบบดูดฝุ่นพร้อมถูพื้น Y-Shape (ซักผ้าเองด้วยมือ)', label: 'เดินถูซ้ำซ้าย-ขวาเลียนแบบการถูพื้นด้วยมือ ขจัดคราบฝังแน่น' },
@@ -2913,7 +2890,7 @@
           },
           {
             id: 'dreame-r10', tier: 'budget', bracketLabel: 'งบ 3,000 – 7,000฿', eyebrow: 'คุ้มค่าที่สุดในงบ 5 พัน', name: 'Dreame R10 Cordless Vacuum',
-            tagline: 'หัวแปรงมีไฟส่องฝุ่นสีฟ้า น้ำหนักเบา พร้อมหัวดูดไรฝุ่นที่นอนในกล่อง', price: 5990, emoji: '🧹', colors: ['#f5f5f7'],
+            tagline: 'หัวแปรงมีไฟส่องฝุ่นสีฟ้า น้ำหนักเบา พร้อมหัวดูดไรฝุ่นที่นอนในกล่อง', price: 5490, emoji: '🧹', colors: ['#f5f5f7'],
             img: 'https://th-live-01.slatic.net/p/7b83f0972b0afd78f0fcc42d5e5524fe.jpg', specs: [
               { big: 'แรงดูด 20,000 Pa (120 AW) + ไฟส่องฝุ่นสีฟ้า Celestine', label: 'หัวแปรง V-Shape ลดการพันของเส้นผม พร้อมหัวดูดไรฝุ่นที่นอนในกล่อง' },
               { big: 'แบตเตอรี่อึด 60 นาที + กรองฝุ่น HEPA 5 ชั้น', label: 'ดูดทำความสะอาดได้ทั่วทั้งคอนโดหรือบ้าน 2 ชั้นต่อการชาร์จ 1 ครั้ง' },
@@ -2971,7 +2948,7 @@
           },
           {
             id: 'pana-dh-3ns', tier: 'budget', bracketLabel: 'งบ 2,500 – 3,800฿', eyebrow: 'ปลอดภัยอันดับ 1 ยอดนิยม', name: 'Panasonic 3,500W (DH-3NS1TW)',
-            tagline: 'ระบบนิรภัย 9 จุด ตัดไฟทันทีใน 0.05 วินาที พร้อมฝักบัว Ag+', price: 3290, emoji: '🚿', colors: ['#ffffff'],
+            tagline: 'ระบบนิรภัย 9 จุด ตัดไฟทันทีใน 0.05 วินาที พร้อมฝักบัว Ag+', price: 2865, emoji: '🚿', colors: ['#ffffff'],
             img: 'https://th-live-01.slatic.net/p/017c46dffa1caa1c6b1e6a0b308203a3.jpg', specs: [
               { big: 'กำลังไฟ 3,500 วัตต์ + หม้อต้มโพลีอะไมด์เสริมใยแก้ว', label: 'ทำความร้อนรวดเร็วสม่ำเสมอ พร้อมฝักบัวผสมสาร Ag+ ยับยั้งแบคทีเรีย' },
               { big: 'มาตรฐานความปลอดภัย 9 จุด (ตัดไฟ ELB ใน 0.05 วินาที)', label: 'ตัดไฟรวดเร็วที่สุดเมื่อมีกระแสไฟรั่ว พร้อมเทอร์โมสตัทตัดความร้อนเกิน' },
@@ -2981,7 +2958,7 @@
           },
           {
             id: 'stiebel-copper-45', tier: 'mid', bracketLabel: 'งบ 3,800 – 5,500฿', eyebrow: 'หม้อต้มทองแดงแท้ทน 10 ปี', name: 'Stiebel Eltron 4,500W (XG 45 EC)',
-            tagline: 'วิศวกรรมเยอรมนี หม้อต้มทองแดงแท้ร้อนเร็ว ตัวเครื่องบางเพียง 7.3 ซม.', price: 4590, emoji: '🔥', colors: ['#ffffff'],
+            tagline: 'วิศวกรรมเยอรมนี หม้อต้มทองแดงแท้ร้อนเร็ว ตัวเครื่องบางเพียง 7.3 ซม.', price: 2956, emoji: '🔥', colors: ['#ffffff'],
             img: 'https://th-live-01.slatic.net/p/a37ffa43d1e9370f90b9bf2004e90ea4.jpg', specs: [
               { big: 'กำลังไฟ 4,500 วัตต์ + หม้อต้มทองแดงแท้ 100%', label: 'หม้อต้มทองแดงหนาพิเศษ ทนแรงดันน้ำและร้อนไวแม้ในหน้าหนาวภาคเหนือ' },
               { big: 'ระบบตัดไฟอัตโนมัติ ELCB สองชั้น + กันน้ำ IP25', label: 'ดีไซน์บางเฉียบเพียง 7.3 ซม. วิศวกรรมความปลอดภัยมาตรฐานเยอรมนี' },
@@ -3029,7 +3006,7 @@
           },
           {
             id: 'philips-uv-purifier', tier: 'budget', bracketLabel: 'งบ 2,500 – 6,000฿', eyebrow: 'ติดตั้งง่ายไม่ต้องเจาะซิงก์', name: 'Philips Water Purifier (UF + UV)',
-            tagline: 'กรอง 5 ขั้นตอนพร้อมหลอด UV ฆ่าเชื้อโรค 99.99%', price: 4990, emoji: '💧', colors: ['#ffffff'],
+            tagline: 'กรอง 5 ขั้นตอนพร้อมหลอด UV ฆ่าเชื้อโรค 99.99%', price: 3400, emoji: '💧', colors: ['#ffffff'],
             img: 'https://th-live-01.slatic.net/p/14f34b32b0a7323ee5b8766465e251b7.jpg', specs: [
               { big: 'กรอง UF 0.01 ไมครอน + หลอด UV LED ฆ่าเชื้อ 99.99%', label: 'กรอง 5 ขั้นตอน กำจัดแบคทีเรีย ไวรัส โลหะหนัก และกลิ่นคลอรีนสะอาดสนิท' },
               { big: 'วางเคาน์เตอร์ไม่ต้องเจาะซิงก์ + ไส้กรอง QuickTwist', label: 'หมุนเปลี่ยนไส้กรองเองได้ง่ายใน 10 วินาที ไม่ต้องเรียกช่างเข้าบ้าน' },
@@ -3077,7 +3054,7 @@
         products: [
           {
             id: 'gaabor-airfryer-5l', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 1,500฿ (เน้นถูกสุด)', eyebrow: 'ถูกสุดคุ้มสุด • หม้อ 5 ลิตรมีช่องมองอาหาร', name: 'Gaabor / Simplus Air Fryer 5.0L',
-            tagline: 'หม้อทอดไร้น้ำมัน 5 ลิตร มีกระจกใสส่องดูอาหารข้างในได้ ตะแกรงเคลือบ Non-Stick ล้างง่าย', price: 1090, emoji: '🍟', colors: ['#ffffff','#1d1d1f'],
+            tagline: 'หม้อทอดไร้น้ำมัน 5 ลิตร มีกระจกใสส่องดูอาหารข้างในได้ ตะแกรงเคลือบ Non-Stick ล้างง่าย', price: 1018, emoji: '🍟', colors: ['#ffffff','#1d1d1f'],
             img: 'https://th-live-01.slatic.net/p/14ace5bf5b2ac4f48ea48c86a5768e92.jpg', specs: [
               { big: 'ความจุ 5.0 ลิตร + มีช่องกระจกใสส่องดูอาหาร', label: 'มองเห็นสีอาหารสุกเหลืองกรอบได้ตลอดเวลาโดยไม่ต้องดึงตะกร้าออก' },
               { big: 'กำลังไฟ 1,400W ลมร้อนหมุนเวียน 360 องศา', label: 'รีดน้ำมันส่วนเกินจากหมูสามชั้นและของทอด พร้อมตัดไฟเมื่อดึงหม้อออก' },
@@ -3107,7 +3084,7 @@
           },
           {
             id: 'philips-airfryer-xxl', tier: 'high', bracketLabel: 'งบ 4,200฿+', eyebrow: 'ต้นตำรับหม้อทอดไร้น้ำมันอันดับ 1', name: 'Philips Airfryer 5000 Series XXL',
-            tagline: 'เทคโนโลยี Rapid Air ก้นหม้อรูปดาว รีดไขมันสูงสุด 90% กรอบทั่วถึง', price: 4990, emoji: '🍗', colors: ['#111'],
+            tagline: 'เทคโนโลยี Rapid Air ก้นหม้อรูปดาว รีดไขมันสูงสุด 90% กรอบทั่วถึง', price: 7362, emoji: '🍗', colors: ['#111'],
             img: 'https://th-live-01.slatic.net/p/786e68b517fda479d15f18da7c37e008.jpg', specs: [
               { big: 'ความจุขนาดใหญ่ XXL (7.2 ลิตร / 1.4 กก.)', label: 'ทำอาหารมื้อใหญ่สำหรับครอบครัว 4–6 คนได้ครบจบในรอบเดียว' },
               { big: 'กำลังไฟ 2,000W + สิทธิบัตรก้นหม้อรูปดาว Rapid Air', label: 'ลมร้อนไหลเวียนเร็วขึ้น 7 เท่า อาหารสุกกรอบทั่วถึงโดยไม่ต้องคอยพลิก' },
@@ -3145,7 +3122,7 @@
           },
           {
             id: 'nespresso-essenza', tier: 'budget', bracketLabel: 'งบ 3,500 – 5,000฿', eyebrow: 'สะดวกที่สุดสำหรับชั่วโมงเร่งด่วน', name: 'Nespresso Essenza Mini',
-            tagline: 'แรงดัน 19 บาร์ ตัวเครื่องกะทัดรัด ร้อนไวใน 25 วินาที กดปุ่มเดียวจบ', price: 4290, emoji: '☕', colors: ['#ffffff','#1d1d1f'],
+            tagline: 'แรงดัน 19 บาร์ ตัวเครื่องกะทัดรัด ร้อนไวใน 25 วินาที กดปุ่มเดียวจบ', price: 5838, emoji: '☕', colors: ['#ffffff','#1d1d1f'],
             img: 'https://th-live-01.slatic.net/p/759a99635f3ac5d7fe6943c51da362e5.jpg', specs: [
               { big: 'แรงดันสกัด 19 บาร์แท้ (ระบบแคปซูลมาตรฐานโลก)', label: 'รสชาติกาแฟนิ่งเป๊ะเหมือนบาริสต้าชงทุกแก้ว มีแคปซูลให้เลือกหลายสิบรส' },
               { big: 'ทำความร้อนไวพร้อมชงใน 25 วินาที (ตั้งน้ำได้ 2 ระดับ)', label: 'กดปุ่มเดียวได้ Espresso หรือ Lungo ทันที ไม่ต้องบดและไม่ต้องล้างก้านชง' },
@@ -3271,7 +3248,7 @@
           },
           {
             id: 'sony-wh1000xm5', tier: 'mid', bracketLabel: 'งบ 8,500 – 11,500฿', eyebrow: 'แชมป์ตัดเสียง & ไมค์คุยงาน', name: 'Sony WH-1000XM5 Wireless ANC',
-            tagline: 'ชิปประมวลผลคู่ QN1 + V1 พร้อมไมโครโฟน 8 ตัว ตัดเสียงคาเฟ่ขณะประชุม', price: 10490, img: 'https://th-live-01.slatic.net/p/d0046ae8c6fb71d22c883e082084003e.png', colors: ['#1d1d1f','#e5e2dc'],
+            tagline: 'ชิปประมวลผลคู่ QN1 + V1 พร้อมไมโครโฟน 8 ตัว ตัดเสียงคาเฟ่ขณะประชุม', price: 9990, img: 'https://th-live-01.slatic.net/p/d0046ae8c6fb71d22c883e082084003e.png', colors: ['#1d1d1f','#e5e2dc'],
             specs: [
               { big: 'ชิปคู่ QN1 + V1 พร้อมไมโครโฟน 8 ตัว ตัดเสียงอันดับ 1', label: 'แชมป์การตัดเสียงรบกวนและไมค์คุยประชุมงานออนไลน์ที่ชัดเจนที่สุด' },
               { big: 'ไดรเวอร์คาร์บอนไฟเบอร์ 30 มม. + รองรับ LDAC & Speak-to-Chat', label: 'เมื่อเราเริ่มพูด หูฟังจะหยุดเพลงและเปิดรับเสียงคนคุยให้อัตโนมัติทันที' },
@@ -3309,7 +3286,7 @@
         products: [
           {
             id: 'xiaomi-a24i-100hz', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 3,000฿ (เน้นถูกสุด)', eyebrow: 'ถูกสุดคุ้มสุด • จอ IPS 100Hz สีตรง 99% sRGB', name: 'Xiaomi Monitor A24i / MSI PRO 24" (100Hz)',
-            tagline: 'จอ 24 นิ้ว IPS ขอบบาง 3 ด้าน รีเฟรชเรท 100Hz ค่าสีตรง ΔE<2 ในราคาสองพันกลางๆ', price: 2690, emoji: '🖥️', colors: ['#1d1d1f'],
+            tagline: 'จอ 24 นิ้ว IPS ขอบบาง 3 ด้าน รีเฟรชเรท 100Hz ค่าสีตรง ΔE<2 ในราคาสองพันกลางๆ', price: 3090, emoji: '🖥️', colors: ['#1d1d1f'],
             img: 'https://th-live-01.slatic.net/p/d774ef9a19595c781d710725c96bc1f6.jpg', specs: [
               { big: 'จอ 24 นิ้ว Full HD (1920x1080) พาเนล IPS 100Hz', label: 'ภาพลื่นไหลกว่าจอทำงาน 60Hz ทั่วไป ขอบจอบางเฉียบ 3 ด้าน' },
               { big: 'ค่าสีตรงระดับ ΔE<2 (99% sRGB) + Low Blue Light', label: 'สีสันแม่นยำเกินราคา พร้อมโหมดลดแสงสีฟ้าถนอมสายตา TÜV' },
@@ -3319,7 +3296,7 @@
           },
           {
             id: 'lg-27-ips', tier: 'budget', bracketLabel: 'งบ 3,000 – 6,000฿', eyebrow: 'คุ้มสุดสำหรับโต๊ะทำงานจอใหญ่', name: 'LG 27" IPS FHD 100Hz',
-            tagline: 'จอ IPS สีสวยมุมมองกว้าง 100Hz ลื่นสบายตาในงบประหยัด', price: 4990, emoji: '🖥️', colors: ['#222'],
+            tagline: 'จอ IPS สีสวยมุมมองกว้าง 100Hz ลื่นสบายตาในงบประหยัด', price: 6078, emoji: '🖥️', colors: ['#222'],
             img: 'https://th-live-01.slatic.net/p/14b56e36b58039cd26654a036d4ec3a6.png', specs: [
               { big: 'จอใหญ่ 27 นิ้ว Full HD พาเนล IPS แท้ 100Hz', label: 'ขยายพื้นที่ทำงานวางหน้าต่างคู่กันได้สบาย มุมมองกว้าง 178 องศา' },
               { big: 'ค่าสี 99% sRGB + โหมด Reader Mode & Flicker Safe', label: 'อ่านเอกสารและตาราง Excel นานๆ ไม่ปวดตา พร้อมซอฟต์แวร์แบ่งหน้าจอ' },
@@ -3339,7 +3316,7 @@
           },
           {
             id: 'dell-ultrasharp-4k', tier: 'high', bracketLabel: 'งบ 11,000฿+', eyebrow: 'อันดับ 1 คู่หู MacBook', name: 'Dell UltraSharp 27" 4K USB-C',
-            tagline: 'สาย USB-C เส้นเดียวจบ ทั้งส่งภาพ 4K ชาร์จไฟ 90W และเป็น USB Hub', price: 15900, emoji: '✨', colors: ['#c0c2c9'],
+            tagline: 'สาย USB-C เส้นเดียวจบ ทั้งส่งภาพ 4K ชาร์จไฟ 90W และเป็น USB Hub', price: 19880, emoji: '✨', colors: ['#c0c2c9'],
             img: 'https://th-live-01.slatic.net/p/606e2386623100e2881774f295a2e2a4.png', specs: [
               { big: 'จอ 27 นิ้ว ความละเอียด 4K UHD (3840x2160) IPS Black', label: 'เทคโนโลยี IPS Black ให้สีดำลึกกว่าปกติ 2 เท่า ตัวหนังสือคมกริบเหมือนจอ Mac' },
               { big: 'สีตรงระดับโรงงาน 100% sRGB / 98% DCI-P3 + ComfortView Plus', label: 'ลดแสงสีฟ้าในตัวฮาร์ดแวร์โดยที่สีจอไม่เพี้ยนเหลือง' },
@@ -3367,7 +3344,7 @@
         products: [
           {
             id: 'furradec-ergo-mesh', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 3,000฿ (เน้นถูกสุด)', eyebrow: 'ถูกสุดคุ้มสุด • มีหมอนรองคอ & ดันเอว', name: 'Furradec / Modena Ergonomic Mesh',
-            tagline: 'เก้าอี้สุขภาพพนักพิงตาข่ายระบายอากาศ พร้อม Lumbar Support ดันเอวและพนักพิงศีรษะในงบสองพันต้น', price: 2390, emoji: '🪑', colors: ['#1d1d1f'],
+            tagline: 'เก้าอี้สุขภาพพนักพิงตาข่ายระบายอากาศ พร้อม Lumbar Support ดันเอวและพนักพิงศีรษะในงบสองพันต้น', price: 2409, emoji: '🪑', colors: ['#1d1d1f'],
             img: 'https://sg-test-11.slatic.net/p/ac3c358eb017fde98bc0e4e8c58937d3.jpg', specs: [
               { big: 'พนักพิงตาข่าย Mesh ระบายอากาศ + Lumbar Support ดันเอว', label: 'รองรับส่วนโค้งกระดูกสันหลังส่วนล่าง ช่วยให้นั่งทำงานไม่ปวดเอว' },
               { big: 'เบาะโฟมหุ้มผ้า/ตาข่ายนุ่ม + มีที่รองคอและปรับเอนล็อกได้', label: 'เอนหลังพักสายตาระหว่างวันได้สบาย ที่วางแขนรองรับข้อศอกพอดี' },
@@ -3425,7 +3402,7 @@
         products: [
           {
             id: 'jbl-go-4', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 2,000฿ (เน้นถูกสุด)', eyebrow: 'ถูกสุดคุ้มสุด • JBL แท้กันน้ำ IP67', name: 'JBL Go 4 / Soundcore Select Pro',
-            tagline: 'ลำโพงบลูทูธพกพาพลังเสียง JBL Pro Sound เบสแน่นขึ้น กันน้ำกันฝุ่น IP67 ปรับ EQ ในแอปได้', price: 1590, emoji: '🔊', colors: ['#1d1d1f','#5b7cfa','#e57399'],
+            tagline: 'ลำโพงบลูทูธพกพาพลังเสียง JBL Pro Sound เบสแน่นขึ้น กันน้ำกันฝุ่น IP67 ปรับ EQ ในแอปได้', price: 1490, emoji: '🔊', colors: ['#1d1d1f','#5b7cfa','#e57399'],
             img: 'https://th-live-01.slatic.net/p/e9a6dce04f19219f50574731bf703edb.jpg', specs: [
               { big: 'พลังเสียง JBL Pro Sound + ปรับแต่ง EQ ผ่านแอปมือถือได้', label: 'เสียงร้องใสคมชัดและเบสแน่นขึ้นกว่ารุ่นก่อนในขนาดพกพาฝ่ามือ' },
               { big: 'Bluetooth 5.3 + รองรับ Auracast เชื่อมต่อหลายตัว (กันน้ำ IP67)', label: 'กันน้ำกันฝุ่นเต็มรูปแบบ พกไปริมสระ ทะเล หรือแคมป์ปิ้งได้ไร้กังวล' },
@@ -3445,7 +3422,7 @@
           },
           {
             id: 'marshall-acton-3', tier: 'mid', bracketLabel: 'งบ 6,000 – 10,000฿', eyebrow: 'ลำโพงแต่งบ้านยอดนิยมอันดับ 1', name: 'Marshall Acton III Bluetooth',
-            tagline: 'ดีไซน์แอมป์กีตาร์ระดับตำนาน พร้อมลูกบิดทองเหลืองปรับ Bass/Treble', price: 8990, emoji: '🎸', colors: ['#1d1d1f','#f5f0e6'],
+            tagline: 'ดีไซน์แอมป์กีตาร์ระดับตำนาน พร้อมลูกบิดทองเหลืองปรับ Bass/Treble', price: 12550, emoji: '🎸', colors: ['#1d1d1f','#f5f0e6'],
             img: 'https://th-live-01.slatic.net/p/381249de637267693fa5e4fd52be5578.jpg', specs: [
               { big: 'ทวีตเตอร์คู่ทำมุมกระจายเสียง + วูฟเฟอร์กำลังขับรวม 60W', label: 'เวทีเสียงกว้างโอบล้อมทั้งห้อง เสียงร้องและกีตาร์มีเสน่ห์เอกลักษณ์ Marshall' },
               { big: 'Bluetooth 5.2 + ลูกบิดทองเหลือง Analog ปรับ Bass & Treble', label: 'ดีไซน์ตู้แอมป์วินเทจระดับตำนาน เป็นเฟอร์นิเจอร์แต่งห้องที่สวยที่สุด' },
@@ -3483,7 +3460,7 @@
         products: [
           {
             id: '70mai-m310', tier: 'ultra_low', bracketLabel: '🔥 ต่ำกว่า 2,000฿ (เน้นถูกสุด)', eyebrow: 'ถูกสุดคุ้มสุด • ชัดระดับ 2K QHD', name: '70mai Dash Cam M310 (2K QHD)',
-            tagline: 'กล้องติดรถยนต์ขนาดกะทัดรัดซ่อนหลังกระจกมองหลัง คมชัด 2K สั่งถ่ายภาพด้วยเสียงได้', price: 1490, emoji: '🚗', colors: ['#111'],
+            tagline: 'กล้องติดรถยนต์ขนาดกะทัดรัดซ่อนหลังกระจกมองหลัง คมชัด 2K สั่งถ่ายภาพด้วยเสียงได้', price: 1499, emoji: '🚗', colors: ['#111'],
             img: 'https://th-live-01.slatic.net/p/9bf4d14c9761497f10888601e13ed166.png', specs: [
               { big: 'ความละเอียด 2K QHD (2304x1296P) คมชัดเห็นป้ายทะเบียน', label: 'รูรับแสง F2.0 พร้อมเทคโนโลยี WDR ปรับสมดุลแสงในอุโมงค์และกลางคืน' },
               { big: 'มุมกว้าง 130 องศา + สั่งงานด้วยเสียงและเชื่อมแอป Wi-Fi', label: 'ดูและดาวน์โหลดคลิปเหตุการณ์เข้ามือถือได้ทันทีโดยไม่ต้องถอดเมมโมรี่การ์ด' },
@@ -3503,7 +3480,7 @@
           },
           {
             id: 'dji-action-5', tier: 'mid', bracketLabel: 'งบ 10,000 – 15,000฿', eyebrow: 'ชนะ GoPro เรื่องแบต & ความร้อน', name: 'DJI Osmo Action 5 Pro',
-            tagline: 'ถ่าย 4K ต่อเนื่องไม่ฮีทดับ แบตอึด 4 ชม. จอ OLED คู่หน้า-หลัง', price: 11900, emoji: '🏄', colors: ['#222'],
+            tagline: 'ถ่าย 4K ต่อเนื่องไม่ฮีทดับ แบตอึด 4 ชม. จอ OLED คู่หน้า-หลัง', price: 13240, emoji: '🏄', colors: ['#222'],
             img: 'https://th-live-01.slatic.net/p/d9afb35ec9e46842a27bd86dafbb20b3.jpg', specs: [
               { big: 'วิดีโอ 4K/120fps + เซนเซอร์ใหม่ขนาดใหญ่ 1/1.3 นิ้ว (13.5 Stops)', label: 'ถ่ายแสงน้อยและใต้น้ำสีสวยสมจริง พร้อมจอสัมผัส OLED สว่างทั้งหน้า-หลัง' },
               { big: 'กันสั่นขั้นเทพ RockSteady 3.0+ & HorizonSteady 360 องศา', label: 'หมุนกล้องตีลังกาภาพก็ยังตั้งตรงนิ่งกริบ พร้อมล็อกติดตามตัวบุคคล' },
@@ -3561,7 +3538,7 @@
           },
           {
             id: 'dreame-hair-glory', tier: 'mid', bracketLabel: 'งบ 2,500 – 5,000฿', eyebrow: 'เบามือ 345 กรัม • ขวัญใจสาวผมยาว', name: 'Dreame Hair Glory High-Speed',
-            tagline: 'มอเตอร์ 110,000 รอบ/นาที น้ำหนักเบาเท่ามือถือ เป่าผมหนาแห้งไวโดยไม่เมื่อยแขน', price: 3990, emoji: '✨', colors: ['#f5e6e8','#ffffff'],
+            tagline: 'มอเตอร์ 110,000 รอบ/นาที น้ำหนักเบาเท่ามือถือ เป่าผมหนาแห้งไวโดยไม่เมื่อยแขน', price: 4190, emoji: '✨', colors: ['#f5e6e8','#ffffff'],
             img: 'https://th-live-01.slatic.net/p/850abe8a14e3301d292066d6daae9657.jpg', specs: [
               { big: 'ความเร็วลมแรงจัด 70 m/s + มอเตอร์ไร้แปรงถ่าน 110,000 รอบ/นาที', label: 'เป่าผมหนาประบ่าให้แห้งสนิทในเวลาเพียง 2 นาที ประหยัดเวลาตอนเช้า' },
               { big: 'ปล่อยประจุไอออนลบเข้มข้น 300 ล้านหน่วย + คุมอุณหภูมิคงที่ 57°C', label: 'มีไฟวงแหวน LED 4 สีบอกโหมดอุณหภูมิ ช่วยให้ผมเงางามนุ่มลื่น' },
@@ -3571,7 +3548,7 @@
           },
           {
             id: 'dyson-supersonic-nural', tier: 'high', bracketLabel: 'งบ 10,000฿+', eyebrow: 'ตัวท็อปถนอมหนังศีรษะอันดับ 1', name: 'Dyson Supersonic Nural',
-            tagline: 'เซนเซอร์อัจฉริยะปรับลดความร้อนเองเมื่อเข้าใกล้ศีรษะ พร้อมหัวเป่าครบชุด', price: 14900, emoji: '👑', colors: ['#6cc4bc','#d96b43'],
+            tagline: 'เซนเซอร์อัจฉริยะปรับลดความร้อนเองเมื่อเข้าใกล้ศีรษะ พร้อมหัวเป่าครบชุด', price: 16900, emoji: '👑', colors: ['#6cc4bc','#d96b43'],
             img: 'https://th-live-01.slatic.net/p/07fcac2e7e6256b240b4ee2aa915ed63.jpg', specs: [
               { big: 'มอเตอร์ดิจิทัล Dyson Hyperdymium 110,000 รอบ/นาที ลมแรงคงที่', label: 'เทคโนโลยี Air Multiplier กระจายลมความเร็วสูงจัดทรงผมแม่นยำระดับซาลอน' },
               { big: 'เซนเซอร์ Nural วัดระยะห่าง + โหมด Scalp Protect คุมความร้อน 55°C', label: 'ลดความร้อนลงอัตโนมัติเมื่อไดร์เข้าใกล้หนังศีรษะ พร้อมหัวเป่าลดผมชี้ฟูครบชุด' },
@@ -4271,7 +4248,7 @@
     ];
 
     let activeCategoryId = 'smartphone';
-    let activeBudgetTier = '10k_15k'; // Default to most popular bracket on smartphones so user sees 3 cards immediately!
+    let activeBudgetTier = 'all';
     let customMin = null;
     let customMax = null;
     let activeViewMode = 'lineup';
@@ -4316,20 +4293,22 @@
         const list = (twoStores.length > 0 ? twoStores : rawStores).slice(0, 2);
         return list.map((st, idx) => {
           const netP = scalePrice(st.net_price);
-          const origP = scalePrice(st.original_price || Math.round(st.net_price * 1.15));
+          const origP = scalePrice(st.original_price || st.net_price);
           const pf = st.platform || (st.store.toLowerCase().includes('shopee') ? 'shopee' : 'lazada');
           const finalUrl = product._scaledQuery ? buildScaledLink(pf, product._scaledQuery) : st.link;
+          const linkType = product._scaledQuery ? 'mall_exact_query' : (st.link_type || 'mall_exact_query');
           return {
             store: st.store,
             platform: pf,
             shopName: st.shop_name || st.store,
-            badge: st.badge || (idx === 0 ? 'ถูกที่สุด #1 • ราคาจริงหน้าตะกร้า' : 'ของแท้ประกันศูนย์ 100%'),
+            badge: st.badge || 'ของแท้ประกันศูนย์ 100%',
             netPrice: netP,
             originalPrice: origP,
-            discountPct: st.discount_pct || '-15%',
+            discountPct: st.discount_pct || '',
             shipping: st.shipping || 'ส่งฟรี • ผ่อน 0% 10 เดือน',
             imageUrl: product.img || st.image_url || (feedItem && feedItem.image_url) || '',
             url: finalUrl,
+            linkType,
             best: idx === 0
           };
         });
@@ -4344,24 +4323,26 @@
           store: 'Shopee Mall Official',
           platform: 'shopee',
           shopName: 'Shopee Mall Official',
-          badge: 'ถูกที่สุด #1 • ตะกร้าร้านค้าทางการ Shopee Mall',
+          badge: 'ร้านค้าทางการ Shopee Mall',
           netPrice: base,
-          originalPrice: Math.round(base * 1.15),
-          discountPct: '-15%',
+          originalPrice: base,
+          discountPct: '',
           shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
           url: shopeeUrl,
+          linkType: 'mall_exact_query',
           best: true
         },
         {
           store: 'Lazada LazMall Official',
           platform: 'lazada',
           shopName: 'LazMall Official Store',
-          badge: 'ของแท้ประกันศูนย์ 100% • คืนสินค้าได้ใน 15 วัน',
-          netPrice: Math.round((base * 1.015) / 100) * 100,
-          originalPrice: Math.round(base * 1.16),
-          discountPct: '-15%',
+          badge: 'ร้านค้าทางการ LazMall',
+          netPrice: base,
+          originalPrice: base,
+          discountPct: '',
           shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
           url: lazadaUrl,
+          linkType: 'mall_exact_query',
           best: false
         }
       ];
@@ -5265,11 +5246,17 @@
       const navHomeBtn = document.getElementById('navBtnHome');
       if (navHomeBtn) navHomeBtn.classList.remove('active');
 
-      // Collapse advanced filters drawer by default when entering a new category
-      toggleAdvancedFilters(false);
-
-      // Default to 'all' on Smartphones when browsing the NotebookSpec-style finder unless a specific bracket was clicked from Home
-      activeBudgetTier = initialDecisionId || (catId === 'smartphone' ? 'all' : (decCfg.defaultId || 'all'));
+      // Keep full product lineup available in Left Sidebar; only Aircon/TV use scale defaults
+      if (catId === 'aircon' || catId === 'tv') {
+        activeBudgetTier = initialDecisionId || decCfg.defaultId || 'all';
+      } else if (decCfg.useBudgets) {
+        activeBudgetTier = 'all';
+        if (initialDecisionId && initialDecisionId !== 'all') {
+          activeFacetFilters.priceTiers = [initialDecisionId];
+        }
+      } else {
+        activeBudgetTier = initialDecisionId || 'all';
+      }
 
       document.querySelectorAll('#globalNavPillars .global-nav-item[data-pillar]').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.pillar === cat.pillar);
@@ -5287,10 +5274,11 @@
       document.getElementById('customMaxPrice').value = '';
       document.getElementById('customMinPrice').placeholder = minP.toLocaleString();
       document.getElementById('customMaxPrice').placeholder = maxP.toLocaleString();
+      const sumEl = document.getElementById('activeBudgetSummary');
+      if (sumEl) sumEl.textContent = '';
 
       setViewMode('lineup');
       renderHeroAndControls(cat);
-      renderSmartCalculator(cat);
       renderLineup(cat);
       renderStepups(cat);
       renderSeoArticles(cat);
@@ -5305,7 +5293,6 @@
     // CATEGORY-SPECIFIC PRIMARY DECISION & FILTER CONTROLS
     // =========================================================================
     function renderHeroAndControls(cat) {
-      const decCfg = getPrimaryDecisionConfig(cat);
       document.getElementById('heroHeadline').innerHTML = `
         ${cat.icon} ${cat.name}
       `;
@@ -5314,65 +5301,26 @@
       if (pillarBadge) {
         pillarBadge.textContent = `${PILLAR_LABELS[cat.pillar] || ''}`;
       }
-
-      const primaryLabelEl = document.getElementById('primaryDecisionLabel');
-      if (primaryLabelEl) {
-        primaryLabelEl.textContent = decCfg.label;
-      }
-
-      const pillsEl = document.getElementById('budgetFilterPills');
-      pillsEl.innerHTML = (decCfg.options || []).map(b => `
-        <button class="budget-pill ${(activeBudgetTier === b.id && customMin === null && customMax === null) ? 'active' : ''}" onclick="setBudgetTier('${b.id}')" style="padding:7px 14px;font-size:12.5px;">
-          ${b.label}
-        </button>
-      `).join('');
-
-      // Render Secondary Use-Case Pills inside Advanced Filter Drawer
-      const ucList = getUseCasesForCategory(cat.id);
-      const ucEl = document.getElementById('useCasePillsContainer');
-      if (ucEl) {
-        ucEl.innerHTML = ucList.map(u => `
-          <button class="usecase-pill ${activeUseCase === u.id ? 'active' : ''}" onclick="setUseCase('${u.id}')">
-            ${u.label}
-          </button>
-        `).join('');
-      }
-
-      // Update Smart Calculator button text by category (compact label)
-      const calcBtn = document.getElementById('btnCalcTrigger');
-      if (calcBtn) {
-        if (cat.id === 'aircon') calcBtn.innerHTML = '🧮 คำนวณ BTU & ค่าไฟ';
-        else if (cat.id === 'tv') calcBtn.innerHTML = '🧮 คำนวณขนาดจอทีวี';
-        else if (cat.pillar === 'pet') calcBtn.innerHTML = '🐾 คำนวณค่าอาหาร/เดือน';
-        else if (cat.pillar === 'supplement') calcBtn.innerHTML = '💊 คำนวณต้นทุน/มื้อ';
-        else if (cat.pillar === 'personal') calcBtn.innerHTML = '🧴 คำนวณราคา/มล.';
-        else calcBtn.innerHTML = '🧮 คำนวณผ่อน 0%';
-      }
     }
 
     function setBudgetTier(tierId) {
-      activeBudgetTier = tierId;
+      const cat = getCategory(activeCategoryId);
+      const decCfg = getPrimaryDecisionConfig(cat);
+      if (decCfg.useBudgets && tierId !== 'all') {
+        activeBudgetTier = 'all';
+        activeFacetFilters.priceTiers = [tierId];
+      } else {
+        activeBudgetTier = tierId;
+      }
       customMin = null;
       customMax = null;
-      // Clear spec0/spec1/spec2 facets when switching BTU or TV size so scaled specs don't conflict
       activeFacetFilters.spec0 = [];
       activeFacetFilters.spec1 = [];
       activeFacetFilters.spec2 = [];
-      const cat = getCategory(activeCategoryId);
-      const decCfg = getPrimaryDecisionConfig(cat);
-      const bObj = (decCfg.options || []).find(b => b.id === tierId);
+      document.getElementById('customMinPrice').value = '';
+      document.getElementById('customMaxPrice').value = '';
       const sumEl = document.getElementById('activeBudgetSummary');
-      if (bObj && tierId !== 'all') {
-        if (decCfg.useBudgets) {
-          document.getElementById('customMinPrice').value = bObj.min || 0;
-          document.getElementById('customMaxPrice').value = bObj.max < 900000 ? bObj.max : '';
-        }
-        if (sumEl) sumEl.textContent = `${bObj.label}`;
-      } else {
-        document.getElementById('customMinPrice').value = '';
-        document.getElementById('customMaxPrice').value = '';
-        if (sumEl) sumEl.textContent = `ทุกรุ่น (${cat.products.length})`;
-      }
+      if (sumEl) sumEl.textContent = '';
       renderHeroAndControls(cat);
       renderLineup(cat);
       initCompareSelectors(cat);
@@ -5383,21 +5331,25 @@
       const maxVal = parseInt(document.getElementById('customMaxPrice').value, 10);
       customMin = isNaN(minVal) ? 0 : minVal;
       customMax = isNaN(maxVal) ? 999999 : maxVal;
-      activeBudgetTier = 'custom';
 
       const cat = getCategory(activeCategoryId);
       document.getElementById('activeBudgetSummary').innerHTML =
-        `งบ: <strong>${formatTHB(customMin)} – ${customMax >= 999999 ? 'ไม่จำกัด' : formatTHB(customMax)}</strong>`;
+        `กรองงบ: ${formatTHB(customMin)} – ${customMax >= 999999 ? 'ไม่จำกัด' : formatTHB(customMax)}`;
 
-      renderHeroAndControls(cat);
       renderLineup(cat);
     }
 
     function resetPriceFilter() {
       const cat = getCategory(activeCategoryId);
       const decCfg = getPrimaryDecisionConfig(cat);
+      customMin = null;
+      customMax = null;
+      document.getElementById('customMinPrice').value = '';
+      document.getElementById('customMaxPrice').value = '';
+      const sumEl = document.getElementById('activeBudgetSummary');
+      if (sumEl) sumEl.textContent = '';
+      activeBudgetTier = (cat.id === 'aircon' || cat.id === 'tv') ? (decCfg.defaultId || 'all') : 'all';
       clearAllFacetFilters();
-      setBudgetTier(cat.id === 'smartphone' ? 'all' : (decCfg.defaultId || 'all'));
     }
 
     function setViewMode(mode) {
@@ -5594,6 +5546,34 @@
 
       let html = '';
 
+      // Group 0 (For Aircon BTU or TV Screen Size scaling): Render directly in Left Sidebar
+      if (cat.id === 'aircon' || cat.id === 'tv') {
+        const decCfg = getPrimaryDecisionConfig(cat);
+        const scaleOpts = (decCfg.options || []).filter(o => o.btu || o.tvSize);
+        if (scaleOpts.length > 0) {
+          html += `
+            <div class="nbs-filter-group">
+              <div class="nbs-filter-group-title">
+                <span>${decCfg.label.replace(':', '')}</span>
+              </div>
+              <div class="nbs-check-list">
+                ${scaleOpts.map(opt => {
+                  const isSel = activeBudgetTier === opt.id;
+                  return `
+                    <label class="nbs-check-item ${isSel ? 'checked' : ''}" onclick="setBudgetTier('${opt.id}')">
+                      <span class="nbs-check-label">
+                        <input type="radio" name="sbScaleOpt" ${isSel ? 'checked' : ''} onchange="setBudgetTier('${opt.id}')" />
+                        <span>${opt.label}</span>
+                      </span>
+                    </label>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+      }
+
       // Group 1: Brand Filter
       if (facetSchema.brands.length > 0) {
         html += `
@@ -5688,7 +5668,7 @@
       }
 
       if (chipsContainer) {
-        if (activeChips.length === 0 && !categorySpecSearchQuery) {
+        if (activeChips.length === 0 && !categorySpecSearchQuery && customMin === null && customMax === null) {
           chipsContainer.innerHTML = '';
         } else {
           chipsContainer.innerHTML = `
@@ -5697,12 +5677,17 @@
                 🔍 "${categorySpecSearchQuery}" ✕
               </span>
             ` : ''}
+            ${(customMin !== null || customMax !== null) ? `
+              <span class="nbs-chip" onclick="resetPriceFilter()">
+                🎯 ${formatTHB(customMin || 0)} – ${customMax >= 999999 ? 'ไม่จำกัด' : formatTHB(customMax)} ✕
+              </span>
+            ` : ''}
             ${activeChips.map(c => `
               <span class="nbs-chip" onclick="toggleFacetCheckbox('${c.group}', '${escapeAttr(c.val)}')">
                 ✓ ${c.label} ✕
               </span>
             `).join('')}
-            <button class="helper-link" style="font-size:11.5px;color:#dc2626;font-weight:700;margin-left:4px;" onclick="clearAllFacetFilters()">ล้างตัวกรอง</button>
+            <button class="helper-link" style="font-size:11.5px;color:#dc2626;font-weight:700;margin-left:4px;" onclick="resetPriceFilter()">ล้างตัวกรอง</button>
           `;
         }
       }
@@ -5710,19 +5695,14 @@
 
     function renderLineup(cat) {
       let baseProducts = [];
-      let currentMaxPrice = 999999;
       const decCfg = getPrimaryDecisionConfig(cat);
       const activeDecOpt = (decCfg.options || []).find(o => o.id === activeBudgetTier);
       const decisionProducts = getProductsForCategoryDecision(cat, activeBudgetTier);
 
       if (customMin !== null || customMax !== null) {
         baseProducts = decisionProducts.filter(p => p.price >= customMin && p.price <= customMax);
-        currentMaxPrice = customMax;
       } else {
         baseProducts = decisionProducts;
-        if (decCfg.useBudgets && activeDecOpt && activeDecOpt.max) {
-          currentMaxPrice = activeDecOpt.max;
-        }
       }
 
       const facetSchema = buildFacetSchemaForCategory(cat, baseProducts);
@@ -5768,89 +5748,21 @@
         filtered = [...filtered].sort((a, b) => getTotalProductSpecScore(b) - getTotalProductSpecScore(a));
       }
 
-      const stretchBox = document.getElementById('smartStretchContainer');
-      if (stretchBox) stretchBox.innerHTML = '';
-
       const activeChoiceTitle = (activeDecOpt && activeDecOpt.id !== 'all') ? ` • ${activeDecOpt.label}` : '';
       document.getElementById('lineupTitle').textContent = `${cat.name}${activeChoiceTitle}`;
       document.getElementById('resultCountBadge').textContent = `${filtered.length} รุ่น`;
 
-      const summaryBox = document.getElementById('categoryWinnerSummaryBox');
       const grid = document.getElementById('lineupGrid');
       if (filtered.length === 0) {
-        if (summaryBox) summaryBox.innerHTML = '';
         grid.className = 'apple-lineup-grid';
         grid.innerHTML = `
           <div style="grid-column:1/-1;background:#fff;border-radius:18px;padding:32px;text-align:center;">
             <div style="font-size:32px;margin-bottom:8px;">🔍</div>
             <h3 style="font-size:17px;margin-bottom:6px;">ไม่พบรุ่นที่ตรงกับตัวกรอง</h3>
-            <button class="btn-apple-primary" onclick="clearAllFacetFilters()" style="max-width:180px;margin-top:8px;">ล้างตัวกรองทั้งหมด</button>
+            <button class="btn-apple-primary" onclick="resetPriceFilter()" style="max-width:180px;margin-top:8px;">ล้างตัวกรองทั้งหมด</button>
           </div>
         `;
         return;
-      }
-
-      const ucList = getUseCasesForCategory(cat.id);
-      const selectedUcObj = ucList.find(u => u.id === activeUseCase);
-
-      const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
-      const budgetWinner = sortedByPrice[0];
-      const specWinner = [...filtered].sort((a, b) => getTotalProductSpecScore(b) - getTotalProductSpecScore(a))[0] || sortedByPrice[sortedByPrice.length - 1];
-      let valueWinner = (filtered[0] && filtered[0]._isDecisionWinner)
-        ? filtered[0]
-        : getBestValueProduct(filtered, cat);
-      if (selectedUcObj && selectedUcObj.id !== 'all') {
-        const matchProd = filtered.find((p, idx) =>
-          (selectedUcObj.id === 'budget_win' && (p.tier === 'ultra_low' || p.tier === 'budget' || idx === 0)) ||
-          (selectedUcObj.id === 'balance_win' && (p.tier === 'mid' || idx === 1)) ||
-          (selectedUcObj.id === 'flagship_win' && (p.tier === 'high' || idx === filtered.length - 1)) ||
-          (idx % 3 === selectedUcObj.matchIdx)
-        );
-        if (matchProd) valueWinner = matchProd;
-      }
-
-      const valOffers = getStoresForProduct(valueWinner);
-      const valBestOffer = valOffers[0] || { store: 'Shopee Mall', netPrice: valueWinner.price, url: '#' };
-      const budOffers = getStoresForProduct(budgetWinner);
-      const budBestOffer = budOffers[0] || { store: 'Shopee Mall', netPrice: budgetWinner.price, url: '#' };
-      const spcOffers = getStoresForProduct(specWinner);
-      const spcBestOffer = spcOffers[0] || { store: 'Shopee Mall', netPrice: specWinner.price, url: '#' };
-
-      // COMPACT 3-PODIUM WINNER STRIP (Clean, zero paragraph bloat)
-      if (summaryBox) {
-        summaryBox.innerHTML = `
-          <div class="compact-winner-strip">
-            <div class="compact-winner-pill primary-win">
-              <div class="cwp-tag">🏆 อันดับ #1 แนะนำคุ้มสุด</div>
-              <div class="cwp-name">${valueWinner.name}</div>
-              <div class="cwp-why">🟢 ${getShortSpecWinHighlight(valueWinner)}</div>
-              <div class="cwp-bottom">
-                <span class="cwp-price">${formatTHB(valBestOffer.netPrice)}</span>
-                <a href="${valBestOffer.url}" target="_blank" rel="noopener" class="cwp-btn">🛒 ตะกร้าถูกสุด &gt;</a>
-              </div>
-            </div>
-
-            <div class="compact-winner-pill">
-              <div class="cwp-tag">💰 ประหยัดงบสุด</div>
-              <div class="cwp-name">${budgetWinner.name}</div>
-              <div class="cwp-why">🟢 ถูกสุดในกลุ่ม • ${budgetWinner.specs?.[0]?.big || ''}</div>
-              <div class="cwp-bottom">
-                <span class="cwp-price">${formatTHB(budBestOffer.netPrice)}</span>
-                <a href="${budBestOffer.url}" target="_blank" rel="noopener" class="cwp-btn" style="background:#1d1d1f;">🛒 ดูตะกร้า &gt;</a>
-              </div>
-            </div>
-
-            <div class="compact-winner-pill">
-              <div class="cwp-tag">🚀 สเปกตัวท็อปสุด</div>
-              <div class="cwp-name">${specWinner.name}</div>
-              <div class="cwp-why">🟢 ${getShortSpecWinHighlight(specWinner)}</div>
-              <div class="cwp-bottom">
-                <span class="cwp-price">${formatTHB(spcBestOffer.netPrice)}</span>
-                <a href="${spcBestOffer.url}" target="_blank" rel="noopener" class="cwp-btn" style="background:#0071e3;">🛒 ดูตะกร้า &gt;</a>
-              </div>
-            </div>
-          </div>
-        `;
       }
 
       // Helper: clean short sub-label (max 28 chars) so spec chips never wrap into paragraphs
@@ -5864,19 +5776,19 @@
       if (lineupDisplayLayout === 'list') {
         grid.className = 'nbs-spec-list';
         grid.innerHTML = filtered.map((p, idx) => {
-          const isCardWinner = (p.id === valueWinner.id);
           const groupStart = Math.floor(idx / 3) * 3;
           const groupPeers = filtered.slice(groupStart, groupStart + 3);
 
           const offers = getStoresForProduct(p);
-          const bestOffer = offers[0] || { netPrice: p.price, originalPrice: Math.round(p.price * 1.15), url: '#', platform: 'shopee' };
+          const bestOffer = offers[0] || { netPrice: p.price, originalPrice: p.price, url: '#', platform: 'shopee', linkType: 'mall_exact_query' };
           const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
           const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
-          const isShopeeCheapest = shopeeOffer.netPrice <= lazadaOffer.netPrice;
-          const isLazadaCheapest = !isShopeeCheapest;
 
+          const spVerified = shopeeOffer.linkType === 'exact_pdp';
+          const lzVerified = lazadaOffer.linkType === 'exact_pdp';
+          const hasVerifiedPrice = spVerified || lzVerified;
           const livePrice = bestOffer.netPrice || p.price;
-          const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || Math.round(livePrice * 1.16));
+
           const imgUrl = p.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
           const thumbHtml = imgUrl
             ? `<img src="${imgUrl}" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" onerror="this.outerHTML='<span style=\\'font-size:34px;\\'>${cat.icon}</span>'" />`
@@ -5886,7 +5798,7 @@
           const brandName = extractProductBrand(p);
 
           return `
-            <article class="nbs-spec-row-card ${isCardWinner ? 'winner-green-row' : ''}">
+            <article class="nbs-spec-row-card">
               <!-- Col 1: Product Image + +VS Button -->
               <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
                 <a href="${bestOffer.url}" target="_blank" rel="noopener" class="nbs-row-thumb" title="ไปที่ตะกร้าสินค้าจริง">
@@ -5902,7 +5814,6 @@
                 <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;">
                   <span style="font-size:10.5px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
                   ${p.bracketLabel ? `<span style="font-size:10.5px;font-weight:700;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:99px;">${p.bracketLabel}</span>` : ''}
-                  ${isCardWinner ? `<span style="font-size:10.5px;font-weight:800;background:#16a34a;color:#fff;padding:2px 9px;border-radius:99px;">🏆 แนะนำอันดับ #1</span>` : ''}
                 </div>
                 <h3 style="font-size:15.5px;font-weight:800;color:var(--text-main);margin:0;line-height:1.25;">
                   ${p.name}
@@ -5935,23 +5846,21 @@
                 }).join('')}
               </div>
 
-              <!-- Col 4: Price + Direct Shopee Mall vs LazMall Cart Buttons -->
+              <!-- Col 4: Honest Price + Shopee Mall vs LazMall Cart Buttons -->
               <div style="display:flex;flex-direction:column;gap:5px;align-items:stretch;">
-                <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:6px;">
-                  <span style="font-size:19px;font-weight:800;color:#15803d;line-height:1.1;">
-                    ${formatTHB(livePrice)}
-                  </span>
-                  <span style="font-size:11px;color:var(--text-light);text-decoration:line-through;">
-                    ${formatTHB(prevMonthPrice)}
+                <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:5px;">
+                  <span style="font-size:10.5px;color:var(--text-light);font-weight:600;">${hasVerifiedPrice ? 'ราคาจริง' : 'ราคากลาง'}</span>
+                  <span style="font-size:18.5px;font-weight:800;color:#15803d;line-height:1.1;">
+                    ${hasVerifiedPrice ? '' : '~'}${formatTHB(livePrice)}
                   </span>
                 </div>
-                <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
-                  <span>🟠 Shopee ${isShopeeCheapest ? '🏆' : ''}</span>
-                  <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
+                <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:#ee4d2d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
+                  <span>🟠 Shopee Mall</span>
+                  <strong>${spVerified ? formatTHB(shopeeOffer.netPrice) : 'เช็คราคา'} &gt;</strong>
                 </a>
-                <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
-                  <span>🔵 LazMall ${isLazadaCheapest ? '🏆' : ''}</span>
-                  <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
+                <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:#0f146d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
+                  <span>🔵 LazMall</span>
+                  <strong>${lzVerified ? formatTHB(lazadaOffer.netPrice) : 'เช็คราคา'} &gt;</strong>
                 </a>
               </div>
             </article>
@@ -5963,18 +5872,17 @@
       // MODE B: 3-COLUMN APPLE CARD VIEW (Streamlined low-text cards)
       grid.className = 'apple-lineup-grid';
       grid.innerHTML = filtered.map((p, idx) => {
-        const isCardWinner = (p.id === valueWinner.id);
         const groupStart = Math.floor(idx / 3) * 3;
         const groupPeers = filtered.slice(groupStart, groupStart + 3);
 
         const offers = getStoresForProduct(p);
-        const bestOffer = offers[0] || { netPrice: p.price, originalPrice: Math.round(p.price * 1.15), url: '#', platform: 'shopee' };
+        const bestOffer = offers[0] || { netPrice: p.price, originalPrice: p.price, url: '#', platform: 'shopee', linkType: 'mall_exact_query' };
         const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
         const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
 
-        const minStorePrice = Math.min(shopeeOffer.netPrice, lazadaOffer.netPrice);
-        const isShopeeCheapest = shopeeOffer.netPrice <= lazadaOffer.netPrice;
-        const isLazadaCheapest = !isShopeeCheapest;
+        const spVerified = shopeeOffer.linkType === 'exact_pdp';
+        const lzVerified = lazadaOffer.linkType === 'exact_pdp';
+        const hasVerifiedPrice = spVerified || lzVerified;
 
         const imgUrl = p.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
         const visualHtml = imgUrl
@@ -5984,30 +5892,28 @@
           : `<div class="apple-card-emoji-fallback">${p.emoji || cat.icon}</div>`;
 
         const livePrice = bestOffer.netPrice || p.price;
-        const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || Math.round(livePrice * 1.16));
 
         return `
-          <article class="apple-card ${isCardWinner ? 'winner-green-card' : ''}" style="padding:20px 18px;">
+          <article class="apple-card" style="padding:20px 18px;">
             ${p.bracketLabel ? `<span class="bracket-tag">${p.bracketLabel}</span>` : ''}
-            ${isCardWinner ? `<div class="winner-ribbon">🏆 อันดับ #1 แนะนำคุ้มสุด</div>` : ''}
             <div class="apple-card-visual" style="height:150px;margin-bottom:10px;">
               ${visualHtml}
             </div>
-            <div class="apple-eyebrow" style="${isCardWinner ? 'color:#15803d;font-weight:800;' : ''}">${p.eyebrow}</div>
+            <div class="apple-eyebrow">${p.eyebrow}</div>
             <h3 class="apple-product-name" style="font-size:17.5px;min-height:auto;margin-bottom:6px;">${p.name}</h3>
-            <div class="apple-price-line" style="${isCardWinner ? 'color:#15803d;' : ''}margin-bottom:12px;">
-              ${formatTHB(livePrice)}
-              <span style="font-size:12px;color:var(--text-light);text-decoration:line-through;font-weight:500;margin-left:6px;">${formatTHB(prevMonthPrice)}</span>
+            <div class="apple-price-line" style="color:#15803d;margin-bottom:12px;">
+              <span style="font-size:12px;color:var(--text-light);font-weight:600;margin-right:4px;">${hasVerifiedPrice ? 'ราคาจริง' : 'ราคากลาง'}</span>
+              ${hasVerifiedPrice ? '' : '~'}${formatTHB(livePrice)}
             </div>
 
             <div class="apple-cta-group" style="gap:6px;margin-bottom:14px;padding-bottom:14px;">
-              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:${isShopeeCheapest ? '#16a34a' : '#ee4d2d'};text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;max-width:100%;font-size:12px;">
-                <span>🟠 Shopee Mall ${isShopeeCheapest ? '🏆 ถูกสุด' : ''}</span>
-                <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
+              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:#ee4d2d;text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;max-width:100%;font-size:12px;">
+                <span>🟠 Shopee Mall</span>
+                <strong>${spVerified ? formatTHB(shopeeOffer.netPrice) : 'เช็คราคาร้านทางการ'} &gt;</strong>
               </a>
-              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:${isLazadaCheapest ? '#16a34a' : '#0f146d'};text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;max-width:100%;font-size:12px;">
-                <span>🔵 LazMall ${isLazadaCheapest ? '🏆 ถูกสุด' : ''}</span>
-                <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
+              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="background:#0f146d;text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;max-width:100%;font-size:12px;">
+                <span>🔵 LazMall</span>
+                <strong>${lzVerified ? formatTHB(lazadaOffer.netPrice) : 'เช็คราคาร้านทางการ'} &gt;</strong>
               </a>
             </div>
 
@@ -6280,6 +6186,7 @@
 
       document.getElementById('modalOffersList').innerHTML = offers.map((o) => {
         const thumbImg = o.imageUrl || product.img || '';
+        const isVerified = o.linkType === 'exact_pdp';
         return `
           <div class="flight-offer-row ${o.best ? 'best' : ''}">
             <div style="display:flex;align-items:center;gap:14px;">
@@ -6287,20 +6194,20 @@
               <div>
                 <div style="font-weight:800;font-size:15px;">
                   ${o.store}
-                  ${o.best ? `<span style="background:#16a34a;color:#fff;font-size:11px;padding:3px 9px;border-radius:99px;margin-left:6px;">🏆 ถูกสุด ชนะ!</span>` : `<span style="font-size:11.5px;color:var(--text-sub);margin-left:6px;">ของแท้ประกันศูนย์</span>`}
+                  <span style="font-size:11.5px;color:#15803d;margin-left:6px;">ของแท้ประกันศูนย์</span>
                 </div>
                 <div style="font-size:12.5px;color:var(--text-sub);margin-top:4px;">
-                  ${o.shipping} • ผ่อน 0% เดือนละ ${formatTHB(Math.round(o.netPrice / 10))}
+                  ${o.shipping} • ผ่อน 0% เดือนละ ~${formatTHB(Math.round(o.netPrice / 10))}
                 </div>
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:14px;">
               <div style="text-align:right;">
-                <div class="flight-price" style="${o.best ? 'color:#15803d;' : ''}">${formatTHB(o.netPrice)}</div>
-                <div style="font-size:11.5px;color:var(--text-light);text-decoration:line-through;">${formatTHB(o.originalPrice || Math.round(o.netPrice * 1.15))}</div>
+                <div class="flight-price" style="color:#15803d;">${isVerified ? formatTHB(o.netPrice) : `~${formatTHB(o.netPrice)}`}</div>
+                <div style="font-size:11px;color:var(--text-light);">${isVerified ? 'ราคาหน้าร้าน' : 'ราคากลางอ้างอิง'}</div>
               </div>
-              <a href="${o.url}" target="_blank" rel="noopener" class="flight-buy-btn" style="${o.best ? 'background:#16a34a;font-weight:800;' : ''}">
-                🛒 ไปที่ตะกร้าสินค้า &gt;
+              <a href="${o.url}" target="_blank" rel="noopener" class="flight-buy-btn" style="background:#16a34a;font-weight:800;">
+                🛒 ${isVerified ? 'ไปที่ตะกร้าสินค้า' : 'เช็คราคาร้านทางการ'} &gt;
               </a>
             </div>
           </div>
@@ -6660,7 +6567,7 @@
               const mcpItem = feed.items_by_id[p.id];
               if (mcpItem) {
                 const cp = Number(mcpItem.cheapest_price);
-                if (!savedPrices[p.id] && cp && cp >= p.price * 0.88 && cp <= p.price * 1.12) {
+                if (!savedPrices[p.id] && cp) {
                   p.price = cp;
                 }
                 if (!p.img && mcpItem.image_url) {
@@ -6943,10 +6850,12 @@
       grid.innerHTML = champs.map(item => {
         const { cat, prod } = item;
         const offers = getStoresForProduct(prod);
-        const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: Math.round(prod.price * 1.15), url: '#' };
+        const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: prod.price, url: '#', linkType: 'mall_exact_query' };
         const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
         const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
-        const minStoreP = Math.min(shopeeOffer.netPrice, lazadaOffer.netPrice);
+        const spVer = shopeeOffer.linkType === 'exact_pdp';
+        const lzVer = lazadaOffer.linkType === 'exact_pdp';
+        const hasVer = spVer || lzVer;
         const hallImg = prod.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
 
         const visualHtml = hallImg
@@ -6956,7 +6865,7 @@
         return `
           <div class="hall-card" style="border:2px solid rgba(22,163,74,0.32);" onclick="selectCategory('${cat.id}')">
             <div style="font-size:11px;font-weight:800;background:#ecfdf5;color:#15803d;border:1px solid #86efac;padding:3px 10px;border-radius:99px;margin-bottom:10px;">
-              🏆 แชมป์ขายดี #1 ${cat.name}
+              🏆 ยอดนิยม ${cat.name}
             </div>
             <div style="height:135px;width:100%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">
               ${visualHtml}
@@ -6965,18 +6874,18 @@
               ${prod.name}
             </h3>
             <div style="margin-bottom:6px;">
-              <span style="font-size:17px;font-weight:800;color:#15803d;">${formatTHB(bestOffer.netPrice)}</span>
-              <span style="font-size:11.5px;color:var(--text-light);text-decoration:line-through;margin-left:5px;">${formatTHB(bestOffer.originalPrice)}</span>
+              <span style="font-size:11.5px;color:var(--text-light);font-weight:600;margin-right:4px;">${hasVer ? 'ราคาจริง' : 'ราคากลาง'}</span>
+              <span style="font-size:17px;font-weight:800;color:#15803d;">${hasVer ? '' : '~'}${formatTHB(bestOffer.netPrice)}</span>
             </div>
             <div style="font-size:11.5px;color:#14532d;background:#f0fdf4;border-radius:10px;padding:6px 10px;margin-bottom:10px;width:100%;line-height:1.4;">
-              🟢 <strong>ทำไมถึงชนะ:</strong> ${prod.specs[0]?.big || prod.eyebrow}
+              🟢 <strong>จุดเด่น:</strong> ${prod.specs[0]?.big || prod.eyebrow}
             </div>
             <div style="display:flex;gap:6px;width:100%;padding-top:8px;border-top:1px solid var(--border-hairline);flex-wrap:wrap;" onclick="event.stopPropagation();">
-              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:${shopeeOffer.netPrice <= lazadaOffer.netPrice ? '#16a34a' : '#ee4d2d'};color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🟠 Shopee ${formatTHB(shopeeOffer.netPrice)}
+              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:#ee4d2d;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
+                🟠 Shopee ${spVer ? formatTHB(shopeeOffer.netPrice) : 'เช็คราคา'}
               </a>
-              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:${lazadaOffer.netPrice < shopeeOffer.netPrice ? '#16a34a' : '#0f146d'};color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🔵 LazMall ${formatTHB(lazadaOffer.netPrice)}
+              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:#0f146d;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
+                🔵 LazMall ${lzVer ? formatTHB(lazadaOffer.netPrice) : 'เช็คราคา'}
               </a>
             </div>
           </div>

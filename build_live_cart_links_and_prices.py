@@ -53,7 +53,7 @@ STRICT_MODEL_RULES: dict[str, tuple[list[str], list[str]]] = {
     "carrier-xinverter": (["carrier", "xinverter"], ["fixed"]),
     "mitsu-heavy-yvs": (["mitsubishi", "heavy", "inverter"], ["fixed speed"]),
     "daikin-zesth": (["daikin", "inverter", "12"], ["9000", "9,000", "tcl"]),
-    "acer-aspire-lite": (["acer", "aspire", "lite"], []),
+    "acer-aspire-lite": (["acer", "aspire", "lite"], ["410p"]),
     "asus-vivobook-15": (["asus", "vivobook"], []),
     "lenovo-loq-rtx": (["lenovo", "loq"], []),
     "macbook-air-13": (["macbook", "air", "13"], []),
@@ -82,14 +82,14 @@ STRICT_MODEL_RULES: dict[str, tuple[list[str], list[str]]] = {
     "xiaomi-x20-plus": (["xiaomi", "x20"], ["eufy"]),
     "dreame-x40-ultra": (["dreame", "x40"], ["l10s"]),
     "roborock-s8-maxv": (["roborock", "s8"], ["qrevo"]),
-    "xiaomi-g20-lite": (["xiaomi", "g20"], []),
+    "xiaomi-g20-lite": (["xiaomi", "g20"], ["p30"]),
     "dreame-r10": (["dreame", "r10"], []),
     "dreame-h14-wetdry": (["dreame", "h14"], ["h16"]),
-    "dyson-v12-slim": (["dyson", "v12"], []),
+    "dyson-v12-slim": (["dyson", "v12"], ["submarine"]),
     "sharp-wh34": (["sharp", "3500"], ["4500", "keve"]),
     "pana-dh-3ns": (["panasonic", "3500"], ["4500"]),
     "stiebel-copper-45": (["stiebel", "4500"], ["3500"]),
-    "pana-pump-45": (["panasonic", "4500"], ["3500"]),
+    "pana-pump-45": (["panasonic", "4500"], ["3500", "dh-4vl1tw"]),
     "mazuma-uf-easy": (["mazuma"], ["uni pure"]),
     "philips-uv-purifier": (["philips", "aut"], ["xiaomi"]),
     "xiaomi-ro-600g": (["xiaomi", "600g"], ["800g"]),
@@ -103,7 +103,7 @@ STRICT_MODEL_RULES: dict[str, tuple[list[str], list[str]]] = {
     "delonghi-dedica": (["delonghi", "dedica"], ["duchess"]),
     "delonghi-magnifica": (["delonghi", "magnifica"], []),
     "redmi-watch-5-lite": (["redmi", "watch", "5"], []),
-    "huawei-gt5": (["huawei", "watch", "gt"], []),
+    "huawei-gt5": (["huawei", "watch", "gt", "5"], ["gt 7"]),
     "garmin-fr265": (["garmin", "265"], ["170", "165"]),
     "watch-s11": (["apple", "watch"], ["galaxy"]),
     "soundcore-space-one": (["soundcore", "space", "one"], ["a40"]),
@@ -131,10 +131,10 @@ STRICT_MODEL_RULES: dict[str, tuple[list[str], list[str]]] = {
     "dreame-hair-glory": (["dreame", "glory"], []),
     "dyson-supersonic-nural": (["dyson", "supersonic"], []),
     "biore-uv-aqua": (["biore", "aqua"], []),
-    "anessa-gold-milk": (["anessa", "milk"], []),
+    "anessa-gold-milk": (["anessa", "milk"], ["20 ml"]),
     "mizumi-uv-water": (["mizumi", "water"], []),
     "laroche-anthelios": (["la roche", "anthelios"], []),
-    "alodia-bergamot": (["legano"], []),
+    "alodia-bergamot": (["bergamot"], ["legano"]),
     "sunsilk-smooth": (["sunsilk"], []),
     "vichy-dercos": (["vichy", "dercos"], []),
     "daeng-gi-meo-ri": (["daeng gi meo ri"], []),
@@ -352,14 +352,12 @@ def extract_category_by_product_id(index_html: str) -> dict[str, str]:
     return cat_map
 
 
-def clamp_store_price(raw_price: int | float, base_price: int, factor: float = 1.0) -> int:
-    p = int(round(raw_price or base_price))
-    if p < base_price * 0.92 or p > base_price * 1.08:
-        target = base_price * factor
-        if base_price >= 5000:
-            return int(round(target / 10) * 10)
-        return max(25, int(round(target)))
-    return p
+def sync_product_price_in_index_html(html_text: str, pid: str, new_price: int) -> str:
+    """Update hardcoded price: <num> for product `pid` inside index.html so it matches verified PDP price."""
+    pattern = re.compile(
+        rf"(id:\s*'{re.escape(pid)}'[\s\S]{{1,450}}?\bprice:\s*)(\d+)(\b)"
+    )
+    return pattern.sub(rf"\g<1>{new_price}\g<3>", html_text, count=1)
 
 
 def main():
@@ -375,13 +373,14 @@ def main():
 
     verified_pdp_sp = 0
     verified_pdp_laz = 0
+    synced_index_prices = 0
     new_items_by_id = {}
     new_items_list = []
 
     for model in all_models:
         item_id = model["id"]
         name = model["name"]
-        base_price = model["base_price"]
+        base_price = int(round(model["base_price"]))
         cat_id = cat_by_pid.get(item_id, "smartphone")
         clean_sub = "yespec" + re.sub(r"[^a-zA-Z0-9]", "", item_id)[:18]
 
@@ -390,21 +389,15 @@ def main():
             (re.sub(r"\([^)]*\)", "", name).split("/")[0].strip(), "Official Mall Store")
         )
 
-        h = sum(ord(ch) for ch in item_id)
-        if h % 2 == 0:
-            sp_factor, lz_factor = 1.00, 1.015
-        else:
-            sp_factor, lz_factor = 1.015, 1.00
-
-        # 1. Match Shopee Mall product ONLY if 100% verified exact model
+        # 1. Match Shopee Mall product ONLY if 100% verified exact model from Official Store
         sp_match = None
         if item_id in OFFICIAL_SHOPEE_SHORTLINKS:
             sl, p_now, p_orig, disc, s_name = OFFICIAL_SHOPEE_SHORTLINKS[item_id]
-            p_now = clamp_store_price(p_now, base_price, sp_factor)
+            p_now = int(round(p_now))
             sp_match = {
                 "link": sl,
                 "price": p_now,
-                "original_price": max(p_orig, int(p_now * 1.15)),
+                "original_price": int(round(p_orig or p_now)),
                 "discount": disc,
                 "shop_name": s_name,
                 "image_url": "",
@@ -412,14 +405,18 @@ def main():
                 "link_type": "exact_pdp"
             }
             verified_pdp_sp += 1
-        elif item_id in sp_exact and is_strict_exact_model(item_id, sp_exact[item_id].get("title")):
+        elif (
+            item_id in sp_exact
+            and sp_exact[item_id].get("is_official_shop")
+            and is_strict_exact_model(item_id, sp_exact[item_id].get("title"))
+        ):
             c = sp_exact[item_id]
-            norm_p = clamp_store_price(c.get("price", base_price), base_price, sp_factor)
+            norm_p = int(round(c.get("price") or base_price))
             sp_match = {
                 "link": c["long_link"],
                 "price": norm_p,
-                "original_price": max(c.get("original_price", 0), int(norm_p * 1.15)),
-                "discount": c.get("discount") or "15%",
+                "original_price": int(round(c.get("original_price") or norm_p)),
+                "discount": c.get("discount") or "",
                 "shop_name": c.get("shop_name") or default_official_shop,
                 "image_url": c.get("image") or "",
                 "is_direct": True,
@@ -431,22 +428,22 @@ def main():
         laz_match = None
         l_cand = laz_map.get(item_id)
         if l_cand and l_cand.get("itemId") and l_cand.get("skuId") and is_strict_exact_model(item_id, l_cand.get("title")):
-            raw_lp = l_cand.get("afterVoucherPrice") or base_price
-            lp = clamp_store_price(raw_lp, base_price, lz_factor)
+            raw_lp = l_cand.get("afterVoucherPrice") or l_cand.get("price") or base_price
+            lp = int(round(raw_lp))
             item_num = l_cand["itemId"]
             sku_num = l_cand["skuId"]
             if item_id in OFFICIAL_LAZADA_SHORTLINKS:
                 laz_url = OFFICIAL_LAZADA_SHORTLINKS[item_id]
             else:
                 laz_url = f"https://www.lazada.co.th/products/pdp-i{item_num}-s{sku_num}.html?from_affiliate=1&t=pdp&exlaz={LAZ_EXLAZ}&dsource=share&laz_share_info={LAZ_SHARE}&laz_token={LAZ_TOKEN}&sub_id1={clean_sub}&aff_id={LAZADA_AFF_ID}&c=d"
-            orig_lp = max(int(round(l_cand.get("originalPrice") or (lp * 1.15))), int(round(lp * 1.15)))
+            orig_lp = int(round(l_cand.get("originalPrice") or lp))
             laz_match = {
                 "link": laz_url,
                 "price": lp,
                 "original_price": orig_lp,
-                "discount": l_cand.get("discount") or "-15%",
+                "discount": l_cand.get("discount") or "",
                 "shop_name": l_cand.get("sellerName") or default_official_shop,
-                "comm": l_cand.get("comm") or "5%",
+                "comm": l_cand.get("comm") or "",
                 "title": l_cand.get("title") or name,
                 "image_url": l_cand.get("imageUrl") or "",
                 "itemId": item_num,
@@ -456,44 +453,45 @@ def main():
             }
             verified_pdp_laz += 1
 
+        # Determine true reference price from verified exact_pdp stores if available
+        verified_prices = [m["price"] for m in (sp_match, laz_match) if m is not None]
+        ref_price = min(verified_prices) if verified_prices else base_price
+        if ref_price != base_price:
+            html_text = sync_product_price_in_index_html(html_text, item_id, ref_price)
+            base_price = ref_price
+            synced_index_prices += 1
+
         # 3. For any store without a verified exact-model PDP link, build a Precision Official Mall Search Link
-        #    (shopType=1 for Shopee Mall, service=official for LazMall) locked to the exact Brand + Model query!
+        #    (shopType=1 for Shopee Mall, service=official for LazMall) locked to the exact Brand + Model query,
+        #    with clean reference price (zero fake 1.015x multipliers or +100 offsets).
         if not sp_match:
-            sp_p = clamp_store_price(base_price * sp_factor, base_price, sp_factor)
-            sp_orig = int(round(sp_p * 1.16))
             origin = f"https://shopee.co.th/search?keyword={quote(exact_kw)}&noCorrection=true&page=0&shopType=1"
             sp_url = f"https://s.shopee.co.th/an_redir?origin_link={quote(origin, safe='')}&affiliate_id={SHOPEE_AFF_ID}&sub_id={clean_sub}----"
             sp_match = {
                 "link": sp_url,
-                "price": sp_p,
-                "original_price": sp_orig,
-                "discount": "16%",
+                "price": ref_price,
+                "original_price": ref_price,
+                "discount": "",
                 "shop_name": default_official_shop,
                 "image_url": laz_match.get("image_url", "") if laz_match else "",
-                "is_direct": True,
+                "is_direct": False,
                 "link_type": "mall_exact_query"
             }
 
         if not laz_match:
-            lz_p = clamp_store_price(base_price * lz_factor, base_price, lz_factor)
-            lz_orig = int(round(lz_p * 1.15))
             laz_url = f"https://www.lazada.co.th/catalog/?q={quote(exact_kw)}&service=official&exlaz={LAZ_EXLAZ}&dsource=share&laz_share_info={LAZ_SHARE}&laz_token={LAZ_TOKEN}&sub_id1={clean_sub}&aff_id={LAZADA_AFF_ID}"
             laz_match = {
                 "link": laz_url,
-                "price": lz_p,
-                "original_price": lz_orig,
-                "discount": "-15%",
+                "price": ref_price,
+                "original_price": ref_price,
+                "discount": "",
                 "shop_name": default_official_shop,
-                "comm": "5%",
+                "comm": "",
                 "title": name,
                 "image_url": sp_match.get("image_url", ""),
-                "is_direct": True,
+                "is_direct": False,
                 "link_type": "mall_exact_query"
             }
-
-        if sp_match["price"] == laz_match["price"]:
-            step = 100 if base_price >= 5000 else (20 if base_price >= 1000 else 5)
-            laz_match["price"] += step
 
         primary_image_url = (
             laz_match.get("image_url")
@@ -506,14 +504,14 @@ def main():
                 "store": f"Shopee Mall • {sp_match['shop_name']}",
                 "platform": "shopee",
                 "shop_name": sp_match["shop_name"],
-                "badge": f"ร้านทางการ {sp_match['shop_name']} • ลด {sp_match['discount']}",
+                "badge": f"ร้านทางการ {sp_match['shop_name']}",
                 "net_price": sp_match["price"],
                 "original_price": sp_match["original_price"],
-                "discount_pct": f"-{sp_match['discount']}" if not str(sp_match["discount"]).startswith("-") else str(sp_match["discount"]),
+                "discount_pct": str(sp_match["discount"] or ""),
                 "shipping": "ส่งฟรี • ของแท้ Shopee Mall 100%",
                 "image_url": sp_match.get("image_url") or primary_image_url,
                 "link": sp_match["link"],
-                "is_direct_product": True,
+                "is_direct_product": sp_match["link_type"] == "exact_pdp",
                 "link_type": sp_match.get("link_type", "mall_exact_query"),
                 "exact_query": exact_kw,
             },
@@ -521,20 +519,20 @@ def main():
                 "store": f"LazMall • {laz_match['shop_name']}",
                 "platform": "lazada",
                 "shop_name": laz_match["shop_name"],
-                "badge": f"ร้านทางการ {laz_match['shop_name']} • ของแท้ 100%",
+                "badge": f"ร้านทางการ {laz_match['shop_name']}",
                 "net_price": laz_match["price"],
                 "original_price": laz_match["original_price"],
-                "discount_pct": str(laz_match["discount"]),
+                "discount_pct": str(laz_match["discount"] or ""),
                 "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
                 "image_url": laz_match.get("image_url") or primary_image_url,
                 "link": laz_match["link"],
-                "is_direct_product": True,
+                "is_direct_product": laz_match["link_type"] == "exact_pdp",
                 "link_type": laz_match.get("link_type", "mall_exact_query"),
                 "exact_query": exact_kw,
             }
         ]
-        stores.sort(key=lambda s: s["net_price"])
-        stores[0]["badge"] = f"ถูกที่สุด #1 • {stores[0]['shop_name']}"
+        # Prefer verified exact_pdp store first, then lowest net_price
+        stores.sort(key=lambda s: (0 if s["link_type"] == "exact_pdp" else 1, s["net_price"]))
 
         item_payload = {
             "id": item_id,
@@ -551,9 +549,11 @@ def main():
         new_items_by_id[item_id] = item_payload
         new_items_list.append(item_payload)
 
+    index_path.write_text(html_text, encoding="utf-8")
+
     out_feed = {
-        "updated_at": "2026-10-17T01:00:00+07:00",
-        "source": "yespec Strict Exact-Model Affiliate Engine (Shopee Mall & LazMall)",
+        "updated_at": "2026-10-17T02:25:00+07:00",
+        "source": "yesspec.com Strict Exact-Model Affiliate Engine (Shopee Mall & LazMall)",
         "affiliate_ids": {
             "shopee": SHOPEE_AFF_ID,
             "lazada": LAZADA_AFF_ID,
@@ -568,8 +568,9 @@ def main():
     )
     print(f"Done! {len(new_items_list)} products processed.")
     print(f"  - Verified 100% Exact Model PDP links: LazMall={verified_pdp_laz}, Shopee={verified_pdp_sp}")
-    print(f"  - Zero cross-brand or mismatched-model links!")
+    print(f"  - Synced {synced_index_prices} product prices into index.html to match real PDP prices 100%.")
 
 
 if __name__ == "__main__":
     main()
+
