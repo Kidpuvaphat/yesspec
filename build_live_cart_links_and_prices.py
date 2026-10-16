@@ -94,6 +94,7 @@ for item_id, item in feed["items_by_id"].items():
             "shop_name": s_name,
             "voucher_code": v_code,
             "voucher_label": v_lbl,
+            "image_url": sp_exact.get(item_id, {}).get("image") or laz_map.get(item_id, {}).get("imageUrl", ""),
             "is_direct": True
         }
     elif item_id in sp_exact and is_clean_card(sp_exact[item_id], base_price):
@@ -107,6 +108,7 @@ for item_id, item in feed["items_by_id"].items():
             "shop_name": c["shop_name"],
             "voucher_code": vc,
             "voucher_label": vl,
+            "image_url": c.get("image") or laz_map.get(item_id, {}).get("imageUrl", ""),
             "is_direct": True
         }
     else:
@@ -128,6 +130,7 @@ for item_id, item in feed["items_by_id"].items():
                 best_c = c
         if best_c and best_score > 10:
             vc, vl = get_brand_voucher(item_id, item["name"], best_c.get("voucher_code"), best_c.get("voucher_label"))
+            sp_img = best_c.get("image") if best_score >= 45 else (laz_map.get(item_id, {}).get("imageUrl") or best_c.get("image", ""))
             sp_match = {
                 "link": best_c["long_link"],
                 "price": best_c["price"],
@@ -136,6 +139,7 @@ for item_id, item in feed["items_by_id"].items():
                 "shop_name": best_c["shop_name"],
                 "voucher_code": vc,
                 "voucher_label": vl,
+                "image_url": sp_img,
                 "is_direct": True
             }
         else:
@@ -150,6 +154,7 @@ for item_id, item in feed["items_by_id"].items():
                 "shop_name": closest_c["shop_name"],
                 "voucher_code": vc,
                 "voucher_label": vl,
+                "image_url": laz_map.get(item_id, {}).get("imageUrl") or closest_c.get("image", ""),
                 "is_direct": True
             }
 
@@ -178,6 +183,7 @@ for item_id, item in feed["items_by_id"].items():
                 "shop_name": l_cand.get("sellerName") or "LazMall Official Store",
                 "comm": l_cand.get("comm") or "5%",
                 "title": l_cand.get("title") or item["name"],
+                "image_url": l_cand.get("imageUrl") or sp_match.get("image_url", ""),
                 "itemId": item_num,
                 "skuId": sku_num,
                 "is_direct": True
@@ -187,10 +193,8 @@ for item_id, item in feed["items_by_id"].items():
     if not sp_match:
         vc, vl = get_brand_voucher(item_id, item["name"])
         real_p = laz_match["price"] if laz_match else base_price
-        # If Shopee is slightly cheaper or competitive
         sp_p = max(290, int(round((real_p * 0.985) / 10) * 10))
         sp_orig = int(round(sp_p * 1.18))
-        # Use direct Shopee Mall search with official mall filter (`shopType=1`) wrapped in affiliate redirect
         kw_clean = re.sub(r"\([^)]*\)", "", item["name"]).split("/")[0].strip()
         origin = f"https://shopee.co.th/search?keyword={kw_clean}&locations=%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8&noCorrection=true&page=0&shopType=1"
         from urllib.parse import quote
@@ -203,6 +207,7 @@ for item_id, item in feed["items_by_id"].items():
             "shop_name": "Shopee Mall Official",
             "voucher_code": vc,
             "voucher_label": vl,
+            "image_url": laz_match.get("image_url", "") if laz_match else "",
             "is_direct": False
         }
     else:
@@ -223,10 +228,19 @@ for item_id, item in feed["items_by_id"].items():
             "shop_name": "LazMall Official Store",
             "comm": "5%",
             "title": item["name"],
+            "image_url": sp_match.get("image_url", ""),
             "is_direct": False
         }
     else:
         direct_laz_count += 1
+
+    # Primary real product image from official store cart listing
+    primary_image_url = (
+        sp_exact.get(item_id, {}).get("image")
+        or laz_match.get("image_url")
+        or sp_match.get("image_url")
+        or ""
+    )
 
     # 3. TikTok Shop Mall
     min_real = min(sp_match["price"], laz_match["price"])
@@ -248,6 +262,7 @@ for item_id, item in feed["items_by_id"].items():
             "shipping": "ส่งฟรี • ผ่อน 0% สูงสุด 10 เดือน",
             "coupon": sp_match["voucher_code"],
             "coupon_label": sp_match["voucher_label"],
+            "image_url": sp_match.get("image_url") or primary_image_url,
             "is_direct_product": sp_match["is_direct"],
             "link": sp_match["link"]
         },
@@ -262,6 +277,7 @@ for item_id, item in feed["items_by_id"].items():
             "shipping": "ส่งฟรี • เก็บโบนัส LazMall ลดเพิ่มหน้าชำระเงิน",
             "coupon": "LAZMALL15",
             "coupon_label": "คูปอง LazMall ลดเพิ่มสูงสุด 15% + LazBonus",
+            "image_url": laz_match.get("image_url") or primary_image_url,
             "is_direct_product": laz_match["is_direct"],
             "link": laz_match["link"]
         },
@@ -276,6 +292,7 @@ for item_id, item in feed["items_by_id"].items():
             "shipping": "ส่งฟรี • เก็บคูปองหน้าตะกร้าไลฟ์สดลดเพิ่ม",
             "coupon": "TIKTOK15",
             "coupon_label": "คูปอง TikTok Shop Mall ลดสูงสุด ฿1,200",
+            "image_url": primary_image_url,
             "is_direct_product": False,
             "link": tt_url
         }
@@ -287,12 +304,13 @@ for item_id, item in feed["items_by_id"].items():
     cheapest = stores[0]["net_price"]
     orig_high = max(s["original_price"] for s in stores)
 
+    item["image_url"] = primary_image_url
     item["cheapest_store"] = stores[0]["store"]
     item["cheapest_price"] = cheapest
     item["prev_month_price"] = orig_high
     item["stores_sorted"] = stores
 
-feed["sync_mode"] = "DIRECT_PRODUCT_CART_LINKS_AND_LIVE_PRICES_V2"
+feed["sync_mode"] = "DIRECT_PRODUCT_CART_LINKS_PRICES_AND_IMAGES_V3"
 with open("data/daily_prices_feed.json", "w") as f:
     json.dump(feed, f, ensure_ascii=False, indent=2)
 
