@@ -1308,15 +1308,16 @@
 
       <ul class="global-nav-links" id="globalNavPillars">
         <li><button class="global-nav-item active" id="navBtnHome" onclick="showHomeHub()">หน้าแรก</button></li>
-        <li><button class="global-nav-item" data-pillar="tech" onclick="selectPillar('tech')">มือถือ • ไอที</button></li>
-        <li><button class="global-nav-item" data-pillar="major" onclick="selectPillar('major')">แอร์ • ทีวี • ตู้เย็น</button></li>
-        <li><button class="global-nav-item" data-pillar="living" onclick="selectPillar('living')">สมาร์ทโฮม • ในครัว</button></li>
-        <li><button class="global-nav-item" data-pillar="lifestyle" onclick="selectPillar('lifestyle')">หูฟัง • เก้าอี้</button></li>
+        <li><button class="global-nav-item" data-pillar="tech" onclick="selectPillar('tech')">📱 มือถือ • ไอที</button></li>
+        <li><button class="global-nav-item" data-pillar="home" onclick="selectPillar('home')">❄️ เครื่องใช้ไฟฟ้า • บ้าน</button></li>
+        <li><button class="global-nav-item" data-pillar="personal" onclick="selectPillar('personal')">🧴 ของใช้ • สกินแคร์</button></li>
+        <li><button class="global-nav-item" data-pillar="supplement" onclick="selectPillar('supplement')">💊 อาหารเสริม</button></li>
+        <li><button class="global-nav-item" data-pillar="pet" onclick="selectPillar('pet')">🐾 สัตว์เลี้ยง</button></li>
       </ul>
 
       <div class="global-nav-actions">
         <button class="nav-icon-btn" onclick="toggleCurtain(true, true)">🔍 ค้นหา</button>
-        <button class="nav-icon-btn" onclick="toggleCurtain()">🗂️ 22 หมวด</button>
+        <button class="nav-icon-btn" onclick="toggleCurtain()">🗂️ 32 หมวด</button>
       </div>
     </div>
   </nav>
@@ -1325,9 +1326,9 @@
   <div class="curtain-backdrop" id="curtainBackdrop" onclick="if(event.target===this) toggleCurtain(false)">
     <div class="curtain-menu">
       <div class="curtain-inner">
-        <input type="text" id="curtainSearchInput" class="apple-search-bar" placeholder="🔍 ค้นหาหมวดสินค้า หรือ รุ่นที่ต้องการเทียบ..." oninput="filterCurtainCategories(this.value)" />
+        <input type="text" id="curtainSearchInput" class="apple-search-bar" placeholder="🔍 ค้นหาหมวดสินค้า หรือ รุ่นที่ต้องการเทียบ (เช่น ครีมกันแดด, อาหารแมว, เวย์โปรตีน, มือถือ)..." oninput="filterCurtainCategories(this.value)" />
         <div class="curtain-header">
-          <span class="curtain-title">ครบทั้ง 22 หมวดสินค้า</span>
+          <span class="curtain-title">ครบทั้ง 32 หมวดสินค้า (5 โซนหลัก)</span>
           <button class="helper-link" onclick="toggleCurtain(false)">ปิด ✕</button>
         </div>
         <div class="curtain-grid" id="curtainGrid"></div>
@@ -1365,16 +1366,18 @@
 
         <div class="clean-search-bar">
           <span>🔍</span>
-          <input type="text" id="homeQuickSearchInput" class="clean-search-input" placeholder="ค้นหารุ่น หรือ หมวดสินค้า (เช่น มือถืองบ 10,000, แอร์, ทีวี 65 นิ้ว)..." oninput="handleHomeQuickSearch(this.value)" />
+          <input type="text" id="homeQuickSearchInput" class="clean-search-input" placeholder="ค้นหารุ่น หรือ หมวดสินค้า (เช่น มือถืองบ 10,000, ครีมกันแดด, อาหารแมว, เวย์โปรตีน, แอร์)..." oninput="handleHomeQuickSearch(this.value)" />
           <button class="btn-apple-primary" onclick="toggleCurtain(true, true)" style="padding:8px 18px;font-size:13px;">ค้นหา</button>
         </div>
         <div id="homeQuickSearchResults" style="margin-bottom:12px;"></div>
 
         <div class="clean-quick-pills">
-          <button class="clean-quick-pill" onclick="jumpToCategoryBracket('smartphone', '5k_10k')">📱 มือถือ 5,000–10,000฿</button>
           <button class="clean-quick-pill" onclick="jumpToCategoryBracket('smartphone', '10k_15k')">📱 มือถือ 10,000–15,000฿</button>
           <button class="clean-quick-pill" onclick="selectCategory('aircon')">❄️ แอร์ประหยัดไฟ</button>
-          <button class="clean-quick-pill" onclick="selectCategory('tv')">📺 ทีวี 4K</button>
+          <button class="clean-quick-pill" onclick="selectCategory('sunscreen')">☀️ ครีมกันแดดตัวจบ</button>
+          <button class="clean-quick-pill" onclick="selectCategory('vitamin')">🍊 วิตามินซี &amp; อาหารเสริม</button>
+          <button class="clean-quick-pill" onclick="selectCategory('catfood')">🐱 อาหารแมวถนอมไต</button>
+          <button class="clean-quick-pill" onclick="selectCategory('dogfood')">🐶 อาหารสุนัข</button>
           <button class="clean-quick-pill" onclick="copyMonthlyCoupon('YESSPEC15')" style="color:var(--apple-orange);">🎟️ โค้ดลด YESSPEC15</button>
         </div>
       </section>
@@ -1387,9 +1390,11 @@
           </h2>
           <div style="display:flex;gap:6px;flex-wrap:wrap;" id="hallFilterButtons">
             <button class="budget-pill active" onclick="renderHomeHallOfFame('all', this)" style="padding:6px 14px;font-size:12.5px;">ทั้งหมด</button>
-            <button class="budget-pill" onclick="renderHomeHallOfFame('tech', this)" style="padding:6px 14px;font-size:12.5px;">ไอที</button>
-            <button class="budget-pill" onclick="renderHomeHallOfFame('major', this)" style="padding:6px 14px;font-size:12.5px;">เครื่องใช้ไฟฟ้า</button>
-            <button class="budget-pill" onclick="renderHomeHallOfFame('living', this)" style="padding:6px 14px;font-size:12.5px;">สมาร์ทโฮม</button>
+            <button class="budget-pill" onclick="renderHomeHallOfFame('tech', this)" style="padding:6px 14px;font-size:12.5px;">📱 ไอที</button>
+            <button class="budget-pill" onclick="renderHomeHallOfFame('home', this)" style="padding:6px 14px;font-size:12.5px;">❄️ เครื่องใช้ไฟฟ้า</button>
+            <button class="budget-pill" onclick="renderHomeHallOfFame('personal', this)" style="padding:6px 14px;font-size:12.5px;">🧴 ของใช้/สกินแคร์</button>
+            <button class="budget-pill" onclick="renderHomeHallOfFame('supplement', this)" style="padding:6px 14px;font-size:12.5px;">💊 อาหารเสริม</button>
+            <button class="budget-pill" onclick="renderHomeHallOfFame('pet', this)" style="padding:6px 14px;font-size:12.5px;">🐾 สัตว์เลี้ยง</button>
           </div>
         </div>
         <div class="home-grid-4" id="homeHallOfFameGrid"></div>
@@ -1906,7 +1911,7 @@
         ]
       },
       {
-        id: 'aircon', num: 3, pillar: 'major', icon: '❄️', name: 'แอร์บ้าน', badge: 'เทียบเยอะมาก',
+        id: 'aircon', num: 3, pillar: 'home', icon: '❄️', name: 'แอร์บ้าน', badge: 'เทียบเยอะมาก',
         heroSub: 'เทียบแอร์ Inverter ประหยัดไฟเบอร์ 5 คอยล์ทองแดงแท้ เริ่มต้นต่ำกว่า 10,000฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น (12,000 BTU)', min: 0, max: 999999 },
@@ -1990,7 +1995,7 @@
         ]
       },
       {
-        id: 'tv', num: 5, pillar: 'major', icon: '📺', name: 'ทีวี 4K', badge: 'จอใหญ่ราคาดี',
+        id: 'tv', num: 5, pillar: 'home', icon: '📺', name: 'ทีวี 4K', badge: 'จอใหญ่ราคาดี',
         heroSub: 'เทียบทีวี 4K จอใหญ่ 55–65 นิ้ว เริ่มต้นต่ำกว่า 12,000฿ ไปจนถึง Mini LED & OLED.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2032,7 +2037,7 @@
         ]
       },
       {
-        id: 'fridge', num: 6, pillar: 'major', icon: '🧊', name: 'ตู้เย็น',
+        id: 'fridge', num: 6, pillar: 'home', icon: '🧊', name: 'ตู้เย็น',
         heroSub: 'เทียบตู้เย็น Inverter ประหยัดไฟ เริ่มต้นต่ำกว่า 8,500฿ ไปจนถึง 4 ประตู.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2074,7 +2079,7 @@
         ]
       },
       {
-        id: 'washer', num: 7, pillar: 'major', icon: '🧺', name: 'เครื่องซักผ้า',
+        id: 'washer', num: 7, pillar: 'home', icon: '🧺', name: 'เครื่องซักผ้า',
         heroSub: 'เทียบเครื่องซักผ้าฝาหน้า ซักสะอาด ถนอมผ้า เริ่มต้นงบประหยัดต่ำกว่า 8,500฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2116,7 +2121,7 @@
         ]
       },
       {
-        id: 'dryer', num: 8, pillar: 'major', icon: '♨️', name: 'เครื่องอบผ้า', badge: 'หน้าฝน/คอนโดต้องมี',
+        id: 'dryer', num: 8, pillar: 'home', icon: '♨️', name: 'เครื่องอบผ้า', badge: 'หน้าฝน/คอนโดต้องมี',
         heroSub: 'เทียบเครื่องอบผ้าผ้านุ่มฟูไร้ฝุ่น เริ่มต้นต่ำกว่า 8,500฿ ไปจนถึง Heat Pump.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2158,7 +2163,7 @@
         ]
       },
       {
-        id: 'purifier', num: 9, pillar: 'living', icon: '🌬️', name: 'เครื่องฟอกอากาศ', badge: 'สู้ฝุ่น PM2.5',
+        id: 'purifier', num: 9, pillar: 'home', icon: '🌬️', name: 'เครื่องฟอกอากาศ', badge: 'สู้ฝุ่น PM2.5',
         heroSub: 'เทียบเครื่องฟอกอากาศกรองฝุ่น PM2.5 เริ่มต้นงบประหยัดต่ำกว่า 2,500฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2200,7 +2205,7 @@
         ]
       },
       {
-        id: 'robot', num: 10, pillar: 'living', icon: '🤖', name: 'หุ่นยนต์ดูดฝุ่น', badge: 'ไม่ต้องถูบ้านเอง',
+        id: 'robot', num: 10, pillar: 'home', icon: '🤖', name: 'หุ่นยนต์ดูดฝุ่น', badge: 'ไม่ต้องถูบ้านเอง',
         heroSub: 'เทียบหุ่นยนต์ดูดฝุ่นถูพื้น เริ่มต้นต่ำกว่า 6,000฿ ไปจนถึงแท่นซักน้ำร้อนอัตโนมัติ.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2242,7 +2247,7 @@
         ]
       },
       {
-        id: 'cordlessvac', num: 11, pillar: 'living', icon: '🧹', name: 'ดูดฝุ่นไร้สาย',
+        id: 'cordlessvac', num: 11, pillar: 'home', icon: '🧹', name: 'ดูดฝุ่นไร้สาย',
         heroSub: 'เทียบเครื่องดูดฝุ่นไร้สาย เริ่มต้นงบประหยัดต่ำกว่า 3,000฿ ไปจนถึงเลเซอร์ส่องฝุ่น.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2284,7 +2289,7 @@
         ]
       },
       {
-        id: 'waterheater', num: 12, pillar: 'major', icon: '🚿', name: 'เครื่องทำน้ำอุ่น',
+        id: 'waterheater', num: 12, pillar: 'home', icon: '🚿', name: 'เครื่องทำน้ำอุ่น',
         heroSub: 'เทียบเครื่องทำน้ำอุ่นปลอดภัยสูงสุด เริ่มต้นงบประหยัดต่ำกว่า 2,500฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2326,7 +2331,7 @@
         ]
       },
       {
-        id: 'waterpurifier', num: 13, pillar: 'living', icon: '💧', name: 'เครื่องกรองน้ำ',
+        id: 'waterpurifier', num: 13, pillar: 'home', icon: '💧', name: 'เครื่องกรองน้ำ',
         heroSub: 'เทียบเครื่องกรองน้ำดื่มสะอาด เริ่มต้นงบประหยัดต่ำกว่า 2,500฿ ไปจนถึง RO ร้อน-เย็น.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2368,7 +2373,7 @@
         ]
       },
       {
-        id: 'airfryer', num: 14, pillar: 'living', icon: '🍳', name: 'หม้อทอด & ไมโครเวฟ',
+        id: 'airfryer', num: 14, pillar: 'home', icon: '🍳', name: 'หม้อทอด & ไมโครเวฟ',
         heroSub: 'เทียบหม้อทอดไร้น้ำมันมีหน้าต่างมองอาหาร เริ่มต้นต่ำกว่า 1,500฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2410,7 +2415,7 @@
         ]
       },
       {
-        id: 'coffee', num: 15, pillar: 'living', icon: '☕', name: 'เครื่องชงกาแฟ',
+        id: 'coffee', num: 15, pillar: 'home', icon: '☕', name: 'เครื่องชงกาแฟ',
         heroSub: 'เทียบเครื่องชงกาแฟสดและแคปซูล เริ่มต้นงบประหยัดต่ำกว่า 2,500฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2494,7 +2499,7 @@
         ]
       },
       {
-        id: 'headphone', num: 17, pillar: 'lifestyle', icon: '🎧', name: 'หูฟังตัดเสียง ANC', badge: 'ทำงาน/เดินทาง',
+        id: 'headphone', num: 17, pillar: 'tech', icon: '🎧', name: 'หูฟังตัดเสียง ANC', badge: 'ทำงาน/เดินทาง',
         heroSub: 'เทียบหูฟังตัดเสียงรบกวน (ANC) เริ่มต้นงบประหยัดต่ำกว่า 3,000฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2578,7 +2583,7 @@
         ]
       },
       {
-        id: 'chair', num: 19, pillar: 'lifestyle', icon: '🪑', name: 'เก้าอี้สุขภาพ', badge: 'คนปวดหลังต้องดู',
+        id: 'chair', num: 19, pillar: 'tech', icon: '🪑', name: 'เก้าอี้สุขภาพ', badge: 'คนปวดหลังต้องดู',
         heroSub: 'เทียบเก้าอี้ทำงาน Ergonomic รองรับเอว เริ่มต้นงบประหยัดต่ำกว่า 3,000฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2620,7 +2625,7 @@
         ]
       },
       {
-        id: 'speaker', num: 20, pillar: 'lifestyle', icon: '🔊', name: 'ลำโพง & ซาวด์บาร์',
+        id: 'speaker', num: 20, pillar: 'tech', icon: '🔊', name: 'ลำโพง & ซาวด์บาร์',
         heroSub: 'เทียบลำโพงบลูทูธและซาวด์บาร์ทีวี เริ่มต้นงบประหยัดต่ำกว่า 2,000฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2704,7 +2709,7 @@
         ]
       },
       {
-        id: 'hairdryer', num: 22, pillar: 'lifestyle', icon: '💇‍♀️', name: 'ไดร์เป่าผมความเร็วสูง',
+        id: 'hairdryer', num: 22, pillar: 'home', icon: '💇‍♀️', name: 'ไดร์เป่าผมความเร็วสูง',
         heroSub: 'เทียบไดร์เป่าผมไอออนถนอมเส้นผม เริ่มต้นงบประหยัดต่ำกว่า 1,000฿.',
         budgets: [
           { id: 'all', label: 'ดูทุกรุ่น', min: 0, max: 999999 },
@@ -2744,7 +2749,660 @@
             verdict: 'ตัวจบที่ดีที่สุดสำหรับคนรักเส้นผม ทำสีผมบ่อย หรือหนังศีรษะบอบบาง'
           }
         ]
+      }      ,
+      // =========================================================================
+      // PILLAR 3: 🧴 ของใช้ส่วนตัว • สกินแคร์ (Personal Care & Skincare)
+      // =========================================================================
+      {
+        id: 'sunscreen', num: 23, pillar: 'personal', icon: '☀️', name: 'ครีมกันแดด', badge: 'SPF50+ PA++++',
+        heroSub: 'เทียบค่ากันแดด SPF50+ PA++++ เนื้อบางเบาไม่วอก คุมมัน กันน้ำ และความคุ้มค่าต่อหลอด.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบประหยัด (ต่ำกว่า 300฿)', min: 0, max: 350 },
+          { id: 'mid', label: 'งบ 350 – 850฿ (เวชสำอาง/แพ็กคู่)', min: 350, max: 850 },
+          { id: 'high', label: 'งบ 850฿+ (กันแดดเรือธงระดับโลก)', min: 850, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'งบ ~249฿ vs ~774฿ (แพ็กคู่)', title: 'Biore UV Aqua Rich (ทาได้ทุกวัน) vs MizuMi UV Water (ผิวแพ้ง่าย 5-Free)', desc: 'Biore เด่นเรื่องเนื้อเอสเซนส์เย็นสบายผิวซึมไวในงบสองร้อยกว่าบาท ส่วน MizuMi ปราศจากสารระคายเคือง 5 ชนิด เหมาะกับคนเป็นสิวและผิวแพ้ง่าย' },
+          { tier: 'งบ ~700฿ vs ~1,194฿', title: 'Anessa Gold Milk (กันน้ำลุยทะเล) vs La Roche-Posay UVMune 400 (กันฝ้า/คุมมัน)', desc: 'ออกแดดจัดหรือเล่นกีฬากลางแจ้งเลือก Anessa สีทอง แต่ถ้ากังวลเรื่องฝ้า กระ จุดด่างดำ และผิวมันเป็นสิว ตัวจบคือ La Roche-Posay UVMune 400' }
+        ],
+        products: [
+          {
+            id: 'biore-uv-aqua', tier: 'ultra_low', bracketLabel: '🔥 คุ้มสุดทาได้ทุกวัน',
+            eyebrow: 'ยอดขายอันดับ 1 จากญี่ปุ่น • ซึมไวไม่เหนียว', name: 'Biore UV Aqua Rich Watery Gel SPF50+ PA++++ (90ml)',
+            tagline: 'กันแดดเนื้อเจลน้ำแตกตัว บางเบาเหมือนทาเซรั่ม ทาทับเมคอัพได้ไม่เป็นคราบ หลอดใหญ่ 90ml สุดคุ้ม',
+            price: 249, emoji: '☀️', colors: ['#7cc4ff','#ffffff'],
+            img: 'https://sg-test-11.slatic.net/p/e4583a321cd4a01590fc1b984fb6f511.jpg',
+            specs: [
+              { big: 'SPF50+ PA++++ Micro Defense', label: 'ปกป้องลึกถึงชั้นคอลลาเจน ไม่ให้ผิวแก่ก่อนวัย' },
+              { big: 'หลอดใหญ่ 90 ml (คุ้มสุดต่อมล.)', label: 'ทาได้ทั้งผิวหน้าและลำคอทุกวันแบบไม่กลัวเปลือง' },
+              { big: 'Very Water Resistant กันน้ำ 80 นาที', label: 'ผสาน Hyaluronic Acid และ Royal Jelly Extract บำรุงผิวชุ่มชื้น' }
+            ],
+            verdict: 'แชมป์ความคุ้มค่าต่อปริมาณ เนื้อสัมผัสบางเบาถูกใจคนไทยที่สุดในงบสองร้อยกว่าบาท'
+          },
+          {
+            id: 'anessa-gold-milk', tier: 'ultra_low', bracketLabel: '🏖️ กันน้ำกันเหงื่ออันดับ 1',
+            eyebrow: 'Auto Booster ยิ่งโดนเหงื่อยิ่งกันแดดแน่น', name: 'Anessa Perfect UV Sunscreen Skincare Milk SPF50+',
+            tagline: 'กันแดดเนื้อน้ำนมสีทองในตำนาน เทคโนโลยี Auto Veil เกลี่ยเรียบเนียน กันน้ำกันเหงื่อสูงสุด',
+            price: 212, emoji: '🏖️', colors: ['#f5d061','#ffffff'],
+            img: 'https://sg-test-11.slatic.net/p/68e7b51b6d807089b011c7f7ef1d53e4.jpg',
+            specs: [
+              { big: 'Auto Booster Technology', label: 'เกราะกันแดดแข็งแรงขึ้นอัตโนมัติเมื่อเจอความร้อน เหงื่อ และน้ำ' },
+              { big: 'Skincare Ingredients 50%', label: 'บำรุงผิวด้วยสารสกัดชาเขียวและคอลลาเจน ไม่ทำให้ผิวแห้งกร้าน' },
+              { big: 'เนื้อน้ำนมคุมมัน ล้างออกด้วยโฟมได้', label: 'ติดทนนานตลอดวันโดยไม่อุดตันรูขุมขน' }
+            ],
+            verdict: 'ตัวจบสำหรับวันออกแดดแรง ไปทะเล เล่นกีฬากลางแจ้ง หรือคนที่เหงื่อออกเยอะ'
+          },
+          {
+            id: 'mizumi-uv-water', tier: 'mid', bracketLabel: '🌿 ขวัญใจผิวแพ้ง่าย/เป็นสิว',
+            eyebrow: '100% Physical / Hybrid ไร้สารระคายเคือง 5 ชนิด', name: 'MizuMi UV Water Serum SPF50+ PA++++ (แพ็กสุดคุ้ม)',
+            tagline: 'ครีมกันแดดสูตรน้ำที่อ่อนโยนที่สุด ปราศจากน้ำมัน น้ำหอม แอลกอฮอล์ พาราเบน และสีสังเคราะห์',
+            price: 774, emoji: '💧', colors: ['#0071e3','#ffffff'],
+            img: 'https://th-live-01.slatic.net/p/9d2cdd4b71d68ae55259ea36f4cf6f1d.jpg',
+            specs: [
+              { big: '5-Free ไม่มีแอลกอฮอล์และน้ำหอม', label: 'ผ่านการทดสอบ Dermatologically Tested ลดโอกาสเกิดสิวอุดตัน' },
+              { big: 'SPF50+ PA++++ + Anti-Pollution', label: 'ปกป้องผิวจากรังสี UVA/UVB และฝุ่นละออง PM2.5' },
+              { big: 'เนื้อเซรั่มน้ำ ซึมไวไม่ขาวลอย', label: 'ใช้ได้ทุกสีผิว ออกแดดได้ทันทีไม่ต้องรอ 20 นาที' }
+            ],
+            verdict: 'กันแดดสามัญประจำบ้านสำหรับคนผิวแพ้ง่ายหรือเป็นสิว ซื้อแพ็กคู่/แพ็ก 4 ช่วงโปรคุ้มกว่าซื้อเดี่ยวเกือบครึ่ง'
+          },
+          {
+            id: 'laroche-anthelios', tier: 'high', bracketLabel: '👑 ตัวท็อปเวชสำอางฝรั่งเศส',
+            eyebrow: 'สารกันแดด Mexoryl 400 กันรังสี UVA ยาวพิเศษ', name: 'La Roche-Posay Anthelios UVMune 400 Oil Control',
+            tagline: 'ที่สุดของกันแดดเวชสำอางที่แพทย์ผิวหนังแนะนำ กันรังสี Ultra-Long UVA ต้นเหตุฝ้าลึก พร้อมคุมมัน 12 ชม.',
+            price: 1194, emoji: '🛡️', colors: ['#ff8c00','#ffffff'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S8462548609554c07bb3ab398adc09d70F.jpg',
+            specs: [
+              { big: 'Mexoryl 400 (กัน UVA 380–400nm)', label: 'ปกป้องลึกถึงระดับเซลล์ผิว ลดการเกิดฝ้าแดดและริ้วรอยก่อนวัย' },
+              { big: 'Airlicium คุมความมันยาวนาน 12 ชม.', label: 'ดูดซับความมันส่วนเกิน ให้ฟินิชผิวแมตต์เนียนสวย' },
+              { big: 'Netlock Technology กันน้ำกันเหงื่อ', label: 'ไม่ไหลเข้าตา ไม่แสบตาเวลาเหงื่อออก' }
+            ],
+            verdict: 'ถ้าต้องการกันแดดที่ดีที่สุดในตลาดเพื่อป้องกันฝ้า กระ และคุมมันสำหรับผิวเป็นสิว รุ่นนี้คืออันดับ 1'
+          }
+        ]
+      },
+      {
+        id: 'shampoo', num: 24, pillar: 'personal', icon: '🧴', name: 'ยาสระผม • ลดผมร่วง', badge: 'บำรุงรากผม',
+        heroSub: 'เทียบแชมพูลดผมร่วง ขจัดรังแค และแชมพูบำรุงผมนุ่มลื่น ตั้งแต่สูตรสมุนไพรถึงเวชสำอาง.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบประหยัด (ต่ำกว่า 150฿)', min: 0, max: 150 },
+          { id: 'mid', label: 'งบ 150 – 500฿ (เวชสำอางขจัดรังแค)', min: 150, max: 550 },
+          { id: 'high', label: 'งบ 550฿+ (สมุนไพรเกาหลีเข้มข้น)', min: 550, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'งบต่ำกว่า 150฿', title: 'Sunsilk / Bergamot แชมพูบำรุงผมและหนังศีรษะคุ้มราคา', desc: 'ใช้สระประจำวันได้ทั้งครอบครัว กลิ่นหอมติดผมและช่วยลดความมันบนหนังศีรษะ' },
+          { tier: 'งบ 450 – 790฿', title: 'Vichy Dercos (ขจัดรังแค/ลดผมบาง) & Daeng Gi Meo Ri (โสมเกาหลี)', desc: 'แก้ปัญหาผมร่วงและรังแคเรื้อรังอย่างตรงจุดด้วยสารสกัดงานวิจัยทางการแพทย์และโสมเกาหลีแท้' }
+        ],
+        products: [
+          {
+            id: 'alodia-bergamot', tier: 'ultra_low', bracketLabel: '🔥 สมุนไพรแท้ราคาประหยัด',
+            eyebrow: 'สารสกัดมะกรูดสกัดเย็น • ลดคันศีรษะ', name: 'Bergamot / Legano แชมพูมะกรูดลดผมขาดหลุดร่วง',
+            tagline: 'แชมพูสมุนไพรมะกรูดแท้ ช่วยขจัดความมันและสิ่งสกปรกอุดตันรูขุมขน ลดอาการคันและรังแค',
+            price: 45, emoji: '🌿', colors: ['#4ade80','#1d8348'],
+            img: 'https://th-live.slatic.net/p/f602d94cffcfa7af18b9b3ca1a48c840.jpg',
+            specs: [
+              { big: 'สารสกัดมะกรูดธรรมชาติเข้มข้น', label: 'ปรับสมดุลค่า pH บนหนังศีรษะให้แข็งแรง' },
+              { big: 'ลดความมันและอาการคันศีรษะ', label: 'เหมาะกับสภาพอากาศร้อนชื้นของเมืองไทย' },
+              { big: 'ราคาหลักสิบ–ร้อยต้น สุดประหยัด', label: 'ใช้สระได้ทุกวันโดยไม่ทำให้หนังศีรษะลอก' }
+            ],
+            verdict: 'คุ้มเกินราคาสำหรับคนชอบแชมพูสมุนไพรมะกรูดที่สระแล้วเบาสบายหนังศีรษะทันที'
+          },
+          {
+            id: 'sunsilk-smooth', tier: 'ultra_low', bracketLabel: '✨ ผมนุ่มลื่นหอมนานทั้งวัน',
+            eyebrow: 'Activ-Infusion บำรุงผมมีน้ำหนัก', name: 'Sunsilk Smooth & Manageable / Bouncy Shampoo',
+            tagline: 'แชมพูยอดนิยมสูตรบำรุงผมมีน้ำหนัก จัดทรงง่าย กลิ่นหอมสดชื่นติดทนนานตลอดวัน',
+            price: 99, emoji: '🌸', colors: ['#f472b6','#ec4899'],
+            img: 'https://sg-test-11.slatic.net/p/393d54a9545a3561abf532bcc5b9bc71.jpg',
+            specs: [
+              { big: 'Argan Oil + Camellia Oil + Keratin', label: 'ล็อกความชุ่มชื้นให้เส้นผมเรียบลื่นไม่ชี้ฟู' },
+              { big: 'กลิ่นหอมดอกไม้ติดผมยาวนาน 24 ชม.', label: 'สระสะอาดล้างออกง่าย ไม่ทิ้งคราบเหนียว' }
+            ],
+            verdict: 'แชมพูสามัญประจำบ้านที่ราคาดีที่สุดและช่วยให้ผมนุ่มลื่นมีน้ำหนักตั้งแต่ครั้งแรกที่สระ'
+          },
+          {
+            id: 'vichy-dercos', tier: 'mid', bracketLabel: '🏥 เวชสำอางอันดับ 1 จากฝรั่งเศส',
+            eyebrow: 'Selenium DS / Aminexil ลดรังแคและผมร่วงตรงจุด', name: 'Vichy Dercos Anti-Dandruff / Energising Shampoo',
+            tagline: 'แชมพูเวชสำอางที่แพทย์ผิวหนังแนะนำ จัดการปัญหารังแคเรื้อรัง เชื้อราบนหนังศีรษะ และผมขาดหลุดร่วง',
+            price: 459, emoji: '🧪', colors: ['#ef4444','#ffffff'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S227f5ce7fbc24ae39bd78fb7f5000b05Z.jpg',
+            specs: [
+              { big: 'Selenium DS 1% + Salicylic Acid', label: 'ขจัดรังแคเห็นผลตั้งแต่สัปดาห์แรกที่ใช้ และป้องกันการกลับมาเป็นซ้ำ' },
+              { big: 'ปรับสมดุล Microbiome บนหนังศีรษะ', label: 'ลดอาการคันและหนังศีรษะลอกเป็นขุยอย่างอ่อนโยน' },
+              { big: 'ปราศจากพาราเบน (Paraben-Free)', label: 'ผ่านการทดสอบภายใต้การดูแลของแพทย์ผิวหนัง' }
+            ],
+            verdict: 'ใครเป็นรังแคเรื้อรัง เซ็บเดิร์ม หรือผมร่วงง่าย ใช้ตัวไหนไม่หาย ขวดนี้คือคำตอบที่จบจริง'
+          },
+          {
+            id: 'daeng-gi-meo-ri', tier: 'high', bracketLabel: '👑 สมุนไพรโสมเกาหลีระดับพรีเมียม',
+            eyebrow: 'เคี่ยวจากสมุนไพรเกาหลีแท้ 33% • ไม่ผสมน้ำเปล่า', name: 'Daeng Gi Meo Ri Vitalizing / Glamo Anti-Hair Loss',
+            tagline: 'แชมพูลดผมร่วงอันดับ 1 จากเกาหลี อุดมด้วยโสมเกาหลีและสมุนไพรหมักบ่ม บำรุงรากผมให้หนาแน่นแข็งแรง',
+            price: 790, emoji: '👑', colors: ['#7c2d12','#d97706'],
+            img: 'https://sg-test-11.slatic.net/p/2a5bc15b550e44d11fabf9e90847fccb.jpg',
+            specs: [
+              { big: 'สารสกัดโสมเกาหลีและสมุนไพรเข้มข้น 33%', label: 'กระตุ้นการไหลเวียนเลือดบริเวณรากผม ลดการหลุดร่วงชัดเจน' },
+              { big: 'เพิ่มวอลลุ่มให้ผมดูหนาขึ้น ไม่ลีบแบน', label: 'บำรุงเส้นผมที่แห้งเสียจากการทำสีและดัดให้กลับมานุ่มสลวย' }
+            ],
+            verdict: 'ตัวท็อปสำหรับคนผมบางหรือผมร่วงหลังคลอด/ความเครียด ขวดใหญ่ใช้ได้นานหลายเดือน'
+          }
+        ]
+      },
+      {
+        id: 'toothpaste', num: 25, pillar: 'personal', icon: '🪥', name: 'ยาสีฟัน • ช่องปาก', badge: 'ฟลูออไรด์ 1500ppm',
+        heroSub: 'เทียบยาสีฟันลดเสียวฟัน ยาสีฟันฟันขาว และยาสีฟันลดกลิ่นปากตอนเช้า.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบต่ำกว่า 300฿', min: 0, max: 300 },
+          { id: 'high', label: 'งบ 300฿+ (แพ็กสุดคุ้ม / พรีเมียมอิตาลี)', min: 300, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'ลดเสียวฟัน vs ลดกลิ่นปากตอนเช้า', title: 'Sensodyne (ลดเสียวฟันตรงจุด) vs Dentiste (ตื่นมาลมหายใจหอม)', desc: 'ดื่มน้ำเย็นแล้วเสียวฟันเลือก Sensodyne แต่ถ้าเน้นตื่นเช้ามาไม่มีกลิ่นปากเลือก Dentiste' },
+          { tier: 'ฟันขาวสะอาดระดับพรีเมียม', title: 'Colgate Optic White (ขจัดคราบกาแฟ) vs Marvis (มิ้นท์หอมหรูจากอิตาลี)', desc: 'คนดื่มกาแฟ/ชาทุกวันจะได้ฟันขาวสะอาดขึ้นโดยไม่ทำลายเคลือบฟัน' }
+        ],
+        products: [
+          {
+            id: 'dentiste-anticavity', tier: 'ultra_low', bracketLabel: '🌙 ลดกลิ่นปากตอนเช้าอันดับ 1',
+            eyebrow: '14 Natural Extracts ยับยั้งแบคทีเรียขณะหลับ', name: "Dentiste' Plus White / Anticavity Toothpaste",
+            tagline: 'ยาสีฟันสูตรดูแลช่องปากยามค่ำคืน ผสานสารสกัดธรรมชาติ 14 ชนิด ตื่นเช้ามาลมหายใจสะอาดสดชื่น',
+            price: 284, emoji: '🌿', colors: ['#16a34a','#ffffff'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S8acff98e04e745d18b835a11cf0c034a5.jpg',
+            specs: [
+              { big: 'สารสกัดสมุนไพรธรรมชาติ 14 ชนิด', label: 'ลดการสะสมของแบคทีเรียในช่องปากขณะนอนหลับได้ถึง 90%' },
+              { big: 'Stable Vitamin C + Xylitol', label: 'บำรุงเหงือกให้แข็งแรง ลดปัญหาเลือดออกตามไรฟัน' }
+            ],
+            verdict: 'ขวัญใจคู่รักและคนทำงานที่ต้องการความมั่นใจเรื่องกลิ่นปากตั้งแต่ตื่นนอน'
+          },
+          {
+            id: 'sensodyne-repair', tier: 'ultra_low', bracketLabel: '❄️ ตัวจบคนเสียวฟัน',
+            eyebrow: 'ทันตแพทย์แนะนำอันดับ 1 สำหรับอาการเสียวฟัน', name: 'Sensodyne Repair & Protect / 24-7 Care (แพ็กคู่)',
+            tagline: 'สร้างเกราะปกป้องบริเวณเนื้อฟันที่บอบบาง ลดอาการเสียวฟันจี๊ดเวลาดื่มน้ำแข็งหรือของหวาน',
+            price: 284, emoji: '🦷', colors: ['#0284c7','#ffffff'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S8acff98e04e745d18b835a11cf0c034a5.jpg',
+            specs: [
+              { big: 'ปกป้องอาการเสียวฟันตลอด 24 ชม.', label: 'เมื่อแปรงฟันเป็นประจำวันละ 2 ครั้ง' },
+              { big: 'ฟลูออไรด์ป้องกันฟันผุเต็มโดส', label: 'เคลือบปิดท่อเนื้อฟันที่เปิดออกอย่างมีประสิทธิภาพ' }
+            ],
+            verdict: 'ถ้ามีอาการเสียวฟันเวลาทานของเย็น ไม่ต้องลังเล ซื้อแพ็กคู่ติดบ้านไว้คุ้มที่สุด'
+          },
+          {
+            id: 'colgate-optic', tier: 'high', bracketLabel: '✨ ขจัดคราบชา-กาแฟ ฟันขาวขึ้น',
+            eyebrow: 'เซ็ตแพ็กสุดคุ้ม • ฟันขาวขึ้นอย่างเป็นธรรมชาติ', name: 'Colgate Optic White O2 / Volcanic Mineral (แพ็กสุดคุ้ม)',
+            tagline: 'ยาสีฟันเพื่อฟันขาวที่ช่วยขจัดคราบเหลืองจากกาแฟและชาอย่างอ่อนโยน พร้อมป้องกันฟันผุครบสูตร',
+            price: 446, emoji: '✨', colors: ['#dc2626','#ffffff'],
+            img: 'https://sg-test-11.slatic.net/p/2266977acfe78edbde86f37a947c5def.png',
+            specs: [
+              { big: 'Whitening Accelerators ขจัดคราบผิวฟัน', label: 'ปลอดภัยต่อเคลือบฟัน ใช้แปรงได้ทุกวัน' },
+              { big: 'แพ็กใหญ่สุดคุ้ม คุ้มค่าต่อหลอด', label: 'ซื้อยกเซ็ตใน LazMall / Shopee Mall ประหยัดกว่าร้านทั่วไป' }
+            ],
+            verdict: 'สายดื่มกาแฟทุกเช้าที่อยากให้ฟันดูขาวสะอาดขึ้นในราคาสุดคุ้มเมื่อซื้อยกแพ็ก'
+          },
+          {
+            id: 'marvis-whitening', tier: 'high', bracketLabel: '👑 ยาสีฟันพรีเมียมจากอิตาลี',
+            eyebrow: 'เนื้อครีมเข้มข้น • ลมหายใจหอมมิ้นท์หรูหรา', name: 'Marvis Classic Strong Mint / Whitening Mint (85ml)',
+            tagline: 'ยาสีฟันระดับลักชัวรีจากเมืองฟลอเรนซ์ ประเทศอิตาลี เนื้อครีมเนียนแน่น ขจัดคราบพลัคและหินปูนดีเยี่ยม',
+            price: 415, emoji: '👑', colors: ['#d1d5db','#111827'],
+            img: 'https://th-live.slatic.net/p/05e64799e872fb02734cae41b1148899.png',
+            specs: [
+              { big: 'เนื้อครีมเข้มข้นสไตล์อิตาเลียนแท้', label: 'บีบใช้เพียงเม็ดถั่วเขียวก็สะอาดทั่วทั้งช่องปาก' },
+              { big: 'ขจัดคราบหินปูนและคราบชา-กาแฟ', label: 'ให้ความรู้สึกสะอาดล้ำลึกและกลิ่นมิ้นท์หอมเย็นมีเอกลักษณ์' }
+            ],
+            verdict: 'ยาสีฟันที่คนรักการดูแลตัวเองต้องลองสักครั้ง ใช้เป็นของขวัญหรือวางในห้องน้ำก็สวยหรู'
+          }
+        ]
+      },
+      {
+        id: 'bodywash', num: 26, pillar: 'personal', icon: '🧼', name: 'สบู่ • ครีมอาบน้ำ', badge: 'ผิวนุ่มชุ่มชื้น',
+        heroSub: 'เทียบครีมอาบน้ำธรรมชาติ เจลอาบน้ำลดสิว/แบคทีเรีย และออยล์อาบน้ำบำรุงผิวแห้ง.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบต่ำกว่า 200฿ (ใช้ทั้งครอบครัว)', min: 0, max: 200 },
+          { id: 'mid', label: 'งบ 200 – 500฿ (เวชสำอางผิวแพ้ง่าย)', min: 200, max: 600 },
+          { id: 'high', label: 'งบ 1,000฿+ (ออยล์อาบน้ำระดับสปา)', min: 600, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'งบ ~120–165฿', title: 'Shokubutsu (สารสกัดพืช 99%) vs Dettol (ลดแบคทีเรีย/กลิ่นกาย)', desc: 'อาบสะอาดสดชื่นทุกวันในราคาประหยัด ล้างออกง่ายไม่ลื่นผิว' },
+          { tier: 'งบ ~304฿ vs ~2,085฿', title: 'Eucerin pH5 (ผิวแห้งแพ้ง่าย) vs L’Occitane Almond Oil (ผิวนุ่มหอมหรู)', desc: 'ฟื้นฟูเกราะป้องกันผิวไม่ให้แห้งคันหลังอาบน้ำ' }
+        ],
+        products: [
+          {
+            id: 'shokubutsu-monogatari', tier: 'ultra_low', bracketLabel: '🔥 ขวัญใจมหาชน ล้างออกง่าย',
+            eyebrow: '99% Plant Cleansing สารทำความสะอาดจากพืชธรรมชาติ', name: 'Shokubutsu Monogatari ครีมอาบน้ำโชกุบุสซึ',
+            tagline: 'ครีมอาบน้ำยอดนิยมที่อ่อนโยนต่อผิว ฟองครีมเนียนละเอียด ล้างออกง่าย ผิวไม่แห้งตึงหลังอาบ',
+            price: 124, emoji: '🌸', colors: ['#fbcfe8','#ffffff'],
+            img: 'https://th-live.slatic.net/p/c858fb62468e6f5d811ebdf67c26f9b5.jpg',
+            specs: [
+              { big: '99% สารทำความสะอาดจากพืชธรรมชาติ', label: 'อ่อนโยนต่อผิวทุกสภาพ ใช้ได้ทั้งครอบครัว' },
+              { big: 'Moisture Lock เก็บกักความชุ่มชื้น', label: 'กลิ่นหอมละมุนติดผิวกาย ล้างออกง่ายไม่ทิ้งคราบลื่น' }
+            ],
+            verdict: 'คุ้มค่าที่สุดสำหรับซื้อติดห้องน้ำที่บ้าน ซื้อขวดปั๊มคู่ถุงเติมช่วยประหยัดได้มาก'
+          },
+          {
+            id: 'dettol-shower-gel', tier: 'ultra_low', bracketLabel: '🛡️ ลดแบคทีเรีย 99.9% & กลิ่นเหงื่อ',
+            eyebrow: 'ปกป้องผิวจากสิ่งสกปรกและมลภาวะ', name: 'Dettol Shower Cream Proskin / Onzen (450g)',
+            tagline: 'ครีมอาบน้ำชำระล้างแบคทีเรีย 99.9% ผสานมอยส์เจอไรเซอร์ถนอมผิว เหมาะมากหลังออกกำลังกายหรือลุยงานหนัก',
+            price: 165, emoji: '🚿', colors: ['#15803d','#ffffff'],
+            img: 'https://th-live-01.slatic.net/p/2009b82fdfe853cc1ae3e0d2f91d2b63.jpg',
+            specs: [
+              { big: 'ลดการสะสมของแบคทีเรีย 99.9%', label: 'ช่วยลดสาเหตุของกลิ่นกายและสิวที่แผ่นหลัง/หน้าอก' },
+              { big: 'ค่า pH-Balanced อ่อนโยนต่อผิว', label: 'ผสานวิตามินและสารบำรุงให้ผิวเนียนนุ่มไม่แห้งกร้าน' }
+            ],
+            verdict: 'ตัวจบสำหรับคนเหงื่อออกเยอะ ออกกำลังกาย หรือมีปัญหาสิวที่หลัง'
+          },
+          {
+            id: 'bioderma-atoderm', tier: 'mid', bracketLabel: '💧 เวชสำอางสำหรับผิวแห้ง/แพ้ง่าย',
+            eyebrow: 'pH5 Balance System เสริมเกราะปกป้องผิว', name: 'Eucerin pH5 Sensitive Skin Washlotion',
+            tagline: 'โลชั่นอาบน้ำเวชสำอาง ปราศจากด่างสบู่ รักษาสมดุลเอนไซม์ตามธรรมชาติของผิว ลดอาการผิวแห้งลอกและคัน',
+            price: 304, emoji: '💧', colors: ['#dc2626','#f3f4f6'],
+            img: 'https://sg-test-11.slatic.net/p/afc7829870999a6b90215ad5af708d2c.jpg',
+            specs: [
+              { big: 'pH5 Citrate Buffer รักษาสมดุลผิว', label: 'ไม่ทำลายชั้นไขมันปกป้องผิวตามธรรมชาติขณะอาบน้ำ' },
+              { big: 'Soap-Free ปราศจากความเป็นด่าง', label: 'เหมาะสำหรับผู้ที่มีผิวแห้งมาก ผิวภูมิแพ้ หรือผู้สูงอายุ' }
+            ],
+            verdict: 'ใครอาบน้ำอุ่นบ่อยหรืออยู่ในห้องแอร์แล้วผิวแห้งคัน เปลี่ยนมาใช้ตัวนี้ผิวจะชุ่มชื้นขึ้นชัดเจน'
+          },
+          {
+            id: 'loccitane-almond', tier: 'high', bracketLabel: '👑 ออยล์อาบน้ำบำรุงผิวหอมหรูอันดับ 1',
+            eyebrow: 'Almond Oil จากโพรวองซ์ ฝรั่งเศส', name: "L'Occitane Almond Shower / Body Oil",
+            tagline: 'ออยล์บำรุงและทำความสะอาดผิวจากน้ำมันอัลมอนด์แท้ เปลี่ยนเป็นน้ำนมละเอียดเมื่อสัมผัสน้ำ ผิวนุ่มเนียนหอมติดตัวทั้งวัน',
+            price: 2085, emoji: '✨', colors: ['#f59e0b','#fef3c7'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S68308d8697c14b8197632d02eae647ded.jpg',
+            specs: [
+              { big: 'Sweet Almond Oil เข้มข้นจากฝรั่งเศส', label: 'อุดมด้วย Omega 6 & 9 ช่วยให้ผิวกระชับเนียนนุ่มตั้งแต่อาบครั้งแรก' },
+              { big: 'กลิ่นอัลมอนด์วานิลลาหอมละมุนระดับสปา', label: 'ล้างออกง่ายโดยไม่ทิ้งความเหนอะหนะบนผิว' }
+            ],
+            verdict: 'ที่สุดของไอเทมอาบน้ำระดับ Luxury ที่ทำให้ผิวเนียนละเอียดและตัวหอมแพงแบบไม่ต้องฉีดน้ำหอมเพิ่ม'
+          }
+        ]
+      },
+
+      // =========================================================================
+      // PILLAR 4: 💊 อาหารเสริม • วิตามิน (Supplements & Vitamins)
+      // =========================================================================
+      {
+        id: 'vitamin', num: 27, pillar: 'supplement', icon: '🍊', name: 'วิตามินซี • วิตามินรวม', badge: 'เสริมภูมิคุ้มกัน',
+        heroSub: 'เทียบวิตามินซี 1,000 mg วิตามินบีรวมบำรุงสมอง และวิตามินรวม (เทียบปริมาณสารสำคัญต่อเม็ด).',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบต่ำกว่า 500฿', min: 0, max: 500 },
+          { id: 'mid', label: 'งบ 500 – 1,000฿ (กระปุกใหญ่คุ้มค่า)', min: 500, max: 1000 },
+          { id: 'high', label: 'งบ 1,000฿+ (วิตามินรวมเกรดพรีเมียม)', min: 1000, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'วิตามินบีรวม vs วิตามินซี 1,000 mg', title: 'Vistra B-Complex (วัยทำงานสมองล้า) vs Mega Nat C / Blackmores Bio C', desc: 'นอนดึกทำงานหน้าจอเลือก B-Complex แต่ถ้าเป็นหวัดง่าย/ภูมิแพ้เลือกวิตามินซี 1,000 mg' },
+          { tier: 'จบครบในเม็ดเดียว', title: 'Swisse Ultivite Multivitamin รวมวิตามิน แร่ธาตุ และสมุนไพรสกัดกว่า 40 ชนิด', desc: 'เหมาะกับคนไม่ชอบกินวิตามินหลายเม็ด เม็ดเดียวได้ครบทั้งภูมิคุ้มกันและพลังงาน' }
+        ],
+        products: [
+          {
+            id: 'vistras-b-complex', tier: 'ultra_low', bracketLabel: '🧠 กู้สมองล้า วัยทำงาน/นอนดึก',
+            eyebrow: 'ครบทั้งวิตามินบีรวม + แร่ธาตุจำเป็น', name: 'Vistra B-Complex Plus Minerals / Magnesium (แพ็กคุ้ม)',
+            tagline: 'บำรุงระบบประสาทและสมอง ลดอาการเหนื่อยล้า อ่อนเพลีย และอาการชาปลายมือปลายเท้าจากการทำงานหนัก',
+            price: 455, emoji: '⚡', colors: ['#2563eb','#facc15'],
+            img: 'https://th-live.slatic.net/p/a3ea5f2d95127d8c2324f5ca120a4aae.png',
+            specs: [
+              { big: 'Vitamin B1, B6, B12 + Choline & Inositol', label: 'ช่วยเปลี่ยนอาหารเป็นพลังงานให้สมองปลอดโปร่งพร้อมทำงาน' },
+              { big: 'ผสาน Magnesium & Zinc', label: 'ช่วยลดอาการปวดไมเกรนและตะคริวกล้ามเนื้อ' }
+            ],
+            verdict: 'ชาวออฟฟิศที่นั่งทำงานหน้าคอมทั้งวันหรือพักผ่อนน้อย ทานวันละ 1 เม็ดหลังอาหารเช้าสดชื่นขึ้นชัดเจน'
+          },
+          {
+            id: 'blackmores-bio-c', tier: 'mid', bracketLabel: '🍊 วิตามินซีสูตรอ่อนโยนต่อกระเพาะ',
+            eyebrow: 'Buffered Vitamin C + Bioflavonoids จากออสเตรเลีย', name: 'Blackmores Bio C 1,000 mg (แพ็กใหญ่สุดคุ้ม)',
+            tagline: 'วิตามินซี 1,000 มก. สูตรลดความเป็นกรด ไม่ระคายเคืองกระเพาะอาหาร ผสมโรสฮิปและอะเซโรลาเชอร์รี่',
+            price: 799, emoji: '🍊', colors: ['#ea580c','#ffffff'],
+            img: 'https://sg-test-11.slatic.net/p/e6afb2ca015f6f85bbc490125e043f13.jpg',
+            specs: [
+              { big: 'Vitamin C 1,000 mg (Buffered Formula)', label: 'ค่อยๆ ปลดปล่อยวิตามินซีและไม่กัดกระเพาะอาหาร' },
+              { big: 'Citrus Bioflavonoids เพิ่มการดูดซึม', label: 'เสริมสร้างภูมิคุ้มกันและกระตุ้นการสร้างคอลลาเจนใต้ผิว' }
+            ],
+            verdict: 'มาตรฐานวิตามินซีอันดับ 1 ที่เภสัชกรแนะนำ ซื้อแพ็กใหญ่หารราคาต่อเม็ดถูกมาก'
+          },
+          {
+            id: 'mega-nat-c', tier: 'mid', bracketLabel: '💰 คุ้มค่าที่สุด ขวดใหญ่ 150 เม็ด',
+            eyebrow: 'ทานได้ยาว 5 เดือน • ตกวันละไม่ถึง 6 บาท', name: 'Mega We Care Nat C 1,000 mg (150 เม็ด)',
+            tagline: 'วิตามินซี 1,000 มก. ผสานไบโอฟลาโวนอยด์ รูติน และเฮสเพอริดิน ขวดใหญ่ 150 เม็ด ทานได้ทั้งครอบครัว',
+            price: 865, emoji: '💊', colors: ['#f97316','#15803d'],
+            img: 'https://sg-test-11.slatic.net/p/f374ad492cf5a7c2365d124cc229d71a.jpg',
+            specs: [
+              { big: 'ขวดใหญ่ 150 เม็ด (เฉลี่ยเม็ดละ ~5.7 บาท)', label: 'คุ้มค่าต่อเม็ดที่สุดในกลุ่มวิตามินซี 1,000 mg มาตรฐาน GMP' },
+              { big: 'Ascorbic Acid + Ascorbate Forms', label: 'ลดความเป็นกรด ทานต่อเนื่องได้ทุกวันเพื่อลดอาการหวัดและภูมิแพ้' }
+            ],
+            verdict: 'แชมป์ความคุ้มค่าต่อเม็ด ซื้อขวดเดียวทานได้เกือบครึ่งปี'
+          },
+          {
+            id: 'swisse-ultivite', tier: 'high', bracketLabel: '👑 วิตามินรวมตัวท็อปจากออสเตรเลีย',
+            eyebrow: 'รวมวิตามิน แร่ธาตุ และสารสกัดสมุนไพรกว่า 40 ชนิด', name: 'Swisse Ultivite Multivitamin',
+            tagline: 'วิตามินรวมเกรดพรีเมียมยอดฮิตจากออสเตรเลีย ดูแลครบทั้งพลังงาน ภูมิคุ้มกัน สมอง และความสดชื่นในเม็ดเดียว',
+            price: 1499, emoji: '👑', colors: ['#dc2626','#111827'],
+            img: 'https://my-live-01.slatic.net/p/34dd421b5cf79ea03bbc0a9bb5c1ca27.jpg',
+            specs: [
+              { big: '40+ Vitamins, Minerals & Antioxidants', label: 'ครบทุกสารอาหารที่ร่างกายต้องการในแต่ละวัน' },
+              { big: 'มาตรฐานการผลิตระดับสากลจากออสเตรเลีย', label: 'เหมาะสำหรับคนทำงานหนักที่ไม่ค่อยมีเวลาทานอาหารครบ 5 หมู่' }
+            ],
+            verdict: 'ตัวจบสำหรับคนที่ไม่อยากพกวิตามินหลายกระปุก เม็ดเดียวครบทุกมิติสุขภาพ'
+          }
+        ]
+      },
+      {
+        id: 'whey', num: 28, pillar: 'supplement', icon: '💪', name: 'เวย์โปรตีน • โปรตีนพืช', badge: 'สร้างกล้าม/ลีนไขมัน',
+        heroSub: 'เทียบเวย์โปรตีนและโปรตีนพืช: ปริมาณโปรตีนต่อช้อน (g), แคลอรี, การย่อยง่าย และราคาต่อเสิร์ฟ.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'mid', label: '🌱 โปรตีนพืชย่อยง่าย (~1,000฿)', min: 0, max: 2000 },
+          { id: 'high', label: '💪 เวย์โปรตีนถังใหญ่ 5 ปอนด์ / Isolate', min: 2000, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'โปรตีนพืช vs เวย์โปรตีนนมวัว', title: 'Plantae (ท้องไม่อืด/ไม่เป็นสิว) vs BAAM / ON Gold Standard', desc: 'ใครดื่มนมแล้วท้องเสียหรือสิวขึ้นให้เลือกโปรตีนพืช Plantae แต่ถ้าเน้นสร้างกล้ามเนื้อไวเลือก Whey Protein' },
+          { tier: 'Whey Blend vs Whey Isolate แท้', title: 'ON Gold Standard 5lb vs Whey Protein Isolate (ดูดซึมไว ไขมันต่ำ)', desc: 'ถัง 5 ปอนด์คุ้มค่าต่อช้อนที่สุดสำหรับคนออกกำลังกายประจำ' }
+        ],
+        products: [
+          {
+            id: 'plantae-plant-protein', tier: 'mid', bracketLabel: '🌱 โปรตีนพืชอันดับ 1 ย่อยง่ายไม่ท้องอืด',
+            eyebrow: 'โปรตีนพืช 5 ชนิด • ปราศจากแลคโตสและคอเลสเตอรอล', name: 'Plantae Complete Plant Protein',
+            tagline: 'โปรตีนพืชสกัดเข้มข้นพร้อมกรดอะมิโนจำเป็นครบ 9 ชนิด และ BCAA ดื่มง่าย รสชาติอร่อย ไม่สากคอ',
+            price: 1018, emoji: '🌱', colors: ['#16a34a','#fef08a'],
+            img: 'https://th-live.slatic.net/p/881b04ef4790fb09f465e17fe0b59d3c.png',
+            specs: [
+              { big: 'โปรตีนสูง 20–30g ต่อช้อน + BCAA 5,000mg', label: 'สกัดจากถั่วลันเตา ข้าวออร์แกนิก เมล็ดฟักทอง และเมล็ดทานตะวัน' },
+              { big: '0% คอเลสเตอรอล • ไม่ใช้น้ำตาลทราย', label: 'เหมาะสำหรับคนแพ้นมวัว คนคุมน้ำหนัก และสาย Vegan' }
+            ],
+            verdict: 'โปรตีนพืชที่รสชาติอร่อยที่สุด ดื่มแล้วท้องไม่อืดและไม่กระตุ้นสิวจากผลิตภัณฑ์นม'
+          },
+          {
+            id: 'dymatize-iso100', tier: 'high', bracketLabel: '⚡ เวย์โปรตีนไอโซเลต ดูดซึมไวสุด',
+            eyebrow: 'Whey Protein Isolate บริสุทธิ์ • ไขมันและแลคโตสต่ำมาก', name: 'Whey Protein Isolate (เซ็ตสุดคุ้ม)',
+            tagline: 'โปรตีนเวย์ไอโซเลตเกรดพรีเมียม ดูดซึมเข้าสู่กล้ามเนื้อรวดเร็วหลังออกกำลังกาย เหมาะกับช่วงลีนไขมัน',
+            price: 2525, emoji: '⚡', colors: ['#2563eb','#ffffff'],
+            img: 'https://th-live-01.slatic.net/p/d558bafd5497c191a04125b1f05707d1.png',
+            specs: [
+              { big: '100% Whey Protein Isolate เกรดบริสุทธิ์', label: 'สกัดไขมันและน้ำตาลแลคโตสออกจนเกือบหมด ย่อยง่าย' },
+              { big: 'ฟื้นฟูและรักษามวลกล้ามเนื้อได้อย่างรวดเร็ว', label: 'ใช้ได้ทั้งนักกีฬาและผู้ที่ต้องการเสริมโปรตีนคุณภาพสูง' }
+            ],
+            verdict: 'เหมาะมากสำหรับคนที่ต้องการโปรตีนบริสุทธิ์แคลอรีต่ำและแพ้แลคโตสในเวย์ทั่วไป'
+          },
+          {
+            id: 'matell-whey', tier: 'high', bracketLabel: '🔥 ถังใหญ่ 5 ปอนด์ คุ้มค่าต่อช้อนที่สุด',
+            eyebrow: 'โปรตีน 24g + BCAA 5g ต่อช้อน • ชงได้ ~70 แก้ว', name: 'BAAM My Whey Protein Max (5 ปอนด์ / 2.27 กก.)',
+            tagline: 'เวย์โปรตีนถังใหญ่สุดคุ้ม นำเข้าวัตถุดิบจาก USA ละลายง่าย รสช็อกโกแลตเข้มข้น สร้างกล้ามเนื้อคุ้มงบ',
+            price: 3416, emoji: '💪', colors: ['#111827','#ef4444'],
+            img: 'https://th-live-01.slatic.net/p/65e399c64ccc555e497dedbabb89dd48.png',
+            specs: [
+              { big: 'ถังใหญ่ 5 ปอนด์ (ชงได้เกือบ 2 เดือนครึ่ง)', label: 'เฉลี่ยตกแก้วละ ~48 บาท ถูกกว่าซื้อโปรตีนขวดในร้านสะดวกซื้อ' },
+              { big: 'Whey Protein 24g + BCAA 5g + Glutamine 4g', label: 'ช่วยซ่อมแซมและเสริมสร้างมวลกล้ามเนื้อหลังเวทเทรนนิ่ง' }
+            ],
+            verdict: 'สายปั้นหุ่นที่ดื่มเวย์ทุกวัน ซื้อถัง 5 ปอนด์ตัวนี้ประหยัดเงินในกระเป๋าได้มากที่สุด'
+          },
+          {
+            id: 'on-gold-standard', tier: 'high', bracketLabel: '👑 เวย์โปรตีนยอดขายอันดับ 1 ของโลก',
+            eyebrow: 'Whey Isolate เป็นส่วนผสมหลัก • มาตรฐานระดับโลก', name: 'Optimum Nutrition (ON) Gold Standard 100% Whey (5 ปอนด์)',
+            tagline: 'เวย์โปรตีนที่เป็นมาตรฐานทองคำของวงการฟิตเนสทั่วโลก ผงละเอียดละลายน้ำทันทีแม้ใช้แค่ช้อนคน',
+            price: 4254, emoji: '🏆', colors: ['#111827','#d97706'],
+            img: 'https://th-live-01.slatic.net/p/65068b2ab4888ac07b1ca8c42760c0d3.jpg',
+            specs: [
+              { big: 'Primary Source: Whey Protein Isolate', label: 'ให้โปรตีนคุณภาพสูง 24 กรัม และ BCAA 5.5 กรัมต่อช้อน' },
+              { big: 'Banned Substance Tested มาตรฐานนักกีฬา', label: 'มั่นใจในความบริสุทธิ์และปริมาณโปรตีนตรงตามฉลาก 100%' }
+            ],
+            verdict: 'ตัวจบระดับตำนานที่เทรนเนอร์และนักเพาะกายทั่วโลกไว้วางใจเป็นอันดับ 1'
+          }
+        ]
+      },
+      {
+        id: 'collagen', num: 29, pillar: 'supplement', icon: '✨', name: 'คอลลาเจน • โพรไบโอติกส์', badge: 'ผิวใส & ลำไส้สมดุล',
+        heroSub: 'เทียบคอลลาเจนไดเปปไทด์บำรุงผิว-ข้อต่อ และโพรไบโอติกส์ปรับสมดุลลำไส้ขับถ่ายคล่อง.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบต่ำกว่า 500฿', min: 0, max: 500 },
+          { id: 'high', label: 'งบ 500฿+ (คอลลาเจนญี่ปุ่นเกรดพรีเมียม)', min: 500, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'คอลลาเจนเม็ด vs คอลลาเจนผงชงดื่ม', title: 'Vida / Swisse (ทานง่ายไม่ต้องชง) vs Meiji Amino Collagen (5,000mg)', desc: 'คนเร่งรีบเลือกแบบเม็ดทานคู่กับวิตามินซี แต่ถ้าต้องการปริมาณคอลลาเจนสูง 5,000 มก./วัน เลือกแบบผง Meiji' },
+          { tier: 'ดูแลผิวควบคู่สมดุลลำไส้', title: 'โพรไบโอติกส์ (Probiotics) ช่วยให้ขับถ่ายเป็นเวลาและลดสิวจากลำไส้แปรปรวน', desc: 'เมื่อลำไส้ดูดซึมดี ผิวพรรณและภูมิคุ้มกันจะดีขึ้นจากภายใน' }
+        ],
+        products: [
+          {
+            id: 'vida-collagen-q10', tier: 'ultra_low', bracketLabel: '🔥 คอลลาเจนไดเปปไทด์ราคาคุ้มสุด',
+            eyebrow: 'Collagen Dipeptide โมเลกุลเล็กจากญี่ปุ่น + Vit C', name: 'Vida Collagen Dipeptide C (60 แคปซูล)',
+            tagline: 'คอลลาเจนไดเปปไทด์ดูดซึมไว ผสมวิตามินซีในเม็ดเดียว ช่วยให้ผิวเนียนนุ่มชุ่มชื้น แต่งหน้าติดทน',
+            price: 199, emoji: '🌸', colors: ['#f472b6','#ffffff'],
+            img: 'https://th-live.slatic.net/p/23f60ab859ee90ad2f10f4e05f7f406e.jpg',
+            specs: [
+              { big: 'Collagen Dipeptide โมเลกุลเล็กดูดซึมตรงจุด', label: 'ไม่ต้องผ่านกระบวนการย่อยซ้ำซ้อน ร่างกายนำไปใช้ได้ทันที' },
+              { big: 'ผสม Vitamin C ช่วยกระตุ้นการสร้างคอลลาเจน', label: 'ราคาหลักร้อยต้นๆ ทานง่ายไม่ต้องชง' }
+            ],
+            verdict: 'คอลลาเจนขวัญใจมหาชนที่ราคาเข้าถึงง่ายที่สุดและเห็นผลเรื่องความชุ่มชื้นของผิว'
+          },
+          {
+            id: 'swisse-glow-collagen', tier: 'ultra_low', bracketLabel: '🍇 คอลลาเจน + สารสกัดเมล็ดองุ่น',
+            eyebrow: 'Collagen Peptides + Grape Seed ต้านอนุมูลอิสระ', name: 'Swisse Collagen + Grape Seed (60 เม็ด)',
+            tagline: 'ผสานคอลลาเจนเปปไทด์เข้ากับสารสกัดเมล็ดองุ่นเข้มข้น ช่วยให้ผิวกระจ่างใสและลดเลือนจุดด่างดำ',
+            price: 420, emoji: '🍇', colors: ['#9333ea','#fbcfe8'],
+            img: 'https://th-live-01.slatic.net/p/6aa964ec5dc78121c70fe2ab1713ca33.jpg',
+            specs: [
+              { big: 'Hydrolyzed Collagen + Grape Seed Extract', label: 'ดูแลทั้งความยืดหยุ่นของผิวและต้านอนุมูลอิสระจากแสงแดด' },
+              { big: 'Vitamin C & E เสริมเกราะปกป้องเซลล์ผิว', label: 'มาตรฐานแบรนด์ดังจากออสเตรเลีย' }
+            ],
+            verdict: 'ได้ทั้งคอลลาเจนและ Grape Seed ในกระปุกเดียว คุ้มมากในงบสี่ร้อยบาท'
+          },
+          {
+            id: 'chame-probiotic', tier: 'ultra_low', bracketLabel: '🦠 โพรไบโอติกส์ปรับสมดุลลำไส้',
+            eyebrow: 'จุลินทรีย์ดีสายพันธุ์คัดพิเศษ + พรีไบโอติกส์', name: 'Dr.Pong / Bomi Probiotic โพรไบโอติกส์ปรับสมดุลลำไส้',
+            tagline: 'เติมจุลินทรีย์ที่มีประโยชน์ให้ลำไส้ แก้ปัญหาท้องผูก ขับถ่ายไม่เป็นเวลา ท้องอืดง่าย และเสริมภูมิคุ้มกัน',
+            price: 449, emoji: '🦠', colors: ['#38bdf8','#ffffff'],
+            img: 'https://th-live-01.slatic.net/p/bee79feb67a5223dbf8e3b97e6ff087f.jpg',
+            specs: [
+              { big: 'Synbiotic (Probiotics + Prebiotics)', label: 'จุลินทรีย์ทนกรดในกระเพาะอาหาร เดินทางถึงลำไส้ได้จริง' },
+              { big: 'ไม่ผสมยาระบาย ไม่ทำให้ลำไส้ขี้เกียจ', label: 'ทานต่อเนื่องได้อย่างปลอดภัยเพื่อระบบขับถ่ายที่ดีในระยะยาว' }
+            ],
+            verdict: 'คนท้องผูกหรือลำไส้แปรปรวน แนะนำให้ทานโพรไบโอติกส์ต่อเนื่อง 14 วันจะเห็นความต่างชัดเจน'
+          },
+          {
+            id: 'meiji-amino-collagen', tier: 'high', bracketLabel: '👑 คอลลาเจนผงอันดับ 1 จากญี่ปุ่น',
+            eyebrow: 'Fish Collagen Peptide 5,000 mg • ละลายไวไร้กลิ่นคาว', name: 'Meiji Amino Collagen Powder (สำหรับ 28 วัน)',
+            tagline: 'คอลลาเจนเปปไทด์สกัดจากปลา 100% ยอดขายอันดับ 1 ในญี่ปุ่น ตักผสมกาแฟ น้ำผลไม้ หรือซุปได้โดยไม่เปลี่ยนรสชาติ',
+            price: 1293, emoji: '👑', colors: ['#fbcfe8','#d97706'],
+            img: 'https://sg-live-01.slatic.net/p/faebb915955567385944f6e80d66ed00.jpg',
+            specs: [
+              { big: 'Fish Collagen Peptide 5,000 mg ต่อช้อน', label: 'ผสาน Amino Acid (Arginine), Glucosamine และ Vitamin C' },
+              { big: 'บำรุงทั้งผิวพรรณ เล็บ เส้นผม และข้อต่อ', label: 'ละลายง่ายทั้งในน้ำร้อนและน้ำเย็น ไม่มีกลิ่นคาวปลากวนใจ' }
+            ],
+            verdict: 'ตัวท็อปคอลลาเจนชงดื่มจากญี่ปุ่นที่คนทานจริงซื้อซ้ำต่อเนื่องมากที่สุด'
+          }
+        ]
+      },
+
+      // =========================================================================
+      // PILLAR 5: 🐾 โซนสัตว์เลี้ยง (Pet Supplies: Cat Food, Dog Food, Litter & Treats)
+      // =========================================================================
+      {
+        id: 'catfood', num: 30, pillar: 'pet', icon: '🐱', name: 'อาหารแมว • ถนอมไต', badge: 'ไม่เค็ม/ขนสวย',
+        heroSub: 'เทียบอาหารแมวสูตรควบคุมโซเดียม (ถนอมไต), สูตรแมวเลี้ยงในบ้าน (Indoor) และราคาเฉลี่ยต่อกิโลกรัม.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 ถุงทดลอง/งบประหยัด', min: 0, max: 500 },
+          { id: 'high', label: '📦 กระสอบใหญ่ / เกรดพรีเมียมคุ้มราคาต่อกก.', min: 500, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'Kaniva vs Maxima (กระสอบใหญ่)', title: 'บำรุงขนสวยแน่นไม่ใส่ข้าวโพด vs กระสอบ 15 กก. สุดคุ้มบ้านแมวเยอะ', desc: 'Kaniva เด่นเรื่อง Salmon Oil & Evening Primrose ขนฟูนุ่มมาก ส่วน Maxima กระสอบใหญ่ 15 กก. ตกกิโลละ ~90 บาท คุ้มที่สุด' },
+          { tier: 'Purina ONE vs Royal Canin Indoor 27', title: 'โปรตีนเนื้อไก่งวงแท้ 38% vs โภชนาการสัตวแพทย์ลดกลิ่นมูลอันดับ 1', desc: 'เลี้ยงแมวในคอนโดหรือห้องนอน แนะนำ Royal Canin Indoor 27 ช่วยลดกลิ่นอึในกระบะทรายได้ดีเยี่ยม' }
+        ],
+        products: [
+          {
+            id: 'kaniva-indoor', tier: 'ultra_low', bracketLabel: '✨ ขนสวยฟูแน่น ขวัญใจทาสแมว',
+            eyebrow: 'No Corn, No Wheat, No Gluten • โซเดียมต่ำไม่เค็ม', name: 'Kaniva (คานิว่า) อาหารแมวสูตรเนื้อไก่ ปลาแซลมอน และข้าว',
+            tagline: 'อาหารแมวเกรดพรีเมียมอุดมด้วย Omega-3 & 6 จากน้ำมันปลาแซลมอนและพริมโรส ช่วยให้ขนสวยเงางาม ลดขนร่วง',
+            price: 109, emoji: '🐱', colors: ['#ef4444','#fbbf24'],
+            img: 'https://th-live-01.slatic.net/p/1a8f756bd4feb63e93bd75d0b1054e95.jpg',
+            specs: [
+              { big: 'Salmon Oil + Evening Primrose Oil', label: 'บำรุงผิวหนังและเส้นขนให้นุ่มสลวยเงางามภายใน 3 สัปดาห์' },
+              { big: 'ปราศจากข้าวโพดและกลูเตน (Low Sodium)', label: 'ลดความเสี่ยงอาการแพ้และถนอมสุขภาพไตในระยะยาว' }
+            ],
+            verdict: 'อาหารแมวยอดฮิตอันดับ 1 ในไทยตอนนี้ เม็ดหอมแมวกินเก่งและขนสวยขึ้นจริง'
+          },
+          {
+            id: 'purina-one-cat', tier: 'high', bracketLabel: '🍗 โปรตีนสูง 38% แพ็กคู่สุดคุ้ม',
+            eyebrow: 'ทำจากเนื้อไก่งวงและเนื้อไก่แท้เป็นส่วนผสมหลัก', name: 'Purina ONE / Friskies อาหารแมวโตเลี้ยงในบ้าน (แพ็กใหญ่)',
+            tagline: 'อาหารแมวเกรดซุปเปอร์พรีเมียม โปรตีนสูงช่วยเสริมสร้างกล้ามเนื้อ ผสมใยอาหารธรรมชาติลดการเกิดก้อนขน',
+            price: 1233, emoji: '🐈', colors: ['#0d9488','#ffffff'],
+            img: 'https://sg-test-11.slatic.net/p/6e5012eb38a4f5f3f0eedc342bde2b71.png',
+            specs: [
+              { big: 'โปรตีนคุณภาพสูง + ใยอาหารลด Hairball', label: 'ช่วยขับก้อนขนออกจากระบบทางเดินอาหารอย่างอ่อนโยน' },
+              { big: 'แพ็กใหญ่ 6 กก. x 2 ถุง (รวม 12 กก.)', label: 'ซื้อยกแพ็กใน Official Store เฉลี่ยต่อกิโลกรัมคุ้มมาก' }
+            ],
+            verdict: 'ได้อาหารแมวเครือ Purina แท้ในราคาต่อกิโลกรัมที่ประหยัดสุดๆ สำหรับบ้านที่เลี้ยงแมวต่อเนื่อง'
+          },
+          {
+            id: 'maxima-cat', tier: 'high', bracketLabel: '💰 กระสอบ 15 กก. คุ้มที่สุดสำหรับบ้านหลายตัว',
+            eyebrow: 'เนื้อแกะและเนื้อปลา • ไม่เค็ม ป้องกันโรคนิ่ว', name: 'Maxima Cat Food อาหารแมวบำรุงขนและถนอมไต (15 กก.)',
+            tagline: 'อาหารแมวในตำนานสูตรเนื้อแกะและปลาจากนิวซีแลนด์ ควบคุมระดับเกลือและแมกนีเซียมต่ำ ลดความเสี่ยงโรคไตและนิ่ว',
+            price: 1350, emoji: '🐑', colors: ['#ec4899','#ffffff'],
+            img: 'https://th-live-01.slatic.net/p/53b40ffe226f84f218fe20e6e6fc98ad.jpg',
+            specs: [
+              { big: 'กระสอบใหญ่ 15 กก. (เฉลี่ยเพียง ~90฿/กก.)', label: 'ประหยัดค่าอาหารรายเดือนได้มหาศาลสำหรับบ้านที่เลี้ยงแมว 2 ตัวขึ้นไป' },
+              { big: 'โปรตีน 30% + ไขมัน 17% จากเนื้อแกะและปลา', label: 'ไม่ผสมสีสังเคราะห์และควบคุมความเค็มถนอมไต' }
+            ],
+            verdict: 'แชมป์ความคุ้มค่าระดับตำนาน คุณภาพเทียบเท่าแบรนด์กระสอบละสองพันในราคาพันต้นๆ'
+          },
+          {
+            id: 'royal-canin-indoor', tier: 'high', bracketLabel: '👑 อันดับ 1 ที่สัตวแพทย์แนะนำ (ลดกลิ่นมูล)',
+            eyebrow: 'โปรตีนย่อยง่าย L.I.P. ลดกลิ่นอึในห้องถึง 60%', name: 'Royal Canin Indoor 27 อาหารแมวโตเลี้ยงในบ้าน',
+            tagline: 'โภชนาการแม่นยำสำหรับแมวเลี้ยงในบ้านที่ใช้พลังงานน้อย ช่วยควบคุมน้ำหนัก ลดกลิ่นมูล และดูแลระบบทางเดินปัสสาวะ',
+            price: 1419, emoji: '👑', colors: ['#dc2626','#ffffff'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S93e89e8d8ba1417ea3711a692d03c102t.jpg',
+            specs: [
+              { big: 'โปรตีน L.I.P. ย่อยง่ายมากกว่า 90%', label: 'ลดปริมาณและกลิ่นเหม็นของมูลแมวในกระบะทรายได้อย่างชัดเจน' },
+              { big: 'ดูแลสุขภาพระบบทางเดินปัสสาวะ (Urinary Health)', label: 'ปรับสมดุลแร่ธาตุเพื่อป้องกันการเกิดนิ่วในแมวโต' }
+            ],
+            verdict: 'ตัวจบสำหรับคนเลี้ยงแมวในคอนโดหรือห้องนอนที่ต้องการลดกลิ่นกระบะทรายและดูแลสุขภาพระยะยาว'
+          }
+        ]
+      },
+      {
+        id: 'dogfood', num: 31, pillar: 'pet', icon: '🐶', name: 'อาหารสุนัข • โฮลิสติก', badge: 'ลดคราบน้ำตา/บำรุงข้อ',
+        heroSub: 'เทียบอาหารสุนัขพันธุ์เล็ก-ใหญ่ สูตรลดคราบน้ำตา แก้แพ้คันผิวหนัง และเกรดสัตวแพทย์.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 งบต่ำกว่า 400฿', min: 0, max: 450 },
+          { id: 'high', label: '👑 กระสอบใหญ่เกรดสัตวแพทย์', min: 450, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'SmartHeart vs Kaniva Dog (Salmon)', title: 'คุ้มค่ากินง่าย vs สูตรปลาแซลมอนลดคราบน้ำตาและอาการคัน', desc: 'สุนัขที่ชอบเกาหรือมีคราบน้ำตา แนะนำเปลี่ยนโปรตีนหลักเป็นปลาแซลมอนไร้ข้าวโพด' },
+          { tier: 'Royal Canin Mini vs Hill’s Science Diet', title: 'เม็ดออกแบบเฉพาะพันธุ์เล็ก vs โภชนาการคลินิกสัตวแพทย์', desc: 'ดูแลสุขภาพฟัน ระบบย่อยอาหาร และข้อต่อของสุนัขอย่างตรงจุด' }
+        ],
+        products: [
+          {
+            id: 'smartheart-gold', tier: 'ultra_low', bracketLabel: '🔥 แพ็กคู่สุดคุ้ม กินง่ายสารอาหารครบ',
+            eyebrow: 'Enhanced Brain Function • มี DHA จากน้ำมันปลา', name: 'SmartHeart Small Breed / Adult Dog Food (แพ็กคู่)',
+            tagline: 'อาหารสุนัขยอดนิยม เม็ดขนาดพอดีคำ กรอบเคี้ยวง่าย เสริมสร้างพัฒนาการทางสมองและระบบภูมิคุ้มกัน',
+            price: 273, emoji: '🐶', colors: ['#dc2626','#facc15'],
+            img: 'https://th-live-01.slatic.net/p/d4cdd7796ee5b39214ae81e2b3e8a15b.jpg',
+            specs: [
+              { big: 'Omega-3 & 6 + Lecithin', label: 'บำรุงสมองและช่วยให้ผิวหนังชุ่มชื้น ขนสวยเงางาม' },
+              { big: 'แพ็กคู่สุดคุ้ม 2 ถุง', label: 'ประหยัดงบค่าอาหารรายเดือน มาตรฐานคุณภาพส่งออก' }
+            ],
+            verdict: 'คุ้มค่าและหาซื้อง่ายที่สุด สุนัขส่วนใหญ่ชอบกลิ่นและกินได้ต่อเนื่องไม่เบื่อ'
+          },
+          {
+            id: 'buzz-netura-dog', tier: 'ultra_low', bracketLabel: '🐟 สูตรปลาแซลมอน ลดคราบน้ำตา',
+            eyebrow: 'No Wheat & Corn • ไม่เค็ม บำรุงผิวหนังลดอาการคัน', name: 'Kaniva Dog Food อาหารสุนัขสูตรเนื้อปลาแซลมอน',
+            tagline: 'อาหารสุนัขเกรดพรีเมียมใช้เนื้อปลาแซลมอนเป็นส่วนผสมอันดับ 1 ปราศจากข้าวสาลีและข้าวโพด ลดอาการแพ้คันและคราบน้ำตา',
+            price: 275, emoji: '🐕', colors: ['#ea580c','#111827'],
+            img: 'https://th-live-01.slatic.net/p/d691b8491f9a8cae767ecd2d58f519ee.jpg',
+            specs: [
+              { big: 'Salmon Oil + Evening Primrose เข้มข้น', label: 'ลดอาการผิวหนังอักเสบ ขนร่วง และคราบน้ำตาในสุนัขพันธุ์เล็ก' },
+              { big: 'ไม่มีส่วนผสมของข้าวโพดและข้าวสาลี', label: 'ย่อยง่าย อุจจาระเป็นก้อนสวยและกลิ่นไม่แรง' }
+            ],
+            verdict: 'น้องหมาบ้านไหนชอบเกาตัวหรือมีคราบน้ำตา ลองเปลี่ยนมาทานสูตรแซลมอนตัวนี้เห็นผลไวมาก'
+          },
+          {
+            id: 'royal-canin-mini', tier: 'ultra_low', bracketLabel: '🦷 ดูแลสุนัขพันธุ์เล็กโดยเฉพาะ',
+            eyebrow: 'โภชนาการเฉพาะสายพันธุ์ • ความน่ากินสูงมาก', name: 'Royal Canin Mini Adult / Pouch (สำหรับสุนัขพันธุ์เล็ก)',
+            tagline: 'คิดค้นมาเพื่อสุนัขพันธุ์เล็ก (น้ำหนักไม่เกิน 10 กก.) ช่วยควบคุมพลังงานและลดการสะสมของหินปูน',
+            price: 367, emoji: '🐩', colors: ['#dc2626','#ffffff'],
+            img: 'https://filebroker-cdn.lazada.co.th/kf/S720f041274ac406f9946409c5063e54bw.jpg',
+            specs: [
+              { big: 'L-Carnitine ช่วยเผาผลาญไขมัน', label: 'รักษาน้ำหนักตัวที่เหมาะสมของสุนัขพันธุ์เล็กที่เลี้ยงในบ้าน' },
+              { big: 'ความน่ากินสูงสำหรับสุนัขช่างเลือก', label: 'กลิ่นหอมและเนื้อสัมผัสถูกใจน้องหมาที่กินยาก' }
+            ],
+            verdict: 'ทางเลือกอันดับ 1 สำหรับน้องหมาพันธุ์เล็ก เช่น ชิวาว่า ปอมเมอเรเนียน ชิสุ และพุดเดิ้ล'
+          },
+          {
+            id: 'hills-science-diet', tier: 'high', bracketLabel: '👑 เกรดสัตวแพทย์ระดับโลกจาก USA',
+            eyebrow: 'Clinically Proven Antioxidants • ย่อยง่ายถนอมอวัยวะภายใน', name: "Hill's Science Diet Adult Small Bites",
+            tagline: 'อาหารสุนัขเกรดคลินิกที่สัตวแพทย์ทั่วโลกแนะนำ คัดสรรวัตถุดิบธรรมชาติย่อยง่าย เสริมภูมิคุ้มกันและดูแลหัวใจ-ไต',
+            price: 2400, emoji: '👑', colors: ['#ffffff','#2563eb'],
+            img: 'https://sg-test-11.slatic.net/p/2b936fee0cc3e45b14f08ce147c6e785.jpg',
+            specs: [
+              { big: 'ActivBiome+ & Prebiotic Fibers', label: 'ดูแลระบบย่อยอาหารและสมดุลจุลินทรีย์ในลำไส้สุนัข' },
+              { big: 'ควบคุมแร่ธาตุอย่างแม่นยำตามหลักโภชนาการ', label: 'ดูแลสุขภาพหัวใจ ไต และข้อต่อให้แข็งแรงไปนานๆ' }
+            ],
+            verdict: 'ตัวจบเกรดพรีเมียมสูงสุดสำหรับผู้ที่ต้องการให้น้องหมาสุขภาพแข็งแรงอายุยืนยาว'
+          }
+        ]
+      },
+      {
+        id: 'catlitter', num: 32, pillar: 'pet', icon: '🪣', name: 'ทรายแมว • ขนมแมวเลีย', badge: 'ไร้ฝุ่น/เก็บกลิ่น',
+        heroSub: 'เทียบทรายแมวเต้าหู้ทิ้งชักโครกได้ ทรายแมวไม้สน ขนมแมวเลีย Ciao และห้องน้ำแมวอัตโนมัติ.',
+        budgets: [
+          { id: 'all', label: 'ดูทุกรุ่น (4 ตัวจบ)', min: 0, max: 999999 },
+          { id: 'ultra_low', label: '🔥 ขนมแมวเลียเซ็ตคุ้ม (~400฿)', min: 0, max: 600 },
+          { id: 'mid', label: '🪣 ทรายแมวเต้าหู้/ไม้สนยกกระสอบ (1,000–2,000฿)', min: 600, max: 3000 },
+          { id: 'high', label: '🤖 ห้องน้ำแมวอัตโนมัติอัจฉริยะ', min: 3000, max: 999999 }
+        ],
+        stepups: [
+          { tier: 'ทรายเต้าหู้ Kasty vs ทรายไม้สน Cat’s Best', title: 'ทิ้งชักโครกได้จับก้อนไว vs เก็บกลิ่นแอมโมเนียสุดเทพจากเยอรมนี', desc: 'อยู่คอนโดแนะนำทรายเต้าหู้ Kasty เพราะตักทิ้งชักโครกได้เลยไม่ต้องแบกขยะหนัก' },
+          { tier: 'อัปเกรดชีวิตทาสแมว', title: 'PETKIT Pura Max ห้องน้ำแมวอัตโนมัติ สั่งงานผ่านแอป ไม่ต้องตักเอง', desc: 'เหมาะกับคนทำงานนอกบ้านหรือไปต่างจังหวัดบ่อย กระบะสะอาดตลอดเวลาและเช็คน้ำหนักแมวได้' }
+        ],
+        products: [
+          {
+            id: 'ciaochuru-variety', tier: 'ultra_low', bracketLabel: '😻 ขนมแมวเลียอันดับ 1 จากญี่ปุ่น',
+            eyebrow: 'เซ็ตใหญ่สุดคุ้ม 40 ซอง • ผสมสารสกัดชาเขียวลดกลิ่นปาก', name: 'Ciao Churu (เชา ชูรุ) ขนมแมวเลีย (แพ็ก 40 ซอง)',
+            tagline: 'ขนมแมวเลียเนื้อครีมเนียนที่แมวทุกตัวหลงรัก ผลิตจากเนื้อปลาทูน่าและเนื้อไก่แท้ ช่วยเพิ่มการดื่มน้ำให้แมว',
+            price: 417, emoji: '🐟', colors: ['#ef4444','#facc15'],
+            img: 'https://th-live-01.slatic.net/p/3edbc298edc0d1a2345e383108cac91c.jpg',
+            specs: [
+              { big: 'เซ็ตใหญ่ 40 ซอง (เฉลี่ยซองละ ~10 บาท)', label: 'ถูกกว่าซื้อแยกซองเล็กตามร้านทั่วไปเกือบครึ่ง' },
+              { big: 'Green Tea Extract ลดกลิ่นปากและกลิ่นมูล', label: 'ใช้ผสมยาหรือล่อให้แมวกินน้ำเพิ่มขึ้นได้ง่ายมาก' }
+            ],
+            verdict: 'ไอเทมติดบ้านของทาสแมวทุกคน ซื้อแพ็กใหญ่ 40 ซองใน LazMall / Shopee Mall คุ้มที่สุด'
+          },
+          {
+            id: 'kasty-tofu-litter', tier: 'mid', bracketLabel: '🌱 ทรายเต้าหู้ธรรมชาติ ทิ้งชักโครกได้',
+            eyebrow: 'จับตัวเป็นก้อนใน 3 วินาที • ไร้ฝุ่น 99.9%', name: 'Kasty (แคสตี้) ทรายแมวเต้าหู้ธรรมชาติ 100% (ยกเซ็ตสุดคุ้ม)',
+            tagline: 'ผลิตจากกากถั่วเหลืองธรรมชาติ แท่งเล็ก 1.5 มม. ประหยัดทราย จับก้อนแน่นไม่แตกเวลาตัก และละลายน้ำทิ้งชักโครกได้ทันที',
+            price: 1260, emoji: '🌱', colors: ['#4ade80','#fef08a'],
+            img: 'https://th-live-01.slatic.net/p/7ea3f5216b67debd7aacdef9ce59aa41.jpg',
+            specs: [
+              { big: 'Flushable ละลายน้ำทิ้งลงชักโครกได้', label: 'สะดวกมากสำหรับคนเลี้ยงแมวในคอนโดหรือหอพัก' },
+              { big: 'ผ่านการกรองฝุ่น 3 ชั้น ไร้ฝุ่นฟุ้งกระจาย', label: 'ปลอดภัยต่อระบบทางเดินหายใจของทั้งแมวและเจ้าของ' }
+            ],
+            verdict: 'ทรายแมวเต้าหู้ที่ขายดีที่สุด จับก้อนไว เก็บกลิ่นดี และไม่ติดเท้าแมวออกมานอกกระบะ'
+          },
+          {
+            id: 'catbest-original', tier: 'mid', bracketLabel: '🌲 ทรายไม้สนเยอรมนี ประหยัดกว่า 3 เท่า',
+            eyebrow: 'เทคโนโลยีเส้นใยไม้ออร์แกนิก ดูดซับของเหลวได้ 700%', name: "Cat's Best Original ทรายแมวไม้สนธรรมชาติ (กระสอบใหญ่ 40L)",
+            tagline: 'ทรายแมวออร์แกนิกจากเยอรมนี ล็อกกลิ่นแอมโมเนียอยู่หมัดโดยไม่ใช้น้ำหอมเคมี กระสอบใหญ่ 40 ลิตรใช้ได้นานหลายเดือน',
+            price: 1950, emoji: '🌲', colors: ['#dc2626','#16a34a'],
+            img: 'https://sg-test-11.slatic.net/p/49772a496db19f19d8258c268d179531.jpg',
+            specs: [
+              { big: 'ดูดซับน้ำได้ถึง 7 เท่าของน้ำหนักตัว', label: 'สิ้นเปลืองน้อยกว่าทรายแมวเบนโทไนต์ทั่วไปถึง 3 เท่า' },
+              { big: '100% Natural Organic Fiber ย่อยสลายได้', label: 'น้ำหนักเบา ขนย้ายง่าย และทิ้งลงชักโครกได้ทีละก้อน' }
+            ],
+            verdict: 'แม้ราคาต่อกระสอบดูสูงแต่ใช้ได้นานมาก คำนวณรายเดือนแล้วประหยัดและเก็บกลิ่นอึ-ฉี่แมวได้เทพที่สุด'
+          },
+          {
+            id: 'pethroom-litter-box', tier: 'high', bracketLabel: '🤖 ห้องน้ำแมวอัตโนมัติ ตัวจบไม่ต้องตักเอง',
+            eyebrow: 'เซนเซอร์นิรภัย x8 • สั่งงานและดูสุขภาพแมวผ่านแอป', name: 'PETKIT Pura Max 2 ห้องน้ำแมวอัตโนมัติอัจฉริยะ',
+            tagline: 'ตักทรายอัตโนมัติหลังแมวเข้าใช้งาน พร้อมระบบสเปรย์กำจัดกลิ่นอัจฉริยะและเซนเซอร์หยุดทำงานทันทีเมื่อแมวเข้าใกล้',
+            price: 15900, emoji: '🤖', colors: ['#ffffff','#9ca3af'],
+            img: 'https://th-live.slatic.net/p/1e95cfad37d10857e09966f3b6bf1293.jpg',
+            specs: [
+              { big: 'xSecure Safety เซนเซอร์ตรวจจับน้ำหนักและความร้อน', label: 'ปลอดภัย 100% เครื่องหยุดหมุนทันทีที่แมวเดินเข้าใกล้' },
+              { big: 'ถังเก็บมูลซีลปิดสนิท อยู่ได้นานสูงสุด 15 วัน', label: 'แจ้งเตือนน้ำหนักตัวแมวและจำนวนครั้งที่เข้าห้องน้ำผ่านสมาร์ทโฟน' }
+            ],
+            verdict: 'การลงทุนที่คุ้มค่าที่สุดของทาสแมวยุคใหม่ หมดภาระตักทรายทุกเช้า-เย็นและบ้านไร้กลิ่นกวนใจ'
+          }
+        ]
       }
+
     ];
 
     let activeCategoryId = 'smartphone';
@@ -2851,13 +3509,15 @@
     function renderCurtainDirectory(filterText = '') {
       const q = filterText.trim().toLowerCase();
       const pillars = [
-        { id: 'tech', title: '📱 มือถือ • คอม • แกดเจ็ต' },
-        { id: 'major', title: '❄️ แอร์ • ทีวี • เครื่องใช้ไฟฟ้าใหญ่' },
-        { id: 'living', title: '🏠 ดูดฝุ่น • ฟอกอากาศ • ในครัว' },
-        { id: 'lifestyle', title: '🎧 หูฟัง • เก้าอี้ • ไลฟ์สไตล์' }
+        { id: 'tech', title: '📱 มือถือ • ไอที • แกดเจ็ต' },
+        { id: 'home', title: '❄️ เครื่องใช้ไฟฟ้า • สมาร์ทโฮม' },
+        { id: 'personal', title: '🧴 ของใช้ส่วนตัว • สกินแคร์' },
+        { id: 'supplement', title: '💊 อาหารเสริม • วิตามิน' },
+        { id: 'pet', title: '🐾 โซนสัตว์เลี้ยง (หมา/แมว)' }
       ];
 
       const grid = document.getElementById('curtainGrid');
+      grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(195px, 1fr))';
       grid.innerHTML = pillars.map(p => {
         const cats = CATEGORIES
           .filter(c => c.pillar === p.id)
@@ -2908,7 +3568,16 @@
     let isHomeMode = true;
 
     function renderChapterNav() {
-      const sorted = [...CATEGORIES].sort((a, b) => a.num - b.num);
+      const activeCat = getCategory(activeCategoryId);
+      const activePillar = !isHomeMode && activeCat ? activeCat.pillar : null;
+      const sorted = [...CATEGORIES].sort((a, b) => {
+        if (activePillar) {
+          const aMatch = a.pillar === activePillar ? 0 : 1;
+          const bMatch = b.pillar === activePillar ? 0 : 1;
+          if (aMatch !== bMatch) return aMatch - bMatch;
+        }
+        return a.num - b.num;
+      });
       const ribbon = document.getElementById('chapterNavRibbon');
       const homeItemHtml = `
         <button class="chapter-item ${isHomeMode ? 'active' : ''}" id="chap_home" onclick="showHomeHub()">
@@ -2917,7 +3586,7 @@
         </button>
       `;
       ribbon.innerHTML = homeItemHtml + sorted.map(c => `
-        <button class="chapter-item ${(!isHomeMode && c.id === activeCategoryId) ? 'active' : ''}" id="chap_${c.id}" onclick="selectCategory('${c.id}')">
+        <button class="chapter-item ${(!isHomeMode && c.id === activeCategoryId) ? 'active' : ''}" id="chap_${c.id}" onclick="selectCategory('${c.id}')" style="${(!isHomeMode && activePillar && c.pillar === activePillar && c.id !== activeCategoryId) ? 'opacity:1;background:rgba(0,113,227,0.06);border-radius:12px;' : ''}">
           <span class="chapter-icon">${c.icon}</span>
           <span class="chapter-label">${c.name}</span>
         </button>
@@ -2926,7 +3595,11 @@
 
     function selectPillar(pillarId) {
       const firstCat = CATEGORIES.find(c => c.pillar === pillarId);
-      if (firstCat) selectCategory(firstCat.id);
+      if (firstCat) {
+        selectCategory(firstCat.id);
+        const ribbon = document.getElementById('chapterNavRibbon');
+        if (ribbon) ribbon.scrollTo({ left: 0, behavior: 'smooth' });
+      }
     }
 
     let activeUseCase = 'all';
@@ -2952,6 +3625,34 @@
           { id: 'value_mini', label: '💰 เน้นสเปกโหดคุ้มงบ (Mini LED)', matchIdx: 0 },
           { id: 'bright_room', label: '☀️ เน้นห้องรับแขกสว่างไม่สะท้อนแสง', matchIdx: 1 },
           { id: 'cinema_oled', label: '🎬 เน้นดูหนังห้องมืด/เล่น PS5 (OLED)', matchIdx: 2 }
+        ];
+      } else if (catId === 'sunscreen') {
+        return [
+          { id: 'all', label: '✨ ทุกสภาพผิว' },
+          { id: 'budget_win', label: '💧 เนื้อเซรั่มบางเบา ทาทุกวันคุ้มสุด', matchIdx: 0 },
+          { id: 'balance_win', label: '🌿 ผิวแพ้ง่าย/เป็นสิว (5-Free)', matchIdx: 2 },
+          { id: 'flagship_win', label: '☀️ คุมมัน/กันฝ้าแดด/กันน้ำลุยแดดจัด', matchIdx: 3 }
+        ];
+      } else if (catId === 'shampoo' || catId === 'toothpaste' || catId === 'bodywash') {
+        return [
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'budget_win', label: '💰 เน้นคุ้มค่าใช้ได้ทั้งครอบครัว', matchIdx: 0 },
+          { id: 'balance_win', label: '🧪 สูตรเวชสำอางแก้ปัญหาตรงจุด', matchIdx: 2 },
+          { id: 'flagship_win', label: '👑 เกรดพรีเมียม/ลักชัวรี', matchIdx: 3 }
+        ];
+      } else if (catId === 'vitamin' || catId === 'whey' || catId === 'collagen') {
+        return [
+          { id: 'all', label: '✨ ทุกเป้าหมายสุขภาพ' },
+          { id: 'budget_win', label: '💰 เน้นคุ้มค่าราคาต่อเม็ด/ต่อช้อน', matchIdx: 0 },
+          { id: 'balance_win', label: '🌿 ย่อยง่าย/ดูดซึมไว/อ่อนโยนต่อกระเพาะ', matchIdx: 1 },
+          { id: 'flagship_win', label: '🏆 เกรดพรีเมียมนำเข้าอันดับ 1', matchIdx: 3 }
+        ];
+      } else if (catId === 'catfood' || catId === 'dogfood' || catId === 'catlitter') {
+        return [
+          { id: 'all', label: '✨ ทุกสูตร' },
+          { id: 'budget_win', label: '🐱 บำรุงขนสวย/ลดคราบน้ำตา/ไร้ฝุ่น', matchIdx: 0 },
+          { id: 'balance_win', label: '📦 แพ็กใหญ่/กระสอบใหญ่สุดคุ้ม', matchIdx: 2 },
+          { id: 'flagship_win', label: '🏥 เกรดสัตวแพทย์/อัจฉริยะตัวท็อป', matchIdx: 3 }
         ];
       } else {
         return [
@@ -3050,6 +3751,9 @@
       if (calcBtn) {
         if (cat.id === 'aircon') calcBtn.innerHTML = '🧮 คำนวณขนาด BTU แอร์ตามขนาดห้อง & ค่าไฟต่อเดือน';
         else if (cat.id === 'tv') calcBtn.innerHTML = '🧮 คำนวณขนาดนิ้วทีวีตามระยะโซฟา & แสงห้อง';
+        else if (cat.pillar === 'pet') calcBtn.innerHTML = `🐾 คำนวณปริมาณอาหารต่อเดือน & ค่าอาหารเฉลี่ยต่อวัน (${cat.name})`;
+        else if (cat.pillar === 'supplement') calcBtn.innerHTML = `💊 คำนวณต้นทุนต่อมื้อ/ต่อเม็ด & ความคุ้มค่ารายเดือน (${cat.name})`;
+        else if (cat.pillar === 'personal') calcBtn.innerHTML = `🧴 คำนวณความคุ้มค่าต่อมล. & โปรแพ็กคู่ประหยัดเพิ่ม (${cat.name})`;
         else calcBtn.innerHTML = `🧮 คำนวณค่างวดผ่อน 0% 10 เดือน & ความคุ้มค่ารายวัน (${cat.name})`;
       }
     }
@@ -3167,6 +3871,7 @@
       // Determine Use-Case Winner index if user selected a lifestyle filter
       const ucList = getUseCasesForCategory(cat.id);
       const selectedUcObj = ucList.find(u => u.id === activeUseCase);
+      const isEverydayCat = ['personal', 'supplement', 'pet'].includes(cat.pillar);
 
       grid.innerHTML = filtered.map((p, idx) => {
         const isWinner = selectedUcObj && selectedUcObj.id !== 'all' && (
@@ -3194,9 +3899,14 @@
           : `<div class="apple-card-emoji-fallback">${p.emoji || cat.icon}</div>`;
 
         const livePrice = bestOffer.netPrice || p.price;
-        const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || (livePrice + 1200));
-        const monthlyDrop = Math.max(300, prevMonthPrice - livePrice);
+        const prevMonthPrice = Math.max(bestOffer.originalPrice || 0, p.prevPrice || Math.round(livePrice * 1.18));
+        const monthlyDrop = Math.max(25, prevMonthPrice - livePrice);
         const installment10m = Math.round(livePrice / 10);
+        const dailyCost = Math.max(2, Math.round(livePrice / 30));
+
+        const subValueLine = (isEverydayCat && livePrice < 3000)
+          ? `⚡ คุ้มค่าเฉลี่ยเพียง ~฿${dailyCost}/วัน • ซื้อแพ็กคู่/เก็บโค้ดส่งฟรีคุ้มกว่า`
+          : `💳 ผ่อน 0% นาน 10 เดือน เพียงเดือนละ ${formatTHB(installment10m)}`;
 
         return `
           <article class="apple-card ${isWinner ? 'usecase-winner' : ''}">
@@ -3214,7 +3924,7 @@
               <span style="font-size:12.5px;color:var(--text-light);text-decoration:line-through;font-weight:500;margin-left:6px;">${formatTHB(prevMonthPrice)}</span>
             </div>
             <div style="font-size:12px;color:var(--apple-blue);font-weight:600;margin-bottom:4px;">
-              💳 ผ่อน 0% นาน 10 เดือน เพียงเดือนละ ${formatTHB(installment10m)}
+              ${subValueLine}
             </div>
             <div class="apple-price-sub" style="margin-bottom:10px;">📉 ประหยัดทันที -${formatTHB(monthlyDrop)} • ${bestOffer.shopName || 'Official Mall'}</div>
 
@@ -3525,6 +4235,78 @@
           </div>
         `;
         updateTvCalc();
+      } else if (cat.pillar === 'pet') {
+        const samplePrice = cat.products[0] ? cat.products[0].price : 450;
+        const defaultWeight = cat.id === 'dogfood' ? 10 : 4.5;
+        drawer.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <strong style="font-size:16px;">🐾 เครื่องคำนวณปริมาณการกินต่อเดือน & ค่าใช้จ่ายเฉลี่ยต่อวัน (${cat.name})</strong>
+            <button class="helper-link" onclick="toggleSmartCalculator()">ซ่อน ✕</button>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+            <div class="price-input-box">
+              <span>ราคาต่อถุง/แพ็ก ฿</span>
+              <input type="number" id="calcPetPrice" class="price-input" value="${samplePrice}" step="50" oninput="updatePetCalc('${cat.id}')" />
+            </div>
+            <div class="price-input-box">
+              <span>น้ำหนักสัตว์เลี้ยง (กก.):</span>
+              <input type="number" id="calcPetWeight" class="price-input" value="${defaultWeight}" step="0.5" min="1" max="50" oninput="updatePetCalc('${cat.id}')" />
+            </div>
+            <select id="calcPetCount" class="apple-select" style="width:auto;padding:8px 14px;font-size:13.5px;" onchange="updatePetCalc('${cat.id}')">
+              <option value="1">เลี้ยง 1 ตัว</option>
+              <option value="2">เลี้ยง 2 ตัว</option>
+              <option value="3">เลี้ยง 3 ตัวขึ้นไป</option>
+            </select>
+            <div id="calcPetResult" style="font-size:13.5px;background:#f5f5f7;padding:10px 16px;border-radius:12px;flex:1;"></div>
+          </div>
+        `;
+        updatePetCalc(cat.id);
+      } else if (cat.pillar === 'supplement') {
+        const samplePrice = cat.products[0] ? cat.products[0].price : 650;
+        drawer.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <strong style="font-size:16px;">💊 เครื่องคำนวณต้นทุนต่อมื้อ/ต่อเม็ด & ระยะเวลาทาน (${cat.name})</strong>
+            <button class="helper-link" onclick="toggleSmartCalculator()">ซ่อน ✕</button>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+            <div class="price-input-box">
+              <span>ราคาต่อกระปุก/ถุง ฿</span>
+              <input type="number" id="calcSuppPrice" class="price-input" value="${samplePrice}" step="50" oninput="updateSuppCalc()" />
+            </div>
+            <select id="calcSuppServings" class="apple-select" style="width:auto;padding:8px 14px;font-size:13.5px;" onchange="updateSuppCalc()">
+              <option value="30">ขนาด 30 เม็ด / 30 Scoops</option>
+              <option value="60" selected>ขนาด 60 เม็ด / 60 Scoops</option>
+              <option value="90">ขนาดคุ้ม 90+ เม็ด / 5 ปอนด์</option>
+            </select>
+            <select id="calcSuppDaily" class="apple-select" style="width:auto;padding:8px 14px;font-size:13.5px;" onchange="updateSuppCalc()">
+              <option value="1">ทานวันละ 1 มื้อ/เม็ด</option>
+              <option value="2">ทานวันละ 2 มื้อ/เม็ด</option>
+            </select>
+            <div id="calcSuppResult" style="font-size:13.5px;background:#f5f5f7;padding:10px 16px;border-radius:12px;flex:1;"></div>
+          </div>
+        `;
+        updateSuppCalc();
+      } else if (cat.pillar === 'personal') {
+        const samplePrice = cat.products[0] ? cat.products[0].price : 390;
+        drawer.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <strong style="font-size:16px;">🧴 เครื่องคำนวณความคุ้มค่าต่อวัน & โปรแพ็กคู่ (${cat.name})</strong>
+            <button class="helper-link" onclick="toggleSmartCalculator()">ซ่อน ✕</button>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+            <div class="price-input-box">
+              <span>ราคาต่อชิ้น ฿</span>
+              <input type="number" id="calcPersPrice" class="price-input" value="${samplePrice}" step="20" oninput="updatePersCalc()" />
+            </div>
+            <select id="calcPersMonths" class="apple-select" style="width:auto;padding:8px 14px;font-size:13.5px;" onchange="updatePersCalc()">
+              <option value="45">1 ชิ้นใช้ได้นาน ~1.5 เดือน</option>
+              <option value="60" selected>1 ชิ้นใช้ได้นาน ~2 เดือน</option>
+              <option value="90">1 ชิ้นใช้ได้นาน ~3 เดือน</option>
+            </select>
+            <div id="calcPersResult" style="font-size:13.5px;background:#f5f5f7;padding:10px 16px;border-radius:12px;flex:1;"></div>
+          </div>
+        `;
+        updatePersCalc();
       } else {
         const samplePrice = cat.products[0] ? cat.products[0].price : 15000;
         drawer.innerHTML = `
@@ -3545,6 +4327,44 @@
           </div>
         `;
         updateGenCalc();
+      }
+    }
+
+    function updatePetCalc(catId) {
+      const price = parseFloat(document.getElementById('calcPetPrice')?.value) || 450;
+      const weight = parseFloat(document.getElementById('calcPetWeight')?.value) || 4.5;
+      const count = parseInt(document.getElementById('calcPetCount')?.value, 10) || 1;
+      const dailyGramsPerPet = catId === 'dogfood' ? Math.round(weight * 18) : Math.round(weight * 13);
+      const totalDailyGrams = dailyGramsPerPet * count;
+      const daysPerBag = Math.max(7, Math.round(2000 / Math.max(40, totalDailyGrams)));
+      const costPerDay = (price / daysPerBag).toFixed(1);
+      const el = document.getElementById('calcPetResult');
+      if (el) {
+        el.innerHTML = `✅ ปริมาณแนะนำรวม <strong>~${totalDailyGrams} กรัม/วัน</strong> (${count} ตัว) • เฉลี่ยคุ้มค่าเพียง <strong>วันละ ~฿${costPerDay} บาท</strong> (ซื้อถุงใหญ่/เก็บโค้ด Mall ประหยัดเพิ่มอีก 15%)`;
+      }
+    }
+
+    function updateSuppCalc() {
+      const price = parseFloat(document.getElementById('calcSuppPrice')?.value) || 650;
+      const servings = parseInt(document.getElementById('calcSuppServings')?.value, 10) || 60;
+      const daily = parseInt(document.getElementById('calcSuppDaily')?.value, 10) || 1;
+      const daysLast = Math.round(servings / daily);
+      const perServing = (price / servings).toFixed(1);
+      const perDay = (price / daysLast).toFixed(1);
+      const el = document.getElementById('calcSuppResult');
+      if (el) {
+        el.innerHTML = `✅ ต้นทุนเพียง <strong>฿${perServing}/มื้อ (วันละ ฿${perDay})</strong> • 1 กระปุกทานได้นาน <strong>${daysLast} วัน</strong> • กดเก็บโค้ดร้าน Official ลดเพิ่มได้อีก 15%!`;
+      }
+    }
+
+    function updatePersCalc() {
+      const price = parseFloat(document.getElementById('calcPersPrice')?.value) || 390;
+      const days = parseInt(document.getElementById('calcPersMonths')?.value, 10) || 60;
+      const perDay = (price / days).toFixed(1);
+      const twinPackEach = Math.round(price * 0.82);
+      const el = document.getElementById('calcPersResult');
+      if (el) {
+        el.innerHTML = `✅ เฉลี่ยคุ้มค่าเพียง <strong>วันละ ฿${perDay} บาท</strong> • แนะนำซื้อโปรแพ็กคู่/เก็บโค้ด Mall เหลือเพียงชิ้นละ <strong>~${formatTHB(twinPackEach)}</strong>!`;
       }
     }
 
@@ -3614,8 +4434,8 @@
       const top3 = cat.products.slice(0, 3);
       const lines = [
         `📌 โพยเทียบสเปก & ราคา ${cat.icon} ${cat.name} (อัปเดตล่าสุดจาก yesspec):`,
-        ...top3.map((p, i) => `${i + 1}. ${p.name} — ${formatTHB(p.price)} (ผ่อน 0% ${formatTHB(Math.round(p.price / 10))}/ด.) | จุดเด่น: ${p.eyebrow}`),
-        `✈️ เช็คราคาถูกสุด Shopee Mall & Lazada LazMallได้ที่หน้าเว็บนี้เลย!`
+        ...top3.map((p, i) => `${i + 1}. ${p.name} — ${formatTHB(p.price)} | จุดเด่น: ${p.eyebrow}`),
+        `✈️ เช็คราคาถูกสุด Shopee Mall, Lazada LazMall & TikTok Shop ได้ที่หน้าเว็บนี้เลย!`
       ].join('\n');
 
       if (navigator.clipboard) {
@@ -3857,7 +4677,7 @@
           อัปเดตข้อมูลล่าสุด: เดือน${mLabel} • โดยทีมบรรณาธิการ yesspec • ${art.readTime}
         </div>
         <p style="font-size:15px;color:var(--text-main);line-height:1.7;margin-bottom:20px;">
-          ${art.desc} สำหรับใครที่กำลังมองหา <strong>${cat.name}</strong> ในเดือน${mLabel} เราได้รวบรวมข้อมูลสเปกจริง และเปรียบเทียบราคาสุทธิหลังหักคูปองจากทั้ง Shopee Mall และ Lazada LazMallมาให้ครบจบในหน้านี้แล้ว:
+          ${art.desc} สำหรับใครที่กำลังมองหา <strong>${cat.name}</strong> ในเดือน${mLabel} เราได้รวบรวมข้อมูลสเปกจริง และเปรียบเทียบราคาสุทธิหลังหักคูปองจากทั้ง Shopee Mall, Lazada LazMall และ TikTok Shop มาให้ครบจบในหน้านี้แล้ว:
         </p>
 
         <h3 style="font-size:19px;font-weight:700;margin-bottom:12px;">📌 สรุปโพยแยกตามช่วงงบประมาณ (อัปเดต ${mLabel})</h3>
@@ -3877,8 +4697,7 @@
     }
 
     // =========================================================================
-    // =========================================================================
-    // ULTRA-CLEAN APPLE STOREFRONT HOME HUB ENGINE (4 MINIMAL ZONES)
+    // ULTRA-CLEAN STOREFRONT HOME HUB ENGINE (5 SUPER-PILLARS)
     // =========================================================================
     function showHomeHub() {
       isHomeMode = true;
@@ -3920,10 +4739,10 @@
         c.name.toLowerCase().includes(q) ||
         c.heroSub.toLowerCase().includes(q) ||
         c.products.some(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q))
-      ).slice(0, 5);
+      ).slice(0, 6);
 
       if (matchedCats.length === 0) {
-        resBox.innerHTML = `<div style="font-size:13px;color:var(--text-sub);">ไม่พบหมวดที่ตรงกัน — กดปุ่ม "ค้นหา" เพื่อดูสารบัญทั้งหมด</div>`;
+        resBox.innerHTML = `<div style="font-size:13px;color:var(--text-sub);">ไม่พบหมวดที่ตรงกัน — กดปุ่ม "ค้นหา" เพื่อดูสารบัญทั้งหมด 32 หมวด</div>`;
         return;
       }
 
@@ -3938,28 +4757,27 @@
       `;
     }
 
-    // ZONE 2: Hall of Fame — Strict Apple 3-Line Rule (Badge + Image + Name + Price/CTA)
+    // ZONE 2: Hall of Fame — Across All 5 Super-Pillars (Tech, Home, Personal, Supplement, Pet)
     function renderHomeHallOfFame(filterPillar = 'all', clickedBtn = null) {
       if (clickedBtn) {
         document.querySelectorAll('#hallFilterButtons .budget-pill').forEach(b => b.classList.remove('active'));
         clickedBtn.classList.add('active');
       }
 
-      const topCatIds = ['smartphone', 'aircon', 'tv', 'notebook', 'fridge', 'washer', 'robot', 'headphone'];
-      let champs = topCatIds.map(cid => {
+      let targetCatIds = [];
+      if (filterPillar === 'all') {
+        targetCatIds = ['smartphone', 'aircon', 'tv', 'robot', 'sunscreen', 'whey', 'catfood', 'dogfood'];
+      } else {
+        targetCatIds = CATEGORIES.filter(c => c.pillar === filterPillar).map(c => c.id);
+      }
+
+      const champs = targetCatIds.map(cid => {
         const cat = getCategory(cid);
         const bestProd = cat.id === 'smartphone'
           ? (cat.products.find(p => p.id === 'samsung-a55-5g') || cat.products[1] || cat.products[0])
           : (cat.products[1] || cat.products[0]);
         return { cat, prod: bestProd };
       });
-
-      if (filterPillar !== 'all') {
-        champs = champs.filter(item => {
-          if (filterPillar === 'living') return item.cat.pillar === 'living' || item.cat.pillar === 'lifestyle';
-          return item.cat.pillar === filterPillar;
-        });
-      }
 
       const grid = document.getElementById('homeHallOfFameGrid');
       if (!grid) return;
@@ -3970,6 +4788,7 @@
         const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: Math.round(prod.price * 1.15), coupon: 'SPYMALL15', url: '#' };
         const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
         const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
+        const tiktokOffer = offers.find(o => o.platform === 'tiktok') || offers[2] || offers[0];
         const hallImg = prod.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
 
         const visualHtml = hallImg
@@ -3996,12 +4815,15 @@
                 🎟️ โค้ดลด: <strong>${bestOffer.coupon}</strong> (กดรับโค้ด)
               </button>
             </div>
-            <div style="display:flex;gap:6px;width:100%;padding-top:8px;border-top:1px solid var(--border-hairline);" onclick="event.stopPropagation();">
-              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="flex:1;background:#ee4d2d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🟠 Shopee ${formatTHB(shopeeOffer.netPrice)}
+            <div style="display:flex;gap:4px;width:100%;padding-top:8px;border-top:1px solid var(--border-hairline);flex-wrap:wrap;" onclick="event.stopPropagation();">
+              <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:68px;background:#ee4d2d;color:#fff;text-decoration:none;font-size:10.5px;font-weight:700;padding:6px 4px;border-radius:99px;text-align:center;">
+                🟠 ${formatTHB(shopeeOffer.netPrice)}
               </a>
-              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="flex:1;background:#0f146d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🔵 Lazada ${formatTHB(lazadaOffer.netPrice)}
+              <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:68px;background:#0f146d;color:#fff;text-decoration:none;font-size:10.5px;font-weight:700;padding:6px 4px;border-radius:99px;text-align:center;">
+                🔵 ${formatTHB(lazadaOffer.netPrice)}
+              </a>
+              <a href="${tiktokOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:68px;background:#000000;color:#fff;text-decoration:none;font-size:10.5px;font-weight:700;padding:6px 4px;border-radius:99px;text-align:center;">
+                ⚫ ${formatTHB(tiktokOffer.netPrice)}
               </a>
             </div>
           </div>
@@ -4009,15 +4831,15 @@
       }).join('');
     }
 
-    // ZONE 3: Minimal VS Matchups (Clean A vs B — Zero Paragraph Clutter)
+    // ZONE 3: Minimal VS Matchups (Clean A vs B Across All 5 Zones)
     function renderHomeTrendingBattles() {
       const battles = [
         { catId: 'smartphone', idxA: 15, idxB: 16, label: '📱 มือถือเรือธง', nameA: 'iPhone 17 Pro', nameB: 'Galaxy S26 Ultra' },
         { catId: 'aircon', idxA: 1, idxB: 2, label: '❄️ แอร์ Inverter', nameA: 'Mitsubishi Heavy', nameB: 'Daikin FTKZ' },
-        { catId: 'smartphone', idxA: 6, idxB: 7, label: '📱 มือถือหมื่นต้น', nameA: 'Galaxy A55 5G', nameB: 'POCO X7 Pro 5G' },
-        { catId: 'tv', idxA: 1, idxB: 2, label: '📺 ทีวี 65 นิ้ว', nameA: 'Samsung Neo QLED', nameB: 'LG OLED C6' },
-        { catId: 'robot', idxA: 1, idxB: 2, label: '🤖 หุ่นยนต์ดูดฝุ่น', nameA: 'Roborock S8 MaxV', nameB: 'Dreame X40 Ultra' },
-        { catId: 'notebook', idxA: 1, idxB: 2, label: '💻 โน้ตบุ๊กทำงาน', nameA: 'Vivobook S 15 OLED', nameB: 'MacBook Air M3' }
+        { catId: 'sunscreen', idxA: 1, idxB: 2, label: '☀️ ครีมกันแดดตัวท็อป', nameA: 'La Roche-Posay UVMune', nameB: 'Anessa Gold Milk' },
+        { catId: 'catfood', idxA: 0, idxB: 1, label: '🐱 อาหารแมวถนอมไต', nameA: 'Kaniva Indoor', nameB: 'Purina ONE Indoor' },
+        { catId: 'whey', idxA: 1, idxB: 2, label: '💪 เวย์โปรตีนยอดฮิต', nameA: 'ON Gold Standard', nameB: 'Dymatize ISO100' },
+        { catId: 'robot', idxA: 1, idxB: 2, label: '🤖 หุ่นยนต์ดูดฝุ่น', nameA: 'Roborock S8 MaxV', nameB: 'Dreame X40 Ultra' }
       ];
 
       const grid = document.getElementById('homeTrendingBattlesGrid');
@@ -4064,8 +4886,9 @@
       const dropPicks = [
         { catId: 'smartphone', prodIdx: 10, dropBaht: 2500 },
         { catId: 'aircon', prodIdx: 1, dropBaht: 3200 },
-        { catId: 'tv', prodIdx: 0, dropBaht: 4500 },
-        { catId: 'robot', prodIdx: 1, dropBaht: 3900 }
+        { catId: 'sunscreen', prodIdx: 1, dropBaht: 220 },
+        { catId: 'whey', prodIdx: 1, dropBaht: 450 },
+        { catId: 'catfood', prodIdx: 2, dropBaht: 180 }
       ];
 
       const grid = document.getElementById('homePriceDropGrid');
@@ -4097,7 +4920,7 @@
     // ZONE 4B: Compact Top 10 Guides List
     function renderHomeFeaturedArticles() {
       const mLabel = getCurrentMonthLabel();
-      const featuredCats = ['smartphone', 'aircon', 'tv', 'fridge'];
+      const featuredCats = ['smartphone', 'aircon', 'sunscreen', 'whey', 'catfood'];
       const grid = document.getElementById('homeFeaturedArticlesGrid');
       if (!grid) return;
 

@@ -60,13 +60,14 @@ def extract_all_products_from_index(index_path: Path) -> list[dict]:
     html = index_path.read_text(encoding="utf-8")
     pattern = re.compile(
         r"id:\s*'([^']+)',\s*tier:\s*'([^']+)',\s*bracketLabel:\s*'([^']+)',[\s\S]*?"
-        r"name:\s*'([^']+)',[\s\S]*?price:\s*(\d+)",
+        r"name:\s*(?:'([^']+)'|\"([^\"]+)\"),[\s\S]*?price:\s*(\d+)",
         re.MULTILINE,
     )
     items = []
     seen = set()
     for match in pattern.finditer(html):
-        pid, tier, bracket, name, price_str = match.groups()
+        pid, tier, bracket, name_sq, name_dq, price_str = match.groups()
+        name = name_sq or name_dq
         if pid in seen:
             continue
         seen.add(pid)

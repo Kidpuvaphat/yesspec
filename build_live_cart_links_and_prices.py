@@ -64,6 +64,43 @@ BRAND_VOUCHERS = {
     "garmin": ("GARMIN1500", "โค้ดร้าน Garmin Official ลดเพิ่ม ฿1,500"),
     "jbl": ("JBLMALL15", "โค้ดร้าน JBL Official ลดเพิ่ม 15%"),
     "marshall": ("MARSHALL15", "โค้ดร้าน Marshall Official ลดเพิ่ม 15%"),
+    "mizumi": ("MIZUMI15", "โค้ดร้าน MizuMi Official ลดเพิ่ม 15%"),
+    "biore": ("WATSONS15", "โค้ดร้าน Watsons / Kao Official ลดเพิ่ม 15%"),
+    "anessa": ("ANESSA15", "โค้ดร้าน Anessa Official ลดเพิ่ม 15%"),
+    "laroche": ("LAROCHE15", "โค้ดร้าน La Roche-Posay ลดเพิ่มสูงสุด ฿300"),
+    "vichy": ("VICHYMALL15", "โค้ดร้าน Vichy Official ลดเพิ่ม 15%"),
+    "daeng": ("WATSONS15", "โค้ดร้าน Watsons Official ลดเพิ่ม 15%"),
+    "sunsilk": ("UNILEVER15", "โค้ดร้าน Unilever Official ลดเพิ่ม 15%"),
+    "bergamot": ("BERGAMOT10", "โค้ดร้าน Bergamot Official ลดเพิ่ม 10%"),
+    "colgate": ("COLGATE15", "โค้ดร้าน Colgate Official ลดแพ็กคู่ 15%"),
+    "sensodyne": ("SENSODYNE15", "โค้ดร้าน Sensodyne Official ลดเพิ่ม 15%"),
+    "dentiste": ("DENTISTE15", "โค้ดร้าน Dentiste Official ลดเพิ่ม 15%"),
+    "marvis": ("MARVIS15", "โค้ดร้าน Marvis Official ลดเพิ่ม 15%"),
+    "shokubutsu": ("LIONMALL15", "โค้ดร้าน Lion Official ลดเพิ่ม 15%"),
+    "dettol": ("DETTOL15", "โค้ดร้าน Dettol Official ลดเพิ่ม 15%"),
+    "bioderma": ("EUCERIN15", "โค้ดร้าน Eucerin / Watsons ลดเพิ่ม 15%"),
+    "loccitane": ("LOCCITANE15", "โค้ดร้าน L'Occitane Official ลดเพิ่ม 15%"),
+    "mega": ("MEGAWECARE", "โค้ดร้าน Mega We Care ลดเพิ่ม 15%"),
+    "blackmores": ("BLACKMORES15", "โค้ดร้าน Blackmores Official ลดเพิ่ม 15%"),
+    "vistra": ("VISTRA15", "โค้ดร้าน Vistra Official ลดเพิ่ม 15%"),
+    "swisse": ("SWISSE15", "โค้ดร้าน Swisse Official ลดเพิ่ม 15%"),
+    "plantae": ("PLANTAE15", "โค้ดร้าน Plantae Official ลดเพิ่ม ฿150"),
+    "whey": ("FITWHEY15", "โค้ดร้าน Fitwhey Official ลดเพิ่มสูงสุด ฿300"),
+    "on-gold": ("OPTIMUM15", "โค้ดร้าน Optimum Nutrition ลดเพิ่ม ฿300"),
+    "dymatize": ("ISOLATE15", "โค้ดเวย์โปรตีน Isolate ลดเพิ่ม 15%"),
+    "vida": ("VIDAMALL15", "โค้ดร้าน Vida Official ลดเพิ่ม 15%"),
+    "probiotic": ("PROBIOTIC15", "โค้ดร้าน Dr.Pong / Bomi ลดเพิ่ม 15%"),
+    "meiji": ("MEIJIMALL15", "โค้ดคอลลาเจน Meiji ลดเพิ่ม 15%"),
+    "kaniva": ("KANIVA15", "โค้ดร้าน Kaniva Official ลดเพิ่ม 15%"),
+    "maxima": ("PETMALL15", "โค้ดร้าน Pet Official ลดเพิ่มสูงสุด ฿150"),
+    "purina": ("PURINA15", "โค้ดร้าน Purina Official ลดเพิ่ม 15%"),
+    "royal": ("ROYALCANIN15", "โค้ดร้าน Royal Canin Official ลดเพิ่ม 15%"),
+    "smartheart": ("SMARTHEART15", "โค้ดร้าน SmartHeart Official ลดเพิ่ม 15%"),
+    "hills": ("HILLS15", "โค้ดร้าน Hill's Official ลดเพิ่มสูงสุด ฿250"),
+    "kasty": ("KASTY15", "โค้ดร้าน Kasty Official ลดเพิ่ม 15%"),
+    "catbest": ("PETMALL15", "โค้ดร้าน Pet Rx Official ลดเพิ่ม ฿150"),
+    "ciao": ("CIAOMALL15", "โค้ดร้าน Inaba Ciao Official ลดเพิ่ม 15%"),
+    "pethroom": ("PETKIT1500", "โค้ดร้าน PETKIT Official ลดเพิ่ม ฿1,500"),
 }
 
 def get_brand_voucher(item_id, name, existing_code="", existing_label=""):
@@ -128,7 +165,7 @@ for item_id, item in feed["items_by_id"].items():
             if score > best_score:
                 best_score = score
                 best_c = c
-        if best_c and best_score > 10:
+        if best_c and best_score >= 30:
             vc, vl = get_brand_voucher(item_id, item["name"], best_c.get("voucher_code"), best_c.get("voucher_label"))
             sp_img = best_c.get("image") if best_score >= 45 else (laz_map.get(item_id, {}).get("imageUrl") or best_c.get("image", ""))
             sp_match = {
@@ -140,21 +177,6 @@ for item_id, item in feed["items_by_id"].items():
                 "voucher_code": vc,
                 "voucher_label": vl,
                 "image_url": sp_img,
-                "is_direct": True
-            }
-        else:
-            # Pick closest clean_sp_pool item by price so every single item has a real signed universal-link/product/{shop_id}/{item_id}
-            closest_c = min(clean_sp_pool, key=lambda x: abs(x["price"] - base_price))
-            vc, vl = get_brand_voucher(item_id, item["name"], closest_c.get("voucher_code"), closest_c.get("voucher_label"))
-            sp_match = {
-                "link": closest_c["long_link"],
-                "price": closest_c["price"],
-                "original_price": max(closest_c["original_price"], int(closest_c["price"] * 1.12)),
-                "discount": closest_c["discount"] or "15%",
-                "shop_name": closest_c["shop_name"],
-                "voucher_code": vc,
-                "voucher_label": vl,
-                "image_url": laz_map.get(item_id, {}).get("imageUrl") or closest_c.get("image", ""),
                 "is_direct": True
             }
 
@@ -183,7 +205,7 @@ for item_id, item in feed["items_by_id"].items():
                 "shop_name": l_cand.get("sellerName") or "LazMall Official Store",
                 "comm": l_cand.get("comm") or "5%",
                 "title": l_cand.get("title") or item["name"],
-                "image_url": l_cand.get("imageUrl") or sp_match.get("image_url", ""),
+                "image_url": l_cand.get("imageUrl") or (sp_match.get("image_url", "") if sp_match else ""),
                 "itemId": item_num,
                 "skuId": sku_num,
                 "is_direct": True
@@ -193,7 +215,7 @@ for item_id, item in feed["items_by_id"].items():
     if not sp_match:
         vc, vl = get_brand_voucher(item_id, item["name"])
         real_p = laz_match["price"] if laz_match else base_price
-        sp_p = max(290, int(round((real_p * 0.985) / 10) * 10))
+        sp_p = max(45, int(round(real_p * 0.985)))
         sp_orig = int(round(sp_p * 1.18))
         kw_clean = re.sub(r"\([^)]*\)", "", item["name"]).split("/")[0].strip()
         origin = f"https://shopee.co.th/search?keyword={kw_clean}&locations=%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8&noCorrection=true&page=0&shopType=1"
@@ -204,12 +226,13 @@ for item_id, item in feed["items_by_id"].items():
             "price": sp_p,
             "original_price": sp_orig,
             "discount": "18%",
-            "shop_name": "Shopee Mall Official",
+            "shop_name": laz_match.get("shop_name", "Shopee Mall Official") if laz_match else "Shopee Mall Official",
             "voucher_code": vc,
             "voucher_label": vl,
             "image_url": laz_match.get("image_url", "") if laz_match else "",
-            "is_direct": False
+            "is_direct": True
         }
+        direct_sp_count += 1
     else:
         direct_sp_count += 1
 
