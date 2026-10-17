@@ -1,11 +1,18 @@
 {
-  "updated_at": "2026-10-17T02:25:00+07:00",
-  "source": "yesspec.com Strict Exact-Model Affiliate Engine (Shopee Mall & LazMall)",
-  "affiliate_ids": {
-    "shopee": "15385610012",
-    "lazada": "267671179"
+  "platform": "yespec",
+  "channels": [
+    "Shopee Mall Official",
+    "Lazada LazMall Official"
+  ],
+  "affiliate_accounts": {
+    "shopee_aff_id": "15385610012",
+    "lazada_member_id": "267671179"
   },
-  "total_products": 144,
+  "sync_mode": "OFFICIAL_AFFILIATE_GATEWAY_ACTIVE",
+  "synced_at": "2026-10-17 01:04:57",
+  "elapsed_seconds": 0.015,
+  "total_categories": 32,
+  "total_models_synced": 144,
   "items_by_id": {
     "samsung-a06": {
       "id": "samsung-a06",
@@ -48,7 +55,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A06 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "poco-c75": {
       "id": "poco-c75",
@@ -91,7 +99,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "POCO C75 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "vivo-y19s": {
       "id": "vivo-y19s",
@@ -134,7 +143,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Vivo Y19s 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "iqoo-z9x-5g": {
       "id": "iqoo-z9x-5g",
@@ -177,7 +187,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iQOO Z9x 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-a16-5g": {
       "id": "samsung-a16-5g",
@@ -220,7 +231,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A16 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "redmi-note-14-5g": {
       "id": "redmi-note-14-5g",
@@ -263,7 +275,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Note 14 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-a55-5g": {
       "id": "samsung-a55-5g",
@@ -306,7 +319,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A55 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "redmi-note-14-pro-plus": {
       "id": "redmi-note-14-pro-plus",
@@ -349,7 +363,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Note 14 Pro+ 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "vivo-v40e-5g": {
       "id": "vivo-v40e-5g",
@@ -392,7 +407,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Vivo V40e 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "poco-f6-pro": {
       "id": "poco-f6-pro",
@@ -435,7 +451,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "POCO F6 Pro 5G 512GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "vivo-v40-zeiss": {
       "id": "vivo-v40-zeiss",
@@ -478,7 +495,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Vivo V40 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-14t": {
       "id": "xiaomi-14t",
@@ -521,7 +539,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi 14T 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-14t-pro": {
       "id": "xiaomi-14t-pro",
@@ -564,7 +583,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi 14T Pro 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-s25": {
       "id": "samsung-s25",
@@ -607,7 +627,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy S25 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "iphone-16-128": {
       "id": "iphone-16-128",
@@ -650,7 +671,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iPhone 16 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "iphone-17-pro": {
       "id": "iphone-17-pro",
@@ -693,7 +715,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iPhone 17 Pro 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "iphone-18-pro": {
       "id": "iphone-18-pro",
@@ -736,7 +759,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iPhone 18 Pro 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-s26-ultra": {
       "id": "samsung-s26-ultra",
@@ -779,7 +803,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy S26 Ultra"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "redmi-pad-se": {
       "id": "redmi-pad-se",
@@ -822,7 +847,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Pad SE 11 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "ipad-gen11": {
       "id": "ipad-gen11",
@@ -865,7 +891,8 @@
           "link_type": "exact_pdp",
           "exact_query": "Apple iPad Gen 11 A16 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "ipad-air-m3": {
       "id": "ipad-air-m3",
@@ -908,7 +935,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple iPad Air 11 M3"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "ipad-pro-oled": {
       "id": "ipad-pro-oled",
@@ -951,7 +979,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple iPad Pro 11 M4 OLED"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "tcl-tpro-12k": {
       "id": "tcl-tpro-12k",
@@ -994,7 +1023,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ TCL T-Pro Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "hisense-kb-12k": {
       "id": "hisense-kb-12k",
@@ -1037,7 +1067,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Hisense Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "carrier-xinverter": {
       "id": "carrier-xinverter",
@@ -1080,7 +1111,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Carrier XInverter Plus 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "mitsu-heavy-yvs": {
       "id": "mitsu-heavy-yvs",
@@ -1123,7 +1155,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Mitsubishi Heavy Duty Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "daikin-zesth": {
       "id": "daikin-zesth",
@@ -1166,7 +1199,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Daikin Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "acer-aspire-lite": {
       "id": "acer-aspire-lite",
@@ -1209,7 +1243,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Acer Aspire Lite 15 Ryzen 5 16GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "asus-vivobook-15": {
       "id": "asus-vivobook-15",
@@ -1252,7 +1287,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ASUS Vivobook 15 RAM 16GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lenovo-loq-rtx": {
       "id": "lenovo-loq-rtx",
@@ -1295,7 +1331,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Lenovo LOQ 15 RTX 4050"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "macbook-air-13": {
       "id": "macbook-air-13",
@@ -1338,7 +1375,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "MacBook Air 13 M4 16GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "tcl-55-4k-smart": {
       "id": "tcl-55-4k-smart",
@@ -1381,7 +1419,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี TCL 55 นิ้ว 4K Google TV 55P655"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "hisense-55e6n": {
       "id": "hisense-55e6n",
@@ -1424,7 +1463,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี Hisense 55 นิ้ว 4K Google TV 55E6N"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "tcl-c855-65": {
       "id": "tcl-c855-65",
@@ -1467,7 +1507,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี TCL 65 นิ้ว QD-Mini LED 65C855"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-qn90f-65": {
       "id": "samsung-qn90f-65",
@@ -1510,7 +1551,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี Samsung 65 นิ้ว Neo QLED QN90"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lg-oled-c6-65": {
       "id": "lg-oled-c6-65",
@@ -1553,7 +1595,8 @@
           "link_type": "exact_pdp",
           "exact_query": "ทีวี LG OLED C6 65 นิ้ว"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-rt22-8q": {
       "id": "samsung-rt22-8q",
@@ -1596,7 +1639,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น Samsung 2 ประตู Inverter 8.4 คิว RT22"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lg-2door-14q": {
       "id": "lg-2door-14q",
@@ -1639,7 +1683,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น LG 2 ประตู Inverter 14 คิว"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "mitsu-4door-la70": {
       "id": "mitsu-4door-la70",
@@ -1682,7 +1727,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น Mitsubishi 4 ประตู Inverter 20.5 คิว"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "hitachi-4door-wb640": {
       "id": "hitachi-4door-wb640",
@@ -1725,7 +1771,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น Hitachi 4 ประตู 20.1 คิว R-WB640VF"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "hisense-front-9kg": {
       "id": "hisense-front-9kg",
@@ -1768,7 +1815,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า Hisense Inverter 9 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-ecobubble-10": {
       "id": "samsung-ecobubble-10",
@@ -1811,7 +1859,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า Samsung EcoBubble 10 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lg-aidd-12kg": {
       "id": "lg-aidd-12kg",
@@ -1854,7 +1903,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า LG AI DD 12 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "electrolux-uc700": {
       "id": "electrolux-uc700",
@@ -1897,7 +1947,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า Electrolux UltimateCare 11 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "haier-dryer-7kg": {
       "id": "haier-dryer-7kg",
@@ -1940,7 +1991,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า Haier 7 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "beko-condenser-8": {
       "id": "beko-condenser-8",
@@ -1983,7 +2035,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า Electrolux 8 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-heatpump-9": {
       "id": "samsung-heatpump-9",
@@ -2026,7 +2079,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า Samsung Heat Pump 9 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lg-dual-heatpump-10": {
       "id": "lg-dual-heatpump-10",
@@ -2069,7 +2123,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า LG Dual Inverter Heat Pump 10 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-purifier-compact": {
       "id": "xiaomi-purifier-compact",
@@ -2112,7 +2167,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Smart Air Purifier 4 Compact"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-purifier-4": {
       "id": "xiaomi-purifier-4",
@@ -2155,7 +2211,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Smart Air Purifier 4"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "philips-ac1715": {
       "id": "philips-ac1715",
@@ -2198,7 +2255,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Philips Air Purifier AC1715"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "sharp-fp-j80": {
       "id": "sharp-fp-j80",
@@ -2241,7 +2299,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องฟอกอากาศ Sharp FP-J80TA"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-robot-s20": {
       "id": "xiaomi-robot-s20",
@@ -2284,7 +2343,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Robot Vacuum S20"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-x20-plus": {
       "id": "xiaomi-x20-plus",
@@ -2327,7 +2387,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Robot Vacuum X20+"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dreame-x40-ultra": {
       "id": "dreame-x40-ultra",
@@ -2370,7 +2431,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dreame X40 Ultra Robot Vacuum"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "roborock-s8-maxv": {
       "id": "roborock-s8-maxv",
@@ -2413,7 +2475,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Roborock S8 MaxV Ultra"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-g20-lite": {
       "id": "xiaomi-g20-lite",
@@ -2456,7 +2519,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Vacuum Cleaner G20 Lite"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dreame-r10": {
       "id": "dreame-r10",
@@ -2499,7 +2563,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dreame R10 Cordless Vacuum"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dreame-h14-wetdry": {
       "id": "dreame-h14-wetdry",
@@ -2542,7 +2607,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dreame H14 Wet and Dry Vacuum"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dyson-v12-slim": {
       "id": "dyson-v12-slim",
@@ -2585,7 +2651,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dyson V12 Detect Slim Fluffy"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "sharp-wh34": {
       "id": "sharp-wh34",
@@ -2628,7 +2695,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Sharp WH-34 3500W"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "pana-dh-3ns": {
       "id": "pana-dh-3ns",
@@ -2671,7 +2739,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Panasonic DH-3NS1TW 3500W"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "stiebel-copper-45": {
       "id": "stiebel-copper-45",
@@ -2714,7 +2783,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Stiebel Eltron 4500W หม้อต้มทองแดง"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "pana-pump-45": {
       "id": "pana-pump-45",
@@ -2757,7 +2827,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Panasonic 4500W มีปั๊มน้ำ"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "mazuma-uf-easy": {
       "id": "mazuma-uf-easy",
@@ -2800,7 +2871,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำ Mazuma UF 4 ขั้นตอน"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "philips-uv-purifier": {
       "id": "philips-uv-purifier",
@@ -2843,7 +2915,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำ Philips AUT1211"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-ro-600g": {
       "id": "xiaomi-ro-600g",
@@ -2886,7 +2959,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำ Xiaomi MR642 RO 600G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "philips-hotcold-ro": {
       "id": "philips-hotcold-ro",
@@ -2929,7 +3003,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำร้อนเย็น Philips ADD6910 RO UV"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "gaabor-airfryer-5l": {
       "id": "gaabor-airfryer-5l",
@@ -2972,7 +3047,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หม้อทอดไร้น้ำมัน Gaabor 5 ลิตร"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-airfryer-65": {
       "id": "xiaomi-airfryer-65",
@@ -3015,7 +3091,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หม้อทอดไร้น้ำมัน Xiaomi Smart Air Fryer 6.5L"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-grill-mw": {
       "id": "samsung-grill-mw",
@@ -3058,7 +3135,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไมโครเวฟ Samsung Grill 23 ลิตร MG23K3515"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "philips-airfryer-xxl": {
       "id": "philips-airfryer-xxl",
@@ -3101,7 +3179,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หม้อทอดไร้น้ำมัน Philips Airfryer XXL 5000 Series"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "duchess-cm5000": {
       "id": "duchess-cm5000",
@@ -3144,7 +3223,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟสด Duchess CM5000"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "nespresso-essenza": {
       "id": "nespresso-essenza",
@@ -3187,7 +3267,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟ Nespresso Essenza Mini"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "delonghi-dedica": {
       "id": "delonghi-dedica",
@@ -3230,7 +3311,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟ DeLonghi Dedica EC685"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "delonghi-magnifica": {
       "id": "delonghi-magnifica",
@@ -3273,7 +3355,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟอัตโนมัติ DeLonghi Magnifica Start"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "redmi-watch-5-lite": {
       "id": "redmi-watch-5-lite",
@@ -3316,7 +3399,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Watch 5 Lite"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "huawei-gt5": {
       "id": "huawei-gt5",
@@ -3359,7 +3443,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Huawei Watch GT 5 46mm"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "garmin-fr265": {
       "id": "garmin-fr265",
@@ -3402,7 +3487,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Garmin Forerunner 265"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "watch-s11": {
       "id": "watch-s11",
@@ -3445,7 +3531,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple Watch Series 10 GPS"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "soundcore-space-one": {
       "id": "soundcore-space-one",
@@ -3488,7 +3575,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หูฟัง Soundcore Space One ANC"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "airpods-pro-2": {
       "id": "airpods-pro-2",
@@ -3531,7 +3619,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple AirPods Pro 2 USB-C"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "sony-wh1000xm5": {
       "id": "sony-wh1000xm5",
@@ -3574,7 +3663,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หูฟังไร้สาย Sony WH-1000XM5"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "bose-qc-ultra": {
       "id": "bose-qc-ultra",
@@ -3617,7 +3707,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หูฟังครอบหู Bose QuietComfort Ultra Headphones"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-a24i-100hz": {
       "id": "xiaomi-a24i-100hz",
@@ -3660,7 +3751,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอคอม Xiaomi Monitor A24i 100Hz"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lg-27-ips": {
       "id": "lg-27-ips",
@@ -3703,7 +3795,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอคอม LG 27 นิ้ว IPS 100Hz"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "lg-ultragear-27": {
       "id": "lg-ultragear-27",
@@ -3746,7 +3839,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอเกมมิ่ง LG UltraGear 27 นิ้ว 2K 180Hz"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dell-ultrasharp-4k": {
       "id": "dell-ultrasharp-4k",
@@ -3789,7 +3883,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอคอม Dell UltraSharp 27 4K USB-C U2723QE"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "furradec-ergo-mesh": {
       "id": "furradec-ergo-mesh",
@@ -3832,7 +3927,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้ทำงานเพื่อสุขภาพ Furradec Ergonomic"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "bewell-ergo-lite": {
       "id": "bewell-ergo-lite",
@@ -3875,7 +3971,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้เพื่อสุขภาพ Bewell Ergonomic Chair"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "ergotrend-dual-mesh": {
       "id": "ergotrend-dual-mesh",
@@ -3918,7 +4015,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้เพื่อสุขภาพ Ergotrend Dual-Back"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "steelcase-series": {
       "id": "steelcase-series",
@@ -3961,7 +4059,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้เพื่อสุขภาพ Steelcase Series 1"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "jbl-go-4": {
       "id": "jbl-go-4",
@@ -4004,7 +4103,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ลำโพงบลูทูธ JBL Go 4"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "jbl-charge-5": {
       "id": "jbl-charge-5",
@@ -4047,7 +4147,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ลำโพงบลูทูธ JBL Charge 5"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "marshall-acton-3": {
       "id": "marshall-acton-3",
@@ -4090,7 +4191,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ลำโพงบลูทูธ Marshall Acton III"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "samsung-soundbar-q600": {
       "id": "samsung-soundbar-q600",
@@ -4133,7 +4235,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ซาวด์บาร์ Samsung Soundbar HW-Q600C"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "70mai-m310": {
       "id": "70mai-m310",
@@ -4176,7 +4279,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้องติดรถยนต์ 70mai Dash Cam M310"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "70mai-a810": {
       "id": "70mai-a810",
@@ -4219,7 +4323,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้องติดรถยนต์ 70mai Dash Cam A810 4K"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dji-action-5": {
       "id": "dji-action-5",
@@ -4262,7 +4367,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้องแอคชั่น DJI Osmo Action 5 Pro"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dji-pocket-3": {
       "id": "dji-pocket-3",
@@ -4305,7 +4411,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้อง DJI Osmo Pocket 3"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-h101-dryer": {
       "id": "xiaomi-h101-dryer",
@@ -4348,7 +4455,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Xiaomi Compact Hair Dryer H101"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "xiaomi-h500-dryer": {
       "id": "xiaomi-h500-dryer",
@@ -4391,7 +4499,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Xiaomi Water Ionic Hair Dryer H500"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dreame-hair-glory": {
       "id": "dreame-hair-glory",
@@ -4434,7 +4543,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Dreame Hair Glory"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dyson-supersonic-nural": {
       "id": "dyson-supersonic-nural",
@@ -4477,7 +4587,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Dyson Supersonic Nural"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "biore-uv-aqua": {
       "id": "biore-uv-aqua",
@@ -4520,7 +4631,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด Biore UV Aqua Rich Watery Essence SPF50+"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "anessa-gold-milk": {
       "id": "anessa-gold-milk",
@@ -4563,7 +4675,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด Anessa Perfect UV Sunscreen Skincare Milk"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "mizumi-uv-water": {
       "id": "mizumi-uv-water",
@@ -4606,7 +4719,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด MizuMi UV Water Serum SPF50+"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "laroche-anthelios": {
       "id": "laroche-anthelios",
@@ -4649,7 +4763,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด La Roche-Posay Anthelios UVMune 400"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "alodia-bergamot": {
       "id": "alodia-bergamot",
@@ -4692,7 +4807,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพูมะกรูดลดผมร่วง Bergamot"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "sunsilk-smooth": {
       "id": "sunsilk-smooth",
@@ -4735,7 +4851,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพู Sunsilk Smooth & Manageable ขวดปั๊ม"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "vichy-dercos": {
       "id": "vichy-dercos",
@@ -4778,7 +4895,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพูลดผมร่วง Vichy Dercos Aminexil"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "daeng-gi-meo-ri": {
       "id": "daeng-gi-meo-ri",
@@ -4821,7 +4939,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพูสมุนไพรเกาหลี Daeng Gi Meo Ri"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dentiste-anticavity": {
       "id": "dentiste-anticavity",
@@ -4864,7 +4983,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟัน Dentiste Anticavity Max Fluoride"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "sensodyne-repair": {
       "id": "sensodyne-repair",
@@ -4907,7 +5027,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟันลดเสียวฟัน Sensodyne Repair & Protect"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "colgate-optic": {
       "id": "colgate-optic",
@@ -4950,7 +5071,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟันฟันขาว Colgate Optic White O2"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "marvis-whitening": {
       "id": "marvis-whitening",
@@ -4993,7 +5115,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟัน Marvis Whitening Mint 85ml"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "shokubutsu-monogatari": {
       "id": "shokubutsu-monogatari",
@@ -5036,7 +5159,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ครีมอาบน้ำ Shokubutsu Monogatari 500ml"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dettol-shower-gel": {
       "id": "dettol-shower-gel",
@@ -5079,7 +5203,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ครีมอาบน้ำ Dettol Shower Gel 500ml"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "bioderma-atoderm": {
       "id": "bioderma-atoderm",
@@ -5122,7 +5247,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ครีมอาบน้ำผิวแห้งแพ้ง่าย Eucerin pH5 Washlotion"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "loccitane-almond": {
       "id": "loccitane-almond",
@@ -5165,7 +5291,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ออยล์อาบน้ำ L'Occitane Almond Shower Oil"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "vistras-b-complex": {
       "id": "vistras-b-complex",
@@ -5208,7 +5335,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินบีรวม Vistra B-Complex Plus Minerals"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "blackmores-bio-c": {
       "id": "blackmores-bio-c",
@@ -5251,7 +5379,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินซี Blackmores Bio C 1000 mg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "mega-nat-c": {
       "id": "mega-nat-c",
@@ -5294,7 +5423,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินซี Mega We Care Nat C 1000 mg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "swisse-ultivite": {
       "id": "swisse-ultivite",
@@ -5337,7 +5467,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินรวม Swisse Ultivite Multivitamin"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "plantae-plant-protein": {
       "id": "plantae-plant-protein",
@@ -5380,7 +5511,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "โปรตีนพืช Plantae Complete Plant Protein"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "dymatize-iso100": {
       "id": "dymatize-iso100",
@@ -5423,7 +5555,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เวย์โปรตีน Dymatize ISO100 Hydrolyzed Isolate"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "matell-whey": {
       "id": "matell-whey",
@@ -5466,7 +5599,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เวย์โปรตีน BAAM My Whey Protein 5 lb"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "on-gold-standard": {
       "id": "on-gold-standard",
@@ -5509,7 +5643,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เวย์โปรตีน Optimum Nutrition Gold Standard 5 lb"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "vida-collagen-q10": {
       "id": "vida-collagen-q10",
@@ -5552,7 +5687,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "คอลลาเจน Vida Collagen Q10"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "swisse-glow-collagen": {
       "id": "swisse-glow-collagen",
@@ -5595,7 +5731,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "คอลลาเจน Swisse Collagen Grape Seed"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "chame-probiotic": {
       "id": "chame-probiotic",
@@ -5638,7 +5775,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "โพรไบโอติกส์ Bomi Probiotics"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "meiji-amino-collagen": {
       "id": "meiji-amino-collagen",
@@ -5681,7 +5819,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "คอลลาเจนผง Meiji Amino Collagen"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "kaniva-indoor": {
       "id": "kaniva-indoor",
@@ -5724,7 +5863,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมว Kaniva Indoor เลี้ยงในบ้าน"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "purina-one-cat": {
       "id": "purina-one-cat",
@@ -5767,7 +5907,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมวโต Purina ONE Indoor Advantage"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "maxima-cat": {
       "id": "maxima-cat",
@@ -5810,7 +5951,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมว Maxima 15 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "royal-canin-indoor": {
       "id": "royal-canin-indoor",
@@ -5853,7 +5995,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมวโตเลี้ยงในบ้าน Royal Canin Indoor 27"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "smartheart-gold": {
       "id": "smartheart-gold",
@@ -5896,7 +6039,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัข SmartHeart Gold Lamb & Rice"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "buzz-netura-dog": {
       "id": "buzz-netura-dog",
@@ -5939,7 +6083,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัขแพ้ไก่ Buzz Netura Holistic Grain Free"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "royal-canin-mini": {
       "id": "royal-canin-mini",
@@ -5982,7 +6127,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัขพันธุ์เล็ก Royal Canin Mini Adult"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "hills-science-diet": {
       "id": "hills-science-diet",
@@ -6025,7 +6171,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัข Hill's Science Diet Adult Small Paws"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "ciaochuru-variety": {
       "id": "ciaochuru-variety",
@@ -6068,7 +6215,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ขนมแมวเลีย Ciao Churu แพ็กใหญ่"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "kasty-tofu-litter": {
       "id": "kasty-tofu-litter",
@@ -6111,7 +6259,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทรายแมวเต้าหู้ Kasty Tofu Litter"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "catbest-original": {
       "id": "catbest-original",
@@ -6154,7 +6303,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทรายแมวไม้สน Cat's Best Original"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     "pethroom-litter-box": {
       "id": "pethroom-litter-box",
@@ -6197,7 +6347,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ห้องน้ำแมวอัตโนมัติ PETKIT Pura Max 2"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     }
   },
   "items": [
@@ -6242,7 +6393,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A06 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "poco-c75",
@@ -6285,7 +6437,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "POCO C75 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "vivo-y19s",
@@ -6328,7 +6481,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Vivo Y19s 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "iqoo-z9x-5g",
@@ -6371,7 +6525,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iQOO Z9x 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-a16-5g",
@@ -6414,7 +6569,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A16 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "redmi-note-14-5g",
@@ -6457,7 +6613,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Note 14 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-a55-5g",
@@ -6500,7 +6657,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A55 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "redmi-note-14-pro-plus",
@@ -6543,7 +6701,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Note 14 Pro+ 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "vivo-v40e-5g",
@@ -6586,7 +6745,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Vivo V40e 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "poco-f6-pro",
@@ -6629,7 +6789,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "POCO F6 Pro 5G 512GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "vivo-v40-zeiss",
@@ -6672,7 +6833,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Vivo V40 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-14t",
@@ -6715,7 +6877,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi 14T 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-14t-pro",
@@ -6758,7 +6921,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi 14T Pro 5G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-s25",
@@ -6801,7 +6965,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy S25 5G 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "iphone-16-128",
@@ -6844,7 +7009,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iPhone 16 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "iphone-17-pro",
@@ -6887,7 +7053,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iPhone 17 Pro 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "iphone-18-pro",
@@ -6930,7 +7097,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "iPhone 18 Pro 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-s26-ultra",
@@ -6973,7 +7141,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy S26 Ultra"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "redmi-pad-se",
@@ -7016,7 +7185,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Pad SE 11 256GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "ipad-gen11",
@@ -7059,7 +7229,8 @@
           "link_type": "exact_pdp",
           "exact_query": "Apple iPad Gen 11 A16 128GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "ipad-air-m3",
@@ -7102,7 +7273,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple iPad Air 11 M3"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "ipad-pro-oled",
@@ -7145,7 +7317,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple iPad Pro 11 M4 OLED"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "tcl-tpro-12k",
@@ -7188,7 +7361,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ TCL T-Pro Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "hisense-kb-12k",
@@ -7231,7 +7405,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Hisense Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "carrier-xinverter",
@@ -7274,7 +7449,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Carrier XInverter Plus 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "mitsu-heavy-yvs",
@@ -7317,7 +7493,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Mitsubishi Heavy Duty Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "daikin-zesth",
@@ -7360,7 +7537,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แอร์ Daikin Inverter 12000 BTU"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "acer-aspire-lite",
@@ -7403,7 +7581,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Acer Aspire Lite 15 Ryzen 5 16GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "asus-vivobook-15",
@@ -7446,7 +7625,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ASUS Vivobook 15 RAM 16GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lenovo-loq-rtx",
@@ -7489,7 +7669,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Lenovo LOQ 15 RTX 4050"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "macbook-air-13",
@@ -7532,7 +7713,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "MacBook Air 13 M4 16GB"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "tcl-55-4k-smart",
@@ -7575,7 +7757,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี TCL 55 นิ้ว 4K Google TV 55P655"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "hisense-55e6n",
@@ -7618,7 +7801,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี Hisense 55 นิ้ว 4K Google TV 55E6N"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "tcl-c855-65",
@@ -7661,7 +7845,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี TCL 65 นิ้ว QD-Mini LED 65C855"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-qn90f-65",
@@ -7704,7 +7889,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทีวี Samsung 65 นิ้ว Neo QLED QN90"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lg-oled-c6-65",
@@ -7747,7 +7933,8 @@
           "link_type": "exact_pdp",
           "exact_query": "ทีวี LG OLED C6 65 นิ้ว"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-rt22-8q",
@@ -7790,7 +7977,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น Samsung 2 ประตู Inverter 8.4 คิว RT22"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lg-2door-14q",
@@ -7833,7 +8021,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น LG 2 ประตู Inverter 14 คิว"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "mitsu-4door-la70",
@@ -7876,7 +8065,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น Mitsubishi 4 ประตู Inverter 20.5 คิว"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "hitachi-4door-wb640",
@@ -7919,7 +8109,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ตู้เย็น Hitachi 4 ประตู 20.1 คิว R-WB640VF"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "hisense-front-9kg",
@@ -7962,7 +8153,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า Hisense Inverter 9 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-ecobubble-10",
@@ -8005,7 +8197,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า Samsung EcoBubble 10 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lg-aidd-12kg",
@@ -8048,7 +8241,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า LG AI DD 12 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "electrolux-uc700",
@@ -8091,7 +8285,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องซักผ้าฝาหน้า Electrolux UltimateCare 11 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "haier-dryer-7kg",
@@ -8134,7 +8329,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า Haier 7 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "beko-condenser-8",
@@ -8177,7 +8373,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า Electrolux 8 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-heatpump-9",
@@ -8220,7 +8417,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า Samsung Heat Pump 9 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lg-dual-heatpump-10",
@@ -8263,7 +8461,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องอบผ้า LG Dual Inverter Heat Pump 10 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-purifier-compact",
@@ -8306,7 +8505,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Smart Air Purifier 4 Compact"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-purifier-4",
@@ -8349,7 +8549,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Smart Air Purifier 4"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "philips-ac1715",
@@ -8392,7 +8593,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Philips Air Purifier AC1715"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "sharp-fp-j80",
@@ -8435,7 +8637,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องฟอกอากาศ Sharp FP-J80TA"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-robot-s20",
@@ -8478,7 +8681,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Robot Vacuum S20"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-x20-plus",
@@ -8521,7 +8725,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Robot Vacuum X20+"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dreame-x40-ultra",
@@ -8564,7 +8769,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dreame X40 Ultra Robot Vacuum"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "roborock-s8-maxv",
@@ -8607,7 +8813,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Roborock S8 MaxV Ultra"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-g20-lite",
@@ -8650,7 +8857,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Xiaomi Vacuum Cleaner G20 Lite"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dreame-r10",
@@ -8693,7 +8901,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dreame R10 Cordless Vacuum"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dreame-h14-wetdry",
@@ -8736,7 +8945,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dreame H14 Wet and Dry Vacuum"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dyson-v12-slim",
@@ -8779,7 +8989,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Dyson V12 Detect Slim Fluffy"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "sharp-wh34",
@@ -8822,7 +9033,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Sharp WH-34 3500W"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "pana-dh-3ns",
@@ -8865,7 +9077,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Panasonic DH-3NS1TW 3500W"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "stiebel-copper-45",
@@ -8908,7 +9121,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Stiebel Eltron 4500W หม้อต้มทองแดง"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "pana-pump-45",
@@ -8951,7 +9165,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องทำน้ำอุ่น Panasonic 4500W มีปั๊มน้ำ"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "mazuma-uf-easy",
@@ -8994,7 +9209,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำ Mazuma UF 4 ขั้นตอน"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "philips-uv-purifier",
@@ -9037,7 +9253,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำ Philips AUT1211"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-ro-600g",
@@ -9080,7 +9297,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำ Xiaomi MR642 RO 600G"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "philips-hotcold-ro",
@@ -9123,7 +9341,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องกรองน้ำร้อนเย็น Philips ADD6910 RO UV"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "gaabor-airfryer-5l",
@@ -9166,7 +9385,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หม้อทอดไร้น้ำมัน Gaabor 5 ลิตร"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-airfryer-65",
@@ -9209,7 +9429,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หม้อทอดไร้น้ำมัน Xiaomi Smart Air Fryer 6.5L"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-grill-mw",
@@ -9252,7 +9473,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไมโครเวฟ Samsung Grill 23 ลิตร MG23K3515"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "philips-airfryer-xxl",
@@ -9295,7 +9517,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หม้อทอดไร้น้ำมัน Philips Airfryer XXL 5000 Series"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "duchess-cm5000",
@@ -9338,7 +9561,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟสด Duchess CM5000"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "nespresso-essenza",
@@ -9381,7 +9605,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟ Nespresso Essenza Mini"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "delonghi-dedica",
@@ -9424,7 +9649,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟ DeLonghi Dedica EC685"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "delonghi-magnifica",
@@ -9467,7 +9693,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เครื่องชงกาแฟอัตโนมัติ DeLonghi Magnifica Start"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "redmi-watch-5-lite",
@@ -9510,7 +9737,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Redmi Watch 5 Lite"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "huawei-gt5",
@@ -9553,7 +9781,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Huawei Watch GT 5 46mm"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "garmin-fr265",
@@ -9596,7 +9825,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Garmin Forerunner 265"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "watch-s11",
@@ -9639,7 +9869,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple Watch Series 10 GPS"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "soundcore-space-one",
@@ -9682,7 +9913,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หูฟัง Soundcore Space One ANC"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "airpods-pro-2",
@@ -9725,7 +9957,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Apple AirPods Pro 2 USB-C"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "sony-wh1000xm5",
@@ -9768,7 +10001,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หูฟังไร้สาย Sony WH-1000XM5"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "bose-qc-ultra",
@@ -9811,7 +10045,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "หูฟังครอบหู Bose QuietComfort Ultra Headphones"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-a24i-100hz",
@@ -9854,7 +10089,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอคอม Xiaomi Monitor A24i 100Hz"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lg-27-ips",
@@ -9897,7 +10133,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอคอม LG 27 นิ้ว IPS 100Hz"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "lg-ultragear-27",
@@ -9940,7 +10177,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอเกมมิ่ง LG UltraGear 27 นิ้ว 2K 180Hz"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dell-ultrasharp-4k",
@@ -9983,7 +10221,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "จอคอม Dell UltraSharp 27 4K USB-C U2723QE"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "furradec-ergo-mesh",
@@ -10026,7 +10265,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้ทำงานเพื่อสุขภาพ Furradec Ergonomic"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "bewell-ergo-lite",
@@ -10069,7 +10309,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้เพื่อสุขภาพ Bewell Ergonomic Chair"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "ergotrend-dual-mesh",
@@ -10112,7 +10353,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้เพื่อสุขภาพ Ergotrend Dual-Back"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "steelcase-series",
@@ -10155,7 +10397,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เก้าอี้เพื่อสุขภาพ Steelcase Series 1"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "jbl-go-4",
@@ -10198,7 +10441,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ลำโพงบลูทูธ JBL Go 4"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "jbl-charge-5",
@@ -10241,7 +10485,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ลำโพงบลูทูธ JBL Charge 5"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "marshall-acton-3",
@@ -10284,7 +10529,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ลำโพงบลูทูธ Marshall Acton III"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "samsung-soundbar-q600",
@@ -10327,7 +10573,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ซาวด์บาร์ Samsung Soundbar HW-Q600C"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "70mai-m310",
@@ -10370,7 +10617,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้องติดรถยนต์ 70mai Dash Cam M310"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "70mai-a810",
@@ -10413,7 +10661,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้องติดรถยนต์ 70mai Dash Cam A810 4K"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dji-action-5",
@@ -10456,7 +10705,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้องแอคชั่น DJI Osmo Action 5 Pro"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dji-pocket-3",
@@ -10499,7 +10749,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กล้อง DJI Osmo Pocket 3"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-h101-dryer",
@@ -10542,7 +10793,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Xiaomi Compact Hair Dryer H101"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "xiaomi-h500-dryer",
@@ -10585,7 +10837,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Xiaomi Water Ionic Hair Dryer H500"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dreame-hair-glory",
@@ -10628,7 +10881,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Dreame Hair Glory"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dyson-supersonic-nural",
@@ -10671,7 +10925,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ไดร์เป่าผม Dyson Supersonic Nural"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "biore-uv-aqua",
@@ -10714,7 +10969,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด Biore UV Aqua Rich Watery Essence SPF50+"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "anessa-gold-milk",
@@ -10757,7 +11013,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด Anessa Perfect UV Sunscreen Skincare Milk"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "mizumi-uv-water",
@@ -10800,7 +11057,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด MizuMi UV Water Serum SPF50+"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "laroche-anthelios",
@@ -10843,7 +11101,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "กันแดด La Roche-Posay Anthelios UVMune 400"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "alodia-bergamot",
@@ -10886,7 +11145,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพูมะกรูดลดผมร่วง Bergamot"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "sunsilk-smooth",
@@ -10929,7 +11189,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพู Sunsilk Smooth & Manageable ขวดปั๊ม"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "vichy-dercos",
@@ -10972,7 +11233,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพูลดผมร่วง Vichy Dercos Aminexil"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "daeng-gi-meo-ri",
@@ -11015,7 +11277,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "แชมพูสมุนไพรเกาหลี Daeng Gi Meo Ri"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dentiste-anticavity",
@@ -11058,7 +11321,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟัน Dentiste Anticavity Max Fluoride"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "sensodyne-repair",
@@ -11101,7 +11365,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟันลดเสียวฟัน Sensodyne Repair & Protect"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "colgate-optic",
@@ -11144,7 +11409,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟันฟันขาว Colgate Optic White O2"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "marvis-whitening",
@@ -11187,7 +11453,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ยาสีฟัน Marvis Whitening Mint 85ml"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "shokubutsu-monogatari",
@@ -11230,7 +11497,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ครีมอาบน้ำ Shokubutsu Monogatari 500ml"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dettol-shower-gel",
@@ -11273,7 +11541,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ครีมอาบน้ำ Dettol Shower Gel 500ml"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "bioderma-atoderm",
@@ -11316,7 +11585,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ครีมอาบน้ำผิวแห้งแพ้ง่าย Eucerin pH5 Washlotion"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "loccitane-almond",
@@ -11359,7 +11629,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ออยล์อาบน้ำ L'Occitane Almond Shower Oil"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "vistras-b-complex",
@@ -11402,7 +11673,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินบีรวม Vistra B-Complex Plus Minerals"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "blackmores-bio-c",
@@ -11445,7 +11717,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินซี Blackmores Bio C 1000 mg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "mega-nat-c",
@@ -11488,7 +11761,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินซี Mega We Care Nat C 1000 mg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "swisse-ultivite",
@@ -11531,7 +11805,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "วิตามินรวม Swisse Ultivite Multivitamin"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "plantae-plant-protein",
@@ -11574,7 +11849,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "โปรตีนพืช Plantae Complete Plant Protein"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "dymatize-iso100",
@@ -11617,7 +11893,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เวย์โปรตีน Dymatize ISO100 Hydrolyzed Isolate"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "matell-whey",
@@ -11660,7 +11937,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เวย์โปรตีน BAAM My Whey Protein 5 lb"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "on-gold-standard",
@@ -11703,7 +11981,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "เวย์โปรตีน Optimum Nutrition Gold Standard 5 lb"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "vida-collagen-q10",
@@ -11746,7 +12025,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "คอลลาเจน Vida Collagen Q10"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "swisse-glow-collagen",
@@ -11789,7 +12069,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "คอลลาเจน Swisse Collagen Grape Seed"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "chame-probiotic",
@@ -11832,7 +12113,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "โพรไบโอติกส์ Bomi Probiotics"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "meiji-amino-collagen",
@@ -11875,7 +12157,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "คอลลาเจนผง Meiji Amino Collagen"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "kaniva-indoor",
@@ -11918,7 +12201,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมว Kaniva Indoor เลี้ยงในบ้าน"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "purina-one-cat",
@@ -11961,7 +12245,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมวโต Purina ONE Indoor Advantage"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "maxima-cat",
@@ -12004,7 +12289,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมว Maxima 15 kg"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "royal-canin-indoor",
@@ -12047,7 +12333,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารแมวโตเลี้ยงในบ้าน Royal Canin Indoor 27"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "smartheart-gold",
@@ -12090,7 +12377,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัข SmartHeart Gold Lamb & Rice"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "buzz-netura-dog",
@@ -12133,7 +12421,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัขแพ้ไก่ Buzz Netura Holistic Grain Free"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "royal-canin-mini",
@@ -12176,7 +12465,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัขพันธุ์เล็ก Royal Canin Mini Adult"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "hills-science-diet",
@@ -12219,7 +12509,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "อาหารสุนัข Hill's Science Diet Adult Small Paws"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "ciaochuru-variety",
@@ -12262,7 +12553,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ขนมแมวเลีย Ciao Churu แพ็กใหญ่"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "kasty-tofu-litter",
@@ -12305,7 +12597,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทรายแมวเต้าหู้ Kasty Tofu Litter"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "catbest-original",
@@ -12348,7 +12641,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ทรายแมวไม้สน Cat's Best Original"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     },
     {
       "id": "pethroom-litter-box",
@@ -12391,7 +12685,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "ห้องน้ำแมวอัตโนมัติ PETKIT Pura Max 2"
         }
-      ]
+      ],
+      "synced_at": "2026-10-17 01:04:57"
     }
   ]
 }
