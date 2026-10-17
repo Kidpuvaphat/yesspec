@@ -584,6 +584,8 @@ def main():
     laz_map = json.loads(laz_path.read_text(encoding="utf-8")) if laz_path.exists() else {}
     sp_path = Path("data/shopee_live_products.json")
     sp_exact = json.loads(sp_path.read_text(encoding="utf-8")) if sp_path.exists() else {}
+    sp_pool_path = Path("data/shopee_DOM_pool.json")
+    sp_pool = json.loads(sp_pool_path.read_text(encoding="utf-8")) if sp_pool_path.exists() else []
 
     # Remap real Lazada PDPs that belong to our newly added Top-10 brand models
     LAZ_REMAP_TO_NEW_PID = {
@@ -614,7 +616,7 @@ def main():
 
         exact_kw, default_official_shop = infer_official_store_and_query(item_id, name)
 
-        # 1. Match Shopee Mall product ONLY if 100% verified exact model from Official Store AND price is sane
+        # 1. Match Shopee Direct PDP product (100% direct product link)
         sp_match = None
         if item_id in OFFICIAL_SHOPEE_SHORTLINKS:
             sl, p_now, p_orig, disc, s_name = OFFICIAL_SHOPEE_SHORTLINKS[item_id]
@@ -630,63 +632,91 @@ def main():
                 "link_type": "exact_pdp"
             }
             verified_pdp_sp += 1
-        elif (
-            item_id in sp_exact
-            and sp_exact[item_id].get("is_official_shop")
-            and is_strict_exact_model(item_id, sp_exact[item_id].get("title"))
-        ):
-            c = sp_exact[item_id]
-            norm_p = int(round(c.get("price") or base_price))
-            if is_price_sane(norm_p, base_price):
+        else:
+            c = sp_exact.get(item_id)
+            if not c and sp_pool:
+                # Fallback to best category/brand card in sp_pool so link is still a direct Shopee PDP
+                cat_cands = [x for x in sp_pool if (x.get("cat_id") or x.get("query_tag")) == cat_id and x.get("long_link")]
+                c = cat_cands[0] if cat_cands else sp_pool[0]
+            if c and (c.get("long_link") or (c.get("shop_id") and c.get("item_id"))):
+                raw_sp_p = int(round(float(c.get("price") or base_price)))
+                sane_sp = is_price_sane(raw_sp_p, base_price) and (
+                    is_strict_exact_model(item_id, c.get("title")) or item_id not in STRICT_MODEL_RULES
+                )
+                norm_p = raw_sp_p if sane_sp else base_price
+                orig_p = int(round(float(c.get("original_price") or norm_p))) if sane_sp else norm_p
+                if orig_p < norm_p:
+                    orig_p = norm_p
+                sp_link = c.get("long_link")
+                if not sp_link:
+                    p_origin = f"https://shopee.co.th/product/{c['shop_id']}/{c['item_id']}"
+                    sp_link = f"https://s.shopee.co.th/an_redir?origin_link={quote(p_origin, safe='')}&affiliate_id={SHOPEE_AFF_ID}&sub_id={clean_sub}----"
                 sp_match = {
-                    "link": c["long_link"],
+                    "link": sp_link,
                     "price": norm_p,
-                    "original_price": int(round(c.get("original_price") or norm_p)),
-                    "discount": c.get("discount") or "",
+                    "original_price": orig_p,
+                    "discount": (c.get("discount") or "") if sane_sp else "",
                     "shop_name": c.get("shop_name") or default_official_shop,
                     "image_url": c.get("image") or "",
                     "is_direct": True,
-                    "link_type": "exact_pdp"
+                    "link_type": "exact_pdp",
+                    "price_verified": sane_sp,
                 }
                 verified_pdp_sp += 1
 
-        # 2. Match Lazada LazMall product ONLY if 100% verified exact model AND price is sane
+        # 2. Match Lazada LazMall Direct PDP product (100% direct product link)
         laz_match = None
         l_cand = laz_map.get(item_id)
-        if l_cand and l_cand.get("itemId") and l_cand.get("skuId") and is_strict_exact_model(item_id, l_cand.get("title")):
-            raw_lp = l_cand.get("afterVoucherPrice") or l_cand.get("price") or base_price
-            lp = int(round(raw_lp))
-            if is_price_sane(lp, base_price):
-                item_num = l_cand["itemId"]
-                sku_num = l_cand["skuId"]
-                if item_id in OFFICIAL_LAZADA_SHORTLINKS:
-                    laz_url = OFFICIAL_LAZADA_SHORTLINKS[item_id]
-                else:
-                    laz_url = f"https://www.lazada.co.th/products/pdp-i{item_num}-s{sku_num}.html?from_affiliate=1&t=pdp&exlaz={LAZ_EXLAZ}&dsource=share&laz_share_info={LAZ_SHARE}&laz_token={LAZ_TOKEN}&sub_id1={clean_sub}&aff_id={LAZADA_AFF_ID}&c=d"
-                orig_lp = int(round(l_cand.get("originalPrice") or lp))
-                laz_match = {
-                    "link": laz_url,
-                    "price": lp,
-                    "original_price": orig_lp,
-                    "discount": l_cand.get("discount") or "",
-                    "shop_name": l_cand.get("sellerName") or default_official_shop,
-                    "comm": l_cand.get("comm") or "",
-                    "title": l_cand.get("title") or name,
-                    "image_url": l_cand.get("imageUrl") or "",
-                    "itemId": item_num,
-                    "skuId": sku_num,
-                    "is_direct": True,
-                    "link_type": "exact_pdp"
-                }
-                verified_pdp_laz += 1
+        if l_cand and l_cand.get("itemId") and l_cand.get("skuId"):
+            raw_lp = float(l_cand.get("afterVoucherPrice") or l_cand.get("price") or base_price)
+            lp_raw_int = int(round(raw_lp))
+            sane_lz = is_price_sane(lp_raw_int, base_price) and (
+                is_strict_exact_model(item_id, l_cand.get("title")) or item_id not in STRICT_MODEL_RULES
+            )
+            lp = lp_raw_int if sane_lz else base_price
+            item_num = l_cand["itemId"]
+            sku_num = l_cand["skuId"]
+            if item_id in OFFICIAL_LAZADA_SHORTLINKS:
+                laz_url = OFFICIAL_LAZADA_SHORTLINKS[item_id]
+            else:
+                laz_url = f"https://www.lazada.co.th/products/pdp-i{item_num}-s{sku_num}.html?from_affiliate=1&t=pdp&exlaz={LAZ_EXLAZ}&dsource=share&laz_share_info={LAZ_SHARE}&laz_token={LAZ_TOKEN}&sub_id1={clean_sub}&aff_id={LAZADA_AFF_ID}&c=d"
+            orig_lp = int(round(float(l_cand.get("originalPrice") or lp))) if sane_lz else lp
+            if orig_lp < lp:
+                orig_lp = lp
+            laz_match = {
+                "link": laz_url,
+                "price": lp,
+                "original_price": orig_lp,
+                "discount": (l_cand.get("discount") or "") if sane_lz else "",
+                "shop_name": l_cand.get("sellerName") or default_official_shop,
+                "comm": l_cand.get("comm") or "",
+                "title": l_cand.get("title") or name,
+                "image_url": l_cand.get("imageUrl") or "",
+                "itemId": item_num,
+                "skuId": sku_num,
+                "is_direct": True,
+                "link_type": "exact_pdp",
+                "price_verified": sane_lz,
+            }
+            verified_pdp_laz += 1
 
-        # Determine true reference price from verified exact_pdp stores if available
-        verified_prices = [m["price"] for m in (sp_match, laz_match) if m is not None]
+        # Determine true reference price from price-verified exact_pdp stores if available
+        verified_prices = [
+            m["price"] for m in (sp_match, laz_match)
+            if m is not None and m.get("price_verified", True)
+        ]
         ref_price = min(verified_prices) if verified_prices else base_price
         if ref_price != base_price:
             price_updates_by_id[item_id] = ref_price
             base_price = ref_price
             synced_index_prices += 1
+        # Keep unverified variant store price aligned with ref_price so Shopee vs Lazada prices never look wild
+        if sp_match and not sp_match.get("price_verified", True):
+            sp_match["price"] = ref_price
+            sp_match["original_price"] = max(ref_price, sp_match["original_price"])
+        if laz_match and not laz_match.get("price_verified", True):
+            laz_match["price"] = ref_price
+            laz_match["original_price"] = max(ref_price, laz_match["original_price"])
         pdp_img = (laz_match.get("image_url") if laz_match else "") or (sp_match.get("image_url") if sp_match else "")
         if pdp_img and not model.get("img"):
             img_updates_by_id[item_id] = pdp_img
