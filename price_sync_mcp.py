@@ -50,12 +50,39 @@ def load_affiliate_config(base_dir: Path) -> dict:
 
 def extract_all_products_from_index(index_path: Path) -> list[dict]:
     """
-    ดึงรายชื่อสินค้าครบทั้ง 22 หมวด (100 รุ่น) จาก index.html โดยอัตโนมัติ
+    ดึงรายชื่อสินค้าครบทั้ง 32 หมวด (351 รุ่น) จาก index.html โดยอัตโนมัติ
     """
     if not index_path.exists():
         return []
 
     html = index_path.read_text(encoding="utf-8")
+    cat_match = re.search(r"const CATEGORIES = (\[[\s\S]*?\n\s*\]);", html)
+    if cat_match:
+        try:
+            categories = json.loads(cat_match.group(1))
+            items = []
+            seen = set()
+            for cat in categories:
+                cid = cat.get("id", "smartphone")
+                for p in cat.get("products", []):
+                    pid = p.get("id")
+                    if not pid or pid in seen:
+                        continue
+                    seen.add(pid)
+                    items.append({
+                        "id": pid,
+                        "category_id": cid,
+                        "tier": p.get("tier", "mid"),
+                        "bracketLabel": p.get("bracketLabel", ""),
+                        "name": p.get("name", ""),
+                        "base_price": int(round(float(p.get("price", 0)))),
+                        "img": p.get("img", ""),
+                    })
+            if items:
+                return items
+        except Exception:
+            pass
+
     pattern = re.compile(
         r"id:\s*'([^']+)',\s*tier:\s*'([^']+)',\s*bracketLabel:\s*'([^']+)',[\s\S]*?"
         r"name:\s*(?:'([^']+)'|\"([^\"]+)\"),[\s\S]*?price:\s*(\d+)",

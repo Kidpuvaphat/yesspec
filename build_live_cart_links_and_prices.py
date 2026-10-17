@@ -140,12 +140,12 @@ STRICT_MODEL_RULES: dict[str, tuple[list[str], list[str]]] = {
     "daeng-gi-meo-ri": (["daeng gi meo ri"], []),
     "dentiste-anticavity": (["dentiste"], ["sensodyne"]),
     "sensodyne-repair": (["sensodyne"], []),
-    "colgate-optic": (["colgate", "optic"], []),
+    "colgate-optic": (["colgate", "optic"], ["มี 5 แพ็ค"]),
     "marvis-whitening": (["marvis"], []),
     "shokubutsu-monogatari": (["shokubutsu"], []),
     "dettol-shower-gel": (["dettol"], []),
-    "bioderma-atoderm": (["eucerin", "ph5"], []),
-    "loccitane-almond": (["almond"], []),
+    "bioderma-atoderm": (["eucerin", "ph5"], ["refill", "รีฟิล"]),
+    "loccitane-almond": (["almond", "shower"], ["shimmering", "body oil"]),
     "vistras-b-complex": (["vistra", "b"], ["magnesium"]),
     "blackmores-bio-c": (["blackmores", "bio c"], []),
     "mega-nat-c": (["nat c", "1000"], []),
@@ -159,18 +159,234 @@ STRICT_MODEL_RULES: dict[str, tuple[list[str], list[str]]] = {
     "chame-probiotic": (["probiotic"], []),
     "meiji-amino-collagen": (["meiji", "collagen"], []),
     "kaniva-indoor": (["kaniva", "indoor"], ["mother", "kitten"]),
-    "purina-one-cat": (["purina"], []),
-    "maxima-cat": (["maxima"], []),
+    "purina-one-cat": (["purina", "one"], ["friskies", "ฟริสกี้ส์"]),
+    "maxima-cat": (["maxima", "15"], ["2 kg", "2kg"]),
     "royal-canin-indoor": (["royal canin", "indoor"], []),
     "smartheart-gold": (["smartheart"], ["puppy"]),
-    "buzz-netura-dog": (["kaniva", "dog"], []),
+    "buzz-netura-dog": (["buzz"], ["kaniva"]),
     "royal-canin-mini": (["royal canin", "mini", "adult"], ["ageing", "12+"]),
     "hills-science-diet": (["hill", "small"], ["7+"]),
     "ciaochuru-variety": (["ciao"], []),
     "kasty-tofu-litter": (["kasty"], []),
-    "catbest-original": (["cat's best"], []),
+    "catbest-original": (["cat's best", "40"], ["20l"]),
     "pethroom-litter-box": (["petkit", "pura"], []),
+    # Newly added Top-10 Brand models that match real Lazada PDPs in lazada_live_products.json:
+    "sharp-microwave-r220": (["sharp", "r-220"], []),
+    "eufy-omni-c20": (["eufy", "c20"], []),
+    "sihoo-m18-ergonomic": (["sihoo", "m18"], []),
+    "modena-anya-ergonomic": (["modena", "anya"], []),
+    "kaniva-dog-salmon-tuna": (["kaniva", "dog", "salmon"], []),
 }
+
+BRAND_OFFICIAL_STORE_MAP: list[tuple[str, str]] = [
+    ("apple", "Apple Flagship Store"),
+    ("iphone", "Apple Flagship Store"),
+    ("ipad", "Apple Flagship Store"),
+    ("macbook", "Apple Flagship Store"),
+    ("airpods", "Apple Flagship Store"),
+    ("samsung", "Samsung Official Store"),
+    ("xiaomi", "Xiaomi Official Store"),
+    ("redmi", "Xiaomi Official Store"),
+    ("poco", "POCO Official Store"),
+    ("vivo", "vivo Official Store"),
+    ("iqoo", "iQOO Official Store"),
+    ("oppo", "OPPO Official Store"),
+    ("realme", "realme Official Store"),
+    ("honor", "HONOR Official Store"),
+    ("infinix", "Infinix Official Store"),
+    ("huawei", "Huawei Official Store"),
+    ("lenovo", "Lenovo Official Store"),
+    ("teclast", "Teclast Official Store"),
+    ("alldocube", "Alldocube Official Store"),
+    ("tcl", "TCL Official Store"),
+    ("hisense", "Hisense Official Store"),
+    ("carrier", "Carrier Official Store"),
+    ("mitsubishi heavy", "Mitsubishi Heavy Duty Official"),
+    ("mitsubishi electric", "Mitsubishi Electric Official"),
+    ("mitsubishi", "Mitsubishi Electric Official"),
+    ("daikin", "Daikin Official Store"),
+    ("haier", "Haier Official Store"),
+    ("lg", "LG Official Store"),
+    ("saijo denki", "Saijo Denki Official Store"),
+    ("acer", "Acer Official Store"),
+    ("asus", "ASUS Official Store"),
+    ("hp", "HP Official Store"),
+    ("dell", "Dell Official Store"),
+    ("msi", "MSI Official Store"),
+    ("gigabyte", "Gigabyte Official Store"),
+    ("sony", "Sony Official Store"),
+    ("toshiba", "Toshiba Official Store"),
+    ("sharp", "Sharp Official Store"),
+    ("panasonic", "Panasonic Official Store"),
+    ("hitachi", "Hitachi Official Store"),
+    ("electrolux", "Electrolux Official Store"),
+    ("beko", "Beko Official Store"),
+    ("candy", "Candy Official Store"),
+    ("bosch", "Bosch Official Store"),
+    ("coway", "Coway Official Store"),
+    ("levoit", "Levoit Official Store"),
+    ("blueair", "Blueair Official Store"),
+    ("dyson", "Dyson Official Store"),
+    ("hatari", "Hatari Official Store"),
+    ("dreame", "Dreame Official Store"),
+    ("roborock", "Roborock Official Store"),
+    ("ecovacs", "Ecovacs Official Store"),
+    ("eufy", "Eufy Official Store"),
+    ("tapo", "TP-Link Tapo Official"),
+    ("ezviz", "EZVIZ Official Store"),
+    ("autobot", "Autobot Official Store"),
+    ("irobot", "iRobot Official Store"),
+    ("deerma", "Deerma Official Store"),
+    ("tineco", "Tineco Official Store"),
+    ("simplus", "Simplus Official Store"),
+    ("stiebel", "Stiebel Eltron Official"),
+    ("mazuma", "Mazuma Official Store"),
+    ("mex", "Mex Official Store"),
+    ("rinnai", "Rinnai Official Store"),
+    ("3m", "3M Official Store"),
+    ("pure", "Pure Official Store"),
+    ("cuckoo", "Cuckoo Official Store"),
+    ("clarte", "Clarte Official Store"),
+    ("masterkool", "Masterkool Official Store"),
+    ("gaabor", "Gaabor Official Store"),
+    ("tefal", "Tefal Official Store"),
+    ("locknlock", "LocknLock Official Store"),
+    ("duchess", "Duchess Official Store"),
+    ("nespresso", "Nespresso Official Store"),
+    ("delonghi", "DeLonghi Official Store"),
+    ("de'longhi", "DeLonghi Official Store"),
+    ("nescaf", "NESCAFE Dolce Gusto Official"),
+    ("minimex", "Minimex Official Store"),
+    ("breville", "Breville Official Store"),
+    ("garmin", "Garmin Official Store"),
+    ("amazfit", "Amazfit Official Store"),
+    ("coros", "COROS Official Store"),
+    ("suunto", "Suunto Official Store"),
+    ("mibro", "Mibro Official Store"),
+    ("soundcore", "Soundcore Official Store"),
+    ("bose", "Bose Official Store"),
+    ("sennheiser", "Sennheiser Official Store"),
+    ("marshall", "Marshall Official Store"),
+    ("jbl", "JBL Official Store"),
+    ("beats", "Beats Official Store"),
+    ("edifier", "Edifier Official Store"),
+    ("audio-technica", "Audio-Technica Official"),
+    ("aoc", "AOC Official Store"),
+    ("benq", "BenQ Official Store"),
+    ("viewsonic", "ViewSonic Official Store"),
+    ("furradec", "OfficeMate Official Store"),
+    ("bewell", "Bewell Official Store"),
+    ("ergotrend", "Ergotrend Official Store"),
+    ("steelcase", "Steelcase Official Store"),
+    ("sihoo", "Sihoo Official Store"),
+    ("modena", "Modena Official Store"),
+    ("anda seat", "Anda Seat Official Store"),
+    ("secretlab", "Secretlab Official Store"),
+    ("herman miller", "Herman Miller Official"),
+    ("hbada", "Hbada Official Store"),
+    ("fender", "Fender Official Store"),
+    ("b&o", "Bang & Olufsen Official"),
+    ("70mai", "70mai Official Store"),
+    ("dji", "DJI Official Store"),
+    ("canon", "Canon Official Store"),
+    ("fujifilm", "Fujifilm Official Store"),
+    ("nikon", "Nikon Official Store"),
+    ("lumix", "Lumix Official Store"),
+    ("ricoh", "Ricoh Official Store"),
+    ("akaso", "AKASO Official Store"),
+    ("insta360", "Insta360 Official Store"),
+    ("laifen", "Laifen Official Store"),
+    ("lesasha", "Lesasha Official Store"),
+    ("create ion", "Create Ion Official Store"),
+    ("yoole", "Yoole Official Store"),
+    ("biore", "Biore Official Store"),
+    ("anessa", "Anessa Official Store"),
+    ("mizumi", "MizuMi Official Store"),
+    ("la roche", "La Roche-Posay Official"),
+    ("eucerin", "Eucerin Official Store"),
+    ("l'oreal", "L'Oreal Paris Official"),
+    ("her hyness", "Her Hyness Official Store"),
+    ("clear nose", "Clear Nose Official Store"),
+    ("garnier", "Garnier Official Store"),
+    ("canmake", "Canmake Official Store"),
+    ("bergamot", "Bergamot Official Store"),
+    ("sunsilk", "Unilever Official Store"),
+    ("vichy", "Vichy Official Store"),
+    ("daeng gi meo ri", "Daeng Gi Meo Ri Official"),
+    ("yves rocher", "Yves Rocher Official Store"),
+    ("lyo", "LYO Official Store"),
+    ("aloex", "AloEx Official Store"),
+    ("tsubaki", "Tsubaki Official Store"),
+    ("kundal", "Kundal Official Store"),
+    ("dentiste", "Dentiste Official Store"),
+    ("sensodyne", "Sensodyne Official Store"),
+    ("colgate", "Colgate Official Store"),
+    ("marvis", "Marvis Official Store"),
+    ("tepthai", "Tepthai Official Store"),
+    ("sparkle", "Sparkle Official Store"),
+    ("haewon", "Haewon Official Store"),
+    ("curaprox", "Curaprox Official Store"),
+    ("systema", "Lion Official Store"),
+    ("salz", "Lion Official Store"),
+    ("shokubutsu", "Lion Official Store"),
+    ("dettol", "Dettol Official Store"),
+    ("l'occitane", "L'Occitane Official Store"),
+    ("vaseline", "Vaseline Official Store"),
+    ("cerave", "CeraVe Official Store"),
+    ("boya", "Karmart Boya Official"),
+    ("lux", "Unilever Official Store"),
+    ("benice", "BeNice Official Store"),
+    ("vistra", "Vistra Official Store"),
+    ("blackmores", "Blackmores Official Store"),
+    ("mega we care", "Mega We Care Official"),
+    ("swisse", "Swisse Official Store"),
+    ("dhc", "DHC Official Store"),
+    ("centrum", "Centrum Official Store"),
+    ("california gold", "California Gold Official"),
+    ("vida", "Vida Official Store"),
+    ("bomi", "MizuMi & Bomi Official"),
+    ("dr.pong", "Dr.PONG Official Store"),
+    ("plantae", "Plantae Official Store"),
+    ("dymatize", "Fitwhey Official Store"),
+    ("baam", "Fitwhey Official Store"),
+    ("optimum nutrition", "Optimum Nutrition Official"),
+    ("biovitt", "Biovitt Official Store"),
+    ("muscletech", "MuscleTech Official Store"),
+    ("mateell", "Mateell Official Store"),
+    ("ultimate nutrition", "Fitwhey Official Store"),
+    ("beanbag", "Beanbag Official Store"),
+    ("proflex", "Proflex Official Store"),
+    ("meiji", "Meiji Official Store"),
+    ("amado", "Amado Official Store"),
+    ("zeavita", "Zeavita Official Store"),
+    ("glory", "Glory Official Store"),
+    ("chame", "Chame Official Store"),
+    ("kaniva", "Kaniva Official Store"),
+    ("purina", "Purina Official Store"),
+    ("maxima", "Maxima Official Pet Shop"),
+    ("royal canin", "Royal Canin Official Store"),
+    ("petheria", "Petheria Official Store"),
+    ("lifemate", "Lifemate Official Store"),
+    ("me-o", "Me-O Official Store"),
+    ("smartheart", "SmartHeart Official Store"),
+    ("orijen", "Orijen Official Store"),
+    ("buzz", "Buzz Official Store"),
+    ("hill's", "Hill's Official Store"),
+    ("taste of the wild", "Taste of the Wild Official"),
+    ("monchou", "Monchou Official Store"),
+    ("pedigree", "Pedigree Official Store"),
+    ("jerhigh", "JerHigh Official Store"),
+    ("ciao", "Inaba Ciao Official Store"),
+    ("kasty", "Kasty Official Store"),
+    ("cat's best", "Cat's Best Official Store"),
+    ("petkit", "PETKIT Official Store"),
+    ("hide & seek", "Hide & Seek Official Store"),
+    ("pidan", "Pidan Official Store"),
+    ("kurin", "Kurin Official Store"),
+    ("sukina petto", "Sukina Petto Official"),
+    ("odout", "Odout Official Store"),
+    ("philips", "Philips Official Store"),
+]
 
 # Exact Official Mall search query & Official Brand Store name per product ID
 # so fallback Official Mall links ALWAYS find the exact product model & brand!
@@ -322,6 +538,18 @@ EXACT_QUERY_AND_SHOP: dict[str, tuple[str, str]] = {
 }
 
 
+def infer_official_store_and_query(pid: str, name: str) -> tuple[str, str]:
+    if pid in EXACT_QUERY_AND_SHOP:
+        return EXACT_QUERY_AND_SHOP[pid]
+    clean_q = re.sub(r"\([^)]*\)", "", name).replace("/", " ").strip()
+    clean_q = re.sub(r"\s+", " ", clean_q)
+    lower_name = name.lower()
+    for brand_key, store_label in BRAND_OFFICIAL_STORE_MAP:
+        if brand_key in lower_name:
+            return (clean_q, store_label)
+    return (clean_q, "Official Mall Store")
+
+
 def is_strict_exact_model(pid: str, title: str | None) -> bool:
     """Return True ONLY if title contains all required brand+model tokens and zero banned tokens."""
     if not title:
@@ -339,41 +567,41 @@ def is_strict_exact_model(pid: str, title: str | None) -> bool:
     return True
 
 
-def extract_category_by_product_id(index_html: str) -> dict[str, str]:
-    cat_map = {}
-    cat_matches = list(re.finditer(r"id:\s*'([^']+)',\s*num:\s*\d+,\s*pillar:", index_html))
-    for i, m in enumerate(cat_matches):
-        cid = m.group(1)
-        start = m.start()
-        end = cat_matches[i + 1].start() if i + 1 < len(cat_matches) else len(index_html)
-        chunk = index_html[start:end]
-        for pm in re.finditer(r"id:\s*'([^']+)',\s*tier:", chunk):
-            cat_map[pm.group(1)] = cid
-    return cat_map
-
-
-def sync_product_price_in_index_html(html_text: str, pid: str, new_price: int) -> str:
-    """Update hardcoded price: <num> for product `pid` inside index.html so it matches verified PDP price."""
-    pattern = re.compile(
-        rf"(id:\s*'{re.escape(pid)}'[\s\S]{{1,450}}?\bprice:\s*)(\d+)(\b)"
-    )
-    return pattern.sub(rf"\g<1>{new_price}\g<3>", html_text, count=1)
+def is_price_sane(pdp_price: int, base_price: int) -> bool:
+    """Prevent refill pouches, miniature sample sizes, or different capacities from skewing prices."""
+    if base_price <= 0 or pdp_price <= 0:
+        return False
+    ratio = pdp_price / float(base_price)
+    return 0.68 <= ratio <= 1.32
 
 
 def main():
     index_path = Path("index.html")
     html_text = index_path.read_text(encoding="utf-8")
     all_models = extract_all_products_from_index(index_path)
-    cat_by_pid = extract_category_by_product_id(html_text)
 
     laz_path = Path("data/lazada_live_products.json")
     laz_map = json.loads(laz_path.read_text(encoding="utf-8")) if laz_path.exists() else {}
     sp_path = Path("data/shopee_live_products.json")
     sp_exact = json.loads(sp_path.read_text(encoding="utf-8")) if sp_path.exists() else {}
 
+    # Remap real Lazada PDPs that belong to our newly added Top-10 brand models
+    LAZ_REMAP_TO_NEW_PID = {
+        "samsung-grill-mw": "sharp-microwave-r220",
+        "xiaomi-x20-plus": "eufy-omni-c20",
+        "bewell-ergo-lite": "sihoo-m18-ergonomic",
+        "ergotrend-dual-mesh": "modena-anya-ergonomic",
+        "buzz-netura-dog": "kaniva-dog-salmon-tuna",
+    }
+    for old_pid, new_pid in LAZ_REMAP_TO_NEW_PID.items():
+        if old_pid in laz_map and new_pid not in laz_map:
+            laz_map[new_pid] = laz_map[old_pid]
+
     verified_pdp_sp = 0
     verified_pdp_laz = 0
     synced_index_prices = 0
+    price_updates_by_id: dict[str, int] = {}
+    img_updates_by_id: dict[str, str] = {}
     new_items_by_id = {}
     new_items_list = []
 
@@ -381,15 +609,12 @@ def main():
         item_id = model["id"]
         name = model["name"]
         base_price = int(round(model["base_price"]))
-        cat_id = cat_by_pid.get(item_id, "smartphone")
+        cat_id = model.get("category_id", "smartphone")
         clean_sub = "yespec" + re.sub(r"[^a-zA-Z0-9]", "", item_id)[:18]
 
-        exact_kw, default_official_shop = EXACT_QUERY_AND_SHOP.get(
-            item_id,
-            (re.sub(r"\([^)]*\)", "", name).split("/")[0].strip(), "Official Mall Store")
-        )
+        exact_kw, default_official_shop = infer_official_store_and_query(item_id, name)
 
-        # 1. Match Shopee Mall product ONLY if 100% verified exact model from Official Store
+        # 1. Match Shopee Mall product ONLY if 100% verified exact model from Official Store AND price is sane
         sp_match = None
         if item_id in OFFICIAL_SHOPEE_SHORTLINKS:
             sl, p_now, p_orig, disc, s_name = OFFICIAL_SHOPEE_SHORTLINKS[item_id]
@@ -412,54 +637,59 @@ def main():
         ):
             c = sp_exact[item_id]
             norm_p = int(round(c.get("price") or base_price))
-            sp_match = {
-                "link": c["long_link"],
-                "price": norm_p,
-                "original_price": int(round(c.get("original_price") or norm_p)),
-                "discount": c.get("discount") or "",
-                "shop_name": c.get("shop_name") or default_official_shop,
-                "image_url": c.get("image") or "",
-                "is_direct": True,
-                "link_type": "exact_pdp"
-            }
-            verified_pdp_sp += 1
+            if is_price_sane(norm_p, base_price):
+                sp_match = {
+                    "link": c["long_link"],
+                    "price": norm_p,
+                    "original_price": int(round(c.get("original_price") or norm_p)),
+                    "discount": c.get("discount") or "",
+                    "shop_name": c.get("shop_name") or default_official_shop,
+                    "image_url": c.get("image") or "",
+                    "is_direct": True,
+                    "link_type": "exact_pdp"
+                }
+                verified_pdp_sp += 1
 
-        # 2. Match Lazada LazMall product ONLY if 100% verified exact model
+        # 2. Match Lazada LazMall product ONLY if 100% verified exact model AND price is sane
         laz_match = None
         l_cand = laz_map.get(item_id)
         if l_cand and l_cand.get("itemId") and l_cand.get("skuId") and is_strict_exact_model(item_id, l_cand.get("title")):
             raw_lp = l_cand.get("afterVoucherPrice") or l_cand.get("price") or base_price
             lp = int(round(raw_lp))
-            item_num = l_cand["itemId"]
-            sku_num = l_cand["skuId"]
-            if item_id in OFFICIAL_LAZADA_SHORTLINKS:
-                laz_url = OFFICIAL_LAZADA_SHORTLINKS[item_id]
-            else:
-                laz_url = f"https://www.lazada.co.th/products/pdp-i{item_num}-s{sku_num}.html?from_affiliate=1&t=pdp&exlaz={LAZ_EXLAZ}&dsource=share&laz_share_info={LAZ_SHARE}&laz_token={LAZ_TOKEN}&sub_id1={clean_sub}&aff_id={LAZADA_AFF_ID}&c=d"
-            orig_lp = int(round(l_cand.get("originalPrice") or lp))
-            laz_match = {
-                "link": laz_url,
-                "price": lp,
-                "original_price": orig_lp,
-                "discount": l_cand.get("discount") or "",
-                "shop_name": l_cand.get("sellerName") or default_official_shop,
-                "comm": l_cand.get("comm") or "",
-                "title": l_cand.get("title") or name,
-                "image_url": l_cand.get("imageUrl") or "",
-                "itemId": item_num,
-                "skuId": sku_num,
-                "is_direct": True,
-                "link_type": "exact_pdp"
-            }
-            verified_pdp_laz += 1
+            if is_price_sane(lp, base_price):
+                item_num = l_cand["itemId"]
+                sku_num = l_cand["skuId"]
+                if item_id in OFFICIAL_LAZADA_SHORTLINKS:
+                    laz_url = OFFICIAL_LAZADA_SHORTLINKS[item_id]
+                else:
+                    laz_url = f"https://www.lazada.co.th/products/pdp-i{item_num}-s{sku_num}.html?from_affiliate=1&t=pdp&exlaz={LAZ_EXLAZ}&dsource=share&laz_share_info={LAZ_SHARE}&laz_token={LAZ_TOKEN}&sub_id1={clean_sub}&aff_id={LAZADA_AFF_ID}&c=d"
+                orig_lp = int(round(l_cand.get("originalPrice") or lp))
+                laz_match = {
+                    "link": laz_url,
+                    "price": lp,
+                    "original_price": orig_lp,
+                    "discount": l_cand.get("discount") or "",
+                    "shop_name": l_cand.get("sellerName") or default_official_shop,
+                    "comm": l_cand.get("comm") or "",
+                    "title": l_cand.get("title") or name,
+                    "image_url": l_cand.get("imageUrl") or "",
+                    "itemId": item_num,
+                    "skuId": sku_num,
+                    "is_direct": True,
+                    "link_type": "exact_pdp"
+                }
+                verified_pdp_laz += 1
 
         # Determine true reference price from verified exact_pdp stores if available
         verified_prices = [m["price"] for m in (sp_match, laz_match) if m is not None]
         ref_price = min(verified_prices) if verified_prices else base_price
         if ref_price != base_price:
-            html_text = sync_product_price_in_index_html(html_text, item_id, ref_price)
+            price_updates_by_id[item_id] = ref_price
             base_price = ref_price
             synced_index_prices += 1
+        pdp_img = (laz_match.get("image_url") if laz_match else "") or (sp_match.get("image_url") if sp_match else "")
+        if pdp_img and not model.get("img"):
+            img_updates_by_id[item_id] = pdp_img
 
         # 3. For any store without a verified exact-model PDP link, build a Precision Official Mall Search Link
         #    (shopType=1 for Shopee Mall, service=official for LazMall) locked to the exact Brand + Model query,
@@ -549,6 +779,23 @@ def main():
         new_items_by_id[item_id] = item_payload
         new_items_list.append(item_payload)
 
+    if price_updates_by_id or img_updates_by_id:
+        cat_match = re.search(r"const CATEGORIES = (\[[\s\S]*?\n\s*\]);", html_text)
+        if cat_match:
+            cats_data = json.loads(cat_match.group(1))
+            for cat in cats_data:
+                for p in cat.get("products", []):
+                    pid = p.get("id")
+                    if pid in price_updates_by_id:
+                        p["price"] = price_updates_by_id[pid]
+                    if pid in img_updates_by_id and not p.get("img"):
+                        p["img"] = img_updates_by_id[pid]
+            formatted_cats = json.dumps(cats_data, ensure_ascii=False, indent=6).replace("\n", "\n    ")
+            html_text = (
+                html_text[:cat_match.start(1)]
+                + formatted_cats
+                + html_text[cat_match.end(1):]
+            )
     index_path.write_text(html_text, encoding="utf-8")
 
     out_feed = {
