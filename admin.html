@@ -557,10 +557,20 @@
               </div>
             </div>
 
-            <!-- IMAGE URL ROW -->
-            <div class="img-row">
-              <span style="font-size:0.78rem;font-weight:700;color:var(--muted);">🖼️ URL รูปสินค้าจริง (จาก Shopee / Lazada):</span>
-              <input type="text" class="field-input" style="flex:1;min-width:260px;" id="img_url_${p.id}" value="${escAttr(p.image_url)}" placeholder="วางลิงก์รูปสินค้า https://down-aka-th.img.susercontent.com/... หรือคลิกขวาคัดลอกที่อยู่รูปจาก Shopee" oninput="previewImgChange('${p.id}', this.value)">
+            <!-- IMAGE URL + PRODUCT NAME + REAL SALES COUNT ROW -->
+            <div class="img-row" style="display:grid;grid-template-columns:1.3fr 0.7fr 1.6fr;gap:10px;align-items:end;">
+              <div>
+                <label class="field-label">✏️ ชื่อรุ่น / ความจุ (แก้ชื่อรุ่นให้ตรงกับที่ขายดีจริงได้):</label>
+                <input type="text" class="field-input" id="prod_name_${p.id}" value="${escAttr(p.name)}" placeholder="เช่น Samsung Galaxy A07 หรือ A06 (64GB)" oninput="markDirty('${p.id}')">
+              </div>
+              <div>
+                <label class="field-label">🔥 ยอดขายจริง (ชิ้น) จาก Shopee/Lazada:</label>
+                <input type="number" class="field-input" id="sold_count_${p.id}" value="${Number(p.sold_count || 0)}" placeholder="เช่น 20000" oninput="markDirty('${p.id}')">
+              </div>
+              <div>
+                <label class="field-label">🖼️ URL รูปสินค้าจริง (จาก Shopee / Lazada):</label>
+                <input type="text" class="field-input" id="img_url_${p.id}" value="${escAttr(p.image_url)}" placeholder="วางลิงก์รูปสินค้า https://down-aka-th.img.susercontent.com/..." oninput="previewImgChange('${p.id}', this.value)">
+              </div>
             </div>
           </div>
         `;
@@ -572,6 +582,8 @@
     function collectProductPayload(pid) {
       return {
         id: pid,
+        name: document.getElementById('prod_name_' + pid)?.value.trim() || '',
+        sold_count: Number(document.getElementById('sold_count_' + pid)?.value || 0),
         shopee_link: document.getElementById('sp_link_' + pid)?.value.trim() || '',
         shopee_price: Number(document.getElementById('sp_price_' + pid)?.value || 0),
         shopee_orig_price: Number(document.getElementById('sp_orig_' + pid)?.value || 0),

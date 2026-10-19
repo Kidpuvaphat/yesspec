@@ -2222,13 +2222,50 @@
                 ],
                 "products": [
                       {
+                            "id": "samsung-a07",
+                            "tier": "u5k",
+                            "bracketLabel": "งบต่ำกว่า 5,000฿",
+                            "eyebrow": "ขายดีอันดับ #1 • ยอดขาย 2 หมื่น+ เครื่อง",
+                            "name": "Samsung Galaxy A07",
+                            "tagline": "รุ่นใหม่ขายดีถล่มทลาย ยอดขายทะลุ 20,000+ เครื่อง หน้าจอใหญ่ แบตอึด 5,000 mAh ศูนย์ไทย",
+                            "price": 3390,
+                            "soldCount": 20000,
+                            "emoji": "📱",
+                            "colors": [
+                                  "#1d1d1f",
+                                  "#a3c1ad",
+                                  "#f3e5ab"
+                            ],
+                            "img": "https://down-aka-th.img.susercontent.com/sg-11134301-7rdxj-mdfvwvhz5uj837.webp",
+                            "specs": [
+                                  {
+                                        "big": "ชิปประหยัดพลังงานรุ่นใหม่",
+                                        "label": "ชิปรุ่นใหม่ / 4G"
+                                  },
+                                  {
+                                        "big": "RAM 4GB / ROM 64GB-128GB",
+                                        "label": "ROM 64GB / 128GB"
+                                  },
+                                  {
+                                        "big": "6.7\" PLS LCD 90Hz",
+                                        "label": "จอ 90Hz"
+                                  },
+                                  {
+                                        "big": "กล้อง 50MP • แบต 5,000mAh",
+                                        "label": "แบต 5,000 mAh"
+                                  }
+                            ],
+                            "verdict": "แชมป์ยอดขายจริงกว่า 2 หมื่นเครื่องบน Shopee คุ้มค่าและปลอดภัยด้วยระบบ Auto Blocker ศูนย์ไทย"
+                      },
+                      {
                             "id": "samsung-a06",
                             "tier": "u5k",
                             "bracketLabel": "งบต่ำกว่า 5,000฿",
-                            "eyebrow": "ถูกสุดคุ้มสุด • ศูนย์ไทยอุ่นใจ",
-                            "name": "Samsung Galaxy A06 (128GB)",
-                            "tagline": "หน้าจอใหญ่ 6.7 นิ้ว แบตอึด 5,000 mAh พร้อมระบบป้องกันมิจฉาชีพ Auto Blocker",
-                            "price": 3690,
+                            "eyebrow": "ถูกสุดคุ้มสุด • ยอดขาย 1 หมื่น+ ชิ้น",
+                            "name": "Samsung Galaxy A06 (64GB)",
+                            "tagline": "รุ่นประหยัดยอดขายทะลุ 10,000+ ชิ้น หน้าจอใหญ่ 6.7 นิ้ว แบตอึด 5,000 mAh พร้อม Auto Blocker",
+                            "price": 2890,
+                            "soldCount": 10000,
                             "emoji": "📱",
                             "colors": [
                                   "#1d1d1f",
@@ -2242,8 +2279,8 @@
                                         "label": "Helio G85 / 4G"
                                   },
                                   {
-                                        "big": "RAM 4GB / ROM 128GB",
-                                        "label": "ROM 128GB"
+                                        "big": "RAM 4GB / ROM 64GB",
+                                        "label": "ROM 64GB"
                                   },
                                   {
                                         "big": "6.7\" PLS LCD 60Hz",
@@ -2254,7 +2291,7 @@
                                         "label": "แบต 5,000 mAh"
                                   }
                             ],
-                            "verdict": "ซื้อมือถือให้พ่อแม่หรือเครื่องสำรองโอนเงิน ตัวนี้ปลอดภัยที่สุดเพราะมีระบบกันลิงก์มิจฉาชีพของ Samsung"
+                            "verdict": "ซื้อมือถือให้พ่อแม่หรือเครื่องสำรองโอนเงิน รุ่น 64GB ราคาประหยัดสุด ยอดขายจริงกว่า 1 หมื่นชิ้น"
                       },
                       {
                             "id": "poco-c75",
@@ -17200,15 +17237,31 @@
       return { livePrice, origPrice, discountBaht, discountPct };
     }
 
+    function getProductSoldCount(p) {
+      const mcpSold = LIVE_MCP_FEED && LIVE_MCP_FEED.items_by_id && LIVE_MCP_FEED.items_by_id[p.id]
+        ? Number(LIVE_MCP_FEED.items_by_id[p.id].sold_count || 0)
+        : 0;
+      return Math.max(Number(p.soldCount || 0), mcpSold);
+    }
+
+    function formatSoldCount(sold) {
+      const n = Number(sold || 0);
+      if (n <= 0) return '';
+      if (n >= 10000 && n % 10000 === 0) return `${(n / 10000).toLocaleString()} หมื่น+`;
+      return `${n.toLocaleString()}+`;
+    }
+
     function getValueForMoneyScore(p) {
       const specScore = Math.max(40, getTotalProductSpecScore(p));
       const { livePrice, discountPct } = getProductDiscountMetrics(p);
       const offers = getStoresForProduct(p);
       const verifiedBonus = offers.some(o => o.linkType === 'exact_pdp') ? 1.08 : 1.0;
-      // Higher spec score per Baht + bonus for real verified store discount + verified link bonus
+      const sold = getProductSoldCount(p);
+      // Real market sales proof bonus (e.g. 20,000 sold beats 10,000 sold when specs/price are close)
+      const soldBonus = sold > 0 ? (1 + Math.min(0.22, Math.log10(Math.max(10, sold)) * 0.045)) : 1.0;
       const priceFactor = Math.pow(Math.max(80, livePrice), 0.36);
       const discountBonus = 1 + (discountPct * 0.012);
-      return (specScore / priceFactor) * discountBonus * verifiedBonus;
+      return (specScore / priceFactor) * discountBonus * verifiedBonus * soldBonus;
     }
 
     const POPULAR_RANK_IDS = [
@@ -17231,6 +17284,11 @@
     ];
 
     function getPopularityScore(p) {
+      const sold = getProductSoldCount(p);
+      if (sold > 0) {
+        // Real verified sales volume entered in Admin Console always ranks directly by units sold!
+        return 10000 + sold;
+      }
       const idx = POPULAR_RANK_IDS.indexOf(p.id);
       let score = idx >= 0 ? (200 - idx * 2) : 50;
       const offers = getStoresForProduct(p);
@@ -17534,6 +17592,7 @@
 
           const isVsSelected = vsCompareQueue.includes(p.id);
           const brandName = extractProductBrand(p);
+          const soldQty = getProductSoldCount(p);
 
           return `
             <article class="nbs-spec-row-card">
@@ -17551,6 +17610,7 @@
               <div style="display:flex;flex-direction:column;gap:5px;min-width:0;">
                 <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;">
                   <span style="font-size:10.5px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
+                  ${soldQty > 0 ? `<span style="font-size:10.5px;font-weight:800;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;padding:2px 7px;border-radius:99px;">🔥 ขายแล้ว ${formatSoldCount(soldQty)} ชิ้น</span>` : ''}
                   ${discountPct > 0 ? `<span style="font-size:10.5px;font-weight:800;background:#fef2f2;color:#dc2626;padding:2px 7px;border-radius:99px;">ลด -${discountPct}%</span>` : ''}
                 </div>
                 <h3 style="font-size:15.5px;font-weight:800;color:var(--text-main);margin:0;line-height:1.3;">
@@ -17601,6 +17661,7 @@
         const { livePrice, discountPct } = getProductDiscountMetrics(p);
         const isVsSelected = vsCompareQueue.includes(p.id);
         const brandName = extractProductBrand(p);
+        const soldQty = getProductSoldCount(p);
 
         const imgUrl = p.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
         const visualHtml = imgUrl
@@ -17613,7 +17674,8 @@
           <article class="apple-card" style="padding:16px 16px 18px;align-items:stretch;text-align:center;">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:2;">
               <span style="font-size:10.5px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
-              <div style="display:flex;align-items:center;gap:5px;">
+              <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end;">
+                ${soldQty > 0 ? `<span style="font-size:10px;font-weight:800;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;padding:2px 6px;border-radius:99px;">🔥 ${formatSoldCount(soldQty)}</span>` : ''}
                 ${discountPct > 0 ? `<span style="font-size:10.5px;font-weight:800;background:#fef2f2;color:#dc2626;padding:2px 7px;border-radius:99px;">-${discountPct}%</span>` : ''}
                 <button class="nbs-vs-check-btn ${isVsSelected ? 'active' : ''}" onclick="toggleVsCompareItem('${p.id}')">
                   ${isVsSelected ? '✓ เลือกแล้ว' : '+ เทียบ VS'}
@@ -18280,6 +18342,12 @@
             cat.products.forEach(p => {
               const mcpItem = feed.items_by_id[p.id];
               if (mcpItem) {
+                if (mcpItem.name) {
+                  p.name = mcpItem.name;
+                }
+                if (mcpItem.sold_count !== undefined && Number(mcpItem.sold_count) > 0) {
+                  p.soldCount = Number(mcpItem.sold_count);
+                }
                 const cp = Number(mcpItem.cheapest_price);
                 if (!savedPrices[p.id] && cp) {
                   p.prevPrice = p.price;

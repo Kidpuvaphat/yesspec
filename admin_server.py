@@ -120,9 +120,13 @@ def load_all_products_payload() -> dict:
             sp_type = "exact_pdp" if ov.get("shopee_link") else sp_store.get("link_type", "mall_exact_query")
             lz_type = "exact_pdp" if ov.get("lazada_link") else lz_store.get("link_type", "mall_exact_query")
 
+            prod_name = ov.get("name") or p.get("name", "")
+            sold_count = int(ov.get("sold_count") if ov.get("sold_count") is not None else (p.get("soldCount") or f_item.get("sold_count") or 0))
+
             products_out.append({
                 "id": pid,
-                "name": p.get("name", ""),
+                "name": prod_name,
+                "sold_count": sold_count,
                 "category_id": cid,
                 "category_name": cname,
                 "category_icon": cicon,
@@ -172,6 +176,8 @@ def save_product_updates(updates: list[dict]) -> dict:
         if not pid:
             continue
 
+        custom_name = (upd.get("name") or "").strip()
+        sold_count = int(float(upd.get("sold_count") or 0))
         sp_raw = (upd.get("shopee_link") or "").strip()
         lz_raw = (upd.get("lazada_link") or "").strip()
         sp_price = int(float(upd.get("shopee_price") or 0))
@@ -218,6 +224,8 @@ def save_product_updates(updates: list[dict]) -> dict:
 
         overrides[pid] = {
             "updated_at": datetime.now().isoformat(),
+            "name": custom_name,
+            "sold_count": sold_count,
             "shopee_raw_link": sp_raw,
             "shopee_link": sp_aff,
             "shopee_price": sp_price,
@@ -273,6 +281,10 @@ def save_product_updates(updates: list[dict]) -> dict:
         elif is_lz_direct and not is_sp_direct:
             cheapest_price = lz_price
 
+        f_item["id"] = pid
+        if custom_name:
+            f_item["name"] = custom_name
+        f_item["sold_count"] = sold_count
         f_item["cheapest_price"] = cheapest_price
         f_item["cheapest_store"] = stores_sorted[0]["store"]
         f_item["cheapest_link"] = stores_sorted[0]["link"]
@@ -286,6 +298,9 @@ def save_product_updates(updates: list[dict]) -> dict:
         for cat in cats_data:
             for p in cat.get("products", []):
                 if p.get("id") == pid:
+                    if custom_name:
+                        p["name"] = custom_name
+                    p["soldCount"] = sold_count
                     p["price"] = cheapest_price
                     if final_img:
                         p["img"] = final_img
@@ -572,6 +587,8 @@ def reapply_all_overrides():
     for pid, ov in overrides.items():
         updates.append({
             "id": pid,
+            "name": ov.get("name") or "",
+            "sold_count": ov.get("sold_count") or 0,
             "shopee_link": ov.get("shopee_raw_link") or ov.get("shopee_link") or "",
             "shopee_price": ov.get("shopee_price") or 0,
             "shopee_orig_price": ov.get("shopee_orig_price") or 0,

@@ -9,10 +9,10 @@
   "items_by_id": {
     "samsung-a06": {
       "id": "samsung-a06",
-      "name": "Samsung Galaxy A06 (128GB)",
+      "name": "Samsung Galaxy A06 (64GB)",
       "category_id": "smartphone",
       "base_price": 3690,
-      "cheapest_price": 3690,
+      "cheapest_price": 2890,
       "cheapest_store": "Shopee Mall • Samsung Official Store",
       "cheapest_link": "https://s.shopee.co.th/an_redir?origin_link=https%3A%2F%2Fshopee.co.th%2Fsearch%3Fkeyword%3DSamsung%2520Galaxy%2520A06%26noCorrection%3Dtrue%26page%3D0%26shopType%3D1&affiliate_id=15385610012&sub_id=yespecsamsunga06----",
       "image_url": "",
@@ -23,7 +23,7 @@
           "platform": "shopee",
           "shop_name": "Samsung Official Store",
           "badge": "ร้านทางการ Samsung Official Store",
-          "net_price": 3690,
+          "net_price": 2890,
           "original_price": 3690,
           "discount_pct": "",
           "shipping": "ส่งฟรี • ของแท้ Shopee Mall 100%",
@@ -38,7 +38,7 @@
           "platform": "lazada",
           "shop_name": "Samsung Official Store",
           "badge": "ร้านทางการ Samsung Official Store",
-          "net_price": 3690,
+          "net_price": 2950,
           "original_price": 3690,
           "discount_pct": "",
           "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
@@ -48,7 +48,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A06"
         }
-      ]
+      ],
+      "sold_count": 10000
     },
     "poco-c75": {
       "id": "poco-c75",
@@ -15099,15 +15100,59 @@
           "exact_query": "Me-O ทรายแมวเบนโทไนต์ กลิ่นแอปเปิ้ล เลมอน 10L 8 kg"
         }
       ]
+    },
+    "samsung-a07": {
+      "id": "samsung-a07",
+      "name": "Samsung Galaxy A07",
+      "category_id": "smartphone",
+      "base_price": 3690,
+      "cheapest_price": 3390,
+      "cheapest_store": "Shopee Mall • Samsung Official Store",
+      "cheapest_link": "https://s.shopee.co.th/an_redir?origin_link=https%3A%2F%2Fshopee.co.th%2Fsearch%3Fkeyword%3DSamsung%2520Galaxy%2520A06%26noCorrection%3Dtrue%26page%3D0%26shopType%3D1&affiliate_id=15385610012&sub_id=yespecsamsunga06----",
+      "image_url": "",
+      "exact_query": "Samsung Galaxy A07",
+      "stores_sorted": [
+        {
+          "store": "Shopee Mall • Samsung Official Store",
+          "platform": "shopee",
+          "shop_name": "Samsung Official Store",
+          "badge": "ร้านทางการ Samsung Official Store",
+          "net_price": 3390,
+          "original_price": 3990,
+          "discount_pct": "",
+          "shipping": "ส่งฟรี • ของแท้ Shopee Mall 100%",
+          "image_url": "",
+          "link": "https://s.shopee.co.th/an_redir?origin_link=https%3A%2F%2Fshopee.co.th%2Fsearch%3Fkeyword%3DSamsung%2520Galaxy%2520A07%26noCorrection%3Dtrue%26page%3D0%26shopType%3D1&affiliate_id=15385610012&sub_id=yespecsamsunga07----",
+          "is_direct_product": false,
+          "link_type": "mall_exact_query",
+          "exact_query": "Samsung Galaxy A07"
+        },
+        {
+          "store": "LazMall • Samsung Official Store",
+          "platform": "lazada",
+          "shop_name": "Samsung Official Store",
+          "badge": "ร้านทางการ Samsung Official Store",
+          "net_price": 3450,
+          "original_price": 3990,
+          "discount_pct": "",
+          "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
+          "image_url": "",
+          "link": "https://www.lazada.co.th/catalog/?q=Samsung%20Galaxy%20A06&service=official&exlaz=e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D&dsource=share&laz_share_info=4161151791_1_9300_110172189818_4161153791_null&laz_token=08d572ad001a0d070782467eba3d16d9&sub_id1=yespecsamsunga06&aff_id=267671179",
+          "is_direct_product": false,
+          "link_type": "mall_exact_query",
+          "exact_query": "Samsung Galaxy A07"
+        }
+      ],
+      "sold_count": 20000
     }
   },
   "items": [
     {
       "id": "samsung-a06",
-      "name": "Samsung Galaxy A06 (128GB)",
+      "name": "Samsung Galaxy A06 (64GB)",
       "category_id": "smartphone",
       "base_price": 3690,
-      "cheapest_price": 3690,
+      "cheapest_price": 2890,
       "cheapest_store": "Shopee Mall • Samsung Official Store",
       "cheapest_link": "https://s.shopee.co.th/an_redir?origin_link=https%3A%2F%2Fshopee.co.th%2Fsearch%3Fkeyword%3DSamsung%2520Galaxy%2520A06%26noCorrection%3Dtrue%26page%3D0%26shopType%3D1&affiliate_id=15385610012&sub_id=yespecsamsunga06----",
       "image_url": "",
@@ -15118,7 +15163,7 @@
           "platform": "shopee",
           "shop_name": "Samsung Official Store",
           "badge": "ร้านทางการ Samsung Official Store",
-          "net_price": 3690,
+          "net_price": 2890,
           "original_price": 3690,
           "discount_pct": "",
           "shipping": "ส่งฟรี • ของแท้ Shopee Mall 100%",
@@ -15133,7 +15178,7 @@
           "platform": "lazada",
           "shop_name": "Samsung Official Store",
           "badge": "ร้านทางการ Samsung Official Store",
-          "net_price": 3690,
+          "net_price": 2950,
           "original_price": 3690,
           "discount_pct": "",
           "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
@@ -15143,7 +15188,8 @@
           "link_type": "mall_exact_query",
           "exact_query": "Samsung Galaxy A06"
         }
-      ]
+      ],
+      "sold_count": 10000
     },
     {
       "id": "poco-c75",
@@ -30194,6 +30240,50 @@
           "exact_query": "Me-O ทรายแมวเบนโทไนต์ กลิ่นแอปเปิ้ล เลมอน 10L 8 kg"
         }
       ]
+    },
+    {
+      "id": "samsung-a07",
+      "name": "Samsung Galaxy A07",
+      "category_id": "smartphone",
+      "base_price": 3690,
+      "cheapest_price": 3390,
+      "cheapest_store": "Shopee Mall • Samsung Official Store",
+      "cheapest_link": "https://s.shopee.co.th/an_redir?origin_link=https%3A%2F%2Fshopee.co.th%2Fsearch%3Fkeyword%3DSamsung%2520Galaxy%2520A06%26noCorrection%3Dtrue%26page%3D0%26shopType%3D1&affiliate_id=15385610012&sub_id=yespecsamsunga06----",
+      "image_url": "",
+      "exact_query": "Samsung Galaxy A07",
+      "stores_sorted": [
+        {
+          "store": "Shopee Mall • Samsung Official Store",
+          "platform": "shopee",
+          "shop_name": "Samsung Official Store",
+          "badge": "ร้านทางการ Samsung Official Store",
+          "net_price": 3390,
+          "original_price": 3990,
+          "discount_pct": "",
+          "shipping": "ส่งฟรี • ของแท้ Shopee Mall 100%",
+          "image_url": "",
+          "link": "https://s.shopee.co.th/an_redir?origin_link=https%3A%2F%2Fshopee.co.th%2Fsearch%3Fkeyword%3DSamsung%2520Galaxy%2520A07%26noCorrection%3Dtrue%26page%3D0%26shopType%3D1&affiliate_id=15385610012&sub_id=yespecsamsunga07----",
+          "is_direct_product": false,
+          "link_type": "mall_exact_query",
+          "exact_query": "Samsung Galaxy A07"
+        },
+        {
+          "store": "LazMall • Samsung Official Store",
+          "platform": "lazada",
+          "shop_name": "Samsung Official Store",
+          "badge": "ร้านทางการ Samsung Official Store",
+          "net_price": 3450,
+          "original_price": 3990,
+          "discount_pct": "",
+          "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
+          "image_url": "",
+          "link": "https://www.lazada.co.th/catalog/?q=Samsung%20Galaxy%20A06&service=official&exlaz=e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D&dsource=share&laz_share_info=4161151791_1_9300_110172189818_4161153791_null&laz_token=08d572ad001a0d070782467eba3d16d9&sub_id1=yespecsamsunga06&aff_id=267671179",
+          "is_direct_product": false,
+          "link_type": "mall_exact_query",
+          "exact_query": "Samsung Galaxy A07"
+        }
+      ],
+      "sold_count": 20000
     }
   ]
 }
