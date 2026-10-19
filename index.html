@@ -17203,10 +17203,12 @@
     function getValueForMoneyScore(p) {
       const specScore = Math.max(40, getTotalProductSpecScore(p));
       const { livePrice, discountPct } = getProductDiscountMetrics(p);
-      // Higher spec score per Baht + bonus for real verified store discount + sweet-spot tier bonus
+      const offers = getStoresForProduct(p);
+      const verifiedBonus = offers.some(o => o.linkType === 'exact_pdp') ? 1.08 : 1.0;
+      // Higher spec score per Baht + bonus for real verified store discount + verified link bonus
       const priceFactor = Math.pow(Math.max(80, livePrice), 0.36);
       const discountBonus = 1 + (discountPct * 0.012);
-      return (specScore / priceFactor) * discountBonus;
+      return (specScore / priceFactor) * discountBonus * verifiedBonus;
     }
 
     const POPULAR_RANK_IDS = [
@@ -18280,13 +18282,24 @@
               if (mcpItem) {
                 const cp = Number(mcpItem.cheapest_price);
                 if (!savedPrices[p.id] && cp) {
+                  p.prevPrice = p.price;
                   p.price = cp;
+                  p.monthlyDrop = Math.max(0, p.prevPrice - p.price);
                 }
                 if (mcpItem.image_url) {
                   p.img = mcpItem.image_url;
                 }
                 if (mcpItem.stores_sorted) {
                   p.mcpStores = mcpItem.stores_sorted;
+                }
+                // Re-evaluate budget bracket dynamically after real price update
+                if (cat.id === 'smartphone') {
+                  if (p.price < 5000) { p.tier = 'u5k'; p.bracketLabel = 'งบต่ำกว่า 5,000฿'; }
+                  else if (p.price <= 10000) { p.tier = '5k_10k'; p.bracketLabel = 'งบ 5,000 – 10,000฿'; }
+                  else if (p.price <= 15000) { p.tier = '10k_15k'; p.bracketLabel = 'งบ 10,000 – 15,000฿'; }
+                  else if (p.price <= 20000) { p.tier = '15k_20k'; p.bracketLabel = 'งบ 15,000 – 20,000฿'; }
+                  else if (p.price <= 30000) { p.tier = '20k_30k'; p.bracketLabel = 'งบ 20,000 – 30,000฿'; }
+                  else { p.tier = '30k_plus'; p.bracketLabel = 'งบ 30,000฿ ขึ้นไป'; }
                 }
               }
             });
@@ -18536,7 +18549,7 @@
       `;
     }
 
-    // ZONE 2: Hall of Fame — Feature High-Sales Volume Kings (TCL, Hisense, Galaxy A55, Kaniva, Biore, etc.)
+    // ZONE 2: Hall of Fame — Dynamically picks the #1 Best Value model per category from live prices & specs
     function renderHomeHallOfFame(filterPillar = 'all', clickedBtn = null) {
       if (clickedBtn) {
         document.querySelectorAll('#hallFilterButtons .budget-pill').forEach(b => b.classList.remove('active'));
@@ -18577,7 +18590,7 @@
         return `
           <div class="hall-card" style="border:2px solid rgba(22,163,74,0.32);" onclick="selectCategory('${cat.id}')">
             <div style="font-size:11px;font-weight:800;background:#ecfdf5;color:#15803d;border:1px solid #86efac;padding:3px 10px;border-radius:99px;margin-bottom:10px;">
-              🏆 ยอดนิยม ${cat.name}
+              🏆 คุ้มสุดหมวด${cat.name}
             </div>
             <div style="height:135px;width:100%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;overflow:hidden;position:relative;">
               ${visualHtml}
@@ -18594,10 +18607,10 @@
             </div>
             <div style="display:flex;gap:6px;width:100%;padding-top:8px;border-top:1px solid var(--border-hairline);flex-wrap:wrap;" onclick="event.stopPropagation();">
               <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:#ee4d2d;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🟠 Shopee ${formatTHB(shopeeOffer.netPrice)}
+                🟠 Shopee ${spVer ? '' : '~'}${formatTHB(shopeeOffer.netPrice)}
               </a>
               <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:#0f146d;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🔵 LazMall ${formatTHB(lazadaOffer.netPrice)}
+                🔵 LazMall ${lzVer ? '' : '~'}${formatTHB(lazadaOffer.netPrice)}
               </a>
             </div>
           </div>
@@ -18605,15 +18618,15 @@
       }).join('');
     }
 
-    // ZONE 3: Minimal VS Matchups (Clean A vs B with Green Winner Verdict)
+    // ZONE 3: Minimal VS Matchups (Dynamically recalculates price winner from live store prices)
     function renderHomeTrendingBattles() {
       const battles = [
-        { catId: 'aircon', idA: 'tcl-tpro-12k', idB: 'hisense-kb-12k', label: '❄️ แอร์ยอดขายอันดับ #1 (งบไม่เกินหมื่น)', nameA: 'TCL T-Pro 12K', nameB: 'Hisense 12K', winName: 'TCL ชนะราคา & Wi-Fi • Hisense ชนะประกัน 12 ปี' },
-        { catId: 'aircon', idA: 'mitsu-heavy-yvs', idB: 'daikin-zesth', label: '❄️ แอร์พรีเมียมยอดฮิต', nameA: 'Mitsubishi Heavy', nameB: 'Daikin Zesth', winName: 'Mitsu ชนะประกันอะไหล่ 5 ปี • Daikin ชนะประหยัดไฟ SEER 22.5' },
-        { catId: 'smartphone', idA: 'iphone-17-pro', idB: 'samsung-s26-ultra', label: '📱 มือถือเรือธงตัวท็อป', nameA: 'iPhone 17 Pro', nameB: 'Galaxy S26 Ultra', winName: 'iPhone ชนะประหยัดกว่า • S26 ชนะซูม 100x + S-Pen' },
-        { catId: 'tv', idA: 'tcl-55-4k-smart', idB: 'hisense-55e6n', label: '📺 ทีวี 55" 4K ยอดขายอันดับ #1', nameA: 'TCL 55" 4K', nameB: 'Hisense 55" 4K', winName: 'Hisense ชนะ Dolby Vision + ราคาถูกกว่า' },
-        { catId: 'sunscreen', idA: 'biore-uv-aqua', idB: 'mizumi-uv-water', label: '☀️ ครีมกันแดดขายดีสุด', nameA: 'Biore Aqua Rich', nameB: 'MizuMi UV Serum', winName: 'Biore ชนะหลอดใหญ่คุ้มสุด • MizuMi ชนะผิวแพ้ง่าย 5-Free' },
-        { catId: 'catfood', idA: 'kaniva-indoor', idB: 'purina-one-cat', label: '🐱 อาหารแมวถนอมไตขายดี #1', nameA: 'Kaniva Indoor', nameB: 'Purina ONE', winName: 'Kaniva ชนะบำรุงขน + ถุงเริ่มต้นประหยัดกว่า' }
+        { catId: 'aircon', idA: 'tcl-tpro-12k', idB: 'hisense-kb-12k', label: '❄️ แอร์ยอดฮิต (งบไม่เกินหมื่น)', nameA: 'TCL T-Pro 12K', nameB: 'Hisense 12K', specNote: 'TCL เด่น Wi-Fi • Hisense ประกัน 12 ปี' },
+        { catId: 'aircon', idA: 'mitsu-heavy-yvs', idB: 'daikin-zesth', label: '❄️ แอร์พรีเมียมยอดฮิต', nameA: 'Mitsubishi Heavy', nameB: 'Daikin Zesth', specNote: 'Mitsu ประกันอะไหล่ 5 ปี • Daikin SEER 22.5' },
+        { catId: 'smartphone', idA: 'iphone-17-pro', idB: 'samsung-s26-ultra', label: '📱 มือถือเรือธงตัวท็อป', nameA: 'iPhone 17 Pro', nameB: 'Galaxy S26 Ultra', specNote: 'iPhone วิดีโอโปร • S26 ซูม 100x + S-Pen' },
+        { catId: 'tv', idA: 'tcl-55-4k-smart', idB: 'hisense-55e6n', label: '📺 ทีวี 55" 4K ยอดนิยม', nameA: 'TCL 55" 4K', nameB: 'Hisense 55" 4K', specNote: 'Google TV vs Dolby Vision' },
+        { catId: 'sunscreen', idA: 'biore-uv-aqua', idB: 'mizumi-uv-water', label: '☀️ ครีมกันแดดตัวท็อป', nameA: 'Biore Aqua Rich', nameB: 'MizuMi UV Serum', specNote: 'Biore กันน้ำ • MizuMi ผิวแพ้ง่าย 5-Free' },
+        { catId: 'catfood', idA: 'kaniva-indoor', idB: 'purina-one-cat', label: '🐱 อาหารแมวถนอมไต', nameA: 'Kaniva Indoor', nameB: 'Purina ONE', specNote: 'Kaniva บำรุงขน • Purina โปรตีนสูง' }
       ];
 
       const grid = document.getElementById('homeTrendingBattlesGrid');
@@ -18623,7 +18636,11 @@
         const cat = getCategory(b.catId);
         const pA = cat.products.find(p => p.id === b.idA) || cat.products[0];
         const pB = cat.products.find(p => p.id === b.idB) || cat.products[1] || cat.products[0];
-        const diff = Math.abs(pA.price - pB.price);
+        const liveA = getEffectiveLivePrice(pA);
+        const liveB = getEffectiveLivePrice(pB);
+        const diff = Math.abs(liveA - liveB);
+        const cheaperName = liveA < liveB ? b.nameA : (liveB < liveA ? b.nameB : 'ราคาเท่ากัน');
+        const priceWinText = diff > 0 ? `${cheaperName} ถูกกว่า ${formatTHB(diff)}` : 'ราคาเท่ากันทั้งสองรุ่น';
 
         return `
           <div class="vs-battle-card" style="border:1.5px solid rgba(22,163,74,0.28);" onclick="openBattleFromHome('${b.catId}', '${pA.id}', '${pB.id}')">
@@ -18632,12 +18649,12 @@
               <span style="font-size:11.5px;color:#16a34a;font-weight:800;">ดูผลเทียบ &gt;</span>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
-              <strong style="font-size:15px;color:var(--text-main);flex:1;">${b.nameA}<br><span style="font-size:12px;color:#15803d;">${formatTHB(pA.price)}</span></strong>
+              <strong style="font-size:15px;color:var(--text-main);flex:1;">${b.nameA}<br><span style="font-size:12px;color:#15803d;">${formatTHB(liveA)}</span></strong>
               <span style="background:#ecfdf5;color:#15803d;border:1px solid #86efac;font-size:11px;font-weight:800;padding:4px 8px;border-radius:99px;">VS</span>
-              <strong style="font-size:15px;color:var(--text-main);flex:1;text-align:right;">${b.nameB}<br><span style="font-size:12px;color:#15803d;">${formatTHB(pB.price)}</span></strong>
+              <strong style="font-size:15px;color:var(--text-main);flex:1;text-align:right;">${b.nameB}<br><span style="font-size:12px;color:#15803d;">${formatTHB(liveB)}</span></strong>
             </div>
             <div style="font-size:12px;color:#14532d;background:#f0fdf4;border-radius:10px;padding:7px 10px;text-align:center;font-weight:600;">
-              🟢 ${b.winName} (ต่างกัน ${formatTHB(diff)})
+              🟢 ${priceWinText} • ${b.specNote}
             </div>
           </div>
         `;
@@ -18658,33 +18675,64 @@
       }, 80);
     }
 
-    // ZONE 4A: Compact Price Drops List (No Coupon Clutter — Direct Store Winner)
+    // ZONE 4A: Compact Price Drops List — Dynamically ranks real verified links & largest discounts first
     function renderHomePriceDropRadar() {
-      const dropPicks = [
-        { catId: 'aircon', prodIdx: 0, dropBaht: 1800 },
-        { catId: 'smartphone', prodIdx: 10, dropBaht: 2500 },
-        { catId: 'tv', prodIdx: 0, dropBaht: 2200 },
-        { catId: 'sunscreen', prodIdx: 1, dropBaht: 220 },
-        { catId: 'catfood', prodIdx: 0, dropBaht: 95 }
-      ];
-
       const grid = document.getElementById('homePriceDropGrid');
       if (!grid) return;
 
-      grid.innerHTML = dropPicks.map(d => {
-        const cat = getCategory(d.catId);
-        const prod = cat.products[d.prodIdx] || cat.products[0];
-        const offers = getStoresForProduct(prod);
-        const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: prod.price + d.dropBaht, store: 'Shopee Mall', url: '#' };
-        const realDrop = Math.max(d.dropBaht, (bestOffer.originalPrice || 0) - bestOffer.netPrice);
+      const allCandidates = [];
+      const priorityCatIds = ['aircon', 'smartphone', 'tv', 'robot', 'sunscreen', 'catfood', 'laptop', 'washer'];
+      CATEGORIES.forEach(cat => {
+        cat.products.forEach(prod => {
+          const offers = getStoresForProduct(prod);
+          const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: prod.price, store: 'Shopee Mall', url: '#', linkType: 'mall_exact_query' };
+          const isVerified = offers.some(o => o.linkType === 'exact_pdp');
+          const { livePrice, origPrice, discountBaht, discountPct } = getProductDiscountMetrics(prod);
+          allCandidates.push({
+            cat,
+            prod,
+            bestOffer,
+            isVerified,
+            livePrice,
+            origPrice,
+            discountBaht,
+            discountPct,
+            priorityBonus: priorityCatIds.includes(cat.id) ? 1 : 0
+          });
+        });
+      });
+
+      // Sort: 1) Verified exact_pdp products first, 2) Higher discount percentage, 3) Priority category diversity
+      allCandidates.sort((a, b) => {
+        if (a.isVerified !== b.isVerified) return a.isVerified ? -1 : 1;
+        if (b.discountPct !== a.discountPct) return b.discountPct - a.discountPct;
+        return b.discountBaht - a.discountBaht;
+      });
+
+      // Pick top 5 across distinct categories (unless verified overrides exist)
+      const picked = [];
+      const seenCats = new Set();
+      for (const item of allCandidates) {
+        if (picked.length >= 5) break;
+        if (item.isVerified || !seenCats.has(item.cat.id)) {
+          picked.push(item);
+          seenCats.add(item.cat.id);
+        }
+      }
+
+      grid.innerHTML = picked.map(d => {
+        const { prod, bestOffer, isVerified, livePrice, discountBaht } = d;
+        const dropText = discountBaht > 0
+          ? `ประหยัด -${formatTHB(discountBaht)}`
+          : (isVerified ? 'ราคาจริงอัปเดตล่าสุด' : 'เช็คราคาล่าสุด');
         return `
           <div class="compact-row">
             <div>
               <div style="font-size:14.5px;font-weight:700;color:var(--text-main);">${prod.name}</div>
-              <span style="font-size:12px;color:#15803d;font-weight:700;">🟢 ถูกสุดที่ ${bestOffer.shopName || bestOffer.store} (ประหยัด -${formatTHB(realDrop)})</span>
+              <span style="font-size:12px;color:#15803d;font-weight:700;">🟢 ถูกสุดที่ ${bestOffer.shopName || bestOffer.store} (${dropText})</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px;">
-              <strong style="font-size:15px;color:#15803d;">${formatTHB(bestOffer.netPrice)}</strong>
+              <strong style="font-size:15px;color:#15803d;">${isVerified ? '' : '~'}${formatTHB(livePrice)}</strong>
               <a href="${bestOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="padding:5px 12px;font-size:12px;background:#16a34a;text-decoration:none;white-space:nowrap;">
                 🛒 ไปที่ตะกร้า &gt;
               </a>
