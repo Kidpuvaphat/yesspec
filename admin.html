@@ -148,12 +148,56 @@
         <button class="btn btn-green" id="btnSaveAllDirty" onclick="saveAllDirty()" style="display:none;">
           💾 บันทึกที่แก้ไขทั้งหมด (<span id="dirtyCount">0</span> รุ่น)
         </button>
+        <button class="btn btn-outline" id="btnChangePwd" onclick="openPwdModal()" style="display:none;">🔑 เปลี่ยนรหัสผ่าน</button>
+        <button class="btn btn-outline" id="btnLogout" onclick="doLogout()" style="display:none;">🚪 ออกจากระบบ</button>
         <a class="btn btn-outline" href="index.html" target="_blank">🌐 เปิดหน้าเว็บจริง (yesspec.com) ↗</a>
       </div>
     </div>
   </header>
 
-  <main class="container">
+  <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay" style="position:fixed;inset:0;background:rgba(245,245,247,0.97);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;">
+    <form onsubmit="event.preventDefault(); doLogin();" style="background:#fff;border-radius:24px;padding:34px 30px;max-width:410px;width:100%;border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,0.08);">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:2.2rem;margin-bottom:6px;">🔐</div>
+        <h2 style="margin:0 0 4px;font-size:1.3rem;">เข้าสู่ระบบหลังบ้าน yesspec.com</h2>
+        <p style="margin:0;color:var(--muted);font-size:0.86rem;">เฉพาะเจ้าของเว็บสำหรับจัดการลิงก์ Shopee / Lazada และราคาสินค้า</p>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label class="field-label">👤 Admin ID (Username)</label>
+        <input type="text" id="loginUser" class="field-input" placeholder="admin หรือ kidpuvaphat" autocomplete="username" required>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label class="field-label">🔑 Password (รหัสผ่าน)</label>
+        <input type="password" id="loginPass" class="field-input" placeholder="••••••••••••" autocomplete="current-password" required>
+      </div>
+      <div id="loginErr" style="color:#dc2626;font-size:0.84rem;font-weight:700;margin-bottom:12px;display:none;"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:0.95rem;">
+        เข้าสู่ระบบแอดมิน ➔
+      </button>
+    </form>
+  </div>
+
+  <!-- CHANGE PASSWORD MODAL -->
+  <div id="pwdModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:600;display:none;align-items:center;justify-content:center;padding:20px;">
+    <form onsubmit="event.preventDefault(); submitChangePwd();" style="background:#fff;border-radius:24px;padding:28px;max-width:400px;width:100%;border:1px solid var(--line);">
+      <h3 style="margin:0 0 12px;">🔑 เปลี่ยน ID / รหัสผ่านแอดมิน</h3>
+      <div style="margin-bottom:12px;">
+        <label class="field-label">Admin ID ใหม่</label>
+        <input type="text" id="newAdminUser" class="field-input" value="kidpuvaphat" required>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label class="field-label">รหัสผ่านใหม่ (อย่างน้อย 6 ตัวอักษร)</label>
+        <input type="password" id="newAdminPass" class="field-input" placeholder="ตั้งรหัสผ่านใหม่ของคุณ" required>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;">
+        <button type="button" class="btn btn-outline" onclick="document.getElementById('pwdModal').style.display='none'">ยกเลิก</button>
+        <button type="submit" class="btn btn-primary">💾 บันทึกรหัสผ่านใหม่</button>
+      </div>
+    </form>
+  </div>
+
+  <main class="container" id="mainDashboard" style="display:none;">
     <!-- DASHBOARD METRICS -->
     <div class="stats-grid">
       <div class="stat-card">
@@ -206,6 +250,14 @@
     let currentFilter = 'all';
     const dirtyIds = new Set();
 
+    function getAdminToken() {
+      return localStorage.getItem('yesspec_admin_token') || '';
+    }
+
+    function authHeaders(extra = {}) {
+      return Object.assign({ 'X-Admin-Token': getAdminToken() }, extra);
+    }
+
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -214,19 +266,96 @@
       window._toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
     }
 
-    async function loadProducts() {
+    async function doLogin() {
+      const username = document.getElementById('loginUser').value.trim();
+      const password = document.getElementById('loginPass').value;
+      const errEl = document.getElementById('loginErr');
+      errEl.style.display = 'none';
       try {
-        const res = await fetch('/api/admin/products?t=' + Date.now(), { cache: 'no-store' });
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.ok && data.token) {
+          localStorage.setItem('yesspec_admin_token', data.token);
+          showToast('🔓 เข้าสู่ระบบสำเร็จ!');
+          await loadProducts();
+        } else {
+          errEl.textContent = '❌ ' + (data.error || 'ID หรือรหัสผ่านไม่ถูกต้อง');
+          errEl.style.display = 'block';
+        }
+      } catch (e) {
+        errEl.textContent = '❌ ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้';
+        errEl.style.display = 'block';
+      }
+    }
+
+    function doLogout() {
+      localStorage.removeItem('yesspec_admin_token');
+      document.getElementById('mainDashboard').style.display = 'none';
+      document.getElementById('btnChangePwd').style.display = 'none';
+      document.getElementById('btnLogout').style.display = 'none';
+      document.getElementById('loginOverlay').style.display = 'flex';
+    }
+
+    function openPwdModal() {
+      document.getElementById('pwdModal').style.display = 'flex';
+    }
+
+    async function submitChangePwd() {
+      const new_username = document.getElementById('newAdminUser').value.trim();
+      const new_password = document.getElementById('newAdminPass').value;
+      try {
+        const res = await fetch('/api/admin/change-password', {
+          method: 'POST',
+          headers: authHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ new_username, new_password })
+        });
+        const data = await res.json();
+        if (data.ok && data.token) {
+          localStorage.setItem('yesspec_admin_token', data.token);
+          document.getElementById('pwdModal').style.display = 'none';
+          document.getElementById('newAdminPass').value = '';
+          showToast('✅ เปลี่ยนรหัสผ่านแอดมินเรียบร้อยแล้ว!');
+        } else {
+          showToast('❌ ' + (data.error || 'เปลี่ยนรหัสผ่านไม่สำเร็จ'));
+        }
+      } catch (e) {
+        showToast('❌ เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน');
+      }
+    }
+
+    async function loadProducts() {
+      const token = getAdminToken();
+      if (!token) {
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.getElementById('mainDashboard').style.display = 'none';
+        return;
+      }
+      try {
+        const res = await fetch('/api/admin/products?t=' + Date.now(), {
+          cache: 'no-store',
+          headers: authHeaders()
+        });
+        if (res.status === 401) {
+          doLogout();
+          return;
+        }
         if (!res.ok) throw new Error('API error');
         const data = await res.json();
         ALL_PRODUCTS = data.products || [];
         CATEGORIES = data.categories || [];
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainDashboard').style.display = 'block';
+        document.getElementById('btnChangePwd').style.display = 'inline-flex';
+        document.getElementById('btnLogout').style.display = 'inline-flex';
         populateCategories();
         updateStats();
         document.getElementById('loadingBox').style.display = 'none';
         renderList();
       } catch (err) {
-        // Fallback if opened locally via file:// without admin_server.py running
         document.getElementById('loadingBox').innerHTML =
           '⚠️ ไม่สามารถเชื่อมต่อ API หลังบ้านได้ กรุณาเปิดผ่าน <b>https://yesspec.com/admin.html</b>';
       }
@@ -423,9 +552,10 @@
       try {
         const res = await fetch('/api/admin/save-product', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: authHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify(payload)
         });
+        if (res.status === 401) { doLogout(); return; }
         const data = await res.json();
         if (data.ok) {
           dirtyIds.delete(pid);
@@ -453,9 +583,10 @@
       try {
         const res = await fetch('/api/admin/save-product', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: authHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({ products: list })
         });
+        if (res.status === 401) { doLogout(); return; }
         const data = await res.json();
         if (data.ok) {
           dirtyIds.clear();
@@ -479,7 +610,7 @@
       try {
         const res = await fetch('/api/admin/extract-url', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: authHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({ url, id: pid })
         });
         const data = await res.json();

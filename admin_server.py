@@ -406,6 +406,41 @@ def extract_url_metadata(raw_url: str, product_id: str = "") -> dict:
     }
 
 
+AUTH_CONFIG_PATH = Path(os.environ.get("YESSPEC_AUTH_FILE", "/etc/yesspec-admin.json"))
+
+
+def _get_auth_config() -> dict:
+    if AUTH_CONFIG_PATH.exists():
+        try:
+            return json.loads(AUTH_CONFIG_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    # Fallback default if /etc/yesspec-admin.json not created yet
+    import hashlib
+    return {
+        "username": "admin",
+        "alt_username": "kidpuvaphat",
+        "password_sha256": hashlib.sha256("Yesspec@2026!".encode("utf-8")).hexdigest(),
+        "secret": "yesspec-default-local-secret-2026",
+    }
+
+
+def _make_token(username: str, password_sha256: str, secret: str) -> str:
+    import hashlib, hmac
+    msg = f"{username}:{password_sha256}".encode("utf-8")
+    return hmac.new(secret.encode("utf-8"), msg, hashlib.sha256).hexdigest()
+
+
+def _verify_token(token: str) -> bool:
+    import hmac
+    if not token:
+        return False
+    cfg = _get_auth_config()
+    expected1 = _make_token(cfg.get("username", "admin"), cfg.get("password_sha256", ""), cfg.get("secret", ""))
+    expected2 = _make_token(cfg.get("alt_username", "kidpuvaphat"), cfg.get("password_sha256", ""), cfg.get("secret", ""))
+    return hmac.compare_digest(token, expected1) or hmac.compare_digest(token, expected2)
+
+
 class AdminRequestHandler(BaseHTTPRequestHandler):
     def _send_json(self, data: dict, status: int = 200):
         body = json.dumps(data, ensure_ascii=False).encode("utf-8")
@@ -414,10 +449,18 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Admin-Key")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Admin-Token, Authorization")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def _is_authorized(self) -> bool:
+        token = self.headers.get("X-Admin-Token", "").strip()
+        if not token:
+            auth = self.headers.get("Authorization", "").strip()
+            if auth.lower().startswith("bearer "):
+                token = auth[7:].strip()
+        return _verify_token(token)
 
     def do_OPTIONS(self):
         self._send_json({"ok": True})
@@ -425,6 +468,9 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         if parsed.path == "/api/admin/products":
+            if not self._is_authorized():
+                self._send_json({"ok": False, "error": "Unauthorized"}, 401)
+                return
             try:
                 payload = load_all_products_payload()
                 self._send_json(payload)
@@ -434,6 +480,7 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
         self._send_json({"ok": False, "error": "Not found"}, 404)
 
     def do_POST(self):
+        import hashlib, hmac, secrets
         parsed = urllib.parse.urlparse(self.path)
         length = int(self.headers.get("Content-Length") or 0)
         raw_body = self.rfile.read(length).decode("utf-8", errors="ignore") if length > 0 else "{}"
@@ -441,6 +488,40 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
             body = json.loads(raw_body)
         except Exception:
             body = {}
+
+        if parsed.path == "/api/admin/login":
+            user_in = (body.get("username") or "").strip()
+            pass_in = body.get("password") or ""
+            cfg = _get_auth_config()
+            valid_users = {cfg.get("username", "admin").lower(), cfg.get("alt_username", "kidpuvaphat").lower()}
+            pass_hash = hashlib.sha256(pass_in.encode("utf-8")).hexdigest()
+            if user_in.lower() in valid_users and hmac.compare_digest(pass_hash, cfg.get("password_sha256", "")):
+                token = _make_token(cfg.get("username", "admin"), cfg["password_sha256"], cfg.get("secret", ""))
+                self._send_json({"ok": True, "token": token, "username": user_in})
+            else:
+                self._send_json({"ok": False, "error": "ID หรือรหัสผ่านไม่ถูกต้อง"}, 401)
+            return
+
+        if not self._is_authorized():
+            self._send_json({"ok": False, "error": "Unauthorized"}, 401)
+            return
+
+        if parsed.path == "/api/admin/change-password":
+            new_user = (body.get("new_username") or "admin").strip()
+            new_pass = body.get("new_password") or ""
+            if len(new_pass) < 6:
+                self._send_json({"ok": False, "error": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"}, 400)
+                return
+            cfg = _get_auth_config()
+            cfg["username"] = new_user
+            cfg["password_sha256"] = hashlib.sha256(new_pass.encode("utf-8")).hexdigest()
+            if not cfg.get("secret") or cfg.get("secret") == "yesspec-default-local-secret-2026":
+                cfg["secret"] = secrets.token_hex(32)
+            AUTH_CONFIG_PATH.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
+            os.chmod(AUTH_CONFIG_PATH, 0o600)
+            new_token = _make_token(cfg["username"], cfg["password_sha256"], cfg["secret"])
+            self._send_json({"ok": True, "token": new_token, "username": new_user})
+            return
 
         if parsed.path == "/api/admin/save-product":
             try:
