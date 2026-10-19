@@ -3,66 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>yesspec.com Admin — ระบบจัดการลิงก์ Affiliate, อัปเดตราคารายเดือน & คำนวณรายได้</title>
+  <meta name="robots" content="noindex, nofollow">
+  <title>yesspec.com Admin Back-Office — ระบบแปะลิงก์ Shopee/Lazada, ปรับราคาจริง & รูปสินค้า</title>
+  <link rel="icon" type="image/svg+xml" href="assets/yespec-logo.svg">
   <style>
     :root {
       --bg: #f5f5f7;
       --card: #ffffff;
       --text: #1d1d1f;
       --muted: #6e6e73;
-      --line: rgba(0,0,0,0.08);
+      --line: rgba(0,0,0,0.09);
       --blue: #0071e3;
-      --green: #137333;
-      --green-bg: #e6f4ea;
-      --orange: #bf4800;
+      --green: #15803d;
+      --green-bg: #dcfce7;
+      --orange: #ee4d2d;
+      --orange-bg: #fff1ee;
+      --lazada: #0f146d;
+      --lazada-bg: #eef2ff;
     }
-    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Sukhumvit Set", "Kanit", sans-serif; }
-    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Inter", "Noto Sans Thai", "Sukhumvit Set", sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
     .topbar {
-      background: rgba(255,255,255,0.86); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--line); padding: 14px 24px;
-      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line); padding: 12px 24px;
+      position: sticky; top: 0; z-index: 200;
     }
-    .topbar-inner { max-width: 1020px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .topbar a { color: var(--blue); text-decoration: none; font-weight: 600; }
-    .container { max-width: 1020px; margin: 0 auto; padding: 36px 24px 80px; }
-    .card {
-      background: var(--card); border-radius: 24px; padding: 28px;
-      border: 1px solid var(--line); box-shadow: 0 8px 26px rgba(0,0,0,0.04); margin-bottom: 24px;
+    .topbar-inner {
+      max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
     }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-    label { display: block; font-size: 0.84rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
-    input, select {
-      width: 100%; padding: 11px 14px; border-radius: 12px;
-      border: 1px solid var(--line); background: var(--bg); font-size: 0.95rem;
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; color: var(--text); text-decoration: none; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 28px 20px 90px; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px;
     }
-    .btn-save {
-      background: var(--blue); color: #fff; border: none; padding: 11px 22px;
-      border-radius: 99px; font-weight: 700; cursor: pointer; margin-top: 16px; font-size: 0.92rem;
+    .stat-card {
+      background: var(--card); border-radius: 18px; padding: 18px 20px;
+      border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(0,0,0,0.03);
     }
-    .btn-secondary {
-      background: #e8e8ed; color: var(--text); border: none; padding: 11px 20px;
-      border-radius: 99px; font-weight: 600; cursor: pointer; margin-top: 16px; font-size: 0.9rem; margin-left: 8px;
+    .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    .stat-num { font-size: 1.65rem; font-weight: 800; margin-top: 4px; }
+    .toolbar {
+      background: var(--card); border-radius: 20px; padding: 18px 20px;
+      border: 1px solid var(--line); box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      margin-bottom: 20px; position: sticky; top: 61px; z-index: 150;
     }
-    .income-box {
-      background: var(--green-bg); color: var(--green); padding: 20px;
-      border-radius: 18px; margin-top: 18px; font-weight: 800; font-size: 1.3rem;
+    .toolbar-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .search-input {
+      flex: 2; min-width: 240px; padding: 11px 16px; border-radius: 12px;
+      border: 1px solid #d2d2d7; font-size: 0.95rem; background: #fbfbfd;
     }
-    .checklist {
-      background: #fbfbfd; border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; margin-top: 16px;
-      font-size: 0.9rem;
+    .cat-select {
+      flex: 1; min-width: 210px; padding: 11px 14px; border-radius: 12px;
+      border: 1px solid #d2d2d7; font-size: 0.95rem; background: #fbfbfd; font-weight: 600;
     }
-    .checklist li { margin-bottom: 6px; }
-    code { background: #f0f0f5; padding: 2px 6px; border-radius: 6px; font-size: 0.86rem; }
+    .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .pill {
+      border: 1px solid #d2d2d7; background: #f5f5f7; color: var(--text);
+      padding: 6px 14px; border-radius: 99px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    }
+    .pill.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .prod-list { display: flex; flex-direction: column; gap: 16px; }
+    .prod-card {
+      background: var(--card); border-radius: 20px; padding: 20px;
+      border: 1.5px solid var(--line); box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .prod-card.dirty { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,113,227,0.12); }
+    .prod-card.saved-flash { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.2); }
+    .prod-header {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+      padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 16px;
+    }
+    .prod-left { display: flex; align-items: center; gap: 16px; }
+    .prod-thumb-wrap {
+      width: 78px; height: 78px; border-radius: 14px; background: #f5f5f7;
+      border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .prod-thumb-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .badge {
+      display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 0.74rem; font-weight: 800;
+    }
+    .badge-direct { background: var(--green-bg); color: var(--green); }
+    .badge-search { background: #fef3c7; color: #b45309; }
+    .badge-manual { background: #dbeafe; color: #1d4ed8; }
+    .stores-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px;
+    }
+    .store-box {
+      border-radius: 16px; padding: 16px; border: 1px solid var(--line);
+    }
+    .store-shopee { background: #fffaf8; border-color: rgba(238,77,45,0.22); }
+    .store-lazada { background: #f8f9ff; border-color: rgba(15,20,109,0.18); }
+    .store-title {
+      font-weight: 800; font-size: 0.92rem; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .field-label { display: block; font-size: 0.76rem; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+    .field-input {
+      width: 100%; padding: 9px 12px; border-radius: 10px; border: 1px solid #d2d2d7;
+      font-size: 0.88rem; background: #fff;
+    }
+    .field-row { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 10px; }
+    .field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 8px; }
+    .btn {
+      border: none; border-radius: 99px; padding: 9px 16px; font-size: 0.84rem; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-green { background: #16a34a; color: #fff; }
+    .btn-outline { background: #fff; color: var(--text); border: 1px solid #d2d2d7; border-radius: 10px; padding: 8px 11px; font-size: 0.78rem; }
+    .btn-outline:hover { background: #f5f5f7; }
+    .img-row {
+      margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line);
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    }
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; background: #1d1d1f; color: #fff;
+      padding: 14px 22px; border-radius: 16px; font-weight: 700; font-size: 0.92rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.22); z-index: 999; display: none;
+    }
+    .toast.show { display: block; }
   </style>
-  <link rel="icon" type="image/svg+xml" href="assets/yespec-logo.svg">
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <strong style="display:inline-flex;align-items:center;gap:8px;">
-        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;flex-shrink:0;">
+      <a class="brand" href="index.html">
+        <svg width="26" height="26" viewBox="0 0 36 36" fill="none" style="border-radius:7px;">
           <rect width="36" height="36" rx="9" fill="#0071e3"/>
           <line x1="9" y1="12" x2="27" y2="12" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
           <line x1="9" y1="12" x2="21" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
@@ -74,202 +142,377 @@
           <line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/>
           <circle cx="24" cy="25" r="4" fill="#34d399"/>
         </svg>
-        <span>yesspec.com Admin Studio (สำหรับเจ้าของเว็บ)</span>
-      </strong>
-      <a href="index.html">← กลับไปหน้าเว็บลูกค้า (index.html)</a>
+        <span>yesspec.com — ระบบหลังบ้านแปะลิงก์ Shopee / Lazada & ปรับราคาตรง</span>
+      </a>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button class="btn btn-green" id="btnSaveAllDirty" onclick="saveAllDirty()" style="display:none;">
+          💾 บันทึกที่แก้ไขทั้งหมด (<span id="dirtyCount">0</span> รุ่น)
+        </button>
+        <a class="btn btn-outline" href="index.html" target="_blank">🌐 เปิดหน้าเว็บจริง (yesspec.com) ↗</a>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <!-- SECTION 1: MONTHLY UPDATE CENTER -->
-    <div class="card" id="monthly-center">
-      <div style="color:var(--orange);font-size:0.8rem;font-weight:800;letter-spacing:0.04em;">MONTHLY FRESHNESS ENGINE • อัปเดตทุกวันที่ 1 ของเดือน</div>
-      <h2 style="margin:4px 0 8px;">1. ระบบอัปเดตราคา & จัดช่วงงบใหม่ประจำเดือน</h2>
-      <p style="color:var(--muted); font-size:0.92rem; margin-top:0;">
-        ราคามือถือและเครื่องใช้ไฟฟ้าปรับลดลงทุกเดือน เมื่อคุณปรับราคารุ่นใดลดลง ระบบในหน้าเว็บ <code>index.html</code> จะ<strong>คำนวณส่วนลดประจำเดือน</strong>และ<strong>ย้ายรุ่นนั้นเข้าสู่ช่วงงบประมาณใหม่ที่ถูกลงให้อัตโนมัติทันที</strong> (เช่น รุ่นที่ลดจาก 15,990฿ เหลือ 14,900฿ จะย้ายเข้าหมวดงบ 10,000–15,000฿ ทันที)
-      </p>
-
-      <div class="grid-2" style="margin-bottom:18px;">
-        <div>
-          <label>📅 เดือน/ปี ที่แสดงบนหัวเว็บ (ปล่อยว่างเพื่อให้ดึงเดือนปัจจุบันอัตโนมัติ)</label>
-          <input type="text" id="monthLabelInput" placeholder="เช่น ตุลาคม 2026 หรือ พฤศจิกายน 2026">
-        </div>
-        <div>
-          <label>🔥 แคมเปญโปรโมชั่นประจำเดือนนี้</label>
-          <input type="text" id="campaignInput" placeholder="เช่น โปร 10.10 Brand Festival & Payday สิ้นเดือน">
-        </div>
+    <!-- DASHBOARD METRICS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">📦 สินค้าทั้งหมดในระบบ</div>
+        <div class="stat-num" id="statTotal">351</div>
       </div>
-
-      <label style="margin-bottom:10px;">📱 ทดลองปรับราคามือถือประจำเดือนนี้ (ระบบจะย้ายช่วงงบอัตโนมัติเมื่อราคาเปลี่ยน):</label>
-      <div class="grid-3">
-        <div>
-          <label>Samsung Galaxy A06 (เดิม 3,690฿)</label>
-          <input type="number" id="p_samsung-a06" placeholder="3690" step="100">
-        </div>
-        <div>
-          <label>Redmi Note 14 5G (เดิม 8,990฿)</label>
-          <input type="number" id="p_redmi-note-14-5g" placeholder="8990" step="100">
-        </div>
-        <div>
-          <label>Samsung A55/A56 (เดิม 11,990฿)</label>
-          <input type="number" id="p_samsung-a55-5g" placeholder="11990" step="100">
-        </div>
-        <div>
-          <label>Xiaomi 14T (เดิม 17,990฿)</label>
-          <input type="number" id="p_xiaomi-14t" placeholder="17990" step="100">
-        </div>
-        <div>
-          <label>iPhone 17 Pro (เดิม 32,500฿)</label>
-          <input type="number" id="p_iphone-17-pro" placeholder="32500" step="500">
-        </div>
-        <div>
-          <label>iPhone 18 Pro (เดิม 39,900฿)</label>
-          <input type="number" id="p_iphone-18-pro" placeholder="39900" step="500">
-        </div>
+      <div class="stat-card">
+        <div class="stat-label">🟠 ลิงก์ตรง Shopee (Exact PDP)</div>
+        <div class="stat-num" id="statShopeeDirect" style="color:var(--orange);">-</div>
       </div>
-
-      <div>
-        <button class="btn-save" onclick="saveMonthlyUpdate()">🔄 บันทึกการอัปเดตประจำเดือน</button>
-        <button class="btn-secondary" onclick="simulateNewMonthDrop()">⚡ จำลองโปรเดือนใหม่ (ลดราคาทุกรุ่น 5% อัตโนมัติ)</button>
-        <button class="btn-secondary" onclick="resetMonthlyUpdate()">คืนค่าเริ่มต้น</button>
-        <span id="monthly-msg" style="margin-left:12px; color:var(--green); font-weight:700;"></span>
+      <div class="stat-card">
+        <div class="stat-label">🔵 ลิงก์ตรง Lazada (Exact PDP)</div>
+        <div class="stat-num" id="statLazadaDirect" style="color:var(--lazada);">-</div>
       </div>
-
-      <div class="checklist">
-        <strong>📋 เช็คลิสต์สิ่งที่ควรทำเดือนละ 1 ครั้ง (ใช้เวลาแค่ 10 นาที ทุกวันที่ 1 ของเดือน):</strong>
-        <ol style="margin:8px 0 0 18px; padding:0;">
-          <li>รันคำสั่ง <code>python3 monthly_updater.py</code> ในโฟลเดอร์โปรเจกต์ หรือกดปุ่มซิงค์ราคาด้านบน</li>
-          <li>เช็ครุ่นที่ราคาปรับลดลงจนข้ามช่วงงบ (เช่น จากหมื่นกลางลงมาหมื่นต้น) ระบบจะย้ายป้ายช่วงงบให้เองอัตโนมัติ</li>
-          <li>อัปเดตชื่อแคมเปญประจำเดือน (เช่น <code>11.11 Mega Sale</code> หรือ <code>Payday สิ้นเดือน</code>) เพื่อกระตุ้นให้คนกดเช็คราคา</li>
-        </ol>
+      <div class="stat-card">
+        <div class="stat-label">🖼️ มีรูปสินค้าจริงแล้ว</div>
+        <div class="stat-num" id="statWithImg" style="color:var(--green);">-</div>
       </div>
     </div>
 
-    <!-- SECTION 2: AFFILIATE CONFIG -->
-    <div class="card">
-      <h2 style="margin-top:0;">2. ตั้งค่ารหัส Affiliate ทั้ง 2 ช่องทางหลัก (Shopee Mall & Lazada LazMall)</h2>
-      <p style="color:var(--muted); font-size:0.92rem;">เมื่อบันทึกแล้ว ปุ่มเรดาร์เช็คราคาในหน้าเว็บลูกค้า (<code>index.html</code>) จะแนบรหัสของคุณพร้อม <code>sub_id</code> ให้อัตโนมัติทันที</p>
-      <div class="grid-2">
-        <div>
-          <label>🟠 Shopee Affiliate ID (<code>orkid8931</code>)</label>
-          <input type="text" id="shopee" value="15385610012">
-        </div>
-        <div>
-          <label>🔵 Lazada Member ID (<code>kidpuvaphat</code>)</label>
-          <input type="text" id="lazada" value="267671179">
-        </div>
+    <!-- SEARCH & FILTER TOOLBAR -->
+    <div class="toolbar">
+      <div class="toolbar-row">
+        <input type="search" id="searchInput" class="search-input" placeholder="🔍 ค้นหาชื่อรุ่น หรือ รหัสสินค้า (เช่น iPhone 17 Pro, TCL, Daikin, Sony, Kaniva...)" oninput="renderList()">
+        <select id="categorySelect" class="cat-select" onchange="renderList()">
+          <option value="all">📂 ทุกหมวดหมู่ (32 หมวด)</option>
+        </select>
       </div>
-      <button class="btn-save" onclick="saveConfig()">💾 บันทึกรหัส Shopee & Lazada</button>
-      <span id="save-msg" style="margin-left:12px; color:var(--green); font-weight:700;"></span>
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" onclick="setFilter('all', this)">ทั้งหมด</button>
+        <button class="pill" onclick="setFilter('missing_sp', this)">🟠 รอแปะลิงก์ตรง Shopee</button>
+        <button class="pill" onclick="setFilter('missing_lz', this)">🔵 รอแปะลิงก์ตรง Lazada</button>
+        <button class="pill" onclick="setFilter('missing_img', this)">🖼️ ยังไม่มีรูปจริง</button>
+        <button class="pill" onclick="setFilter('manual', this)">✏️ แก้ไขเองแล้ว</button>
+      </div>
     </div>
 
-    <!-- SECTION 3: INCOME SIMULATOR -->
-    <div class="card">
-      <h2 style="margin-top:0;">3. เครื่องคำนวณรายได้คาดการณ์ (Passive Income Simulator)</h2>
-      <div class="grid-2">
-        <div>
-          <label>คนเข้าเว็บจากระบบค้นหา SEO (คน/วัน)</label>
-          <input type="number" id="v-day" value="800" oninput="calc()">
-        </div>
-        <div>
-          <label>อัตรากดปุ่มเช็คราคา (%)</label>
-          <input type="number" id="ctr" value="25" oninput="calc()">
-        </div>
-        <div>
-          <label>อัตราซื้อสำเร็จ (%)</label>
-          <input type="number" id="cr" value="3.0" step="0.5" oninput="calc()">
-        </div>
-        <div>
-          <label>ค่าคอมมิชชันเฉลี่ยต่อชิ้น (บาท)</label>
-          <input type="number" id="comm" value="1450" oninput="calc()">
-        </div>
-      </div>
-      <div class="income-box" id="income-out"></div>
+    <!-- PRODUCT CARDS LIST -->
+    <div id="loadingBox" style="text-align:center;padding:48px;color:var(--muted);font-weight:600;">
+      ⏳ กำลังโหลดข้อมูลสินค้าทั้งหมด 351 รุ่นจากเซิร์ฟเวอร์...
     </div>
+    <div class="prod-list" id="productList"></div>
   </main>
 
+  <div class="toast" id="toast"></div>
+
   <script>
-    // Load Affiliate IDs
-    const saved = JSON.parse(localStorage.getItem("yespec_affiliate_config") || localStorage.getItem("lumina_affiliate_config") || "{}");
-    if (saved.shopee) document.getElementById("shopee").value = saved.shopee;
-    if (saved.lazada) document.getElementById("lazada").value = saved.lazada;
+    let ALL_PRODUCTS = [];
+    let CATEGORIES = [];
+    let currentFilter = 'all';
+    const dirtyIds = new Set();
 
-    // Load Monthly Meta & Prices
-    const savedMeta = JSON.parse(localStorage.getItem("yespec_monthly_meta") || localStorage.getItem("lumina_monthly_meta") || "{}");
-    if (savedMeta.monthLabel) document.getElementById("monthLabelInput").value = savedMeta.monthLabel;
-    if (savedMeta.campaign) document.getElementById("campaignInput").value = savedMeta.campaign;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+    }
 
-    const trackedIds = ["samsung-a06", "redmi-note-14-5g", "samsung-a55-5g", "xiaomi-14t", "iphone-17-pro", "iphone-18-pro"];
-    const defaultPrices = {
-      "samsung-a06": 3690,
-      "redmi-note-14-5g": 8990,
-      "samsung-a55-5g": 11990,
-      "xiaomi-14t": 17990,
-      "iphone-17-pro": 32500,
-      "iphone-18-pro": 39900
-    };
-    const savedPrices = JSON.parse(localStorage.getItem("yespec_monthly_prices") || localStorage.getItem("lumina_monthly_prices") || "{}");
-    trackedIds.forEach(id => {
-      if (savedPrices[id]) document.getElementById("p_" + id).value = savedPrices[id];
-    });
+    async function loadProducts() {
+      try {
+        const res = await fetch('/api/admin/products?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        ALL_PRODUCTS = data.products || [];
+        CATEGORIES = data.categories || [];
+        populateCategories();
+        updateStats();
+        document.getElementById('loadingBox').style.display = 'none';
+        renderList();
+      } catch (err) {
+        // Fallback if opened locally via file:// without admin_server.py running
+        document.getElementById('loadingBox').innerHTML =
+          '⚠️ ไม่สามารถเชื่อมต่อ API หลังบ้านได้ กรุณาเปิดผ่าน <b>https://yesspec.com/admin.html</b>';
+      }
+    }
 
-    function saveMonthlyUpdate() {
-      const meta = {
-        monthLabel: document.getElementById("monthLabelInput").value.trim(),
-        campaign: document.getElementById("campaignInput").value.trim()
-      };
-      localStorage.setItem("yespec_monthly_meta", JSON.stringify(meta));
+    function populateCategories() {
+      const sel = document.getElementById('categorySelect');
+      sel.innerHTML = `<option value="all">📂 ทุกหมวดหมู่ (${CATEGORIES.length} หมวด • ${ALL_PRODUCTS.length} รุ่น)</option>` +
+        CATEGORIES.map(c => {
+          const count = ALL_PRODUCTS.filter(p => p.category_id === c.id).length;
+          return `<option value="${c.id}">${c.icon} ${c.name} (${count} รุ่น)</option>`;
+        }).join('');
+    }
 
-      const priceMap = {};
-      trackedIds.forEach(id => {
-        const val = parseInt(document.getElementById("p_" + id).value, 10);
-        if (!isNaN(val) && val > 0) priceMap[id] = val;
+    function updateStats() {
+      document.getElementById('statTotal').textContent = ALL_PRODUCTS.length;
+      document.getElementById('statShopeeDirect').textContent =
+        ALL_PRODUCTS.filter(p => p.shopee.link_type === 'exact_pdp').length + ' / ' + ALL_PRODUCTS.length;
+      document.getElementById('statLazadaDirect').textContent =
+        ALL_PRODUCTS.filter(p => p.lazada.link_type === 'exact_pdp').length + ' / ' + ALL_PRODUCTS.length;
+      document.getElementById('statWithImg').textContent =
+        ALL_PRODUCTS.filter(p => !!p.image_url).length + ' / ' + ALL_PRODUCTS.length;
+    }
+
+    function setFilter(f, btn) {
+      currentFilter = f;
+      document.querySelectorAll('#filterPills .pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderList();
+    }
+
+    function markDirty(pid) {
+      dirtyIds.add(pid);
+      const card = document.getElementById('card_' + pid);
+      if (card) card.classList.add('dirty');
+      const btnAll = document.getElementById('btnSaveAllDirty');
+      document.getElementById('dirtyCount').textContent = dirtyIds.size;
+      btnAll.style.display = dirtyIds.size > 0 ? 'inline-flex' : 'none';
+    }
+
+    function previewImgChange(pid, val) {
+      markDirty(pid);
+      const imgEl = document.getElementById('thumb_' + pid);
+      if (imgEl && val.trim()) {
+        imgEl.src = val.trim();
+      }
+    }
+
+    function escAttr(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    }
+
+    function renderList() {
+      const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+      const catId = document.getElementById('categorySelect').value;
+
+      const filtered = ALL_PRODUCTS.filter(p => {
+        if (catId !== 'all' && p.category_id !== catId) return false;
+        if (currentFilter === 'missing_sp' && p.shopee.link_type === 'exact_pdp') return false;
+        if (currentFilter === 'missing_lz' && p.lazada.link_type === 'exact_pdp') return false;
+        if (currentFilter === 'missing_img' && p.image_url) return false;
+        if (currentFilter === 'manual' && !p.has_manual_override) return false;
+        if (q) {
+          const hay = `${p.id} ${p.name} ${p.category_name} ${p.eyebrow}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
       });
-      localStorage.setItem("yespec_monthly_prices", JSON.stringify(priceMap));
-      document.getElementById("monthly-msg").textContent = "✓ อัปเดตราคา & แคมเปญประจำเดือนสำเร็จ! เปิดหน้า index.html ดูผลลัพธ์ได้เลย";
+
+      const listEl = document.getElementById('productList');
+      const displaySlice = filtered.slice(0, 80);
+
+      listEl.innerHTML = displaySlice.map(p => {
+        const spDirect = p.shopee.link_type === 'exact_pdp';
+        const lzDirect = p.lazada.link_type === 'exact_pdp';
+        const thumbHtml = p.image_url
+          ? `<img id="thumb_${p.id}" src="${escAttr(p.image_url)}" referrerpolicy="no-referrer" onerror="this.style.opacity=0.2">`
+          : `<img id="thumb_${p.id}" src="assets/yespec-logo.svg" style="opacity:0.35">`;
+
+        return `
+          <div class="prod-card" id="card_${p.id}">
+            <div class="prod-header">
+              <div class="prod-left">
+                <div class="prod-thumb-wrap">${thumbHtml}</div>
+                <div>
+                  <div style="font-size:0.78rem;color:var(--muted);font-weight:700;">
+                    ${p.category_icon} ${p.category_name} • <code>${p.id}</code>
+                    ${p.has_manual_override ? '<span class="badge badge-manual" style="margin-left:6px;">✏️ ตั้งค่าเองแล้ว</span>' : ''}
+                  </div>
+                  <div style="font-size:1.12rem;font-weight:800;margin:2px 0;">${p.name}</div>
+                  <div style="font-size:0.82rem;color:var(--muted);">
+                    ราคาโชว์หน้าเว็บปัจจุบัน: <strong style="color:var(--green);font-size:0.95rem;">฿${Number(p.display_price).toLocaleString()}</strong>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <button class="btn btn-primary" onclick="saveOneProduct('${p.id}')">
+                  💾 บันทึกรุ่นนี้ขึ้นเว็บทันที
+                </button>
+              </div>
+            </div>
+
+            <div class="stores-grid">
+              <!-- SHOPEE BOX -->
+              <div class="store-box store-shopee">
+                <div class="store-title">
+                  <span style="color:var(--orange);">🟠 Shopee Mall / ร้านใน Shopee</span>
+                  <span class="badge ${spDirect ? 'badge-direct' : 'badge-search'}">
+                    ${spDirect ? '✅ ลิงก์สินค้าตรง (Exact PDP)' : '🔍 ลิงก์ค้นหาอัตโนมัติ'}
+                  </span>
+                </div>
+                <label class="field-label">แปะลิงก์สินค้า Shopee (รองรับ s.shopee.co.th หรือลิงก์หน้าสินค้าปกติ):</label>
+                <div class="field-row">
+                  <input type="text" class="field-input" id="sp_link_${p.id}" value="${escAttr(p.shopee.link)}" placeholder="วางลิงก์ https://s.shopee.co.th/... หรือ https://shopee.co.th/..." oninput="markDirty('${p.id}')">
+                  <button class="btn btn-outline" onclick="autoExtract('${p.id}', 'shopee')" title="ดึงรูปและราคาจากลิงก์">🪄 ดึงข้อมูล</button>
+                  <a class="btn btn-outline" href="${escAttr(p.shopee.aff_link || p.shopee.link)}" target="_blank" title="เปิดลิงก์เช็คใน Shopee">↗ เปิดดู</a>
+                </div>
+                <div class="field-row-3">
+                  <div>
+                    <label class="field-label">ราคาจริง Shopee (฿)</label>
+                    <input type="number" class="field-input" id="sp_price_${p.id}" value="${p.shopee.price}" oninput="markDirty('${p.id}')">
+                  </div>
+                  <div>
+                    <label class="field-label">ราคาเต็มก่อนลด (฿)</label>
+                    <input type="number" class="field-input" id="sp_orig_${p.id}" value="${p.shopee.original_price}" oninput="markDirty('${p.id}')">
+                  </div>
+                  <div>
+                    <label class="field-label">ชื่อร้านค้าใน Shopee</label>
+                    <input type="text" class="field-input" id="sp_shop_${p.id}" value="${escAttr(p.shopee.shop_name)}" oninput="markDirty('${p.id}')">
+                  </div>
+                </div>
+              </div>
+
+              <!-- LAZADA BOX -->
+              <div class="store-box store-lazada">
+                <div class="store-title">
+                  <span style="color:var(--lazada);">🔵 Lazada LazMall / ร้านใน Lazada</span>
+                  <span class="badge ${lzDirect ? 'badge-direct' : 'badge-search'}">
+                    ${lzDirect ? '✅ ลิงก์สินค้าตรง (Exact PDP)' : '🔍 ลิงก์ค้นหาอัตโนมัติ'}
+                  </span>
+                </div>
+                <label class="field-label">แปะลิงก์สินค้า Lazada (รองรับ s.lazada.co.th หรือลิงก์หน้าสินค้าปกติ):</label>
+                <div class="field-row">
+                  <input type="text" class="field-input" id="lz_link_${p.id}" value="${escAttr(p.lazada.link)}" placeholder="วางลิงก์ https://s.lazada.co.th/... หรือ https://www.lazada.co.th/products/..." oninput="markDirty('${p.id}')">
+                  <button class="btn btn-outline" onclick="autoExtract('${p.id}', 'lazada')" title="ดึงรูปและราคาจากลิงก์">🪄 ดึงข้อมูล</button>
+                  <a class="btn btn-outline" href="${escAttr(p.lazada.aff_link || p.lazada.link)}" target="_blank" title="เปิดลิงก์เช็คใน Lazada">↗ เปิดดู</a>
+                </div>
+                <div class="field-row-3">
+                  <div>
+                    <label class="field-label">ราคาจริง Lazada (฿)</label>
+                    <input type="number" class="field-input" id="lz_price_${p.id}" value="${p.lazada.price}" oninput="markDirty('${p.id}')">
+                  </div>
+                  <div>
+                    <label class="field-label">ราคาเต็มก่อนลด (฿)</label>
+                    <input type="number" class="field-input" id="lz_orig_${p.id}" value="${p.lazada.original_price}" oninput="markDirty('${p.id}')">
+                  </div>
+                  <div>
+                    <label class="field-label">ชื่อร้านค้าใน Lazada</label>
+                    <input type="text" class="field-input" id="lz_shop_${p.id}" value="${escAttr(p.lazada.shop_name)}" oninput="markDirty('${p.id}')">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- IMAGE URL ROW -->
+            <div class="img-row">
+              <span style="font-size:0.78rem;font-weight:700;color:var(--muted);">🖼️ URL รูปสินค้าจริง (จาก Shopee / Lazada):</span>
+              <input type="text" class="field-input" style="flex:1;min-width:260px;" id="img_url_${p.id}" value="${escAttr(p.image_url)}" placeholder="วางลิงก์รูปสินค้า https://down-aka-th.img.susercontent.com/... หรือคลิกขวาคัดลอกที่อยู่รูปจาก Shopee" oninput="previewImgChange('${p.id}', this.value)">
+            </div>
+          </div>
+        `;
+      }).join('') + (filtered.length > 80
+        ? `<div style="text-align:center;padding:18px;color:var(--muted);font-weight:600;">แสดง 80 รุ่นแรกจากทั้งหมด ${filtered.length} รุ่น — ใช้ช่องค้นหาหรือเลือกหมวดหมู่ด้านบนเพื่อเจาะจงรุ่นได้ทันที</div>`
+        : '');
     }
 
-    function simulateNewMonthDrop() {
-      trackedIds.forEach(id => {
-        const discounted = Math.round((defaultPrices[id] * 0.94) / 100) * 100;
-        document.getElementById("p_" + id).value = discounted;
-      });
-      saveMonthlyUpdate();
-    }
-
-    function resetMonthlyUpdate() {
-      localStorage.removeItem("yespec_monthly_meta");
-      localStorage.removeItem("yespec_monthly_prices");
-      localStorage.removeItem("lumina_monthly_meta");
-      localStorage.removeItem("lumina_monthly_prices");
-      document.getElementById("monthLabelInput").value = "";
-      document.getElementById("campaignInput").value = "";
-      trackedIds.forEach(id => { document.getElementById("p_" + id).value = ""; });
-      document.getElementById("monthly-msg").textContent = "✓ คืนค่าเริ่มต้นเรียบร้อย";
-    }
-
-    function saveConfig() {
-      const cfg = {
-        shopee: document.getElementById("shopee").value.trim(),
-        lazada: document.getElementById("lazada").value.trim()
+    function collectProductPayload(pid) {
+      return {
+        id: pid,
+        shopee_link: document.getElementById('sp_link_' + pid)?.value.trim() || '',
+        shopee_price: Number(document.getElementById('sp_price_' + pid)?.value || 0),
+        shopee_orig_price: Number(document.getElementById('sp_orig_' + pid)?.value || 0),
+        shopee_shop: document.getElementById('sp_shop_' + pid)?.value.trim() || 'Shopee Mall Official',
+        lazada_link: document.getElementById('lz_link_' + pid)?.value.trim() || '',
+        lazada_price: Number(document.getElementById('lz_price_' + pid)?.value || 0),
+        lazada_orig_price: Number(document.getElementById('lz_orig_' + pid)?.value || 0),
+        lazada_shop: document.getElementById('lz_shop_' + pid)?.value.trim() || 'LazMall Official',
+        image_url: document.getElementById('img_url_' + pid)?.value.trim() || '',
       };
-      localStorage.setItem("yespec_affiliate_config", JSON.stringify(cfg));
-      document.getElementById("save-msg").textContent = "✓ บันทึกรหัส Shopee & Lazada สำเร็จ! เชื่อมกับหน้าเว็บลูกค้าเรียบร้อย";
     }
 
-    function calc() {
-      const v = parseFloat(document.getElementById("v-day").value) || 0;
-      const ctr = parseFloat(document.getElementById("ctr").value) || 0;
-      const cr = parseFloat(document.getElementById("cr").value) || 0;
-      const comm = parseFloat(document.getElementById("comm").value) || 0;
-      const mVisits = v * 30;
-      const clicks = Math.round(mVisits * (ctr / 100));
-      const orders = Math.round(clicks * (cr / 100));
-      const baht = Math.round(orders * comm);
-      document.getElementById("income-out").innerHTML =
-        `💰 รายได้คาดการณ์: ฿${baht.toLocaleString()} / เดือน <div style="font-size:0.88rem; font-weight:500;">(คนเข้า ${mVisits.toLocaleString()} คน/เดือน ➔ กดเช็คราคา ${clicks.toLocaleString()} คลิก ➔ ซื้อสำเร็จ ~${orders.toLocaleString()} ออเดอร์)</div>`;
+    async function saveOneProduct(pid) {
+      const payload = collectProductPayload(pid);
+      try {
+        const res = await fetch('/api/admin/save-product', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.ok) {
+          dirtyIds.delete(pid);
+          const card = document.getElementById('card_' + pid);
+          if (card) {
+            card.classList.remove('dirty');
+            card.classList.add('saved-flash');
+            setTimeout(() => card.classList.remove('saved-flash'), 1800);
+          }
+          document.getElementById('dirtyCount').textContent = dirtyIds.size;
+          document.getElementById('btnSaveAllDirty').style.display = dirtyIds.size > 0 ? 'inline-flex' : 'none';
+          showToast(`✅ บันทึก "${pid}" ขึ้นเว็บ yesspec.com เรียบร้อยแล้ว!`);
+          await loadProducts();
+        } else {
+          showToast('❌ เกิดข้อผิดพลาด: ' + (data.error || 'Unknown'));
+        }
+      } catch (e) {
+        showToast('❌ ไม่สามารถบันทึกได้ กรุณาลองอีกครั้ง');
+      }
     }
-    calc();
+
+    async function saveAllDirty() {
+      const list = Array.from(dirtyIds).map(pid => collectProductPayload(pid));
+      if (list.length === 0) return;
+      try {
+        const res = await fetch('/api/admin/save-product', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ products: list })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          dirtyIds.clear();
+          document.getElementById('btnSaveAllDirty').style.display = 'none';
+          showToast(`✅ บันทึกทั้ง ${data.updated_count} รุ่นขึ้นเว็บ yesspec.com สำเร็จ!`);
+          await loadProducts();
+        }
+      } catch (e) {
+        showToast('❌ ไม่สามารถบันทึกได้');
+      }
+    }
+
+    async function autoExtract(pid, platform) {
+      const inputId = (platform === 'shopee' ? 'sp_link_' : 'lz_link_') + pid;
+      const url = document.getElementById(inputId)?.value.trim();
+      if (!url) {
+        showToast('⚠️ กรุณาวางลิงก์ก่อนกดดึงข้อมูลครับ');
+        return;
+      }
+      showToast('⏳ กำลังดึงข้อมูลจากลิงก์...');
+      try {
+        const res = await fetch('/api/admin/extract-url', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, id: pid })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          let updatedSomething = false;
+          if (data.price && data.price > 0) {
+            document.getElementById((platform === 'shopee' ? 'sp_price_' : 'lz_price_') + pid).value = data.price;
+            updatedSomething = true;
+          }
+          if (data.original_price && data.original_price > 0) {
+            document.getElementById((platform === 'shopee' ? 'sp_orig_' : 'lz_orig_') + pid).value = data.original_price;
+          }
+          if (data.shop_name) {
+            document.getElementById((platform === 'shopee' ? 'sp_shop_' : 'lz_shop_') + pid).value = data.shop_name;
+          }
+          if (data.image_url) {
+            document.getElementById('img_url_' + pid).value = data.image_url;
+            previewImgChange(pid, data.image_url);
+            updatedSomething = true;
+          }
+          markDirty(pid);
+          if (updatedSomething) {
+            showToast('🪄 ดึงข้อมูลสำเร็จ! ตรวจสอบราคาแล้วกด "บันทึกรุ่นนี้ขึ้นเว็บทันที" ได้เลย');
+          } else {
+            showToast('ℹ️ แอปป้องกันบอทดึงราคาอัตโนมัติ กรุณากรอกตัวเลขราคาที่เห็นในแอปแล้วกดบันทึกได้เลยครับ');
+          }
+        }
+      } catch (e) {
+        showToast('ℹ️ กรุณากรอกราคาแล้วกดบันทึกได้เลยครับ');
+      }
+    }
+
+    loadProducts();
   </script>
 </body>
 </html>

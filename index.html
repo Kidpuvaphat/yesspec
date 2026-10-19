@@ -18269,7 +18269,7 @@
       });
 
       // Automatically fetch live MCP price feed from data/daily_prices_feed.json
-      fetch('data/daily_prices_feed.json')
+      fetch('data/daily_prices_feed.json?t=' + Date.now(), { cache: 'no-store' })
         .then(res => res.ok ? res.json() : null)
         .then(feed => {
           if (!feed || !feed.items_by_id) return;
@@ -18282,7 +18282,7 @@
                 if (!savedPrices[p.id] && cp) {
                   p.price = cp;
                 }
-                if (!p.img && mcpItem.image_url) {
+                if (mcpItem.image_url) {
                   p.img = mcpItem.image_url;
                 }
                 if (mcpItem.stores_sorted) {
