@@ -39,6 +39,6 @@ jobs:
         run: |
           git config user.name "yesspec-auto-bot"
           git config user.email "bot@yesspec.com"
-          git add data/ dist/
+          git add data/ dist/ sitemap.xml
           git diff --staged --quiet || git commit -m "⚡ Auto-sync Shopee & Lazada daily prices & monthly SEO data"
           git push

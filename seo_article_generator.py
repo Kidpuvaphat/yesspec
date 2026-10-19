@@ -73,13 +73,28 @@ def generate_monthly_seo_articles():
 
         for t in templates:
             html_path = articles_dir / f"{t['slug']}.html"
+            canonical_url = f"https://yesspec.com/dist/articles/{t['slug']}.html"
             html_content = f"""<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{t['title']} | yespec</title>
+  <title>{t['title']} | yesspec.com</title>
   <meta name="description" content="{t['excerpt']}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{canonical_url}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:site_name" content="yesspec.com">
+  <meta property="og:title" content="{t['title']} | yesspec.com">
+  <meta property="og:description" content="{t['excerpt']}">
+  <meta property="og:url" content="{canonical_url}">
+  <script>
+    if (window.location.hostname.endsWith('github.io')) {{
+      var targetPath = window.location.pathname.replace(/^\\/yesspec\\/?/, '/');
+      window.location.replace('https://yesspec.com' + targetPath + window.location.search + window.location.hash);
+    }}
+  </script>
   <style>
     body {{ font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans Thai', sans-serif; background:#f5f5f7; color:#1d1d1f; margin:0; line-height:1.65; }}
     .container {{ max-width: 820px; margin: 40px auto; background:#fff; padding: 44px; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); }}

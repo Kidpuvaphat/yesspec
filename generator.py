@@ -228,6 +228,7 @@ def render_vs_page(prod_a: dict, prod_b: dict, category: dict, config: dict) -> 
     offers_a_html = render_flights_offers_html(prod_a, config, f"{sub_id}_a")
     offers_b_html = render_flights_offers_html(prod_b, config, f"{sub_id}_b")
 
+    canonical_url = f"{config['domain']}/dist/{slug}.html"
     html = f"""<!DOCTYPE html>
 <html lang="th">
 <head>
@@ -235,7 +236,21 @@ def render_vs_page(prod_a: dict, prod_b: dict, category: dict, config: dict) -> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{description}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{canonical_url}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:site_name" content="yesspec.com">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{description}">
+  <meta property="og:url" content="{canonical_url}">
   <script type="application/ld+json">{json.dumps(faq_schema, ensure_ascii=False)}</script>
+  <script>
+    if (window.location.hostname.endsWith('github.io')) {{
+      var targetPath = window.location.pathname.replace(/^\\/yesspec\\/?/, '/');
+      window.location.replace('https://yesspec.com' + targetPath + window.location.search + window.location.hash);
+    }}
+  </script>
   <style>{SHARED_CSS}</style>
 </head>
 <body>
@@ -360,6 +375,7 @@ def render_category_ranking_page(products: list, category: dict, config: dict) -
           {offers_html}
         </div>"""
 
+    canonical_url = f"{config['domain']}/dist/{slug}.html"
     html = f"""<!DOCTYPE html>
 <html lang="th">
 <head>
@@ -367,6 +383,20 @@ def render_category_ranking_page(products: list, category: dict, config: dict) -
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{description}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{canonical_url}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:site_name" content="yesspec.com">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{description}">
+  <meta property="og:url" content="{canonical_url}">
+  <script>
+    if (window.location.hostname.endsWith('github.io')) {{
+      var targetPath = window.location.pathname.replace(/^\\/yesspec\\/?/, '/');
+      window.location.replace('https://yesspec.com' + targetPath + window.location.search + window.location.hash);
+    }}
+  </script>
   <style>{SHARED_CSS}</style>
 </head>
 <body>
@@ -410,6 +440,7 @@ def main():
         data = json.load(f)
 
     config = data["affiliate_config"]
+    domain = config["domain"].rstrip("/")
     categories = {c["id"]: c for c in data["categories"]}
     products = data["products"]
 
@@ -429,16 +460,35 @@ def main():
             (DIST_DIR / vs_meta["slug"]).write_text(vs_html, encoding="utf-8")
             manifest.append(vs_meta)
 
+    # Ensure any older static HTML pages in dist/ also have canonical link
+    for html_file in sorted(DIST_DIR.glob("*.html")):
+        content = html_file.read_text(encoding="utf-8")
+        if 'rel="canonical"' not in content:
+            canonical_tag = f'  <link rel="canonical" href="{domain}/dist/{html_file.name}">\n'
+            content = content.replace("</head>", f"{canonical_tag}</head>", 1)
+            html_file.write_text(content, encoding="utf-8")
+
     today = datetime.now().strftime("%Y-%m-%d")
-    sitemap_urls = "\n".join(
-        f"  <url>\n    <loc>{config['domain']}/dist/{m['slug']}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.8</priority>\n  </url>"
-        for m in manifest
-    )
+    url_entries = [
+        f"  <url>\n    <loc>{domain}/</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>"
+    ]
+    for html_file in sorted(DIST_DIR.glob("*.html")):
+        url_entries.append(
+            f"  <url>\n    <loc>{domain}/dist/{html_file.name}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>"
+        )
+    articles_dir = DIST_DIR / "articles"
+    if articles_dir.exists():
+        for art_file in sorted(articles_dir.glob("*.html")):
+            url_entries.append(
+                f"  <url>\n    <loc>{domain}/dist/articles/{art_file.name}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>"
+            )
+
     sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{sitemap_urls}
+{chr(10).join(url_entries)}
 </urlset>"""
     (DIST_DIR / "sitemap.xml").write_text(sitemap_xml, encoding="utf-8")
+    (BASE_DIR / "sitemap.xml").write_text(sitemap_xml, encoding="utf-8")
 
     manifest_summary = {
         "generated_at": datetime.now().isoformat(),
@@ -450,7 +500,7 @@ def main():
         json.dumps(manifest_summary, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    print(f"✅ สร้างหน้าเว็บ yespec + รูปสินค้า + Price Radar สำเร็จทั้งหมด {len(manifest)} หน้า!")
+    print(f"✅ สร้างหน้าเว็บ yespec + รูปสินค้า + Price Radar สำเร็จทั้งหมด {len(manifest)} หน้า (รวม Sitemap {len(url_entries)} URLs)!")
 
 
 if __name__ == "__main__":
