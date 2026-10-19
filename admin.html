@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>yesspec.com Admin Back-Office — ระบบแปะลิงก์ Shopee/Lazada, ปรับราคาจริง & รูปสินค้า</title>
+  <title>Console</title>
   <link rel="icon" type="image/svg+xml" href="assets/yespec-logo.svg">
   <style>
     :root {
@@ -22,7 +22,7 @@
       --lazada-bg: #eef2ff;
     }
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Inter", "Noto Sans Thai", "Sukhumvit Set", sans-serif; }
-    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
     .topbar {
       background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--line); padding: 12px 24px;
@@ -124,10 +124,38 @@
       box-shadow: 0 12px 32px rgba(0,0,0,0.22); z-index: 999; display: none;
     }
     .toast.show { display: block; }
+    /* Enterprise Minimal Auth Gate */
+    .auth-gate {
+      position: fixed; inset: 0; z-index: 500;
+      background: radial-gradient(circle at 50% 0%, #18181b 0%, #09090b 100%);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+    }
+    .auth-card {
+      background: rgba(24, 24, 27, 0.85); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px;
+      padding: 40px 36px; max-width: 380px; width: 100%;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55); color: #fafafa;
+    }
+    .auth-label {
+      display: block; font-size: 0.75rem; font-weight: 600; color: #a1a1aa;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+    }
+    .auth-input {
+      width: 100%; padding: 11px 14px; border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(9, 9, 11, 0.75);
+      color: #fafafa; font-size: 0.92rem; outline: none; transition: border-color 0.15s;
+    }
+    .auth-input:focus { border-color: #3b82f6; }
+    .auth-btn {
+      width: 100%; padding: 11px 16px; border-radius: 10px; border: none;
+      background: #fafafa; color: #09090b; font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: opacity 0.15s; margin-top: 8px;
+    }
+    .auth-btn:hover { opacity: 0.92; }
   </style>
 </head>
 <body>
-  <header class="topbar">
+  <header class="topbar" id="adminTopbar" style="display:none;">
     <div class="topbar-inner">
       <a class="brand" href="index.html">
         <svg width="26" height="26" viewBox="0 0 36 36" fill="none" style="border-radius:7px;">
@@ -142,57 +170,68 @@
           <line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/>
           <circle cx="24" cy="25" r="4" fill="#34d399"/>
         </svg>
-        <span>yesspec.com — ระบบหลังบ้านแปะลิงก์ Shopee / Lazada & ปรับราคาตรง</span>
+        <span>yesspec Console</span>
       </a>
       <div style="display:flex;gap:10px;align-items:center;">
         <button class="btn btn-green" id="btnSaveAllDirty" onclick="saveAllDirty()" style="display:none;">
-          💾 บันทึกที่แก้ไขทั้งหมด (<span id="dirtyCount">0</span> รุ่น)
+          บันทึกที่แก้ไขทั้งหมด (<span id="dirtyCount">0</span> รุ่น)
         </button>
-        <button class="btn btn-outline" id="btnChangePwd" onclick="openPwdModal()" style="display:none;">🔑 เปลี่ยนรหัสผ่าน</button>
-        <button class="btn btn-outline" id="btnLogout" onclick="doLogout()" style="display:none;">🚪 ออกจากระบบ</button>
-        <a class="btn btn-outline" href="index.html" target="_blank">🌐 เปิดหน้าเว็บจริง (yesspec.com) ↗</a>
+        <button class="btn btn-outline" id="btnChangePwd" onclick="openPwdModal()">ตั้งค่ารหัสผ่าน</button>
+        <button class="btn btn-outline" id="btnLogout" onclick="doLogout()">ออกจากระบบ</button>
+        <a class="btn btn-outline" href="index.html" target="_blank">เปิดหน้าเว็บ ↗</a>
       </div>
     </div>
   </header>
 
-  <!-- LOGIN OVERLAY -->
-  <div id="loginOverlay" style="position:fixed;inset:0;background:rgba(245,245,247,0.97);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;">
-    <form onsubmit="event.preventDefault(); doLogin();" style="background:#fff;border-radius:24px;padding:34px 30px;max-width:410px;width:100%;border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,0.08);">
-      <div style="text-align:center;margin-bottom:20px;">
-        <div style="font-size:2.2rem;margin-bottom:6px;">🔐</div>
-        <h2 style="margin:0 0 4px;font-size:1.3rem;">เข้าสู่ระบบหลังบ้าน yesspec.com</h2>
-        <p style="margin:0;color:var(--muted);font-size:0.86rem;">เฉพาะเจ้าของเว็บสำหรับจัดการลิงก์ Shopee / Lazada และราคาสินค้า</p>
-      </div>
-      <div style="margin-bottom:14px;">
-        <label class="field-label">👤 Admin ID (Username)</label>
-        <input type="text" id="loginUser" class="field-input" placeholder="admin หรือ kidpuvaphat" autocomplete="username" required>
+  <!-- ENTERPRISE AUTH GATE (ZERO HINTS) -->
+  <div id="loginOverlay" class="auth-gate">
+    <form onsubmit="event.preventDefault(); doLogin();" class="auth-card" autocomplete="off">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" style="border-radius:7px;flex-shrink:0;">
+          <rect width="36" height="36" rx="9" fill="#0071e3"/>
+          <line x1="9" y1="12" x2="27" y2="12" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="9" y1="12" x2="21" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="21" cy="12" r="3" fill="white"/>
+          <line x1="9" y1="18.5" x2="27" y2="18.5" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="9" y1="18.5" x2="14" y2="18.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="14" cy="18.5" r="3" fill="#7cc4ff"/>
+          <line x1="9" y1="25" x2="27" y2="25" stroke="white" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="9" y1="25" x2="24" y2="25" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="24" cy="25" r="4" fill="#34d399"/>
+        </svg>
+        <div>
+          <div style="font-size:1.02rem;font-weight:700;letter-spacing:-0.01em;color:#fafafa;">Sign in to Console</div>
+          <div style="font-size:0.76rem;color:#71717a;">Authorized access only</div>
+        </div>
       </div>
       <div style="margin-bottom:16px;">
-        <label class="field-label">🔑 Password (รหัสผ่าน)</label>
-        <input type="password" id="loginPass" class="field-input" placeholder="••••••••••••" autocomplete="current-password" required>
+        <label class="auth-label">Identity</label>
+        <input type="text" id="loginUser" class="auth-input" autocomplete="off" spellcheck="false" required>
       </div>
-      <div id="loginErr" style="color:#dc2626;font-size:0.84rem;font-weight:700;margin-bottom:12px;display:none;"></div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:0.95rem;">
-        เข้าสู่ระบบแอดมิน ➔
-      </button>
+      <div style="margin-bottom:18px;">
+        <label class="auth-label">Passkey</label>
+        <input type="password" id="loginPass" class="auth-input" autocomplete="current-password" required>
+      </div>
+      <div id="loginErr" style="color:#f87171;font-size:0.8rem;font-weight:500;margin-bottom:12px;display:none;"></div>
+      <button type="submit" class="auth-btn">Continue</button>
     </form>
   </div>
 
   <!-- CHANGE PASSWORD MODAL -->
-  <div id="pwdModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:600;display:none;align-items:center;justify-content:center;padding:20px;">
-    <form onsubmit="event.preventDefault(); submitChangePwd();" style="background:#fff;border-radius:24px;padding:28px;max-width:400px;width:100%;border:1px solid var(--line);">
-      <h3 style="margin:0 0 12px;">🔑 เปลี่ยน ID / รหัสผ่านแอดมิน</h3>
+  <div id="pwdModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:600;display:none;align-items:center;justify-content:center;padding:20px;">
+    <form onsubmit="event.preventDefault(); submitChangePwd();" style="background:#fff;border-radius:20px;padding:28px;max-width:380px;width:100%;border:1px solid var(--line);" autocomplete="off">
+      <h3 style="margin:0 0 14px;font-size:1.05rem;">เปลี่ยนข้อมูลเข้าสู่ระบบ</h3>
       <div style="margin-bottom:12px;">
-        <label class="field-label">Admin ID ใหม่</label>
-        <input type="text" id="newAdminUser" class="field-input" value="kidpuvaphat" required>
+        <label class="field-label">Identity ใหม่</label>
+        <input type="text" id="newAdminUser" class="field-input" autocomplete="off" required>
       </div>
       <div style="margin-bottom:16px;">
-        <label class="field-label">รหัสผ่านใหม่ (อย่างน้อย 6 ตัวอักษร)</label>
-        <input type="password" id="newAdminPass" class="field-input" placeholder="ตั้งรหัสผ่านใหม่ของคุณ" required>
+        <label class="field-label">Passkey ใหม่ (อย่างน้อย 8 ตัวอักษร)</label>
+        <input type="password" id="newAdminPass" class="field-input" autocomplete="new-password" required>
       </div>
       <div style="display:flex;gap:8px;justify-content:flex-end;">
         <button type="button" class="btn btn-outline" onclick="document.getElementById('pwdModal').style.display='none'">ยกเลิก</button>
-        <button type="submit" class="btn btn-primary">💾 บันทึกรหัสผ่านใหม่</button>
+        <button type="submit" class="btn btn-primary">บันทึก</button>
       </div>
     </form>
   </div>
@@ -237,7 +276,7 @@
 
     <!-- PRODUCT CARDS LIST -->
     <div id="loadingBox" style="text-align:center;padding:48px;color:var(--muted);font-weight:600;">
-      ⏳ กำลังโหลดข้อมูลสินค้าทั้งหมด 351 รุ่นจากเซิร์ฟเวอร์...
+      ⏳ กำลังโหลดข้อมูล...
     </div>
     <div class="prod-list" id="productList"></div>
   </main>
@@ -280,23 +319,22 @@
         const data = await res.json();
         if (data.ok && data.token) {
           localStorage.setItem('yesspec_admin_token', data.token);
-          showToast('🔓 เข้าสู่ระบบสำเร็จ!');
+          document.getElementById('loginPass').value = '';
           await loadProducts();
         } else {
-          errEl.textContent = '❌ ' + (data.error || 'ID หรือรหัสผ่านไม่ถูกต้อง');
+          errEl.textContent = data.error || 'Access denied';
           errEl.style.display = 'block';
         }
       } catch (e) {
-        errEl.textContent = '❌ ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้';
+        errEl.textContent = 'Service unavailable';
         errEl.style.display = 'block';
       }
     }
 
     function doLogout() {
       localStorage.removeItem('yesspec_admin_token');
+      document.getElementById('adminTopbar').style.display = 'none';
       document.getElementById('mainDashboard').style.display = 'none';
-      document.getElementById('btnChangePwd').style.display = 'none';
-      document.getElementById('btnLogout').style.display = 'none';
       document.getElementById('loginOverlay').style.display = 'flex';
     }
 
@@ -318,18 +356,19 @@
           localStorage.setItem('yesspec_admin_token', data.token);
           document.getElementById('pwdModal').style.display = 'none';
           document.getElementById('newAdminPass').value = '';
-          showToast('✅ เปลี่ยนรหัสผ่านแอดมินเรียบร้อยแล้ว!');
+          showToast('บันทึกข้อมูลเข้าสู่ระบบใหม่เรียบร้อย');
         } else {
-          showToast('❌ ' + (data.error || 'เปลี่ยนรหัสผ่านไม่สำเร็จ'));
+          showToast(data.error || 'ไม่สามารถเปลี่ยนรหัสผ่านได้');
         }
       } catch (e) {
-        showToast('❌ เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน');
+        showToast('เกิดข้อผิดพลาด');
       }
     }
 
     async function loadProducts() {
       const token = getAdminToken();
       if (!token) {
+        document.getElementById('adminTopbar').style.display = 'none';
         document.getElementById('loginOverlay').style.display = 'flex';
         document.getElementById('mainDashboard').style.display = 'none';
         return;
@@ -348,16 +387,14 @@
         ALL_PRODUCTS = data.products || [];
         CATEGORIES = data.categories || [];
         document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('adminTopbar').style.display = 'block';
         document.getElementById('mainDashboard').style.display = 'block';
-        document.getElementById('btnChangePwd').style.display = 'inline-flex';
-        document.getElementById('btnLogout').style.display = 'inline-flex';
         populateCategories();
         updateStats();
         document.getElementById('loadingBox').style.display = 'none';
         renderList();
       } catch (err) {
-        document.getElementById('loadingBox').innerHTML =
-          '⚠️ ไม่สามารถเชื่อมต่อ API หลังบ้านได้ กรุณาเปิดผ่าน <b>https://yesspec.com/admin.html</b>';
+        document.getElementById('loadingBox').innerHTML = 'Service unavailable';
       }
     }
 
