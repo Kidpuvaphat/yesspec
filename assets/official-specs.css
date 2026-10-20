@@ -1,0 +1,12 @@
+/* Model facts are separate from seller titles, prices and sales. */
+.listing .official-specs { margin-top:10px; padding-top:9px; border-top:1px solid #e5e9e6; color:#47534b; font-size:11px; }
+.listing .official-label { font-weight:650; color:#166534; }
+.listing .official-specs[data-official-status="pending"] { color:#737b76; border:0; padding:0; }
+.listing .official-specs[data-official-status="pending"] .official-label { color:#737b76; font-weight:400; }
+.listing .official-specs dl { margin:6px 0; }
+.listing .official-specs dl div { display:flex; gap:8px; align-items:baseline; }
+.listing .official-specs dt { color:#66716a; flex:0 1 145px; }
+.listing .official-specs dd { margin:0; flex:1; overflow-wrap:anywhere; }
+.listing .official-source { color:#166534; text-underline-offset:2px; }
+.listing .official-checked { color:#737b76; font-size:10px; }
+@media(max-width:600px) { .listing .official-specs dl div { display:block; margin:6px 0; } }

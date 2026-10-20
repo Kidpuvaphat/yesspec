@@ -184,6 +184,12 @@
       background: rgba(0,0,0,0.06);
       color: #000;
     }
+    @media (max-width: 600px) {
+      .global-nav-content { padding: 0 8px; gap: 4px; }
+      .global-nav-links { display: none; }
+      .global-nav-actions { gap: 6px; }
+      .global-nav-actions .nav-icon-btn { font-size: 11px; }
+    }
 
     /* ============================================================
        2. APPLE CURTAIN FLYOUT MEGA-MENU (All 22 Categories)
@@ -1669,6 +1675,22 @@
       background: linear-gradient(90deg, #f3fcf6 0%, #ffffff 26%);
       box-shadow: 0 8px 24px rgba(22, 163, 74, 0.11);
     }
+    .collected-sales-note, .collected-sales-panel {
+      background: #f0f7ff;
+      border: 1px solid #cbdff5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #243b53;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+    .collected-sales-note { margin: 0 0 14px; }
+    .collected-sales-panel { grid-column: 1 / -1; }
+    .collected-sales-heading { display: flex; gap: 6px 12px; flex-wrap: wrap; font-size: 14px; }
+    .collected-sales-panel a { color: #1456a0; font-weight: 700; }
+    .collected-sales-panel p { margin: 4px 0; }
     @media (max-width: 820px) {
       .nbs-spec-row-card {
         grid-template-columns: 1fr;
@@ -1825,6 +1847,15 @@
       display: flex;
     }
   </style>
+  <script src="assets/affiliate-links.js?v=20261019-affiliate2"></script>
+  <script src="assets/market-data.js?v=20261019-affiliate2"></script>
+  <link rel="stylesheet" href="assets/category-top20.css?v=20261019-top20">
+  <link rel="stylesheet" href="assets/official-specs.css?v=20261019-official">
+  <script src="assets/official-specs.js?v=20261019-official"></script>
+  <link rel="stylesheet" href="assets/ranking-offers.css?v=20261020-channels">
+  <script src="assets/ranking-offers.js?v=20261020-channels"></script>
+  <script src="assets/shopee-ranking.js?v=20261020-price-check"></script>
+  <script src="assets/category-top20.js?v=20261020-channels"></script>
 </head>
 <body>
 
@@ -1862,6 +1893,7 @@
       </ul>
 
       <div class="global-nav-actions">
+        <a href="shopee-ranking.html" style="color:#166534;font-weight:700;font-size:12px;text-decoration:none;white-space:nowrap;">ขายดี Shopee ↗</a>
         <button class="nav-icon-btn" onclick="toggleCurtain(undefined, true)" style="background:rgba(0,0,0,0.05);padding:5px 12px;font-weight:600;">🔍 ค้นหา / 32 หมวด</button>
       </div>
     </div>
@@ -1933,7 +1965,7 @@
       <section class="home-section-block">
         <div class="section-header-row" style="margin-bottom:18px;">
           <h2 class="section-headline" style="font-size:26px;">
-            ตัวจบยอดขายอันดับ #1. <span style="color:var(--text-sub);font-weight:500;">รุ่นขายดี &amp; คุ้มสุดของแต่ละหมวด.</span>
+            รุ่นแนะนำสำหรับเปรียบเทียบ. <span style="color:var(--text-sub);font-weight:500;">สเปกและข้อมูลราคาของแต่ละหมวด.</span>
           </h2>
           <div style="display:flex;gap:6px;flex-wrap:wrap;" id="hallFilterButtons">
             <button class="budget-pill active" onclick="renderHomeHallOfFame('all', this)" style="padding:6px 14px;font-size:12.5px;">ทั้งหมด</button>
@@ -1962,7 +1994,7 @@
         <div class="home-grid-2">
           <div class="compact-list-card">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-              <h3 style="font-size:20px;font-weight:700;">📉 ราคาหล่นแรงวันนี้</h3>
+              <h3 style="font-size:20px;font-weight:700;">ส่วนลดจากราคาหน้าร้านที่ตรวจพบ</h3>
               <span style="font-size:12px;color:var(--apple-green);font-weight:600;">🟢 ชี้เป้าตะกร้าที่ถูกที่สุด</span>
             </div>
             <div id="homePriceDropGrid"></div>
@@ -1993,13 +2025,26 @@
           </h1>
           <span id="activePillarBadge" style="font-size:11.5px;font-weight:600;color:var(--text-light);"></span>
         </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-          <button class="tool-trigger-btn" onclick="document.getElementById('viewCompare').scrollIntoView({behavior:'smooth'})" style="border-color:#16a34a;color:#15803d;background:#f0fdf4;font-weight:700;padding:6px 12px;font-size:12px;">
-            ⚔️ ตารางเทียบ 2 รุ่น
-          </button>
-        </div>
       </section>
 
+      <section id="categoryTop20" aria-labelledby="categoryTop20Title">
+        <div class="catalog-heading">
+          <div><p class="catalog-eyebrow">SHOPEE · PRODUCT FEED</p><h2 id="categoryTop20Title">Top 20 ยอดขายในหมวดนี้</h2></div>
+          <span id="categoryTop20Count" role="status">กำลังโหลด…</span>
+        </div>
+        <p id="categoryTop20Meta" class="catalog-meta"></p>
+        <div class="catalog-scope"><strong>ยอดขายไม่ระบุช่วงเวลา</strong><p>เรียงจากยอดขายมากไปน้อยเฉพาะสินค้าที่ผ่านเกณฑ์ในไฟล์ที่ได้รับ ยังไม่ยืนยันยอด 30 วันหรืออันดับสูงสุดของ Shopee ทั้งหมด แต่ละรายการคือหน้าสินค้าของร้านหนึ่งร้าน อาจรวมหลายตัวเลือก และไม่บวกยอดข้ามร้าน</p></div>
+        <div class="catalog-toolbar">
+          <label for="categoryTop20Search">ค้นหาใน Top 20 นี้<input id="categoryTop20Search" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></label>
+          <button id="categoryTop20Clear" type="button" disabled>ล้างคำค้น</button>
+          <a id="categoryTop20Review" href="shopee-ranking.html?source=feed">ดูเกณฑ์คัดเลือกและรายการที่ต้องตรวจ ↗</a>
+        </div>
+        <p class="catalog-price-note">ราคาแสดงจากฟีดหรือที่ผู้ดูแลกรอก พร้อมระบุราคา VIP / เงื่อนไข · ตรวจตัวเลือกและราคาปัจจุบันก่อนซื้อ · ช่องทางซื้อแสดงเมื่อมีลิงก์ตะกร้าเท่านั้น<br>ข้อมูลที่ยังยืนยันไม่ได้แสดง “—” · สเปกจากเว็บผู้ผลิตยืนยันเฉพาะรุ่น ไม่ยืนยันตัวเลือกที่ตรงกับราคาหรือการรับประกันของร้าน</p>
+        <div id="categoryTop20Results" class="ranking-list" aria-busy="true">กำลังโหลด Top 20…</div>
+      </section>
+
+    <!-- Retained for legacy editorial helpers, excluded from category browsing. -->
+    <div id="legacyCategoryTools" hidden>
     <!-- Legacy top bars hidden so users focus 100% on the 2-column Spec Finder & Comparison -->
     <div style="display:none;">
       <button id="btnCalcTrigger"></button>
@@ -2054,7 +2099,8 @@
             <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
               <select id="categorySortSelect" class="apple-select" style="padding:6px 10px;font-size:12px;min-width:190px;font-weight:700;" onchange="setCategorySortMode(this.value)">
                 <option value="best_value">🏆 คุ้มค่าสูงสุด (สเปก/ราคา)</option>
-                <option value="popular">🔥 ยอดนิยม (รุ่นขายดี)</option>
+                <option value="collected_sales">ยอดขายที่เก็บได้ — ไม่ระบุช่วงเวลา</option>
+                <option value="popular">ยอดขาย Shopee 30 วัน (ตรวจสอบแล้ว)</option>
                 <option value="spec_score">⚡ ประสิทธิภาพสูงสุด</option>
                 <option value="price_asc">💸 ราคา: ต่ำสุด → สูงสุด</option>
                 <option value="price_desc">💎 ราคา: สูงสุด → ต่ำสุด</option>
@@ -2070,7 +2116,15 @@
           </div>
 
           <div class="nbs-active-chips" id="nbsActiveFilterChips"></div>
+          <a id="shopeeCategoryRankingLink" href="shopee-ranking.html" style="display:block;margin:10px 0;padding:10px 14px;background:#edf7ef;border:1px solid #d1e6d7;border-radius:10px;color:#166534;font-size:12px;font-weight:700;text-decoration:none;">ดู 20 รายการขายดี Shopee ในหมวดนี้ · ยอดขายไม่ระบุช่วงเวลา ↗</a>
           <div style="display:none;"><h2 id="lineupTitle"></h2><p id="lineupSubtitle"></p></div>
+
+          <div id="collectedSalesNote" class="collected-sales-note" hidden>
+            <strong>อันดับทดลองจากยอดขายที่เก็บได้ • ไม่ระบุช่วงเวลา</strong><br>
+            เรียงมากไปน้อยจากค่าที่แสดง ใช้รายการที่มียอดสูงสุดหนึ่งรายการต่อรุ่น ไม่บวกยอดข้ามร้านหรือแพลตฟอร์ม
+            ตัวเลขย่อและเครื่องหมาย + ทำให้อันดับเป็นเพียงการเปรียบเทียบเบื้องต้น ยอดรวมทั้งหน้าสินค้าอาจรวมหลายตัวเลือกหรือหลายรุ่น
+            รุ่นที่ยังไม่พบยอดขายอยู่ท้ายรายการและไม่จัดอันดับ
+          </div>
 
           <div id="lineupGrid" class="nbs-spec-list"></div>
         </div>
@@ -2105,6 +2159,7 @@
       <button id="btnToggleAllArticles"></button>
       <div id="seoArticlesGrid"></div>
     </section>
+    </div><!-- legacyCategoryTools -->
     </div>
   </main>
 
@@ -2229,7 +2284,6 @@
                             "name": "Samsung Galaxy A07",
                             "tagline": "รุ่นใหม่ขายดีถล่มทลาย ยอดขายทะลุ 20,000+ เครื่อง หน้าจอใหญ่ แบตอึด 5,000 mAh ศูนย์ไทย",
                             "price": 3390,
-                            "soldCount": 20000,
                             "emoji": "📱",
                             "colors": [
                                   "#1d1d1f",
@@ -15732,6 +15786,7 @@
           }
     ];
 
+    let CATEGORY_TOP20_DATA = null;
     let activeCategoryId = 'smartphone';
     let activeBudgetTier = 'all';
     let customMin = null;
@@ -15742,97 +15797,27 @@
       return CATEGORIES.find(c => c.id === catId) || CATEGORIES[0];
     }
 
+    function escapeAttr(value) {
+      return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+    }
+
     function formatTHB(num) {
-      return '฿' + Number(num).toLocaleString('th-TH');
+      return num == null || !Number.isFinite(Number(num)) || Number(num) <= 0 ? 'รอตรวจราคา' : '฿' + Number(num).toLocaleString('th-TH');
     }
 
     let LIVE_MCP_FEED = null;
 
     function getStoresForProduct(product) {
-      const savedConfig = JSON.parse(localStorage.getItem('yespec_affiliate_config') || localStorage.getItem('lumina_affiliate_config') || '{}');
-      const cleanSubId = 'yespec' + String(product.id).replace(/[^a-zA-Z0-9]/g, '').slice(0, 20);
-      const shopeeAffId = savedConfig.shopee || '15385610012';
-      const lazadaId = savedConfig.lazada || '267671179';
-      const scale = product._priceScale || 1;
-      const scalePrice = (val) => scale === 1 ? Number(val) : Math.round((Number(val) * scale) / 100) * 100 - 10;
+      const item = LIVE_MCP_FEED?.items_by_id?.[product.id];
+      return MarketData.offers(product, item).map(o => ({...o, store: escapeAttr(o.store), shopName: escapeAttr(o.shopName)}));
+    }
 
-      const feedItem = (LIVE_MCP_FEED && LIVE_MCP_FEED.items_by_id) ? LIVE_MCP_FEED.items_by_id[product.id] : null;
-      const rawStores = (product.mcpStores && product.mcpStores.length > 0)
-        ? product.mcpStores
-        : (feedItem && feedItem.stores_sorted ? feedItem.stores_sorted : null);
+    function formatOfferPrice(offer) {
+      return formatTHB(offer?.netPrice) + (offer?.verified && offer.priceBasis === 'member' ? ' (VIP)' : '');
+    }
 
-      const lazExlaz = 'e_B7mvt0tli55sbdaDA0DvZOb5ctG2SI%252F1oCEiHEl%252FUv6VEqD9MYhqUaBZjUeQcq%252FEsHyU0g7Ue2BaQSn2j07SOpy%252BluXF85Cop2wKbp7jb3SMVF0silKVnV0eDLXAhVqJ0%252F%252BjTUiUr75fykH4ULsnb5jPvKUp8JpoyrI0XKdux4HApXygm91QTIosaAsYiMVgksbiVaOKUnAW%252FECuMLE35Q%253D%253D';
-      const buildScaledLink = (platform, queryText) => {
-        if (platform === 'shopee') {
-          const spOrigin = `https://shopee.co.th/search?keyword=${encodeURIComponent(queryText)}&shopType=1`;
-          return `https://s.shopee.co.th/an_redir?origin_link=${encodeURIComponent(spOrigin)}&affiliate_id=${shopeeAffId}&sub_id=${cleanSubId}----`;
-        }
-        return `https://www.lazada.co.th/catalog/?q=${encodeURIComponent(queryText)}&service=official&exlaz=${lazExlaz}&dsource=share&laz_share_info=4161151791_1_9300_110172189818_4161153791_null&laz_token=08d572ad001a0d070782467eba3d16d9&sub_id1=${cleanSubId}&aff_id=${lazadaId}`;
-      };
-
-      if (rawStores && rawStores.length > 0) {
-        const twoStores = rawStores.filter(st => {
-          const pf = (st.platform || st.store || '').toLowerCase();
-          return pf.includes('shopee') || pf.includes('laz');
-        });
-        const list = (twoStores.length > 0 ? twoStores : rawStores).slice(0, 2);
-        return list.map((st, idx) => {
-          const netP = scalePrice(st.net_price);
-          const origP = scalePrice(st.original_price || st.net_price);
-          const pf = st.platform || (st.store.toLowerCase().includes('shopee') ? 'shopee' : 'lazada');
-          const finalUrl = (scale !== 1 && product._scaledQuery)
-            ? buildScaledLink(pf, product._scaledQuery)
-            : (st.link || buildScaledLink(pf, product._scaledQuery || product.name));
-          const linkType = st.link_type || (st.is_direct_product ? 'exact_pdp' : 'mall_exact_query');
-          return {
-            store: st.store,
-            platform: pf,
-            shopName: st.shop_name || st.store,
-            badge: st.badge || 'ของแท้ประกันศูนย์ 100%',
-            netPrice: netP,
-            originalPrice: origP,
-            discountPct: st.discount_pct || '',
-            shipping: st.shipping || 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-            imageUrl: product.img || st.image_url || (feedItem && feedItem.image_url) || '',
-            url: finalUrl,
-            linkType,
-            best: idx === 0
-          };
-        });
-      }
-
-      const base = product.price;
-      const shopeeUrl = buildScaledLink('shopee', product._scaledQuery || product.name);
-      const lazadaUrl = buildScaledLink('lazada', product._scaledQuery || product.name);
-
-      return [
-        {
-          store: 'Shopee Mall Official',
-          platform: 'shopee',
-          shopName: 'Shopee Mall Official',
-          badge: 'ร้านค้าทางการ Shopee Mall',
-          netPrice: base,
-          originalPrice: base,
-          discountPct: '',
-          shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-          url: shopeeUrl,
-          linkType: 'mall_exact_query',
-          best: true
-        },
-        {
-          store: 'Lazada LazMall Official',
-          platform: 'lazada',
-          shopName: 'LazMall Official Store',
-          badge: 'ร้านค้าทางการ LazMall',
-          netPrice: base,
-          originalPrice: base,
-          discountPct: '',
-          shipping: 'ส่งฟรี • ผ่อน 0% 10 เดือน',
-          url: lazadaUrl,
-          linkType: 'mall_exact_query',
-          best: false
-        }
-      ];
+    function formatProductPrice(product) {
+      return formatOfferPrice(getStoresForProduct(product).find(o => o.verified));
     }
 
     // =========================================================================
@@ -15856,7 +15841,7 @@
           .filter(c => {
             if (!q) return true;
             const matchCat = c.name.toLowerCase().includes(q) || c.heroSub.toLowerCase().includes(q);
-            const matchProd = c.products.some(pr => pr.name.toLowerCase().includes(q) || pr.tagline.toLowerCase().includes(q));
+            const matchProd = CATEGORY_TOP20_DATA?.categories.find(category => category.id === c.id)?.items.some(item => `${item.title} ${item.shop_name}`.toLowerCase().includes(q));
             return matchCat || matchProd;
           })
           .sort((a, b) => a.num - b.num);
@@ -16395,8 +16380,8 @@
       // 1) Air Conditioners: Dynamically scale all 5 AC models to the chosen BTU (9k / 12k / 18k / 24k)
       if (cat.id === 'aircon' && opt && opt.btu) {
         return cat.products.map(p => {
-          const scaledPrice = opt.priceScale === 1 ? p.price : (Math.round((p.price * opt.priceScale) / 100) * 100 - 10);
-          const scaledPrev = opt.priceScale === 1 ? p.prevPrice : (Math.round(((p.prevPrice || Math.round(p.price * 1.15)) * opt.priceScale) / 100) * 100);
+          const scaledPrice = opt.priceScale === 1 ? getEffectiveLivePrice(p) : null;
+          const scaledPrev = null;
           const scaledSpecs = p.specs.map((s, idx) => {
             if (idx === 0) {
               return {
@@ -16425,8 +16410,8 @@
         return cat.products.map(p => {
           const is55Base = p.id === 'tcl-55-4k-smart' || p.id === 'hisense-55e6n' || /55["\s]|55\s*นิ้ว/i.test(p.name);
           const baseScale = is55Base ? (opt.priceScale / 0.76) : opt.priceScale;
-          const scaledPrice = Math.abs(baseScale - 1) < 0.01 ? p.price : (Math.round((p.price * baseScale) / 100) * 100 - 10);
-          const scaledPrev = Math.abs(baseScale - 1) < 0.01 ? p.prevPrice : (Math.round(((p.prevPrice || Math.round(p.price * 1.15)) * baseScale) / 100) * 100);
+          const scaledPrice = Math.abs(baseScale - 1) < 0.01 ? getEffectiveLivePrice(p) : null;
+          const scaledPrev = null;
           const newName = p.name
             .replace(/(55|65|75)"/g, `${opt.tvSize}"`)
             .replace(/(55|65|75)\s*นิ้ว/g, `${opt.tvSize} นิ้ว`)
@@ -16478,7 +16463,7 @@
       // 4) Budget-based categories (e.g. Smartphone)
       if (cfg.useBudgets && decisionId && decisionId !== 'all') {
         const bObj = cat.budgets.find(b => b.id === decisionId);
-        return cat.products.filter(p => p.tier === decisionId || (bObj && p.price >= bObj.min && p.price <= bObj.max));
+        return cat.products.filter(p => { const price = getEffectiveLivePrice(p); return price != null && bObj && price >= bObj.min && price <= bObj.max; });
       }
 
       return cat.products;
@@ -16793,9 +16778,9 @@
       });
 
       // Price sub-brackets based on category price range
-      const prices = products.map(p => p.price);
-      const minP = Math.min(...prices);
-      const maxP = Math.max(...prices);
+      const prices = products.map(getEffectiveLivePrice).filter(p => p != null);
+      const minP = prices.length ? Math.min(...prices) : 0;
+      const maxP = prices.length ? Math.max(...prices) : 0;
       let priceBrackets = [];
       if (cat.id === 'smartphone' && cat.budgets) {
         priceBrackets = cat.budgets.filter(b => b.id !== 'all').map(b => ({
@@ -16803,7 +16788,7 @@
           label: b.label.replace(/🔥\s*/, '').replace(/\s*\(.*?\)/, ''),
           min: b.min,
           max: b.max,
-          count: products.filter(p => p.price >= b.min && p.price <= b.max).length
+          count: products.filter(p => getEffectiveLivePrice(p) != null && getEffectiveLivePrice(p) >= b.min && getEffectiveLivePrice(p) <= b.max).length
         })).filter(b => b.count > 0);
       } else if (maxP - minP > 100) {
         const mid1 = Math.round((minP + (maxP - minP) * 0.36) / 50) * 50;
@@ -16814,7 +16799,7 @@
           { id: 'p_high', label: `ตัวท็อปพรีเมียม (> ${formatTHB(mid2)})`, min: mid2 + 1, max: 9999999 }
         ].map(b => ({
           ...b,
-          count: products.filter(p => p.price >= b.min && p.price <= b.max).length
+          count: products.filter(p => getEffectiveLivePrice(p) != null && getEffectiveLivePrice(p) >= b.min && getEffectiveLivePrice(p) <= b.max).length
         })).filter(b => b.count > 0);
       }
 
@@ -16852,7 +16837,7 @@
 
     function setCategorySpecSearch(val) {
       categorySpecSearchQuery = (val || '').trim();
-      renderLineup(getCategory(activeCategoryId));
+      ShopeeCategoryCatalog.search(categorySpecSearchQuery);
     }
 
     function setCategorySortMode(mode) {
@@ -16935,74 +16920,23 @@
     }
 
     function selectCategory(catId, skipScroll = false, initialDecisionId = null) {
+      const cat = getCategory(catId);
       isHomeMode = false;
-      activeCategoryId = catId;
-      customMin = null;
-      customMax = null;
-      activeUseCase = 'all';
-      activeFacetFilters = { brands: [], priceTiers: [], spec0: [], spec1: [], spec2: [], spec3: [] };
-      categorySpecSearchQuery = '';
-      categorySortMode = 'best_value';
+      activeCategoryId = cat.id;
       vsCompareQueue = [];
       renderFloatingVsTray();
-
-      const sInput = document.getElementById('categorySpecSearchInput');
-      if (sInput) sInput.value = '';
-      const sSort = document.getElementById('categorySortSelect');
-      if (sSort) sSort.value = 'best_value';
-
-      const cat = getCategory(catId);
-      const decCfg = getPrimaryDecisionConfig(cat);
-
-      const homeSec = document.getElementById('homeHubSection');
-      const catSec = document.getElementById('categoryViewSection');
-      if (homeSec) homeSec.style.display = 'none';
-      if (catSec) catSec.style.display = 'block';
-
-      const navHomeBtn = document.getElementById('navBtnHome');
-      if (navHomeBtn) navHomeBtn.classList.remove('active');
-
-      // Keep full product lineup available in Left Sidebar; only Aircon/TV use scale defaults
-      if (catId === 'aircon' || catId === 'tv') {
-        activeBudgetTier = initialDecisionId || decCfg.defaultId || 'all';
-      } else if (decCfg.useBudgets) {
-        activeBudgetTier = 'all';
-        if (initialDecisionId && initialDecisionId !== 'all') {
-          activeFacetFilters.priceTiers = [initialDecisionId];
-        }
-      } else {
-        activeBudgetTier = initialDecisionId || 'all';
-      }
-
+      document.getElementById('homeHubSection').style.display = 'none';
+      document.getElementById('categoryViewSection').style.display = 'block';
+      document.getElementById('navBtnHome')?.classList.remove('active');
       document.querySelectorAll('#globalNavPillars .global-nav-item[data-pillar]').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.pillar === cat.pillar);
       });
-
       renderChapterNav();
-      const activeChap = document.getElementById(`chap_${catId}`);
-      if (activeChap) activeChap.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
-      // Populate min/max placeholders based on category prices
-      const prices = cat.products.map(p => p.price);
-      const minP = Math.min(...prices);
-      const maxP = Math.max(...prices);
-      document.getElementById('customMinPrice').value = '';
-      document.getElementById('customMaxPrice').value = '';
-      document.getElementById('customMinPrice').placeholder = minP.toLocaleString();
-      document.getElementById('customMaxPrice').placeholder = maxP.toLocaleString();
-      const sumEl = document.getElementById('activeBudgetSummary');
-      if (sumEl) sumEl.textContent = '';
-
-      setViewMode('lineup');
+      document.getElementById(`chap_${cat.id}`)?.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'});
       renderHeroAndControls(cat);
-      renderLineup(cat);
-      renderStepups(cat);
-      renderSeoArticles(cat);
-      initCompareSelectors(cat);
-
-      if (!skipScroll) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      setViewMode('lineup');
+      ShopeeCategoryCatalog.show(cat.id);
+      if (!skipScroll) window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     // =========================================================================
@@ -17070,25 +17004,10 @@
     }
 
     function setViewMode(mode) {
-      activeViewMode = mode;
-      document.getElementById('segLineup').classList.toggle('active', mode === 'lineup');
-      document.getElementById('segCompare').classList.toggle('active', mode === 'compare');
-      document.getElementById('segStepup').classList.toggle('active', mode === 'stepup');
-      const segArt = document.getElementById('segArticles');
-      if (segArt) segArt.classList.toggle('active', mode === 'articles');
-
-      document.getElementById('viewLineup').style.display = 'block';
-      document.getElementById('viewCompare').style.display = 'block';
-
-      if (mode === 'compare') {
-        document.getElementById('viewCompare').scrollIntoView({ behavior: 'smooth' });
-      } else if (mode === 'stepup') {
-        const stEl = document.getElementById('bentoStepupSection');
-        if (stEl) { stEl.style.display = 'block'; stEl.scrollIntoView({ behavior: 'smooth' }); }
-      } else if (mode === 'articles') {
-        const arEl = document.getElementById('seoArticlesSection');
-        if (arEl) { arEl.style.display = 'block'; arEl.scrollIntoView({ behavior: 'smooth' }); }
-      }
+      // All category entry points share the feed Top 20; legacy SKU tools stay out of this view.
+      activeViewMode = 'lineup';
+      document.getElementById('legacyCategoryTools').hidden = true;
+      document.getElementById('categoryTop20').hidden = false;
     }
 
     // =========================================================================
@@ -17214,7 +17133,7 @@
       if (text.includes('★5') || text.includes('★3') || text.includes('5 ดาว')) score += 40;
       if (text.includes('elite') || text.includes('a20') || text.includes('a19') || text.includes('m4') || text.includes('m3') || text.includes('9300+')) score += 65;
 
-      score += (product.price || 1000) * 0.002 + (specIdx % 2 === 0 ? 2 : -1);
+      // Price evidence is evaluated separately from specifications.
       return { score, reason };
     }
 
@@ -17223,77 +17142,59 @@
     }
 
     function getEffectiveLivePrice(p) {
-      const offers = getStoresForProduct(p);
-      return (offers[0] && offers[0].netPrice) ? offers[0].netPrice : p.price;
+      return getStoresForProduct(p).find(o => o.verified)?.netPrice ?? null;
     }
 
     function getProductDiscountMetrics(p) {
-      const offers = getStoresForProduct(p);
-      const best = offers[0] || { netPrice: p.price, originalPrice: p.price };
-      const livePrice = best.netPrice || p.price;
-      const origPrice = Math.max(livePrice, best.originalPrice || p.prevPrice || livePrice);
-      const discountBaht = Math.max(0, origPrice - livePrice);
-      const discountPct = origPrice > livePrice ? Math.round((discountBaht / origPrice) * 100) : 0;
-      return { livePrice, origPrice, discountBaht, discountPct };
+      const best = getStoresForProduct(p).find(o => o.verified);
+      const livePrice = best?.netPrice ?? null;
+      const origPrice = best?.originalPrice ?? livePrice;
+      const discountBaht = livePrice != null && origPrice != null ? Math.max(0, origPrice - livePrice) : 0;
+      return {livePrice, origPrice, discountBaht, discountPct: discountBaht > 0 ? Math.round(discountBaht / origPrice * 100) : 0};
     }
 
     function getProductSoldCount(p) {
-      const mcpSold = LIVE_MCP_FEED && LIVE_MCP_FEED.items_by_id && LIVE_MCP_FEED.items_by_id[p.id]
-        ? Number(LIVE_MCP_FEED.items_by_id[p.id].sold_count || 0)
-        : 0;
-      return Math.max(Number(p.soldCount || 0), mcpSold);
+      // A global total cannot be inferred from unrelated marketplace listings.
+      return null;
     }
 
-    function formatSoldCount(sold) {
-      const n = Number(sold || 0);
-      if (n <= 0) return '';
-      if (n >= 10000 && n % 10000 === 0) return `${(n / 10000).toLocaleString()} หมื่น+`;
-      return `${n.toLocaleString()}+`;
+    function formatSoldCount(sold) { return sold == null ? '' : Number(sold).toLocaleString('th-TH'); }
+
+    function getCollectedSalesOffer(p) {
+      return MarketData.collectedSalesOffer(getStoresForProduct(p));
+    }
+
+    function compareCollectedSalesProducts(a, b) {
+      return MarketData.comparePrices(getCollectedSalesOffer(a)?.sales.value ?? null, getCollectedSalesOffer(b)?.sales.value ?? null, true);
+    }
+
+    function renderCollectedSales(p, rank) {
+      const offer = getCollectedSalesOffer(p);
+      if (!offer) return '<div class="collected-sales-panel">ยังไม่พบยอดขายที่เก็บได้ — ไม่จัดอันดับ (ไม่ใช่ยอดขาย 0)</div>';
+      const sales = offer.sales;
+      const precision = {exact: 'ตัวเลขตามที่แสดง', lower_bound: 'ค่าขั้นต่ำ (+)', approximate: 'ค่าประมาณ'}[sales.precision];
+      const platform = offer.platform === 'shopee' ? 'Shopee' : 'Lazada';
+      const basis = {sku: 'ราคาตัวเลือกนี้', member: 'ราคาเฉพาะสมาชิก / VIP', coupon: 'ราคามีเงื่อนไขคูปอง'}[offer.priceBasis] || 'ราคามีเงื่อนไข';
+      const collectedAt = new Date(offer.observedAt).toLocaleString('th-TH', {timeZone: 'Asia/Bangkok'});
+      return `<div class="collected-sales-panel" data-sales-value="${sales.value}">
+        <div class="collected-sales-heading"><strong>อันดับทดลอง #${rank}</strong><strong>ยอดขาย ${escapeAttr(sales.raw)}</strong><span>ไม่ระบุช่วงเวลา</span></div>
+        <p>${precision} • ${sales.scope === 'sku' ? 'ยอดเฉพาะตัวเลือกนี้' : 'ยอดรวมทั้งหน้าสินค้า อาจรวมหลายตัวเลือก/รุ่น'}</p>
+        <p>ต้นทาง: ${platform} • ${offer.store}<br>ตัวเลือก: ${escapeAttr(offer.variant)}</p>
+        <p>ราคา ณ วันที่เก็บ: <strong>${formatTHB(offer.observedPrice)}</strong> • ${basis}${offer.availability === 'out_of_stock' ? ' • สินค้าหมด ณ วันที่เก็บ' : ''}<br>เก็บเมื่อ ${collectedAt} (เวลาไทย)</p>
+        <a href="${escapeAttr(offer.productUrl)}" target="_blank" rel="noopener sponsored nofollow">ดูสินค้าที่ใช้จัดอันดับบน ${platform} ↗</a>
+      </div>`;
     }
 
     function getValueForMoneyScore(p) {
-      const specScore = Math.max(40, getTotalProductSpecScore(p));
-      const { livePrice, discountPct } = getProductDiscountMetrics(p);
-      const offers = getStoresForProduct(p);
-      const verifiedBonus = offers.some(o => o.linkType === 'exact_pdp') ? 1.08 : 1.0;
-      const sold = getProductSoldCount(p);
-      // Real market sales proof bonus (e.g. 20,000 sold beats 10,000 sold when specs/price are close)
-      const soldBonus = sold > 0 ? (1 + Math.min(0.22, Math.log10(Math.max(10, sold)) * 0.045)) : 1.0;
-      const priceFactor = Math.pow(Math.max(80, livePrice), 0.36);
-      const discountBonus = 1 + (discountPct * 0.012);
-      return (specScore / priceFactor) * discountBonus * verifiedBonus * soldBonus;
+      const price = getEffectiveLivePrice(p);
+      return price == null ? 0 : Math.max(40, getTotalProductSpecScore(p)) / Math.pow(Math.max(80, price), 0.36);
     }
 
-    const POPULAR_RANK_IDS = [
-      'samsung-a55-5g', 'redmi-note-14-5g', 'poco-f6-pro', 'iphone-16-128', 'xiaomi-14t', 'iqoo-z9x-5g', 'samsung-s26-ultra',
-      'ipad-gen11', 'ipad-air-m3', 'redmi-pad-se',
-      'carrier-xinverter', 'tcl-tpro-12k', 'mitsu-heavy-yvs', 'daikin-zesth',
-      'asus-vivobook-15', 'lenovo-loq-rtx', 'acer-aspire-lite', 'macbook-air-13',
-      'tcl-55-4k-smart', 'lg-oled-c6-65', 'tcl-c855-65',
-      'lg-2door-14q', 'samsung-rt22-8q', 'samsung-ecobubble-10', 'lg-aidd-12kg',
-      'samsung-heatpump-9', 'xiaomi-purifier-4', 'xiaomi-x20-plus', 'roborock-s8-maxv',
-      'dreame-r10', 'dyson-v12-slim', 'pana-dh-3ns', 'stiebel-copper-45',
-      'xiaomi-ro-600g', 'xiaomi-airfryer-65', 'philips-airfryer-xxl', 'nespresso-essenza',
-      'huawei-gt5', 'redmi-watch-5-lite', 'sony-wh1000xm5', 'airpods-pro-2',
-      'lg-ultragear-27', 'xiaomi-a24i-100hz', 'bewell-ergo-lite', 'ergotrend-dual-mesh',
-      'jbl-charge-5', 'marshall-acton-3', '70mai-a810', 'dji-pocket-3',
-      'dreame-hair-glory', 'biore-uv-aqua', 'anessa-gold-milk', 'mizumi-uv-water',
-      'vichy-dercos', 'sensodyne-repair', 'dentiste-anticavity', 'bioderma-atoderm',
-      'blackmores-bio-c', 'mega-nat-c', 'on-gold-standard', 'plantae-plant-protein',
-      'vida-collagen-q10', 'kaniva-indoor', 'royal-canin-indoor', 'buzz-netura-dog', 'kasty-tofu-litter'
-    ];
-
+    const POPULAR_RANK_IDS = [];
     function getPopularityScore(p) {
-      const sold = getProductSoldCount(p);
-      if (sold > 0) {
-        // Real verified sales volume entered in Admin Console always ranks directly by units sold!
-        return 10000 + sold;
-      }
-      const idx = POPULAR_RANK_IDS.indexOf(p.id);
-      let score = idx >= 0 ? (200 - idx * 2) : 50;
-      const offers = getStoresForProduct(p);
-      if (offers.some(o => o.linkType === 'exact_pdp')) score += 25;
-      return score + getValueForMoneyScore(p) * 0.5;
+      const offer = getStoresForProduct(p).find(o => o.platform === 'shopee' && o.verified);
+      const sales = offer?.sales;
+      return sales?.period === '30d' && sales?.scope === 'listing' && sales?.precision === 'exact' ? (sales.value ?? -1) : -1;
     }
 
     function getNewestReleaseScore(p) {
@@ -17490,13 +17391,18 @@
     }
 
     function renderLineup(cat) {
+      // A legacy price-feed refresh must not replace the feed ranking or reset a user's search.
+      return;
+    }
+
+    function renderLegacyLineup(cat) {
       let baseProducts = [];
       const decCfg = getPrimaryDecisionConfig(cat);
       const activeDecOpt = (decCfg.options || []).find(o => o.id === activeBudgetTier);
       const decisionProducts = getProductsForCategoryDecision(cat, activeBudgetTier);
 
       if (customMin !== null || customMax !== null) {
-        baseProducts = decisionProducts.filter(p => p.price >= customMin && p.price <= customMax);
+        baseProducts = decisionProducts.filter(p => getEffectiveLivePrice(p) != null && getEffectiveLivePrice(p) >= customMin && getEffectiveLivePrice(p) <= customMax);
       } else {
         baseProducts = decisionProducts;
       }
@@ -17512,7 +17418,7 @@
         if (activeFacetFilters.priceTiers.length > 0) {
           const matchesPriceTier = activeFacetFilters.priceTiers.some(tid => {
             const pb = facetSchema.priceBrackets.find(b => b.id === tid);
-            return pb && p.price >= pb.min && p.price <= pb.max;
+            return pb && getEffectiveLivePrice(p) != null && getEffectiveLivePrice(p) >= pb.min && getEffectiveLivePrice(p) <= pb.max;
           });
           if (!matchesPriceTier) return false;
         }
@@ -17531,17 +17437,20 @@
         return true;
       });
 
-      // 7-Mode Comprehensive Sorting Engine
+      // Keep collected, unscoped sales separate from verified 30-day popularity.
       if (categorySortMode === 'best_value' || categorySortMode === 'recommended') {
+        if (categorySortMode === 'best_value') filtered = filtered.filter(p => getEffectiveLivePrice(p) != null);
         filtered = [...filtered].sort((a, b) => getValueForMoneyScore(b) - getValueForMoneyScore(a));
       } else if (categorySortMode === 'popular') {
-        filtered = [...filtered].sort((a, b) => getPopularityScore(b) - getPopularityScore(a));
+        filtered = filtered.filter(p => getPopularityScore(p) >= 0).sort((a, b) => getPopularityScore(b) - getPopularityScore(a));
+      } else if (categorySortMode === 'collected_sales') {
+        filtered = [...filtered].sort(compareCollectedSalesProducts);
       } else if (categorySortMode === 'spec_score') {
         filtered = [...filtered].sort((a, b) => getTotalProductSpecScore(b) - getTotalProductSpecScore(a));
       } else if (categorySortMode === 'price_asc') {
-        filtered = [...filtered].sort((a, b) => getEffectiveLivePrice(a) - getEffectiveLivePrice(b));
+        filtered = [...filtered].sort((a, b) => MarketData.comparePrices(getEffectiveLivePrice(a), getEffectiveLivePrice(b)));
       } else if (categorySortMode === 'price_desc') {
-        filtered = [...filtered].sort((a, b) => getEffectiveLivePrice(b) - getEffectiveLivePrice(a));
+        filtered = [...filtered].sort((a, b) => MarketData.comparePrices(getEffectiveLivePrice(a), getEffectiveLivePrice(b), true));
       } else if (categorySortMode === 'discount_desc') {
         filtered = [...filtered].sort((a, b) => {
           const dA = getProductDiscountMetrics(a);
@@ -17556,7 +17465,23 @@
 
       const activeChoiceTitle = (activeDecOpt && activeDecOpt.id !== 'all') ? ` • ${activeDecOpt.label}` : '';
       document.getElementById('lineupTitle').textContent = `${cat.name}${activeChoiceTitle}`;
+      document.getElementById('shopeeCategoryRankingLink').href = `shopee-ranking.html#${encodeURIComponent(cat.id)}`;
       document.getElementById('resultCountBadge').textContent = `${filtered.length} รุ่น`;
+
+      const showCollectedSales = categorySortMode === 'collected_sales';
+      document.getElementById('collectedSalesNote').hidden = !showCollectedSales;
+      const salesRanks = new Map();
+      if (showCollectedSales) {
+        let previousValue = null, rank = 0;
+        filtered.forEach((p, index) => {
+          const value = getCollectedSalesOffer(p)?.sales.value;
+          if (value == null) return;
+          if (value !== previousValue) rank = index + 1;
+          salesRanks.set(p.id, rank);
+          previousValue = value;
+        });
+        document.getElementById('resultCountBadge').textContent = `${salesRanks.size} รุ่นมียอดขาย / ทั้งหมด ${filtered.length} รุ่น`;
+      }
 
       const grid = document.getElementById('lineupGrid');
       if (filtered.length === 0) {
@@ -17564,7 +17489,7 @@
         grid.innerHTML = `
           <div style="grid-column:1/-1;background:#fff;border-radius:18px;padding:32px;text-align:center;">
             <div style="font-size:32px;margin-bottom:8px;">🔍</div>
-            <h3 style="font-size:17px;margin-bottom:6px;">ไม่พบรุ่นที่ตรงกับตัวกรอง</h3>
+            <h3 style="font-size:17px;margin-bottom:6px;">${['popular','best_value'].includes(categorySortMode) ? 'ยังมีข้อมูลที่ตรวจสอบไม่เพียงพอสำหรับอันดับนี้' : 'ไม่พบรุ่นที่ตรงกับตัวกรอง'}</h3>
             <button class="btn-apple-primary" onclick="resetPriceFilter()" style="max-width:180px;margin-top:8px;">ล้างตัวกรองทั้งหมด</button>
           </div>
         `;
@@ -17580,8 +17505,8 @@
           const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
           const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
 
-          const spVerified = shopeeOffer.linkType === 'exact_pdp';
-          const lzVerified = lazadaOffer.linkType === 'exact_pdp';
+          const spVerified = shopeeOffer.verified;
+          const lzVerified = lazadaOffer.verified;
           const hasVerifiedPrice = spVerified || lzVerified;
           const { livePrice, discountPct } = getProductDiscountMetrics(p);
 
@@ -17595,7 +17520,7 @@
           const soldQty = getProductSoldCount(p);
 
           return `
-            <article class="nbs-spec-row-card">
+            <article class="nbs-spec-row-card" data-product-id="${escapeAttr(p.id)}">
               <!-- Col 1: Product Image + +VS Button -->
               <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
                 <a href="${bestOffer.url}" target="_blank" rel="noopener" class="nbs-row-thumb" title="ไปที่ตะกร้าสินค้าจริง">
@@ -17628,19 +17553,20 @@
                 <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:4px;">
                   <span style="font-size:11.5px;color:var(--text-main);font-weight:600;">ราคา</span>
                   <span style="font-size:20px;font-weight:800;color:#e11d48;line-height:1.1;">
-                    ${hasVerifiedPrice ? '' : '~'}${livePrice.toLocaleString()}
+                    ${formatOfferPrice(bestOffer)}
                   </span>
                   <span style="font-size:11.5px;color:var(--text-main);font-weight:600;">บาท</span>
                 </div>
                 <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:#ee4d2d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
-                  <span>🟠 Shopee Mall</span>
-                  <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
+                  <span>🟠 Shopee</span>
+                  <strong>${formatOfferPrice(shopeeOffer)} &gt;</strong>
                 </a>
                 <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:#0f146d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 10px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
-                  <span>🔵 LazMall</span>
-                  <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
+                  <span>🔵 Lazada</span>
+                  <strong>${formatOfferPrice(lazadaOffer)} &gt;</strong>
                 </a>
               </div>
+              ${showCollectedSales ? renderCollectedSales(p, salesRanks.get(p.id)) : ''}
             </article>
           `;
         }).join('');
@@ -17655,8 +17581,8 @@
         const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
         const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
 
-        const spVerified = shopeeOffer.linkType === 'exact_pdp';
-        const lzVerified = lazadaOffer.linkType === 'exact_pdp';
+        const spVerified = shopeeOffer.verified;
+        const lzVerified = lazadaOffer.verified;
         const hasVerifiedPrice = spVerified || lzVerified;
         const { livePrice, discountPct } = getProductDiscountMetrics(p);
         const isVsSelected = vsCompareQueue.includes(p.id);
@@ -17671,7 +17597,7 @@
           : `<div class="apple-card-emoji-fallback">${p.emoji || cat.icon}</div>`;
 
         return `
-          <article class="apple-card" style="padding:16px 16px 18px;align-items:stretch;text-align:center;">
+          <article class="apple-card" data-product-id="${escapeAttr(p.id)}" style="padding:16px 16px 18px;align-items:stretch;text-align:center;">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:2;">
               <span style="font-size:10.5px;font-weight:800;background:#f1f5f9;color:#334155;padding:2px 8px;border-radius:99px;">${brandName}</span>
               <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end;">
@@ -17691,6 +17617,8 @@
               ${p.name}
             </h3>
 
+            ${showCollectedSales ? renderCollectedSales(p, salesRanks.get(p.id)) : ''}
+
             <!-- 4 Single-Line Core Spec Bullets -->
             <ul class="nbs-core-spec-list" style="margin-bottom:12px;">
               ${(p.specs || []).slice(0, 4).map(s => `<li title="${s.big}">${s.big}</li>`).join('')}
@@ -17699,19 +17627,19 @@
             <div style="border-top:1px dashed #cbd5e1;padding-top:10px;margin-bottom:10px;display:flex;align-items:baseline;justify-content:center;gap:5px;">
               <span style="font-size:13px;color:var(--text-main);font-weight:600;">ราคา</span>
               <span style="font-size:22px;font-weight:800;color:#e11d48;line-height:1.1;">
-                ${hasVerifiedPrice ? '' : '~'}${livePrice.toLocaleString()}
+                ${formatOfferPrice(bestOffer)}
               </span>
               <span style="font-size:13px;color:var(--text-main);font-weight:600;">บาท</span>
             </div>
 
             <div style="display:flex;flex-direction:column;gap:5px;">
               <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="background:#ee4d2d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 11px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
-                <span>🟠 Shopee Mall</span>
-                <strong>${formatTHB(shopeeOffer.netPrice)} &gt;</strong>
+                <span>🟠 Shopee</span>
+                <strong>${formatOfferPrice(shopeeOffer)} &gt;</strong>
               </a>
               <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="background:#0f146d;color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;padding:7px 11px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;">
-                <span>🔵 LazMall</span>
-                <strong>${formatTHB(lazadaOffer.netPrice)} &gt;</strong>
+                <span>🔵 Lazada</span>
+                <strong>${formatOfferPrice(lazadaOffer)} &gt;</strong>
               </a>
             </div>
           </article>
@@ -17737,7 +17665,7 @@
       const decisionList = getProductsForCategoryDecision(cat, activeBudgetTier);
       const list = decisionList.length >= 2 ? decisionList : cat.products;
       const optionsHtml = list.map(p =>
-        `<option value="${p.id}">[${p.bracketLabel || ''}] ${p.name} — ${formatTHB(p.price)}</option>`
+        `<option value="${p.id}">[${p.bracketLabel || ''}] ${p.name} — ${formatProductPrice(p)}</option>`
       ).join('');
       selA.innerHTML = optionsHtml;
       selB.innerHTML = optionsHtml;
@@ -17804,11 +17732,13 @@
       const imgA = pA.img || bestA.imageUrl || '';
       const imgB = pB.img || bestB.imageUrl || '';
 
-      const diffPrice = Math.abs(bestA.netPrice - bestB.netPrice);
-      const isACheaper = bestA.netPrice <= bestB.netPrice;
+      const comparable = bestA.verified && bestB.verified;
+      const diffPrice = comparable ? Math.abs(bestA.netPrice - bestB.netPrice) : 0;
+      const isACheaper = comparable && bestA.netPrice < bestB.netPrice;
+      const isBCheaper = comparable && bestB.netPrice < bestA.netPrice;
 
       let winsA = isACheaper ? 1 : 0;
-      let winsB = !isACheaper ? 1 : 0;
+      let winsB = isBCheaper ? 1 : 0;
       const reasonsA = [];
       const reasonsB = [];
 
@@ -17823,11 +17753,11 @@
           <div class="compare-topic-banner">💰 ราคาตะกร้าถูกสุด</div>
           <div class="compare-cell-box ${isACheaper ? 'compare-cell-win' : ''}" style="padding:12px;">
             ${isACheaper ? `<div class="spec-win-badge">🟢 ถูกกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
-            <div class="compare-cell-val" style="font-size:20px;">${formatTHB(bestA.netPrice)}</div>
+            <div class="compare-cell-val" style="font-size:20px;">${formatOfferPrice(bestA)}</div>
           </div>
-          <div class="compare-cell-box ${!isACheaper ? 'compare-cell-win' : ''}" style="padding:12px;">
-            ${!isACheaper ? `<div class="spec-win-badge">🟢 ถูกกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
-            <div class="compare-cell-val" style="font-size:20px;">${formatTHB(bestB.netPrice)}</div>
+          <div class="compare-cell-box ${isBCheaper ? 'compare-cell-win' : ''}" style="padding:12px;">
+            ${isBCheaper ? `<div class="spec-win-badge">🟢 ถูกกว่า ${diffPrice > 0 ? formatTHB(diffPrice) : ''}</div>` : ''}
+            <div class="compare-cell-val" style="font-size:20px;">${formatOfferPrice(bestB)}</div>
           </div>
         </div>
       `;
@@ -17865,15 +17795,15 @@
       const overallReasons = (winsA >= winsB ? reasonsA : reasonsB).slice(0, 3);
 
       const renderStoreButtonsMini = (offers) => {
-        const minP = Math.min(...offers.map(o => o.netPrice));
+        const minP = Math.min(...offers.filter(o => o.verified).map(o => o.netPrice));
         return `<div style="display:flex;flex-direction:column;gap:5px;margin-top:8px;">` +
           offers.slice(0, 2).map(o => {
-            const isWin = o.netPrice === minP;
+            const isWin = o.verified && o.netPrice === minP;
             const bg = isWin ? '#16a34a' : (o.platform === 'shopee' ? '#ee4d2d' : '#0f146d');
-            const icon = o.platform === 'shopee' ? '🟠 Shopee' : '🔵 LazMall';
+            const icon = o.platform === 'shopee' ? '🟠 Shopee' : '🔵 Lazada';
             return `<a href="${o.url}" target="_blank" rel="noopener" style="background:${bg};color:#fff;text-decoration:none;padding:7px 11px;border-radius:99px;font-size:11.5px;font-weight:700;display:flex;justify-content:space-between;align-items:center;">
               <span>${icon} ${isWin ? '🏆' : ''}</span>
-              <strong>${formatTHB(o.netPrice)} &gt;</strong>
+              <strong>${formatOfferPrice(o)} &gt;</strong>
             </a>`;
           }).join('') +
         `</div>`;
@@ -17889,7 +17819,7 @@
             <span style="font-size:12.5px;color:#15803d;margin-left:6px;">(${overallReasons.join(' • ')})</span>
           </div>
           <a href="${overallWinnerBest.url}" target="_blank" rel="noopener" style="background:#16a34a;color:#fff;text-decoration:none;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;">
-            🛒 ตะกร้าผู้ชนะ ${formatTHB(overallWinnerBest.netPrice)} &gt;
+            🛒 ตะกร้าผู้ชนะ ${formatOfferPrice(overallWinnerBest)} &gt;
           </a>
         </div>
 
@@ -17930,64 +17860,17 @@
       if (!product) return;
 
       const offers = getStoresForProduct(product);
-      const bestOffer = offers[0] || { netPrice: product.price, originalPrice: product.price + 1500, store: 'Official Mall' };
-      const livePrice = bestOffer.netPrice || product.price;
-      const avg30d = Math.max(bestOffer.originalPrice || 0, Math.round(livePrice * 1.15));
-      const monthlyDrop = Math.max(50, avg30d - livePrice);
-      const installment = Math.round(livePrice / 10);
-
+      const best = offers.find(o => o.verified);
       document.getElementById('modalProductName').textContent = product.name;
-      document.getElementById('modalProductSub').textContent = `เปรียบเทียบราคาจริงจาก Shopee Mall และ Lazada LazMall • ร้านที่ราคาถูกที่สุดจะแสดงกรอบสีเขียว (กดเข้าหน้าตะกร้าสินค้าได้ทันที)`;
-
-      document.getElementById('modalFlightsSignal').innerHTML = `
-        <div class="flights-signal-box">
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-            <div style="font-size:14px;font-weight:800;color:#15803d;">
-              🏆 ตะกร้าที่ชนะเรื่องราคาถูกสุดวันนี้: ${bestOffer.store} — ${formatTHB(livePrice)} (ประหยัด ${formatTHB(monthlyDrop)})
-            </div>
-            <span style="font-size:12px;font-weight:600;color:var(--text-sub);">
-              💳 ผ่อน 0% 10 เดือน เพียง ${formatTHB(installment)}/ด.
-            </span>
-          </div>
-          <div class="signal-meter-bar">
-            <div class="signal-dot" title="ราคาปัจจุบันอยู่ในโซนถูกที่สุด"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-sub);">
-            <span><strong style="color:#15803d;">🟢 ราคาถูกสุดวันนี้ (${formatTHB(livePrice)})</strong></span>
-            <span>ราคาเฉลี่ยทั่วไป (${formatTHB(avg30d)})</span>
-            <span>ราคาเปิดตัว (${formatTHB(Math.round(avg30d * 1.08))})</span>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('modalOffersList').innerHTML = offers.map((o) => {
-        const thumbImg = o.imageUrl || product.img || '';
-        const isVerified = o.linkType === 'exact_pdp';
-        return `
-          <div class="flight-offer-row ${o.best ? 'best' : ''}">
-            <div style="display:flex;align-items:center;gap:14px;">
-              ${thumbImg ? `<a href="${o.url}" target="_blank" rel="noopener"><img src="${thumbImg}" alt="${product.name}" referrerpolicy="no-referrer" loading="lazy" style="width:64px;height:64px;object-fit:contain;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,0.08);padding:4px;flex-shrink:0;" /></a>` : ''}
-              <div>
-                <div style="font-weight:800;font-size:15px;">
-                  ${o.store}
-                  <span style="font-size:11.5px;color:#15803d;margin-left:6px;">ของแท้ประกันศูนย์</span>
-                </div>
-                <div style="font-size:12.5px;color:var(--text-sub);margin-top:4px;">
-                  ${o.shipping} • ผ่อน 0% เดือนละ ~${formatTHB(Math.round(o.netPrice / 10))}
-                </div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:14px;">
-              <div style="text-align:right;">
-                <div class="flight-price" style="color:#15803d;">${isVerified ? formatTHB(o.netPrice) : `~${formatTHB(o.netPrice)}`}</div>
-                <div style="font-size:11px;color:var(--text-light);">${isVerified ? 'ราคาหน้าร้าน' : 'ราคากลางอ้างอิง'}</div>
-              </div>
-              <a href="${o.url}" target="_blank" rel="noopener" class="flight-buy-btn" style="background:#16a34a;font-weight:800;">
-                🛒 ${isVerified ? 'ไปที่ตะกร้าสินค้า' : 'เช็คราคาร้านทางการ'} &gt;
-              </a>
-            </div>
-          </div>
-        `;
+      document.getElementById('modalProductSub').textContent = 'เปรียบเทียบตัวเลือกเดียวกัน • ราคาไม่รวมค่าส่งและคูปองเฉพาะบุคคล';
+      document.getElementById('modalFlightsSignal').textContent = best
+        ? `ราคาต่ำสุดในข้อมูลที่ตรวจพบ: ${formatOfferPrice(best)} • ตรวจ ${new Date(best.observedAt).toLocaleString('th-TH')}`
+        : 'ยังไม่มีราคาที่ตรวจสอบภายใน 48 ชั่วโมง จึงยังสรุปร้านที่ถูกที่สุดไม่ได้';
+      document.getElementById('modalOffersList').innerHTML = offers.map(o => {
+        const sales = o.sales;
+        const period = {lifetime: 'สะสม', '30d': '30 วัน', unknown: 'ไม่ระบุช่วงเวลา'}[sales?.period] || 'ไม่ระบุช่วงเวลา';
+        const salesText = o.verified && sales?.raw ? `ยอดขายที่แสดง: ${escapeAttr(sales.raw)} (${period}; ${sales.scope === 'sku' ? 'ตัวเลือกนี้' : 'รวมทั้งหน้าสินค้า'})` : 'ยังไม่มีข้อมูลยอดขายที่ตรวจสอบ';
+        return `<div class="flight-offer-row ${o.best ? 'best' : ''}"><div><strong>${o.platform === 'shopee' ? 'Shopee' : 'Lazada'} • ${o.store}</strong><p>${escapeAttr(o.variant)}</p><p>${salesText}</p><small>${o.observedAt ? 'ตรวจเมื่อ ' + new Date(o.observedAt).toLocaleString('th-TH') : 'รอตรวจสอบต้นทาง'}${o.status === 'stale' ? ' • ข้อมูลเก่า' : ''}</small></div><div><strong>${formatOfferPrice(o)}</strong><br><a class="flight-buy-btn" href="${o.url}" target="_blank" rel="noopener sponsored nofollow">${o.linkType === 'exact_pdp' ? 'ดูสินค้า' : 'เปิดลิงก์ / ค้นหา'}</a></div></div>`;
       }).join('');
 
       document.getElementById('priceModal').classList.add('open');
@@ -18250,7 +18133,7 @@
       const top3 = cat.products.slice(0, 3);
       const lines = [
         `📌 โพยเทียบสเปก & ราคา ${cat.icon} ${cat.name} (อัปเดตล่าสุดจาก yesspec.com):`,
-        ...top3.map((p, i) => `${i + 1}. ${p.name} — ${formatTHB(p.price)} | จุดเด่น: ${p.eyebrow}`),
+        ...top3.map((p, i) => `${i + 1}. ${p.name} — ${formatProductPrice(p)} | จุดเด่น: ${p.eyebrow}`),
         `✈️ เช็คราคาตะกร้าถูกสุด Shopee Mall vs Lazada LazMall ได้ที่ yesspec.com เลย!`
       ].join('\n');
 
@@ -18266,7 +18149,7 @@
       const idB = document.getElementById('selectModelB').value;
       const pA = cat.products.find(p => p.id === idA) || cat.products[0];
       const pB = cat.products.find(p => p.id === idB) || cat.products[1] || cat.products[0];
-      const text = `⚔️ ช่วยเลือกหน่อย! ระหว่าง:\n1) ${pA.name} (${formatTHB(pA.price)}) — ${pA.eyebrow}\n2) ${pB.name} (${formatTHB(pB.price)}) — ${pB.eyebrow}\nส่วนต่าง ${formatTHB(Math.abs(pA.price - pB.price))} เอาตัวไหนดี? (เทียบจาก yesspec.com)`;
+      const text = `⚔️ ช่วยเลือกหน่อย! ระหว่าง:\n1) ${pA.name} (${formatProductPrice(pA)}) — ${pA.eyebrow}\n2) ${pB.name} (${formatProductPrice(pB)}) — ${pB.eyebrow}\nส่วนต่าง ${formatTHB(getEffectiveLivePrice(pA) != null && getEffectiveLivePrice(pB) != null ? Math.abs(getEffectiveLivePrice(pA) - getEffectiveLivePrice(pB)) : null)} เอาตัวไหนดี? (เทียบจาก yesspec.com)`;
 
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text).catch(() => {});
@@ -18307,30 +18190,9 @@
       const labelMonth = savedMeta.monthLabel || `${THAI_MONTHS[mIdx]} ${yr}`;
       const campaignLabel = savedMeta.campaign || MONTHLY_CAMPAIGNS[mIdx];
 
-      document.getElementById('monthlyBadgeText').textContent = `อัปเดตราคาและจัดอันดับประจำเดือน: ${labelMonth}`;
+      document.getElementById('monthlyBadgeText').textContent = `รายการประจำเดือน: ${labelMonth}`;
       document.getElementById('monthlyCampaignText').textContent = `🔥 แคมเปญเดือนนี้: ${campaignLabel}`;
-      document.getElementById('nextUpdateText').textContent = `รอบอัปเดตถัดไป: 1 ${THAI_MONTHS[nextMIdx]} ${nextYr}`;
-
-      // Apply any monthly price overrides saved from Admin Monthly Update Center
-      const savedPrices = JSON.parse(localStorage.getItem('yespec_monthly_prices') || localStorage.getItem('lumina_monthly_prices') || '{}');
-      CATEGORIES.forEach(cat => {
-        cat.products.forEach(p => {
-          if (savedPrices[p.id]) {
-            p.prevPrice = p.price;
-            p.price = Number(savedPrices[p.id]);
-            p.monthlyDrop = Math.max(0, p.prevPrice - p.price);
-          }
-          // Auto-reassign smartphone price bracket if price shifted into a cheaper bracket!
-          if (cat.id === 'smartphone') {
-            if (p.price < 5000) { p.tier = 'u5k'; p.bracketLabel = 'งบต่ำกว่า 5,000฿'; }
-            else if (p.price <= 10000) { p.tier = '5k_10k'; p.bracketLabel = 'งบ 5,000 – 10,000฿'; }
-            else if (p.price <= 15000) { p.tier = '10k_15k'; p.bracketLabel = 'งบ 10,000 – 15,000฿'; }
-            else if (p.price <= 20000) { p.tier = '15k_20k'; p.bracketLabel = 'งบ 15,000 – 20,000฿'; }
-            else if (p.price <= 30000) { p.tier = '20k_30k'; p.bracketLabel = 'งบ 20,000 – 30,000฿'; }
-            else { p.tier = '30k_plus'; p.bracketLabel = 'งบ 30,000฿ ขึ้นไป'; }
-          }
-        });
-      });
+      document.getElementById('nextUpdateText').textContent = `ราคาแสดงเฉพาะข้อมูลที่ตรวจสอบภายใน 48 ชั่วโมง`;
 
       // Automatically fetch live MCP price feed from data/daily_prices_feed.json
       fetch('data/daily_prices_feed.json?t=' + Date.now(), { cache: 'no-store' })
@@ -18345,30 +18207,13 @@
                 if (mcpItem.name) {
                   p.name = mcpItem.name;
                 }
-                if (mcpItem.sold_count !== undefined && Number(mcpItem.sold_count) > 0) {
-                  p.soldCount = Number(mcpItem.sold_count);
-                }
-                const cp = Number(mcpItem.cheapest_price);
-                if (!savedPrices[p.id] && cp) {
-                  p.prevPrice = p.price;
-                  p.price = cp;
-                  p.monthlyDrop = Math.max(0, p.prevPrice - p.price);
-                }
                 if (mcpItem.image_url) {
                   p.img = mcpItem.image_url;
                 }
                 if (mcpItem.stores_sorted) {
                   p.mcpStores = mcpItem.stores_sorted;
                 }
-                // Re-evaluate budget bracket dynamically after real price update
-                if (cat.id === 'smartphone') {
-                  if (p.price < 5000) { p.tier = 'u5k'; p.bracketLabel = 'งบต่ำกว่า 5,000฿'; }
-                  else if (p.price <= 10000) { p.tier = '5k_10k'; p.bracketLabel = 'งบ 5,000 – 10,000฿'; }
-                  else if (p.price <= 15000) { p.tier = '10k_15k'; p.bracketLabel = 'งบ 10,000 – 15,000฿'; }
-                  else if (p.price <= 20000) { p.tier = '15k_20k'; p.bracketLabel = 'งบ 15,000 – 20,000฿'; }
-                  else if (p.price <= 30000) { p.tier = '20k_30k'; p.bracketLabel = 'งบ 20,000 – 30,000฿'; }
-                  else { p.tier = '30k_plus'; p.bracketLabel = 'งบ 30,000฿ ขึ้นไป'; }
-                }
+
               }
             });
           });
@@ -18376,9 +18221,6 @@
             renderHomeHallOfFame('all');
             renderHomeTrendingBattles();
             renderHomePriceDropRadar();
-          } else {
-            renderLineup(getCategory(activeCategoryId));
-            renderHeadToHead();
           }
         })
         .catch(() => {});
@@ -18408,7 +18250,7 @@
           type: 'top10',
           badge: `🏆 TOP 10 ประจำเดือน • ${mLabel}`,
           title: `จัดอันดับ Top 10 ${cat.name}น่าซื้อที่สุด ประจำเดือน${mLabel} (ครบทุกงบ)`,
-          desc: `โพยสรุป ${cat.name} รุ่นไหนคุ้มสุดในเดือน${mLabel} คัดเน้นๆ ตั้งแต่รุ่นประหยัดงบ ${formatTHB(p0.price)} ไปจนถึงตัวท็อปเรือธง ${formatTHB(pLast.price)} พร้อมตารางเช็คราคาถูกสุด`,
+          desc: `โพยสรุป ${cat.name} รุ่นไหนคุ้มสุดในเดือน${mLabel} คัดเน้นๆ ตั้งแต่รุ่นประหยัดงบ ${formatProductPrice(p0)} ไปจนถึงตัวท็อปเรือธง ${formatProductPrice(pLast)} พร้อมตารางเช็คราคาถูกสุด`,
           readTime: 'อ่าน 6 นาที'
         },
         {
@@ -18426,7 +18268,7 @@
           type: 'versus',
           badge: `⚔️ มวยคู่เอกประจำเดือน • ${mLabel}`,
           title: `เทียบชัดๆ ${p0.name} vs ${p1.name} (${mLabel}) ซื้อรุ่นไหนจบกว่ากัน?`,
-          desc: `เปรียบเทียบสเปกตัวต่อตัว จุดเด่น-จุดสังเกต และส่วนต่างราคา ${formatTHB(Math.abs(p1.price - p0.price))} รุ่นไหนเหมาะกับการใช้งานของคุณที่สุด`,
+          desc: `เปรียบเทียบสเปกตัวต่อตัว จุดเด่น-จุดสังเกต และส่วนต่างราคา ${formatTHB(getEffectiveLivePrice(p1) != null && getEffectiveLivePrice(p0) != null ? Math.abs(getEffectiveLivePrice(p1) - getEffectiveLivePrice(p0)) : null)} รุ่นไหนเหมาะกับการใช้งานของคุณที่สุด`,
           readTime: 'อ่าน 4 นาที'
         }
       ];
@@ -18490,7 +18332,7 @@
             <div style="font-size:12px;font-weight:700;color:#15803d;margin-bottom:2px;">
               🟢 อันดับ #${idx + 1} ประจำงบ (${p.bracketLabel || p.eyebrow})
             </div>
-            <div style="font-size:18px;font-weight:700;margin-bottom:4px;">${p.name} — ${formatTHB(p.price)}</div>
+            <div style="font-size:18px;font-weight:700;margin-bottom:4px;">${p.name} — ${formatProductPrice(p)}</div>
             <div style="font-size:13px;color:var(--text-sub);margin-bottom:6px;">${p.tagline}</div>
             <div style="font-size:12.5px;color:var(--text-main);"><strong>ทำไมถึงชนะในงบนี้:</strong> ${p.verdict}</div>
           </div>
@@ -18559,7 +18401,6 @@
 
     function jumpToCategoryBracket(catId, tierId) {
       selectCategory(catId, true, tierId);
-      setBudgetTier(tierId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -18571,50 +18412,32 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function handleHomeQuickSearch(val) {
+    async function handleHomeQuickSearch(val) {
       const q = (val || '').trim().toLowerCase();
       const resBox = document.getElementById('homeQuickSearchResults');
       if (!resBox) return;
-      if (!q) {
-        resBox.innerHTML = '';
-        return;
-      }
-
-      const matchedCats = CATEGORIES.filter(c =>
-        c.name.toLowerCase().includes(q) ||
-        c.heroSub.toLowerCase().includes(q) ||
-        c.products.some(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q) || (p.specs || []).some(s => `${s.big} ${s.label}`.toLowerCase().includes(q)))
-      ).slice(0, 6);
-
-      const matchedProds = [];
-      CATEGORIES.forEach(c => {
-        c.products.forEach(p => {
-          if (matchedProds.length < 4 && (p.name.toLowerCase().includes(q) || p.eyebrow.toLowerCase().includes(q))) {
-            matchedProds.push({ cat: c, prod: p });
-          }
+      if (!q) { resBox.innerHTML = ''; return; }
+      resBox.textContent = 'กำลังค้นหาใน Top 20 ของทุกหมวด…';
+      try {
+        const data = await ShopeeCategoryCatalog.load();
+        if (document.getElementById('homeQuickSearchInput').value.trim().toLowerCase() !== q) return;
+        const hits = data.categories.map(category => ({category, items: ShopeeRanking.filterItems(category.items, q)}));
+        const matchedCats = hits.filter(hit => hit.category.name.toLowerCase().includes(q) || hit.items.length).slice(0, 6);
+        const matchedItems = hits.flatMap(hit => hit.items.map(item => ({category: hit.category, item}))).slice(0, 4);
+        if (!matchedCats.length) { resBox.textContent = 'ไม่พบสินค้าใน Top 20 — ดูหมวดอื่นได้จากเมนู 32 หมวด'; return; }
+        resBox.innerHTML = `<div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:4px;">
+          ${matchedCats.map(({category}) => `<button class="clean-quick-pill" data-top20-category="${escapeAttr(category.id)}">${escapeAttr(category.icon)} ดู Top 20 ${escapeAttr(category.name)} (${category.items.length} รายการ) &gt;</button>`).join('')}
+          ${matchedItems.map(({category,item}) => `<button class="clean-quick-pill" data-top20-product="${escapeAttr(category.id)}">${escapeAttr(item.title)} &gt;</button>`).join('')}
+        </div>`;
+        resBox.querySelectorAll('[data-top20-category]').forEach(button => {
+          button.onclick = () => selectCategory(button.dataset.top20Category);
         });
-      });
-
-      if (matchedCats.length === 0 && matchedProds.length === 0) {
-        resBox.innerHTML = `<div style="font-size:13px;color:var(--text-sub);">ไม่พบหมวดที่ตรงกัน — กดปุ่ม "ค้นหา" เพื่อดูสารบัญทั้งหมด 32 หมวด</div>`;
-        return;
+        resBox.querySelectorAll('[data-top20-product]').forEach(button => {
+          button.onclick = () => jumpToCategoryWithSearch(button.dataset.top20Product, q);
+        });
+      } catch (_) {
+        if (document.getElementById('homeQuickSearchInput').value.trim().toLowerCase() === q) resBox.textContent = 'ยังโหลดข้อมูล Top 20 ไม่ได้ ลองค้นหาอีกครั้ง';
       }
-
-      const safeQ = q.replace(/'/g, "\\'");
-      resBox.innerHTML = `
-        <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:4px;">
-          ${matchedCats.map(c => `
-            <button class="clean-quick-pill" style="background:#16a34a;color:#fff;border-color:#16a34a;font-weight:700;" onclick="selectCategory('${c.id}')">
-              🎛️ กรองสเปกหมวด ${c.icon} ${c.name} (${c.products.length} รุ่น) &gt;
-            </button>
-          `).join('')}
-          ${matchedProds.map(mp => `
-            <button class="clean-quick-pill" style="background:#f0fdf4;color:#14532d;border-color:#86efac;font-weight:700;" onclick="jumpToCategoryWithSearch('${mp.cat.id}', '${safeQ}')">
-              ${mp.cat.icon} ${mp.prod.name} (${formatTHB(mp.prod.price)}) &gt;
-            </button>
-          `).join('')}
-        </div>
-      `;
     }
 
     // ZONE 2: Hall of Fame — Dynamically picks the #1 Best Value model per category from live prices & specs
@@ -18646,8 +18469,8 @@
         const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: prod.price, url: '#', linkType: 'mall_exact_query' };
         const shopeeOffer = offers.find(o => o.platform === 'shopee') || offers[0];
         const lazadaOffer = offers.find(o => o.platform === 'lazada') || offers[1] || offers[0];
-        const spVer = shopeeOffer.linkType === 'exact_pdp';
-        const lzVer = lazadaOffer.linkType === 'exact_pdp';
+        const spVer = shopeeOffer.verified;
+        const lzVer = lazadaOffer.verified;
         const hasVer = spVer || lzVer;
         const hallImg = prod.img || bestOffer.imageUrl || shopeeOffer.imageUrl || lazadaOffer.imageUrl || '';
 
@@ -18658,7 +18481,7 @@
         return `
           <div class="hall-card" style="border:2px solid rgba(22,163,74,0.32);" onclick="selectCategory('${cat.id}')">
             <div style="font-size:11px;font-weight:800;background:#ecfdf5;color:#15803d;border:1px solid #86efac;padding:3px 10px;border-radius:99px;margin-bottom:10px;">
-              🏆 คุ้มสุดหมวด${cat.name}
+              ${hasVer ? '🏆 คุ้มค่าจากราคาที่ตรวจพบ' : 'รุ่นแนะนำ • รอข้อมูลราคา'} ${cat.name}
             </div>
             <div style="height:135px;width:100%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;overflow:hidden;position:relative;">
               ${visualHtml}
@@ -18667,18 +18490,18 @@
               ${prod.name}
             </h3>
             <div style="margin-bottom:6px;">
-              <span style="font-size:11.5px;color:var(--text-light);font-weight:600;margin-right:4px;">${hasVer ? 'ราคาจริง' : 'ราคากลาง'}</span>
-              <span style="font-size:17px;font-weight:800;color:#15803d;">${hasVer ? '' : '~'}${formatTHB(bestOffer.netPrice)}</span>
+              <span style="font-size:11.5px;color:var(--text-light);font-weight:600;margin-right:4px;">${hasVer ? 'ราคาที่ตรวจพบ' : ''}</span>
+              <span style="font-size:17px;font-weight:800;color:#15803d;">${formatOfferPrice(bestOffer)}</span>
             </div>
             <div style="font-size:11.5px;color:#14532d;background:#f0fdf4;border-radius:10px;padding:6px 10px;margin-bottom:10px;width:100%;line-height:1.4;">
               🟢 <strong>จุดเด่น:</strong> ${prod.specs[0]?.big || prod.eyebrow}
             </div>
             <div style="display:flex;gap:6px;width:100%;padding-top:8px;border-top:1px solid var(--border-hairline);flex-wrap:wrap;" onclick="event.stopPropagation();">
               <a href="${shopeeOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:#ee4d2d;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🟠 Shopee ${spVer ? '' : '~'}${formatTHB(shopeeOffer.netPrice)}
+                🟠 Shopee ${formatOfferPrice(shopeeOffer)}
               </a>
               <a href="${lazadaOffer.url}" target="_blank" rel="noopener" style="flex:1;min-width:85px;background:#0f146d;color:#fff;text-decoration:none;font-size:11px;font-weight:700;padding:7px 6px;border-radius:99px;text-align:center;">
-                🔵 LazMall ${lzVer ? '' : '~'}${formatTHB(lazadaOffer.netPrice)}
+                🔵 Lazada ${formatOfferPrice(lazadaOffer)}
               </a>
             </div>
           </div>
@@ -18706,9 +18529,10 @@
         const pB = cat.products.find(p => p.id === b.idB) || cat.products[1] || cat.products[0];
         const liveA = getEffectiveLivePrice(pA);
         const liveB = getEffectiveLivePrice(pB);
-        const diff = Math.abs(liveA - liveB);
+        const comparable = liveA != null && liveB != null;
+        const diff = comparable ? Math.abs(liveA - liveB) : 0;
         const cheaperName = liveA < liveB ? b.nameA : (liveB < liveA ? b.nameB : 'ราคาเท่ากัน');
-        const priceWinText = diff > 0 ? `${cheaperName} ถูกกว่า ${formatTHB(diff)}` : 'ราคาเท่ากันทั้งสองรุ่น';
+        const priceWinText = !comparable ? 'รอข้อมูลราคาเพื่อเปรียบเทียบ' : diff > 0 ? `${cheaperName} ถูกกว่า ${formatTHB(diff)}` : 'ราคาเท่ากันทั้งสองรุ่น';
 
         return `
           <div class="vs-battle-card" style="border:1.5px solid rgba(22,163,74,0.28);" onclick="openBattleFromHome('${b.catId}', '${pA.id}', '${pB.id}')">
@@ -18717,9 +18541,9 @@
               <span style="font-size:11.5px;color:#16a34a;font-weight:800;">ดูผลเทียบ &gt;</span>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
-              <strong style="font-size:15px;color:var(--text-main);flex:1;">${b.nameA}<br><span style="font-size:12px;color:#15803d;">${formatTHB(liveA)}</span></strong>
+              <strong style="font-size:15px;color:var(--text-main);flex:1;">${b.nameA}<br><span style="font-size:12px;color:#15803d;">${formatProductPrice(pA)}</span></strong>
               <span style="background:#ecfdf5;color:#15803d;border:1px solid #86efac;font-size:11px;font-weight:800;padding:4px 8px;border-radius:99px;">VS</span>
-              <strong style="font-size:15px;color:var(--text-main);flex:1;text-align:right;">${b.nameB}<br><span style="font-size:12px;color:#15803d;">${formatTHB(liveB)}</span></strong>
+              <strong style="font-size:15px;color:var(--text-main);flex:1;text-align:right;">${b.nameB}<br><span style="font-size:12px;color:#15803d;">${formatProductPrice(pB)}</span></strong>
             </div>
             <div style="font-size:12px;color:#14532d;background:#f0fdf4;border-radius:10px;padding:7px 10px;text-align:center;font-weight:600;">
               🟢 ${priceWinText} • ${b.specNote}
@@ -18754,8 +18578,9 @@
         cat.products.forEach(prod => {
           const offers = getStoresForProduct(prod);
           const bestOffer = offers[0] || { netPrice: prod.price, originalPrice: prod.price, store: 'Shopee Mall', url: '#', linkType: 'mall_exact_query' };
-          const isVerified = offers.some(o => o.linkType === 'exact_pdp');
+          const isVerified = offers.some(o => o.verified);
           const { livePrice, origPrice, discountBaht, discountPct } = getProductDiscountMetrics(prod);
+          if (!isVerified || discountBaht <= 0) return;
           allCandidates.push({
             cat,
             prod,
@@ -18788,6 +18613,7 @@
         }
       }
 
+      if (!picked.length) { grid.textContent = 'ยังไม่มีส่วนลดที่ตรวจสอบได้จากราคาหน้าร้าน'; return; }
       grid.innerHTML = picked.map(d => {
         const { prod, bestOffer, isVerified, livePrice, discountBaht } = d;
         const dropText = discountBaht > 0
@@ -18800,7 +18626,7 @@
               <span style="font-size:12px;color:#15803d;font-weight:700;">🟢 ถูกสุดที่ ${bestOffer.shopName || bestOffer.store} (${dropText})</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px;">
-              <strong style="font-size:15px;color:#15803d;">${isVerified ? '' : '~'}${formatTHB(livePrice)}</strong>
+              <strong style="font-size:15px;color:#15803d;">${isVerified ? '' : '~'}${formatOfferPrice(bestOffer)}</strong>
               <a href="${bestOffer.url}" target="_blank" rel="noopener" class="btn-apple-primary" style="padding:5px 12px;font-size:12px;background:#16a34a;text-decoration:none;white-space:nowrap;">
                 🛒 ไปที่ตะกร้า &gt;
               </a>
@@ -18837,6 +18663,7 @@
     // Initialize on load: Start at the Ultra-Clean Apple Storefront Home Hub!
     initMonthlyEngine();
     showHomeHub();
+    ShopeeCategoryCatalog.load().then(data => { CATEGORY_TOP20_DATA = data; }).catch(() => {});
   </script>
 </body>
 </html>

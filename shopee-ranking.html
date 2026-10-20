@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>20 ขายดีจากข้อมูล Shopee ที่เก็บได้ · yesspec</title>
+  <meta name="description" content="อันดับทดลอง 20 รายการต่อหมวด จากยอดขาย Shopee ที่เก็บได้ พร้อมราคา ลิงก์สินค้า เวลาเก็บ และรายการที่ต้องตรวจเพิ่ม ยอดขายไม่ระบุช่วงเวลา">
+  <link rel="icon" type="image/svg+xml" href="assets/yespec-logo.svg">
+  <link rel="stylesheet" href="assets/shopee-ranking.css">
+  <script src="assets/affiliate-links.js?v=20261019-affiliate2" defer></script>
+  <link rel="stylesheet" href="assets/official-specs.css?v=20261019-official">
+  <script src="assets/official-specs.js?v=20261019-official" defer></script>
+  <link rel="stylesheet" href="assets/ranking-offers.css?v=20261020-channels">
+  <script src="assets/ranking-offers.js?v=20261020-channels" defer></script>
+  <script src="assets/shopee-ranking.js?v=20261020-price-check" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="header-inner" aria-label="เมนูหลัก">
+      <a class="brand" href="index.html">yes<span>spec</span><small>.com</small></a>
+      <span class="header-label">อันดับจาก Shopee</span>
+      <a class="back-link" href="index.html">เทียบสเปกสินค้า ↗</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow" id="sourceLabel">SHOPEE · PRODUCT FEED</p>
+      <h1 id="page-title">20 ขายดี<span>จากยอดที่เก็บได้</span></h1>
+      <p class="intro-copy">ดูว่าสินค้ารายการไหนขายได้มากในแต่ละหมวด พร้อมราคา ร้านค้า และลิงก์ตรวจสอบต้นทาง</p>
+      <div class="stats" id="datasetStats" aria-live="polite">กำลังโหลดข้อมูล…</div>
+    </section>
+    <aside class="scope-note">
+      <strong>ยอดขายไม่ระบุช่วงเวลา</strong>
+      <p id="scopeDescription">กำลังตรวจขอบเขตชุดข้อมูล…</p>
+      <p>เป้าหมายยอดขาย 30 วัน: ยังไม่มีแหล่งข้อมูลยืนยันช่วงเวลา จึงยังไม่ใช่อันดับ 30 วันหรือ Top 20 ทั้ง Shopee ยอดอาจรวมหลายตัวเลือก รายการต่างร้านแยกอันดับกัน</p>
+    </aside>
+    <section class="ranking-section" aria-labelledby="categoryTitle">
+      <div class="controls">
+        <div class="field"><label for="sourceSelect">ชุดข้อมูล</label><select id="sourceSelect"><option value="feed">Product Feed ทางการ</option><option value="plugin">ผลค้นหาจากปลั๊กอิน</option></select></div>
+        <div class="field"><label for="categorySelect">เลือกหมวดสินค้า</label><select id="categorySelect" disabled><option>กำลังโหลด…</option></select></div>
+        <div class="field search-field"><label for="listingSearch">ค้นหาใน 20 รายการนี้</label><input id="listingSearch" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></div>
+      </div>
+      <div class="category-heading"><div><p class="eyebrow">เรียงยอดขายจากมากไปน้อย</p><h2 id="categoryTitle">กำลังโหลดอันดับ</h2><p id="categoryMeta" class="muted"></p></div><span class="count-pill" id="resultCount"></span></div>
+      <details class="method"><summary>ขอบเขตข้อมูลและเกณฑ์ของหมวดนี้</summary><div id="methodContent"></div></details>
+      <div class="view-controls" role="group" aria-label="มุมมองรายการ"><button id="rankingView" class="active" aria-pressed="true">อันดับยอดขาย</button><button id="reviewView" aria-pressed="false">รายการที่ต้องตรวจเพิ่ม</button></div>
+      <p class="price-note">ราคาแสดงจากชุดข้อมูลที่เลือกหรือที่ผู้ดูแลกรอก พร้อมระบุราคา VIP / เงื่อนไขและเวลาบันทึก ต้องตรวจตัวเลือกสินค้าและราคาปัจจุบันก่อนซื้อ ชื่อและคำโฆษณาสินค้ามาจากผู้ขาย ข้อมูลที่ยังยืนยันไม่ได้แสดง “—” สเปกจากเว็บผู้ผลิตยืนยันเฉพาะรุ่น ไม่ยืนยันตัวเลือกที่ตรงกับราคาหรือการรับประกันของร้าน</p>
+      <div id="rankingResults" aria-live="polite"></div>
+      <details class="excluded-panel" id="excludedPanel" hidden><summary id="excludedSummary"></summary><div id="excludedItems"></div></details>
+    </section>
+    <footer><span id="sourceFooter">ข้อมูลจาก Shopee</span><br>แสดงช่องทางซื้อเฉพาะที่มีลิงก์ตะกร้า · ราคาแต่ละร้านอาจเป็นคนละตัวเลือกหรือเงื่อนไข<br>ลิงก์ซื้อ Shopee ใช้รหัส Affiliate ของเว็บไซต์ ค่าคอมมิชชันขึ้นกับสินค้าและคำสั่งซื้อที่เข้าเงื่อนไข<br>ข้อมูลชุดนี้ยังไม่ได้เชื่อม API เพื่ออัปเดตอัตโนมัติ</footer>
+  </main>
+</body>
+</html>

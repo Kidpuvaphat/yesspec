@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-19T16:15:32+00:00",
+  "policy": {
+    "unconfirmed_value": null,
+    "scope": "model_only",
+    "price_and_sales_source": "Shopee evidence only",
+    "seller_warranty": "Unverified; do not infer from manufacturer model specs"
+  },
+  "models": {
+    "apple-iphone-17-pro": {
+      "brand": "Apple",
+      "model": "iPhone 17 Pro",
+      "source": {
+        "url": "https://support.apple.com/th-th/125090",
+        "title": "iPhone 17 Pro — ข้อมูลทางเทคนิค",
+        "market": "TH",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "chip",
+          "label": "ชิป",
+          "value": "A19 Pro",
+          "status": "verified"
+        },
+        {
+          "key": "display",
+          "label": "จอภาพ",
+          "value": "OLED ขนาด 6.3 นิ้ว",
+          "status": "verified"
+        },
+        {
+          "key": "resolution",
+          "label": "ความละเอียดจอ",
+          "value": "2622 × 1206 พิกเซล",
+          "status": "verified"
+        }
+      ]
+    },
+    "apple-ipad-a16-wifi": {
+      "brand": "Apple",
+      "model": "iPad (A16) Wi-Fi",
+      "source": {
+        "url": "https://support.apple.com/th-th/122240",
+        "title": "iPad (A16) — ข้อมูลทางเทคนิค",
+        "market": "TH",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "chip",
+          "label": "ชิป",
+          "value": "A16 · CPU 5 คอร์ / GPU 4 คอร์",
+          "status": "verified"
+        },
+        {
+          "key": "weight",
+          "label": "น้ำหนักรุ่น Wi-Fi",
+          "value": "477 กรัม",
+          "status": "verified"
+        }
+      ]
+    },
+    "lg-t2519vbtb": {
+      "brand": "LG",
+      "model": "T2519VBTB",
+      "source": {
+        "url": "https://www.lg.com/th/laundry/top-load-washing-machine/t2519vbtb/",
+        "title": "LG T2519VBTB — ข้อมูลผลิตภัณฑ์",
+        "market": "TH",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "capacity",
+          "label": "ความจุซัก",
+          "value": "19 กก.",
+          "status": "verified"
+        },
+        {
+          "key": "motor",
+          "label": "มอเตอร์",
+          "value": "Smart Inverter",
+          "status": "verified"
+        },
+        {
+          "key": "loading",
+          "label": "รูปแบบ",
+          "value": "ฝาบน",
+          "status": "verified"
+        }
+      ]
+    },
+    "philips-ac0650-10": {
+      "brand": "Philips",
+      "model": "AC0650/10",
+      "source": {
+        "url": "https://www.philips.co.th/c-p/AC0650_10/600i-series-air-purifier",
+        "title": "Philips AC0650/10 — ข้อมูลผลิตภัณฑ์",
+        "market": "TH",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "cadr",
+          "label": "CADR",
+          "value": "170 ลบ.ม./ชม.",
+          "status": "verified"
+        },
+        {
+          "key": "room_area",
+          "label": "พื้นที่สูงสุดตามผู้ผลิต",
+          "value": "44 ตร.ม.",
+          "status": "verified"
+        },
+        {
+          "key": "power",
+          "label": "กำลังไฟสูงสุด",
+          "value": "12 วัตต์",
+          "status": "verified"
+        }
+      ]
+    },
+    "apple-airpods-pro-3": {
+      "brand": "Apple",
+      "model": "AirPods Pro 3",
+      "source": {
+        "url": "https://support.apple.com/th-th/125135",
+        "title": "AirPods Pro 3 — ข้อมูลทางเทคนิค",
+        "market": "TH",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "chip",
+          "label": "ชิปหูฟัง",
+          "value": "Apple H2",
+          "status": "verified"
+        },
+        {
+          "key": "bluetooth",
+          "label": "Bluetooth",
+          "value": "5.3",
+          "status": "verified"
+        },
+        {
+          "key": "protection",
+          "label": "มาตรฐานทนฝุ่นและน้ำ",
+          "value": "IP57 (หูฟังและเคสชาร์จ)",
+          "status": "verified"
+        }
+      ]
+    },
+    "tribit-pocketgo": {
+      "brand": "Tribit",
+      "model": "PocketGo",
+      "source": {
+        "url": "https://tribit.com/products/tribit-pocketgo-portable-bluetooth-speaker?variant=50200090083575",
+        "title": "Tribit PocketGo — Specifications",
+        "market": "Global",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "power",
+          "label": "กำลังขับ",
+          "value": "7 วัตต์",
+          "status": "verified"
+        },
+        {
+          "key": "bluetooth",
+          "label": "Bluetooth",
+          "value": "6.0",
+          "status": "verified"
+        },
+        {
+          "key": "protection",
+          "label": "มาตรฐานทนฝุ่นและน้ำ",
+          "value": "IP68",
+          "status": "verified"
+        }
+      ]
+    },
+    "dji-osmo-pocket-3": {
+      "brand": "DJI",
+      "model": "Osmo Pocket 3",
+      "source": {
+        "url": "https://www.dji.com/support/product/osmo-pocket-3",
+        "title": "DJI Osmo Pocket 3 — Product Support",
+        "market": "Global",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "sensor",
+          "label": "เซนเซอร์",
+          "value": "CMOS ขนาด 1 นิ้ว",
+          "status": "verified"
+        },
+        {
+          "key": "screen",
+          "label": "จอภาพ",
+          "value": "OLED ขนาด 2 นิ้ว",
+          "status": "verified"
+        },
+        {
+          "key": "weight",
+          "label": "น้ำหนักตัวกล้อง",
+          "value": "179 กรัม",
+          "status": "verified"
+        }
+      ]
+    },
+    "panasonic-eh-nd37": {
+      "brand": "Panasonic",
+      "model": "EH-ND37",
+      "source": {
+        "url": "https://www.panasonic.com/th/consumer/personal-care/hair-care/hair-dryer/eh-nd37.html",
+        "title": "Panasonic EH-ND37 — ข้อมูลผลิตภัณฑ์",
+        "market": "TH",
+        "checked_at": "2026-10-19T16:15:32+00:00"
+      },
+      "fields": [
+        {
+          "key": "power",
+          "label": "กำลังไฟ",
+          "value": "1,800 วัตต์",
+          "status": "verified"
+        },
+        {
+          "key": "cool_shot",
+          "label": "ลมเย็น",
+          "value": "มีปุ่ม Cool-Shot",
+          "status": "verified"
+        },
+        {
+          "key": "foldable",
+          "label": "ด้ามจับ",
+          "value": "พับเก็บได้",
+          "status": "verified"
+        }
+      ]
+    }
+  },
+  "listings": {
+    "301786571/40268308729": {
+      "model_key": "apple-iphone-17-pro",
+      "title": "Apple iPhone 17 Pro by Studio 7 [ออเดอร์จะยกเลิกอัตโนมัติหากไม่ชำระเงินภายใน 30 นาที]",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":9,\"examples\":[{\"id\":\"306504750175\",\"name\":\"Cosmic Orange,256GB\"},{\"id\":\"306504750176\",\"name\":\"Cosmic Orange,512GB\"},{\"id\":\"306504750177\",\"name\":\"Cosmic Orange,1TB\"},{\"id\":\"306504750178\",\"name\":\"Deep Blue,256GB\"},{\"id\":\"306504750179\",\"name\":\"Deep Blue,512GB\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "287137993/27728473918": {
+      "model_key": "apple-ipad-a16-wifi",
+      "title": "Apple iPad ชิปA16 Wi-Fi (11th Gen) l iStudio by SPVi",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":30,\"examples\":[{\"id\":\"29577032141\",\"name\":\"Silver,128GB\"},{\"id\":\"29577032142\",\"name\":\"Silver,256GB\"},{\"id\":\"29577032143\",\"name\":\"Silver,512GB\"},{\"id\":\"29577032144\",\"name\":\"Blue,128GB\"},{\"id\":\"29577032145\",\"name\":\"Blue,256GB\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "1103556558/29452717190": {
+      "model_key": "lg-t2519vbtb",
+      "title": "LG เครื่องซักผ้าฝาบน 19 กก. รุ่น T2519VBTB ระบบ Smart Inverter",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":1,\"examples\":[{\"id\":\"241011756909\",\"name\":\"LG เครื่องซักผ้าฝาบน 19 กก. รุ่น T2519VBTB ระบบ Smart Inverter\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "17331040/22760622649": {
+      "model_key": "philips-ac0650-10",
+      "title": "Philips AC0650/10 เครื่องฟอก อากาศ Air Purifier สำหรับห้องไม่เกิน 44 ตรม. CADR 170 ลบ.ม./ชม รับประกัน 2 ปี",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":1,\"examples\":[{\"id\":\"197138532319\",\"name\":\"Philips AC0650/10 เครื่องฟอก อากาศ Air Purifier สำหรับห้องไม่เกิน 44 ตรม. CADR 170 ลบ.ม./ชม รับประกัน 2 ปี\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "301786571/41269010509": {
+      "model_key": "apple-airpods-pro-3",
+      "title": "Apple AirPods Pro (3rd generation) by Studio 7",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":1,\"examples\":[{\"id\":\"228092527580\",\"name\":\"Apple AirPods Pro (3rd generation) by Studio 7\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "1137850276/50900796897": {
+      "model_key": "tribit-pocketgo",
+      "title": "[ประกันศูนย์ไทย] Tribit PocketGo  ลำโพงบลูทูธ ลำโพง ลำโพงไร้สาย Pocket Go Bluetooth 6.0 กันน้ำกันฝุ่นระดับ IP68",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":6,\"examples\":[{\"id\":\"254168141331\",\"name\":\"pocketดำ + กระเป๋า\"},{\"id\":\"254168141332\",\"name\":\"pocketเขียว +กระเป๋า\"},{\"id\":\"254168141333\",\"name\":\"pocket ฟ้า + กระเป๋า\"},{\"id\":\"287124280987\",\"name\":\"pocketgo ดำ\"},{\"id\":\"320232423216\",\"name\":\"pocketgo เขียว\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "34787586/22984672639": {
+      "model_key": "dji-osmo-pocket-3",
+      "title": "DJI Osmo Pocket 3 - Action Camera ประกันศูนย์",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":2,\"examples\":[{\"id\":\"232180060932\",\"name\":\"Single\"},{\"id\":\"232180060933\",\"name\":\"Creator Combo\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    },
+    "315769706/23835061503": {
+      "model_key": "panasonic-eh-nd37",
+      "title": "Panasonic Hair Dryer ไดร์เป่าผม (1800 วัตต์) รุ่น EH-ND37-KL กำลังไฟ 1,800 วัตต์ Cool-Shot เปลี่ยนระหว่างลมร้อน-เย็น",
+      "review_status": "model_matched",
+      "variant_evidence": "{\"count\":1,\"examples\":[{\"id\":\"146763005920\",\"name\":\"Panasonic Hair Dryer ไดร์เป่าผม (1800 วัตต์) รุ่น EH-ND37-KL กำลังไฟ 1,800 วัตต์ Cool-Shot เปลี่ยนระหว่างลมร้อน-เย็น\"}]}",
+      "match_note": "Reviewed listing model against the manufacturer model page; common model specifications only. Price option, package contents and seller warranty remain unconfirmed."
+    }
+  }
+}

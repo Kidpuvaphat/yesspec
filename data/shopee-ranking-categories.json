@@ -1,0 +1,162 @@
+[
+  {
+    "id": "smartphone",
+    "name": "มือถือ",
+    "icon": "📱"
+  },
+  {
+    "id": "tablet",
+    "name": "แท็บเล็ต & iPad",
+    "icon": "📟"
+  },
+  {
+    "id": "aircon",
+    "name": "แอร์บ้าน",
+    "icon": "❄️"
+  },
+  {
+    "id": "notebook",
+    "name": "โน้ตบุ๊ก",
+    "icon": "💻"
+  },
+  {
+    "id": "tv",
+    "name": "ทีวี 4K",
+    "icon": "📺"
+  },
+  {
+    "id": "fridge",
+    "name": "ตู้เย็น",
+    "icon": "🧊"
+  },
+  {
+    "id": "washer",
+    "name": "เครื่องซักผ้า",
+    "icon": "🧺"
+  },
+  {
+    "id": "dryer",
+    "name": "เครื่องอบผ้า",
+    "icon": "♨️"
+  },
+  {
+    "id": "purifier",
+    "name": "เครื่องฟอกอากาศ",
+    "icon": "🌬️"
+  },
+  {
+    "id": "robot",
+    "name": "หุ่นยนต์ดูดฝุ่น",
+    "icon": "🤖"
+  },
+  {
+    "id": "cordlessvac",
+    "name": "ดูดฝุ่นไร้สาย",
+    "icon": "🧹"
+  },
+  {
+    "id": "waterheater",
+    "name": "เครื่องทำน้ำอุ่น",
+    "icon": "🚿"
+  },
+  {
+    "id": "waterpurifier",
+    "name": "เครื่องกรองน้ำ",
+    "icon": "💧"
+  },
+  {
+    "id": "airfryer",
+    "name": "หม้อทอด & ไมโครเวฟ",
+    "icon": "🍳"
+  },
+  {
+    "id": "coffee",
+    "name": "เครื่องชงกาแฟ",
+    "icon": "☕"
+  },
+  {
+    "id": "smartwatch",
+    "name": "สมาร์ทวอทช์",
+    "icon": "⌚"
+  },
+  {
+    "id": "headphone",
+    "name": "หูฟังตัดเสียง ANC",
+    "icon": "🎧"
+  },
+  {
+    "id": "monitor",
+    "name": "จอคอม Monitor",
+    "icon": "🖥️"
+  },
+  {
+    "id": "chair",
+    "name": "เก้าอี้สุขภาพ",
+    "icon": "🪑"
+  },
+  {
+    "id": "speaker",
+    "name": "ลำโพง & ซาวด์บาร์",
+    "icon": "🔊"
+  },
+  {
+    "id": "camera",
+    "name": "กล้อง Action & หน้ารถ",
+    "icon": "📷"
+  },
+  {
+    "id": "hairdryer",
+    "name": "ไดร์เป่าผมความเร็วสูง",
+    "icon": "💇‍♀️"
+  },
+  {
+    "id": "sunscreen",
+    "name": "ครีมกันแดด",
+    "icon": "☀️"
+  },
+  {
+    "id": "shampoo",
+    "name": "ยาสระผม • ลดผมร่วง",
+    "icon": "🧴"
+  },
+  {
+    "id": "toothpaste",
+    "name": "ยาสีฟัน • ช่องปาก",
+    "icon": "🪥"
+  },
+  {
+    "id": "bodywash",
+    "name": "สบู่ • ครีมอาบน้ำ",
+    "icon": "🧼"
+  },
+  {
+    "id": "vitamin",
+    "name": "วิตามินซี • วิตามินรวม",
+    "icon": "🍊"
+  },
+  {
+    "id": "whey",
+    "name": "เวย์โปรตีน • โปรตีนพืช",
+    "icon": "💪"
+  },
+  {
+    "id": "collagen",
+    "name": "คอลลาเจน • โพรไบโอติกส์",
+    "icon": "✨"
+  },
+  {
+    "id": "catfood",
+    "name": "อาหารแมว • ถนอมไต",
+    "icon": "🐱"
+  },
+  {
+    "id": "dogfood",
+    "name": "อาหารสุนัข • โฮลิสติก",
+    "icon": "🐶"
+  },
+  {
+    "id": "catlitter",
+    "name": "ทรายแมว • ขนมแมวเลีย",
+    "icon": "🪣"
+  }
+]

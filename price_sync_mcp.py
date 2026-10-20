@@ -2,7 +2,7 @@
 """
 yespec — Daily Price Sync & MCP Server (Shopee Mall & Lazada LazMall)
 ======================================================================
-ผูกบัญชีจริงเรียบร้อยแล้ว:
+การซิงค์ข้อมูลที่มีหลักฐาน (ยังไม่ยืนยันสิทธิ์ API):
 - Shopee Affiliate ID: 15385610012 (orkid8931) -> Official Gateway: s.shopee.co.th/an_redir
 - Lazada Member ID:    267671179 (kidpuvaphat / Referral: AM86gKgj) -> Official exlaz Tracking
 """
@@ -20,6 +20,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime
 from pathlib import Path
+from market_data import read_json, rebuild_feed, write_json
 
 SHOPEE_GRAPHQL_ENDPOINT = "https://open-api.affiliate.shopee.co.th/graphql"
 
@@ -75,7 +76,7 @@ def extract_all_products_from_index(index_path: Path) -> list[dict]:
                         "tier": p.get("tier", "mid"),
                         "bracketLabel": p.get("bracketLabel", ""),
                         "name": p.get("name", ""),
-                        "base_price": int(round(float(p.get("price", 0)))),
+                        "base_price": int(round(float(p.get("price") or 0))),
                         "img": p.get("img", ""),
                     })
             if items:
@@ -156,156 +157,28 @@ def fetch_shopee_affiliate_offer(keyword: str, app_id: str, secret: str) -> dict
     return None
 
 
-def build_shopee_official_link(product_name: str, shopee_aff_id: str, clean_sub_id: str) -> str:
+def run_daily_price_sync(silent: bool = False, base_dir: Path | None = None) -> dict:
+    """Rebuild the evidence feed without inventing prices or refreshing observations.
+
+    API keyword search is discovery only: it cannot establish the exact variant.
+    Until account access/schema is tested, manual observations are authoritative.
     """
-    สร้างลิงก์ Shopee Affiliate ผ่าน Official Gateway (s.shopee.co.th/an_redir)
-    ซึ่งสร้าง uls_trackid และบันทึกค่าคอมมิชชั่นเข้า Affiliate ID 15385610012 โดยตรง
-    """
-    origin = f"https://shopee.co.th/search?keyword={urllib.parse.quote(product_name)}"
-    origin_enc = urllib.parse.quote(origin, safe="")
-    return f"https://s.shopee.co.th/an_redir?origin_link={origin_enc}&affiliate_id={shopee_aff_id}&sub_id={clean_sub_id}----"
-
-
-def build_lazada_official_link(product_name: str, cfg: dict, clean_sub_id: str) -> str:
-    """
-    สร้างลิงก์ Lazada Affiliate พร้อม exlaz + laz_share_info + laz_token ของบัญชี Member ID 267671179
-    """
-    laz_id = cfg.get("lazada_tracking_id", "267671179")
-    exlaz = cfg.get("lazada_exlaz", "")
-    share_info = cfg.get("lazada_share_info", "")
-    token = cfg.get("lazada_token", "")
-    q_enc = urllib.parse.quote(product_name)
-    return (
-        f"https://www.lazada.co.th/catalog/?q={q_enc}"
-        f"&exlaz={exlaz}&dsource=share&laz_share_info={share_info}&laz_token={token}"
-        f"&sub_id1={clean_sub_id}&aff_id={laz_id}"
-    )
-
-
-def run_daily_price_sync(silent: bool = False) -> dict:
-    """
-    รันอัปเดตราคาสินค้าครบทั้ง 32 หมวดสำหรับ 2 ช่องทางหลัก (Shopee Mall & Lazada LazMall)
-    """
-    start_ts = time.time()
-    base_dir = Path(__file__).parent
-    data_dir = base_dir / "data"
-    data_dir.mkdir(exist_ok=True)
-
-    cfg = load_affiliate_config(base_dir)
-    app_id = os.environ.get("SHOPEE_APP_ID") or cfg.get("shopee_app_id", "")
-    secret = os.environ.get("SHOPEE_SECRET") or cfg.get("shopee_secret", "")
-    shopee_aff_id = os.environ.get("SHOPEE_AFF_ID") or cfg.get("shopee_aff_id", "15385610012")
-
-    mode = "LIVE_SHOPEE_GRAPHQL_API" if (app_id and secret) else "OFFICIAL_AFFILIATE_GATEWAY_ACTIVE"
-
-    all_models = extract_all_products_from_index(base_dir / "index.html")
-
-    existing_feed_path = data_dir / "daily_prices_feed.json"
-    existing_items_by_id = {}
-    if existing_feed_path.exists():
-        try:
-            existing_feed = json.loads(existing_feed_path.read_text(encoding="utf-8"))
-            existing_items_by_id = existing_feed.get("items_by_id", {})
-        except Exception:
-            pass
-
-    synced_items = []
-    items_by_id = {}
-
-    for item in all_models:
-        pid = item["id"]
-        name = item["name"]
-        base_price = item["base_price"]
-        clean_sub_id = "yespec" + re.sub(r"[^a-zA-Z0-9]", "", pid)[:20]
-
-        existing_rec = existing_items_by_id.get(pid)
-        live_node = fetch_shopee_affiliate_offer(name, app_id, secret)
-
-        if not live_node and existing_rec and existing_rec.get("stores_sorted"):
-            existing_rec["stores_sorted"] = [s for s in existing_rec["stores_sorted"] if s.get("platform") != "tiktok"]
-            existing_rec["synced_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            synced_items.append(existing_rec)
-            items_by_id[pid] = existing_rec
-            continue
-
-        if live_node and live_node.get("priceMin"):
-            shopee_price = int(float(live_node["priceMin"]))
-            shopee_link = live_node.get("offerLink", "")
-            commission_rate = live_node.get("commissionRate", "4.5%")
-        else:
-            shopee_price = base_price
-            shopee_link = build_shopee_official_link(name, shopee_aff_id, clean_sub_id)
-            commission_rate = "3.5% - 8.0%"
-
-        lazada_price = round((shopee_price * 1.015) / 100) * 100 or (shopee_price + 50)
-        lazada_link = build_lazada_official_link(name, cfg, clean_sub_id)
-
-        stores = sorted(
-            [
-                {
-                    "store": "Shopee Mall Official",
-                    "platform": "shopee",
-                    "badge": "ถูกที่สุด #1 • ร้านทางการ Shopee Mall",
-                    "net_price": shopee_price,
-                    "original_price": round(shopee_price * 1.15),
-                    "discount_pct": "-15%",
-                    "shipping": "ส่งฟรี • ผ่อน 0% 10 เดือน",
-                    "is_direct_product": True,
-                    "link": shopee_link,
-                },
-                {
-                    "store": "Lazada LazMall Official",
-                    "platform": "lazada",
-                    "badge": "ของแท้ประกันศูนย์ 100% • คืนเงินไว",
-                    "net_price": lazada_price,
-                    "original_price": round(lazada_price * 1.15),
-                    "discount_pct": "-15%",
-                    "shipping": "ส่งฟรี • คืนสินค้าได้ใน 15 วัน",
-                    "is_direct_product": True,
-                    "link": lazada_link,
-                },
-            ],
-            key=lambda x: x["net_price"],
-        )
-
-        record = {
-            "id": pid,
-            "name": name,
-            "tier": item["tier"],
-            "bracketLabel": item["bracketLabel"],
-            "cheapest_store": stores[0]["store"],
-            "cheapest_price": stores[0]["net_price"],
-            "prev_month_price": round((stores[0]["net_price"] * 1.15) / 100) * 100,
-            "commission_est": commission_rate,
-            "stores_sorted": stores,
-            "synced_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        }
-        synced_items.append(record)
-        items_by_id[pid] = record
-
-    elapsed = round(time.time() - start_ts, 3)
-    payload = {
-        "platform": "yespec",
-        "channels": ["Shopee Mall Official", "Lazada LazMall Official"],
-        "affiliate_accounts": {
-            "shopee_aff_id": shopee_aff_id,
-            "lazada_member_id": cfg.get("lazada_tracking_id", "267671179"),
-        },
-        "sync_mode": mode,
-        "synced_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "elapsed_seconds": elapsed,
-        "total_categories": 32,
-        "total_models_synced": len(synced_items),
-        "items_by_id": items_by_id,
-        "items": synced_items,
-    }
-
-    out_file = data_dir / "daily_prices_feed.json"
-    out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-
+    start = time.monotonic()
+    base_dir = Path(base_dir) if base_dir else Path(__file__).parent
+    data_dir = base_dir / 'data'
+    feed = read_json(data_dir / 'daily_prices_feed.json', {'items_by_id': {}})
+    items = feed.get('items_by_id', {})
+    for model in extract_all_products_from_index(base_dir / 'index.html'):
+        items.setdefault(model['id'], {'id': model['id'], 'name': model['name'],
+                                      'category_id': model.get('category_id'), 'stores_sorted': []})
+    for pid, ov in read_json(data_dir / 'manual_overrides.json', {}).items():
+        if pid in items and ov.get('schema_version') == 2:
+            items[pid].update(ov)
+    payload = rebuild_feed({'items_by_id': items})
+    payload['elapsed_seconds'] = round(time.monotonic() - start, 3)
+    write_json(data_dir / 'daily_prices_feed.json', payload)
     if not silent:
-        print(f"⚡ [yespec MCP Price Sync] ผูกลิงก์จริง Shopee ({shopee_aff_id}) & Lazada ({cfg.get('lazada_tracking_id')}) ครบ {len(synced_items)} รุ่น สำเร็จใน {elapsed} วินาที!")
-        print(f"   บันทึกไฟล์ Feed ที่: {out_file}")
+        print(f"Rebuilt {payload['total_models_synced']} products; {payload['verified_offers']} eligible offers. Observations were not refreshed.")
     return payload
 
 
@@ -340,7 +213,7 @@ def update_affiliate_credentials(new_vals: dict) -> str:
                 pass
 
     data = run_daily_price_sync(silent=True)
-    return f"บันทึก Shopee & Lazada Affiliate ID และซิงค์ลิงก์ใหม่ครบ {data['total_models_synced']} รุ่นเรียบร้อยแล้ว! (โหมด: {data['sync_mode']})"
+    return f"บันทึกค่าตั้งค่าและประเมินหลักฐานเดิม {data['total_models_synced']} รุ่นแล้ว (ยังไม่ทดสอบสิทธิ์ API) (โหมด: {data['sync_mode']})"
 
 
 def run_mcp_stdio_server():
@@ -377,7 +250,7 @@ def run_mcp_stdio_server():
                     "tools": [
                         {
                             "name": "sync_all_prices",
-                            "description": "ซิงค์ราคาสินค้าทั้ง 32 หมวดจาก Shopee Mall & Lazada LazMall ลงไฟล์ data/daily_prices_feed.json",
+                            "description": "ตรวจความสดและสร้าง feed จากข้อมูลที่บันทึกหลักฐานไว้",
                             "inputSchema": {"type": "object", "properties": {}},
                         },
                         {
@@ -424,31 +297,20 @@ def run_mcp_stdio_server():
 
             if tname == "sync_all_prices":
                 data = run_daily_price_sync(silent=True)
-                text = f"ซิงค์ราคา Shopee & Lazada สำเร็จ {data['total_models_synced']} รุ่น ใน {data['elapsed_seconds']} วินาที (โหมด: {data['sync_mode']})"
+                text = f"สร้าง feed จากหลักฐานที่มี {data['total_models_synced']} รุ่น ใน {data['elapsed_seconds']} วินาที (โหมด: {data['sync_mode']})"
             elif tname == "get_product_price":
                 q = str(args.get("query", "")).lower()
                 if not feed_path.exists():
                     run_daily_price_sync(silent=True)
-                feed = json.loads(feed_path.read_text(encoding="utf-8"))
+                feed = rebuild_feed(read_json(feed_path, {"items_by_id": {}}))
                 matches = [
                     it for it in feed.get("items", [])
                     if q in it["id"].lower() or q in it["name"].lower()
                 ][:5]
                 text = json.dumps(matches, ensure_ascii=False, indent=2)
             elif tname == "update_product_price":
-                pid = args.get("product_id")
-                new_p = int(args.get("new_price", 0))
-                if not feed_path.exists():
-                    run_daily_price_sync(silent=True)
-                feed = json.loads(feed_path.read_text(encoding="utf-8"))
-                if pid in feed.get("items_by_id", {}):
-                    item = feed["items_by_id"][pid]
-                    item["cheapest_price"] = new_p
-                    item["stores_sorted"][0]["net_price"] = new_p
-                    feed_path.write_text(json.dumps(feed, ensure_ascii=False, indent=2), encoding="utf-8")
-                    text = f"อัปเดตราคา {pid} เป็น {new_p:,}฿ เรียบร้อยแล้ว"
-                else:
-                    text = f"ไม่พบรหัสสินค้า {pid}"
+                # A naked number has no listing, variant or observation evidence.
+                text = "กรุณาบันทึกผ่าน Admin พร้อมแพลตฟอร์ม หน้าสินค้า ตัวเลือก และยืนยันเวลาตรวจราคา"
             elif tname == "set_affiliate_credentials":
                 text = update_affiliate_credentials(args)
             else:

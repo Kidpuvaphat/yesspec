@@ -6,10 +6,12 @@ yespec — Programmatic SEO & Multi-Store Price Radar Engine
 1. หน้าเปรียบเทียบหมัดต่อหมัด พร้อมรูปสินค้า Studio Render และคำแนะนำฟันธง
 2. ตารางเรดาร์เปรียบเทียบราคาทุกช่องทาง
 3. หน้าจัดอันดับประจำปี (Best Category Ranking Pages) พร้อมรูปสินค้าทุกชิ้น
-4. ฝัง Affiliate Sub-ID อัตโนมัติทุกช่องทาง + Schema.org JSON-LD + sitemap.xml
+4. แสดงลิงก์และราคาจาก feed ที่ตรวจสอบได้ พร้อม sitemap.xml
 """
 
+import html as html_lib
 import itertools
+from market_data import normalize_store, valid_url
 import json
 from datetime import datetime
 from pathlib import Path
@@ -21,26 +23,12 @@ DIST_DIR = BASE_DIR / "dist"
 
 
 def build_affiliate_url(raw_url: str, platform: str, config: dict, sub_id: str) -> str:
-    parsed = urlparse(raw_url)
-    query = dict(parse_qsl(parsed.query))
-    query["utm_source"] = "yespec_seo"
-    query["utm_medium"] = "affiliate"
-    query["sub_id"] = sub_id
-    if platform == "shopee":
-        query["af_siteid"] = config.get("shopee_affiliate_id", "")
-    elif platform == "lazada":
-        query["laz_trackid"] = config.get("lazada_affiliate_id", "")
-    elif platform == "tiktok":
-        query["tt_aff_id"] = config.get("tiktok_affiliate_id", "")
-    elif platform == "involve":
-        query["ia_aff_id"] = config.get("involve_asia_id", "")
-    else:
-        query["at_aff_id"] = config.get("accesstrade_id", "")
-    return urlunparse(parsed._replace(query=urlencode(query)))
+    return valid_url(raw_url, platform) if platform in ('shopee', 'lazada') else ''
 
 
-def get_min_price(prod: dict) -> int:
-    return min(o["price"] for o in prod["offers"])
+def get_min_price(prod: dict):
+    stores = [normalize_store(s, s['platform']) for s in prod.get('market_stores', [])]
+    return min((s['net_price'] for s in stores if s['ranking_eligible']), default=None)
 
 
 def compare_specs(prod_a: dict, prod_b: dict, spec_labels: dict) -> list:
@@ -150,288 +138,55 @@ SHARED_CSS = """
 
 
 def render_flights_offers_html(prod: dict, config: dict, sub_prefix: str) -> str:
-    sorted_offers = sorted(prod["offers"], key=lambda x: x["price"])
-    rows = ""
-    for idx, off in enumerate(sorted_offers):
-        is_cheapest = idx == 0
-        aff_url = build_affiliate_url(off["url"], off["platform"], config, f"{sub_prefix}_{off['platform']}")
-        cheapest_badge = '<span class="cheapest-pill">ถูกที่สุด #1</span>' if is_cheapest else ""
-        rows += f"""
-        <a class="flight-row {'cheapest' if is_cheapest else ''}" href="{aff_url}" target="_blank" rel="nofollow sponsored">
-          <div>
-            <strong>{off['store']}</strong> <span style="font-size:0.8rem;color:var(--muted);">({off['seller']})</span>{cheapest_badge}<br>
-            <span style="font-size:0.78rem;color:#137333;font-weight:600;">{off['coupon_text']}</span> •
-            <span style="font-size:0.78rem;color:var(--muted);">{off['perks']}</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="text-align:right;">
-              <div style="font-size:1.15rem;font-weight:800;color:{'#137333' if is_cheapest else '#1d1d1f'};">฿{off['price']:,}</div>
-              <div style="font-size:0.72rem;color:var(--muted);">{off['delivery']}</div>
-            </div>
-            <span class="go-btn">ไปที่ร้าน ➔</span>
-          </div>
-        </a>"""
-    return f'<div class="flights-table">{rows}</div>'
+    # Live feed fetched on page load; old static catalogue offers are never current evidence.
+    pid = html_lib.escape(prod['id'], quote=True)
+    name = html_lib.escape(prod['name'], quote=True)
+    return f'<div class="flights-table" data-market-product="{pid}" data-name="{name}">รอตรวจราคา</div>'
+
+
+MARKET_SCRIPT = """
+<script src="../assets/affiliate-links.js?v=20261019-affiliate2"></script>
+<script src="../assets/market-data.js?v=20261019-affiliate2"></script>
+<script>
+fetch('../data/daily_prices_feed.json', {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(feed => {
+  document.querySelectorAll('[data-market-product]').forEach(el => {
+    const product = {id: el.dataset.marketProduct, name: el.dataset.name};
+    const offers = MarketData.offers(product, feed?.items_by_id?.[product.id]);
+    el.replaceChildren();
+    offers.forEach(o => {
+      const a = document.createElement('a'); a.className = 'flight-row'; a.href = o.url;
+      a.target = '_blank'; a.rel = 'noopener sponsored nofollow';
+      a.textContent = o.store + ' — ' + (o.verified ? '฿' + o.netPrice.toLocaleString('th-TH') + (o.priceBasis === 'member' ? ' (ราคา VIP / สมาชิก)' : '') + ' • ตรวจ ' + new Date(o.observedAt).toLocaleString('th-TH') : 'รอตรวจราคา');
+      el.appendChild(a);
+    });
+  });
+}).catch(() => {});
+</script>
+"""
+
+
+def _document(title, body, slug, config):
+    canonical = html_lib.escape(config['domain'].rstrip('/') + '/dist/' + slug + '.html', quote=True)
+    return f'''<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html_lib.escape(title)} | yespec</title><link rel="canonical" href="{canonical}"><style>{SHARED_CSS}</style></head><body><nav class="nav"><div class="nav-inner"><a href="../index.html">{YESPEC_INLINE_LOGO}</a></div></nav><main class="container"><h1>{html_lib.escape(title)}</h1><p class="subtitle">ข้อมูลสเปกประกอบการเลือกซื้อ • ราคาแสดงเมื่อมีหลักฐานตรงตัวเลือกภายใน 48 ชั่วโมง ไม่รวมค่าส่งและคูปองเฉพาะบุคคล</p>{body}</main>{MARKET_SCRIPT}</body></html>'''
+
+
+def _card(product, category, config):
+    rows = ''.join(f'<tr><td>{html_lib.escape(str(label))}</td><td>{html_lib.escape(str(product.get("specs", {}).get(key, "—")))}</td></tr>' for key, label in category.get('spec_labels', {}).items())
+    return f'<article class="card"><h2>{html_lib.escape(product["name"])}</h2><table>{rows}</table>{render_flights_offers_html(product, config, "")}</article>'
 
 
 def render_vs_page(prod_a: dict, prod_b: dict, category: dict, config: dict) -> tuple[str, dict]:
     slug = f"{prod_a['id']}-vs-{prod_b['id']}"
-    sub_id = f"vs_{prod_a['id'][:8]}_{prod_b['id'][:8]}"
-    spec_comparisons = compare_specs(prod_a, prod_b, category["spec_labels"])
-
-    wins_a = sum(1 for s in spec_comparisons if s["winner"] == "a")
-    wins_b = sum(1 for s in spec_comparisons if s["winner"] == "b")
-
-    min_price_a = get_min_price(prod_a)
-    min_price_b = get_min_price(prod_b)
-    price_diff = abs(min_price_a - min_price_b)
-    cheaper_prod = prod_a if min_price_a <= min_price_b else prod_b
-    higher_score_prod = prod_a if prod_a["overall_score"] >= prod_b["overall_score"] else prod_b
-
-    title = f"เปรียบเทียบ {prod_a['name']} vs {prod_b['name']} ซื้อรุ่นไหนดี? ฟันธงตัวไหนดีกว่าเพราะอะไร (2026)"
-    description = (
-        f"เทียบละเอียด {prod_a['name']} กับ {prod_b['name']} อันไหนดีกว่ากันเพราะอะไร "
-        f"พร้อมตารางเรดาร์เช็คราคาถูกสุดทุกช่องทาง ส่วนต่าง {price_diff:,} บาท"
-    )
-
-    faq_schema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": f"ระหว่าง {prod_a['name']} กับ {prod_b['name']} แนะนำให้ซื้ออันไหนดีกว่าเพราะอะไร?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": (
-                        f"แนะนำ {higher_score_prod['name']} (คะแนน {higher_score_prod['overall_score']}/10) หากเน้นคุณภาพสูงสุดเพราะ {higher_score_prod['why_better']} "
-                        f"แต่หากเน้นความคุ้มค่าประหยัดงบ แนะนำ {cheaper_prod['name']} เพราะราคาถูกกว่า {price_diff:,} บาท"
-                    ),
-                },
-            }
-        ],
-    }
-
-    rows_html = ""
-    for item in spec_comparisons:
-        badge_a = '<span class="win-badge">ดีกว่า</span>' if item["winner"] == "a" else ""
-        badge_b = '<span class="win-badge">ดีกว่า</span>' if item["winner"] == "b" else ""
-        cls_a = "winner-cell" if item["winner"] == "a" else ""
-        cls_b = "winner-cell" if item["winner"] == "b" else ""
-        rows_html += f"""
-        <tr>
-          <td>{item['label']}</td>
-          <td class="{cls_a}">{item['val_a']:,} {badge_a}</td>
-          <td class="{cls_b}">{item['val_b']:,} {badge_b}</td>
-        </tr>"""
-
-    offers_a_html = render_flights_offers_html(prod_a, config, f"{sub_id}_a")
-    offers_b_html = render_flights_offers_html(prod_b, config, f"{sub_id}_b")
-
-    canonical_url = f"{config['domain']}/dist/{slug}.html"
-    html = f"""<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <meta name="description" content="{description}">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{canonical_url}">
-  <meta property="og:type" content="article">
-  <meta property="og:locale" content="th_TH">
-  <meta property="og:site_name" content="yesspec.com">
-  <meta property="og:title" content="{title}">
-  <meta property="og:description" content="{description}">
-  <meta property="og:url" content="{canonical_url}">
-  <script type="application/ld+json">{json.dumps(faq_schema, ensure_ascii=False)}</script>
-  <script>
-    if (window.location.hostname.endsWith('github.io')) {{
-      var targetPath = window.location.pathname.replace(/^\\/yesspec\\/?/, '/');
-      window.location.replace('https://yesspec.com' + targetPath + window.location.search + window.location.hash);
-    }}
-  </script>
-  <style>{SHARED_CSS}</style>
-</head>
-<body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <strong>{YESPEC_INLINE_LOGO} <span style="font-weight:400;color:var(--muted);margin-left:6px;">Editorial & Price Radar</span></strong>
-      <a href="../index.html">← กลับหน้าหลัก yespec</a>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="eyebrow">{category['full_name']} • IN-DEPTH COMPARISON</div>
-    <h1>{prod_a['name']} <span style="color:var(--muted);font-weight:400;">vs</span> {prod_b['name']}</h1>
-    <p class="subtitle">{description}</p>
-
-    <div class="bento-verdict">
-      <div class="eyebrow" style="margin-bottom:4px;">EXPERT RECOMMENDATION • คำแนะนำฟันธงว่าควรซื้ออันไหน</div>
-      <h3 style="margin:0 0 12px;font-size:1.35rem;">สรุปฟันธง: อันไหนดีกว่า และเพราะอะไร?</h3>
-      <p style="margin:0 0 10px;">🏆 <strong>ผู้ชนะคะแนนภาพรวม ({higher_score_prod['name']} — {higher_score_prod['overall_score']}/10):</strong> {higher_score_prod['why_better']}</p>
-      <p style="margin:0 0 10px;">💰 <strong>ทางเลือกคุ้มค่าประหยัดงบ ({cheaper_prod['name']}):</strong> เริ่มต้นเพียง <strong>฿{min(min_price_a, min_price_b):,}</strong> ประหยัดเงินในกระเป๋าได้ทันที <strong>฿{price_diff:,}</strong></p>
-      <ul style="margin:10px 0 0;padding-left:20px;color:#333;">
-        <li><strong>ควรซื้อ {prod_a['name']} ถ้าคุณเน้น:</strong> {', '.join(prod_a['best_for'])} (ชนะสเปก {wins_a} หัวข้อ)</li>
-        <li><strong>ควรซื้อ {prod_b['name']} ถ้าคุณเน้น:</strong> {', '.join(prod_b['best_for'])} (ชนะสเปก {wins_b} หัวข้อ)</li>
-      </ul>
-    </div>
-
-    <div class="grid-2">
-      <div class="card">
-        <div class="prod-img-stage">
-          <img src="../assets/products/{prod_a['id']}.png" alt="{prod_a['name']}" loading="lazy">
-        </div>
-        <span class="award-pill">🏆 {prod_a['award']}</span>
-        <h2 style="margin:4px 0;">{prod_a['name']}</h2>
-        <p style="color:var(--muted);font-size:0.92rem;margin-top:4px;">{prod_a['tagline']}</p>
-        <div class="why-box"><strong>ทำไมรุ่นนี้ถึงดีกว่า:</strong> {prod_a['why_better']}</div>
-        <h4 style="margin:16px 0 8px;font-size:0.92rem;">✈️ เปรียบเทียบราคาทุกช่องทาง (เรียงจากถูกที่สุด):</h4>
-        {offers_a_html}
-      </div>
-
-      <div class="card">
-        <div class="prod-img-stage">
-          <img src="../assets/products/{prod_b['id']}.png" alt="{prod_b['name']}" loading="lazy">
-        </div>
-        <span class="award-pill">🏆 {prod_b['award']}</span>
-        <h2 style="margin:4px 0;">{prod_b['name']}</h2>
-        <p style="color:var(--muted);font-size:0.92rem;margin-top:4px;">{prod_b['tagline']}</p>
-        <div class="why-box"><strong>ทำไมรุ่นนี้ถึงดีกว่า:</strong> {prod_b['why_better']}</div>
-        <h4 style="margin:16px 0 8px;font-size:0.92rem;">✈️ เปรียบเทียบราคาทุกช่องทาง (เรียงจากถูกที่สุด):</h4>
-        {offers_b_html}
-      </div>
-    </div>
-
-    <h2 style="margin-bottom:16px;letter-spacing:-0.02em;">ตารางผ่าสเปกเปรียบเทียบละเอียด</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>หัวข้อการเปรียบเทียบ</th>
-          <th>{prod_a['name']}</th>
-          <th>{prod_b['name']}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>คะแนนรวม yespec Score</td>
-          <td class="{'winner-cell' if prod_a['overall_score'] >= prod_b['overall_score'] else ''}">{prod_a['overall_score']} / 10</td>
-          <td class="{'winner-cell' if prod_b['overall_score'] > prod_a['overall_score'] else ''}">{prod_b['overall_score']} / 10</td>
-        </tr>
-        {rows_html}
-        <tr>
-          <td>ราคาสุทธิถูกสุดวันนี้</td>
-          <td class="{'winner-cell' if min_price_a <= min_price_b else ''}">฿{min_price_a:,}</td>
-          <td class="{'winner-cell' if min_price_b < min_price_a else ''}">฿{min_price_b:,}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
-</html>"""
-
-    avg_comm = int((min_price_a * prod_a["commission_pct"] / 100 + min_price_b * prod_b["commission_pct"] / 100) / 2)
-    meta = {
-        "type": "vs_comparison",
-        "slug": f"{slug}.html",
-        "title": title,
-        "category": category["name"],
-        "target_keyword": f"{prod_a['name']} vs {prod_b['name']}",
-        "sub_id": sub_id,
-        "est_commission_baht": avg_comm,
-    }
-    return html, meta
+    title = f"เปรียบเทียบ {prod_a['name']} กับ {prod_b['name']}"
+    body = '<div class="grid-2">' + _card(prod_a, category, config) + _card(prod_b, category, config) + '</div>'
+    return _document(title, body, slug, config), {'type':'vs_comparison', 'slug':slug + '.html', 'title':title, 'category':category['name']}
 
 
 def render_category_ranking_page(products: list, category: dict, config: dict) -> tuple[str, dict]:
     slug = f"best-{category['slug']}-2026"
-    sub_id = f"rank_{category['slug']}"
-    title = f"จัดอันดับ {category['full_name']} รุ่นไหนดี ปี 2026 ฟันธงตัวไหนคุ้มสุด"
-    description = f"รีวิวเปรียบเทียบ {category['full_name']} แนะนำว่าควรซื้อรุ่นไหนเพราะอะไร พร้อมตารางเรดาร์เช็คราคาถูกสุดทุกช่องทาง"
-
-    guide = category.get("expert_buying_guide", {})
-    cards_html = ""
-    for p in sorted(products, key=lambda x: x["rank"]):
-        offers_html = render_flights_offers_html(p, config, f"{sub_id}_{p['rank']}")
-        cards_html += f"""
-        <div class="card" style="margin-bottom:24px;">
-          <div class="prod-img-stage">
-            <img src="../assets/products/{p['id']}.png" alt="{p['name']}" loading="lazy">
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
-            <div>
-              <span class="award-pill">อันดับ #{p['rank']} • {p['award']}</span>
-              <h2 style="margin:4px 0;">{p['name']}</h2>
-              <p style="margin:0;color:var(--muted);">{p['tagline']}</p>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:0.78rem;color:var(--muted);font-weight:700;">YESPEC SCORE</div>
-              <div style="font-size:1.8rem;font-weight:800;color:var(--blue);">{p['overall_score']}<span style="font-size:0.95rem;color:var(--muted);">/10</span></div>
-            </div>
-          </div>
-          <div class="why-box"><strong>💡 ทำไมเราแนะนำรุ่นนี้ (ดีกว่าเพราะอะไร):</strong> {p['why_better']}</div>
-          <p style="font-size:0.92rem;"><strong>เหมาะสำหรับ:</strong> {', '.join(p['best_for'])}</p>
-          <ul style="padding-left:18px;font-size:0.92rem;">{''.join(f'<li>{pro}</li>' for pro in p['pros'])}</ul>
-          <h4 style="margin:16px 0 8px;font-size:0.92rem;">✈️ เช็คราคาถูกสุดทุกช่องทาง (เรียงจากถูกไปแพง):</h4>
-          {offers_html}
-        </div>"""
-
-    canonical_url = f"{config['domain']}/dist/{slug}.html"
-    html = f"""<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <meta name="description" content="{description}">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{canonical_url}">
-  <meta property="og:type" content="article">
-  <meta property="og:locale" content="th_TH">
-  <meta property="og:site_name" content="yesspec.com">
-  <meta property="og:title" content="{title}">
-  <meta property="og:description" content="{description}">
-  <meta property="og:url" content="{canonical_url}">
-  <script>
-    if (window.location.hostname.endsWith('github.io')) {{
-      var targetPath = window.location.pathname.replace(/^\\/yesspec\\/?/, '/');
-      window.location.replace('https://yesspec.com' + targetPath + window.location.search + window.location.hash);
-    }}
-  </script>
-  <style>{SHARED_CSS}</style>
-</head>
-<body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <strong>{YESPEC_INLINE_LOGO} <span style="font-weight:400;color:var(--muted);margin-left:6px;">Buying Guide 2026</span></strong>
-      <a href="../index.html">← กลับหน้าหลัก yespec</a>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="eyebrow">BUYING GUIDE • จัดอันดับและฟันธงประจำปี 2026</div>
-    <h1>{title}</h1>
-    <p class="subtitle">{description}</p>
-    <div class="bento-verdict">
-      <div class="eyebrow">EXPERT SUMMARY • สรุปโพยเลือกซื้อใน 1 นาที</div>
-      <h3 style="margin:4px 0 12px;">{guide.get('summary_headline', '')}</h3>
-      <p style="margin:0 0 8px;">🥇 <strong>แนะนำอันดับ 1 ({guide.get('best_overall_pick', '')}):</strong> {guide.get('best_overall_reason', '')}</p>
-      <p style="margin:0;">💎 <strong>ทางเลือกสุดคุ้ม ({guide.get('best_value_pick', '')}):</strong> {guide.get('best_value_reason', '')}</p>
-    </div>
-    {cards_html}
-  </div>
-</body>
-</html>"""
-
-    avg_comm = int(sum(get_min_price(p) * p["commission_pct"] / 100 for p in products) / len(products))
-    meta = {
-        "type": "category_ranking",
-        "slug": f"{slug}.html",
-        "title": title,
-        "category": category["name"],
-        "target_keyword": f"แนะนำ {category['name']} รุ่นไหนดี 2026",
-        "sub_id": sub_id,
-        "est_commission_baht": avg_comm,
-    }
-    return html, meta
+    title = f"เปรียบเทียบรุ่น {category.get('full_name', category['name'])}"
+    body = '<p>รายการรุ่นสำหรับเปรียบเทียบสเปก ดูอันดับตามราคาที่ตรวจสอบได้ในหน้าหลัก</p><div class="grid-2">' + ''.join(_card(p, category, config) for p in products) + '</div>'
+    return _document(title, body, slug, config), {'type':'category_ranking', 'slug':slug + '.html', 'title':title, 'category':category['name']}
 
 
 def main():
@@ -463,6 +218,10 @@ def main():
     # Ensure any older static HTML pages in dist/ also have canonical link
     for html_file in sorted(DIST_DIR.glob("*.html")):
         content = html_file.read_text(encoding="utf-8")
+        if 'data-market-product=' not in content and 'data-legacy-market-notice' not in content:
+            notice = '<aside data-legacy-market-notice style="padding:18px;background:#fff4d6;color:#5c3b00;font:16px sans-serif">บทความเดิม: ราคา โปรโมชัน และลิงก์ในหน้านี้ยังไม่ได้ตรวจสอบใหม่ กรุณาใช้ <a href="../index.html">หน้าหลัก</a> สำหรับข้อมูลที่มีหลักฐาน</aside>'
+            content = content.replace('<body>', '<body>' + notice, 1)
+            html_file.write_text(content, encoding='utf-8')
         if 'rel="canonical"' not in content:
             canonical_tag = f'  <link rel="canonical" href="{domain}/dist/{html_file.name}">\n'
             content = content.replace("</head>", f"{canonical_tag}</head>", 1)

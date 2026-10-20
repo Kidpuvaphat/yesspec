@@ -21,7 +21,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run Daily Price Sync (Shopee & Lazada MCP Connector)
+      - name: Verify evidence rules
+        run: |
+          python3 -m unittest discover -s tests -v
+          node --test tests/*.cjs
+
+      - name: Rebuild evidence feed (does not refresh marketplace observations)
         env:
           SHOPEE_AFF_ID: ${{ secrets.SHOPEE_AFF_ID }}
           SHOPEE_APP_ID: ${{ secrets.SHOPEE_APP_ID }}

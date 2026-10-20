@@ -237,6 +237,7 @@
   </div>
 
   <main class="container" id="mainDashboard" style="display:none;">
+    <p><a class="btn btn-primary" href="admin-ranking.html">จัดการ Top 20 · Shopee / Lazada / TikTok Shop →</a></p>
     <!-- DASHBOARD METRICS -->
     <div class="stats-grid">
       <div class="stat-card">
@@ -482,9 +483,9 @@
                     ${p.category_icon} ${p.category_name} • <code>${p.id}</code>
                     ${p.has_manual_override ? '<span class="badge badge-manual" style="margin-left:6px;">✏️ ตั้งค่าเองแล้ว</span>' : ''}
                   </div>
-                  <div style="font-size:1.12rem;font-weight:800;margin:2px 0;">${p.name}</div>
+                  <div style="font-size:1.12rem;font-weight:800;margin:2px 0;">${escAttr(p.name)}</div>
                   <div style="font-size:0.82rem;color:var(--muted);">
-                    ราคาโชว์หน้าเว็บปัจจุบัน: <strong style="color:var(--green);font-size:0.95rem;">฿${Number(p.display_price).toLocaleString()}</strong>
+                    ราคาโชว์หน้าเว็บปัจจุบัน: <strong style="color:var(--green);font-size:0.95rem;">${p.display_price == null ? 'รอตรวจราคา' : '฿' + Number(p.display_price).toLocaleString()}</strong>
                   </div>
                 </div>
               </div>
@@ -496,76 +497,15 @@
             </div>
 
             <div class="stores-grid">
-              <!-- SHOPEE BOX -->
-              <div class="store-box store-shopee">
-                <div class="store-title">
-                  <span style="color:var(--orange);">🟠 Shopee Mall / ร้านใน Shopee</span>
-                  <span class="badge ${spDirect ? 'badge-direct' : 'badge-search'}">
-                    ${spDirect ? '✅ ลิงก์สินค้าตรง (Exact PDP)' : '🔍 ลิงก์ค้นหาอัตโนมัติ'}
-                  </span>
-                </div>
-                <label class="field-label">แปะลิงก์สินค้า Shopee (รองรับ s.shopee.co.th หรือลิงก์หน้าสินค้าปกติ):</label>
-                <div class="field-row">
-                  <input type="text" class="field-input" id="sp_link_${p.id}" value="${escAttr(p.shopee.link)}" placeholder="วางลิงก์ https://s.shopee.co.th/... หรือ https://shopee.co.th/..." oninput="markDirty('${p.id}')">
-                  <button class="btn btn-outline" onclick="autoExtract('${p.id}', 'shopee')" title="ดึงรูปและราคาจากลิงก์">🪄 ดึงข้อมูล</button>
-                  <a class="btn btn-outline" href="${escAttr(p.shopee.aff_link || p.shopee.link)}" target="_blank" title="เปิดลิงก์เช็คใน Shopee">↗ เปิดดู</a>
-                </div>
-                <div class="field-row-3">
-                  <div>
-                    <label class="field-label">ราคาจริง Shopee (฿)</label>
-                    <input type="number" class="field-input" id="sp_price_${p.id}" value="${p.shopee.price}" oninput="markDirty('${p.id}')">
-                  </div>
-                  <div>
-                    <label class="field-label">ราคาเต็มก่อนลด (฿)</label>
-                    <input type="number" class="field-input" id="sp_orig_${p.id}" value="${p.shopee.original_price}" oninput="markDirty('${p.id}')">
-                  </div>
-                  <div>
-                    <label class="field-label">ชื่อร้านค้าใน Shopee</label>
-                    <input type="text" class="field-input" id="sp_shop_${p.id}" value="${escAttr(p.shopee.shop_name)}" oninput="markDirty('${p.id}')">
-                  </div>
-                </div>
-              </div>
-
-              <!-- LAZADA BOX -->
-              <div class="store-box store-lazada">
-                <div class="store-title">
-                  <span style="color:var(--lazada);">🔵 Lazada LazMall / ร้านใน Lazada</span>
-                  <span class="badge ${lzDirect ? 'badge-direct' : 'badge-search'}">
-                    ${lzDirect ? '✅ ลิงก์สินค้าตรง (Exact PDP)' : '🔍 ลิงก์ค้นหาอัตโนมัติ'}
-                  </span>
-                </div>
-                <label class="field-label">แปะลิงก์สินค้า Lazada (รองรับ s.lazada.co.th หรือลิงก์หน้าสินค้าปกติ):</label>
-                <div class="field-row">
-                  <input type="text" class="field-input" id="lz_link_${p.id}" value="${escAttr(p.lazada.link)}" placeholder="วางลิงก์ https://s.lazada.co.th/... หรือ https://www.lazada.co.th/products/..." oninput="markDirty('${p.id}')">
-                  <button class="btn btn-outline" onclick="autoExtract('${p.id}', 'lazada')" title="ดึงรูปและราคาจากลิงก์">🪄 ดึงข้อมูล</button>
-                  <a class="btn btn-outline" href="${escAttr(p.lazada.aff_link || p.lazada.link)}" target="_blank" title="เปิดลิงก์เช็คใน Lazada">↗ เปิดดู</a>
-                </div>
-                <div class="field-row-3">
-                  <div>
-                    <label class="field-label">ราคาจริง Lazada (฿)</label>
-                    <input type="number" class="field-input" id="lz_price_${p.id}" value="${p.lazada.price}" oninput="markDirty('${p.id}')">
-                  </div>
-                  <div>
-                    <label class="field-label">ราคาเต็มก่อนลด (฿)</label>
-                    <input type="number" class="field-input" id="lz_orig_${p.id}" value="${p.lazada.original_price}" oninput="markDirty('${p.id}')">
-                  </div>
-                  <div>
-                    <label class="field-label">ชื่อร้านค้าใน Lazada</label>
-                    <input type="text" class="field-input" id="lz_shop_${p.id}" value="${escAttr(p.lazada.shop_name)}" oninput="markDirty('${p.id}')">
-                  </div>
-                </div>
-              </div>
+              ${renderStoreFields(p, 'shopee')}
+              ${renderStoreFields(p, 'lazada')}
             </div>
 
             <!-- IMAGE URL + PRODUCT NAME + REAL SALES COUNT ROW -->
-            <div class="img-row" style="display:grid;grid-template-columns:1.3fr 0.7fr 1.6fr;gap:10px;align-items:end;">
+            <div class="img-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end;">
               <div>
                 <label class="field-label">✏️ ชื่อรุ่น / ความจุ (แก้ชื่อรุ่นให้ตรงกับที่ขายดีจริงได้):</label>
                 <input type="text" class="field-input" id="prod_name_${p.id}" value="${escAttr(p.name)}" placeholder="เช่น Samsung Galaxy A07 หรือ A06 (64GB)" oninput="markDirty('${p.id}')">
-              </div>
-              <div>
-                <label class="field-label">🔥 ยอดขายจริง (ชิ้น) จาก Shopee/Lazada:</label>
-                <input type="number" class="field-input" id="sold_count_${p.id}" value="${Number(p.sold_count || 0)}" placeholder="เช่น 20000" oninput="markDirty('${p.id}')">
               </div>
               <div>
                 <label class="field-label">🖼️ URL รูปสินค้าจริง (จาก Shopee / Lazada):</label>
@@ -579,21 +519,37 @@
         : '');
     }
 
+    function renderStoreFields(p, platform) {
+      const st = p[platform], prefix = platform === 'shopee' ? 'sp' : 'lz';
+      const label = platform === 'shopee' ? 'Shopee' : 'Lazada';
+      const val = (key, value, type = 'text') => `<input type="${type}" step="any" class="field-input" id="${prefix}_${key}_${p.id}" value="${escAttr(value ?? '')}" oninput="markDirty('${p.id}')">`;
+      const options = (key, values, selected) => `<select class="field-input" id="${prefix}_${key}_${p.id}" onchange="markDirty('${p.id}')">${values.map(([value, text]) => `<option value="${value}" ${selected === value ? 'selected' : ''}>${text}</option>`).join('')}</select>`;
+      const editable = st.source === 'manual' || st.source === 'official_api';
+      return `<div class="store-box store-${platform}">
+        <div class="store-title"><span>${label}</span><span class="badge ${st.ranking_eligible ? 'badge-direct' : 'badge-search'}">${st.ranking_eligible ? 'ตรวจราคาแล้ว' : st.status === 'stale' ? 'ข้อมูลเกิน 48 ชั่วโมง' : st.status === 'variant_mismatch' ? 'ตัวเลือกสองร้านไม่ตรงกัน' : 'รอตรวจสอบ'}</span></div>
+        <label class="field-label">ลิงก์ซื้อ / Affiliate ที่ได้จากแพลตฟอร์ม</label>
+        <div class="field-row">${val('link', st.link)}<button class="btn btn-outline" onclick="autoExtract('${p.id}', '${platform}')">ตรวจรหัส</button><a class="btn btn-outline" href="${escAttr(st.link || '#')}" target="_blank" rel="noopener noreferrer">เปิดดู ↗</a></div>
+        <label class="field-label">URL หน้าสินค้าต้นทางแบบเต็ม (หลังเปิดลิงก์ย่อ)</label>${val('product_url', st.product_url)}
+        <label class="field-label">ตัวเลือกที่ตรงรุ่น (ใช้คำเดียวกันทั้งสองร้าน) เช่น 128GB / เครื่องเปล่า / ประกันศูนย์</label>${val('variant', st.variant)}
+        <div class="field-row-3"><div><label class="field-label">ราคาที่เห็น (บาท)</label>${val('price', editable ? st.candidate_price : '', 'number')}</div><div><label class="field-label">ราคาขีดฆ่า ถ้ามี</label>${val('orig', editable ? st.candidate_original_price : '', 'number')}</div><div><label class="field-label">ชื่อร้าน</label>${val('shop', st.shop_name)}</div></div>
+        <div class="field-row"><div><label class="field-label">ประเภทราคา</label>${options('price_basis', [['sku','ตัวเลือกที่ระบุ'],['member','ราคา VIP / สมาชิก (ใช้จัดอันดับได้)'],['starting','ราคาเริ่มต้น'],['coupon','มีเงื่อนไขคูปอง']], st.price_basis || 'sku')}</div><div><label class="field-label">สถานะสินค้า</label>${options('availability', [['unknown','ยังไม่ทราบ'],['in_stock','มีสินค้า'],['out_of_stock','หมดสินค้า']], st.availability || 'unknown')}</div></div>
+        <div class="field-row"><div><label class="field-label">ข้อความยอดขายตามหน้าร้าน เช่น 1.2 พัน+</label>${val('sold_text', st.sales?.raw)}</div><div><label class="field-label">ช่วงเวลาของยอดขาย</label>${options('sold_period', [['unknown','ไม่ระบุ'],['lifetime','สะสม'],['30d','30 วัน']], st.sales?.period || 'unknown')}</div></div>
+        <label class="field-label">ขอบเขตยอดขาย</label>${options('sold_scope', [['listing','ทั้งหน้าสินค้า (รวมตัวเลือก)'],['sku','เฉพาะตัวเลือกนี้']], st.sales?.scope || 'listing')}
+        <label style="display:block;margin-top:12px;font-size:13px;"><input type="checkbox" id="${prefix}_confirmed_${p.id}" onchange="markDirty('${p.id}')"> ฉันเปิดลิงก์และตรวจรุ่น ตัวเลือก ราคา และข้อความยอดขาย ณ ตอนนี้แล้ว</label>
+        <p style="font-size:12px;color:var(--muted);">ตรวจล่าสุด: ${st.observed_at ? new Date(st.observed_at).toLocaleString('th-TH') : 'ยังไม่มีหลักฐาน'} • การตรวจนี้ไม่ยืนยันการติดตามค่าคอมมิชชัน</p>
+      </div>`;
+    }
+
     function collectProductPayload(pid) {
-      return {
-        id: pid,
-        name: document.getElementById('prod_name_' + pid)?.value.trim() || '',
-        sold_count: Number(document.getElementById('sold_count_' + pid)?.value || 0),
-        shopee_link: document.getElementById('sp_link_' + pid)?.value.trim() || '',
-        shopee_price: Number(document.getElementById('sp_price_' + pid)?.value || 0),
-        shopee_orig_price: Number(document.getElementById('sp_orig_' + pid)?.value || 0),
-        shopee_shop: document.getElementById('sp_shop_' + pid)?.value.trim() || 'Shopee Mall Official',
-        lazada_link: document.getElementById('lz_link_' + pid)?.value.trim() || '',
-        lazada_price: Number(document.getElementById('lz_price_' + pid)?.value || 0),
-        lazada_orig_price: Number(document.getElementById('lz_orig_' + pid)?.value || 0),
-        lazada_shop: document.getElementById('lz_shop_' + pid)?.value.trim() || 'LazMall Official',
-        image_url: document.getElementById('img_url_' + pid)?.value.trim() || '',
-      };
+      const data = {id: pid, name: document.getElementById('prod_name_' + pid)?.value.trim() || '', image_url: document.getElementById('img_url_' + pid)?.value.trim() || ''};
+      for (const [platform, prefix] of [['shopee','sp'], ['lazada','lz']]) {
+        for (const field of ['link','product_url','variant','price','shop','price_basis','availability','sold_text','sold_period','sold_scope']) {
+          data[platform + '_' + field] = document.getElementById(prefix + '_' + field + '_' + pid)?.value.trim() || '';
+        }
+        data[platform + '_orig_price'] = document.getElementById(prefix + '_orig_' + pid)?.value.trim() || '';
+        data[platform + '_confirmed'] = document.getElementById(prefix + '_confirmed_' + pid)?.checked === true;
+      }
+      return data;
     }
 
     async function saveOneProduct(pid) {
@@ -642,7 +598,7 @@
           document.getElementById('btnSaveAllDirty').style.display = 'none';
           showToast(`✅ บันทึกทั้ง ${data.updated_count} รุ่นขึ้นเว็บ yesspec.com สำเร็จ!`);
           await loadProducts();
-        }
+        } else { showToast(data.error || "บันทึกไม่สำเร็จ"); }
       } catch (e) {
         showToast('❌ ไม่สามารถบันทึกได้');
       }
@@ -664,29 +620,12 @@
         });
         const data = await res.json();
         if (data.ok) {
-          let updatedSomething = false;
-          if (data.price && data.price > 0) {
-            document.getElementById((platform === 'shopee' ? 'sp_price_' : 'lz_price_') + pid).value = data.price;
-            updatedSomething = true;
+          if (data.resolved_url) {
+            document.getElementById((platform === 'shopee' ? 'sp' : 'lz') + '_product_url_' + pid).value = data.resolved_url;
+            markDirty(pid);
           }
-          if (data.original_price && data.original_price > 0) {
-            document.getElementById((platform === 'shopee' ? 'sp_orig_' : 'lz_orig_') + pid).value = data.original_price;
-          }
-          if (data.shop_name) {
-            document.getElementById((platform === 'shopee' ? 'sp_shop_' : 'lz_shop_') + pid).value = data.shop_name;
-          }
-          if (data.image_url) {
-            document.getElementById('img_url_' + pid).value = data.image_url;
-            previewImgChange(pid, data.image_url);
-            updatedSomething = true;
-          }
-          markDirty(pid);
-          if (updatedSomething) {
-            showToast('🪄 ดึงข้อมูลสำเร็จ! ตรวจสอบราคาแล้วกด "บันทึกรุ่นนี้ขึ้นเว็บทันที" ได้เลย');
-          } else {
-            showToast('ℹ️ แอปป้องกันบอทดึงราคาอัตโนมัติ กรุณากรอกตัวเลขราคาที่เห็นในแอปแล้วกดบันทึกได้เลยครับ');
-          }
-        }
+          showToast(data.message);
+        } else { showToast(data.error || "ตรวจลิงก์ไม่สำเร็จ"); }
       } catch (e) {
         showToast('ℹ️ กรุณากรอกราคาแล้วกดบันทึกได้เลยครับ');
       }

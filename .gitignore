@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.pyc
+# Managed by the production admin, never replaced by Git deployments.
+data/manual_overrides.json
+data/ranking_manual_offers.json
+data/market_observations.jsonl
+# Local research inputs; publish only the reviewed ranking outputs.
+data/research/
