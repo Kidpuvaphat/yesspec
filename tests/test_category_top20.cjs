@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const {prepareDataset, createLoader, createController} = require('../assets/category-top20.js');
 const affiliate = require('../assets/affiliate-links.js');
-const feed = require('../data/shopee_feed_rankings.json');
+const feed = require('../data/archive/shopee_feed_rankings-20261019.json');
 const clone = value => JSON.parse(JSON.stringify(value));
 
 function fakeDOM() {

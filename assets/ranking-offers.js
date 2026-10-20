@@ -35,7 +35,8 @@
   function defaultShopee(item) {
     const id = `${item.shop_id}/${item.item_id}`;
     if (item.listing_id !== id || item.product_url !== `https://shopee.co.th/product/${id}` || !validURL(item.product_url, 'shopee')) return null;
-    return {platform:'shopee', url:item.product_url, price:item.price?.amount ?? null, source:item.source, price_type:'regular'};
+    return {platform:'shopee', url:item.product_url, price:item.manual_price_only ? null : item.price?.amount ?? null,
+      source:item.manual_price_only ? 'awaiting_manual' : item.source, price_type:item.manual_price_only ? 'coupon' : 'regular'};
   }
   function resolve(item, registry) {
     if (registry?.schema_version !== 1 || !registry.items || typeof registry.items !== 'object') return [];

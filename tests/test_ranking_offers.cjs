@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const offers = require('../assets/ranking-offers.js');
 const {listingHTML} = require('../assets/shopee-ranking.js');
 const {createLoader} = require('../assets/category-top20.js');
-const feed = require('../data/shopee_feed_rankings.json');
+const feed = require('../data/archive/shopee_feed_rankings-20261019.json');
 const item = feed.categories[0].items[0];
 const clone = v => JSON.parse(JSON.stringify(v));
 const binding = {title:item.title,model_count:item.price.model_count,model_examples:item.price.model_examples.map(m=>({id:m.id,name:m.name}))};

@@ -24,7 +24,7 @@
         ids.add(item.listing_id);
       }
       let previousSales, rank;
-      const items = [...category.items].sort((a, b) => b.sales.value - a.sales.value).slice(0, 20).map((item, index) => {
+      const items = [...category.items].sort((a, b) => b.sales.value - a.sales.value).slice(0, category.target_count || 20).map((item, index) => {
         if (item.sales.value !== previousSales) rank = index + 1;
         previousSales = item.sales.value;
         return {...item, rank, price: {...item.price, amount: Number.isFinite(item.price?.amount) && item.price.amount > 0 ? item.price.amount : null}};
@@ -53,14 +53,14 @@
 
   function createController(doc, load) {
     const $ = id => doc.getElementById(id);
-    let dataset, category, selectedId, query = '', request = 0;
+    let dataset, category, selectedId, query = '', band = 'all', request = 0;
     function render() {
       if (!category) return;
-      const items = ranking.filterItems(category.items, query);
+      const items = ranking.filterItems(category.items, query).filter(item => band === 'all' || item.price_band === band);
       $('categoryTop20Count').textContent = `${items.length} / ${category.listing_count} รายการ`;
       $('categoryTop20Results').innerHTML = items.length
         ? items.map(item => ranking.listingHTML(item, dataset.reason_labels || {}, false, Date.now(), dataset.price_ttl_hours)).join('')
-        : '<p class="empty">ไม่พบสินค้าใน Top 20 นี้ ลองค้นหาชื่อสินค้าหรือร้านค้าอื่น</p>';
+        : '<p class="empty">ไม่พบสินค้าในตัวกรองนี้ ลองเปลี่ยนช่วงงบหรือคำค้น</p>';
     }
     function search(value) {
       query = String(value || '');
@@ -72,13 +72,15 @@
       selectedId = id;
       category = null;
       query = '';
+      band = 'all';
+      if ($('categoryTop20Band')) $('categoryTop20Band').value = 'all';
       $('categoryTop20Search').value = '';
       $('categoryTop20Search').disabled = true;
       $('categoryTop20Clear').disabled = true;
       $('categoryTop20Count').textContent = 'กำลังโหลด…';
       $('categoryTop20Meta').textContent = '';
       $('categoryTop20Review').href = `shopee-ranking.html?source=feed#${encodeURIComponent(id)}`;
-      $('categoryTop20Results').textContent = 'กำลังโหลด Top 20 จาก Shopee Product Feed…';
+      $('categoryTop20Results').textContent = 'กำลังโหลดรายการมือถือ…';
       $('categoryTop20Results').setAttribute('aria-busy', 'true');
       try {
         const result = await load();
@@ -86,7 +88,8 @@
         dataset = result;
         category = dataset.categories.find(c => c.id === selectedId);
         if (!category) throw new Error('Missing category');
-        $('categoryTop20Meta').textContent = `คัด ${category.listing_count} รายการจาก ${count(category.eligible_count)} รายการที่ผ่านเกณฑ์ในหมวดนี้ · ฐานฟีด ${count(dataset.source_total_rows)} รายการ · สเปกผู้ผลิตยืนยัน ${category.items.filter(item => item.official_specs).length}/${category.listing_count} รายการ${category.listing_count < 20 ? ` · ยังขาด ${20 - category.listing_count} รายการ` : ''}`;
+        $('categoryTop20Meta').textContent = `${category.listing_count} รุ่น · ${category.price_bands?.length || 0} ช่วงงบ · เรียงตามยอดขายต้นทางที่เก็บได้`;
+        if ($('categoryTop20Band')) $('categoryTop20Band').innerHTML = '<option value="all">ทุกช่วงงบ</option>' + (category.price_bands || []).map(b => `<option value="${ranking.escapeHTML(b.id)}">${ranking.escapeHTML(b.label)} (${b.count})</option>`).join('');
         $('categoryTop20Search').disabled = false;
         $('categoryTop20Clear').disabled = false;
         render();
@@ -102,6 +105,7 @@
     }
     $('categoryTop20Search').addEventListener('input', event => search(event.target.value));
     $('categoryTop20Clear').addEventListener('click', () => search(''));
+    $('categoryTop20Band')?.addEventListener('change', event => {band = event.target.value; render();});
     return {show, search};
   }
   const api = {prepareDataset, createLoader, createController};

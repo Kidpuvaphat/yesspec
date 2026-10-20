@@ -35,3 +35,7 @@
   #categoryTop20 .listing h3 {font-size:13px;}
   #categoryTop20 .metric-value {font-size:18px;}
 }
+
+#categoryTop20 .catalog-toolbar select{width:100%;min-height:44px;border:1px solid #ccd4cf;border-radius:9px;padding:9px 12px;background:#fff;color:inherit;font:inherit}#categoryTop20 .catalog-toolbar label{min-width:180px}
+
+#categoryTop20 h1{font-size:clamp(23px,3vw,32px);margin:0;line-height:1.35;letter-spacing:-.02em}#categoryTop20 .catalog-heading{align-items:start}

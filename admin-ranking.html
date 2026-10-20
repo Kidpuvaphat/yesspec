@@ -2,24 +2,24 @@
 <html lang="th">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow"><title>จัดการ Top 20 และช่องทางซื้อ · yesspec</title>
+  <meta name="robots" content="noindex,nofollow"><title>จัดการมือถือ 30 รุ่นและราคาหลังคูปอง · yesspec</title>
   <link rel="icon" href="assets/yespec-logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/admin-ranking.css?v=20261020-price-check">
-  <script src="assets/ranking-offers.js?v=20261020-channels" defer></script>
+  <script src="assets/ranking-offers.js?v=20261020-mobile30" defer></script>
   <script src="assets/price-check.js?v=20261020-cart-replace" defer></script>
-  <script src="assets/admin-ranking.js?v=20261020-cart-replace" defer></script>
+  <script src="assets/admin-ranking.js?v=20261020-mobile30" defer></script>
 </head>
 <body>
-  <header><a class="brand" href="index.html">yes<span>spec</span></a><span>หลังบ้าน · Top 20</span><nav><a href="admin.html">หลังบ้านเดิม</a><a href="shopee-ranking.html?source=feed" target="_blank" rel="noopener">ดูหน้าอันดับ ↗</a><button id="logout" hidden>ออกจากระบบ</button></nav></header>
+  <header><a class="brand" href="index.html">yes<span>spec</span></a><span>หลังบ้าน · มือถือ</span><nav><a href="shopee-ranking.html?source=feed" target="_blank" rel="noopener">ดูหน้าอันดับ ↗</a><button id="logout" hidden>ออกจากระบบ</button></nav></header>
   <main>
     <section id="loginPanel" class="login-panel" hidden>
       <h1>เข้าสู่ระบบหลังบ้าน</h1><p>ใช้บัญชีผู้ดูแลเดิมของเว็บไซต์</p>
       <form id="loginForm"><label>ชื่อผู้ใช้<input id="username" autocomplete="username" required></label><label>รหัสผ่าน<input id="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">เข้าสู่ระบบ</button></form>
     </section>
     <section id="dashboard" hidden>
-      <div class="heading"><div><p class="eyebrow">SHOPEE · LAZADA · TIKTOK SHOP</p><h1>ตะกร้าและราคา · 20 รายการต่อหมวด</h1><p id="total" class="muted"></p></div><div><button id="reload">โหลดข้อมูลล่าสุด</button> <button class="primary" id="saveAll" disabled>บันทึกที่แก้ไข</button></div></div>
-      <div class="guide"><strong>มีลิงก์ตะกร้า → แสดงช่องทางและราคา · ไม่มีลิงก์ → ซ่อนทั้งคู่</strong><p>กรอกลิงก์ Affiliate ของคุณจากแต่ละแพลตฟอร์ม เลือกรุ่นและตัวเลือกให้ตรงกับสินค้า เว้นราคาได้หากยังไม่ทราบ ราคาที่กรอกเองไม่เปลี่ยนอันดับยอดขาย Shopee และยังไม่ใช้สรุปว่าร้านไหนถูกที่สุด</p><p>ใช้ “ตรวจราคาจากลิงก์” เพื่ออ่านราคาแล้วให้คุณยืนยันก่อนใส่ในฟอร์ม หากอ่านไม่ได้ยังกรอกเองได้ ราคา VIP อาจต้องเปิดตรวจด้วยบัญชีของคุณ เปลี่ยนลิงก์แล้วราคาและเงื่อนไขเดิมจะถูกล้าง ให้ตรวจหรือกรอกใหม่ แล้วกดบันทึกเพื่อเปลี่ยนตะกร้าซื้อบนเว็บ · รองรับราคาแฟลชเซล · ลิงก์ Affiliate จะเก็บตามเดิม · <a href="https://seller-th.tiktok.com/university/essay?knowledge_id=1653513000945425&lang=en" target="_blank" rel="noopener noreferrer">วิธีสร้างลิงก์ Affiliate TikTok ↗</a></p></div>
-      <div class="toolbar"><label>หมวดสินค้า<select id="category"></select></label><label>ค้นหาในหมวด<input id="search" type="search" placeholder="ชื่อรุ่นหรือร้านค้า"></label><label>ช่องทางที่ยังไม่มีลิงก์<select id="filter"><option value="all">ทั้งหมด</option><option value="tiktok">TikTok Shop</option><option value="lazada">Lazada</option><option value="shopee">Shopee</option></select></label></div>
+      <div class="heading"><div><p class="eyebrow">SHOPEE · LAZADA · TIKTOK SHOP</p><h1>ตะกร้าและราคา · มือถือ 30 รุ่น</h1><p id="total" class="muted"></p></div><div><button id="reload">โหลดข้อมูลล่าสุด</button> <button class="primary" id="saveAll" disabled>บันทึกที่แก้ไข</button></div></div>
+      <details class="guide"><summary>วิธีกรอกราคาคูปองและเปลี่ยนลิงก์ตะกร้า</summary><strong>มีลิงก์ตะกร้า → แสดงช่องทางและราคา · ไม่มีลิงก์ → ซ่อนทั้งคู่</strong><p>เปิดไว้เฉพาะมือถือ 30 รุ่น · กรอกราคาที่จ่ายจริงหลังใช้คูปอง พร้อมตัวเลือกและเงื่อนไข · กรอกลิงก์ Affiliate ของคุณจากแต่ละแพลตฟอร์ม เลือกรุ่นและตัวเลือกให้ตรงกับสินค้า เว้นราคาได้หากยังไม่ทราบ ราคาที่กรอกเองไม่เปลี่ยนอันดับยอดขาย Shopee และยังไม่ใช้สรุปว่าร้านไหนถูกที่สุด</p><p>ใช้ “ตรวจราคาจากลิงก์” เพื่ออ่านราคาแล้วให้คุณยืนยันก่อนใส่ในฟอร์ม หากอ่านไม่ได้ยังกรอกเองได้ ราคา VIP อาจต้องเปิดตรวจด้วยบัญชีของคุณ เปลี่ยนลิงก์แล้วราคาและเงื่อนไขเดิมจะถูกล้าง ให้ตรวจหรือกรอกใหม่ แล้วกดบันทึกเพื่อเปลี่ยนตะกร้าซื้อบนเว็บ · รองรับราคาแฟลชเซล · ลิงก์ Affiliate จะเก็บตามเดิม · <a href="https://seller-th.tiktok.com/university/essay?knowledge_id=1653513000945425&lang=en" target="_blank" rel="noopener noreferrer">วิธีสร้างลิงก์ Affiliate TikTok ↗</a></p></details>
+      <div class="toolbar"><label>หมวดสินค้า<select id="category"></select></label><label>ค้นหาในหมวด<input id="search" type="search" placeholder="ชื่อรุ่นหรือร้านค้า"></label><label>ช่วงงบอ้างอิงก่อนคูปอง<select id="budgetBand"><option value="all">ทุกช่วงงบ</option></select></label><label>สถานะข้อมูล<select id="filter"><option value="all">ทั้งหมด</option><option value="unpriced">ยังไม่กรอกราคา Shopee</option><option value="tiktok">TikTok Shop</option><option value="lazada">Lazada</option><option value="shopee">Shopee</option></select></label></div>
       <p id="count" class="muted" aria-live="polite"></p>
       <div id="products"></div>
     </section>

@@ -69,7 +69,7 @@ def feed_categories(root):
     data = json.loads((Path(root) / 'data/shopee_feed_rankings.json').read_text(encoding='utf-8'))
     if data.get('source') != 'shopee_affiliate_csv':
         raise ValueError('ไม่พบชุดข้อมูล Shopee Product Feed')
-    return [{**c, 'items': sorted(c['items'], key=lambda i: -i['sales']['value'])[:20]} for c in data['categories']]
+    return [{**c, 'items': sorted(c['items'], key=lambda i: -i['sales']['value'])[:c.get('target_count', 20)]} for c in data['categories']]
 
 
 def revision(item, entry):
@@ -78,8 +78,9 @@ def revision(item, entry):
 
 
 def default_shopee(item):
-    return {'url': item['product_url'], 'price': item.get('price', {}).get('amount'),
-            'price_type': 'regular', 'variant': '', 'note': '', 'source': 'shopee_affiliate_csv', 'recorded_at': None}
+    return {'url': item['product_url'], 'price': None if item.get('manual_price_only') else item.get('price', {}).get('amount'),
+            'price_type': 'coupon' if item.get('manual_price_only') else 'regular', 'variant': '', 'note': '',
+            'source': 'awaiting_manual' if item.get('manual_price_only') else 'shopee_affiliate_csv', 'recorded_at': None}
 
 
 def payload(root):
@@ -99,11 +100,14 @@ def payload(root):
                     offers[pf] = default_shopee(item) if pf == 'shopee' else None
                     if entry.get('offers', {}).get(pf):
                         pending.append(pf)
-            rows.append({'listing_id': item['listing_id'], 'title': item['title'], 'rank': item['rank'],
+            rows.append({'listing_id': item['listing_id'], 'title': item.get('display_name', item['title']), 'rank': item['rank'],
+                         'source_title': item['title'], 'price_band': item.get('price_band', ''),
+                         'price_band_label': item.get('price_band_label', ''),
                          'shop_name': item.get('shop_name', ''), 'offers': offers,
                          'feed_offer': default_shopee(item),
                          'revision': revision(item, entry), 'needs_review': pending})
-        categories.append({'id': category['id'], 'name': category['name'], 'icon': category.get('icon', ''), 'items': rows})
+        categories.append({'id': category['id'], 'name': category['name'], 'icon': category.get('icon', ''),
+                           'price_bands': category.get('price_bands', []), 'items': rows})
     return {'ok': True, 'categories': categories, 'total': sum(len(c['items']) for c in categories)}
 
 
@@ -161,7 +165,7 @@ def save(root, updates):
             raise ValueError('ข้อมูลสินค้าไม่ถูกต้อง')
         lid = update.get('listing_id')
         if not isinstance(lid, str) or lid not in items or lid in seen:
-            raise ValueError('ไม่พบสินค้าใน Top 20 หรือส่งสินค้าซ้ำ')
+            raise ValueError('ไม่พบสินค้าในรายการที่เปิดใช้งาน หรือส่งสินค้าซ้ำ')
         seen.add(lid)
         item, old = items[lid], store['items'].get(lid, {})
         if update.get('revision') != revision(item, old):

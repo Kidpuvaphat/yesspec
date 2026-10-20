@@ -45,7 +45,7 @@ test('review view opens evidence and expired prices are labelled', () => {
   assert.match(html, /ข้อมูลราคาเกิน 48 ชม/);
 });
 test('CSV source and unknown price time remain explicit and buy link belongs to owner', () => {
-  const data = require('../data/shopee_feed_rankings.json');
+  const data = require('../data/archive/shopee_feed_rankings-20261019.json');
   const row = data.categories[0].items[0];
   const html = listingHTML(row, data.reason_labels);
   assert.match(html, /ยอดขายใน Product Feed/);

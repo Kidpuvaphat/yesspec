@@ -17,7 +17,7 @@ class RankingOffersTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         (self.root/'data').mkdir()
-        self.feed = (Path(__file__).parents[1]/'data/shopee_feed_rankings.json').read_bytes()
+        self.feed = (Path(__file__).parents[1]/'data/archive/shopee_feed_rankings-20261019.json').read_bytes()
         (self.root/'data/shopee_feed_rankings.json').write_bytes(self.feed)
         self.row = api.payload(self.root)['categories'][0]['items'][0]
 

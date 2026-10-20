@@ -242,6 +242,11 @@ def main():
                 f"  <url>\n    <loc>{domain}/dist/articles/{art_file.name}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>"
             )
 
+    active_feed = BASE_DIR / 'data/shopee_feed_rankings.json'
+    if active_feed.exists() and json.loads(active_feed.read_text()).get('catalog_mode') == 'smartphone_30':
+        # Dormant articles stay on disk but their routes are paused on Hostinger.
+        url_entries = [f"  <url><loc>{domain}{path}</loc><lastmod>{today}</lastmod></url>"
+                       for path in ('/', '/shopee-ranking.html')]
     sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {chr(10).join(url_entries)}

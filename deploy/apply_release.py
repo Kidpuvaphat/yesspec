@@ -47,7 +47,14 @@ for path in stage.glob('*.py'):
 sys.path.insert(0,str(stage))
 ranking = importlib.import_module('ranking_offers')
 api = importlib.import_module('admin_server')
-assert ranking.payload(stage)['total']==640
+expected_catalog = ranking.payload(stage)
+expected_total = expected_catalog['total']
+expected_categories = [c['id'] for c in expected_catalog['categories']]
+staged_feed = json.loads((stage/'data/shopee_feed_rankings.json').read_text())
+phones_only = staged_feed.get('catalog_mode') == 'smartphone_30'
+assert expected_total == staged_feed['listing_count'] > 0
+if phones_only:
+    assert expected_total == 30 and expected_categories == ['smartphone']
 cfg = api._get_auth_config()
 token = api._make_token(cfg.get('username',''),cfg.get('password_sha256',''),cfg.get('secret',''))
 assert token and api._verify_token(token), 'Existing auth config failed preflight'
@@ -96,6 +103,15 @@ if 'location = /admin-ranking.html' not in prepared_nginx:
 
 '''+marker,1)
 prepared_nginx = prepared_nginx.replace('location ~ \\.py$ {','location ~ \\.py[co]?$ {')
+# Temporarily close legacy storefronts while retaining their files and data.
+dist_body = 'add_header Cache-Control "no-store" always;\n        return 302 /;' if phones_only else 'add_header Cache-Control "public, max-age=3600";\n        try_files $uri $uri.html $uri/ =404;'
+prepared_nginx, dist_matches = re.subn(r'location (?:\^~ )?/dist/ \{[^}]*\}',
+    'location ^~ /dist/ {\n        '+dist_body+'\n    }', prepared_nginx)
+assert dist_matches == 1, 'Expected one legacy content route'
+admin_body = 'return 302 /admin-ranking.html;' if phones_only else 'try_files $uri =404;'
+prepared_nginx, admin_matches = re.subn(r'location = /admin\.html \{[^}]*\}',
+    'location = /admin.html {\n        add_header Cache-Control "private, no-store" always;\n        '+admin_body+'\n    }', prepared_nginx)
+assert admin_matches == 1, 'Expected one legacy admin route'
 (stage/'nginx-yesspec.conf').write_text(prepared_nginx)
 
 protected_names = ['data/manual_overrides.json','data/ranking_manual_offers.json','data/daily_prices_feed.json']
@@ -150,7 +166,8 @@ try:
             if status==200:break
         except (urllib.error.URLError,ConnectionError):pass
         time.sleep(0.5)
-    assert status==200 and payload['total']==640 and len(payload['categories'])==32
+    assert status==200 and payload['total']==expected_total
+    assert [c['id'] for c in payload['categories']] == expected_categories
     status,legacy=request('/api/admin/products')
     assert status==200 and legacy['total']==352, 'Legacy admin API failed'
     status,_=request('/api/admin/check-ranking-price',{'platform':'shopee','url':'https://shopee.co.th/product/53892420/45260867994'},authorized=False)
@@ -170,7 +187,7 @@ try:
     assert run('systemctl','is-active','yesspec-admin')=='active'
     deployed={name:digest(root/name) for name in files}
     (backup/'deployed.json').write_text(json.dumps({'release':release,'files':deployed,'smoke':checks},indent=2))
-    print(json.dumps({'ok':True,'release':release,'backup':str(backup),'files':len(files),'categories':32,'items':640,'legacy_items':legacy['total'],'checks':checks,'existing_data_preserved':True,'credentials_unchanged':True},ensure_ascii=False))
+    print(json.dumps({'ok':True,'release':release,'backup':str(backup),'files':len(files),'categories':len(expected_categories),'items':expected_total,'legacy_items':legacy['total'],'checks':checks,'existing_data_preserved':True,'credentials_unchanged':True},ensure_ascii=False))
 except Exception:
     run('systemctl','stop','yesspec-admin')
     with tarfile.open(backup/'files.tar.gz') as archive:archive.extractall(backup/'restore',filter='data')

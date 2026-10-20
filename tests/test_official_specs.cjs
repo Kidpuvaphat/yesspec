@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const {resolve,attach} = require('../assets/official-specs.js');
 const {listingHTML} = require('../assets/shopee-ranking.js');
 const {prepareDataset,createLoader} = require('../assets/category-top20.js');
-const feed = require('../data/shopee_feed_rankings.json');
+const feed = require('../data/archive/shopee_feed_rankings-20261019.json');
 const registry = require('../data/official_product_specs.json');
 const clone = value=>JSON.parse(JSON.stringify(value));
 const iphone = feed.categories[0].items.find(item=>item.listing_id==='301786571/40268308729');
