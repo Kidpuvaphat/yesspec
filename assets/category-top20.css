@@ -39,3 +39,5 @@
 #categoryTop20 .catalog-toolbar select{width:100%;min-height:44px;border:1px solid #ccd4cf;border-radius:9px;padding:9px 12px;background:#fff;color:inherit;font:inherit}#categoryTop20 .catalog-toolbar label{min-width:180px}
 
 #categoryTop20 h1{font-size:clamp(23px,3vw,32px);margin:0;line-height:1.35;letter-spacing:-.02em}#categoryTop20 .catalog-heading{align-items:start}
+
+.value-summary{margin:9px 0;padding:9px 10px;border-radius:7px;background:#eaf4ed;color:#166534;font-size:12px;overflow-wrap:anywhere}.value-summary small{font-size:10px}.value-summary.pending{background:#f6f4ef;color:#6e6350}.value-summary details{margin-top:7px}.catalog-formula{font-size:12px;background:#fff;border:1px solid #dde4df;padding:12px 15px;border-radius:8px;margin:12px 0}.catalog-formula p{margin:7px 0}

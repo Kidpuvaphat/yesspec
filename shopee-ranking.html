@@ -6,13 +6,13 @@
   <title>มือถือ 30 รุ่น · ราคาหลังคูปอง · yesspec</title>
   <meta name="description" content="มือถือ 30 รุ่นคัดหลายช่วงงบจากข้อมูล Shopee พร้อมราคา ลิงก์สินค้า เวลาเก็บ และรายการที่ต้องตรวจเพิ่ม ยอดขายไม่ระบุช่วงเวลา">
   <link rel="icon" type="image/svg+xml" href="assets/yespec-logo.svg">
-  <link rel="stylesheet" href="assets/shopee-ranking.css?v=20261020-mobile30">
+  <link rel="stylesheet" href="assets/shopee-ranking.css?v=20261020-value1">
   <script src="assets/affiliate-links.js?v=20261019-affiliate2" defer></script>
   <link rel="stylesheet" href="assets/official-specs.css?v=20261019-official">
   <script src="assets/official-specs.js?v=20261019-official" defer></script>
   <link rel="stylesheet" href="assets/ranking-offers.css?v=20261020-channels">
-  <script src="assets/ranking-offers.js?v=20261020-mobile30" defer></script>
-  <script src="assets/shopee-ranking.js?v=20261020-mobile30" defer></script>
+  <script src="assets/ranking-offers.js?v=20261020-value1" defer></script>
+  <script src="assets/shopee-ranking.js?v=20261020-value1" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -38,12 +38,13 @@
       <div class="controls">
         <div class="field" hidden><label for="sourceSelect">ชุดข้อมูล</label><select id="sourceSelect"><option value="feed">Product Feed ทางการ</option></select></div>
         <div class="field"><label for="categorySelect">เลือกหมวดสินค้า</label><select id="categorySelect" disabled><option>กำลังโหลด…</option></select></div>
-        <div class="field"><label for="budgetBand">ช่วงงบอ้างอิงก่อนคูปอง</label><select id="budgetBand"><option value="all">ทุกช่วงงบ</option></select></div><div class="field search-field"><label for="listingSearch">ค้นหาใน 30 รุ่น</label><input id="listingSearch" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></div>
+        <div class="field"><label for="rankingSort">จัดอันดับ</label><select id="rankingSort"><option value="value">ความคุ้มค่า: สเปก ÷ ราคา</option><option value="sales">ยอดขายต้นทาง</option></select></div><div class="field"><label for="budgetBand">ช่วงงบอ้างอิงก่อนคูปอง</label><select id="budgetBand"><option value="all">ทุกช่วงงบ</option></select></div><div class="field search-field"><label for="listingSearch">ค้นหาใน 30 รุ่น</label><input id="listingSearch" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></div>
       </div>
-      <div class="category-heading"><div><p class="eyebrow">เรียงยอดขายจากมากไปน้อย</p><h2 id="categoryTitle">กำลังโหลดอันดับ</h2><p id="categoryMeta" class="muted"></p></div><span class="count-pill" id="resultCount"></span></div>
+      <div class="category-heading"><div><p class="eyebrow" id="rankingOrderLabel">อันดับความคุ้มค่า</p><h2 id="categoryTitle">กำลังโหลดอันดับ</h2><p id="categoryMeta" class="muted"></p></div><span class="count-pill" id="resultCount"></span></div>
       <details class="method"><summary>ขอบเขตข้อมูลและเกณฑ์ของหมวดนี้</summary><div id="methodContent"></div></details>
-      <div class="view-controls" role="group" aria-label="มุมมองรายการ"><button id="rankingView" class="active" aria-pressed="true">อันดับยอดขาย</button><button id="reviewView" aria-pressed="false">รายการที่ต้องตรวจเพิ่ม</button></div>
+      <div class="view-controls" role="group" aria-label="มุมมองรายการ"><button id="rankingView" class="active" aria-pressed="true">รายการสินค้า</button><button id="reviewView" aria-pressed="false">รายการที่ต้องตรวจเพิ่ม</button></div>
       <p class="price-note">แสดงเฉพาะราคาที่ผู้ดูแลกรอกหลังตรวจคูปอง หากยังไม่ได้กรอกจะแสดง “รอกรอกราคาหลังคูปอง” พร้อมระบุราคา VIP / เงื่อนไขและเวลาบันทึก ต้องตรวจตัวเลือกสินค้าและราคาปัจจุบันก่อนซื้อ ชื่อและคำโฆษณาสินค้ามาจากผู้ขาย ข้อมูลที่ยังยืนยันไม่ได้แสดง “—” สเปกจากเว็บผู้ผลิตยืนยันเฉพาะรุ่น ไม่ยืนยันตัวเลือกที่ตรงกับราคาหรือการรับประกันของร้าน</p>
+      <details class="method"><summary>สูตรจัดอันดับความคุ้มค่าและเงื่อนไข</summary><div id="valueFormula"></div></details>
       <div id="rankingResults" aria-live="polite"></div>
       <details class="excluded-panel" id="excludedPanel" hidden><summary id="excludedSummary"></summary><div id="excludedItems"></div></details>
     </section>

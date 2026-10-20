@@ -6,6 +6,86 @@
     tiktok: ['tiktok.com', 'www.tiktok.com', 'shop.tiktok.com', 'vt.tiktok.com', 'vm.tiktok.com']
   };
   const names = {shopee: 'Shopee', lazada: 'Lazada', tiktok: 'TikTok Shop'};
+  // Editorial scoring rubric v1. Caps are fixed reference points, not market maxima.
+  const specMetrics = [
+    ['geekbench6_single','Geekbench 6 · Single-core',15,3000],
+    ['geekbench6_multi','Geekbench 6 · Multi-core',25,10000],
+    ['ram_gb','RAM จริง (GB ไม่รวม RAM เสมือน)',15,12],
+    ['storage_gb','ความจุ (GB)',15,512],
+    ['battery_mah','แบตเตอรี่ (mAh)',15,6000],
+    ['refresh_hz','รีเฟรชเรตจอ (Hz)',15,120]
+  ];
+  function sourceURL(raw, benchmark = false) {
+    try {
+      const u = new URL(raw);
+      return u.protocol === 'https:' && !u.username && !u.password && !u.port &&
+        !/[\s<>"'\\\u0000-\u001f]/.test(raw) &&
+        (!benchmark || (u.hostname === 'browser.geekbench.com' && /^\/v6\/cpu\/\d+\/?$/.test(u.pathname))) ? raw : '';
+    } catch (_) { return ''; }
+  }
+  const variantKey = value => String(value || '').trim().toLocaleLowerCase('en-US').replace(/\s+/g,' ');
+  function valueScore(item, now = Date.now()) {
+    const spec = item.value_specs;
+    const pending = reason => ({score:null, spec_score:null, reason});
+    if (!spec?.verified || !spec.variant || !sourceURL(spec.spec_url) || !sourceURL(spec.benchmark_url,true) ||
+        !Number.isFinite(Date.parse(spec.checked_at)) || Date.parse(spec.checked_at) > now ||
+        !specMetrics.every(([key]) => typeof spec[key] === 'number' && Number.isFinite(spec[key]) && spec[key] > 0)) {
+      return pending('รอสเปกครบและแหล่งอ้างอิงที่ผู้ดูแลยืนยัน');
+    }
+    const offers = (item.purchase_offers || []).filter(o => validURL(o.url,o.platform) && o.source === 'manual' &&
+      typeof o.price === 'number' && Number.isFinite(o.price) && o.price > 0 &&
+      variantKey(o.variant) === variantKey(spec.variant));
+    if (!offers.length) return pending('รอราคาที่กรอกและตัวเลือกตรงกับสเปก');
+    const fresh = offers.filter(o => {
+      const lookup = o.price_lookup;
+      const recorded = Date.parse(lookup?.confirmed && lookup.requested_url === o.url && lookup.amount === o.price ? lookup.checked_at : o.recorded_at);
+      return Number.isFinite(recorded) && recorded <= now && now - recorded <= 48 * 3600000;
+    }).sort((a,b)=>a.price-b.price || a.platform.localeCompare(b.platform));
+    if (!fresh.length) return pending('ราคาที่ใช้คำนวณเกิน 48 ชม. · รอยืนยันราคาใหม่');
+    const offer = fresh[0];
+    const specScore = specMetrics.reduce((sum,[key,,weight,reference]) => sum + weight * Math.min(spec[key]/reference,1),0);
+    return {score:Math.round(specScore*1000/offer.price*10000)/10000,
+      spec_score:specScore, price:offer.price, platform:offer.platform, variant:spec.variant, reason:''};
+  }
+  function rankValue(items, now = Date.now()) {
+    const ranked = items.map(item => ({...item, source_rank:item.source_rank ?? item.rank, value_result:valueScore(item,now)}));
+    ranked.sort((a,b) => (b.value_result.score ?? -Infinity) - (a.value_result.score ?? -Infinity) ||
+      (a.source_rank ?? Infinity) - (b.source_rank ?? Infinity) || a.listing_id.localeCompare(b.listing_id));
+    let previous, rank;
+    return ranked.map((item,index) => {
+      const score = item.value_result.score;
+      if (score !== null && score !== previous) rank = index+1;
+      previous = score;
+      return {...item, value_rank:score === null ? null : rank};
+    });
+  }
+  function orderItems(items, mode = 'value', now = Date.now()) {
+    const ranked = rankValue(items,now);
+    if (mode === 'sales') ranked.sort((a,b) => a.source_rank-b.source_rank || a.listing_id.localeCompare(b.listing_id));
+    return ranked.map(i=>({...i, rank:mode === 'sales' ? i.source_rank : i.value_rank, ranking_mode:mode}));
+  }
+  function formulaHTML() {
+    return '<strong>ความคุ้มค่า = คะแนนสเปก × 1,000 ÷ ราคาสุทธิ (บาท)</strong>' +
+      '<p>คะแนนสูงขึ้นได้อันดับดีขึ้น · คะแนนสเปกเต็ม 100 = ผลรวม น้ำหนัก × min(ค่าจริง ÷ ค่าอ้างอิง, 1)</p>' +
+      '<ul>' + specMetrics.map(([,label,weight,reference])=>`<li>${label}: ${weight}% · ค่าอ้างอิง ${reference.toLocaleString('th-TH')}</li>`).join('') + '</ul>' +
+      '<p>สูตร yesspec v1 ให้น้ำหนักด้านประสิทธิภาพ หน่วยความจำ แบตเตอรี่และจอ ไม่รวมคุณภาพกล้อง ระบบปฏิบัติการหรือบริการหลังขาย ค่าอ้างอิงเป็นเกณฑ์ของเว็บ และ mAh ไม่ใช่ผลทดสอบอายุแบตเตอรี่</p>' +
+      '<p>ใช้ราคาต่ำสุดที่ผู้ดูแลบันทึกภายใน 48 ชั่วโมงจากช่องทางที่มีลิงก์และชื่อตัวเลือกตรงกับสเปก รวมคูปอง / VIP / แฟลชเซลตามเงื่อนไขที่ระบุ สเปกต้องครบและผู้ดูแลยืนยันแหล่งอ้างอิง คะแนนเท่ากันใช้อันดับร่วม รายการข้อมูลไม่ครบอยู่ท้ายและยังไม่มีอันดับความคุ้มค่า</p>' +
+      '<p>คำนวณใหม่เมื่อบันทึกและเปิดหน้าเว็บ หน้าเว็บที่เปิดอยู่ตรวจข้อมูลทุก 60 วินาทีและเมื่อกลับมาเปิดแท็บ</p>' +
+      '<a href="https://www.geekbench.com/doc/geekbench6-cpu-workloads.pdf" target="_blank" rel="noopener noreferrer">คำอธิบายการทดสอบ Geekbench 6 ↗</a>';
+  }
+  function watchChanges(callback) {
+    if (!root.document || !root.addEventListener) return;
+    let busy = false;
+    const refresh = async () => {
+      if (busy || root.document.hidden) return;
+      busy = true;
+      try { await callback(); } finally { busy = false; }
+    };
+    root.addEventListener('storage', event => {if (event.key === 'yesspec_offers_updated') refresh();});
+    root.addEventListener('focus', refresh);
+    root.document.addEventListener('visibilitychange', refresh);
+    root.setInterval(refresh,60000);
+  }
   function validURL(raw, platform, depth = 0) {
     if (typeof raw !== 'string' || !raw || raw.length > 4096 || /[\s<>"'\\\u0000-\u001f]/.test(raw)) return '';
     try {
@@ -52,10 +132,12 @@
   }
   function attach(data, registry) {
     return {...data, categories:data.categories.map(c => ({...c, items:c.items.map(item => ({...item,
+      value_specs:sameBinding(item,registry?.items?.[item.listing_id]?.binding) ? registry.items[item.listing_id].value_specs || null : null,
       purchase_offers:resolve(item, registry), purchase_offers_unavailable:registry?.schema_version !== 1
     }))}))};
   }
-  const api = {names, validURL, sameBinding, defaultShopee, resolve, attach};
+  const api = {names, validURL, sameBinding, defaultShopee, resolve, attach,
+    specMetrics, sourceURL, valueScore, rankValue, orderItems, formulaHTML, watchChanges};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.RankingOffers = api;
 })(typeof window !== 'undefined' ? window : globalThis);

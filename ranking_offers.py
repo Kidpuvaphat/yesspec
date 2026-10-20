@@ -104,6 +104,7 @@ def payload(root):
                          'source_title': item['title'], 'price_band': item.get('price_band', ''),
                          'price_band_label': item.get('price_band_label', ''),
                          'shop_name': item.get('shop_name', ''), 'offers': offers,
+                         'value_specs': entry.get('value_specs') if matched else None,
                          'feed_offer': default_shopee(item),
                          'revision': revision(item, entry), 'needs_review': pending})
         categories.append({'id': category['id'], 'name': category['name'], 'icon': category.get('icon', ''),
@@ -154,6 +155,49 @@ def clean_offer(raw, platform, now):
     return result
 
 
+def clean_value_specs(raw, now):
+    if raw is None:
+        return None
+    if not isinstance(raw, dict):
+        raise ValueError('ข้อมูลสเปกไม่ถูกต้อง')
+    result = {}
+    for key in ('geekbench6_single', 'geekbench6_multi', 'ram_gb', 'storage_gb', 'battery_mah', 'refresh_hz'):
+        value = raw.get(key)
+        if value in ('', None):
+            result[key] = None
+            continue
+        try:
+            if isinstance(value, bool):
+                raise ValueError()
+            value = float(value)
+            if not math.isfinite(value) or not 0 < value <= 100_000:
+                raise ValueError()
+        except (TypeError, ValueError):
+            raise ValueError('ค่าสเปกต้องเป็นตัวเลขมากกว่า 0 หรือเว้นว่างไว้') from None
+        result[key] = value
+    for key in ('variant', 'spec_url', 'benchmark_url'):
+        value = str(raw.get(key) or '').strip()
+        if len(value) > (500 if key == 'variant' else 4096):
+            raise ValueError('รายละเอียดสเปกยาวเกินกำหนด')
+        if key.endswith('_url') and value:
+            try:
+                url = urlparse(value)
+                valid = (url.scheme == 'https' and bool(url.hostname) and not url.username and not url.password
+                         and url.port in (None, 443) and not re.search(r'[\s<>"\x27\\\x00-\x1f]', value))
+                if key == 'benchmark_url':
+                    valid = valid and url.hostname == 'browser.geekbench.com' and bool(re.fullmatch(r'/v6/cpu/\d+/?', url.path))
+                if not valid:
+                    raise ValueError()
+            except ValueError:
+                raise ValueError('ใช้แหล่งสเปก HTTPS และลิงก์ผลทดสอบ Geekbench 6 CPU ให้ตรงรุ่น') from None
+        result[key] = value
+    result['verified'] = raw.get('verified') is True
+    if result['verified'] and not all(result[key] for key in result if key != 'verified'):
+        raise ValueError('กรอกสเปก ตัวเลือก และแหล่งอ้างอิงให้ครบก่อนยืนยัน')
+    result['checked_at'] = now if result['verified'] else None
+    return result
+
+
 def save(root, updates):
     if not isinstance(updates, list) or not 1 <= len(updates) <= 640:
         raise ValueError('เลือกสินค้าที่ต้องการบันทึก')
@@ -185,7 +229,12 @@ def save(root, updates):
             offers.pop(pf, None)
         for pf, raw in changes.items():
             offers[pf] = clean_offer(raw, pf, now)
+        specs = old.get('value_specs') if old.get('binding') == binding(item) else None
+        if 'value_specs' in update:
+            specs = clean_value_specs(update['value_specs'], now)
         store['items'][lid] = {'binding': binding(item), 'offers': offers, 'updated_at': now}
+        if specs is not None:
+            store['items'][lid]['value_specs'] = specs
     store['updated_at'] = now
     write_json(Path(root) / 'data/ranking_manual_offers.json', store)
     return {'ok': True, 'updated_count': len(seen)}

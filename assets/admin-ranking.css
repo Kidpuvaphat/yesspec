@@ -21,3 +21,5 @@ label {display:block;font-size:12px;font-weight:600;} input,select {display:bloc
 #priceConfirmForm>label {margin:12px 0;}#priceConfirmForm .match-check {display:flex;gap:10px;align-items:start;cursor:pointer;font-size:13px;}
 .check-footer {display:flex;flex-wrap:wrap;gap:15px;align-items:center;justify-content:space-between;margin-top:20px;border-top:1px solid #e1e6e2;padding-top:16px;}
 @media(max-width:600px){#priceCheckDialog {padding:16px;}.check-header h2 {font-size:21px;}}
+
+.value-spec-editor{border:1px solid #cfe3d5;border-radius:8px;padding:14px;margin:16px 0}.spec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.spec-confirm{display:flex;gap:10px;align-items:center;margin:15px 0}.spec-confirm input{width:18px;min-height:18px;flex-shrink:0}.value-spec-editor summary{font-weight:600}@media(max-width:850px){.spec-grid{grid-template-columns:1fr}}

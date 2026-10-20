@@ -41,7 +41,8 @@
       if (!response.ok) throw new Error('Cannot load data');
       return response.json();
     };
-    return () => {
+    return (refresh = false) => {
+      if (refresh) pending = null;
       if (!pending) pending = Promise.allSettled([read('data/shopee_feed_rankings.json'), read('data/official_product_specs.json'), read('data/ranking_manual_offers.json')])
         .then(results => {
           if (results[0].status !== 'fulfilled') throw results[0].reason;
@@ -53,10 +54,14 @@
 
   function createController(doc, load) {
     const $ = id => doc.getElementById(id);
-    let dataset, category, selectedId, query = '', band = 'all', request = 0;
+    let dataset, category, selectedId, query = '', band = 'all', mode = 'value', request = 0;
     function render() {
       if (!category) return;
-      const items = ranking.filterItems(category.items, query).filter(item => band === 'all' || item.price_band === band);
+      const ordered = dataset.catalog_mode === 'smartphone_30' ? channels.orderItems(category.items,mode) : category.items;
+      const items = ranking.filterItems(ordered, query).filter(item => band === 'all' || item.price_band === band);
+      $('categoryTop20Meta').textContent = dataset.catalog_mode === 'smartphone_30'
+        ? `${category.listing_count} รุ่น · ${category.price_bands?.length || 0} ช่วงงบ · พร้อมจัดอันดับความคุ้มค่า ${ordered.filter(i=>i.value_rank!==null).length} รุ่น`
+        : `${category.listing_count} รายการ · เรียงตามยอดขายต้นทางที่เก็บได้`;
       $('categoryTop20Count').textContent = `${items.length} / ${category.listing_count} รายการ`;
       $('categoryTop20Results').innerHTML = items.length
         ? items.map(item => ranking.listingHTML(item, dataset.reason_labels || {}, false, Date.now(), dataset.price_ttl_hours)).join('')
@@ -106,7 +111,25 @@
     $('categoryTop20Search').addEventListener('input', event => search(event.target.value));
     $('categoryTop20Clear').addEventListener('click', () => search(''));
     $('categoryTop20Band')?.addEventListener('change', event => {band = event.target.value; render();});
-    return {show, search};
+    $('categoryTop20Sort')?.addEventListener('change', event => {mode = event.target.value; render();});
+    if ($('categoryTop20Formula')) $('categoryTop20Formula').innerHTML = channels.formulaHTML();
+    async function refresh() {
+      if (!selectedId || !category) return;
+      const current = ++request;
+      try {
+        const next = await load(true);
+        if (current !== request) return;
+        dataset = next;
+        category = next.categories.find(c=>c.id===selectedId);
+        render();
+      } catch (_) {
+        if (current !== request) return;
+        category = {...category, items:category.items.map(i=>({...i, purchase_offers:[], value_specs:null}))};
+        render();
+        $('categoryTop20Meta').textContent = 'อัปเดตราคาไม่ได้ · พักอันดับความคุ้มค่าไว้ก่อน ระบบจะลองใหม่';
+      }
+    }
+    return {show, search, refresh};
   }
   const api = {prepareDataset, createLoader, createController};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
@@ -116,5 +139,6 @@
     api.show = id => (controller ||= createController(root.document, api.load)).show(id);
     api.search = value => controller?.search(value);
     root.ShopeeCategoryCatalog = api;
+    channels.watchChanges(()=>controller?.refresh());
   }
 })(typeof window !== 'undefined' ? window : globalThis);

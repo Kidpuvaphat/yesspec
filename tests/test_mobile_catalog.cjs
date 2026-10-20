@@ -28,6 +28,7 @@ test('all six budget filters retain model identity and the rank from the complet
   const data = offers.attach(prepareDataset(feed),{schema_version:1,items:{}});
   const controller = createController(doc,async()=>data);
   await controller.show('smartphone');
+  doc.getElementById('categoryTop20Sort').listeners.change({target:{value:'sales'}});
   for (const band of data.categories[0].price_bands) {
     doc.getElementById('categoryTop20Band').listeners.change({target:{value:band.id}});
     const html=doc.getElementById('categoryTop20Results').innerHTML;
