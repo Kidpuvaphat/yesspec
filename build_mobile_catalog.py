@@ -2,6 +2,7 @@
 import copy
 import json
 from pathlib import Path
+from ranking_offers import binding
 
 ROOT = Path(__file__).resolve().parent
 BANDS = [
@@ -20,6 +21,8 @@ def build(root=ROOT):
     evidence = read('mobile_candidate_evidence.json')
     selection = read('mobile_selection.json')
     original = read('archive/shopee_feed_rankings-20261019.json')
+    research_path = root / 'data/mobile_spec_research.json'
+    research = read('mobile_spec_research.json')['items'] if research_path.exists() else {}
     assert evidence['source_sha256'] == original['source_sha256']
     candidates = {i['listing_id']: i for i in evidence['items']}
     chosen = selection['items']
@@ -34,6 +37,10 @@ def build(root=ROOT):
         item.update(display_name=choice['display_name'], manual_price_only=True,
                     price_band=band[0], price_band_label=band[1])
         # Keep source title/options unchanged so saved affiliate offers remain bound.
+        reviewed = research.get(item['listing_id'])
+        if reviewed and reviewed['binding'] == binding(item) and reviewed['model'] == choice['display_name']:
+            item['spec_research'] = copy.deepcopy(reviewed)
+            item['researched_value_specs'] = copy.deepcopy(reviewed['value_specs'])
         items.append(item)
     items.sort(key=lambda i: (-i['sales']['value'], i['listing_id']))
     for n, item in enumerate(items, 1):

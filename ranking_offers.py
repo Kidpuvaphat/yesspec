@@ -83,6 +83,14 @@ def default_shopee(item):
             'source': 'awaiting_manual' if item.get('manual_price_only') else 'shopee_affiliate_csv', 'recorded_at': None}
 
 
+def researched_specs(item):
+    research = item.get('spec_research') or {}
+    # Evidence belongs to one reviewed model and exact source listing/options.
+    if research.get('binding') == binding(item) and research.get('model') == item.get('display_name'):
+        return item.get('researched_value_specs')
+    return None
+
+
 def payload(root):
     store = read_store(root)
     categories = []
@@ -104,7 +112,8 @@ def payload(root):
                          'source_title': item['title'], 'price_band': item.get('price_band', ''),
                          'price_band_label': item.get('price_band_label', ''),
                          'shop_name': item.get('shop_name', ''), 'offers': offers,
-                         'value_specs': entry.get('value_specs') if matched else None,
+                         'value_specs': entry['value_specs'] if matched and 'value_specs' in entry else researched_specs(item),
+                         'spec_research': item.get('spec_research') if researched_specs(item) is not None else None,
                          'feed_offer': default_shopee(item),
                          'revision': revision(item, entry), 'needs_review': pending})
         categories.append({'id': category['id'], 'name': category['name'], 'icon': category.get('icon', ''),
@@ -229,7 +238,7 @@ def save(root, updates):
             offers.pop(pf, None)
         for pf, raw in changes.items():
             offers[pf] = clean_offer(raw, pf, now)
-        specs = old.get('value_specs') if old.get('binding') == binding(item) else None
+        specs = old['value_specs'] if old.get('binding') == binding(item) and 'value_specs' in old else researched_specs(item)
         if 'value_specs' in update:
             specs = clean_value_specs(update['value_specs'], now)
         store['items'][lid] = {'binding': binding(item), 'offers': offers, 'updated_at': now}

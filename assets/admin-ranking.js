@@ -45,7 +45,7 @@
   function renderSpecs(row) {
     const specs = drafts.get(row.listing_id)?.value_specs || formSpecs(row.value_specs);
     const input = (key,label,type='text') => `<label>${label}<input data-spec="${key}" type="${type}" ${type === 'number' ? 'min="0.01" max="100000" step="any" inputmode="decimal"' : 'maxlength="4096"'} value="${e(specs[key])}"></label>`;
-    return `<details class="value-spec-editor"><summary>สเปกสำหรับคำนวณความคุ้มค่า · ${specs.verified ? 'ยืนยันแล้ว' : 'รอกรอก / ยืนยัน'}</summary><p class="muted">กรอกเฉพาะข้อมูลที่ตรวจสอบได้ ช่องที่ไม่ทราบเว้นว่าง · คะแนน Geekbench ต้องเป็นเวอร์ชัน 6 ของรุ่นนี้ · ใช้ชื่อตัวเลือกเดียวกับช่องราคา</p><div class="spec-grid">${RankingOffers.specMetrics.map(([key,label])=>input(key,label,'number')).join('')}${input('variant','ตัวเลือกที่สเปกนี้อ้างอิง เช่น RAM 8GB / ROM 128GB')}${input('spec_url','ลิงก์สเปกอ้างอิง HTTPS','url')}${input('benchmark_url','ลิงก์ผลทดสอบ browser.geekbench.com/v6/cpu/...','url')}</div><label class="spec-confirm"><input data-spec="verified" type="checkbox" ${specs.verified ? 'checked' : ''}>ฉันตรวจแหล่งอ้างอิงแล้ว สเปกและผลทดสอบตรงกับรุ่นและตัวเลือกนี้</label></details>`;
+    return `<details class="value-spec-editor"><summary>สเปกสำหรับคำนวณความคุ้มค่า · ${specs.verified ? 'ยืนยันแล้ว' : 'รอกรอก / ยืนยัน'}</summary><p class="muted">กรอกเฉพาะข้อมูลที่ตรวจสอบได้ ช่องที่ไม่ทราบเว้นว่าง · คะแนน Geekbench ต้องเป็นเวอร์ชัน 6 ของรุ่นนี้ · ใช้ชื่อตัวเลือกเดียวกับช่องราคา</p>${RankingOffers.researchHTML(row.spec_research)}${row.spec_research?.memory_options?.length > 1 ? `<label>เลือก RAM / ความจุจากสเปกทางการ<select data-memory-option><option value="">เลือกให้ตรงกับสินค้าที่จะกรอกราคา</option>${row.spec_research.memory_options.map((o,index)=>`<option value="${index}">${e(o.label)}</option>`).join('')}</select></label>` : ''}<div class="spec-grid">${RankingOffers.specMetrics.map(([key,label])=>input(key,label,'number')).join('')}${input('variant','ตัวเลือกที่สเปกนี้อ้างอิง เช่น RAM 8GB / ROM 128GB')}${input('spec_url','ลิงก์สเปกอ้างอิง HTTPS','url')}${input('benchmark_url','ลิงก์ผลทดสอบ browser.geekbench.com/v6/cpu/...','url')}</div><label class="spec-confirm"><input data-spec="verified" type="checkbox" ${specs.verified ? 'checked' : ''}>ฉันตรวจแหล่งอ้างอิงแล้ว สเปกตรงรุ่นย่อยที่ระบุ และ Geekbench เป็นผลของรุ่นนี้</label></details>`;
   }
   function render() {
     const category = categories.find(c => c.id === $('category').value);
@@ -54,7 +54,7 @@
     const bandOptions = '<option value="all">ทุกช่วงงบ</option>' + (category.price_bands || []).map(b => `<option value="${e(b.id)}">${e(b.label)} (${b.count})</option>`).join('');
     if ($('budgetBand').innerHTML !== bandOptions) { $('budgetBand').innerHTML = bandOptions; $('budgetBand').value = (category.price_bands || []).some(b => b.id === band) ? band : 'all'; }
     const ordered = RankingOffers.orderItems(category.items.map(row=>({...row,purchase_offers:Object.entries(row.offers).filter(([,o])=>o).map(([platform,o])=>({...o,platform}))})),$('rankingSort').value);
-    const visible = ordered.filter(row => `${row.title} ${row.shop_name}`.toLowerCase().includes(q) && ($('budgetBand').value === 'all' || row.price_band === $('budgetBand').value) && (filter === 'all' || (filter === 'unranked' ? row.value_rank === null : filter === 'unpriced' ? !(drafts.get(row.listing_id)?.offers.shopee?.price ?? row.offers.shopee?.price) : !(drafts.get(row.listing_id)?.offers[filter]?.url ?? row.offers[filter]?.url))));
+    const visible = ordered.filter(row => `${row.title} ${row.shop_name}`.toLowerCase().includes(q) && ($('budgetBand').value === 'all' || row.price_band === $('budgetBand').value) && (filter === 'all' || (filter === 'unranked' ? row.value_rank === null : filter === 'benchmark_pending' ? !(row.value_specs?.geekbench6_single && row.value_specs?.geekbench6_multi && row.value_specs?.benchmark_url) : filter === 'specs_pending' ? !row.value_specs?.verified : filter === 'unpriced' ? !(drafts.get(row.listing_id)?.offers.shopee?.price ?? row.offers.shopee?.price) : !(drafts.get(row.listing_id)?.offers[filter]?.url ?? row.offers[filter]?.url))));
     $('count').textContent = `${visible.length} / ${category.items.length} รายการ · พร้อมจัดอันดับความคุ้มค่า ${ordered.filter(i=>i.value_rank!==null).length} รุ่น · คำนวณจากข้อมูลที่บันทึกแล้ว`;
     $('products').innerHTML = visible.map((row, index) => {
       const values = drafts.get(row.listing_id)?.offers || Object.fromEntries(Object.keys(names).map(p => [p,formOffer(row.offers[p])]));
@@ -109,6 +109,22 @@
   $('products').addEventListener('input', event => {
     const target = event.target, card = target.closest('.product-card');
     if (!card || busy) return;
+    if (target.hasAttribute('data-memory-option')) {
+      const row = rows.get(card.dataset.id);
+      const option = target.value === '' ? null : row.spec_research?.memory_options?.[Number(target.value)];
+      if (!option) return;
+      const draft = getDraft(row);
+      for (const key of ['ram_gb','storage_gb']) {
+        draft.value_specs[key] = String(option[key] ?? '');
+        card.querySelector(`[data-spec="${key}"]`).value = draft.value_specs[key];
+      }
+      draft.value_specs.variant = option.label;
+      card.querySelector('[data-spec="variant"]').value = option.label;
+      draft.value_specs.verified = false;
+      card.querySelector('[data-spec="verified"]').checked = false;
+      status('เลือกความจุแล้ว · ตรวจสเปกและยืนยัน ใช้ชื่อตัวเลือกเดียวกันในช่องราคา แล้วบันทึก');
+      updateDirty(); return;
+    }
     if (target.dataset.spec) {
       const draft = getDraft(rows.get(card.dataset.id));
       draft.value_specs[target.dataset.spec] = target.type === 'checkbox' ? target.checked : target.value;

@@ -24,6 +24,17 @@
     } catch (_) { return ''; }
   }
   const variantKey = value => String(value || '').trim().toLocaleLowerCase('en-US').replace(/\s+/g,' ');
+  function researchedSpecs(item) {
+    return item.spec_research?.model === item.display_name && sameBinding(item,item.spec_research?.binding)
+      ? item.researched_value_specs || null : null;
+  }
+  function researchHTML(research) {
+    if (!research || !Array.isArray(research.facts)) return '';
+    const e = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const link = (url,label) => sourceURL(url) ? `<a href="${e(url)}" target="_blank" rel="noopener noreferrer">${e(label)} ↗</a>` : e(label);
+    const benchmark = research.benchmark;
+    return `<details class="spec-research"><summary>สเปกและหลักฐาน · ${benchmark ? 'มี Geekbench 6' : 'ยังไม่ยืนยัน Geekbench 6'}</summary><p>ตรวจแหล่งข้อมูล ${e(research.checked_at)} · สเปกอ้างอิงของรุ่น ผู้ดูแลอาจเลือกความจุอื่นได้</p><dl>${research.facts.map(f=>`<div><dt>${e(f.label)}</dt><dd>${f.value == null ? '— ยังไม่ยืนยัน' : link(f.url,f.value)}</dd></div>`).join('')}</dl>${benchmark ? `<p>${link(benchmark.url,`Geekbench ${benchmark.version} · ${benchmark.single} / ${benchmark.multi} (Single / Multi)`)}<br><small>รหัสเครื่อง ${e(benchmark.model_code)} · RAM ที่ระบบรายงาน ${e(benchmark.tested_ram_gb_reported ?? '—')} GB · ทดสอบ ${e(benchmark.upload_date)}<br>ผลสาธารณะหนึ่งครั้ง ไม่ใช่ค่าเฉลี่ยรุ่น และไม่ยืนยันความจุ สี หรือประเทศของเครื่องในตะกร้า</small></p>` : '<p>เว้นคะแนนไว้จนกว่าจะยืนยันผล Geekbench 6 ของรุ่นนี้ได้</p>'}${research.notes?.length ? `<ul>${research.notes.map(n=>`<li>${e(n)}</li>`).join('')}</ul>` : ''}</details>`;
+  }
   function valueScore(item, now = Date.now()) {
     const spec = item.value_specs;
     const pending = reason => ({score:null, spec_score:null, reason});
@@ -132,12 +143,13 @@
   }
   function attach(data, registry) {
     return {...data, categories:data.categories.map(c => ({...c, items:c.items.map(item => ({...item,
-      value_specs:sameBinding(item,registry?.items?.[item.listing_id]?.binding) ? registry.items[item.listing_id].value_specs || null : null,
+      value_specs:sameBinding(item,registry?.items?.[item.listing_id]?.binding) && Object.prototype.hasOwnProperty.call(registry.items[item.listing_id],'value_specs')
+        ? registry.items[item.listing_id].value_specs : researchedSpecs(item),
       purchase_offers:resolve(item, registry), purchase_offers_unavailable:registry?.schema_version !== 1
     }))}))};
   }
   const api = {names, validURL, sameBinding, defaultShopee, resolve, attach,
-    specMetrics, sourceURL, valueScore, rankValue, orderItems, formulaHTML, watchChanges};
+    specMetrics, sourceURL, valueScore, rankValue, orderItems, formulaHTML, watchChanges, researchedSpecs, researchHTML};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.RankingOffers = api;
 })(typeof window !== 'undefined' ? window : globalThis);

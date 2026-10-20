@@ -160,6 +160,124 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "OPPO A6t Pro",
+            "binding": {
+              "title": "OPPO A6t Series | โทรศัพท์มือถือ ออปโป้ ทนทาน หน้าจอใหญ่ 6.75\" 120Hz กันน้ำกันฝุ่น แบตเตอรี่ใหญ่ 6500mAh ใช้งานลื่นไหล",
+              "model_count": 7,
+              "model_examples": [
+                {
+                  "id": "326349383259",
+                  "name": "A6t Pro_White"
+                },
+                {
+                  "id": "390947647120",
+                  "name": "A6t 4+64_Blue"
+                },
+                {
+                  "id": "390947647121",
+                  "name": "A6t 4+64_Violet"
+                },
+                {
+                  "id": "390947647122",
+                  "name": "A6t 4+128_Blue"
+                },
+                {
+                  "id": "390947647123",
+                  "name": "A6t 4+128_Violet"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 685",
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "CPH2849",
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 8,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 128,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 7000,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/128 GB",
+                "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/"
+              }
+            ],
+            "notes": [
+              "ยังไม่พบผล Geekbench Browser เวอร์ชัน 6 CPU ที่ยืนยัน CPH2849 ได้ จึงเว้นคะแนนไว้ ไม่ใช้คะแนนชิปเดียวกันแทน",
+              "ต้นทางเป็น A6t Series หลายรุ่น; สเปกนี้เฉพาะ A6t Pro 8/128 แบต 7,000 mAh ไม่ใช้ 6,500 mAh ของรุ่นอื่นในรายการ"
+            ],
+            "benchmark": null,
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 128,
+                "label": "OPPO A6t Pro · RAM 8GB / ROM 128GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": null,
+              "geekbench6_multi": null,
+              "ram_gb": 8.0,
+              "storage_gb": 128.0,
+              "battery_mah": 7000.0,
+              "refresh_hz": 120.0,
+              "variant": "OPPO A6t Pro · RAM 8GB / ROM 128GB",
+              "spec_url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+              "benchmark_url": "",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "geekbench6_single",
+              "geekbench6_multi"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": null,
+            "geekbench6_multi": null,
+            "ram_gb": 8.0,
+            "storage_gb": 128.0,
+            "battery_mah": 7000.0,
+            "refresh_hz": 120.0,
+            "variant": "OPPO A6t Pro · RAM 8GB / ROM 128GB",
+            "spec_url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "benchmark_url": "",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 1
         },
         {
@@ -241,6 +359,149 @@
           "manual_price_only": true,
           "price_band": "40000plus",
           "price_band_label": "40,000 บาทขึ้นไป",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Apple iPhone 17 Pro",
+            "binding": {
+              "title": "Apple iPhone 17 Pro by Studio 7 [ออเดอร์จะยกเลิกอัตโนมัติหากไม่ชำระเงินภายใน 30 นาที]",
+              "model_count": 9,
+              "model_examples": [
+                {
+                  "id": "306504750175",
+                  "name": "Cosmic Orange,256GB"
+                },
+                {
+                  "id": "306504750176",
+                  "name": "Cosmic Orange,512GB"
+                },
+                {
+                  "id": "306504750177",
+                  "name": "Cosmic Orange,1TB"
+                },
+                {
+                  "id": "306504750178",
+                  "name": "Deep Blue,256GB"
+                },
+                {
+                  "id": "306504750179",
+                  "name": "Deep Blue,512GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "A3523",
+                "url": "https://support.apple.com/en-us/108044"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · rated)",
+                "value": 3988,
+                "url": "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=energyLabels/A3523_V1/A3523/A3523_Product_Information_Sheet_DE_German.pdf"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://support.apple.com/th-th/125090"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Apple A19 Pro",
+                "url": "https://support.apple.com/th-th/125090"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 6.3,
+                "url": "https://support.apple.com/th-th/125090"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "256 GB · 512 GB · 1024 GB",
+                "url": "https://support.apple.com/th-th/125090"
+              }
+            ],
+            "notes": [
+              "Apple ไม่ระบุ RAM จริงในแหล่งทางการที่ตรวจ จึงเว้นไว้; ค่า RAM ที่ Geekbench รายงานเป็นหน่วยความจำที่ระบบเห็น ไม่ใช้แทน RAM การตลาด",
+              "แบตเตอรี่เป็นค่า rated จากเอกสาร Apple ของ A3523; ไม่ใช่ค่า typical และห้ามนำไปใช้กับรุ่นภูมิภาคอื่นโดยไม่ตรวจ",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/18511605",
+              "single": 3806,
+              "multi": 10033,
+              "version": "6.7.0",
+              "model_code": "iPhone18,1",
+              "tested_ram_gb_reported": 11.45,
+              "upload_date": "2026-06-28"
+            },
+            "memory_options": [
+              {
+                "ram_gb": null,
+                "storage_gb": 256,
+                "label": "Apple iPhone 17 Pro · ROM 256GB"
+              },
+              {
+                "ram_gb": null,
+                "storage_gb": 512,
+                "label": "Apple iPhone 17 Pro · ROM 512GB"
+              },
+              {
+                "ram_gb": null,
+                "storage_gb": 1024,
+                "label": "Apple iPhone 17 Pro · ROM 1024GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 3806.0,
+              "geekbench6_multi": 10033.0,
+              "ram_gb": null,
+              "storage_gb": null,
+              "battery_mah": 3988.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://support.apple.com/th-th/125090",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/18511605",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "rated",
+            "missing_fields": [
+              "ram_gb",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 3806.0,
+            "geekbench6_multi": 10033.0,
+            "ram_gb": null,
+            "storage_gb": null,
+            "battery_mah": 3988.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://support.apple.com/th-th/125090",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/18511605",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 2
         },
         {
@@ -312,6 +573,117 @@
           "manual_price_only": true,
           "price_band": "10000-14999",
           "price_band_label": "10,000–14,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "HONOR X9d 5G",
+            "binding": {
+              "title": "HONOR X9d 5G (12+256GB) โทรศัพท์มือถือ ถึกทน หน้าจอ 6.79 นิ้ว | กล้อง 108MP | กันฝุ่น กันนํ้า IP69K | แบตเตอรี่ 8300mAh",
+              "model_count": 3,
+              "model_examples": [
+                {
+                  "id": "302119611729",
+                  "name": "Midnight Black"
+                },
+                {
+                  "id": "302119611730",
+                  "name": "Sunrise Gold"
+                },
+                {
+                  "id": "302119611731",
+                  "name": "Reddish Brown"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 6 Gen 4",
+                "url": "https://www.honor.com/th/phones/honor-x9d/spec/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://www.honor.com/th/phones/honor-x9d/spec/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.honor.com/th/phones/honor-x9d/spec/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 8300,
+                "url": "https://www.honor.com/th/phones/honor-x9d/spec/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.honor.com/th/phones/honor-x9d/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "MTN-NX1",
+                "url": "https://www.honor.com/th/support/phones/honor-x9d/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB",
+                "url": "https://www.honor.com/th/phones/honor-x9d/spec/"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19322366",
+              "single": 1089,
+              "multi": 3038,
+              "version": "6.7.1",
+              "model_code": "MTN-NX1",
+              "tested_ram_gb_reported": 11.18,
+              "upload_date": "October 10 2026 12:51 AM"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "HONOR X9d 5G · RAM 12GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 1089.0,
+              "geekbench6_multi": 3038.0,
+              "ram_gb": 12.0,
+              "storage_gb": 256.0,
+              "battery_mah": 8300.0,
+              "refresh_hz": 120.0,
+              "variant": "HONOR X9d 5G · RAM 12GB / ROM 256GB",
+              "spec_url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19322366",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 1089.0,
+            "geekbench6_multi": 3038.0,
+            "ram_gb": 12.0,
+            "storage_gb": 256.0,
+            "battery_mah": 8300.0,
+            "refresh_hz": 120.0,
+            "variant": "HONOR X9d 5G · RAM 12GB / ROM 256GB",
+            "spec_url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19322366",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 3
         },
         {
@@ -383,6 +755,123 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Redmi 15 5G",
+            "binding": {
+              "title": "REDMI 15 5G 8+256 แบตเตอรี่ 7000mAh (typ) ชาร์จไว 33W｜จอ FHD+ ขนาด 6.9\" ｜ชิปเช็ต Snapdragon® 6s Gen 3 พร้อม 5G",
+              "model_count": 3,
+              "model_examples": [
+                {
+                  "id": "301968127276",
+                  "name": "Midnight Black"
+                },
+                {
+                  "id": "301968127277",
+                  "name": "Titan Gray"
+                },
+                {
+                  "id": "301968127278",
+                  "name": "Ripple Green"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 6s Gen 3",
+                "url": "https://www.mi.com/th/product/redmi-15-5g/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "25057RN09G",
+                "url": "https://www.mi.com/tw/product/redmi-15-5g/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 7000,
+                "url": "https://www.mi.com/th/product/redmi-15-5g/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 144,
+                "url": "https://www.mi.com/th/product/redmi-15-5g/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "4/128 GB · 8/256 GB",
+                "url": "https://www.mi.com/th/product/redmi-15-5g/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 8,
+                "url": "https://www.mi.com/th/product/redmi-15-5g/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.mi.com/th/product/redmi-15-5g/specs/"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/14669749",
+              "single": 927,
+              "multi": 2047,
+              "version": "6.5.0",
+              "model_code": "Xiaomi 25057RN09G",
+              "tested_ram_gb_reported": 7.28,
+              "upload_date": "2025-10-26 03:46"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 4,
+                "storage_gb": 128,
+                "label": "Redmi 15 5G · RAM 4GB / ROM 128GB"
+              },
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "Redmi 15 5G · RAM 8GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 927.0,
+              "geekbench6_multi": 2047.0,
+              "ram_gb": 8.0,
+              "storage_gb": 256.0,
+              "battery_mah": 7000.0,
+              "refresh_hz": 144.0,
+              "variant": "Redmi 15 5G · RAM 8GB / ROM 256GB",
+              "spec_url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/14669749",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 927.0,
+            "geekbench6_multi": 2047.0,
+            "ram_gb": 8.0,
+            "storage_gb": 256.0,
+            "battery_mah": 7000.0,
+            "refresh_hz": 144.0,
+            "variant": "Redmi 15 5G · RAM 8GB / ROM 256GB",
+            "spec_url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/14669749",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 4
         },
         {
@@ -449,6 +938,122 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "realme Note 80",
+            "binding": {
+              "title": "[พร้อมส่ง] realme Note 80 (4+64) | สมาร์ทโฟนทนการกระแทก กันน้ำกันฝุ่น IP54 ใช้งานราบลื่นไหล แบตเตอรี่ 6300 mAh",
+              "model_count": 2,
+              "model_examples": [
+                {
+                  "id": "292376996596",
+                  "name": "black"
+                },
+                {
+                  "id": "292376996597",
+                  "name": "Blue"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "UNISOC T7250",
+                "url": "https://www.realme.com/global/realme-note80/specs"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 4,
+                "url": "https://www.realme.com/global/realme-note80/specs"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 64,
+                "url": "https://www.realme.com/global/realme-note80/specs"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 6300,
+                "url": "https://www.realme.com/th/realme-note80"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 90,
+                "url": "https://www.realme.com/global/realme-note80/specs"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "RMX5388",
+                "url": "https://storage.googleapis.com/play_public/supported_devices.html"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "4/64 GB · 4/128 GB",
+                "url": "https://www.realme.com/global/realme-note80/specs"
+              }
+            ],
+            "notes": [
+              "รายการต้นทางระบุ 4+64 จึงเลือกสเปก 4GB/64GB ที่ผู้ผลิตยืนยันได้; ไม่รวม RAM เสมือน",
+              "พบ /th/realme-note80/specs แสดง 12/256 Dimensity7300Max 7000mAh ซึ่งขัดกับหน้า Note80 ไทยหลักและ global specs จึงไม่ใช้หน้านั้น",
+              "Global มีแบต 6000/6300 ตามภูมิภาค ใช้ 6300 ที่หน้าไทยระบุ"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/17638357",
+              "single": 440,
+              "multi": 1420,
+              "version": "6.7.0",
+              "model_code": "RMX5388",
+              "tested_ram_gb_reported": 3.71,
+              "upload_date": "April 15 2026 03:41 AM"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 4,
+                "storage_gb": 64,
+                "label": "realme Note 80 · RAM 4GB / ROM 64GB"
+              },
+              {
+                "ram_gb": 4,
+                "storage_gb": 128,
+                "label": "realme Note 80 · RAM 4GB / ROM 128GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 440.0,
+              "geekbench6_multi": 1420.0,
+              "ram_gb": 4.0,
+              "storage_gb": 64.0,
+              "battery_mah": 6300.0,
+              "refresh_hz": 90.0,
+              "variant": "realme Note 80 · RAM 4GB / ROM 64GB",
+              "spec_url": "https://www.realme.com/global/realme-note80/specs",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/17638357",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 440.0,
+            "geekbench6_multi": 1420.0,
+            "ram_gb": 4.0,
+            "storage_gb": 64.0,
+            "battery_mah": 6300.0,
+            "refresh_hz": 90.0,
+            "variant": "realme Note 80 · RAM 4GB / ROM 64GB",
+            "spec_url": "https://www.realme.com/global/realme-note80/specs",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/17638357",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 5
         },
         {
@@ -530,6 +1135,142 @@
           "manual_price_only": true,
           "price_band": "25000-39999",
           "price_band_label": "25,000–39,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "POCO F9 Ultra",
+            "binding": {
+              "title": "[NEW] POCO F9 ULTRA 12G+256G/16G+512G|ชิปเซ็ต Snapdragon® 8 Elite Gen 5 |หน้าจอ AMOLED สว่างพิเศษ 6.9 นิ้ว 185Hz",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "391346475150",
+                  "name": "Black,12G+256G"
+                },
+                {
+                  "id": "391346475151",
+                  "name": "Black,16G+512G"
+                },
+                {
+                  "id": "391346475152",
+                  "name": "Black,1+10"
+                },
+                {
+                  "id": "391346475153",
+                  "name": "Red,12G+256G"
+                },
+                {
+                  "id": "391346475154",
+                  "name": "Red,16G+512G"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 8 Elite Gen 5",
+                "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "26077PC53G",
+                "url": "https://www.mi.com/tw/product/poco-f9-ultra/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 8050,
+                "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 185,
+                "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB · 16/512 GB · 16/1024 GB",
+                "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "ผลทดสอบรายงาน RAM 14.68 GB จึงเป็นตัวอย่างกลุ่ม RAM 16GB; ต้องตรวจผลให้ตรง RAM อีกครั้งหากเลือก 12GB",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19123559",
+              "single": 3541,
+              "multi": 10512,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 26077PC53G",
+              "tested_ram_gb_reported": 14.68,
+              "upload_date": "2026-09-06 07:03"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "POCO F9 Ultra · RAM 12GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 16,
+                "storage_gb": 512,
+                "label": "POCO F9 Ultra · RAM 16GB / ROM 512GB"
+              },
+              {
+                "ram_gb": 16,
+                "storage_gb": 1024,
+                "label": "POCO F9 Ultra · RAM 16GB / ROM 1024GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 3541.0,
+              "geekbench6_multi": 10512.0,
+              "ram_gb": null,
+              "storage_gb": null,
+              "battery_mah": 8050.0,
+              "refresh_hz": 185.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19123559",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "ram_gb",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 3541.0,
+            "geekbench6_multi": 10512.0,
+            "ram_gb": null,
+            "storage_gb": null,
+            "battery_mah": 8050.0,
+            "refresh_hz": 185.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19123559",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 6
         },
         {
@@ -601,6 +1342,124 @@
           "manual_price_only": true,
           "price_band": "10000-14999",
           "price_band_label": "10,000–14,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Samsung Galaxy A37 5G",
+            "binding": {
+              "title": "Samsung Galaxy A37 5G 8/256GB (เลือกสีได้)",
+              "model_count": 3,
+              "model_examples": [
+                {
+                  "id": "198813421725",
+                  "name": "Dark Green"
+                },
+                {
+                  "id": "198813421726",
+                  "name": "Light Violet"
+                },
+                {
+                  "id": "198813421727",
+                  "name": "Gray"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "SM-A376B",
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 8,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 5000,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Exynos 1480",
+                "url": "https://www.samsung.com/eg/smartphones/galaxy-a/galaxy-a37-5g-awesome-lavender-128gb-sm-a376blvpmea/"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 6.7,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/256 GB",
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/17811112",
+              "single": 1132,
+              "multi": 3402,
+              "version": "6.7.1",
+              "model_code": "SM-A376B",
+              "tested_ram_gb_reported": 7.23,
+              "upload_date": "2026-04-28"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "Samsung Galaxy A37 5G · RAM 8GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 1132.0,
+              "geekbench6_multi": 3402.0,
+              "ram_gb": 8.0,
+              "storage_gb": 256.0,
+              "battery_mah": 5000.0,
+              "refresh_hz": 120.0,
+              "variant": "Samsung Galaxy A37 5G · RAM 8GB / ROM 256GB",
+              "spec_url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/17811112",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 1132.0,
+            "geekbench6_multi": 3402.0,
+            "ram_gb": 8.0,
+            "storage_gb": 256.0,
+            "battery_mah": 5000.0,
+            "refresh_hz": 120.0,
+            "variant": "Samsung Galaxy A37 5G · RAM 8GB / ROM 256GB",
+            "spec_url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/17811112",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 7
         },
         {
@@ -667,6 +1526,111 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "realme P4x",
+            "binding": {
+              "title": "realme P4x (4+256) | แบต8000mAh จอ120Hz AI Gaming ชาร์จไว45W Dynamic  ทนตกIP64",
+              "model_count": 2,
+              "model_examples": [
+                {
+                  "id": "315822236240",
+                  "name": "Phantom Navy"
+                },
+                {
+                  "id": "315822236241",
+                  "name": "Rally White"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "UNISOC T7250",
+                "url": "https://www.realme.com/th/realme-p4x/specs"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 4,
+                "url": "https://www.realme.com/th/realme-p4x/specs"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.realme.com/th/realme-p4x/specs"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 8000,
+                "url": "https://www.realme.com/th/realme-p4x/specs"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.realme.com/th/realme-p4x/specs"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "RMX5367",
+                "url": "https://storage.googleapis.com/play_public/supported_devices.html"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "4/256 GB",
+                "url": "https://www.realme.com/th/realme-p4x/specs"
+              }
+            ],
+            "notes": [
+              "ห้ามใช้ผลทดสอบ P4x 5G อินเดีย RMX5108 (Dimensity7400) แทน P4x ไทย T7250",
+              "ยังไม่พบผล Geekbench 6 CPU ที่ตรวจสอบ Single-Core และ Multi-Core จากผลเดียวกันตรงรุ่นได้ จึงเว้นคะแนนไว้"
+            ],
+            "benchmark": null,
+            "memory_options": [
+              {
+                "ram_gb": 4,
+                "storage_gb": 256,
+                "label": "realme P4x · RAM 4GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": null,
+              "geekbench6_multi": null,
+              "ram_gb": 4.0,
+              "storage_gb": 256.0,
+              "battery_mah": 8000.0,
+              "refresh_hz": 120.0,
+              "variant": "realme P4x · RAM 4GB / ROM 256GB",
+              "spec_url": "https://www.realme.com/th/realme-p4x/specs",
+              "benchmark_url": "",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "geekbench6_single",
+              "geekbench6_multi"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": null,
+            "geekbench6_multi": null,
+            "ram_gb": 4.0,
+            "storage_gb": 256.0,
+            "battery_mah": 8000.0,
+            "refresh_hz": 120.0,
+            "variant": "realme P4x · RAM 4GB / ROM 256GB",
+            "spec_url": "https://www.realme.com/th/realme-p4x/specs",
+            "benchmark_url": "",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 8
         },
         {
@@ -748,6 +1712,148 @@
           "manual_price_only": true,
           "price_band": "15000-24999",
           "price_band_label": "15,000–24,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "iQOO Neo 10",
+            "binding": {
+              "title": "iQOO Neo 10 (8/12+256GB, 16+512GB) โทรศัพท์มือถือไอคูล | CPU SDM 8s Gen4+Q1 | BlueVolt 7000mAh+120W | VC ขนาดใหญ่ 7K",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "39906916861",
+                  "name": "White 8+256"
+                },
+                {
+                  "id": "39906916862",
+                  "name": "White 8/256"
+                },
+                {
+                  "id": "39906916863",
+                  "name": "Blazing Orange16+512"
+                },
+                {
+                  "id": "39906916864",
+                  "name": "Cosmic Black 16+512"
+                },
+                {
+                  "id": "445679478369",
+                  "name": "Cloudmist White8+256"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 8s Gen 4",
+                "url": "https://www.iqoo.com/th/products/param/neo-10"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 7000,
+                "url": "https://www.iqoo.com/th/products/param/neo-10"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 144,
+                "url": "https://www.iqoo.com/th/products/param/neo-10"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "I2405 / I2408",
+                "url": "https://storage.googleapis.com/play_public/supported_devices.html"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/256 GB · 12/256 GB · 16/512 GB",
+                "url": "https://www.iqoo.com/th/products/param/neo-10"
+              },
+              {
+                "key": "additional_memory_source",
+                "label": "รุ่น RAM 8 / ROM 256 GB",
+                "value": "ร้านผู้ผลิตไทย",
+                "url": "https://shop.vivo.com/th/product/2257?cid=isPreload"
+              }
+            ],
+            "notes": [
+              "listingมี8/256,12/256,16/512 จึงเว้นRAM/storageในแถวหลักจนผู้ดูแลเลือกให้ตรงราคาจริง",
+              "มีผลI2408 RAMรายงาน10.93GB (รุ่น12GB) 2119/6777 Geekbench6.4.0 https://browser.geekbench.com/v6/cpu/12864162 วันที่15Jul2025 เป็นผลทางเลือกสำหรับรุ่นRAM12 ไม่ผสมผลกับRAM8",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/16444104",
+              "single": 2103,
+              "multi": 6357,
+              "version": "6.5.0",
+              "model_code": "I2405",
+              "tested_ram_gb_reported": 7.03,
+              "upload_date": "February 06 2026 07:08 AM"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "iQOO Neo 10 · RAM 8GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "iQOO Neo 10 · RAM 12GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 16,
+                "storage_gb": 512,
+                "label": "iQOO Neo 10 · RAM 16GB / ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 2103.0,
+              "geekbench6_multi": 6357.0,
+              "ram_gb": null,
+              "storage_gb": null,
+              "battery_mah": 7000.0,
+              "refresh_hz": 144.0,
+              "variant": "",
+              "spec_url": "https://www.iqoo.com/th/products/param/neo-10",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/16444104",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "ram_gb",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 2103.0,
+            "geekbench6_multi": 6357.0,
+            "ram_gb": null,
+            "storage_gb": null,
+            "battery_mah": 7000.0,
+            "refresh_hz": 144.0,
+            "variant": "",
+            "spec_url": "https://www.iqoo.com/th/products/param/neo-10",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/16444104",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 9
         },
         {
@@ -829,6 +1935,135 @@
           "manual_price_only": true,
           "price_band": "15000-24999",
           "price_band_label": "15,000–24,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "POCO X8 Pro Max",
+            "binding": {
+              "title": "[NEW] POCO X8 Pro Max 12+256/12+512 ชิปเซ็ต Dimensity 9500s ระดับเรือธง | แบตเตอรี่ 8500mAh (typ) พร้อม HyperCharge 100W",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "302768977068",
+                  "name": "White,12G+256G"
+                },
+                {
+                  "id": "302768977069",
+                  "name": "White,12G+512G"
+                },
+                {
+                  "id": "302768977070",
+                  "name": "Blue,12G+256G"
+                },
+                {
+                  "id": "302768977071",
+                  "name": "Blue,12G+512G"
+                },
+                {
+                  "id": "302768977072",
+                  "name": "Black,12G+256G"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Dimensity 9500s",
+                "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "2602BPC18G",
+                "url": "https://www.mi.com/tw/product/poco-x8-pro-max/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 8500,
+                "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB · 12/512 GB",
+                "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/18011306",
+              "single": 2487,
+              "multi": 7720,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 2602BPC18G",
+              "tested_ram_gb_reported": 11.0,
+              "upload_date": "2026-05-16 04:14"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "POCO X8 Pro Max · RAM 12GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 512,
+                "label": "POCO X8 Pro Max · RAM 12GB / ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 2487.0,
+              "geekbench6_multi": 7720.0,
+              "ram_gb": 12.0,
+              "storage_gb": null,
+              "battery_mah": 8500.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/18011306",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 2487.0,
+            "geekbench6_multi": 7720.0,
+            "ram_gb": 12.0,
+            "storage_gb": null,
+            "battery_mah": 8500.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/18011306",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 10
         },
         {
@@ -895,6 +2130,120 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Samsung Galaxy A07 5G",
+            "binding": {
+              "title": "Samsung Galaxy A07 5G จอขนาด 6.7\" ประกันศูนย์ 1 ปี ( ไม่มี Adapter แถม ) | by Doflife",
+              "model_count": 2,
+              "model_examples": [
+                {
+                  "id": "282332823104",
+                  "name": "Black 5G,6/128"
+                },
+                {
+                  "id": "282332823105",
+                  "name": "Light Violet 5G,6/128"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "SM-A076B",
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 6,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 128,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 6000,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Dimensity 6300",
+                "url": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a07-5g-black-64gb-sm-a076bzkaphl/"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 6.7,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "6/128 GB",
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19062859",
+              "single": 728,
+              "multi": 1960,
+              "version": "6.7.1",
+              "model_code": "SM-A076B",
+              "tested_ram_gb_reported": 5.35,
+              "upload_date": "2026-08-25"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 6,
+                "storage_gb": 128,
+                "label": "Samsung Galaxy A07 5G · RAM 6GB / ROM 128GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 728.0,
+              "geekbench6_multi": 1960.0,
+              "ram_gb": 6.0,
+              "storage_gb": 128.0,
+              "battery_mah": 6000.0,
+              "refresh_hz": 120.0,
+              "variant": "Samsung Galaxy A07 5G · RAM 6GB / ROM 128GB",
+              "spec_url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19062859",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 728.0,
+            "geekbench6_multi": 1960.0,
+            "ram_gb": 6.0,
+            "storage_gb": 128.0,
+            "battery_mah": 6000.0,
+            "refresh_hz": 120.0,
+            "variant": "Samsung Galaxy A07 5G · RAM 6GB / ROM 128GB",
+            "spec_url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19062859",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 11
         },
         {
@@ -976,6 +2325,131 @@
           "manual_price_only": true,
           "price_band": "10000-14999",
           "price_band_label": "10,000–14,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "OPPO A7 Pro 5G",
+            "binding": {
+              "title": "[ใหม่] OPPO A7 Pro 5G | โทรศัพท์มือถือ ออปโป้ ดีไซน์สวย ทนทาน เบาบาง กล้องชัด เซลฟี่มุมกว้างพิเศษ 50MP หน้าจอ AMOLED",
+              "model_count": 18,
+              "model_examples": [
+                {
+                  "id": "307900879367",
+                  "name": "Surfing Blue_8+128,เครื่องเปล่า"
+                },
+                {
+                  "id": "307900879368",
+                  "name": "Surfing Blue_8+128,ซื้อคู่-Clip2"
+                },
+                {
+                  "id": "307900879369",
+                  "name": "Surfing Blue_8+128,ซื้อคู่-Pad se wifi"
+                },
+                {
+                  "id": "307900879370",
+                  "name": "Bloom Pink_8+128,เครื่องเปล่า"
+                },
+                {
+                  "id": "307900879371",
+                  "name": "Bloom Pink_8+128,ซื้อคู่-Clip2"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Dimensity 6360 MAX",
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "CPH2931",
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 8,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 128,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 8000,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/128 GB · 8/256 GB",
+                "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19156144",
+              "single": 769,
+              "multi": 1959,
+              "version": "6.7.1",
+              "model_code": "CPH2931",
+              "tested_ram_gb_reported": 7.43,
+              "upload_date": "2026-09-12"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 128,
+                "label": "OPPO A7 Pro 5G · RAM 8GB / ROM 128GB"
+              },
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "OPPO A7 Pro 5G · RAM 8GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 769.0,
+              "geekbench6_multi": 1959.0,
+              "ram_gb": 8.0,
+              "storage_gb": 128.0,
+              "battery_mah": 8000.0,
+              "refresh_hz": 120.0,
+              "variant": "OPPO A7 Pro 5G · RAM 8GB / ROM 128GB",
+              "spec_url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19156144",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 769.0,
+            "geekbench6_multi": 1959.0,
+            "ram_gb": 8.0,
+            "storage_gb": 128.0,
+            "battery_mah": 8000.0,
+            "refresh_hz": 120.0,
+            "variant": "OPPO A7 Pro 5G · RAM 8GB / ROM 128GB",
+            "spec_url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19156144",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 12
         },
         {
@@ -1052,6 +2526,133 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "HONOR X7e 4G",
+            "binding": {
+              "title": "(New) HONOR X7e 4G (6+128GB/256GB) โทรศัพท์มือถือ หน้าจอ 6.61 นิ้ว | กล้อง 50MP | รองรับชาร์จไว 45W | แบตอึด 7500mAh",
+              "model_count": 4,
+              "model_examples": [
+                {
+                  "id": "282883597084",
+                  "name": "Black,6GB+128GB"
+                },
+                {
+                  "id": "282883597085",
+                  "name": "Black,6GB+256GB"
+                },
+                {
+                  "id": "282883597086",
+                  "name": "Orange,6GB+128GB"
+                },
+                {
+                  "id": "282883597087",
+                  "name": "Orange,6GB+256GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Helio G81 Ultra",
+                "url": "https://www.honor.com/th/phones/honor-x7e/spec/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 6,
+                "url": "https://www.honor.com/th/phones/honor-x7e/spec/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 7500,
+                "url": "https://www.honor.com/th/phones/honor-x7e/spec/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.honor.com/th/phones/honor-x7e/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "LAB-LX2 / LAB-LX3",
+                "url": "https://www.honor.com/th/phones/honor-x7e/spec/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "6/128 GB · 6/256 GB",
+                "url": "https://www.honor.com/th/phones/honor-x7e/spec/"
+              }
+            ],
+            "notes": [
+              "storage มี 2 ตัวเลือกใน listing จึงเว้นค่าที่ต้องผูกราคาจนผู้ดูแลเลือก128หรือ256GB",
+              "หน้า overview โฆษณา16(8+8)GB แต่หน้า specs ประเทศไทยระบุ6GB+128/256 ตรง listing; ใช้RAMจริง6 ไม่ใช้RAMTurbo",
+              "LAB-LX1 แบต7000mAh เป็นอีกregionalversion ไม่ใช้กับรายการ7500mAhนี้",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19101656",
+              "single": 390,
+              "multi": 967,
+              "version": "6.7.1",
+              "model_code": "LAB-LX2",
+              "tested_ram_gb_reported": 5.65,
+              "upload_date": "September 01 2026 07:02 PM"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 6,
+                "storage_gb": 128,
+                "label": "HONOR X7e 4G · RAM 6GB / ROM 128GB"
+              },
+              {
+                "ram_gb": 6,
+                "storage_gb": 256,
+                "label": "HONOR X7e 4G · RAM 6GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 390.0,
+              "geekbench6_multi": 967.0,
+              "ram_gb": 6.0,
+              "storage_gb": null,
+              "battery_mah": 7500.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.honor.com/th/phones/honor-x7e/spec/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19101656",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 390.0,
+            "geekbench6_multi": 967.0,
+            "ram_gb": 6.0,
+            "storage_gb": null,
+            "battery_mah": 7500.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.honor.com/th/phones/honor-x7e/spec/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19101656",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 13
         },
         {
@@ -1133,6 +2734,135 @@
           "manual_price_only": true,
           "price_band": "25000-39999",
           "price_band_label": "25,000–39,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "POCO F9 Pro",
+            "binding": {
+              "title": "[NEW] POCO F9 PRO 12G+256G/12G+512G |หน้าจอ AMOLED 6.59 นิ้ว 185Hz | Snapdragon® 8 Elite Gen 5, V series (SM8850-1-AB)",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "421346384772",
+                  "name": "Black,12G+256G"
+                },
+                {
+                  "id": "421346384773",
+                  "name": "Black,12G+512G"
+                },
+                {
+                  "id": "421346384774",
+                  "name": "Green,12G+256G"
+                },
+                {
+                  "id": "421346384775",
+                  "name": "Green,12G+512G"
+                },
+                {
+                  "id": "421346384776",
+                  "name": "White,12G+256G"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 8 Elite Gen 5 V Series (SM8850-1-AB)",
+                "url": "https://www.mi.com/th/product/poco-f9-pro/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "2607APCA5G",
+                "url": "https://www.mi.com/tw/product/poco-f9-pro/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 6330,
+                "url": "https://www.mi.com/th/product/poco-f9-pro/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 185,
+                "url": "https://www.mi.com/th/product/poco-f9-pro/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB · 12/512 GB",
+                "url": "https://www.mi.com/th/product/poco-f9-pro/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://www.mi.com/th/product/poco-f9-pro/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19303607",
+              "single": 3302,
+              "multi": 10080,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 2607APCA5G",
+              "tested_ram_gb_reported": 10.78,
+              "upload_date": "2026-10-05 23:21"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "POCO F9 Pro · RAM 12GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 512,
+                "label": "POCO F9 Pro · RAM 12GB / ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 3302.0,
+              "geekbench6_multi": 10080.0,
+              "ram_gb": 12.0,
+              "storage_gb": null,
+              "battery_mah": 6330.0,
+              "refresh_hz": 185.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19303607",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 3302.0,
+            "geekbench6_multi": 10080.0,
+            "ram_gb": 12.0,
+            "storage_gb": null,
+            "battery_mah": 6330.0,
+            "refresh_hz": 185.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19303607",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 14
         },
         {
@@ -1214,6 +2944,136 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Redmi 17 4G",
+            "binding": {
+              "title": "[NEW] Xiaomi Redmi 17 4G ดื่มด่ำหน้าจอ 6.9 นิ้ว แบตเตอรี่ความจุ  7500mAh ชาร์จตัวเองแล้ว ยังแบ่งให้เพื่อนได้",
+              "model_count": 12,
+              "model_examples": [
+                {
+                  "id": "249354687245",
+                  "name": "Black,6GB+128GB"
+                },
+                {
+                  "id": "249354687246",
+                  "name": "Blue,6GB+128GB"
+                },
+                {
+                  "id": "249354687247",
+                  "name": "Purple,6GB+128GB"
+                },
+                {
+                  "id": "249354687248",
+                  "name": "Green,6GB+128GB"
+                },
+                {
+                  "id": "316212288340",
+                  "name": "Green,4GB+128GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Helio G91-Ultra",
+                "url": "https://www.mi.com/th/product/redmi-17/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "2606FRN72Y",
+                "url": "https://www.mi.com/tw/product/redmi-17/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 7500,
+                "url": "https://www.mi.com/th/product/redmi-17/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.mi.com/th/product/redmi-17/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "4/128 GB · 4/256 GB",
+                "url": "https://www.mi.com/th/product/redmi-17/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 4,
+                "url": "https://www.mi.com/th/product/redmi-17/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "สเปกไทยยืนยัน RAM 4GB; ตัวเลือก RAM 6GB ในร้านยังไม่ยืนยัน",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19106882",
+              "single": 396,
+              "multi": 1297,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 2606FRN72Y",
+              "tested_ram_gb_reported": 3.56,
+              "upload_date": "2026-09-02 19:00"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 4,
+                "storage_gb": 128,
+                "label": "Redmi 17 4G · RAM 4GB / ROM 128GB"
+              },
+              {
+                "ram_gb": 4,
+                "storage_gb": 256,
+                "label": "Redmi 17 4G · RAM 4GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 396.0,
+              "geekbench6_multi": 1297.0,
+              "ram_gb": 4.0,
+              "storage_gb": null,
+              "battery_mah": 7500.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/redmi-17/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19106882",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 396.0,
+            "geekbench6_multi": 1297.0,
+            "ram_gb": 4.0,
+            "storage_gb": null,
+            "battery_mah": 7500.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/redmi-17/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19106882",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 15
         },
         {
@@ -1270,6 +3130,103 @@
           "manual_price_only": true,
           "price_band": "under5000",
           "price_band_label": "ต่ำกว่า 5,000 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "MEIZU Mblu 21",
+            "binding": {
+              "title": "MEIZU Mblu 21 (6/128GB) มือถือจอใหญ่ 6.79\" 90Hz แบตอึด 4900mAh สมาร์ทโฟนสเปกแรง ราคาประหยัด ประกันศูนย์ไทย 12 เดือน",
+              "model_count": 60,
+              "model_examples": []
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 4900,
+                "url": "https://www.meizu.com/global/product/mblu-21"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 90,
+                "url": "https://www.meizu.com/global/product/mblu-21"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "Mblu 21",
+                "url": "https://storage.googleapis.com/play_public/supported_devices.html"
+              }
+            ],
+            "notes": [
+              "listingเขียน6/128 แต่ยังไม่พบหน้าmanufacturerระบุRAM/storage จึงเว้นสองช่องนี้ตามคำขอผู้ใช้",
+              "chipsetที่GeekbenchรายงานT606บันทึกเป็นข้อมูลเครื่องทดสอบเท่านั้น ยังเว้นช่องสเปกmanufacturerchipset",
+              "ห้ามใช้สเปกMEIZU21/Note21/Mblu22ที่ชื่อใกล้เคียง",
+              "หน้าmanufacturerที่พบไม่ได้ระบุRAMจริง",
+              "ยังไม่พบmanufacturerระบุ128GB",
+              "manufacturerระบุเพียง12nm/1.6GHz; มีT606ในเครื่องGeekbenchเท่านั้น",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/18739936",
+              "single": 365,
+              "multi": 1123,
+              "version": "6.7.1",
+              "model_code": "Mblu 21",
+              "tested_ram_gb_reported": 5.62,
+              "upload_date": "July 18 2026 03:54 AM"
+            },
+            "memory_options": [],
+            "value_specs": {
+              "geekbench6_single": 365.0,
+              "geekbench6_multi": 1123.0,
+              "ram_gb": null,
+              "storage_gb": null,
+              "battery_mah": 4900.0,
+              "refresh_hz": 90.0,
+              "variant": "",
+              "spec_url": "https://www.meizu.com/global/product/mblu-21",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/18739936",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "ram_gb",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 365.0,
+            "geekbench6_multi": 1123.0,
+            "ram_gb": null,
+            "storage_gb": null,
+            "battery_mah": 4900.0,
+            "refresh_hz": 90.0,
+            "variant": "",
+            "spec_url": "https://www.meizu.com/global/product/mblu-21",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/18739936",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 16
         },
         {
@@ -1351,6 +3308,151 @@
           "manual_price_only": true,
           "price_band": "25000-39999",
           "price_band_label": "25,000–39,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Apple iPhone 16",
+            "binding": {
+              "title": "Apple iPhone 16 (ไอโฟน 16) by Studio 7",
+              "model_count": 15,
+              "model_examples": [
+                {
+                  "id": "205379770388",
+                  "name": "Black,256GB"
+                },
+                {
+                  "id": "205379770389",
+                  "name": "Black,512GB"
+                },
+                {
+                  "id": "205379770390",
+                  "name": "White,128GB"
+                },
+                {
+                  "id": "205379770391",
+                  "name": "White,256GB"
+                },
+                {
+                  "id": "205379770392",
+                  "name": "White,512GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "A3287",
+                "url": "https://support.apple.com/th-th/121029"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · rated)",
+                "value": 3561,
+                "url": "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=energyLabels/A3287_V1/A3287/A3287_Product_Information_Sheet_RO_Romanian.pdf"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Apple A18",
+                "url": "https://support.apple.com/th-th/121029"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 6.1,
+                "url": "https://support.apple.com/th-th/121029"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "128 GB · 256 GB · 512 GB",
+                "url": "https://support.apple.com/th-th/121029"
+              }
+            ],
+            "notes": [
+              "Apple ไม่ระบุ RAM จริงในแหล่งทางการที่ตรวจ จึงเว้นไว้; ค่า RAM ที่ Geekbench รายงานเป็นหน่วยความจำที่ระบบเห็น ไม่ใช้แทน RAM การตลาด",
+              "แบตเตอรี่เป็นค่า rated จากเอกสาร Apple ของ A3287; ไม่ใช่ค่า typical และห้ามนำไปใช้กับรุ่นภูมิภาคอื่นโดยไม่ตรวจ",
+              "ยังไม่พบค่า Hz เป็นตัวเลขจากแหล่ง Apple ที่ตรวจ จึงเว้นไว้",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19119699",
+              "single": 3410,
+              "multi": 8648,
+              "version": "6.7.0",
+              "model_code": "iPhone17,3",
+              "tested_ram_gb_reported": 7.5,
+              "upload_date": "2026-09-05"
+            },
+            "memory_options": [
+              {
+                "ram_gb": null,
+                "storage_gb": 128,
+                "label": "Apple iPhone 16 · ROM 128GB"
+              },
+              {
+                "ram_gb": null,
+                "storage_gb": 256,
+                "label": "Apple iPhone 16 · ROM 256GB"
+              },
+              {
+                "ram_gb": null,
+                "storage_gb": 512,
+                "label": "Apple iPhone 16 · ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 3410.0,
+              "geekbench6_multi": 8648.0,
+              "ram_gb": null,
+              "storage_gb": null,
+              "battery_mah": 3561.0,
+              "refresh_hz": null,
+              "variant": "",
+              "spec_url": "https://support.apple.com/th-th/121029",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19119699",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "rated",
+            "missing_fields": [
+              "ram_gb",
+              "storage_gb",
+              "refresh_hz"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 3410.0,
+            "geekbench6_multi": 8648.0,
+            "ram_gb": null,
+            "storage_gb": null,
+            "battery_mah": 3561.0,
+            "refresh_hz": null,
+            "variant": "",
+            "spec_url": "https://support.apple.com/th-th/121029",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19119699",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 16
         },
         {
@@ -1417,6 +3519,110 @@
           "manual_price_only": true,
           "price_band": "5000-9999",
           "price_band_label": "5,000–9,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "realme C100x",
+            "binding": {
+              "title": "realme C100x (4+256GB) | โทรศัพท์มือถือ แบตใหญ่ 8000mAh หน้าจอ 120Hz ชาร์จไว 45W ใช้งานลื่นไหล",
+              "model_count": 2,
+              "model_examples": [
+                {
+                  "id": "208202311490",
+                  "name": "Deepblue"
+                },
+                {
+                  "id": "208202311491",
+                  "name": "Golden Coast"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "UNISOC T7250",
+                "url": "https://www.realme.com/th/realme-c100x/specs"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 4,
+                "url": "https://www.realme.com/th/realme-c100x/specs"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.realme.com/th/realme-c100x/specs"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 8000,
+                "url": "https://www.realme.com/th/realme-c100x/specs"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.realme.com/th/realme-c100x/specs"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "RMX5366",
+                "url": "https://www.realme.com/eu/legal/AndroidEnterpriseRecommended"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "4/256 GB",
+                "url": "https://www.realme.com/th/realme-c100x/specs"
+              }
+            ],
+            "notes": [
+              "ยังไม่พบผล Geekbench 6 CPU ที่ตรวจสอบ Single-Core และ Multi-Core จากผลเดียวกันตรงรุ่นได้ จึงเว้นคะแนนไว้"
+            ],
+            "benchmark": null,
+            "memory_options": [
+              {
+                "ram_gb": 4,
+                "storage_gb": 256,
+                "label": "realme C100x · RAM 4GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": null,
+              "geekbench6_multi": null,
+              "ram_gb": 4.0,
+              "storage_gb": 256.0,
+              "battery_mah": 8000.0,
+              "refresh_hz": 120.0,
+              "variant": "realme C100x · RAM 4GB / ROM 256GB",
+              "spec_url": "https://www.realme.com/th/realme-c100x/specs",
+              "benchmark_url": "",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "geekbench6_single",
+              "geekbench6_multi"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": null,
+            "geekbench6_multi": null,
+            "ram_gb": 4.0,
+            "storage_gb": 256.0,
+            "battery_mah": 8000.0,
+            "refresh_hz": 120.0,
+            "variant": "realme C100x · RAM 4GB / ROM 256GB",
+            "spec_url": "https://www.realme.com/th/realme-c100x/specs",
+            "benchmark_url": "",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 18
         },
         {
@@ -1498,6 +3704,130 @@
           "manual_price_only": true,
           "price_band": "under5000",
           "price_band_label": "ต่ำกว่า 5,000 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Redmi A7 Pro",
+            "binding": {
+              "title": "Redmi A7 Pro (4/64GB) (4/128GB) เครื่องแท้ ประกันศูนย์ไทย",
+              "model_count": 18,
+              "model_examples": [
+                {
+                  "id": "262982330835",
+                  "name": "Blue+ฟิล์มกระจก,4/64GB"
+                },
+                {
+                  "id": "262982330836",
+                  "name": "Blue+ฟิล์มกระจก,4/128GB"
+                },
+                {
+                  "id": "262982330837",
+                  "name": "Green+ฟิล์มกระจก,4/64GB"
+                },
+                {
+                  "id": "262982330838",
+                  "name": "Green+ฟิล์มกระจก,4/128GB"
+                },
+                {
+                  "id": "262982330839",
+                  "name": "Orange+ฟิล์มกระจก,4/64GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "UNISOC T7250",
+                "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 6000,
+                "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "4/64 GB · 4/128 GB",
+                "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 4,
+                "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "ยังยืนยันผล Geekbench 6 CPU พร้อมหลักฐานชื่อรุ่นและรหัสเครื่องครบไม่ได้ จึงเว้นคะแนนไว้",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": null,
+            "memory_options": [
+              {
+                "ram_gb": 4,
+                "storage_gb": 64,
+                "label": "Redmi A7 Pro · RAM 4GB / ROM 64GB"
+              },
+              {
+                "ram_gb": 4,
+                "storage_gb": 128,
+                "label": "Redmi A7 Pro · RAM 4GB / ROM 128GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": null,
+              "geekbench6_multi": null,
+              "ram_gb": 4.0,
+              "storage_gb": null,
+              "battery_mah": 6000.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+              "benchmark_url": "",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "geekbench6_single",
+              "geekbench6_multi",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": null,
+            "geekbench6_multi": null,
+            "ram_gb": 4.0,
+            "storage_gb": null,
+            "battery_mah": 6000.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "benchmark_url": "",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 19
         },
         {
@@ -1564,6 +3894,120 @@
           "manual_price_only": true,
           "price_band": "10000-14999",
           "price_band_label": "10,000–14,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Samsung Galaxy A27 5G",
+            "binding": {
+              "title": "Samsung Galaxy A27 5G 8/128GB หน้าจอ 6.7\" แบตเตอรี่ 5,000 mAh",
+              "model_count": 2,
+              "model_examples": [
+                {
+                  "id": "185924593664",
+                  "name": "Pink"
+                },
+                {
+                  "id": "185924593665",
+                  "name": "Black"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "SM-A276B",
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 8,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 128,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 5000,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 6 Gen 3",
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7-galaxy-a27-5g-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A1%E0%B8%B2%E0%B8%9E%E0%B8%A3"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 6.7,
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/128 GB",
+                "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/18646421",
+              "single": 954,
+              "multi": 3115,
+              "version": "6.7.1",
+              "model_code": "SM-A276B",
+              "tested_ram_gb_reported": 7.18,
+              "upload_date": "2026-07-09"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 128,
+                "label": "Samsung Galaxy A27 5G · RAM 8GB / ROM 128GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 954.0,
+              "geekbench6_multi": 3115.0,
+              "ram_gb": 8.0,
+              "storage_gb": 128.0,
+              "battery_mah": 5000.0,
+              "refresh_hz": 120.0,
+              "variant": "Samsung Galaxy A27 5G · RAM 8GB / ROM 128GB",
+              "spec_url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/18646421",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 954.0,
+            "geekbench6_multi": 3115.0,
+            "ram_gb": 8.0,
+            "storage_gb": 128.0,
+            "battery_mah": 5000.0,
+            "refresh_hz": 120.0,
+            "variant": "Samsung Galaxy A27 5G · RAM 8GB / ROM 128GB",
+            "spec_url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/18646421",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 20
         },
         {
@@ -1625,6 +4069,116 @@
           "manual_price_only": true,
           "price_band": "25000-39999",
           "price_band_label": "25,000–39,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Samsung Galaxy Z Flip8",
+            "binding": {
+              "title": "(Online Exclusive) Samsung Galaxy Z Flip8 12/256 GB,Exynos 2600* ,แบตเตอรี่ 4300 mAh, จอในกว้าง 6.9\"*,กล้องคมชัด 50 MP",
+              "model_count": 1,
+              "model_examples": [
+                {
+                  "id": "216410143305",
+                  "name": "Mint"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "SM-F776B",
+                "url": "https://www.samsung.com/latin/business/smartphones/galaxy-z/galaxy-z-flip8-sm-f776blijgto/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 4300,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Exynos 2600",
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 6.9,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB",
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19310693",
+              "single": 2990,
+              "multi": 9499,
+              "version": "6.7.1",
+              "model_code": "SM-F776B",
+              "tested_ram_gb_reported": 11.36,
+              "upload_date": "2026-10-07"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "Samsung Galaxy Z Flip8 · RAM 12GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 2990.0,
+              "geekbench6_multi": 9499.0,
+              "ram_gb": 12.0,
+              "storage_gb": 256.0,
+              "battery_mah": 4300.0,
+              "refresh_hz": 120.0,
+              "variant": "Samsung Galaxy Z Flip8 · RAM 12GB / ROM 256GB",
+              "spec_url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19310693",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 2990.0,
+            "geekbench6_multi": 9499.0,
+            "ram_gb": 12.0,
+            "storage_gb": 256.0,
+            "battery_mah": 4300.0,
+            "refresh_hz": 120.0,
+            "variant": "Samsung Galaxy Z Flip8 · RAM 12GB / ROM 256GB",
+            "spec_url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19310693",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 21
         },
         {
@@ -1706,6 +4260,131 @@
           "manual_price_only": true,
           "price_band": "10000-14999",
           "price_band_label": "10,000–14,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "vivo V80 Lite",
+            "binding": {
+              "title": "Vivo V80 Lite (6+256/6+128)แบต 10000 mah แบตใหญ่ ทนทุกสภาพ เครื่องแท้ โทรศัพท์มือถือ ประกันศูนย์ไทย ส่งด่วนMocare",
+              "model_count": 14,
+              "model_examples": [
+                {
+                  "id": "233357088142",
+                  "name": "Vivo,ทุกแบบ ไม่ผ่อนบัตร0%"
+                },
+                {
+                  "id": "233357088143",
+                  "name": "Vivo,💳ผ่อนบัตรเครดิต 0%"
+                },
+                {
+                  "id": "346548052471",
+                  "name": "6/256🔴Pink+แถม,ทุกแบบ ไม่ผ่อนบัตร0%"
+                },
+                {
+                  "id": "346548052472",
+                  "name": "6/256🔴Pink+แถม,💳ผ่อนบัตรเครดิต 0%"
+                },
+                {
+                  "id": "346548052473",
+                  "name": "6/256⚫Black+แถม,ทุกแบบ ไม่ผ่อนบัตร0%"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Dimensity 7300e",
+                "url": "https://www.vivo.com/th/products/param/v80-lite-5g"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 6,
+                "url": "https://www.vivo.com/th/products/param/v80-lite-5g"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 10000,
+                "url": "https://www.vivo.com/th/products/param/v80-lite-5g"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.vivo.com/th/products/param/v80-lite-5g"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "V2626",
+                "url": "https://storage.googleapis.com/play_public/supported_devices.html"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "6/128 GB · 6/256 GB",
+                "url": "https://www.vivo.com/th/products/param/v80-lite-5g"
+              }
+            ],
+            "notes": [
+              "storage128/256ทั้งสองอยู่ในlisting จึงเว้นให้ผู้ดูแลเลือกรุ่นย่อย",
+              "มีV80Liteชื่อเดียวกันหลายรหัส/ชิป/แบตต่างกัน ห้ามแทนผลV2643หรือV2576 (Dimensity7360) ลงรุ่นไทยDimensity7300e",
+              "ยังไม่พบผล Geekbench 6 CPU ที่ตรวจสอบ Single-Core และ Multi-Core จากผลเดียวกันตรงรุ่นได้ จึงเว้นคะแนนไว้",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": null,
+            "memory_options": [
+              {
+                "ram_gb": 6,
+                "storage_gb": 128,
+                "label": "vivo V80 Lite · RAM 6GB / ROM 128GB"
+              },
+              {
+                "ram_gb": 6,
+                "storage_gb": 256,
+                "label": "vivo V80 Lite · RAM 6GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": null,
+              "geekbench6_multi": null,
+              "ram_gb": 6.0,
+              "storage_gb": null,
+              "battery_mah": 10000.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.vivo.com/th/products/param/v80-lite-5g",
+              "benchmark_url": "",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "geekbench6_single",
+              "geekbench6_multi",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": null,
+            "geekbench6_multi": null,
+            "ram_gb": 6.0,
+            "storage_gb": null,
+            "battery_mah": 10000.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.vivo.com/th/products/param/v80-lite-5g",
+            "benchmark_url": "",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 22
         },
         {
@@ -1787,6 +4466,135 @@
           "manual_price_only": true,
           "price_band": "25000-39999",
           "price_band_label": "25,000–39,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Xiaomi 17T Pro",
+            "binding": {
+              "title": "สมาร์ทโฟน Xiaomi 17T Pro (12+256GB)(12+512GB) จอ 6.83 นิ้ว กล้อง 50MP แบตเตอรี่ 7000mAh",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "381564902963",
+                  "name": "Black,12+256GB"
+                },
+                {
+                  "id": "381564902964",
+                  "name": "Black,12+512GB"
+                },
+                {
+                  "id": "381564902965",
+                  "name": "Blue,12+256GB"
+                },
+                {
+                  "id": "381564902966",
+                  "name": "Blue,12+512GB"
+                },
+                {
+                  "id": "381564902967",
+                  "name": "Violet,12+256GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "MediaTek Dimensity 9500",
+                "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "2602EPTC0G",
+                "url": "https://www.mi.com/tw/product/xiaomi-17t-pro/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 7000,
+                "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 144,
+                "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB · 12/512 GB",
+                "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/18154440",
+              "single": 3099,
+              "multi": 9438,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 2602EPTC0G",
+              "tested_ram_gb_reported": 10.97,
+              "upload_date": "2026-05-28 16:02"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "Xiaomi 17T Pro · RAM 12GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 512,
+                "label": "Xiaomi 17T Pro · RAM 12GB / ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 3099.0,
+              "geekbench6_multi": 9438.0,
+              "ram_gb": 12.0,
+              "storage_gb": null,
+              "battery_mah": 7000.0,
+              "refresh_hz": 144.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/18154440",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 3099.0,
+            "geekbench6_multi": 9438.0,
+            "ram_gb": 12.0,
+            "storage_gb": null,
+            "battery_mah": 7000.0,
+            "refresh_hz": 144.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/18154440",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 23
         },
         {
@@ -1868,6 +4676,132 @@
           "manual_price_only": true,
           "price_band": "40000plus",
           "price_band_label": "40,000 บาทขึ้นไป",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Samsung Galaxy Z Fold7",
+            "binding": {
+              "title": "Galaxy Z Fold7 แรม12 รอม256(5G Ai✨)เครื่องใหม่เครื่องศูนย์ไทยแท้ ประกันศูนย์ ผ่อนSplayleter/บัตรเครดิต",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "259340673457",
+                  "name": "สี jet black,ชำระปกติ/Splayleter"
+                },
+                {
+                  "id": "259340673458",
+                  "name": "สี jet black,ผ่อนบัตรเครดิต 0%"
+                },
+                {
+                  "id": "259340673459",
+                  "name": "สี Silver Shadow,ชำระปกติ/Splayleter"
+                },
+                {
+                  "id": "259340673460",
+                  "name": "สี Silver Shadow,ผ่อนบัตรเครดิต 0%"
+                },
+                {
+                  "id": "430709094566",
+                  "name": "สี Blue Shadow,ชำระปกติ/Splayleter"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "SM-F966B",
+                "url": "https://www.samsung.com/sec/sustainability/policy-file/AYTB_UTKGcQAIyDu/LCA_Results_for_Smartphones.pdf"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 4400,
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 8 Elite for Galaxy",
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 8.0,
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB",
+                "url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf"
+              }
+            ],
+            "notes": [],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/13504585",
+              "single": 2908,
+              "multi": 9452,
+              "version": "6.4.0",
+              "model_code": "SM-F966B",
+              "tested_ram_gb_reported": 10.85,
+              "upload_date": "2025-08-26"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "Samsung Galaxy Z Fold7 · RAM 12GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 2908.0,
+              "geekbench6_multi": 9452.0,
+              "ram_gb": 12.0,
+              "storage_gb": 256.0,
+              "battery_mah": 4400.0,
+              "refresh_hz": 120.0,
+              "variant": "Samsung Galaxy Z Fold7 · RAM 12GB / ROM 256GB",
+              "spec_url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/13504585",
+              "verified": true,
+              "checked_at": "2026-10-20T09:00:00+00:00"
+            },
+            "battery_basis": "typical",
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 2908.0,
+            "geekbench6_multi": 9452.0,
+            "ram_gb": 12.0,
+            "storage_gb": 256.0,
+            "battery_mah": 4400.0,
+            "refresh_hz": 120.0,
+            "variant": "Samsung Galaxy Z Fold7 · RAM 12GB / ROM 256GB",
+            "spec_url": "https://image-us.samsung.com/us/smartphones/galaxy-z-fold7/pdf/Q7_B2B_Spec_Sheet_R3Lc.pdf",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/13504585",
+            "verified": true,
+            "checked_at": "2026-10-20T09:00:00+00:00"
+          },
           "rank": 23
         },
         {
@@ -1949,6 +4883,136 @@
           "manual_price_only": true,
           "price_band": "15000-24999",
           "price_band_label": "15,000–24,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "OPPO Reno 16 5G",
+            "binding": {
+              "title": "OPPO Reno 16 5G (8/256GB)(12/256GB)(12/512GB)+ประกันจอแตก [รับประกันศูนย์ 1ปี]",
+              "model_count": 8,
+              "model_examples": [
+                {
+                  "id": "371105284096",
+                  "name": "(12/256GB) : Purple"
+                },
+                {
+                  "id": "371105284097",
+                  "name": "(12/256GB) : Violet"
+                },
+                {
+                  "id": "371105284098",
+                  "name": "(12/256GB) : White"
+                },
+                {
+                  "id": "386105279454",
+                  "name": "(8/256GB) : Purple"
+                },
+                {
+                  "id": "386105279455",
+                  "name": "(8/256GB) : Violet"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 7 Gen 4",
+                "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "CPH2865",
+                "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 6700,
+                "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/256 GB · 12/256 GB",
+                "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/"
+              }
+            ],
+            "notes": [
+              "ใช้สเปกไทยแบต 6,700 mAh; หน้าไทยยืนยัน 8/256 และ 12/256 แต่ยังไม่ยืนยัน 12/512 ที่เขียนในชื่อร้าน ผล Geekbench อ้างอิงรายงาน RAM 10.98 GB",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/18289229",
+              "single": 1240,
+              "multi": 3994,
+              "version": "6.7.1",
+              "model_code": "CPH2865",
+              "tested_ram_gb_reported": 10.98,
+              "upload_date": "2026-06-09"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "OPPO Reno 16 5G · RAM 8GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "OPPO Reno 16 5G · RAM 12GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 1240.0,
+              "geekbench6_multi": 3994.0,
+              "ram_gb": null,
+              "storage_gb": 256.0,
+              "battery_mah": 6700.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/18289229",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "ram_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 1240.0,
+            "geekbench6_multi": 3994.0,
+            "ram_gb": null,
+            "storage_gb": 256.0,
+            "battery_mah": 6700.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/18289229",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 25
         },
         {
@@ -2025,6 +5089,132 @@
           "manual_price_only": true,
           "price_band": "15000-24999",
           "price_band_label": "15,000–24,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Redmi Note 17 Pro 5G",
+            "binding": {
+              "title": "[HOT] Xiaomi Redmi Note 17 Pro 5G Corning® Gorilla® Glass Victus® 2 แบตเตอรี่ 8340mAh พร้อม 67W HyperCharge",
+              "model_count": 4,
+              "model_examples": [
+                {
+                  "id": "396428282311",
+                  "name": "Sky Blue,8+256"
+                },
+                {
+                  "id": "436428277768",
+                  "name": "Black,6+256"
+                },
+                {
+                  "id": "436428277769",
+                  "name": "Black,8+256"
+                },
+                {
+                  "id": "436428277770",
+                  "name": "Sky Blue,6+256"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 6s Gen 4",
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "2607DRA18G",
+                "url": "https://www.mi.com/tw/product/redmi-note-17-pro-5g/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 8340,
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "6/256 GB · 8/256 GB",
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/"
+              }
+            ],
+            "notes": [
+              "ใช้แบตเตอรี่ไทย 8,340 mAh; ผลทดสอบอ้างอิงรายงาน RAM 5.28 GB ไม่ใช่ผลยืนยันเฉพาะรุ่น RAM 8GB",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19129447",
+              "single": 1008,
+              "multi": 2900,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 2607DRA18G",
+              "tested_ram_gb_reported": 5.28,
+              "upload_date": "2026-09-07 13:12"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 6,
+                "storage_gb": 256,
+                "label": "Redmi Note 17 Pro 5G · RAM 6GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "Redmi Note 17 Pro 5G · RAM 8GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 1008.0,
+              "geekbench6_multi": 2900.0,
+              "ram_gb": null,
+              "storage_gb": 256.0,
+              "battery_mah": 8340.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19129447",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "ram_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 1008.0,
+            "geekbench6_multi": 2900.0,
+            "ram_gb": null,
+            "storage_gb": 256.0,
+            "battery_mah": 8340.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19129447",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 26
         },
         {
@@ -2101,6 +5291,132 @@
           "manual_price_only": true,
           "price_band": "15000-24999",
           "price_band_label": "15,000–24,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Redmi Note 17 Pro Max",
+            "binding": {
+              "title": "สมาร์ทโฟน Xiaomi Redmi Note 17 Pro Max (8+256GB)(8+512GB) จอ 6.83 นิ้ว AMOLED 120Hz กล้อง 50MP+QVGA แบตเตอรี่ 10,000 mAh",
+              "model_count": 4,
+              "model_examples": [
+                {
+                  "id": "416395547272",
+                  "name": "Black,8+256GB"
+                },
+                {
+                  "id": "416395547273",
+                  "name": "Black,8+512GB"
+                },
+                {
+                  "id": "416395547274",
+                  "name": "CloudBlush,8+256GB"
+                },
+                {
+                  "id": "416395547275",
+                  "name": "CloudBlush,8+512GB"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 6 Gen 5",
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "2609FRA74G",
+                "url": "https://www.mi.com/tw/product/redmi-note-17-pro-max-5g/specs/"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 10000,
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/256 GB · 8/512 GB",
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 8,
+                "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              }
+            ],
+            "notes": [
+              "ชื่อผู้ผลิตคือ REDMI Note 17 Pro Max 5G; ใช้แบตเตอรี่ไทย 10,000 mAh",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19311991",
+              "single": 1070,
+              "multi": 3403,
+              "version": "6.7.1",
+              "model_code": "Xiaomi 2609FRA74G",
+              "tested_ram_gb_reported": 7.22,
+              "upload_date": "2026-10-07 16:12"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "Redmi Note 17 Pro Max · RAM 8GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 8,
+                "storage_gb": 512,
+                "label": "Redmi Note 17 Pro Max · RAM 8GB / ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 1070.0,
+              "geekbench6_multi": 3403.0,
+              "ram_gb": 8.0,
+              "storage_gb": null,
+              "battery_mah": 10000.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19311991",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 1070.0,
+            "geekbench6_multi": 3403.0,
+            "ram_gb": 8.0,
+            "storage_gb": null,
+            "battery_mah": 10000.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19311991",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 27
         },
         {
@@ -2182,6 +5498,123 @@
           "manual_price_only": true,
           "price_band": "under5000",
           "price_band_label": "ต่ำกว่า 5,000 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Redmi A7",
+            "binding": {
+              "title": "REDMI A7 3/64GB จอใหญ่ 6.88\" โทรศัพท์มือถือ เครื่องใหม่ เครื่องแท้ รับประกันศูนย์ 1 ปี",
+              "model_count": 6,
+              "model_examples": [
+                {
+                  "id": "311315531430",
+                  "name": "Black,ชำระเต็ม l ไม่ผ่อน"
+                },
+                {
+                  "id": "311315531431",
+                  "name": "Black,SPaylater/ผ่อนเครดิต"
+                },
+                {
+                  "id": "311315531432",
+                  "name": "Sky Blue,ชำระเต็ม l ไม่ผ่อน"
+                },
+                {
+                  "id": "311315531433",
+                  "name": "Sky Blue,SPaylater/ผ่อนเครดิต"
+                },
+                {
+                  "id": "311315531434",
+                  "name": "Orchid Purple,ชำระเต็ม l ไม่ผ่อน"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "UNISOC T7250",
+                "url": "https://www.mi.com/th/product/redmi-a7/specs/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 5200,
+                "url": "https://www.mi.com/th/product/redmi-a7/specs/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.mi.com/th/product/redmi-a7/specs/"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "3/64 GB",
+                "url": "https://www.mi.com/th/product/redmi-a7/specs/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 3,
+                "url": "https://www.mi.com/th/product/redmi-a7/specs/"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 64,
+                "url": "https://www.mi.com/th/product/redmi-a7/specs/"
+              }
+            ],
+            "notes": [
+              "ยังยืนยันผล Geekbench 6 CPU พร้อมหลักฐานชื่อรุ่นและรหัสเครื่องครบไม่ได้ จึงเว้นคะแนนไว้"
+            ],
+            "benchmark": null,
+            "memory_options": [
+              {
+                "ram_gb": 3,
+                "storage_gb": 64,
+                "label": "Redmi A7 · RAM 3GB / ROM 64GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": null,
+              "geekbench6_multi": null,
+              "ram_gb": 3.0,
+              "storage_gb": 64.0,
+              "battery_mah": 5200.0,
+              "refresh_hz": 120.0,
+              "variant": "Redmi A7 · RAM 3GB / ROM 64GB",
+              "spec_url": "https://www.mi.com/th/product/redmi-a7/specs/",
+              "benchmark_url": "",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "missing_fields": [
+              "geekbench6_single",
+              "geekbench6_multi"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": null,
+            "geekbench6_multi": null,
+            "ram_gb": 3.0,
+            "storage_gb": 64.0,
+            "battery_mah": 5200.0,
+            "refresh_hz": 120.0,
+            "variant": "Redmi A7 · RAM 3GB / ROM 64GB",
+            "spec_url": "https://www.mi.com/th/product/redmi-a7/specs/",
+            "benchmark_url": "",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 28
         },
         {
@@ -2253,6 +5686,139 @@
           "manual_price_only": true,
           "price_band": "15000-24999",
           "price_band_label": "15,000–24,999 บาท",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "HONOR 600 5G",
+            "binding": {
+              "title": "สมาร์ทโฟน Honor 600 5G by Banana IT",
+              "model_count": 3,
+              "model_examples": [
+                {
+                  "id": "340924654996",
+                  "name": "Orange"
+                },
+                {
+                  "id": "340924654997",
+                  "name": "Midnight Black"
+                },
+                {
+                  "id": "340924654998",
+                  "name": "Golden White"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 7 Gen 4",
+                "url": "https://www.honor.com/th/phones/honor-600/spec/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": null,
+                "url": null
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh)",
+                "value": 7000,
+                "url": "https://www.honor.com/th/phones/honor-600/"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://www.honor.com/th/phones/honor-600/"
+              },
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "VKJ-NX9",
+                "url": "https://storage.googleapis.com/play_public/supported_devices.html"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "8/256 GB · 8/512 GB · 12/256 GB · 12/512 GB",
+                "url": "https://www.honor.com/th/phones/honor-600/spec/"
+              }
+            ],
+            "notes": [
+              "ชื่อ listing ไม่มี RAM/storage มีแต่ตัวเลือกสี จึงเว้นRAM/storageจนเลือกความจุชัดเจน",
+              "รุ่นEUในเอกสารenergy labelความจุแบตต่างจากไทย ใช้7000mAhจากหน้าผู้ผลิตประเทศไทย",
+              "ความจุที่ยังไม่เลือกเว้นไว้ในช่องคำนวณ เลือกรุ่นย่อยให้ตรงกับราคาตะกร้าก่อนยืนยัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19281383",
+              "single": 1322,
+              "multi": 4043,
+              "version": "6.7.1",
+              "model_code": "VKJ-NX9",
+              "tested_ram_gb_reported": 7.22,
+              "upload_date": "October 01 2026 04:55 AM"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 8,
+                "storage_gb": 256,
+                "label": "HONOR 600 5G · RAM 8GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 8,
+                "storage_gb": 512,
+                "label": "HONOR 600 5G · RAM 8GB / ROM 512GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "HONOR 600 5G · RAM 12GB / ROM 256GB"
+              },
+              {
+                "ram_gb": 12,
+                "storage_gb": 512,
+                "label": "HONOR 600 5G · RAM 12GB / ROM 512GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 1322.0,
+              "geekbench6_multi": 4043.0,
+              "ram_gb": null,
+              "storage_gb": null,
+              "battery_mah": 7000.0,
+              "refresh_hz": 120.0,
+              "variant": "",
+              "spec_url": "https://www.honor.com/th/phones/honor-600/spec/",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19281383",
+              "verified": false,
+              "checked_at": null
+            },
+            "missing_fields": [
+              "ram_gb",
+              "storage_gb"
+            ]
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 1322.0,
+            "geekbench6_multi": 4043.0,
+            "ram_gb": null,
+            "storage_gb": null,
+            "battery_mah": 7000.0,
+            "refresh_hz": 120.0,
+            "variant": "",
+            "spec_url": "https://www.honor.com/th/phones/honor-600/spec/",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19281383",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 29
         },
         {
@@ -2314,6 +5880,119 @@
           "manual_price_only": true,
           "price_band": "40000plus",
           "price_band_label": "40,000 บาทขึ้นไป",
+          "spec_research": {
+            "schema_version": 1,
+            "model": "Samsung Galaxy Z Fold8 Ultra",
+            "binding": {
+              "title": "(Online Exclusive) Samsung Galaxy Z Fold8 Ultra 12/256 GB,Snapdragon 8 Elite Gen 5* ,แบตเตอรี่ 5000 mAh,จอในกว้าง 7.6\"*",
+              "model_count": 1,
+              "model_examples": [
+                {
+                  "id": "446183240256",
+                  "name": "Green shadow"
+                }
+              ]
+            },
+            "checked_at": "20/10/2569",
+            "facts": [
+              {
+                "key": "model_code",
+                "label": "รหัสรุ่น",
+                "value": "SM-F976B",
+                "url": "https://www.samsung.com/de/support/mobile-devices/what-is-the-difference-between-the-galaxy-z-fold8-ultra-and-z-fold8/"
+              },
+              {
+                "key": "ram_gb",
+                "label": "RAM จริง (GB)",
+                "value": 12,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "storage_gb",
+                "label": "ความจุอ้างอิง (GB)",
+                "value": 256,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "battery_mah",
+                "label": "แบตเตอรี่ (mAh · typical)",
+                "value": 5000,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "refresh_hz",
+                "label": "รีเฟรชเรตสูงสุด (Hz)",
+                "value": 120,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "chipset",
+                "label": "ชิป",
+                "value": "Snapdragon 8 Elite Gen 5 for Galaxy",
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "display_inches",
+                "label": "ขนาดจอ (นิ้ว)",
+                "value": 8.0,
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              },
+              {
+                "key": "memory_options",
+                "label": "RAM / ความจุที่ผู้ผลิตระบุ",
+                "value": "12/256 GB",
+                "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1"
+              }
+            ],
+            "notes": [
+              "ต้องตรวจตะกร้าเพิ่ม: ชื่อรายการต้นทางเขียนจอ 7.6 นิ้ว แต่ Fold8 Ultra ทางการเป็น 8.0 นิ้ว ข้อมูลนี้อ้างอิง Ultra; ยังไม่ยืนยันว่าตะกร้าต้นทางขายรุ่นเดียวกัน"
+            ],
+            "benchmark": {
+              "url": "https://browser.geekbench.com/v6/cpu/19353132",
+              "single": 2840,
+              "multi": 8592,
+              "version": "6.7.1",
+              "model_code": "SM-F976B",
+              "tested_ram_gb_reported": 10.83,
+              "upload_date": "2026-10-17"
+            },
+            "memory_options": [
+              {
+                "ram_gb": 12,
+                "storage_gb": 256,
+                "label": "Samsung Galaxy Z Fold8 Ultra · RAM 12GB / ROM 256GB"
+              }
+            ],
+            "value_specs": {
+              "geekbench6_single": 2840.0,
+              "geekbench6_multi": 8592.0,
+              "ram_gb": 12.0,
+              "storage_gb": 256.0,
+              "battery_mah": 5000.0,
+              "refresh_hz": 120.0,
+              "variant": "Samsung Galaxy Z Fold8 Ultra · RAM 12GB / ROM 256GB",
+              "spec_url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+              "benchmark_url": "https://browser.geekbench.com/v6/cpu/19353132",
+              "verified": false,
+              "checked_at": null
+            },
+            "battery_basis": "typical",
+            "requires_model_confirmation": true,
+            "missing_fields": []
+          },
+          "researched_value_specs": {
+            "geekbench6_single": 2840.0,
+            "geekbench6_multi": 8592.0,
+            "ram_gb": 12.0,
+            "storage_gb": 256.0,
+            "battery_mah": 5000.0,
+            "refresh_hz": 120.0,
+            "variant": "Samsung Galaxy Z Fold8 Ultra · RAM 12GB / ROM 256GB",
+            "spec_url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "benchmark_url": "https://browser.geekbench.com/v6/cpu/19353132",
+            "verified": false,
+            "checked_at": null
+          },
           "rank": 30
         }
       ],

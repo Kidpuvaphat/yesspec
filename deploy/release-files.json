@@ -60,5 +60,6 @@
   "deploy/maintenance.py",
   "deploy/install-hostinger-ops.sh",
   "deploy/yesspec-maintenance.service",
-  "deploy/yesspec-maintenance.timer"
+  "deploy/yesspec-maintenance.timer",
+  "data/mobile_spec_research.json"
 ]
