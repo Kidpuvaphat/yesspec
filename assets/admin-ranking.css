@@ -23,3 +23,4 @@ label {display:block;font-size:12px;font-weight:600;} input,select {display:bloc
 @media(max-width:600px){#priceCheckDialog {padding:16px;}.check-header h2 {font-size:21px;}}
 
 .value-spec-editor{border:1px solid #cfe3d5;border-radius:8px;padding:14px;margin:16px 0}.spec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.spec-confirm{display:flex;gap:10px;align-items:center;margin:15px 0}.spec-confirm input{width:18px;min-height:18px;flex-shrink:0}.value-spec-editor summary{font-weight:600}@media(max-width:850px){.spec-grid{grid-template-columns:1fr}}
+.reference-editor{background:#f1f8f3;border:1px solid #bad7c4;border-radius:8px;padding:16px;margin:18px 0}.reference-editor h3{margin:0 0 8px;font-size:17px}.reference-editor label{margin:10px 0}.reference-editor .channel-actions{margin:12px 0}.purchase-editor>summary{font-weight:600;padding:10px 0}@media(max-width:600px){.reference-editor .pair{grid-template-columns:1fr}}

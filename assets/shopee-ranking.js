@@ -33,6 +33,8 @@
   }
   function purchaseHTML(item, now = Date.now(), hours = 48) {
     const e = escapeHTML;
+    const reference = channels?.referencePrice(item,now);
+    const referenceHTML = reference ? `<div class="reference-price"><div class="metric-label">ราคาต่ำสุดที่ผู้ดูแลพบ</div><div class="metric-value">${money(reference.price)}</div><div class="metric-caption">ราคาอ้างอิงสำหรับจัดอันดับ · ราคาที่ลิงก์ซื้ออาจต่างกัน<br>บันทึก ${date(reference.recorded_at)} น.${reference.stale ? '<br><span class="stale">เกิน 48 ชม. · ควรตรวจราคาใหม่</span>' : ''}${reference.variant ? `<br>ตัวเลือก: ${e(reference.variant)}` : '<br>ยังไม่ระบุตัวเลือก · รอจัดอันดับ'}${reference.note ? `<br>${e(reference.note)}` : ''}</div></div>` : '';
     const offers = item.purchase_offers ?? [channels?.defaultShopee(item)].filter(Boolean);
     const rows = offers.flatMap(offer => {
       if (!channels?.validURL(offer.url, offer.platform)) return [];
@@ -43,12 +45,12 @@
       const stale = stalePrice(manual ? {observed_at:lookup?.checked_at || offer.recorded_at} : item, now, hours);
       const vip = !manual && isShopee && money(item.vip_reference?.amount) !== '—' && item.vip_reference?.variant && date(item.vip_reference?.observed_at) !== '—' ? item.vip_reference : null;
       const label = manual ? ({vip:'ราคา VIP / สมาชิก', coupon:'ราคามีเงื่อนไขคูปอง', flash_sale:'ราคาแฟลชเซล'}[offer.price_type] || (lookup ? 'ราคาที่ผู้ดูแลยืนยัน' : 'ราคาที่ผู้ดูแลกรอก')) : offer.source === 'awaiting_manual' ? 'ราคาหลังคูปอง' : feed ? 'ราคา sale_price ในฟีด' : 'ราคาแสดงตอนเก็บข้อมูล';
-      const caption = money(offer.price) === '—' ? (item.manual_price_only ? 'รอกรอกราคาหลังคูปอง' : 'ยังไม่มีข้อมูลราคายืนยัน') : manual
+      const caption = money(offer.price) === '—' ? (reference ? 'ตรวจราคาและคูปองที่ปลายทาง' : item.manual_price_only ? 'รอกรอกราคาหลังคูปอง' : 'ยังไม่มีข้อมูลราคายืนยัน') : manual
         ? `${lookup ? 'อ่านจากหน้า' : 'บันทึก'} ${date(lookup?.checked_at || offer.recorded_at)} น.${stale ? ' · เกิน 48 ชม. — ตรวจราคาปัจจุบัน' : ''}`
         : feed ? 'เวลาอัปเดตราคาไม่ระบุ — ตรวจราคาปัจจุบัน' : stale ? 'ข้อมูลราคาเกิน 48 ชม. — ตรวจใหม่' : 'รอตรวจตัวเลือกและเงื่อนไข';
       return [`<div class="purchase-offer" data-platform="${e(offer.platform)}"><div class="offer-price"><div class="metric-label">${e(channels.names[offer.platform])} · ${label}</div><div class="metric-value">${money(offer.price)}</div><div class="metric-caption ${stale || feed ? 'stale' : ''}">${caption}</div>${manual && offer.price_type === 'flash_sale' ? '<div class="metric-caption">ตรวจราคาและสิทธิ์โปรโมชันที่หน้าร้าน</div>' : ''}${manual && offer.variant ? `<div class="metric-caption">ตัวเลือก: ${e(offer.variant)}</div>` : ''}${manual && offer.note ? `<div class="metric-caption">${e(offer.note)}</div>` : ''}${vip ? `<span class="vip">เคยตรวจราคา VIP ${money(vip.amount)}<br>${e(vip.variant)}<br>${date(vip.observed_at)} น.</span>` : ''}</div><a class="pdp-link" href="${e(url)}" target="_blank" rel="sponsored noopener noreferrer">ดูบน ${e(channels.names[offer.platform])} ↗</a></div>`];
     });
-    return rows.length ? `<div class="purchase-offers">${rows.join('')}</div>` : '';
+    return rows.length || referenceHTML ? `<div class="purchase-offers">${referenceHTML}${rows.join('')}</div>` : '';
   }
   function listingHTML(item, labels, review = false, now = Date.now(), hours = 48) {
     const e = escapeHTML, price = item.price || {}, sales = item.sales || {};
@@ -67,7 +69,7 @@
     const result = item.value_result, e = escapeHTML;
     if (result.score === null) return `<div class="value-summary pending">ความคุ้มค่า: รอข้อมูล<br><small>${e(result.reason)}</small></div>`;
     const specs = item.value_specs;
-    return `<div class="value-summary"><strong>${result.score.toFixed(4)} คะแนน / 1,000 บาท</strong><br><small>สเปก ${result.spec_score.toFixed(2)}/100 ÷ ${money(result.price)} × 1,000 · ${e(channels.names[result.platform])}<br>ตัวเลือก: ${e(result.variant)}</small><details><summary>สเปกที่ใช้คำนวณ</summary><ul>${channels.specMetrics.map(([key,label])=>`<li>${e(label)}: ${number(specs[key])}</li>`).join('')}</ul><a href="${e(specs.spec_url)}" target="_blank" rel="noopener noreferrer">แหล่งสเปก ↗</a> · <a href="${e(specs.benchmark_url)}" target="_blank" rel="noopener noreferrer">ผล Geekbench 6 ↗</a><small> · ผู้ดูแลยืนยัน ${date(specs.checked_at)} น.</small></details></div>`;
+    return `<div class="value-summary"><strong>${result.score.toFixed(4)} คะแนน / 1,000 บาท</strong><br><small>สเปก ${result.spec_score.toFixed(2)}/100 ÷ ${money(result.price)} × 1,000 · ${result.price_source === 'manual_reference' ? 'ราคาต่ำสุดที่ผู้ดูแลพบ' : e(channels.names[result.platform])}<br>ตัวเลือก: ${e(result.variant)}</small><details><summary>สเปกที่ใช้คำนวณ</summary><ul>${channels.specMetrics.map(([key,label])=>`<li>${e(label)}: ${number(specs[key])}</li>`).join('')}</ul><a href="${e(specs.spec_url)}" target="_blank" rel="noopener noreferrer">แหล่งสเปก ↗</a> · <a href="${e(specs.benchmark_url)}" target="_blank" rel="noopener noreferrer">ผล Geekbench 6 ↗</a><small> · ผู้ดูแลยืนยัน ${date(specs.checked_at)} น.</small></details></div>`;
   }
   const api = {escapeHTML, productUrl, stalePrice, filterItems, officialHTML, purchaseHTML, listingHTML};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

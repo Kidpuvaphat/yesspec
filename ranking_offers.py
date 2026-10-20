@@ -112,6 +112,7 @@ def payload(root):
                          'source_title': item['title'], 'price_band': item.get('price_band', ''),
                          'price_band_label': item.get('price_band_label', ''),
                          'shop_name': item.get('shop_name', ''), 'offers': offers,
+                         'reference_price': entry.get('reference_price') if matched else None,
                          'value_specs': entry['value_specs'] if matched and 'value_specs' in entry else researched_specs(item),
                          'spec_research': item.get('spec_research') if researched_specs(item) is not None else None,
                          'feed_offer': default_shopee(item),
@@ -207,6 +208,32 @@ def clean_value_specs(raw, now):
     return result
 
 
+def clean_reference_price(raw, now):
+    """An editor-observed price belongs to a model/variant, not a purchase URL."""
+    if raw is None:
+        return None
+    if not isinstance(raw, dict):
+        raise ValueError('ข้อมูลราคาต่ำสุดที่พบไม่ถูกต้อง')
+    amount = raw.get('price')
+    if amount in ('', None):
+        return None
+    try:
+        if isinstance(amount, bool):
+            raise ValueError()
+        amount = round(float(amount), 2)
+        if not math.isfinite(amount) or not 0 < amount <= 100_000_000:
+            raise ValueError()
+    except (ValueError, TypeError):
+        raise ValueError('ราคาต่ำสุดที่พบต้องมากกว่า 0 หรือเว้นว่างไว้') from None
+    result = {'price': amount, 'source': 'manual_reference', 'recorded_at': now}
+    for key in ('variant', 'note'):
+        value = str(raw.get(key) or '').strip()
+        if len(value) > 500:
+            raise ValueError('รายละเอียดราคาต่ำสุดที่พบต้องไม่เกิน 500 ตัวอักษร')
+        result[key] = value
+    return result
+
+
 def save(root, updates):
     if not isinstance(updates, list) or not 1 <= len(updates) <= 640:
         raise ValueError('เลือกสินค้าที่ต้องการบันทึก')
@@ -241,9 +268,14 @@ def save(root, updates):
         specs = old['value_specs'] if old.get('binding') == binding(item) and 'value_specs' in old else researched_specs(item)
         if 'value_specs' in update:
             specs = clean_value_specs(update['value_specs'], now)
+        reference = old.get('reference_price') if old.get('binding') == binding(item) else None
+        if 'reference_price' in update:
+            reference = clean_reference_price(update['reference_price'], now)
         store['items'][lid] = {'binding': binding(item), 'offers': offers, 'updated_at': now}
         if specs is not None:
             store['items'][lid]['value_specs'] = specs
+        if reference is not None:
+            store['items'][lid]['reference_price'] = reference
     store['updated_at'] = now
     write_json(Path(root) / 'data/ranking_manual_offers.json', store)
     return {'ok': True, 'updated_count': len(seen)}

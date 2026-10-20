@@ -10,8 +10,11 @@
   const formOffer = offer => ({...Object.fromEntries(fields.map(k => [k, String(offer?.[k] ?? (k === 'price_type' ? 'regular' : ''))])), price_lookup:offer?.price_lookup || null});
   const specFields = [...RankingOffers.specMetrics.map(([key])=>key), 'variant','spec_url','benchmark_url'];
   const formSpecs = specs => ({...Object.fromEntries(specFields.map(key=>[key,String(specs?.[key] ?? '')])), verified:specs?.verified === true});
+  const formReference = row => ({price:String(row.reference_price?.price ?? ''),
+    variant:String(row.reference_price?.variant ?? row.value_specs?.variant ?? ''),
+    note:String(row.reference_price?.note ?? '')});
   function getDraft(row) {
-    if (!drafts.has(row.listing_id)) drafts.set(row.listing_id, {revision:row.revision, reset:[], reconfirm:[], offers:Object.fromEntries(Object.keys(names).map(p => [p, formOffer(row.offers[p])])), value_specs:formSpecs(row.value_specs)});
+    if (!drafts.has(row.listing_id)) drafts.set(row.listing_id, {revision:row.revision, reset:[], reconfirm:[], reference_reconfirm:false, reference_price:formReference(row), offers:Object.fromEntries(Object.keys(names).map(p => [p, formOffer(row.offers[p])])), value_specs:formSpecs(row.value_specs)});
     return drafts.get(row.listing_id);
   }
   function changes(row) {
@@ -19,7 +22,14 @@
     if (!draft) return null;
     const offers = Object.fromEntries(Object.keys(names).filter(p => !draft.reset.includes(p) && (draft.reconfirm.includes(p) || JSON.stringify(draft.offers[p]) !== JSON.stringify(formOffer(row.offers[p])))).map(p => [p, draft.offers[p]]));
     const specChanged = JSON.stringify(draft.value_specs) !== JSON.stringify(formSpecs(row.value_specs));
-    return Object.keys(offers).length || draft.reset.length || specChanged ? {listing_id:row.listing_id, revision:draft.revision, offers, reset:draft.reset, ...(specChanged ? {value_specs:draft.value_specs} : {})} : null;
+    const referenceChanged = draft.reference_reconfirm || JSON.stringify(draft.reference_price) !== JSON.stringify(formReference(row));
+    return Object.keys(offers).length || draft.reset.length || specChanged || referenceChanged ? {listing_id:row.listing_id, revision:draft.revision, offers, reset:draft.reset, ...(specChanged ? {value_specs:draft.value_specs} : {}), ...(referenceChanged ? {reference_price:draft.reference_price} : {})} : null;
+  }
+  function renderReference(row) {
+    const value = drafts.get(row.listing_id)?.reference_price || formReference(row);
+    const prefix = row.listing_id.replace('/', '-') + '-reference';
+    const input = (key,label,type='text') => `<label for="${prefix}-${key}">${label}<input id="${prefix}-${key}" data-reference="${key}" type="${type}" ${type === 'number' ? 'min="0.01" max="100000000" step="0.01" inputmode="decimal"' : 'maxlength="500"'} value="${e(value[key])}"></label>`;
+    return `<section class="reference-editor"><h3>ราคาต่ำสุดที่พบ · ใช้จัดอันดับ</h3><p class="muted">กรอกราคาที่คุณพบได้เลย ไม่ต้องมีลิงก์หรือตรงกับตะกร้าด้านล่าง · ใช้ราคานี้จนกว่าคุณจะแก้หรือล้างค่า · ระบุ RAM/ความจุให้ตรงกับสเปกที่ใช้คำนวณ</p><div class="pair">${input('price','ราคาต่ำสุดที่พบ (บาท)','number')}${input('variant','ตัวเลือกของราคานี้ เช่น RAM 8GB / ROM 128GB')}</div>${input('note','เงื่อนไข / ที่มาของราคา (ถ้ามี)')}<p class="muted">บนเว็บจะแสดงว่า “ราคาอ้างอิงสำหรับจัดอันดับ · ราคาที่ลิงก์ซื้ออาจต่างกัน”${row.reference_price?.recorded_at ? '<br>บันทึกล่าสุด '+e(new Date(row.reference_price.recorded_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'})) : ''}</p><div class="channel-actions"><button type="button" data-reference-reconfirm>ตรวจแล้ว ราคายังเท่าเดิม</button><button type="button" data-reference-clear>ล้างราคาอ้างอิง</button></div><small class="muted">หากเว้นว่าง จะใช้ราคาตะกร้าที่ตรงตัวเลือกและยังไม่เกิน 48 ชั่วโมงแทน</small></section>`;
   }
   function updateDirty() {
     const count = [...rows.values()].filter(changes).length;
@@ -40,7 +50,7 @@
     const key = row.listing_id.replace('/', '-'), prefix = `${key}-${platform}`;
     const input = (field, label, type = 'text') => `<label for="${prefix}-${field}">${label}<input id="${prefix}-${field}" type="${type}" ${type === 'number' ? 'min="0.01" step="0.01" inputmode="decimal"' : 'maxlength="'+(field === 'url' ? '4096' : '500')+'"'} data-platform="${platform}" data-field="${field}" value="${e(value[field])}"></label>`;
     const safe = RankingOffers.validURL(value.url, platform);
-    return `<section class="channel" aria-label="${names[platform]}"><h3>${names[platform]}</h3>${input('url','ลิงก์ตะกร้า / Affiliate','url')}<div class="pair">${input('price','ราคาที่จ่ายจริง (บาท)','number')}<label for="${prefix}-price_type">ประเภทราคา<select id="${prefix}-price_type" data-platform="${platform}" data-field="price_type">${[['regular','ราคาปกติ'],['vip','VIP / สมาชิก'],['coupon','มีเงื่อนไขคูปอง'],['flash_sale','แฟลชเซล']].map(([v,l]) => `<option value="${v}" ${value.price_type === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>${input('variant','ตัวเลือก / ความจุ / ขนาด (ถ้าทราบ)')}${input('note','เงื่อนไขคูปอง / โปรโมชัน (ถ้ามี)')}<div class="channel-actions"><a data-open="${platform}" ${safe ? `href="${e(safe)}"` : 'hidden'} target="_blank" rel="noopener noreferrer">เปิดตะกร้า ↗</a><button type="button" data-check="${platform}" ${safe ? '' : 'disabled'}>ตรวจราคาจากลิงก์</button><button type="button" data-reconfirm="${platform}">ยืนยันราคาที่ตรวจอีกครั้ง</button><button type="button" data-clear="${platform}">ลบลิงก์ / ซ่อนช่องทาง</button>${platform === 'shopee' ? '<button type="button" data-reset="shopee">คืนลิงก์ต้นทาง / ล้างราคา</button>' : ''}</div><small>${row.offers[platform]?.price_lookup ? 'อ่านจากหน้าสินค้า '+e(new Date(row.offers[platform].price_lookup.checked_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'}))+' · ผู้ดูแลยืนยันแล้ว' : row.offers[platform]?.source === 'shopee_affiliate_csv' ? 'ข้อมูลเริ่มต้นจากฟีด · ยังไม่ทราบเวลาอัปเดตราคา' : row.offers[platform]?.recorded_at ? 'บันทึกล่าสุด '+e(new Date(row.offers[platform].recorded_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'})) : value.url ? 'รอกรอกราคาหลังคูปอง · เว้นว่างไว้ได้' : 'เว้นว่างไว้ได้ ช่องทางนี้จะยังไม่แสดง'}</small></section>`;
+    return `<section class="channel" aria-label="${names[platform]}"><h3>${names[platform]}</h3>${input('url','ลิงก์ตะกร้า / Affiliate','url')}<div class="pair">${input('price','ราคาของตะกร้านี้ (บาท · เว้นได้)','number')}<label for="${prefix}-price_type">ประเภทราคา<select id="${prefix}-price_type" data-platform="${platform}" data-field="price_type">${[['regular','ราคาปกติ'],['vip','VIP / สมาชิก'],['coupon','มีเงื่อนไขคูปอง'],['flash_sale','แฟลชเซล']].map(([v,l]) => `<option value="${v}" ${value.price_type === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>${input('variant','ตัวเลือก / ความจุ / ขนาด (ถ้าทราบ)')}${input('note','เงื่อนไขคูปอง / โปรโมชัน (ถ้ามี)')}<div class="channel-actions"><a data-open="${platform}" ${safe ? `href="${e(safe)}"` : 'hidden'} target="_blank" rel="noopener noreferrer">เปิดตะกร้า ↗</a><button type="button" data-check="${platform}" ${safe ? '' : 'disabled'}>ตรวจราคาจากลิงก์</button><button type="button" data-reconfirm="${platform}">ยืนยันราคาที่ตรวจอีกครั้ง</button><button type="button" data-clear="${platform}">ลบลิงก์ / ซ่อนช่องทาง</button>${platform === 'shopee' ? '<button type="button" data-reset="shopee">คืนลิงก์ต้นทาง / ล้างราคา</button>' : ''}</div><small>${row.offers[platform]?.price_lookup ? 'อ่านจากหน้าสินค้า '+e(new Date(row.offers[platform].price_lookup.checked_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'}))+' · ผู้ดูแลยืนยันแล้ว' : row.offers[platform]?.source === 'shopee_affiliate_csv' ? 'ข้อมูลเริ่มต้นจากฟีด · ยังไม่ทราบเวลาอัปเดตราคา' : row.offers[platform]?.recorded_at ? 'บันทึกล่าสุด '+e(new Date(row.offers[platform].recorded_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'})) : value.url ? 'รอกรอกราคาหลังคูปอง · เว้นว่างไว้ได้' : 'เว้นว่างไว้ได้ ช่องทางนี้จะยังไม่แสดง'}</small></section>`;
   }
   function renderSpecs(row) {
     const specs = drafts.get(row.listing_id)?.value_specs || formSpecs(row.value_specs);
@@ -54,12 +64,12 @@
     const bandOptions = '<option value="all">ทุกช่วงงบ</option>' + (category.price_bands || []).map(b => `<option value="${e(b.id)}">${e(b.label)} (${b.count})</option>`).join('');
     if ($('budgetBand').innerHTML !== bandOptions) { $('budgetBand').innerHTML = bandOptions; $('budgetBand').value = (category.price_bands || []).some(b => b.id === band) ? band : 'all'; }
     const ordered = RankingOffers.orderItems(category.items.map(row=>({...row,purchase_offers:Object.entries(row.offers).filter(([,o])=>o).map(([platform,o])=>({...o,platform}))})),$('rankingSort').value);
-    const visible = ordered.filter(row => `${row.title} ${row.shop_name}`.toLowerCase().includes(q) && ($('budgetBand').value === 'all' || row.price_band === $('budgetBand').value) && (filter === 'all' || (filter === 'unranked' ? row.value_rank === null : filter === 'benchmark_pending' ? !(row.value_specs?.geekbench6_single && row.value_specs?.geekbench6_multi && row.value_specs?.benchmark_url) : filter === 'specs_pending' ? !row.value_specs?.verified : filter === 'unpriced' ? !(drafts.get(row.listing_id)?.offers.shopee?.price ?? row.offers.shopee?.price) : !(drafts.get(row.listing_id)?.offers[filter]?.url ?? row.offers[filter]?.url))));
+    const visible = ordered.filter(row => `${row.title} ${row.shop_name}`.toLowerCase().includes(q) && ($('budgetBand').value === 'all' || row.price_band === $('budgetBand').value) && (filter === 'all' || (filter === 'unranked' ? row.value_rank === null : filter === 'benchmark_pending' ? !(row.value_specs?.geekbench6_single && row.value_specs?.geekbench6_multi && row.value_specs?.benchmark_url) : filter === 'specs_pending' ? !row.value_specs?.verified : filter === 'unpriced' ? !(Number(drafts.get(row.listing_id)?.reference_price.price ?? row.reference_price?.price) > 0 || Object.keys(names).some(p=>Number(drafts.get(row.listing_id)?.offers[p]?.price ?? row.offers[p]?.price) > 0)) : !(drafts.get(row.listing_id)?.offers[filter]?.url ?? row.offers[filter]?.url))));
     $('count').textContent = `${visible.length} / ${category.items.length} รายการ · พร้อมจัดอันดับความคุ้มค่า ${ordered.filter(i=>i.value_rank!==null).length} รุ่น · คำนวณจากข้อมูลที่บันทึกแล้ว`;
     $('products').innerHTML = visible.map((row, index) => {
       const values = drafts.get(row.listing_id)?.offers || Object.fromEntries(Object.keys(names).map(p => [p,formOffer(row.offers[p])]));
       const active = Object.keys(names).filter(p => values[p].url).map(p => names[p]).join(' · ') || 'ยังไม่มีช่องทางซื้อ';
-      return `<details class="product-card" data-id="${row.listing_id}" ${index === 0 ? 'open' : ''}><summary><span class="number">${row.rank ?? '—'}</span><div><div class="product-title">${e(row.title)}</div><div class="product-meta">${e(row.price_band_label)} · ร้านในฟีด: ${e(row.shop_name)} · ${e(active)} · เปิดเพื่อแก้ไข</div><div class="product-meta">${row.value_result.score === null ? e(row.value_result.reason) : `ความคุ้มค่า ${row.value_result.score.toFixed(4)} คะแนน / 1,000 บาท · อันดับ ${row.value_rank}`}</div></div></summary><form data-product-form>${row.needs_review.length ? '<p class="card-message">ชื่อหรือตัวเลือกในฟีดเปลี่ยน กรุณาจับคู่ตะกร้าใหม่</p>' : ''}<div class="channels">${Object.keys(names).map(p => renderChannel(row,p,values[p])).join('')}</div>${renderSpecs(row)}<div class="card-footer"><span class="card-message"></span><button type="submit" class="primary" data-save>บันทึกและคำนวณอันดับ</button></div></form></details>`;
+      return `<details class="product-card" data-id="${row.listing_id}" ${index === 0 ? 'open' : ''}><summary><span class="number">${row.rank ?? '—'}</span><div><div class="product-title">${e(row.title)}</div><div class="product-meta">${e(row.price_band_label)} · ร้านในฟีด: ${e(row.shop_name)} · ${e(active)} · เปิดเพื่อแก้ไข</div><div class="product-meta">${row.value_result.score === null ? e(row.value_result.reason) : `ความคุ้มค่า ${row.value_result.score.toFixed(4)} คะแนน / 1,000 บาท · อันดับ ${row.value_rank}`}</div></div></summary><form data-product-form>${row.needs_review.length ? '<p class="card-message">ชื่อหรือตัวเลือกในฟีดเปลี่ยน กรุณาจับคู่ตะกร้าใหม่</p>' : ''}${renderReference(row)}<details class="purchase-editor"><summary>ลิงก์ซื้อ / Affiliate และราคาตะกร้า (กรอกภายหลังได้)</summary><div class="channels">${Object.keys(names).map(p => renderChannel(row,p,values[p])).join('')}</div></details>${renderSpecs(row)}<div class="card-footer"><span class="card-message"></span><button type="submit" class="primary" data-save>บันทึกและคำนวณอันดับ</button></div></form></details>`;
     }).join('') || '<p>ไม่พบรายการตามตัวกรองนี้</p>';
     updateDirty();
   }
@@ -92,6 +102,12 @@
     if (busy) return;
     const products = selected.map(changes).filter(Boolean);
     if (!products.length) return;
+    for (const product of products) {
+      const price = product.reference_price?.price;
+      if (price && (!Number.isFinite(Number(price)) || Number(price) <= 0 || Number(price) > 100000000)) {
+        status('ราคาต่ำสุดที่พบต้องมากกว่า 0 หรือเว้นว่างไว้'); return;
+      }
+    }
     for (const product of products) for (const [p, v] of Object.entries(product.offers)) {
       if (v.url && !RankingOffers.validURL(v.url,p)) { status(`ลิงก์ตะกร้า ${names[p]} ไม่ถูกต้อง กรุณาตรวจช่องที่กรอก`); return; }
       if (v.url && v.price && (!Number.isFinite(Number(v.price)) || Number(v.price) <= 0)) { status('ราคาต้องมากกว่า 0 หรือเว้นว่างไว้'); return; }
@@ -109,6 +125,11 @@
   $('products').addEventListener('input', event => {
     const target = event.target, card = target.closest('.product-card');
     if (!card || busy) return;
+    if (target.dataset.reference) {
+      const draft = getDraft(rows.get(card.dataset.id));
+      draft.reference_price[target.dataset.reference] = target.value;
+      updateDirty(); return;
+    }
     if (target.hasAttribute('data-memory-option')) {
       const row = rows.get(card.dataset.id);
       const option = target.value === '' ? null : row.spec_research?.memory_options?.[Number(target.value)];
@@ -117,6 +138,10 @@
       for (const key of ['ram_gb','storage_gb']) {
         draft.value_specs[key] = String(option[key] ?? '');
         card.querySelector(`[data-spec="${key}"]`).value = draft.value_specs[key];
+      }
+      if (!draft.reference_price.price) {
+        draft.reference_price.variant = option.label;
+        card.querySelector('[data-reference="variant"]').value = option.label;
       }
       draft.value_specs.variant = option.label;
       card.querySelector('[data-spec="variant"]').value = option.label;
@@ -154,6 +179,20 @@
     updateDirty();
   });
   $('products').addEventListener('click', event => {
+    if ((event.target.hasAttribute('data-reference-clear') || event.target.hasAttribute('data-reference-reconfirm')) && !busy) {
+      const card = event.target.closest('.product-card'), row = rows.get(card.dataset.id), draft = getDraft(row);
+      if (event.target.hasAttribute('data-reference-clear')) {
+        draft.reference_price = {price:'',variant:draft.value_specs.variant,note:''};
+        draft.reference_reconfirm = false;
+        card.querySelector('.reference-editor').outerHTML = renderReference(row);
+        status('ล้างราคาอ้างอิงในฟอร์มแล้ว · กดบันทึกเพื่อคำนวณอันดับใหม่');
+      } else {
+        if (!(Number(draft.reference_price.price)>0)) { status('กรอกราคาต่ำสุดที่พบก่อนยืนยัน'); return; }
+        draft.reference_reconfirm = true;
+        status('ยืนยันราคาที่ตรวจแล้ว · กดบันทึกเพื่ออัปเดตเวลาราคาอ้างอิง');
+      }
+      updateDirty(); return;
+    }
     if (event.target.dataset.check && !busy) {
       const card = event.target.closest('.product-card'), row = rows.get(card.dataset.id), platform = event.target.dataset.check;
       const offer = drafts.get(row.listing_id)?.offers[platform] || formOffer(row.offers[platform]);

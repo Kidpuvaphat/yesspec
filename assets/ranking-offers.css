@@ -1,4 +1,4 @@
-/* A price and channel exist together only when there is a valid purchase link. */
+/* Purchase channels require a link; editor-observed reference prices do not. */
 .listing .purchase-offers {grid-column:4/-1; display:grid; gap:8px; min-width:0;}
 .listing .purchase-offer {display:grid; grid-template-columns:minmax(0,1fr) 110px; gap:12px; padding:0 0 10px; border-bottom:1px solid #e5e9e6; align-items:start;}
 .listing .purchase-offer:last-child {border-bottom:0; padding-bottom:0;}
@@ -8,6 +8,7 @@
 .listing .purchase-offer[data-platform="lazada"] .pdp-link,
 #categoryTop20 .purchase-offer[data-platform="lazada"] .pdp-link {background:#f2f0ff; color:#4931a6; border-color:#ded7ff;}
 .listing .offer-price {min-width:0;}
+.listing .reference-price{background:#f0f7f2;border:1px solid #c9dfce;border-radius:8px;padding:12px;overflow-wrap:anywhere}
 @media(min-width:601px) and (max-width:1000px) {
   .listing .purchase-offer {grid-template-columns:minmax(0,1fr); gap:7px;}
   .listing .purchase-offers {grid-row:1/3;}

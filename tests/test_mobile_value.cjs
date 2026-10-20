@@ -54,6 +54,54 @@ test('the lowest eligible channel wins only for the same variant; reference caps
   row.value_specs.geekbench6_multi=20000;assert.equal(offers.valueScore(row,now).spec_score,100);
   row.value_specs.geekbench6_multi=5000;assert.equal(offers.valueScore(row,now).spec_score,87.5);
 });
+test('reference price ranks without carts, wins over cart price and reranks on every change',()=>{
+  const a=item('1/1',1000), b=item('1/2',20000,2);
+  a.purchase_offers=[];
+  a.reference_price={price:10000,variant:specs.variant,source:'manual_reference',recorded_at:new Date(now).toISOString()};
+  assert.equal(offers.valueScore(a,now).score,10);
+  b.reference_price={...a.reference_price,price:5000};
+  let rows=offers.orderItems([a,b],'value',now);
+  assert.equal(rows[0].listing_id,'1/2');
+  assert.equal(rows[0].value_result.score,20);
+  b.reference_price.price=40000;
+  rows=offers.orderItems([a,b],'value',now);
+  assert.equal(rows[0].listing_id,'1/1');
+  b.reference_price=null;
+  assert.equal(offers.valueScore(b,now).price,20000);
+});
+test('reference remains usable after 48h with stale label but cannot borrow another variant specs',()=>{
+  const row=item('1/1',10000);
+  row.reference_price={price:5000,variant:specs.variant,source:'manual_reference',recorded_at:'2026-10-10T10:00:00Z'};
+  assert.equal(offers.valueScore(row,now).score,20);
+  assert.equal(offers.valueScore(row,now).stale,true);
+  row.reference_price.variant='8/128';
+  assert.equal(offers.valueScore(row,now).score,null); // Do not silently fall back to the cart.
+  row.reference_price.variant=specs.variant;
+  row.reference_price.recorded_at='2099-01-01';
+  assert.equal(offers.valueScore(row,now).score,null);
+  row.reference_price.recorded_at=new Date(now).toISOString();
+  row.value_specs.verified=false;
+  assert.equal(offers.valueScore(row,now).score,null);
+});
+test('reference displays separately without a purchase link, escapes notes, and respects source binding',()=>{
+  const {purchaseHTML}=require('../assets/shopee-ranking.js');
+  const first=feed.categories[0].items[0];
+  const entry={binding:{title:first.title,model_count:first.price.model_count,
+    model_examples:first.price.model_examples.map(m=>({id:m.id,name:m.name}))},
+    offers:{shopee:null,lazada:null,tiktok:null},
+    reference_price:{price:6808,variant:'8/128',note:'<script>bad()</script>',source:'manual_reference',recorded_at:'2026-10-10T10:00:00Z'}};
+  const registry={schema_version:1,items:{[first.listing_id]:entry}};
+  let attached=offers.attach(feed,registry).categories[0].items[0];
+  assert.equal(attached.reference_price.price,6808);
+  const html=purchaseHTML(attached,now);
+  assert.match(html,/฿6,808/);
+  assert.match(html,/ราคาที่ลิงก์ซื้ออาจต่างกัน/);
+  assert.match(html,/เกิน 48 ชม/);
+  assert.doesNotMatch(html,/<a |<script>/);
+  entry.binding.title+=' changed';
+  attached=offers.attach(feed,registry).categories[0].items[0];
+  assert.equal(attached.reference_price,null);
+});
 test('refresh bypasses the cached registry and updates the active list without clearing search or budget',async()=>{
   let registry={schema_version:1,items:{}};
   const first=feed.categories[0].items[0];
