@@ -15,6 +15,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 import ranking_offers
 import price_check
+from runtime_lock import runtime_lock
 
 BASE_DIR = Path(__file__).resolve().parent
 INDEX_PATH = BASE_DIR / "index.html"
@@ -275,7 +276,9 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
             try:
                 if not isinstance(body, dict):
                     raise ValueError('ข้อมูลที่ส่งมาไม่ถูกต้อง')
-                self._send_json(ranking_offers.save(BASE_DIR, body.get('products', [])))
+                with runtime_lock(BASE_DIR):
+                    result = ranking_offers.save(BASE_DIR, body.get('products', []))
+                self._send_json(result)
             except ranking_offers.ConflictError as e:
                 self._send_json({'ok': False, 'error': str(e)}, 409)
             except ValueError as e:
@@ -295,8 +298,9 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
             cfg.pop("alt_username", None)
             cfg["password_sha256"] = hashlib.sha256(new_pass.encode("utf-8")).hexdigest()
             cfg["secret"] = secrets.token_hex(32)
-            AUTH_CONFIG_PATH.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
-            os.chmod(AUTH_CONFIG_PATH, 0o600)
+            with runtime_lock(BASE_DIR):
+                AUTH_CONFIG_PATH.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
+                os.chmod(AUTH_CONFIG_PATH, 0o600)
             new_token = _make_token(cfg["username"], cfg["password_sha256"], cfg["secret"])
             self._send_json({"ok": True, "token": new_token})
             return
@@ -304,7 +308,8 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/admin/save-product":
             try:
                 updates = body.get("products") if isinstance(body.get("products"), list) else [body]
-                res = save_product_updates(updates)
+                with runtime_lock(BASE_DIR):
+                    res = save_product_updates(updates)
                 self._send_json(res)
             except ValueError as e:
                 self._send_json({"ok": False, "error": str(e)}, 400)
@@ -331,7 +336,8 @@ class AdminRequestHandler(BaseHTTPRequestHandler):
 def reapply_all_overrides():
     # Rebuild only: replaying saved data must never create a fresh observation.
     from price_sync_mcp import run_daily_price_sync
-    return run_daily_price_sync(silent=True, base_dir=BASE_DIR)
+    with runtime_lock(BASE_DIR):
+        return run_daily_price_sync(silent=True, base_dir=BASE_DIR)
 
 
 def main():

@@ -8,6 +8,9 @@
   "ranking_offers.py",
   "price_check.py",
   "price_sync_mcp.py",
+  "runtime_lock.py",
+  "monthly_updater.py",
+  "seo_article_generator.py",
   "assets/admin-ranking.css",
   "assets/admin-ranking.js",
   "assets/affiliate-links.js",
@@ -53,5 +56,9 @@
   "dist/sony-wh-1000xm5-vs-soundcore-space-one-pro.html",
   "deploy/apply_release.py",
   "deploy/release-files.json",
-  "deploy/sync.sh"
+  "deploy/sync.sh",
+  "deploy/maintenance.py",
+  "deploy/install-hostinger-ops.sh",
+  "deploy/yesspec-maintenance.service",
+  "deploy/yesspec-maintenance.timer"
 ]

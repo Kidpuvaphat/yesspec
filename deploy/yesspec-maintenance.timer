@@ -1,0 +1,11 @@
+[Unit]
+Description=Run yesspec backup and local jobs at 06:00 Bangkok time
+
+[Timer]
+OnCalendar=*-*-* 06:00:00 Asia/Bangkok
+Persistent=true
+AccuracySec=1min
+Unit=yesspec-maintenance.service
+
+[Install]
+WantedBy=timers.target

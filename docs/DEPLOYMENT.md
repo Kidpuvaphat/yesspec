@@ -4,13 +4,43 @@
 
 ใช้ https://yesspec.com/admin เป็นทางเข้าหลัก โดยส่งต่อไป `admin-ranking.html` ส่วน `admin.html` เก็บเครื่องมือรุ่นเดิมและมีปุ่มไป Top 20
 
-พบเมื่อ 20 ตุลาคม 2026 ว่า `/etc/cron.d/yesspec-sync` เดิมใช้ `git checkout origin/main -- .` ทุก 10 นาที จึงทับการอัปโหลดตรงด้วยโค้ดเก่า แก้โดยนำโค้ดเข้าสู่ GitHub และเปลี่ยน cron ให้เรียก `deploy/sync.sh` ภายใต้ `flock` แทน ห้ามใช้คำสั่ง checkout เดิมกับ web root อีก
+ตั้งแต่ 20 ตุลาคม 2026 ใช้ Hostinger รันเว็บ API และงานตามเวลาทั้งหมด GitHub เก็บโค้ดและการทดสอบที่สั่งเอง ไม่มีการดึงโค้ดทุก 10 นาทีแล้ว `/etc/cron.d/yesspec-sync` เหลือเพียงคำอธิบาย ห้ามนำคำสั่ง checkout หรือ polling เดิมกลับมา
 
-ตัวอัปเดตอ่าน commit จาก `origin/main` ไปพื้นที่ staging แล้วใช้ `deploy/release-files.json` เลือกไฟล์เผยแพร่ รวม static outputs ใน `dist/`, `assets/`, sitemap และดัชนีบทความรายเดือนเพื่อให้งานสร้างบทความเดิมเผยแพร่ต่อได้ สำรองไฟล์ก่อนเปลี่ยน ตรวจ Python, API, Nginx และเริ่มบริการใหม่เมื่ออัปเดตสำเร็จ หากตรวจไม่ผ่านจะคืนไฟล์และเริ่มบริการรุ่นเดิม เก็บ commit ที่เผยแพร่แล้วใน `/var/lib/yesspec-deploy/current-commit` การเรียกซ้ำกับ commit เดิมไม่แก้ไฟล์
+เผยแพร่ด้วย `bash /var/www/yesspec/deploy/sync.sh <SHA เต็ม 40 ตัวที่ตรวจแล้ว>` เท่านั้น คำสั่งที่ไม่ระบุ SHA ถูกปฏิเสธก่อนติดต่อ GitHub ตัวอัปเดตนำ commit ที่เลือกไปพื้นที่ staging แล้วใช้ `deploy/release-files.json` เลือกไฟล์ รักษาบทความเก่าบนเซิร์ฟเวอร์และสร้าง sitemap ด้วย generator ของเวอร์ชันใหม่ สำรองไฟล์ก่อนเปลี่ยน ตรวจ Python, API และ Nginx หากตรวจไม่ผ่านจะคืนไฟล์และเริ่มบริการรุ่นเดิม เก็บ commit ที่เผยแพร่แล้วใน `/var/lib/yesspec-deploy/current-commit` การเรียกซ้ำกับ commit เดิมไม่แก้ไฟล์
 
 ห้ามใส่ `data/ranking_manual_offers.json`, `data/manual_overrides.json`, `data/daily_prices_feed.json`, `data/market_observations.jsonl` หรือ `data/affiliate_config.json` ลง release manifest ตัวติดตั้งปฏิเสธไฟล์เหล่านี้ และเก็บ CATEGORIES จากเว็บจริงไว้เพื่อไม่ทับค่าที่แอดมินเคยแก้ การเปลี่ยนรหัสหมวดหรือรายการเดิมต้องเตรียม migration ก่อน ไม่ใช้การทับทั้งชุด
 
-การทดสอบจาก checkout ที่เผยแพร่: 60 Python tests และ 59 JavaScript tests ผ่าน อีก 1 Python test ใช้ข้อมูลวิจัยดิบในเครื่องจึงข้ามใน GitHub; การทดสอบชุดข้อมูลส่งออกยังทำงานตามปกติ
+## งานประจำวันบน Hostinger
+
+`yesspec-maintenance.timer` เรียก service เวลา **06:00 น. Asia/Bangkok** ทุกวัน เปิด `Persistent=true` เพื่อทำรอบที่พลาดเมื่อเครื่องกลับมาทำงาน ไม่เปลี่ยน timezone ของทั้งเซิร์ฟเวอร์
+
+งานเรียงตามลำดับ: สำรองข้อมูลและตรวจ checksum → ประมวลผล feed จากหลักฐานเดิม → สร้างสถานะเดือน → สร้างหน้ารายเดือนและ sitemap การประมวลผลนี้ไม่ติดต่อ GitHub หรือ marketplace ไม่เปลี่ยนเวลาที่สังเกตราคาจริง ไม่เขียนไฟล์ราคาที่กรอกใน Top 20 และไม่ยืนยันราคาใหม่แทนผู้ใช้
+
+ประมวลผลใน staging ก่อนเผยแพร่ output หากสคริปต์ล้มเหลวจะไม่เปลี่ยนข้อมูลจริง หากการคัดลอก output ล้มเหลวจะคืนไฟล์ที่เปลี่ยนแล้ว ใช้ file lock ร่วมกับ API บันทึกสินค้าเพื่อไม่ให้ทับการกรอกระหว่างงาน และ lock ร่วมกับ manual deploy เพื่อไม่รันซ้อนกัน
+
+- ติดตั้ง/ตรวจงานครั้งแรก: `bash /var/www/yesspec/deploy/install-hostinger-ops.sh`
+- ดูรอบถัดไป: `systemctl list-timers yesspec-maintenance.timer`
+- เรียกเอง: `systemctl start yesspec-maintenance.service`
+- ตรวจ log: `journalctl -u yesspec-maintenance.service`
+- ผลสำเร็จล่าสุด: `/var/lib/yesspec-ops/last-success.json`
+
+Workflow GitHub เดิม `daily_price_sync.yml` ถูกถอดออกและปิด schedule เหลือ `verify.yml` สำหรับสั่งทดสอบเอง ไม่มีสิทธิ์เขียน repository ไม่มีงานนำขึ้น Hostinger
+
+## สำรองข้อมูลและตรวจการกู้คืน
+
+สำรองก่อนงานรายวันใน `/root/yesspec-data-backups/yesspec-data-<UTC timestamp>.zip` เก็บ 30 ชุดล่าสุด ไฟล์ 0600 และโฟลเดอร์ 0700 อยู่นอก web root ภายในมี `data/`, index ที่มีข้อมูลรายการเดิม, บทความรายเดือน และ config ของระบบ/บัญชีแอดมิน จึงห้าม commit หรือวางในโฟลเดอร์เว็บ
+
+ทุก archive มี `manifest.json` พร้อม SHA-256 ของแต่ละไฟล์ ตรวจ archive ใหม่สำเร็จก่อนหมุนเวียนไฟล์เก่า:
+
+`python3 /var/www/yesspec/deploy/maintenance.py --verify-backup /root/yesspec-data-backups/<ชื่อไฟล์>.zip`
+
+สำรองเพิ่มโดยไม่ประมวลผล: `python3 /var/www/yesspec/deploy/maintenance.py --backup-only`
+
+ก่อนกู้คืน ให้ตรวจ checksum และแตกไฟล์ในโฟลเดอร์ส่วนตัวชั่วคราวก่อน ตรวจจำนวนรายการ/ลิงก์เทียบกับเป้าหมาย สำรองสถานะปัจจุบันและหยุด `yesspec-admin` ก่อนคัดลอกข้อมูลที่เลือกจาก `site/` กลับ web root แล้วเริ่มบริการและตรวจ API ไม่ต้องคืน credentials จาก `config/` หากบัญชีปัจจุบันยังใช้ได้
+
+สำรองรายวันอยู่บน VPS เครื่องเดียว จึงยังไม่ทนต่อกรณีเสียทั้งเครื่อง ต้องมีการสำรองออกนอกเครื่องเพิ่มเติมตามปลายทางที่เจ้าของเลือก
+
+ชุดทดสอบครอบคลุมการกู้ข้อมูลจาก archive, checksum เสีย, เก็บย้อนหลัง, ไม่ทับราคาหรือลิงก์ที่กรอก, ไม่เปลี่ยนเวลา observation, rollback เมื่อสร้าง/คัดลอกไม่สำเร็จ และไม่อนุญาต deploy โดยไม่ระบุ commit การทดสอบ raw research ในเครื่องยังข้ามเมื่อไม่มีข้อมูลดิบใน GitHub
 
 ## บันทึกการเผยแพร่ครั้งแรก
 

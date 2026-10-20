@@ -1,0 +1,15 @@
+[Unit]
+Description=yesspec daily data backup and local content build
+After=local-fs.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/var/www/yesspec
+Environment=TZ=Asia/Bangkok
+Environment=PYTHONDONTWRITEBYTECODE=1
+UMask=0077
+PrivateTmp=true
+NoNewPrivileges=true
+TimeoutStartSec=300
+ExecStart=/usr/bin/python3 /var/www/yesspec/deploy/maintenance.py

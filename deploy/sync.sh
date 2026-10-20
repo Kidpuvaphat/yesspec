@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
-# Called under flock by /etc/cron.d/yesspec-sync. Never checks out over live data.
+# Manual deployment only: pass the full SHA of an explicitly reviewed commit.
 set -euo pipefail
+if [[ $# != 1 ]] || [[ ! "$1" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "Usage: bash deploy/sync.sh <reviewed-40-character-commit-sha>" >&2
+  exit 64
+fi
 site_root=/var/www/yesspec
 state_root=/var/lib/yesspec-deploy
-mkdir -p "$state_root" /root/yesspec-releases
-chmod 700 "$state_root"
+ops_root=/var/lib/yesspec-ops
+mkdir -p "$state_root" "$ops_root" /root/yesspec-releases
+chmod 700 "$state_root" "$ops_root"
+exec 9>"$ops_root/.yesspec-data.lock"
+/usr/bin/flock -w 300 9
 git -C "$site_root" fetch origin main
-revision=$(git -C "$site_root" rev-parse refs/remotes/origin/main)
+revision=$1
+git -C "$site_root" cat-file -e "$revision^{commit}"
+git -C "$site_root" merge-base --is-ancestor "$revision" refs/remotes/origin/main
 if [[ -f "$state_root/current-commit" ]] && [[ $(cat "$state_root/current-commit") == "$revision" ]]; then
   echo "Already deployed $revision"
   exit 0
@@ -16,7 +25,18 @@ git -C "$site_root" archive "$revision" | tar -xf - -C "$stage_dir"
 python3 - "$stage_dir" "$revision" "$state_root" <<'PY'
 import datetime, hashlib, json, os, subprocess, sys
 from pathlib import Path
+import shutil
 stage, revision, state = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
+live = Path('/var/www/yesspec')
+# Monthly content belongs to the server. Keep its history across code releases.
+if (live/'dist/articles').exists():
+    shutil.copytree(live/'dist/articles', stage/'dist/articles', dirs_exist_ok=True)
+for name in ('data/monthly_seo_articles.json', 'data/monthly_status.json'):
+    if (live/name).is_file():
+        shutil.copy2(live/name, stage/name)
+# Generate spec pages and a sitemap with the reviewed generator and retained articles.
+subprocess.run([sys.executable,str(stage/'generator.py')],cwd=stage,check=True,
+               capture_output=True,text=True,timeout=60,env={**os.environ,'TZ':'Asia/Bangkok'})
 files = json.loads((stage/'deploy/release-files.json').read_text())
 # Include generated articles and their indexes on future scheduled releases.
 # Keep runtime data outside these public-output directories.

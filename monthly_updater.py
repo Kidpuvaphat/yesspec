@@ -10,6 +10,7 @@ yespec — Automated Monthly Price & Bracket Updater (monthly_updater.py)
 import json
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 THAI_MONTHS = [
     "", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
@@ -49,7 +50,7 @@ def assign_smartphone_bracket(price: int) -> tuple[str, str]:
 
 
 def run_monthly_update():
-    now = datetime.now()
+    now = datetime.now(ZoneInfo('Asia/Bangkok'))
     thai_month = THAI_MONTHS[now.month]
     year = now.year
     campaign = CAMPAIGN_BY_MONTH.get(now.month, "Payday สิ้นเดือน")
@@ -59,20 +60,21 @@ def run_monthly_update():
     data_dir.mkdir(exist_ok=True)
 
     status_payload = {
-        "updated_at_iso": now.strftime("%Y-%m-%d %H:%M:%S"),
+        "updated_at_iso": now.isoformat(timespec='seconds'),
         "month_number": now.month,
         "month_name_th": thai_month,
         "year": year,
-        "display_label": f"อัปเดตล่าสุด: {thai_month} {year}",
+        "display_label": f"รอบประมวลผล: {thai_month} {year}",
         "active_campaign": campaign,
         "next_scheduled_update": f"1 {THAI_MONTHS[1 if now.month == 12 else now.month + 1]} {year if now.month < 12 else year + 1}",
-        "categories_checked": 22,
-        "stores_synced": ["Shopee Mall", "Lazada LazMall", "HomePro / PowerBuy", "TikTok Shop Mall"]
+        "stores_synced": [],
+        "price_observations_refreshed": False,
+        "note": "ประมวลผลข้อมูลเดิม ไม่ได้ตรวจราคาหรือยอดขายใหม่จากแพลตฟอร์ม"
     }
 
     status_path = data_dir / "monthly_status.json"
     status_path.write_text(json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"✅ [Monthly Updater] ซิงค์ข้อมูลประจำเดือน {thai_month} {year} สำเร็จ!")
+    print(f"✅ [Monthly Updater] สร้างสถานะรอบเดือน {thai_month} {year} สำเร็จ (ไม่ได้ตรวจราคาใหม่)")
     print(f"   แคมเปญประจำเดือน: {campaign}")
     print(f"   บันทึกไฟล์สถานะที่: {status_path}")
 
