@@ -37,7 +37,7 @@
     const key = row.listing_id.replace('/', '-'), prefix = `${key}-${platform}`;
     const input = (field, label, type = 'text') => `<label for="${prefix}-${field}">${label}<input id="${prefix}-${field}" type="${type}" ${type === 'number' ? 'min="0.01" step="0.01" inputmode="decimal"' : 'maxlength="'+(field === 'url' ? '4096' : '500')+'"'} data-platform="${platform}" data-field="${field}" value="${e(value[field])}"></label>`;
     const safe = RankingOffers.validURL(value.url, platform);
-    return `<section class="channel" aria-label="${names[platform]}"><h3>${names[platform]}</h3>${input('url','ลิงก์ตะกร้า / Affiliate','url')}<div class="pair">${input('price','ราคา (บาท)','number')}<label for="${prefix}-price_type">ประเภทราคา<select id="${prefix}-price_type" data-platform="${platform}" data-field="price_type">${[['regular','ราคาปกติ'],['vip','VIP / สมาชิก'],['coupon','มีเงื่อนไขคูปอง']].map(([v,l]) => `<option value="${v}" ${value.price_type === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>${input('variant','ตัวเลือก / ความจุ / ขนาด (ถ้าทราบ)')}${input('note','เงื่อนไขราคา (ถ้ามี)')}<div class="channel-actions"><a data-open="${platform}" ${safe ? `href="${e(safe)}"` : 'hidden'} target="_blank" rel="noopener noreferrer">เปิดตะกร้า ↗</a><button type="button" data-check="${platform}" ${safe ? '' : 'disabled'}>ตรวจราคาจากลิงก์</button><button type="button" data-clear="${platform}">ลบลิงก์ / ซ่อนช่องทาง</button>${platform === 'shopee' ? '<button type="button" data-reset="shopee">ใช้ข้อมูลจากฟีด</button>' : ''}</div><small>${row.offers[platform]?.price_lookup ? 'อ่านจากหน้าสินค้า '+e(new Date(row.offers[platform].price_lookup.checked_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'}))+' · ผู้ดูแลยืนยันแล้ว' : row.offers[platform]?.source === 'shopee_affiliate_csv' ? 'ข้อมูลเริ่มต้นจากฟีด · ยังไม่ทราบเวลาอัปเดตราคา' : row.offers[platform]?.recorded_at ? 'บันทึกล่าสุด '+e(new Date(row.offers[platform].recorded_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'})) : 'เว้นว่างไว้ได้ ช่องทางนี้จะยังไม่แสดง'}</small></section>`;
+    return `<section class="channel" aria-label="${names[platform]}"><h3>${names[platform]}</h3>${input('url','ลิงก์ตะกร้า / Affiliate','url')}<div class="pair">${input('price','ราคา (บาท)','number')}<label for="${prefix}-price_type">ประเภทราคา<select id="${prefix}-price_type" data-platform="${platform}" data-field="price_type">${[['regular','ราคาปกติ'],['vip','VIP / สมาชิก'],['coupon','มีเงื่อนไขคูปอง'],['flash_sale','แฟลชเซล']].map(([v,l]) => `<option value="${v}" ${value.price_type === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>${input('variant','ตัวเลือก / ความจุ / ขนาด (ถ้าทราบ)')}${input('note','เงื่อนไขราคา (ถ้ามี)')}<div class="channel-actions"><a data-open="${platform}" ${safe ? `href="${e(safe)}"` : 'hidden'} target="_blank" rel="noopener noreferrer">เปิดตะกร้า ↗</a><button type="button" data-check="${platform}" ${safe ? '' : 'disabled'}>ตรวจราคาจากลิงก์</button><button type="button" data-clear="${platform}">ลบลิงก์ / ซ่อนช่องทาง</button>${platform === 'shopee' ? '<button type="button" data-reset="shopee">ใช้ข้อมูลจากฟีด</button>' : ''}</div><small>${row.offers[platform]?.price_lookup ? 'อ่านจากหน้าสินค้า '+e(new Date(row.offers[platform].price_lookup.checked_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'}))+' · ผู้ดูแลยืนยันแล้ว' : row.offers[platform]?.source === 'shopee_affiliate_csv' ? 'ข้อมูลเริ่มต้นจากฟีด · ยังไม่ทราบเวลาอัปเดตราคา' : row.offers[platform]?.recorded_at ? 'บันทึกล่าสุด '+e(new Date(row.offers[platform].recorded_at).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'})) : 'เว้นว่างไว้ได้ ช่องทางนี้จะยังไม่แสดง'}</small></section>`;
   }
   function render() {
     const category = categories.find(c => c.id === $('category').value);
@@ -98,7 +98,16 @@
     const target = event.target, card = target.closest('.product-card');
     if (!card || !target.dataset.field || busy) return;
     const draft = getDraft(rows.get(card.dataset.id)), pf = target.dataset.platform;
-    draft.reset = draft.reset.filter(p => p !== pf); draft.offers[pf][target.dataset.field] = target.value;
+    draft.reset = draft.reset.filter(p => p !== pf);
+    if (target.dataset.field === 'url' && draft.offers[pf].url.trim() !== target.value.trim()) {
+      // Prices and conditions belong to the old cart until the new cart is checked.
+      draft.offers[pf] = formOffer(null);
+      for (const field of fields.filter(f => f !== 'url')) {
+        card.querySelector(`[data-platform="${pf}"][data-field="${field}"]`).value = draft.offers[pf][field];
+      }
+      status('เปลี่ยนลิงก์ตะกร้าแล้ว · กรอกหรือตรวจราคาของลิงก์ใหม่ แล้วกดบันทึกเพื่อเปลี่ยนปุ่มซื้อบนเว็บ');
+    }
+    draft.offers[pf][target.dataset.field] = target.value;
     draft.offers[pf].price_lookup = null;
     if (target.dataset.field === 'url') {
       const link = card.querySelector(`[data-open="${pf}"]`), safe = RankingOffers.validURL(target.value,pf);

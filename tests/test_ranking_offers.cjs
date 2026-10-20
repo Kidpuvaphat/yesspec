@@ -51,6 +51,18 @@ test('manual prices never change ranks, sales or feed prices; title/options chan
     const edited=clone(item);change(edited);assert.deepEqual(offers.resolve(edited,registry),[]);
   }
 });
+test('a replacement Shopee cart shows flash sale conditions without assigning source sales to the new cart', () => {
+  const replacement='https://s.shopee.co.th/Lo9720VLk';
+  const html=render(store({shopee:{url:replacement,price:6808,price_type:'flash_sale',source:'manual',variant:'OPPO A6t Pro 8/128GB'}}));
+  assert.match(html,/href="https:\/\/s\.shopee\.co\.th\/Lo9720VLk"/);
+  assert.match(html,/฿6,808/);
+  assert.match(html,/ราคาแฟลชเซล/);
+  assert.match(html,/OPPO A6t Pro 8\/128GB/);
+  assert.match(html,/ตรวจราคาและสิทธิ์โปรโมชันที่หน้าร้าน/);
+  assert.match(html,/ยอดขายข้างต้นอ้างอิงตะกร้าในฟีด/);
+  assert.match(html,new RegExp(`data-sales="${item.sales.value}"`));
+  assert.match(html,new RegExp(`data-rank="${item.rank}"`));
+});
 test('unavailable manual registry fails closed without hiding rankings or restoring cleared carts', async () => {
   const load=createLoader(async path=>{if(path.endsWith('ranking_manual_offers.json'))throw new Error('offline');return {ok:true,json:async()=>path.endsWith('official_product_specs.json')?require('../data/official_product_specs.json'):feed};});
   const data=await load();assert.equal(data.categories.length,32);

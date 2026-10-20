@@ -131,7 +131,7 @@ def clean_offer(raw, platform, now):
         except (ValueError, TypeError):
             raise ValueError('ราคาต้องมากกว่า 0 หรือเว้นว่างไว้') from None
     price_type = raw.get('price_type', 'regular')
-    if price_type not in ('regular', 'vip', 'coupon'):
+    if price_type not in ('regular', 'vip', 'coupon', 'flash_sale'):
         raise ValueError('ประเภทราคาไม่ถูกต้อง')
     result = {'url': url, 'price': price, 'price_type': price_type, 'source': 'manual', 'recorded_at': now}
     for field in ('variant', 'note'):

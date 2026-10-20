@@ -57,6 +57,21 @@ class RankingOffersTests(unittest.TestCase):
         for price in [-1,0,0.001,True,'NaN','Infinity','abc']:
             with self.subTest(price=price),self.assertRaises(ValueError):api.clean_offer({'url':'https://vt.tiktok.com/abc','price':price},'tiktok','now')
 
+    def test_replacing_shopee_cart_keeps_affiliate_link_and_source_ranking(self):
+        url = 'https://s.shopee.co.th/Lo9720VLk'
+        api.save(self.root, [self.update({'shopee': {
+            'url': url, 'price': 6808, 'price_type': 'flash_sale',
+            'variant': 'OPPO A6t Pro 8/128GB', 'note': 'ราคาโปรโมชันที่ผู้ดูแลแจ้ง',
+        }})])
+        row = api.payload(self.root)['categories'][0]['items'][0]
+        self.assertEqual(row['offers']['shopee']['url'], url)
+        self.assertEqual(row['offers']['shopee']['price'], 6808)
+        self.assertEqual(row['offers']['shopee']['price_type'], 'flash_sale')
+        self.assertNotIn('price_lookup', row['offers']['shopee'])
+        self.assertEqual((row['listing_id'], row['rank'], row['title']),
+                         (self.row['listing_id'], self.row['rank'], self.row['title']))
+        self.assertEqual((self.root/'data/shopee_feed_rankings.json').read_bytes(), self.feed)
+
     def test_atomic_batch_and_conflicting_tabs(self):
         bad=self.update({'lazada':{'url':'https://evil.test','price':20}})
         bad['listing_id']=api.payload(self.root)['categories'][0]['items'][1]['listing_id']
