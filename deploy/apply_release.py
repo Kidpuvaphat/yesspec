@@ -119,7 +119,13 @@ def request(path,body=None,authorized=True):
         with urllib.request.urlopen(req,timeout=25) as response:
             return response.status,json.load(response)
     except urllib.error.HTTPError as error:
-        return error.code,json.load(error)
+        raw = error.read()
+        try:
+            payload = json.loads(raw)
+        except (ValueError, UnicodeDecodeError):
+            # Nginx returns an HTML 502 while the restarted API is binding.
+            payload = {'ok': False, 'error': 'HTTP '+str(error.code)}
+        return error.code,payload
 
 stopped=False
 # Refuse to overwrite concurrent edits before any production mutation.
@@ -137,7 +143,8 @@ try:
     run('nginx','-t')
     run('systemctl','start','yesspec-admin');stopped=False
     run('systemctl','reload','nginx')
-    for attempt in range(10):
+    status,payload=0,{}
+    for attempt in range(20):
         try:
             status,payload=request('/api/admin/ranking-products')
             if status==200:break

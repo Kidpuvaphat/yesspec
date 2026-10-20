@@ -1,4 +1,6 @@
 import json
+import ast
+import io
 from pathlib import Path
 import shutil
 import subprocess
@@ -7,6 +9,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import zipfile
+import urllib.error
+import urllib.request
 
 from deploy import maintenance as ops
 from runtime_lock import runtime_lock
@@ -142,6 +146,18 @@ with open(sys.argv[1], "a") as handle:
         for args in ([], ['main'], ['abcdef'], ['a'*40, 'extra']):
             result = subprocess.run(['bash', str(SOURCE/'deploy/sync.sh'), *args], capture_output=True)
             self.assertEqual(result.returncode, 64)
+
+    def test_deploy_health_probe_handles_nginx_html_during_api_startup(self):
+        # Load only this pure function; importing the release script would deploy.
+        tree = ast.parse((SOURCE/'deploy/apply_release.py').read_text())
+        function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'request')
+        scope = {'json': json, 'urllib': urllib, 'token': 'test-only'}
+        exec(compile(ast.Module(body=[function], type_ignores=[]), '<health-probe>', 'exec'), scope)
+        error = urllib.error.HTTPError('https://yesspec.com', 502, 'Bad Gateway', {}, io.BytesIO(b'<html>502</html>'))
+        with patch('urllib.request.urlopen', side_effect=error):
+            status, payload = scope['request']('/api/admin/ranking-products')
+        self.assertEqual(status, 502)
+        self.assertFalse(payload['ok'])
 
 
 if __name__ == '__main__':
