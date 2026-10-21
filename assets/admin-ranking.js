@@ -5,6 +5,11 @@
   const fields = ['url','price','price_type','variant','note'];
   const drafts = new Map();
   let categories = [], rows = new Map(), busy = false;
+  const profileKey = 'yesspec_usage_profile_v2';
+  const validProfile = id => RankingOffers.profiles.some(p=>p.id===id) ? id : 'balanced';
+  let profile = 'balanced';
+  try { profile=validProfile(localStorage.getItem(profileKey)); } catch (_) {}
+  const profileLabel = () => RankingOffers.profiles.find(p=>p.id===profile)?.label || 'สมดุล';
   const token = () => localStorage.getItem('yesspec_admin_token') || '';
   const status = message => { $('status').textContent = message; };
   const formOffer = offer => ({...Object.fromEntries(fields.map(k => [k, String(offer?.[k] ?? (k === 'price_type' ? 'regular' : ''))])), price_lookup:offer?.price_lookup || null});
@@ -55,7 +60,7 @@
   function renderSpecs(row) {
     const specs = drafts.get(row.listing_id)?.value_specs || formSpecs(row.value_specs);
     const input = (key,label,type='text') => `<label>${label}<input data-spec="${key}" type="${type}" ${type === 'number' ? 'min="0.01" max="100000" step="any" inputmode="decimal"' : 'maxlength="4096"'} value="${e(specs[key])}"></label>`;
-    return `<details class="value-spec-editor"><summary>สเปกสำหรับคำนวณความคุ้มค่า · ${specs.verified ? 'ยืนยันแล้ว' : 'รอกรอก / ยืนยัน'}</summary><p class="muted">กรอกเฉพาะข้อมูลที่ตรวจสอบได้ ช่องที่ไม่ทราบเว้นว่าง · คะแนน Geekbench ต้องเป็นเวอร์ชัน 6 ของรุ่นนี้ · ใช้ชื่อตัวเลือกเดียวกับช่องราคา</p>${RankingOffers.researchHTML(row.spec_research)}${row.spec_research?.memory_options?.length > 1 ? `<label>เลือก RAM / ความจุจากสเปกทางการ<select data-memory-option><option value="">เลือกให้ตรงกับสินค้าที่จะกรอกราคา</option>${row.spec_research.memory_options.map((o,index)=>`<option value="${index}">${e(o.label)}</option>`).join('')}</select></label>` : ''}<div class="spec-grid">${RankingOffers.specMetrics.map(([key,label])=>input(key,label,'number')).join('')}${input('variant','ตัวเลือกที่สเปกนี้อ้างอิง เช่น RAM 8GB / ROM 128GB')}${input('spec_url','ลิงก์สเปกอ้างอิง HTTPS','url')}${input('benchmark_url','ลิงก์ผลทดสอบ browser.geekbench.com/v6/cpu/...','url')}</div><label class="spec-confirm"><input data-spec="verified" type="checkbox" ${specs.verified ? 'checked' : ''}>ฉันตรวจแหล่งอ้างอิงแล้ว สเปกตรงรุ่นย่อยที่ระบุ และ Geekbench เป็นผลของรุ่นนี้</label></details>`;
+    return `<details class="value-spec-editor"><summary>สเปกสำหรับคำนวณความคุ้มค่า · ${specs.verified ? 'ยืนยันแล้ว' : 'รอกรอก / ยืนยัน'}</summary><p class="muted">ยืนยัน RAM ความจุ ชื่อตัวเลือก และลิงก์สเปกให้ตรงกับราคา · ข้อมูลอื่นที่ไม่ทราบเว้นว่างเพื่อใช้ค่าประมาณ หากกรอก Geekbench ต้องเป็นเวอร์ชัน 6 ของรุ่นนี้และมีลิงก์ผลทดสอบ</p>${RankingOffers.researchHTML(row.spec_research)}${row.spec_research?.memory_options?.length > 1 ? `<label>เลือก RAM / ความจุจากสเปกทางการ<select data-memory-option><option value="">เลือกให้ตรงกับสินค้าที่จะกรอกราคา</option>${row.spec_research.memory_options.map((o,index)=>`<option value="${index}">${e(o.label)}</option>`).join('')}</select></label>` : ''}<div class="spec-grid">${RankingOffers.specMetrics.map(([key,label])=>input(key,label,'number')).join('')}${input('variant','ตัวเลือกที่สเปกนี้อ้างอิง เช่น RAM 8GB / ROM 128GB')}${input('spec_url','ลิงก์สเปกอ้างอิง HTTPS','url')}${input('benchmark_url','ลิงก์ผลทดสอบ browser.geekbench.com/v6/cpu/...','url')}</div><label class="spec-confirm"><input data-spec="verified" type="checkbox" ${specs.verified ? 'checked' : ''}>ฉันตรวจแหล่งอ้างอิงแล้ว ข้อมูลที่กรอกตรงรุ่นและตัวเลือกที่ระบุ (หากกรอก Geekbench ต้องเป็นผลของรุ่นนี้) · ช่องที่เว้นใช้ค่าประมาณ</label></details>`;
   }
   function render() {
     const category = categories.find(c => c.id === $('category').value);
@@ -63,13 +68,18 @@
     const q = $('search').value.trim().toLowerCase(), filter = $('filter').value, band = $('budgetBand').value;
     const bandOptions = '<option value="all">ทุกช่วงงบ</option>' + (category.price_bands || []).map(b => `<option value="${e(b.id)}">${e(b.label)} (${b.count})</option>`).join('');
     if ($('budgetBand').innerHTML !== bandOptions) { $('budgetBand').innerHTML = bandOptions; $('budgetBand').value = (category.price_bands || []).some(b => b.id === band) ? band : 'all'; }
-    const ordered = RankingOffers.orderItems(category.items.map(row=>({...row,purchase_offers:Object.entries(row.offers).filter(([,o])=>o).map(([platform,o])=>({...o,platform}))})),$('rankingSort').value);
-    const visible = ordered.filter(row => `${row.title} ${row.shop_name}`.toLowerCase().includes(q) && ($('budgetBand').value === 'all' || row.price_band === $('budgetBand').value) && (filter === 'all' || (filter === 'unranked' ? row.value_rank === null : filter === 'benchmark_pending' ? !(row.value_specs?.geekbench6_single && row.value_specs?.geekbench6_multi && row.value_specs?.benchmark_url) : filter === 'specs_pending' ? !row.value_specs?.verified : filter === 'unpriced' ? !(Number(drafts.get(row.listing_id)?.reference_price.price ?? row.reference_price?.price) > 0 || Object.keys(names).some(p=>Number(drafts.get(row.listing_id)?.offers[p]?.price ?? row.offers[p]?.price) > 0)) : !(drafts.get(row.listing_id)?.offers[filter]?.url ?? row.offers[filter]?.url))));
-    $('count').textContent = `${visible.length} / ${category.items.length} รายการ · พร้อมจัดอันดับความคุ้มค่า ${ordered.filter(i=>i.value_rank!==null).length} รุ่น · คำนวณจากข้อมูลที่บันทึกแล้ว`;
+    const mode = $('rankingSort').value;
+    const ordered = RankingOffers.orderItems(category.items.map(row=>({...row,purchase_offers:Object.entries(row.offers).filter(([,o])=>o).map(([platform,o])=>({...o,platform}))})),mode,Date.now(),profile);
+    const visible = ordered.filter(row => `${row.title} ${row.shop_name}`.toLowerCase().includes(q) && ($('budgetBand').value === 'all' || row.price_band === $('budgetBand').value) && (filter === 'all' || (filter === 'unranked' ? row.rank === null : filter === 'provisional' ? row.value_result.provisional : filter === 'benchmark_pending' ? !(row.value_specs?.geekbench6_single && row.value_specs?.geekbench6_multi && row.value_specs?.benchmark_url) : filter === 'specs_pending' ? !row.value_specs?.verified : filter === 'unpriced' ? !(Number(drafts.get(row.listing_id)?.reference_price.price ?? row.reference_price?.price) > 0 || Object.keys(names).some(p=>Number(drafts.get(row.listing_id)?.offers[p]?.price ?? row.offers[p]?.price) > 0)) : !(drafts.get(row.listing_id)?.offers[filter]?.url ?? row.offers[filter]?.url))));
+    const orderLabel = mode==='sales'?'ยอดขายต้นทาง · ไม่ระบุช่วงเวลา':`${mode==='suitability'?'คะแนนเหมาะกับการใช้งาน':'ความคุ้มค่า'} · ${profileLabel()} · จัดอันดับได้ ${ordered.filter(i=>i.rank!=null).length} รุ่น (ชั่วคราว ${ordered.filter(i=>i.rank!=null&&i.value_result?.provisional).length})`;
+    $('count').textContent = `${visible.length} / ${category.items.length} รายการ · ${orderLabel} · คำนวณจากข้อมูลที่บันทึกแล้ว`;
+    $('valueFormula').innerHTML = RankingOffers.formulaHTML(profile);
     $('products').innerHTML = visible.map((row, index) => {
       const values = drafts.get(row.listing_id)?.offers || Object.fromEntries(Object.keys(names).map(p => [p,formOffer(row.offers[p])]));
       const active = Object.keys(names).filter(p => values[p].url).map(p => names[p]).join(' · ') || 'ยังไม่มีช่องทางซื้อ';
-      return `<details class="product-card" data-id="${row.listing_id}" ${index === 0 ? 'open' : ''}><summary><span class="number">${row.rank ?? '—'}</span><div><div class="product-title">${e(row.title)}</div><div class="product-meta">${e(row.price_band_label)} · ร้านในฟีด: ${e(row.shop_name)} · ${e(active)} · เปิดเพื่อแก้ไข</div><div class="product-meta">${row.value_result.score === null ? e(row.value_result.reason) : `ความคุ้มค่า ${row.value_result.score.toFixed(4)} คะแนน / 1,000 บาท · อันดับ ${row.value_rank}`}</div></div></summary><form data-product-form>${row.needs_review.length ? '<p class="card-message">ชื่อหรือตัวเลือกในฟีดเปลี่ยน กรุณาจับคู่ตะกร้าใหม่</p>' : ''}${renderReference(row)}<details class="purchase-editor"><summary>ลิงก์ซื้อ / Affiliate และราคาตะกร้า (กรอกภายหลังได้)</summary><div class="channels">${Object.keys(names).map(p => renderChannel(row,p,values[p])).join('')}</div></details>${renderSpecs(row)}<div class="card-footer"><span class="card-message"></span><button type="submit" class="primary" data-save>บันทึกและคำนวณอันดับ</button></div></form></details>`;
+      const score = row.value_result, suitability = row.score_kind==='suitability', decimals = suitability?2:4;
+      const scoreSummary = !Number.isFinite(score.score)?e(score.reason):`${suitability?'คะแนนเหมาะกับการใช้งาน':'ความคุ้มค่า'} · ${e(profileLabel())} ${score.score.toFixed(decimals)}${suitability?' / 100':' คะแนน / 1,000 บาท'}${score.provisional?` · <span class="score-provisional">${mode!=='sales'&&row.rank!=null?'อันดับชั่วคราว · ':''}คะแนนประมาณการ</span>`:''}<br>ข้อมูลยืนยัน ${Number(score.coverage).toFixed(1)}%${score.provisional&&Number.isFinite(score.score_low)&&Number.isFinite(score.score_high)?` · ช่วงคะแนน ${score.score_low.toFixed(decimals)}–${score.score_high.toFixed(decimals)}`:''}`;
+      return `<details class="product-card" data-id="${row.listing_id}" ${index === 0 ? 'open' : ''}><summary><span class="number">${row.rank ?? '—'}</span><div><div class="product-title">${e(row.title)}</div><div class="product-meta">${e(row.price_band_label)} · ร้านในฟีด: ${e(row.shop_name)} · ${e(active)} · เปิดเพื่อแก้ไข</div><div class="product-meta">${scoreSummary}</div></div></summary><form data-product-form>${row.needs_review.length ? '<p class="card-message">ชื่อหรือตัวเลือกในฟีดเปลี่ยน กรุณาจับคู่ตะกร้าใหม่</p>' : ''}${RankingOffers.scoreDetailsHTML(score)}${renderReference(row)}<details class="purchase-editor"><summary>ลิงก์ซื้อ / Affiliate และราคาตะกร้า (กรอกภายหลังได้)</summary><div class="channels">${Object.keys(names).map(p => renderChannel(row,p,values[p])).join('')}</div></details>${renderSpecs(row)}<div class="card-footer"><span class="card-message"></span><button type="submit" class="primary" data-save>บันทึกและคำนวณอันดับ</button></div></form></details>`;
     }).join('') || '<p>ไม่พบรายการตามตัวกรองนี้</p>';
     updateDirty();
   }
@@ -118,7 +128,7 @@
       const result = await api('/api/admin/save-ranking-offers', {products});
       products.forEach(p => drafts.delete(p.listing_id));
       localStorage.setItem('yesspec_offers_updated',String(Date.now()));
-      await load(`บันทึก ${result.updated_count} รายการและคำนวณอันดับใหม่แล้ว · รุ่นที่ข้อมูลไม่ครบยังรอจัดอันดับ`);
+      await load(`บันทึก ${result.updated_count} รายการและคำนวณอันดับใหม่แล้ว · ข้อมูลสเปกที่ขาดแสดงเป็นคะแนนประมาณการและอันดับชั่วคราว`);
     } catch (error) { status(error.message+' · ข้อมูลที่แก้ไขยังอยู่ในฟอร์ม'); }
     finally { busy = false; document.querySelectorAll('#dashboard input, #dashboard select, #dashboard button').forEach(el => {el.disabled = false;}); updateDirty(); }
   }
@@ -222,7 +232,14 @@
   $('products').addEventListener('submit', event => {event.preventDefault(); save([rows.get(event.target.closest('.product-card').dataset.id)]);});
   $('saveAll').addEventListener('click', () => save([...rows.values()]));
   for (const id of ['category','filter','budgetBand','rankingSort']) $(id).addEventListener('change', render);
-  $('valueFormula').innerHTML = RankingOffers.formulaHTML();
+  $('rankingProfile').innerHTML = RankingOffers.profiles.map(p=>`<option value="${e(p.id)}">${e(p.label)}</option>`).join('');
+  $('rankingProfile').value = profile;
+  $('rankingProfile').addEventListener('change',event=>{
+    profile=validProfile(event.target.value);
+    try { localStorage.setItem(profileKey,profile); } catch (_) {}
+    render();
+  });
+  $('valueFormula').innerHTML = RankingOffers.formulaHTML(profile);
   $('search').addEventListener('input', render);
   $('retry').addEventListener('click', () => load());
   $('reload').addEventListener('click', () => {

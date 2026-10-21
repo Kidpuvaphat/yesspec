@@ -32,7 +32,7 @@ function picker(initial = []) {
   };
   const sandbox = {
     PhoneSpecs: P,
-    RankingOffers: {},
+    RankingOffers: {profiles:['balanced','photo','gaming','work','live','battery'].map(id=>({id}))},
     document,
     localStorage: {
       getItem: key => backing.get(key) ?? null,
@@ -57,6 +57,11 @@ function picker(initial = []) {
     },
     pressed: id => buttons.find(button => button.dataset.compareId === id).attributes['aria-pressed'],
     hidden: () => tray.hidden,
+    profile: () => new URL(/href="([^"]+)"/.exec(tray.innerHTML)[1].replaceAll('&amp;','&'),'https://yesspec.com/').searchParams.get('profile'),
+    changeProfile(id,profile) {
+      backing.set('yesspec_usage_profile_v2',profile);
+      documentListeners.get('change')({target:{id}});
+    },
     rerender(id) { observers.get(id)(); },
     externalSelection(ids, dispatch = true) {
       const newValue = ids === null ? null : JSON.stringify(ids);
@@ -141,4 +146,15 @@ test('attempting to add a fifth model preserves the saved selection without a wr
   assert.deepEqual(page.selected(), ['1/1', '1/2', '1/3', '1/4']);
   assert.equal(page.pressed('1/5'), 'false');
   assert.equal(page.writes.length, 0);
+});
+
+test('changing the usage profile in the current page updates the compare link without a storage event', () => {
+  const page=picker(['1/1']);
+  assert.equal(page.profile(),'balanced');
+  page.changeProfile('categoryTop20Profile','photo');
+  assert.equal(page.profile(),'photo');
+  page.changeProfile('rankingProfile','gaming');
+  assert.equal(page.profile(),'gaming');
+  assert.deepEqual(page.selected(),['1/1']);
+  assert.equal(page.writes.length,0);
 });

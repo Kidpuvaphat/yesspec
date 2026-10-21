@@ -23,4 +23,18 @@
 .spec-research dl{margin:8px 0}.spec-research dl>div{display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,2fr);gap:8px;border-bottom:1px solid #e2e8f0;padding:5px 0}
 .spec-research dt{font-weight:600}.spec-research dd{margin:0;overflow-wrap:anywhere}
 .spec-research a{color:#176c7a;text-decoration:underline;text-underline-offset:3px}.spec-research ul{padding-left:20px}
+.usage-score-note{font-size:12px;line-height:1.7;color:#52685b;margin:12px 0}
+.score-provisional{display:inline-block;margin:5px 4px 3px 0;padding:2px 7px;border:1px solid #ead1a4;border-radius:5px;background:#fff6e5;color:#825719;font-size:11px;font-weight:600;line-height:1.6}
+.value-summary>strong,.value-summary>small{display:block;margin-top:3px}
+.score-details{margin:10px 0;font-size:12px;line-height:1.7;overflow-wrap:anywhere;text-align:left;color:#354b3e}
+.score-details>summary{cursor:pointer;font-weight:600;color:#17663b}
+.score-details p{margin:8px 0}.score-details ul{padding-left:19px}.score-details a{color:#17663b;text-underline-offset:3px}
+.score-breakdown{display:grid;gap:7px;margin:10px 0;padding:0;list-style:none}
+.score-breakdown>li,.score-breakdown>div{border-bottom:1px solid #dce7df;padding:6px 0}
+.score-breakdown small{display:block;font-size:11px;color:#5e7166}
+.score-breakdown dt{font-weight:600}.score-breakdown dd{margin:3px 0 0}
+#categoryTop20 .catalog-toolbar select:focus-visible,.score-details summary:focus-visible{outline:3px solid #38a469;outline-offset:3px}
+#phoneCompare .compare-toolbar label[for="comparisonProfile"]{flex-wrap:wrap}
+#phoneCompare .compare-toolbar #comparisonProfile{min-width:150px}
+.ranking-section .controls{flex-wrap:wrap}.ranking-section .controls .field{flex:1 1 200px;min-width:0}
 .phone-full-specs>p{font-size:12px}.phone-spec-group{border-top:1px solid #dce5e0;padding:8px 0}.phone-spec-group summary{display:list-item!important;font-size:12px}.phone-spec-group>p{font-size:11px;color:#63746b}.phone-spec-group .phone-fact-note{display:block;font-size:11px;color:#6c776f;margin-top:4px}.phone-unknown{color:#7e8982}.phone-fact{white-space:pre-line}.phone-compare-button{margin:10px 5px 0 0;padding:7px 10px;border:1px solid #cbded1;border-radius:6px;background:#f3f9f5;color:#17663b;font:inherit;font-size:12px;cursor:pointer}.phone-compare-button[aria-pressed=true]{background:#17663b;color:white}.phone-spec-link{display:inline-block;font-size:11px;color:#17663b}.phone-compare-tray{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:995;max-width:calc(100% - 24px);width:max-content;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;background:#183e28;color:white;padding:12px 18px;border-radius:12px;box-shadow:0 8px 24px #17372540;font:13px/1.5 Tahoma,system-ui,sans-serif}.phone-compare-tray[hidden]{display:none}.phone-compare-tray a{color:#fff;font-weight:700}.phone-compare-tray button{color:#d3e8da;background:transparent;border:1px solid #789d83;border-radius:5px;padding:4px 8px;cursor:pointer}.phone-compare-tray a:focus-visible,.phone-compare-tray button:focus-visible{outline:3px solid #93dfad;outline-offset:3px}body:has(.phone-compare-tray:not([hidden])){padding-bottom:90px}

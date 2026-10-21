@@ -19,13 +19,15 @@ function item(id, price, rank=1) {
 test('saved price changes recalculate spec/price scores, reverse ranks, and keep ties shared',()=>{
   const a=item('1/1',10000), b=item('1/2',20000,2);
   let rows=offers.orderItems([a,b],'value',now);
-  assert.equal(rows[0].value_result.spec_score,100);
-  assert.equal(rows[0].value_result.score,10);
+  assert.equal(rows[0].value_result.spec_score,75.75); // 51.5 known + half of the missing 48.5.
+  assert.equal(rows[0].value_result.coverage,51.5);
+  assert.equal(rows[0].value_result.provisional,true);
+  assert.equal(rows[0].value_result.score,7.575);
   assert.deepEqual(rows.map(i=>i.rank),[1,2]);
   b.purchase_offers[0].price=5000;
   rows=offers.orderItems([a,b],'value',now);
   assert.equal(rows[0].listing_id,'1/2');
-  assert.equal(rows[0].value_result.score,20);
+  assert.equal(rows[0].value_result.score,15.15);
   assert.equal(a.rank,1);assert.equal(b.rank,2); // Never rewrite source evidence.
   b.purchase_offers[0].price=10000;
   assert.deepEqual(offers.orderItems([a,b],'value',now).map(i=>i.rank),[1,1]);
@@ -50,19 +52,19 @@ test('the lowest eligible channel wins only for the same variant; reference caps
   row.purchase_offers.push({...row.purchase_offers[0],platform:'lazada',url:'https://s.lazada.co.th/s.test',price:8000});
   row.purchase_offers.push({...row.purchase_offers[0],platform:'tiktok',url:'https://vt.tiktok.com/test',price:500,variant:'wrong'});
   const score=offers.valueScore(row,now);
-  assert.equal(score.price,8000);assert.equal(score.platform,'lazada');assert.equal(score.score,12.5);
-  row.value_specs.geekbench6_multi=20000;assert.equal(offers.valueScore(row,now).spec_score,100);
-  row.value_specs.geekbench6_multi=5000;assert.equal(offers.valueScore(row,now).spec_score,87.5);
+  assert.equal(score.price,8000);assert.equal(score.platform,'lazada');assert.equal(score.score,9.4688);
+  row.value_specs.geekbench6_multi=20000;assert.equal(offers.valueScore(row,now).spec_score,75.75);
+  row.value_specs.geekbench6_multi=5000;assert.equal(offers.valueScore(row,now).spec_score,68.25);
 });
 test('reference price ranks without carts, wins over cart price and reranks on every change',()=>{
   const a=item('1/1',1000), b=item('1/2',20000,2);
   a.purchase_offers=[];
   a.reference_price={price:10000,variant:specs.variant,source:'manual_reference',recorded_at:new Date(now).toISOString()};
-  assert.equal(offers.valueScore(a,now).score,10);
+  assert.equal(offers.valueScore(a,now).score,7.575);
   b.reference_price={...a.reference_price,price:5000};
   let rows=offers.orderItems([a,b],'value',now);
   assert.equal(rows[0].listing_id,'1/2');
-  assert.equal(rows[0].value_result.score,20);
+  assert.equal(rows[0].value_result.score,15.15);
   b.reference_price.price=40000;
   rows=offers.orderItems([a,b],'value',now);
   assert.equal(rows[0].listing_id,'1/1');
@@ -72,7 +74,7 @@ test('reference price ranks without carts, wins over cart price and reranks on e
 test('reference remains usable after 48h with stale label but cannot borrow another variant specs',()=>{
   const row=item('1/1',10000);
   row.reference_price={price:5000,variant:specs.variant,source:'manual_reference',recorded_at:'2026-10-10T10:00:00Z'};
-  assert.equal(offers.valueScore(row,now).score,20);
+  assert.equal(offers.valueScore(row,now).score,15.15);
   assert.equal(offers.valueScore(row,now).stale,true);
   row.reference_price.variant='8/128';
   assert.equal(offers.valueScore(row,now).score,null); // Do not silently fall back to the cart.
@@ -119,10 +121,13 @@ test('refresh bypasses the cached registry and updates the active list without c
     value_specs:freshSpec,offers:{shopee:{source:'manual',url:'https://s.shopee.co.th/test',price:10000,variant:specs.variant,recorded_at:new Date().toISOString()}}};
   await controller.refresh();
   const html=doc.getElementById('categoryTop20Results').innerHTML;
-  assert.match(html,/10\.0000 คะแนน/);assert.match(html,/data-rank="1"/);
+  const before=offers.valueScore(offers.attach(feed,registry).categories[0].items[0]).score;
+  assert.ok(html.includes(`${before.toFixed(4)} คะแนน`));assert.match(html,/data-rank="1"/);
   assert.equal((html.match(/<article /g)||[]).length,1);
   assert.equal(doc.getElementById('categoryTop20Search').value,'OPPO');
   registry.items[first.listing_id].offers.shopee.price=5000;
   await controller.refresh();
-  assert.match(doc.getElementById('categoryTop20Results').innerHTML,/20\.0000 คะแนน/);
+  const after=offers.valueScore(offers.attach(feed,registry).categories[0].items[0]).score;
+  assert.ok(Math.abs(after-before*2)<.0001);
+  assert.ok(doc.getElementById('categoryTop20Results').innerHTML.includes(`${after.toFixed(4)} คะแนน`));
 });

@@ -52,7 +52,19 @@ test('a saved cart price remains visible when its model cannot yet be ranked',()
  a.purchase_offers=[{platform:'shopee',source:'manual',url:'https://s.shopee.co.th/example',price:6808,variant:'8/128GB',recorded_at:'2026-10-20T10:00:00Z'}];
  const html=C.tableHTML([a]);
  assert.match(html,/ราคาที่กรอก ฿6,808/);assert.match(html,/8\/128GB/);
- assert.match(html,/รอสเปกครบ/);assert.match(html,/ยังไม่มีราคาพร้อมคำนวณ/);
+ assert.match(html,/รอสเปกและแหล่งอ้างอิงที่ผู้ดูแลยืนยัน/);assert.match(html,/ยังไม่มีราคาพร้อมคำนวณ/);
+});
+
+test('comparison variant labels use scoring confirmation even when the legacy complete-spec flag is false',()=>{
+ const rows=R.attach(feed,{schema_version:1,items:{}}).categories.flatMap(c=>c.items);
+ const confirmed=rows.find(i=>i.display_name==='OPPO A6t Pro');
+ const pending=rows.find(i=>i.display_name==='OPPO Reno 16 5G');
+ const now=Date.parse('2026-10-21T12:00:00Z');
+ assert.equal(confirmed.value_specs.verified,false);
+ assert.equal(R.suitabilityScore(confirmed,now).variant_confirmed,true);
+ const cells=C.summaryRows([confirmed,pending],now).find(row=>row.label==='ตัวเลือกที่สเปกจัดอันดับอ้างอิง').cells;
+ assert.match(cells[0],/ยืนยัน RAM \/ ความจุที่ใช้อ้างอิงแล้ว/);assert.doesNotMatch(cells[0],/ยังรอยืนยัน/);
+ assert.match(cells[1],/ยังไม่เลือกความจุ/);
 });
 
 test('all thirty published models have bound comparison data and official field sources',()=>{

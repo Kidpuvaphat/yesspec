@@ -3,6 +3,10 @@
   const P=root.PhoneSpecs || (typeof require==='function'?require('./phone-specs.js'):null);
   const R=root.RankingOffers || (typeof require==='function'?require('./ranking-offers.js'):null);
   const e=P.esc, storageKey='yesspec_compare_phones_v1';
+  const profileKey='yesspec_usage_profile_v2';
+  const validProfile=id=>(R.profiles||[]).some(p=>p.id===id)?id:'balanced';
+  const profileLabel=id=>(R.profiles||[]).find(p=>p.id===id)?.label||'สมดุล';
+  function readProfile() {try{return validProfile(root.localStorage.getItem(profileKey));}catch(_){return 'balanced';}}
   const money=n=>typeof n==='number'&&Number.isFinite(n)&&n>0?'฿'+n.toLocaleString('th-TH',{maximumFractionDigits:2}):'—';
   const date=raw=>Number.isFinite(Date.parse(raw))?new Date(raw).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'}):'—';
   function cleanSelection(values,items) {
@@ -19,16 +23,24 @@
     }).join('');
     return links?`<div class="compare-buy-links">${links}</div>`:'';
   }
-  function summaryRows(items,now) {
-    const scores=items.map(i=>R.valueScore(i,now));
+  function scoreCell(s,suitability=false) {
+    if(!Number.isFinite(s.score))return `<span class="phone-unknown">รอข้อมูล</span><small>${e(s.reason)}</small>`;
+    const decimals=suitability?2:4;
+    return `<strong>${s.score.toFixed(decimals)}${suitability?' / 100':''}</strong>${s.provisional?'<span class="score-provisional">คะแนนประมาณการ</span>':''}<small>ข้อมูลยืนยัน ${Number(s.coverage).toFixed(1)}% ของน้ำหนักคะแนน${s.provisional&&Number.isFinite(s.score_low)&&Number.isFinite(s.score_high)?`<br>ช่วงคะแนน ${s.score_low.toFixed(decimals)}–${s.score_high.toFixed(decimals)}`:''}</small>`;
+  }
+  function summaryRows(items,now,profile='balanced') {
+    const scores=items.map(i=>R.valueScore(i,now,profile));
+    const suitability=items.map(i=>R.suitabilityScore(i,now,profile));
     return [
       {label:'ราคาอ้างอิง / ราคาพร้อมคำนวณ',cells:items.map((i,n)=>{
         const p=R.referencePrice(i,now),s=scores[n];
         return p?`<span class="compare-price">${money(p.price)}</span><small>ราคาต่ำสุดที่ผู้ดูแลพบ · ${date(p.recorded_at)}${p.stale?' · เกิน 48 ชม. ควรตรวจใหม่':''}<br>ราคาที่ลิงก์ซื้ออาจต่างกัน${p.note?'<br>'+e(p.note):''}</small>`:s.price?`<span class="compare-price">${money(s.price)}</span><small>ราคาตะกร้าที่ใช้คำนวณ · ${e(R.names[s.platform])}</small>`:'<span class="phone-unknown">— ยังไม่มีราคาพร้อมคำนวณ</span>';
       })},
-      {label:'ตัวเลือกที่สเปกจัดอันดับอ้างอิง',cells:items.map(i=>i.value_specs?.variant?`${e(i.value_specs.variant)}<small>${i.value_specs.verified?'ยืนยันสเปกสำหรับคำนวณแล้ว':'ยังรอยืนยันสเปก'}</small>`:'<span class="phone-unknown">— ยังไม่เลือกความจุ</span>')},
+      {label:'ตัวเลือกที่สเปกจัดอันดับอ้างอิง',cells:items.map((i,n)=>i.value_specs?.variant?`${e(i.value_specs.variant)}<small>${suitability[n].variant_confirmed?'ยืนยัน RAM / ความจุที่ใช้อ้างอิงแล้ว · ส่วนที่ขาดใช้ค่าประมาณ':'ยังรอยืนยันตัวเลือก / ข้อมูลที่กรอก'}</small>`:'<span class="phone-unknown">— ยังไม่เลือกความจุ</span>')},
       {label:'ตัวเลือกของราคาที่กรอก',cells:items.map((i,n)=>e(R.referencePrice(i,now)?.variant||scores[n].variant||'— ยังไม่ระบุ'))},
-      {label:'ความคุ้มค่า (คะแนน / 1,000 บาท)',cells:scores.map(s=>s.score===null?`<span class="phone-unknown">รอข้อมูล</span><small>${e(s.reason)}</small>`:`<strong>${s.score.toFixed(4)}</strong><small>คะแนนสเปก ${s.spec_score.toFixed(2)}/100 · ดูสูตรด้านล่าง</small>`)},
+      {label:`คะแนนเหมาะกับการใช้งาน · ${profileLabel(profile)}`,cells:suitability.map(s=>scoreCell(s,true))},
+      {label:`ความคุ้มค่า · ${profileLabel(profile)} (คะแนน / 1,000 บาท)`,cells:scores.map(s=>scoreCell(s))},
+      {label:'องค์ประกอบคะแนนและข้อมูลที่ขาด',cells:suitability.map(s=>R.scoreDetailsHTML(s))},
       {label:'ลิงก์ซื้อ',cells:items.map(i=>purchaseLinks(i)||'<span class="phone-unknown">— ยังไม่มีลิงก์</span>')},
       {label:'สิ่งที่ต้องตรวจเพิ่ม',cells:items.map(i=>{
         const r=research(i),notes=[...(r?.notes||[]),...(r?.comparison?.notes||[])];
@@ -42,11 +54,11 @@
       return b&&R.sourceURL(b.url,true)&&Number.isFinite(b[key])?`<a href="${e(b.url)}" target="_blank" rel="noopener noreferrer">${e(b[key].toLocaleString('th-TH'))} ↗</a><small>เวอร์ชัน ${e(b.version)} · ${e(b.model_code)}<br>ทดสอบ ${e(b.upload_date)} · RAM ที่ระบบรายงาน ${e(b.tested_ram_gb_reported??'—')} GB</small>`:'<span class="phone-unknown">— ยังไม่ยืนยันผลตรงรุ่น</span>';
     })}));
   }
-  function tableHTML(items,differences=false,now=Date.now()) {
+  function tableHTML(items,differences=false,now=Date.now(),profile='balanced') {
     if(!items.length)return '<p class="comparison-empty">เลือกรุ่นที่ต้องการจากช่องด้านบน แล้วดูสเปกข้างกัน</p>';
     const rowHTML=(label,cells)=>differences&&items.length>1&&new Set(cells).size===1?'':`<tr><th scope="row">${e(label)}</th>${cells.map(c=>`<td>${c}</td>`).join('')}</tr>`;
     const groupHTML=(label,hint,body)=>body?`<tr class="group-heading"><th colspan="${items.length+1}" scope="rowgroup">${e(label)}<small>${e(hint)}</small></th></tr>${body}`:'';
-    const summary=summaryRows(items,now).map(r=>rowHTML(r.label,r.cells)).join('');
+    const summary=summaryRows(items,now,profile).map(r=>rowHTML(r.label,r.cells)).join('');
     const benchmark=benchmarkRows(items).map(r=>rowHTML(r.label,r.cells)).join('');
     const body=P.groups.map(g=>{
       const rows=g.fields.map(([key,label])=>{
@@ -67,7 +79,7 @@
     const tray=doc.createElement('div');tray.className='phone-compare-tray';tray.setAttribute('aria-label','รุ่นที่เลือกเปรียบเทียบ');doc.body.append(tray);
     function update(message='',persist=false) {
       tray.hidden=!selected.length&&!message;
-      tray.innerHTML=`<span role="status">${e(message||`เลือกเทียบ ${selected.length}/4 รุ่น`)}</span> <a href="compare.html?models=${encodeURIComponent(selected.join(','))}">เปิดตารางเทียบ ↗</a> <button type="button" data-compare-clear>ล้าง</button>`;
+      tray.innerHTML=`<span role="status">${e(message||`เลือกเทียบ ${selected.length}/4 รุ่น`)}</span> <a href="compare.html?models=${encodeURIComponent(selected.join(','))}&amp;profile=${encodeURIComponent(readProfile())}">เปิดตารางเทียบ ↗</a> <button type="button" data-compare-clear>ล้าง</button>`;
       doc.querySelectorAll('[data-compare-id]').forEach(b=>{
         const picked=selected.includes(b.dataset.compareId);b.setAttribute('aria-pressed',String(picked));b.textContent=picked?'✓ เลือกเทียบแล้ว':'＋ เทียบสเปก';
       });
@@ -83,7 +95,11 @@
         update('',true);
       } else if(event.target.closest('[data-compare-clear]')) {selected=[];update('',true);}
     });
+    doc.addEventListener('change',event=>{
+      if(['categoryTop20Profile','rankingProfile'].includes(event.target.id))update();
+    });
     root.addEventListener('storage',event=>{
+      if(event.key===profileKey){update();return;}
       if(event.key!==storageKey)return;
       try{const next=JSON.parse(event.newValue||'[]');selected=[...new Set(Array.isArray(next)?next:[])].filter(id=>/^\d+\/\d+$/.test(id)).slice(0,4);update();}catch(_){}
     });
@@ -97,12 +113,16 @@
     const $=id=>doc.getElementById(id);
     if(!$('phoneCompare')){installPicker(doc);return;}
     let items=[],selected=[],refreshSequence=0;
+    let profile=validProfile(new URLSearchParams(root.location.search).get('profile')||readProfile());
     function render(persist=false) {
       const activeSlot=doc.activeElement?.matches?.('[data-compare-slot]')?doc.activeElement.id:null;
       $('comparisonCount').textContent=`เลือก ${selected.length}/4 รุ่น`;
       $('modelSelectors').innerHTML=Array.from({length:4},(_,n)=>`<label for="compareModel${n}">มือถือ ${n+1}<select id="compareModel${n}" data-compare-slot="${n}"><option value="">เลือกรุ่น${n>1?'เพิ่มเติม':''}</option>${items.map(i=>`<option value="${e(i.listing_id)}" ${selected[n]===i.listing_id?'selected':''} ${selected.includes(i.listing_id)&&selected[n]!==i.listing_id?'disabled':''}>${e(i.display_name)}</option>`).join('')}</select></label>`).join('');
-      $('comparisonTable').innerHTML=tableHTML(selected.map(id=>items.find(i=>i.listing_id===id)),$('differencesOnly').checked);
-      const url=new URL(root.location.href);url.search='';if(selected.length)url.searchParams.set('models',selected.join(','));
+      $('comparisonTable').innerHTML=tableHTML(selected.map(id=>items.find(i=>i.listing_id===id)),$('differencesOnly').checked,Date.now(),profile);
+      $('comparisonFormula').innerHTML=R.formulaHTML(profile);
+      const url=new URL(root.location.href);
+      if(selected.length)url.searchParams.set('models',selected.join(','));else url.searchParams.delete('models');
+      url.searchParams.set('profile',profile);
       root.history.replaceState(null,'',url);$('comparisonPermalink').href=url.href;
       if(persist)try{root.localStorage.setItem(storageKey,JSON.stringify(selected));}catch(_){}
       if(activeSlot)doc.getElementById(activeSlot)?.focus({preventScroll:true});
@@ -137,7 +157,14 @@
     });
     $('differencesOnly').addEventListener('change',()=>render());
     $('resetComparison').addEventListener('click',()=>{selected=[];render(true);});
-    $('comparisonFormula').innerHTML=R.formulaHTML();
+    $('comparisonProfile').innerHTML=(R.profiles||[]).map(p=>`<option value="${e(p.id)}">${e(p.label)}</option>`).join('');
+    $('comparisonProfile').value=profile;
+    $('comparisonProfile').addEventListener('change',event=>{
+      profile=validProfile(event.target.value);
+      try{root.localStorage.setItem(profileKey,profile);}catch(_){}
+      render();
+    });
+    $('comparisonFormula').innerHTML=R.formulaHTML(profile);
     await load(true);R.watchChanges(()=>load());
   }
   const api={cleanSelection,research,tableHTML,summaryRows,benchmarkRows};

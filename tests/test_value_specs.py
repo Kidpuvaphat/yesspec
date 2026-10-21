@@ -9,6 +9,37 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ValueSpecsTests(unittest.TestCase):
+    def test_partial_confirmation_requires_variant_memory_and_sources_but_allows_unknown_benchmarks(self):
+        spec = dict(ram_gb=8, storage_gb=128, variant='8/128', spec_url='https://www.oppo.com/th/', verified=True)
+        result = offers.clean_value_specs(spec, '2026-10-21T10:00:00Z')
+        self.assertTrue(result['verified'])
+        self.assertIsNone(result['geekbench6_multi'])
+        with self.assertRaises(ValueError):
+            offers.clean_value_specs({**spec, 'geekbench6_multi': 3000}, '2026-10-21T10:00:00Z')
+
+    def test_price_only_save_keeps_research_live_and_explicit_draft_override_is_preserved(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root/'data').mkdir()
+            shutil.copy2(ROOT/'data/shopee_feed_rankings.json', root/'data/shopee_feed_rankings.json')
+            def row():
+                return offers.payload(root)['categories'][0]['items'][0]
+            current = row()
+            self.assertEqual(current['value_specs_source'], 'research')
+            self.assertEqual(current['research_identity'], current['spec_research']['binding'])
+            offers.save(root, [dict(listing_id=current['listing_id'], revision=current['revision'],
+                reference_price=dict(price=6808, variant=current['value_specs']['variant']))])
+            stored = offers.read_store(root)['items'][current['listing_id']]
+            self.assertNotIn('value_specs', stored)
+            current = row()
+            offers.save(root, [dict(listing_id=current['listing_id'], revision=current['revision'], value_specs=None)])
+            current = row()
+            self.assertEqual(current['value_specs_source'], 'manual')
+            self.assertIsNone(current['value_specs'])
+            offers.save(root, [dict(listing_id=current['listing_id'], revision=current['revision'],
+                reference_price=dict(price=6000, variant='8/128'))])
+            self.assertIsNone(row()['value_specs'])
+
     def test_saved_specs_survive_price_edits_but_not_changed_source_identity(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

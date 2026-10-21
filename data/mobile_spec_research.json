@@ -273,6 +273,63 @@
           "RAM/ความจุในตารางจำกัด รุ่นย่อย ไทย 8/256; ข้อความภาพรวมกล่าวถึงรุ่นย่อยประเทศอื่นด้วย จึงไม่เหมารวมว่าจำหน่ายไทยทั้งหมด",
           "ไม่พบชื่อชิปหรือกำลังชาร์จวัตต์ในหน้าไทยที่ตรวจ จึงไม่คัดลอกสเปกต่างประเทศมาแทน"
         ]
+      },
+      "value_inputs": {
+        "model": "Samsung Galaxy A37 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 8MP f/2.2"
+          },
+          "camera_rear_video": {
+            "value": 0.7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: 4K 30fps; สโลว์โมชัน HD 240fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Super AMOLED"
+          },
+          "display_ppi": {
+            "value": 384.7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2340² + 1080²) ÷ 6.7 นิ้ว = 384.7 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2340 × 1080 (FHD+)"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.samsung.com/eg/smartphones/galaxy-a/galaxy-a37-5g-awesome-lavender-128gb-sm-a376blvpmea/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 45W · Super Fast Charging 2.0 · เงื่อนไขแหล่งเดิม: ข้อมูลกำลังชาร์จจาก Samsung Egypt ของ SM-A376B; หน้าไทยระบุสูงสุด 60% ใน 30 นาที"
+          },
+          "os_upgrades": {
+            "value": 6,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "update_policy",
+            "note": "จำนวนการอัปเกรดระบบรุ่นใหญ่สูงสุดที่ประกาศ ไม่ใช่เวอร์ชัน OS ปัจจุบันหรือจำนวนครั้งที่เหลือ · ข้อมูลเดิม: อัปเกรด OS สูงสุด 6 รุ่น; อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: กำหนดเวลาอัปเดตขึ้นกับรุ่น/ตลาด; ไม่ใช่อีก 6 ปีนับจากวันซื้อ"
+          },
+          "security_years": {
+            "value": 6,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a37-5g-awesome-charcoal-256gb-sm-a376bzatthl/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: อัปเกรด OS สูงสุด 6 รุ่น; อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: กำหนดเวลาอัปเดตขึ้นกับรุ่น/ตลาด; ไม่ใช่อีก 6 ปีนับจากวันซื้อ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "123611266/50404634053": {
@@ -520,6 +577,63 @@
         "notes": [
           "เว้น chipset, NFC, eSIM และกำลังชาร์จวัตต์เมื่อยังไม่ยืนยันจากแหล่งไทย; การไม่ปรากฏในตารางไม่เท่ากับไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "Samsung Galaxy A07 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": false,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: ไม่รองรับ OIS"
+          },
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: 1080p 30fps; สโลว์โมชัน HD 120fps"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: PLS LCD"
+          },
+          "display_ppi": {
+            "value": 261.9,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1600² + 720²) ÷ 6.7 นิ้ว = 261.9 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1600 × 720 (HD+)"
+          },
+          "display_hbm_nits": {
+            "value": 800,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: HBM สูงสุด 800 นิต"
+          },
+          "wired_watts": {
+            "value": 25,
+            "url": "https://news.samsung.com/id/3-keunggulan-galaxy-a07-5g-smartphone-samsung-5g-terbaru-yang-pasti-nyaman",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 25W · เงื่อนไขแหล่งเดิม: ข้อมูลเสริมจาก Samsung Newsroom Indonesia; ไม่ยืนยันอุปกรณ์แถมหรือประกันของตะกร้าไทย"
+          },
+          "os_upgrades": {
+            "value": 6,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "update_policy",
+            "note": "จำนวนการอัปเกรดระบบรุ่นใหญ่สูงสุดที่ประกาศ ไม่ใช่เวอร์ชัน OS ปัจจุบันหรือจำนวนครั้งที่เหลือ · ข้อมูลเดิม: อัปเกรด OS สูงสุด 6 รุ่น; อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: กำหนดเวลาอัปเดตขึ้นกับรุ่น/ตลาด; ไม่ใช่อีก 6 ปีนับจากวันซื้อ"
+          },
+          "security_years": {
+            "value": 6,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a07-5g-black-128gb-sm-a076bzkcthl/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: อัปเกรด OS สูงสุด 6 รุ่น; อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: กำหนดเวลาอัปเดตขึ้นกับรุ่น/ตลาด; ไม่ใช่อีก 6 ปีนับจากวันซื้อ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "30330278/28431021700": {
@@ -777,6 +891,63 @@
           }
         },
         "notes": []
+      },
+      "value_inputs": {
+        "model": "Samsung Galaxy A27 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 5MP f/2.2"
+          },
+          "camera_rear_video": {
+            "value": 0.7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: 4K 30fps; สโลว์โมชัน HD 240fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Super AMOLED"
+          },
+          "display_ppi": {
+            "value": 384.7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2340² + 1080²) ÷ 6.7 นิ้ว = 384.7 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2340 × 1080 (FHD+)"
+          },
+          "wired_watts": {
+            "value": 25,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7-galaxy-a27-5g-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A1%E0%B8%B2%E0%B8%9E%E0%B8%A3",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 25W"
+          },
+          "os_upgrades": {
+            "value": 6,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "update_policy",
+            "note": "จำนวนการอัปเกรดระบบรุ่นใหญ่สูงสุดที่ประกาศ ไม่ใช่เวอร์ชัน OS ปัจจุบันหรือจำนวนครั้งที่เหลือ · ข้อมูลเดิม: อัปเกรด OS สูงสุด 6 รุ่น; อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: กำหนดเวลาอัปเดตขึ้นกับรุ่น/ตลาด; ไม่ใช่อีก 6 ปีนับจากวันซื้อ"
+          },
+          "security_years": {
+            "value": 6,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-a/galaxy-a27-5g-black-128gb-sm-a276bzkgthl/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: อัปเกรด OS สูงสุด 6 รุ่น; อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: กำหนดเวลาอัปเดตขึ้นกับรุ่น/ตลาด; ไม่ใช่อีก 6 ปีนับจากวันซื้อ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "468897313/40932431566": {
@@ -1036,6 +1207,57 @@
           "เชิงอรรถแบตเตอรี่ในข่าวไทยมี rated 4,660 และ 4,174mAh ปะปนกัน จึงเก็บเฉพาะ typical 4,300mAh",
           "เงื่อนไขทดสอบชาร์จในข่าวไทยมี 25W/45W ขัดกัน; เก็บข้อความพร้อมเงื่อนไข ไม่ยืนยันเพดานวัตต์"
         ]
+      },
+      "value_inputs": {
+        "model": "Samsung Galaxy Z Flip8",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 12MP f/2.2 · 123°"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Dynamic AMOLED 2X"
+          },
+          "display_ppi": {
+            "value": 397.3,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2520² + 1080²) ÷ 6.9 นิ้ว = 397.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2520 × 1080 (FHD+) · 400 ppi"
+          },
+          "wireless_watts": {
+            "value": 15,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: 15W; Wireless PowerShare"
+          },
+          "os_upgrades": {
+            "value": 7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-z-flip8/specs/",
+            "source_field": "update_policy",
+            "note": "จำนวนการอัปเกรดระบบรุ่นใหญ่สูงสุดที่ประกาศ ไม่ใช่เวอร์ชัน OS ปัจจุบันหรือจำนวนครั้งที่เหลือ · ข้อมูลเดิม: Android สูงสุด 7 รุ่น; ความปลอดภัยสูงสุด 7 ปี · เงื่อนไขแหล่งเดิม: เวลาอัปเดตขึ้นกับตลาด/เครือข่าย/เครื่อง; ไม่ใช่อีก 7 ปีจากวันซื้อ"
+          },
+          "security_years": {
+            "value": 7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-z-flip8/specs/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: Android สูงสุด 7 รุ่น; ความปลอดภัยสูงสุด 7 ปี · เงื่อนไขแหล่งเดิม: เวลาอัปเดตขึ้นกับตลาด/เครือข่าย/เครื่อง; ไม่ใช่อีก 7 ปีจากวันซื้อ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "348508901/55157973691": {
@@ -1309,6 +1531,51 @@
           }
         },
         "notes": []
+      },
+      "value_inputs": {
+        "model": "Samsung Galaxy Z Fold7",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.samsung.com/th/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966bzsdthl/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.samsung.com/th/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966bzsdthl/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 12MP f/2.2"
+          },
+          "camera_optical_zoom": {
+            "value": 3,
+            "url": "https://www.samsung.com/th/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966bzsdthl/",
+            "source_field": "telephoto",
+            "note": "นับเลนส์เทเล/เพอริสโคปแยก; ไม่นับ crop หรือ digital zoom เป็นระยะ optical ของเลนส์ · ข้อมูลเดิม: 10MP f/2.4 · optical zoom 3×"
+          },
+          "camera_rear_video": {
+            "value": 1,
+            "url": "https://www.samsung.com/th/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966bzsdthl/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K120 หรือ 8K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: 8K 30fps; สโลว์โมชัน 4K 120fps / FHD 240fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.samsung.com/th/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966bzsdthl/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Dynamic AMOLED 2X"
+          },
+          "display_ppi": {
+            "value": 367.5,
+            "url": "https://www.samsung.com/th/business/smartphones/galaxy-z/galaxy-z-fold7-silver-shadow-256gb-sm-f966bzsdthl/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2184² + 1968²) ÷ 8 นิ้ว = 367.5 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2184 × 1968 (QXGA+)"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "468897313/51863668560": {
@@ -1580,6 +1847,69 @@
           "ตะกร้าเดิมระบุจอ 7.6 นิ้ว แต่รุ่น Ultra ทางการคือ 8.0 นิ้ว; 7.6 นิ้วเป็น Fold8 ปกติ ต้องยืนยันรุ่นตะกร้าก่อนจับคู่สเปก/คะแนน/ราคา",
           "ไม่นำข้อมูลรุ่น Fold8 ปกติมาปนกับ Fold8 Ultra"
         ]
+      },
+      "value_inputs": {
+        "model": "Samsung Galaxy Z Fold8 Ultra",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 50MP f/1.9 · AF · 120°"
+          },
+          "camera_optical_zoom": {
+            "value": 3,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "telephoto",
+            "note": "นับเลนส์เทเล/เพอริสโคปแยก; ไม่นับ crop หรือ digital zoom เป็นระยะ optical ของเลนส์ · ข้อมูลเดิม: 10MP f/2.4 · OIS · optical zoom 3×"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Dynamic AMOLED 2X"
+          },
+          "display_ppi": {
+            "value": 421.3,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2504² + 2256²) ÷ 8 นิ้ว = 421.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2504 × 2256 (QXGA+) · 422 ppi"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 45W; สูงสุด 67% ใน 30 นาที · เงื่อนไขแหล่งเดิม: ทดสอบจาก 0% ใช้อะแดปเตอร์ 45W และสาย USB-C 3A; ผลจริงขึ้นกับสภาพใช้งาน"
+          },
+          "wireless_watts": {
+            "value": 20,
+            "url": "https://news.samsung.com/th/%E0%B8%8B%E0%B8%B1%E0%B8%A1%E0%B8%8B%E0%B8%B8%E0%B8%87-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B8%AA%E0%B8%A1",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: 20W; Wireless PowerShare"
+          },
+          "os_upgrades": {
+            "value": 7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-z-fold8-ultra/specs/",
+            "source_field": "update_policy",
+            "note": "จำนวนการอัปเกรดระบบรุ่นใหญ่สูงสุดที่ประกาศ ไม่ใช่เวอร์ชัน OS ปัจจุบันหรือจำนวนครั้งที่เหลือ · ข้อมูลเดิม: Android สูงสุด 7 รุ่น; ความปลอดภัยสูงสุด 7 ปี · เงื่อนไขแหล่งเดิม: เวลาอัปเดตขึ้นกับตลาด/เครือข่าย/เครื่อง; ไม่ใช่อีก 7 ปีจากวันซื้อ"
+          },
+          "security_years": {
+            "value": 7,
+            "url": "https://www.samsung.com/th/smartphones/galaxy-z-fold8-ultra/specs/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: Android สูงสุด 7 รุ่น; ความปลอดภัยสูงสุด 7 ปี · เงื่อนไขแหล่งเดิม: เวลาอัปเดตขึ้นกับตลาด/เครือข่าย/เครื่อง; ไม่ใช่อีก 7 ปีจากวันซื้อ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": false
       }
     },
     "301786571/40268308729": {
@@ -1878,6 +2208,57 @@
           "Apple ไม่ระบุ RAM, ชนิด RAM และชนิดหน่วยเก็บข้อมูลในหน้าทางการที่ตรวจ จึงเว้นไว้; ไม่ใช้หน่วยความจำที่ Geekbench รายงานแทน",
           "ข้อมูลรายการความจุไม่ได้เลือกรุ่นย่อยหรือเปลี่ยนราคา/ตะกร้า"
         ]
+      },
+      "value_inputs": {
+        "model": "Apple iPhone 17 Pro",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: sensor-shift OIS รุ่นที่ 2"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 48MP f/2.2 · 120° · AF"
+          },
+          "camera_optical_zoom": {
+            "value": 4,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "telephoto",
+            "note": "นับเลนส์เทเล/เพอริสโคปแยก; ไม่นับ crop หรือ digital zoom เป็นระยะ optical ของเลนส์ · ใช้เลนส์ 100 มม. 4×; ไม่ใช้คำกล่าว optical-quality 8× เป็นระยะเลนส์แยก · ข้อมูลเดิม: 48MP 100 มม. (4×) f/2.8; 3D sensor-shift OIS · เงื่อนไขแหล่งเดิม: 8× / 200 มม. เป็นภาพ 12MP ระดับ optical-quality; ไม่ใช่เลนส์ optical 8× แยกอีกตัว"
+          },
+          "camera_rear_video": {
+            "value": 1,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K120 หรือ 8K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: 4K Dolby Vision สูงสุด 120fps; ProRes 4K 120fps บันทึกภายนอก · เงื่อนไขแหล่งเดิม: 100/120fps ใช้กล้องหลัก Fusion; รองรับ Apple Log 2 และ ProRes RAW"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Super Retina XDR OLED"
+          },
+          "display_ppi": {
+            "value": 458.1,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2622² + 1206²) ÷ 6.3 นิ้ว = 458.1 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2622 × 1206 · 460 ppi"
+          },
+          "wireless_watts": {
+            "value": 25,
+            "url": "https://support.apple.com/th-th/125090",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: MagSafe สูงสุด 25W / Qi2 สูงสุด 25W · เงื่อนไขแหล่งเดิม: อ้างอิงหน้าสเปกปัจจุบัน; ต้องใช้ที่ชาร์จ/อะแดปเตอร์และซอฟต์แวร์ที่รองรับ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "301786571/28710390084": {
@@ -2173,6 +2554,51 @@
           "ข้อมูลรายการความจุไม่ได้เลือกรุ่นย่อยหรือเปลี่ยนราคา/ตะกร้า",
           "เว้น รีเฟรชเรต เพราะหน้า Apple ที่ตรวจไม่ระบุตัวเลข Hz; ไม่อนุมานจากการไม่มี ProMotion"
         ]
+      },
+      "value_inputs": {
+        "model": "Apple iPhone 16",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://support.apple.com/th-th/121029",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: sensor-shift OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://support.apple.com/th-th/121029",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 12MP f/2.2 · 120° · AF"
+          },
+          "camera_rear_video": {
+            "value": 0.85,
+            "url": "https://support.apple.com/th-th/121029",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: 4K Dolby Vision สูงสุด 60fps; สโลว์โมชัน 1080p สูงสุด 240fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://support.apple.com/th-th/121029",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Super Retina XDR OLED"
+          },
+          "display_ppi": {
+            "value": 461.4,
+            "url": "https://support.apple.com/th-th/121029",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2556² + 1179²) ÷ 6.1 นิ้ว = 461.4 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2556 × 1179 · 460 ppi"
+          },
+          "wireless_watts": {
+            "value": 25,
+            "url": "https://support.apple.com/th-th/121029",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: MagSafe สูงสุด 25W / Qi2 สูงสุด 25W · เงื่อนไขแหล่งเดิม: อ้างอิงหน้าสเปกปัจจุบัน; ต้องใช้ที่ชาร์จ/อะแดปเตอร์และซอฟต์แวร์ที่รองรับ"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "389528981/29842952231": {
@@ -2451,6 +2877,63 @@
         "notes": [
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "Redmi 15 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": false,
+            "url": "https://www.mi.com/global/support/faq/details/KA-592872/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: ไม่รองรับระบบป้องกันภาพสั่นไหวกล้องหลัง · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย; FAQ ระบุว่า rear camera ไม่รองรับ anti-shake"
+          },
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.mi.com/global/support/faq/details/KA-592872/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย"
+          },
+          "display_ppi": {
+            "value": 373.5,
+            "url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2340² + 1080²) ÷ 6.9 นิ้ว = 373.5 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2340 × 1080"
+          },
+          "display_hbm_nits": {
+            "value": 850,
+            "url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 700 nits (typical); 850 nits (HBM)"
+          },
+          "wired_watts": {
+            "value": 33,
+            "url": "https://www.mi.com/th/product/redmi-15-5g/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 33W"
+          },
+          "wireless_watts": {
+            "value": 0,
+            "url": "https://www.mi.com/global/support/faq/details/KA-592872/",
+            "source_field": "wireless_charging",
+            "note": "ค่าศูนย์ใช้เฉพาะเมื่อแหล่งเดิมระบุว่าไม่รองรับ; ไม่อนุมานศูนย์จากช่องว่าง · ข้อมูลเดิม: ไม่รองรับ · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "426143063/42782594849": {
@@ -2729,6 +3212,51 @@
           "หน้าไทยยืนยัน RAM จริง 4GB เท่านั้น; ไม่ใช้ RAM 6GB จากชื่อร้านหรือ RAM เสมือนมาทดแทน",
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "Redmi 17 4G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-17/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-17/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.mi.com/global/support/faq/details/KA-721386/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย"
+          },
+          "display_ppi": {
+            "value": 254.3,
+            "url": "https://www.mi.com/th/product/redmi-17/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1600² + 720²) ÷ 6.9 นิ้ว = 254.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1600 × 720"
+          },
+          "display_hbm_nits": {
+            "value": 825,
+            "url": "https://www.mi.com/th/product/redmi-17/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 675 nits (typical); 825 nits (HBM)"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.mi.com/th/product/redmi-17/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 45W; ชาร์จย้อนกลับผ่านสายสูงสุด 22.5W"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "203120452/57257612779": {
@@ -3003,6 +3531,63 @@
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์",
           "FAQ Global ระบุ USB 2.0 ในส่วนสายข้อมูล; หน้าไทยยืนยันเพียง Type-C"
         ]
+      },
+      "value_inputs": {
+        "model": "Redmi A7 Pro",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": false,
+            "url": "https://www.mi.com/global/support/faq/details/KA-686040/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: ไม่รองรับระบบป้องกันภาพสั่นไหวกล้องหลัง · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย; FAQ ระบุว่า rear camera ไม่รองรับ anti-shake"
+          },
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD"
+          },
+          "display_ppi": {
+            "value": 254.3,
+            "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1600² + 720²) ÷ 6.9 นิ้ว = 254.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1600 × 720"
+          },
+          "display_hbm_nits": {
+            "value": 800,
+            "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 650 nits (typical); 800 nits (HBM)"
+          },
+          "wired_watts": {
+            "value": 15,
+            "url": "https://www.mi.com/th/product/redmi-a7-pro/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 15W"
+          },
+          "wireless_watts": {
+            "value": 0,
+            "url": "https://www.mi.com/global/support/faq/details/KA-686040/",
+            "source_field": "wireless_charging",
+            "note": "ค่าศูนย์ใช้เฉพาะเมื่อแหล่งเดิมระบุว่าไม่รองรับ; ไม่อนุมานศูนย์จากช่องว่าง · ข้อมูลเดิม: ไม่รองรับ · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "1250100602/45365376973": {
@@ -3264,6 +3849,57 @@
           "ขนาดความกว้าง 77.8 มม. ตาม Specs ไทย; ไม่ใช้ค่าจากแหล่งรอง",
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "Redmi A7",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": false,
+            "url": "https://www.mi.com/global/support/faq/details/KA-694581/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: ไม่รองรับระบบป้องกันภาพสั่นไหวกล้องหลัง · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย; FAQ ระบุว่า rear camera ไม่รองรับ anti-shake"
+          },
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-a7/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-a7/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.mi.com/th/product/redmi-a7/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD"
+          },
+          "display_ppi": {
+            "value": 260.3,
+            "url": "https://www.mi.com/th/product/redmi-a7/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1640² + 720²) ÷ 6.88 นิ้ว = 260.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1640 × 720"
+          },
+          "wired_watts": {
+            "value": 15,
+            "url": "https://www.mi.com/th/product/redmi-a7/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 15W"
+          },
+          "wireless_watts": {
+            "value": 0,
+            "url": "https://www.mi.com/global/support/faq/details/KA-694581/",
+            "source_field": "wireless_charging",
+            "note": "ค่าศูนย์ใช้เฉพาะเมื่อแหล่งเดิมระบุว่าไม่รองรับ; ไม่อนุมานศูนย์จากช่องว่าง · ข้อมูลเดิม: ไม่รองรับ · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "426143063/47303293201": {
@@ -3556,6 +4192,63 @@
           "ข้อความเทคโนโลยี UFS พูดถึง 128GB/512GB ด้วย แต่รายการตัวเลือกไทยมีเฉพาะ 256GB จึงไม่เพิ่มตัวเลือกอื่น",
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "Redmi Note 17 Pro 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: มี OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 8MP f/2.2"
+          },
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 1080p 30fps, 720p 30fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED"
+          },
+          "display_ppi": {
+            "value": 447.0,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2772² + 1280²) ÷ 6.83 นิ้ว = 447.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2772 × 1280 (1.5K)"
+          },
+          "wired_watts": {
+            "value": 67,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 67W HyperCharge; ย้อนกลับผ่านสายสูงสุด 22.5W; PD 3.0/2.0"
+          },
+          "security_years": {
+            "value": 6,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-5g/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: หน้าไทยไม่ได้ระบุจำนวนเวอร์ชันอัปเกรด Android; คำรับรองความลื่นไหลไม่ใช่ระยะอัปเดต OS"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "1309713440/25742023561": {
@@ -3851,6 +4544,69 @@
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์",
           "จำนวน eSIM มีข้อความต่างกันระหว่าง Specs ไทย (eSIM + eSIM) กับ FAQ Global (single eSIM); เก็บเพียงว่ารองรับ eSIM และคงตัวเลือก SIM ตามหน้าไทย ไม่ฟันธงจำนวน eSIM ที่ใช้งานพร้อมกัน"
         ]
+      },
+      "value_inputs": {
+        "model": "Redmi Note 17 Pro Max",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: มี OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 8MP f/2.2"
+          },
+          "camera_rear_video": {
+            "value": 0.7,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 4K 30fps; 1080p 30/60fps; 720p 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.7,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง: 4K 30fps; 1080p 30/60fps; 720p 30fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED; HDR10+ / Dolby Vision"
+          },
+          "display_ppi": {
+            "value": 447.0,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2772² + 1280²) ÷ 6.83 นิ้ว = 447.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2772 × 1280 (1.5K)"
+          },
+          "display_hbm_nits": {
+            "value": 2000,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 1060 nits (typical); 2000 nits (HBM); 3500 nits (UHBM)"
+          },
+          "wired_watts": {
+            "value": 100,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 100W HyperCharge/PPS; ย้อนกลับผ่านสายสูงสุด 27W; PD 3.0/2.0"
+          },
+          "security_years": {
+            "value": 6,
+            "url": "https://www.mi.com/th/product/redmi-note-17-pro-max-5g/",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: อัปเดตความปลอดภัย 6 ปี · เงื่อนไขแหล่งเดิม: หน้าไทยไม่ได้ระบุจำนวนเวอร์ชันอัปเกรด Android; คำรับรองความลื่นไหลไม่ใช่ระยะอัปเดต OS"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "984058892/47107141257": {
@@ -4144,6 +4900,69 @@
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์",
           "FAQ Global ระบุ USB 2.0 ในส่วนสายข้อมูล; จึงเก็บพอร์ตเครื่องเป็น USB-C ตามหน้าไทยโดยไม่ฟันธงความเร็วพอร์ต"
         ]
+      },
+      "value_inputs": {
+        "model": "POCO X8 Pro Max",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: มี OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 8MP f/2.2"
+          },
+          "camera_rear_video": {
+            "value": 0.85,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 4K 30/60fps; หน้า: 1080p 30/60fps"
+          },
+          "camera_front_video": {
+            "value": 0.5,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 4K 30/60fps; หน้า: 1080p 30/60fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED; HDR10+ / Dolby Vision"
+          },
+          "display_ppi": {
+            "value": 447.0,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2772² + 1280²) ÷ 6.83 นิ้ว = 447.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2772 × 1280 (1.5K)"
+          },
+          "display_hbm_nits": {
+            "value": 2000,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 800 nits (typical); 2000 nits (HBM); 3500 nits (peak, พื้นที่หน้าจอ 25%)"
+          },
+          "wired_watts": {
+            "value": 100,
+            "url": "https://www.mi.com/th/product/poco-x8-pro-max/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 100W HyperCharge; ย้อนกลับผ่านสายสูงสุด 27W; PD 3.0/2.0"
+          },
+          "wireless_watts": {
+            "value": 0,
+            "url": "https://www.mi.com/global/support/faq/details/KA-676346/",
+            "source_field": "wireless_charging",
+            "note": "ค่าศูนย์ใช้เฉพาะเมื่อแหล่งเดิมระบุว่าไม่รองรับ; ไม่อนุมานศูนย์จากช่องว่าง · ข้อมูลเดิม: ไม่รองรับ · เงื่อนไขแหล่งเดิม: อ้างอิง FAQ ทางการ Global ของชื่อรุ่นตรงกัน; ไม่ใช่การยืนยัน SKU ประเทศไทย"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "452488310/56665757617": {
@@ -4457,6 +5276,69 @@
           "ค่าความสว่างใช้ Specs ไทยพร้อมเงื่อนไขพื้นที่หน้าจอ; FAQ Global แยก HBM 1060/HDR HBM 2200 และ peak 4500 ต่างบริบท จึงไม่ใช้เป็นค่าความสว่างเต็มจอเดียวกัน",
           "จำนวน eSIM มีข้อความต่างกันระหว่าง Specs ไทย (eSIM + eSIM) กับ FAQ Global (single eSIM); เก็บเพียงว่ารองรับ eSIM และคงตัวเลือก SIM ตามหน้าไทย ไม่ฟันธงจำนวน eSIM ที่ใช้งานพร้อมกัน"
         ]
+      },
+      "value_inputs": {
+        "model": "POCO F9 Ultra",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: มี OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 50MP f/2.4"
+          },
+          "camera_rear_video": {
+            "value": 1,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K120 หรือ 8K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 8K 30fps, 4K 30/60fps (รองรับ Log); หน้า: 4K 30fps, 1080p 30/60fps"
+          },
+          "camera_front_video": {
+            "value": 0.7,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 8K 30fps, 4K 30/60fps (รองรับ Log); หน้า: 4K 30fps, 1080p 30/60fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED; POCO HyperRGB; HDR10+ / Dolby Vision"
+          },
+          "display_ppi": {
+            "value": 419.1,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2608² + 1200²) ÷ 6.85 นิ้ว = 419.1 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ใช้ 6.85 นิ้วตามหมายเหตุการวัดกรอบเต็มของผู้ผลิต ไม่ใช้ชื่อขนาดทางการที่ปัดเป็น 6.9 นิ้ว · ข้อมูลเดิม: 2608 × 1200"
+          },
+          "display_hbm_nits": {
+            "value": 2200,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 850 nits (typical); 2200 nits (HBM); 4500 nits (peak, 25%); 10000 nits (peak, 1%); ต่ำสุด 1 nit"
+          },
+          "wired_watts": {
+            "value": 100,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 100W HyperCharge/PPS; ย้อนกลับผ่านสายสูงสุด 27W"
+          },
+          "wireless_watts": {
+            "value": 50,
+            "url": "https://www.mi.com/th/product/poco-f9-ultra/specs/",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: 50W HyperCharge; ย้อนกลับไร้สายสูงสุด 22.5W · เงื่อนไขแหล่งเดิม: แท่นชาร์จไร้สายจำหน่ายแยก; กำลังจริงขึ้นกับอุปกรณ์และสภาวะใช้งาน"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "452488310/40433436997": {
@@ -4762,6 +5644,69 @@
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์",
           "จำนวน eSIM มีข้อความต่างกันระหว่าง Specs ไทย (eSIM + eSIM) กับ FAQ Global (single eSIM); เก็บเพียงว่ารองรับ eSIM และคงตัวเลือก SIM ตามหน้าไทย ไม่ฟันธงจำนวน eSIM ที่ใช้งานพร้อมกัน"
         ]
+      },
+      "value_inputs": {
+        "model": "POCO F9 Pro",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: มี OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 8MP f/2.25"
+          },
+          "camera_rear_video": {
+            "value": 0.85,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 4K 30/60fps (รองรับ Log); หน้า: 4K 30fps, 1080p 30/60fps"
+          },
+          "camera_front_video": {
+            "value": 0.7,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 4K 30/60fps (รองรับ Log); หน้า: 4K 30fps, 1080p 30/60fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED; POCO HyperRGB; HDR10+ / Dolby Vision"
+          },
+          "display_ppi": {
+            "value": 419.3,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2510² + 1156²) ÷ 6.59 นิ้ว = 419.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2510 × 1156"
+          },
+          "display_hbm_nits": {
+            "value": 2200,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 850 nits (typical); 2200 nits (HBM); 4500 nits (peak, 25%); 10000 nits (peak, 1%); ต่ำสุด 1 nit"
+          },
+          "wired_watts": {
+            "value": 100,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 100W HyperCharge/PPS; ย้อนกลับผ่านสายสูงสุด 27W"
+          },
+          "wireless_watts": {
+            "value": 50,
+            "url": "https://www.mi.com/th/product/poco-f9-pro/specs/",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: 50W HyperCharge; ย้อนกลับไร้สายสูงสุด 22.5W · เงื่อนไขแหล่งเดิม: แท่นชาร์จไร้สายจำหน่ายแยก; กำลังจริงขึ้นกับอุปกรณ์และสภาวะใช้งาน"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "1309713440/27072874066": {
@@ -5058,6 +6003,75 @@
         "notes": [
           "ฟิลด์ที่ไม่ปรากฏยังไม่ยืนยันจากแหล่งที่ตรวจ ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "Xiaomi 17T Pro",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: มี OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: Leica 12MP f/2.2; 15 มม. เทียบเท่า; FOV 120°"
+          },
+          "camera_optical_zoom": {
+            "value": 5,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "telephoto",
+            "note": "นับเลนส์เทเล/เพอริสโคปแยก; ไม่นับ crop หรือ digital zoom เป็นระยะ optical ของเลนส์ · คำนวณอัตราระยะเทียบเท่าจากเลนส์เพอริสโคป 115 มม. ÷ กล้องหลัก 23 มม. ใน rear_camera = 5×; ทั้งสองค่าอ้างอิงหน้าเดียวกัน · ข้อมูลเดิม: Leica เพอริสโคป 50MP f/3.0; 115 มม. เทียบเท่า; OIS"
+          },
+          "camera_rear_video": {
+            "value": 1,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K120 หรือ 8K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 8K 30fps, 4K 120fps, 4K HDR10+ 30/60fps, Log 4K 30/60fps; หน้า: 4K HDR10+ 30fps"
+          },
+          "camera_front_video": {
+            "value": 0.7,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง: 8K 30fps, 4K 120fps, 4K HDR10+ 30/60fps, Log 4K 30/60fps; หน้า: 4K HDR10+ 30fps"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED; HDR10+ / Dolby Vision"
+          },
+          "display_ppi": {
+            "value": 447.0,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2772² + 1280²) ÷ 6.83 นิ้ว = 447.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2772 × 1280 (1.5K)"
+          },
+          "display_hbm_nits": {
+            "value": 2000,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: 600 nits (typical); 2000 nits (HBM); 3500 nits (UHBM, APL 25%)"
+          },
+          "wired_watts": {
+            "value": 100,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 100W HyperCharge/PPS; ย้อนกลับผ่านสายสูงสุด 22.5W; PD 3.0/2.0"
+          },
+          "wireless_watts": {
+            "value": 50,
+            "url": "https://www.mi.com/th/product/xiaomi-17t-pro/specs/",
+            "source_field": "wireless_charging",
+            "note": "กำลังรับชาร์จไร้สายสูงสุดที่ระบุ; ไม่ใช่กำลังจ่ายย้อนกลับ · ข้อมูลเดิม: 50W HyperCharge · เงื่อนไขแหล่งเดิม: แท่นชาร์จไร้สายจำหน่ายแยก; กำลังจริงขึ้นกับอุปกรณ์และสภาวะใช้งาน"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "180188941/57805610451": {
@@ -5347,6 +6361,51 @@
           "ยังไม่ยืนยันชนิดกระจก: Global กล่าวทั้ง Corning Glass และ Panda MN228 ในคนละช่อง",
           "ข้อมูล Global เช่น NFC อุปกรณ์ในกล่องและหน่วยความจำอาจต่างจากเครื่องไทย กรุณาตรวจรหัสรุ่นและรายการขายอีกครั้ง"
         ]
+      },
+      "value_inputs": {
+        "model": "realme Note 80",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.realme.com/global/realme-note80/specs",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง1080p30/720p30; หน้า720p30; dual-view · เงื่อนไขแหล่งเดิม: สเปกGlobal; ไม่ใช่การยืนยันSKUไทยทุกฟิลด์ เนื่องจากหน้าสเปกไทยมีเนื้อหาrealme16Proปะปน"
+          },
+          "camera_front_video": {
+            "value": 0.2,
+            "url": "https://www.realme.com/global/realme-note80/specs",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (720p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง1080p30/720p30; หน้า720p30; dual-view · เงื่อนไขแหล่งเดิม: สเปกGlobal; ไม่ใช่การยืนยันSKUไทยทุกฟิลด์ เนื่องจากหน้าสเปกไทยมีเนื้อหาrealme16Proปะปน"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.realme.com/global/realme-note80/specs",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD · เงื่อนไขแหล่งเดิม: สเปกGlobal; ไม่ใช่การยืนยันSKUไทยทุกฟิลด์ เนื่องจากหน้าสเปกไทยมีเนื้อหาrealme16Proปะปน"
+          },
+          "display_ppi": {
+            "value": 260.3,
+            "url": "https://www.realme.com/global/realme-note80/specs",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1600² + 720²) ÷ 6.74 นิ้ว = 260.3 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1600 ×720 (HD+) · เงื่อนไขแหล่งเดิม: สเปกGlobal; ไม่ใช่การยืนยันSKUไทยทุกฟิลด์ เนื่องจากหน้าสเปกไทยมีเนื้อหาrealme16Proปะปน"
+          },
+          "display_hbm_nits": {
+            "value": 563,
+            "url": "https://www.realme.com/global/realme-note80/specs",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ450 nits (typical); HBM563 nits (typical) · เงื่อนไขแหล่งเดิม: สเปกGlobal; ไม่ใช่การยืนยันSKUไทยทุกฟิลด์ เนื่องจากหน้าสเปกไทยมีเนื้อหาrealme16Proปะปน"
+          },
+          "wired_watts": {
+            "value": 15,
+            "url": "https://www.realme.com/global/realme-note80/specs",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 15W (5V/3A); PD15W,QC14.4W · เงื่อนไขแหล่งเดิม: สเปกGlobal; ไม่ใช่การยืนยันSKUไทยทุกฟิลด์ เนื่องจากหน้าสเปกไทยมีเนื้อหาrealme16Proปะปน"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "180188941/46709310657": {
@@ -5597,6 +6656,51 @@
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์",
           "อ้างอิง RAM จริง 4GB / ความจุ 256GB ตามหน้าสเปกไทย; หน้าแนะนำกล่าวถึง RAM จริงสูงสุด 8GB ตามภูมิภาค จึงต้องตรวจรุ่นย่อยในร้านอีกครั้ง"
         ]
+      },
+      "value_inputs": {
+        "model": "realme P4x",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.realme.com/th/realme-p4x/specs",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง 1080p30/720p30; slow motion 720p120; หน้า 720p30"
+          },
+          "camera_front_video": {
+            "value": 0.2,
+            "url": "https://www.realme.com/th/realme-p4x/specs",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (720p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง 1080p30/720p30; slow motion 720p120; หน้า 720p30"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.realme.com/th/realme-p4x/specs",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD"
+          },
+          "display_ppi": {
+            "value": 254.0,
+            "url": "https://www.realme.com/th/realme-p4x/specs",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1570² + 720²) ÷ 6.8 นิ้ว = 254.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1570 × 720 (HD+)"
+          },
+          "display_hbm_nits": {
+            "value": 900,
+            "url": "https://www.realme.com/th/realme-p4x/specs",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ 700 nits; HBM 900 nits"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.realme.com/th/realme-p4x/specs",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 45W SUPERVOOC/PPS; VOOC 15W, PD 15W, QC 13.5W"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "180188941/27225668277": {
@@ -5845,6 +6949,51 @@
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์",
           "อ้างอิง RAM จริง 4GB / ความจุ 256GB ตามหน้าสเปกไทย; หน้าแนะนำกล่าวถึง RAM จริงสูงสุด 8GB ตามภูมิภาค จึงต้องตรวจรุ่นย่อยในร้านอีกครั้ง"
         ]
+      },
+      "value_inputs": {
+        "model": "realme C100x",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.realme.com/th/realme-c100x/specs",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง 1080p30/720p30; slow motion 720p120; หน้า 720p30"
+          },
+          "camera_front_video": {
+            "value": 0.2,
+            "url": "https://www.realme.com/th/realme-c100x/specs",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (720p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง 1080p30/720p30; slow motion 720p120; หน้า 720p30"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.realme.com/th/realme-c100x/specs",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD"
+          },
+          "display_ppi": {
+            "value": 254.0,
+            "url": "https://www.realme.com/th/realme-c100x/specs",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1570² + 720²) ÷ 6.8 นิ้ว = 254.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1570 × 720 (HD+)"
+          },
+          "display_hbm_nits": {
+            "value": 900,
+            "url": "https://www.realme.com/th/realme-c100x/specs",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ 700 nits; HBM 900 nits"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.realme.com/th/realme-c100x/specs",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: ชาร์จเร็วสูงสุด45W; VOOC 15W, PD 15W, QC 13.5W"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "969190833/25337848524": {
@@ -6092,6 +7241,51 @@
         "notes": [
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "HONOR X9d 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 5MP f/2.2"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED"
+          },
+          "display_ppi": {
+            "value": 427.1,
+            "url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2640² + 1200²) ÷ 6.79 นิ้ว = 427.1 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2640 × 1200"
+          },
+          "display_hbm_nits": {
+            "value": 1800,
+            "url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ800 nits; HBM1800 nits; APL6000 nits · เงื่อนไขแหล่งเดิม: APLเป็นความสว่างสูงสุดเฉพาะบางสถานการณ์ ไม่ใช่ความสว่างเต็มจอต่อเนื่อง"
+          },
+          "wired_watts": {
+            "value": 66,
+            "url": "https://www.honor.com/th/phones/honor-x9d/spec/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: HONOR SuperCharge66W (สูงสุด20V/3.3A)"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "969190833/49866210583": {
@@ -6354,6 +7548,33 @@
           "หน้าสเปกไทยระบุ RAM 6GB แต่หน้าแนะนำไทยระบุ RAM จริง 8GB + RAM เสมือน 8GB จึงรอยืนยันรุ่นย่อยก่อนระบุ RAM สำหรับจัดอันดับ",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "HONOR X7e 4G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "display_oled": {
+            "value": false,
+            "url": "https://www.honor.com/th/phones/honor-x7e/spec/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: TFT LCD"
+          },
+          "display_ppi": {
+            "value": 266.0,
+            "url": "https://www.honor.com/th/phones/honor-x7e/spec/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1604² + 720²) ÷ 6.61 นิ้ว = 266.0 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1604 × 720"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.honor.com/th/phones/honor-x7e/spec/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: HONOR SuperCharge สูงสุด45W (11V/4.1A)"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "22507473/57760548896": {
@@ -6624,6 +7845,45 @@
           "หน้าสเปกที่ตรวจไม่มีหัวข้อNFCชัดเจน จึงเว้นnfc ไม่อนุมานจากรุ่นราคาใกล้เคียง",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "HONOR 600 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.honor.com/th/phones/honor-600/spec/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.honor.com/th/phones/honor-600/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 12MP; มุม112°"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.honor.com/th/phones/honor-600/spec/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED"
+          },
+          "display_ppi": {
+            "value": 457.6,
+            "url": "https://www.honor.com/th/phones/honor-600/spec/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2728² + 1264²) ÷ 6.57 นิ้ว = 457.6 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2728 × 1264"
+          },
+          "wired_watts": {
+            "value": 80,
+            "url": "https://www.honor.com/th/phones/honor-600/spec/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: HONOR SuperCharge80W (20V/4A); รองรับ11V/6A,10V/4A"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "18119190/26535275638": {
@@ -6921,6 +8181,63 @@
           "LPDDR5X Ultra/UFS4.1 จากหน้าสเปกที่แสดง12/16GB; ร้านofficialยืนยัน8/256เพิ่ม แต่ควรตรวจชนิดRAM/ROMของ8GBกับรุ่นขายจริง",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "iQOO Neo 10",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.iqoo.com/th/products/neo-10",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS (Sony IMX882)"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.iqoo.com/th/products/neo-10",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 8MP"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.iqoo.com/th/products/param/neo-10",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED C9+"
+          },
+          "display_ppi": {
+            "value": 452.9,
+            "url": "https://www.iqoo.com/th/products/param/neo-10",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2800² + 1260²) ÷ 6.78 นิ้ว = 452.9 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2800 ×1260"
+          },
+          "display_hbm_nits": {
+            "value": 2000,
+            "url": "https://www.iqoo.com/th/products/param/neo-10",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: HBM2000 nits; สูงสุดเฉพาะส่วน5500 nits · เงื่อนไขแหล่งเดิม: 5500nitsวัดโดยให้25%ของพื้นที่จอสว่าง อีก75%ดำ ตาม https://www.iqoo.com/th/products/neo-10"
+          },
+          "wired_watts": {
+            "value": 120,
+            "url": "https://www.iqoo.com/th/products/param/neo-10",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 120W FlashCharge"
+          },
+          "os_upgrades": {
+            "value": 3,
+            "url": "https://www.iqoo.com/th/products/neo-10",
+            "source_field": "update_policy",
+            "note": "จำนวนการอัปเกรดระบบรุ่นใหญ่สูงสุดที่ประกาศ ไม่ใช่เวอร์ชัน OS ปัจจุบันหรือจำนวนครั้งที่เหลือ · ข้อมูลเดิม: อัปเดตAndroid3เวอร์ชัน; ความปลอดภัย4ปี"
+          },
+          "security_years": {
+            "value": 4,
+            "url": "https://www.iqoo.com/th/products/neo-10",
+            "source_field": "update_policy",
+            "note": "จำนวนปีทั้งหมดที่ผู้ผลิตประกาศสำหรับรุ่น ไม่ใช่ปีที่เหลือหลังซื้อ; ไม่แปลงวันสิ้นสุดเป็นจำนวนปีโดยเดาวันเริ่ม · ข้อมูลเดิม: อัปเดตAndroid3เวอร์ชัน; ความปลอดภัย4ปี"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "17499427/24014631968": {
@@ -7176,6 +8493,39 @@
           "ไม่พบหลักฐานไทยชัดเจนของOIS, ultrawide, telephoto, eSIM, video resolution/fps, wireless charging, นโยบายอัปเดต จึงเว้น",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "vivo V80 Lite",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "display_oled": {
+            "value": true,
+            "url": "https://www.vivo.com/th/products/param/v80-lite-5g",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED Q10+"
+          },
+          "display_ppi": {
+            "value": 449.6,
+            "url": "https://www.vivo.com/th/products/param/v80-lite-5g",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2800² + 1260²) ÷ 6.83 นิ้ว = 449.6 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2800 ×1260"
+          },
+          "display_hbm_nits": {
+            "value": 2000,
+            "url": "https://www.vivo.com/th/products/param/v80-lite-5g",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: HBM2000 nits"
+          },
+          "wired_watts": {
+            "value": 44,
+            "url": "https://www.vivo.com/th/products/param/v80-lite-5g",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 44W FlashCharge"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "1373908861/24537889562": {
@@ -7341,6 +8691,14 @@
           "RAM ที่ระบบรายงานใน Geekbench 5.62GB ไม่ใช่หลักฐานยืนยันความจุ RAM 6GB จากผู้ผลิต",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "MEIZU Mblu 21",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {},
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "53892420/45260867994": {
@@ -7591,6 +8949,51 @@
           "ไม่พบระยะเวลารับประกันในเนื้อหาหน้านโยบายที่อ่านได้ https://support.oppo.com/th/warranty-policy/ จึงเว้นข้อมูลประกัน; คำโฆษณาลื่นไหลหลายปีไม่ใช่นโยบายอัปเดตAndroid",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "OPPO A6t Pro",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_rear_video": {
+            "value": 0.35,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง/หน้า 1080p30 หรือ 720p30; time-lapse 1080p30"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หลัง/หน้า 1080p30 หรือ 720p30; time-lapse 1080p30"
+          },
+          "display_oled": {
+            "value": false,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: LCD"
+          },
+          "display_ppi": {
+            "value": 255.9,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(1570² + 720²) ÷ 6.75 นิ้ว = 255.9 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 1570 × 720 (HD+)"
+          },
+          "display_hbm_nits": {
+            "value": 1125,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ 800 nits (typical); HBM 1125 nits (typical)"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a6t-pro/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 45W SUPERVOOC; PPS 33W, VOOC 15W, PD 13.5W"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "53892420/49766587371": {
@@ -7858,6 +9261,51 @@
           "ไม่พบระยะเวลารับประกันในเนื้อหาหน้านโยบายที่อ่านได้ https://support.oppo.com/th/warranty-policy/ จึงเว้นข้อมูลประกัน; คำโฆษณาลื่นไหลหลายปีไม่ใช่นโยบายอัปเดตAndroid",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "OPPO A7 Pro 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": true,
+        "metrics": {
+          "camera_rear_video": {
+            "value": 0.5,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ไม่นำโหมด 2.5K30 หรือ EIS ที่ระบุว่ามาผ่าน OTA มานับว่าพร้อมใช้แล้ว · ข้อมูลเดิม: หลัง 1080p60/30; หน้า 1080p30; ทั้งสอง 2.5K30 และ EIS ผ่าน OTA"
+          },
+          "camera_front_video": {
+            "value": 0.35,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (1080p30) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ไม่นำโหมด 2.5K30 หรือ EIS ที่ระบุว่ามาผ่าน OTA มานับว่าพร้อมใช้แล้ว · ข้อมูลเดิม: หลัง 1080p60/30; หน้า 1080p30; ทั้งสอง 2.5K30 และ EIS ผ่าน OTA"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: Flexible AMOLED"
+          },
+          "display_ppi": {
+            "value": 396.7,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2372² + 1080²) ÷ 6.57 นิ้ว = 396.7 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2372 × 1080 (FHD+)"
+          },
+          "display_hbm_nits": {
+            "value": 1400,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ 800 nits (typical); HBM 1400 nits (typical)"
+          },
+          "wired_watts": {
+            "value": 45,
+            "url": "https://www.oppo.com/th/smartphones/series-a/a7-pro-5g/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 45W SUPERVOOC / UFCS / PPS; PD 13.5W"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     },
     "58567480/55162727088": {
@@ -8144,6 +9592,69 @@
           "ไม่พบระยะเวลารับประกันในเนื้อหาหน้านโยบายที่อ่านได้ https://support.oppo.com/th/warranty-policy/ จึงเว้นข้อมูลประกัน; คำโฆษณาลื่นไหลหลายปีไม่ใช่นโยบายอัปเดตAndroid",
           "ข้อมูลที่เว้นไว้ยังไม่ยืนยัน ไม่ได้หมายความว่าไม่มีฟีเจอร์"
         ]
+      },
+      "value_inputs": {
+        "model": "OPPO Reno 16 5G",
+        "checked_at": "2026-10-21",
+        "variant_confirmed": false,
+        "metrics": {
+          "camera_ois": {
+            "value": true,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "main_ois",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: รองรับ OIS 2 แกน"
+          },
+          "camera_ultrawide": {
+            "value": true,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "ultrawide",
+            "note": "คุณสมบัติกล้องที่มีหลักฐาน ไม่ใช่คะแนนคุณภาพภาพ; false ใช้เฉพาะการระบุไม่รองรับอย่างชัดเจน · ข้อมูลเดิม: 50MP f/2.0, AF, 116°"
+          },
+          "camera_optical_zoom": {
+            "value": 3.5,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "telephoto",
+            "note": "นับเลนส์เทเล/เพอริสโคปแยก; ไม่นับ crop หรือ digital zoom เป็นระยะ optical ของเลนส์ · ข้อมูลเดิม: 50MP f/2.8, AF, OIS 2 แกน; optical zoom 3.5×"
+          },
+          "camera_rear_video": {
+            "value": 0.85,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง 4K60/30; หลัง HDR 4K60/30; slow motion 1080p120 หรือ 720p240/120"
+          },
+          "camera_front_video": {
+            "value": 0.85,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "video",
+            "note": "ระดับความสามารถบันทึกวิดีโอที่ยืนยันได้ (4K60) ตามเกณฑ์เวอร์ชัน 2; ไม่ใช่ผลทดสอบคุณภาพภาพหรือกันสั่น; ไม่ใช้โหมดสโลว์โมชัน · ข้อมูลเดิม: หน้า/หลัง 4K60/30; หลัง HDR 4K60/30; slow motion 1080p120 หรือ 720p240/120"
+          },
+          "display_oled": {
+            "value": true,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "display_type",
+            "note": "จำแนกชนิดแผงจากข้อมูลเดิม; AMOLED/OLED=true, LCD=false; ช่องว่างไม่เท่ากับ false · ข้อมูลเดิม: AMOLED"
+          },
+          "display_ppi": {
+            "value": 459.9,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "resolution",
+            "note": "ค่าคำนวณโดยประมาณ: sqrt(2640² + 1216²) ÷ 6.32 นิ้ว = 459.9 ppi; ใช้แนวทแยงกรอบสี่เหลี่ยมเต็มจาก display_inches ไม่ใช่พื้นที่จอหลังหักมุมโค้ง; ความแม่นยำจำกัดตามการปัดเศษนิ้วของผู้ผลิต · ข้อมูลเดิม: 2640 × 1216 (FHD+)"
+          },
+          "display_hbm_nits": {
+            "value": 1800,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "brightness",
+            "note": "ใช้เฉพาะค่าที่ต้นทางระบุ HBM; ไม่แทนด้วย typical, peak, UHBM หรือ HDR peak · ข้อมูลเดิม: ปกติ 600 nits (typical); HBM 1800 nits (typical)"
+          },
+          "wired_watts": {
+            "value": 80,
+            "url": "https://www.oppo.com/th/smartphones/series-reno/reno16/specs/",
+            "source_field": "wired_charging",
+            "note": "กำลังชาร์จผ่านสายของโทรศัพท์ที่ระบุ ไม่ใช่ตัวเลขกำลังอะแดปเตอร์ทดสอบเพียงอย่างเดียวหรือกำลังจ่ายย้อนกลับ; ความเร็วจริงขึ้นกับเงื่อนไขผู้ผลิต · ข้อมูลเดิม: 80W SUPERVOOC; PPS 55W; PD/QC 13.5W"
+          }
+        },
+        "base_checked_at": "2026-10-20",
+        "model_identity_confirmed": true
       }
     }
   },

@@ -91,6 +91,12 @@ def researched_specs(item):
     return None
 
 
+def manual_specs(entry, item):
+    # Older price-only saves copied research into this key. Keep those live-linked.
+    return ('value_specs' in entry and (entry.get('value_specs_source') == 'manual'
+            or entry['value_specs'] != researched_specs(item)))
+
+
 def payload(root):
     store = read_store(root)
     categories = []
@@ -110,10 +116,12 @@ def payload(root):
                         pending.append(pf)
             rows.append({'listing_id': item['listing_id'], 'title': item.get('display_name', item['title']), 'rank': item['rank'],
                          'source_title': item['title'], 'price_band': item.get('price_band', ''),
+                         'research_identity': binding(item),
                          'price_band_label': item.get('price_band_label', ''),
                          'shop_name': item.get('shop_name', ''), 'offers': offers,
                          'reference_price': entry.get('reference_price') if matched else None,
-                         'value_specs': entry['value_specs'] if matched and 'value_specs' in entry else researched_specs(item),
+                         'value_specs': entry['value_specs'] if matched and manual_specs(entry, item) else researched_specs(item),
+                         'value_specs_source': 'manual' if matched and manual_specs(entry, item) else 'research',
                          'spec_research': item.get('spec_research') if researched_specs(item) is not None else None,
                          'feed_offer': default_shopee(item),
                          'revision': revision(item, entry), 'needs_review': pending})
@@ -202,8 +210,11 @@ def clean_value_specs(raw, now):
                 raise ValueError('ใช้แหล่งสเปก HTTPS และลิงก์ผลทดสอบ Geekbench 6 CPU ให้ตรงรุ่น') from None
         result[key] = value
     result['verified'] = raw.get('verified') is True
-    if result['verified'] and not all(result[key] for key in result if key != 'verified'):
-        raise ValueError('กรอกสเปก ตัวเลือก และแหล่งอ้างอิงให้ครบก่อนยืนยัน')
+    if result['verified']:
+        if not all(result[key] for key in ('ram_gb', 'storage_gb', 'variant', 'spec_url')):
+            raise ValueError('ยืนยัน RAM จริง ความจุ ตัวเลือก และแหล่งอ้างอิงก่อน ส่วนสเปกที่ขาดเว้นว่างได้')
+        if (result['geekbench6_single'] or result['geekbench6_multi']) and not result['benchmark_url']:
+            raise ValueError('คะแนน Geekbench ต้องมีลิงก์ผล Geekbench 6 CPU ที่ตรงรุ่น')
     result['checked_at'] = now if result['verified'] else None
     return result
 
@@ -265,15 +276,19 @@ def save(root, updates):
             offers.pop(pf, None)
         for pf, raw in changes.items():
             offers[pf] = clean_offer(raw, pf, now)
-        specs = old['value_specs'] if old.get('binding') == binding(item) and 'value_specs' in old else researched_specs(item)
+        has_specs = old.get('binding') == binding(item) and manual_specs(old, item)
+        specs = old.get('value_specs') if has_specs else None
         if 'value_specs' in update:
             specs = clean_value_specs(update['value_specs'], now)
+            has_specs = True
         reference = old.get('reference_price') if old.get('binding') == binding(item) else None
         if 'reference_price' in update:
             reference = clean_reference_price(update['reference_price'], now)
         store['items'][lid] = {'binding': binding(item), 'offers': offers, 'updated_at': now}
-        if specs is not None:
+        # Price-only saves must not freeze the current research as a manual override.
+        if has_specs:
             store['items'][lid]['value_specs'] = specs
+            store['items'][lid]['value_specs_source'] = 'manual'
         if reference is not None:
             store['items'][lid]['reference_price'] = reference
     store['updated_at'] = now

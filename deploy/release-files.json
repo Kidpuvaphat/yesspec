@@ -65,5 +65,6 @@
   "compare.html",
   "assets/phone-specs.js",
   "assets/phone-comparison.js",
-  "assets/phone-comparison.css"
+  "assets/phone-comparison.css",
+  "assets/phone-value.js"
 ]
