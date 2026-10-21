@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
 const P=require('../assets/phone-specs.js');
+const RankingData=require('../assets/ranking-data.js');
 const profileKey='yesspec_usage_profile_v2';
 const profiles=['balanced','photo','gaming','work','live','battery'].map((id,n)=>({id,label:['สมดุล','ถ่ายรูป','เล่นเกม','ทำงาน','ไลฟ์สด','เน้นแบตเตอรี่'][n]}));
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
@@ -46,14 +47,14 @@ test('score cards distinguish suitability, value, provisional ranks and source-s
 
 test('profile changes preserve home search/budget and recalculate the selected score mode after refresh',async()=>{
  const calls=[],R=rankingStub(calls),localStorage=storage({[profileKey]:'photo'});
- const root={RankingOffers:R,ShopeeAffiliate:{},OfficialSpecs:{},localStorage};
+ const root={RankingOffers:R,ShopeeAffiliate:{},OfficialSpecs:{},RankingData,localStorage};
  const sandbox={window:root,module:{exports:{}}};
  run('shopee-ranking.js',sandbox);
  root.ShopeeRanking.listingHTML=item=>`${item.title}:${item.value_result.profile}:${item.score_kind}`;
  run('category-top20.js',sandbox);
  const document=dom(),items=[{listing_id:'1/1',title:'Example phone',shop_name:'Shop',price_band:'budget'}];
  const feed={catalog_mode:'smartphone_30',categories:[{id:'smartphone',listing_count:1,items,price_bands:[{id:'budget',label:'budget',count:1}]}]};
- const controller=sandbox.module.exports.createController(document,async()=>feed);
+ const controller=sandbox.module.exports.createController(document,async()=>({dataset:feed,status:'ready',message:'',audit:null}));
  await controller.show('smartphone');
  const $=document.getElementById;
  assert.equal($('categoryTop20Profile').value,'photo');
@@ -105,7 +106,7 @@ test('comparison honors the shared profile URL, preserves selected models and up
  const document=dom(),R=rankingStub(),localStorage=storage({[profileKey]:'battery'});
  const items=[{listing_id:'1/1',display_name:'Phone A',title:'Phone A',purchase_offers:[]},{listing_id:'1/2',display_name:'Phone B',title:'Phone B',purchase_offers:[]}];
  const location={href:'https://yesspec.com/compare.html?models=1%2F1%2C1%2F2&profile=photo&keep=yes',search:'?models=1%2F1%2C1%2F2&profile=photo&keep=yes'};
- const root={document,PhoneSpecs:P,RankingOffers:R,localStorage,location,history:{replaceState(a,b,url){location.href=String(url);location.search=new URL(url).search;}},
+ const root={document,PhoneSpecs:P,RankingOffers:R,RankingData:{create:()=>({load:async()=>({dataset:{catalog_mode:'smartphone_30',categories:[{items}]},status:'ready',message:'',audit:null}),watch(){}})},localStorage,location,history:{replaceState(a,b,url){location.href=String(url);location.search=new URL(url).search;}},
   fetch:async()=>({ok:true,json:async()=>({catalog_mode:'smartphone_30',categories:[{items}]})})};
  const sandbox={window:root,URL,URLSearchParams};
  run('phone-comparison.js',sandbox);await flush();

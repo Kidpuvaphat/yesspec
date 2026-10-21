@@ -3,6 +3,7 @@
   const affiliate = root.ShopeeAffiliate || (typeof require === 'function' ? require('./affiliate-links.js') : null);
   const official = root.OfficialSpecs || (typeof require === 'function' ? require('./official-specs.js') : null);
   const channels = root.RankingOffers || (typeof require === 'function' ? require('./ranking-offers.js') : null);
+  const rankingData = root.RankingData || (typeof require === 'function' ? require('./ranking-data.js') : null);
   const phoneImages = root.PhoneImages || (typeof require === 'function' ? require('./phone-images.js') : null);
   const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const number = value => typeof value !== 'number' || !Number.isFinite(value) || value < 0 ? '—' : value.toLocaleString('th-TH', {maximumFractionDigits: 2});
@@ -132,7 +133,8 @@
   root.ShopeeRanking = api;
   if (!root.document || !root.document.getElementById('sourceSelect')) return;
   const $ = id => document.getElementById(id);
-  let dataset, audit, activeCategory, review = false, loadSequence = 0, profile = readProfile();
+  const store = rankingData.create({fetcher:(...args) => root.fetch(...args), host:root});
+  let dataset, audit, activeCategory, review = false, loadSequence = 0, profile = readProfile(), message = '';
   function categoryFromHash() {
     let hash = '';
     try { hash = decodeURIComponent(location.hash.slice(1)); } catch (_) { /* Invalid fragment falls back to the first category. */ }
@@ -144,7 +146,7 @@
     const ordered = channels.orderItems(c.items,mode,Date.now(),profile);
     const items = filterItems(ordered, $('listingSearch').value).filter(i => $('budgetBand').value === 'all' || i.price_band === $('budgetBand').value), e = escapeHTML;
     $('rankingOrderLabel').textContent = orderLabel(mode,profile);
-    if ($('rankingReadiness')) $('rankingReadiness').innerHTML = readinessHTML(ordered,mode);
+    if ($('rankingReadiness')) $('rankingReadiness').innerHTML = (message ? `<strong role="status">${escapeHTML(message)}</strong><br>` : '') + readinessHTML(ordered,mode);
     $('valueFormula').innerHTML = channels.formulaHTML(profile);
     const feed = dataset.source === 'shopee_affiliate_csv';
     $('categoryTitle').textContent = `${c.icon} ${c.name}`;
@@ -172,48 +174,54 @@
     $('budgetBand').innerHTML = '<option value="all">ทุกช่วงงบ</option>' + (activeCategory.price_bands || []).map(b => `<option value="${escapeHTML(b.id)}">${escapeHTML(b.label)} (${b.count})</option>`).join('');
     render();
   }
-  async function readJSON(path) {
-    const response = await fetch(path, {cache: 'no-store'});
-    if (!response.ok) throw new Error(`โหลด ${path} ไม่สำเร็จ`);
-    return response.json();
-  }
-  async function init() {
-    const request = ++loadSequence;
-    const source = 'feed'; // Only the current phone catalog is open to the public.
-    $('sourceSelect').value = source;
-    dataset = null;
-    $('categorySelect').disabled = $('listingSearch').disabled = true;
-    $('rankingResults').textContent = 'กำลังโหลดชุดข้อมูล…';
-    try {
-      const paths = source === 'feed' ? ['data/shopee_feed_rankings.json', 'data/shopee_feed_review.json'] : ['data/shopee_rankings.json', 'data/shopee_ranking_review.json'];
-      const results = await Promise.allSettled([...paths, 'data/official_product_specs.json', 'data/ranking_manual_offers.json'].map(readJSON));
-      if (request !== loadSequence) return;
-      if (results[0].status !== 'fulfilled') throw results[0].reason;
-      dataset = official.attach(results[0].value, results[2].status === 'fulfilled' ? results[2].value : null);
-      dataset = channels.attach(dataset, results[3].status === 'fulfilled' ? results[3].value : null);
-      if (!dataset.categories?.length) throw new Error('ยังไม่มีข้อมูลอันดับ');
-      audit = results[1].status === 'fulfilled' ? results[1].value : null;
-      const feed = dataset.source === 'shopee_affiliate_csv';
-      $('sourceLabel').textContent = feed ? 'SHOPEE · PRODUCT FEED' : 'SHOPEE · ผลค้นหาจากปลั๊กอิน';
-      $('scopeDescription').textContent = dataset.catalog_mode === 'smartphone_30' ? '30 รุ่นไม่ซ้ำ คัดกระจาย 6 ช่วงงบจากไฟล์ Shopee ที่ได้รับ ใช้ยอดขายต้นทางประกอบการคัดเลือกและเรียงลำดับในชุดนี้' : feed ? `คัดจากไฟล์ Product Feed ที่อ่านครบ ${number(dataset.source_total_rows)} รายการ ใช้ยอด item_sold ภายในหมวดที่จับคู่และผ่านเกณฑ์ ยังไม่ยืนยันว่าฟีดครอบคลุมสินค้าทั้ง Shopee` : 'จัดอันดับภายในผลค้นหาที่เก็บได้ โดยใช้ตัวเลขยอดขายที่ปลั๊กอินรายงานต่อหน้าสินค้า เป็นกลุ่มตัวอย่างจากคำค้น';
-      $('sourceFooter').textContent = feed ? 'แหล่งข้อมูล: Shopee Affiliate Product Feed · ราคาและยอดขายจาก CSV' : 'แหล่งข้อมูล: ผลค้นหาจากปลั๊กอิน Shopee';
-      $('datasetStats').innerHTML = `<span><strong>${number(dataset.category_count)}</strong> หมวดสินค้า</span><span><strong>${number(dataset.listing_count)}</strong> รายการที่จัดอันดับ</span>${feed ? `<span>ฐานฟีด ${number(dataset.source_total_rows)} รายการ</span>` : ''}<span>${feed ? 'อ่านไฟล์' : 'เก็บล่าสุด'} ${date(dataset.observed_to)} น.</span>`;
-      $('categorySelect').innerHTML = dataset.categories.map(c => `<option value="${escapeHTML(c.id)}">${escapeHTML(c.icon)} ${escapeHTML(c.name)} (${c.listing_count})</option>`).join('');
-      $('categorySelect').disabled = $('listingSearch').disabled = false;
-      selectCategory();
-    } catch (error) {
-      if (request !== loadSequence) return;
+  function applySnapshot(snapshot) {
+    const previousId = activeCategory?.id;
+    dataset = snapshot.dataset;
+    audit = snapshot.audit;
+    message = snapshot.status === 'ready' ? '' : snapshot.message;
+    if (!dataset?.categories?.length) {
+      activeCategory = null;
+      $('categorySelect').disabled = $('listingSearch').disabled = true;
       $('datasetStats').textContent = 'ยังโหลดข้อมูลไม่ได้';
       $('categoryTitle').textContent = 'ยังโหลดอันดับไม่ได้';
+      if ($('rankingReadiness')) $('rankingReadiness').textContent = message;
       $('rankingResults').innerHTML = '<div class="error">ไม่สามารถโหลดข้อมูลอันดับได้ กรุณาลองอีกครั้ง<br><button id="retryLoad">ลองใหม่</button></div>';
-      $('retryLoad').onclick = init;
+      $('retryLoad').onclick = () => init(true);
+      return;
     }
+    const feed = dataset.source === 'shopee_affiliate_csv';
+    $('sourceLabel').textContent = feed ? 'SHOPEE · PRODUCT FEED' : 'SHOPEE · ผลค้นหาจากปลั๊กอิน';
+    $('scopeDescription').textContent = dataset.catalog_mode === 'smartphone_30' ? '30 รุ่นไม่ซ้ำ คัดกระจาย 6 ช่วงงบจากไฟล์ Shopee ที่ได้รับ ใช้ยอดขายต้นทางประกอบการคัดเลือกและเรียงลำดับในชุดนี้' : feed ? `คัดจากไฟล์ Product Feed ที่อ่านครบ ${number(dataset.source_total_rows)} รายการ ใช้ยอด item_sold ภายในหมวดที่จับคู่และผ่านเกณฑ์ ยังไม่ยืนยันว่าฟีดครอบคลุมสินค้าทั้ง Shopee` : 'จัดอันดับภายในผลค้นหาที่เก็บได้ โดยใช้ตัวเลขยอดขายที่ปลั๊กอินรายงานต่อหน้าสินค้า เป็นกลุ่มตัวอย่างจากคำค้น';
+    $('sourceFooter').textContent = feed ? 'แหล่งข้อมูล: Shopee Affiliate Product Feed · ราคาและยอดขายจาก CSV' : 'แหล่งข้อมูล: ผลค้นหาจากปลั๊กอิน Shopee';
+    $('datasetStats').innerHTML = `<span><strong>${number(dataset.category_count)}</strong> หมวดสินค้า</span><span><strong>${number(dataset.listing_count)}</strong> รายการที่จัดอันดับ</span>${feed ? `<span>ฐานฟีด ${number(dataset.source_total_rows)} รายการ</span>` : ''}<span>${feed ? 'อ่านไฟล์' : 'เก็บล่าสุด'} ${date(dataset.observed_to)} น.</span>`;
+    $('categorySelect').innerHTML = dataset.categories.map(c => `<option value="${escapeHTML(c.id)}">${escapeHTML(c.icon)} ${escapeHTML(c.name)} (${c.listing_count})</option>`).join('');
+    $('categorySelect').disabled = $('listingSearch').disabled = false;
+    activeCategory = dataset.categories.find(c => c.id === previousId);
+    if (!activeCategory) {
+      selectCategory();
+      return;
+    }
+    $('categorySelect').value = activeCategory.id;
+    const band = $('budgetBand').value;
+    $('budgetBand').innerHTML = '<option value="all">ทุกช่วงงบ</option>' + (activeCategory.price_bands || []).map(b => `<option value="${escapeHTML(b.id)}">${escapeHTML(b.label)} (${b.count})</option>`).join('');
+    $('budgetBand').value = activeCategory.price_bands?.some(b => b.id === band) ? band : 'all';
+    render();
+  }
+  async function init(refresh = false) {
+    const request = ++loadSequence;
+    $('sourceSelect').value = 'feed'; // Only the current phone catalog is open to the public.
+    if (!dataset) {
+      $('categorySelect').disabled = $('listingSearch').disabled = true;
+      $('rankingResults').textContent = 'กำลังโหลดชุดข้อมูล…';
+    }
+    const snapshot = await store.load(refresh);
+    if (request === loadSequence) applySnapshot(snapshot);
   }
   $('sourceSelect').addEventListener('change', () => {
     const url = new URL(location.href);
     url.searchParams.set('source', $('sourceSelect').value);
     history.replaceState(null, '', url);
-    init();
+    init(true);
   });
   $('budgetBand').addEventListener('change', render);
   $('rankingSort').value = 'suitability';
@@ -224,13 +232,9 @@
   $('rankingProfile').addEventListener('change',event=>{profile=saveProfile(event.target.value);render();});
   bindChoices(document,'rankingProfileChoices','rankingProfile',channels.profiles,profile,id=>{profile=saveProfile(id);render();});
   $('valueFormula').innerHTML = channels.formulaHTML(profile);
-  channels.watchChanges(async () => {
-    if (!dataset) return;
-    let registry = null;
-    try { registry = await readJSON('data/ranking_manual_offers.json'); } catch (_) { /* Fail closed until the next refresh. */ }
-    dataset = channels.attach(dataset,registry);
-    activeCategory = dataset.categories.find(c=>c.id===activeCategory.id);
-    render();
+  store.watch(snapshot => {
+    ++loadSequence;
+    applySnapshot(snapshot);
   });
   $('categorySelect').addEventListener('change', () => { location.hash = $('categorySelect').value; });
   $('listingSearch').addEventListener('input', () => { if (dataset) render(); });

@@ -2,7 +2,8 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const {resolve,attach} = require('../assets/official-specs.js');
 const {listingHTML} = require('../assets/shopee-ranking.js');
-const {prepareDataset,createLoader} = require('../assets/category-top20.js');
+const {prepareDataset} = require('../assets/category-top20.js');
+const RankingData = require('../assets/ranking-data.js');
 const feed = require('../data/archive/shopee_feed_rankings-20261019.json');
 const registry = require('../data/official_product_specs.json');
 const clone = value=>JSON.parse(JSON.stringify(value));
@@ -90,11 +91,11 @@ test('a missing price preserves the item and its sales rank in the main Top 20',
 });
 
 test('a failed optional official registry leaves all 640 sales rankings usable', async () => {
-  const load=createLoader(async path=>{
-    if (path==='data/official_product_specs.json') throw new Error('offline');
+  const {load}=RankingData.create({fetcher:async path=>{
+    if (path==='/data/official_product_specs.json') throw new Error('offline');
     return {ok:true,json:async()=>feed};
-  });
-  const data=await load();
+  }});
+  const {dataset:data}=await load();
   assert.equal(data.categories.length,32);
   assert.equal(data.official_spec_coverage.verified,0);
   assert.equal(data.official_spec_coverage.pending,640);

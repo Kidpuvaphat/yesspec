@@ -2,8 +2,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const {prepareDataset, createLoader, createController} = require('../assets/category-top20.js');
+const {prepareDataset, createController} = require('../assets/category-top20.js');
 const affiliate = require('../assets/affiliate-links.js');
+const RankingData = require('../assets/ranking-data.js');
+const ready = dataset => ({dataset, audit:null, status:'ready', message:''});
 const feed = require('../data/archive/shopee_feed_rankings-20261019.json');
 const clone = value => JSON.parse(JSON.stringify(value));
 
@@ -21,7 +23,7 @@ test('every main-site category has exactly its feed Top 20, descending sales and
   const html = fs.readFileSync('index.html','utf8');
   const catalog = JSON.parse(html.match(/const CATEGORIES\s*=\s*(\[[\s\S]*?\n    \]);/)[1]);
   assert.deepEqual(data.categories.map(c=>c.id).sort(), catalog.map(c=>c.id).sort());
-  const doc = fakeDOM(), controller = createController(doc, async()=>data);
+  const doc = fakeDOM(), controller = createController(doc, async()=>ready(data));
   let total = 0;
   for (const cat of data.categories) {
     await controller.show(cat.id);
@@ -54,7 +56,7 @@ test('selection caps at 20 after sorting, shares ranks for ties and never mutate
 });
 
 test('search retains original ranks, clears to 20, and category switching resets the search', async () => {
-  const doc = fakeDOM(), controller = createController(doc, async()=>prepareDataset(feed));
+  const doc = fakeDOM(), controller = createController(doc, async()=>ready(prepareDataset(feed)));
   await controller.show('washer');
   controller.search('LG');
   assert.equal(doc.getElementById('categoryTop20Count').textContent,'3 / 20 รายการ');
@@ -76,9 +78,9 @@ test('the latest category wins when responses arrive out of order, including sta
   const first=controller.show('smartphone');
   const second=controller.show('washer');
   assert.equal(doc.getElementById('categoryTop20Search').disabled,true);
-  requests[1].resolve(prepareDataset(feed)); await second;
+  requests[1].resolve(ready(prepareDataset(feed))); await second;
   const content=doc.getElementById('categoryTop20Results').innerHTML;
-  requests[0].reject(new Error('stale failure')); await first;
+  requests[0].resolve({dataset:null,audit:null,status:'unavailable',message:'stale failure'}); await first;
   assert.equal(doc.getElementById('categoryTop20Results').innerHTML,content);
   assert.match(doc.getElementById('categoryTop20Review').href,/#washer$/);
   assert.equal(doc.getElementById('categoryTop20Results').attrs['aria-busy'],'false');
@@ -86,14 +88,15 @@ test('the latest category wins when responses arrive out of order, including sta
 
 test('load failure shows a retry instead of old products; retry recovers and loads only once', async () => {
   let calls=0;
-  const load=createLoader(async(path,options)=>{
+  const {load}=RankingData.create({fetcher:async(path,options)=>{
     assert.equal(options.cache,'no-store');
-    if (path === 'data/official_product_specs.json') return {ok:true,json:async()=>require('../data/official_product_specs.json')};
-    if (path === 'data/ranking_manual_offers.json') return {ok:true,json:async()=>({schema_version:1,items:{}})};
+    if (path === '/data/official_product_specs.json') return {ok:true,json:async()=>require('../data/official_product_specs.json')};
+    if (path === '/data/ranking_manual_offers.json') return {ok:true,json:async()=>({schema_version:1,items:{}})};
+    if (path === '/data/shopee_feed_review.json') return {ok:true,json:async()=>({categories:[]})};
     calls++;
-    assert.equal(path,'data/shopee_feed_rankings.json');
+    assert.equal(path,'/data/shopee_feed_rankings.json');
     return {ok:calls>1,json:async()=>feed};
-  });
+  }});
   const doc=fakeDOM(), controller=createController(doc,load);
   await controller.show('tablet');
   assert.match(doc.getElementById('categoryTop20Results').innerHTML,/ยังโหลดอันดับของหมวดนี้ไม่ได้/);
@@ -105,7 +108,7 @@ test('load failure shows a retry instead of old products; retry recovers and loa
 });
 
 test('missing category and invalid evidence never substitute a different category or source', async () => {
-  const doc=fakeDOM(), controller=createController(doc,async()=>prepareDataset(feed));
+  const doc=fakeDOM(), controller=createController(doc,async()=>ready(prepareDataset(feed)));
   await controller.show('not-a-category');
   assert.match(doc.getElementById('categoryTop20Results').innerHTML,/ยังโหลดอันดับของหมวดนี้ไม่ได้/);
   for(const mutate of [d=>d.source='plugin',d=>d.sales_period='rolling_30d',d=>d.categories[0].items[0].product_url='https://example.com/',d=>d.categories[0].items[0].sales.value=null,d=>d.categories[0].items[0].sales.period='rolling_30d']) {

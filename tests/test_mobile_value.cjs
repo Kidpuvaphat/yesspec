@@ -2,8 +2,9 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const offers = require('../assets/ranking-offers.js');
 const V = require('../assets/phone-value.js');
-const {createController,createLoader} = require('../assets/category-top20.js');
+const {createController} = require('../assets/category-top20.js');
 const feed = require('../data/shopee_feed_rankings.json');
+const RankingData = require('../assets/ranking-data.js');
 const now = Date.parse('2026-10-21T20:00:00Z');
 const specs = {
   geekbench6_single:3000,geekbench6_multi:10000,ram_gb:12,storage_gb:512,battery_mah:6000,refresh_hz:120,
@@ -148,7 +149,7 @@ test('refresh bypasses the cached registry and updates the active list without c
   const first=syntheticFeed.categories[0].items[0];
   first.spec_research.value_inputs=measuredInputs(first.display_name,Date.now());
   const freshSpec={...specs,checked_at:new Date().toISOString()};
-  const loader=createLoader(async path=>({ok:true,json:async()=>path.includes('ranking_manual') ? JSON.parse(JSON.stringify(registry)) : path.includes('official') ? {} : syntheticFeed}));
+  const {load:loader}=RankingData.create({fetcher:async path=>({ok:true,json:async()=>path.includes('ranking_manual') ? JSON.parse(JSON.stringify(registry)) : path.includes('official') ? {} : syntheticFeed})});
   const elements=new Map(),doc={getElementById(id){
     if(!elements.has(id))elements.set(id,{innerHTML:'',value:'',listeners:{},setAttribute(){},addEventListener(k,f){this.listeners[k]=f;}});
     return elements.get(id);

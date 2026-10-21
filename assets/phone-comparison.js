@@ -2,6 +2,7 @@
   'use strict';
   const P=root.PhoneSpecs || (typeof require==='function'?require('./phone-specs.js'):null);
   const R=root.RankingOffers || (typeof require==='function'?require('./ranking-offers.js'):null);
+  const rankingData=root.RankingData || (typeof require==='function'?require('./ranking-data.js'):null);
   const images=root.PhoneImages || (typeof require==='function'?require('./phone-images.js'):null);
   const e=P.esc, storageKey='yesspec_compare_phones_v1';
   const profileKey='yesspec_usage_profile_v2';
@@ -152,7 +153,8 @@
   async function start(doc) {
     const $=id=>doc.getElementById(id);
     if(!$('phoneCompare')){installPicker(doc);return;}
-    let items=[],selected=[],refreshSequence=0;
+    const store=rankingData.create({fetcher:(...args)=>root.fetch(...args),host:root});
+    let items=[],selected=[],selectionLoaded=false;
     let profile=validProfile(new URLSearchParams(root.location.search).get('profile')||readProfile());
     function render(persist=false) {
       const activeSlot=doc.activeElement?.matches?.('[data-compare-slot]')?doc.activeElement.id:null;
@@ -167,28 +169,29 @@
       if(persist)try{root.localStorage.setItem(storageKey,JSON.stringify(selected));}catch(_){}
       if(activeSlot)doc.getElementById(activeSlot)?.focus({preventScroll:true});
     }
-    async function load(initial=false) {
-      const sequence=++refreshSequence;
-      try{
-        const read=async path=>{const response=await root.fetch(path,{cache:'no-store'});if(!response.ok)throw Error('load');return response.json();};
-        const [feed,registry]=await Promise.allSettled([read('data/shopee_feed_rankings.json'),read('data/ranking_manual_offers.json')]);
-        if(sequence!==refreshSequence)return;
-        if(feed.status!=='fulfilled'||feed.value.catalog_mode!=='smartphone_30')throw Error('feed');
-        const data=R.attach(feed.value,registry.status==='fulfilled'?registry.value:null);
-        items=data.categories.flatMap(c=>c.items).sort((a,b)=>a.display_name.localeCompare(b.display_name));
-        if(initial){
-          const params=new URLSearchParams(root.location.search);let ids=params.has('models')?params.get('models').split(','):null;
-          if(ids===null)try{ids=JSON.parse(root.localStorage.getItem(storageKey)||'[]');}catch(_){}
-          selected=cleanSelection(ids,items);
-        }else selected=cleanSelection(selected,items);
-        $('compareControls').hidden=false;
-        $('compareStatus').textContent=registry.status==='fulfilled'?'':'โหลดราคาล่าสุดไม่ได้ · แสดงเฉพาะสเปกที่มีหลักฐาน';
-        render(initial);
-      }catch(_){
-        $('compareStatus').textContent='โหลดข้อมูลไม่ได้ กรุณาลองใหม่';
-        if(initial){$('compareStatus').innerHTML+=' <button type="button" id="retryComparison">ลองใหม่</button>';$('retryComparison').onclick=()=>load(true);}
-        else{items=items.map(i=>({...i,reference_price:null,value_specs:null,purchase_offers:[]}));render();}
+    function applySnapshot(snapshot) {
+      const data=snapshot.dataset;
+      if(!data || data.catalog_mode!=='smartphone_30') {
+        $('compareStatus').innerHTML=`${e(snapshot.message || 'โหลดข้อมูลไม่ได้ กรุณาลองใหม่')} <button type="button" id="retryComparison">ลองใหม่</button>`;
+        $('retryComparison').onclick=()=>load(true);
+        $('compareControls').hidden=true;
+        $('comparisonTable').innerHTML='';
+        return;
       }
+      items=data.categories.flatMap(c=>c.items).sort((a,b)=>a.display_name.localeCompare(b.display_name));
+      const initial=!selectionLoaded;
+      if(initial) {
+        const params=new URLSearchParams(root.location.search);let ids=params.has('models')?params.get('models').split(','):null;
+        if(ids===null)try{ids=JSON.parse(root.localStorage.getItem(storageKey)||'[]');}catch(_){}
+        selected=cleanSelection(ids,items);
+        selectionLoaded=true;
+      } else selected=cleanSelection(selected,items);
+      $('compareControls').hidden=false;
+      $('compareStatus').textContent=snapshot.status==='ready'?'':snapshot.message;
+      render(initial);
+    }
+    async function load(refresh=false) {
+      applySnapshot(await store.load(refresh));
     }
     $('modelSelectors').addEventListener('change',event=>{
       if(!event.target.hasAttribute('data-compare-slot'))return;
@@ -205,7 +208,7 @@
       render();
     });
     $('comparisonFormula').innerHTML=R.formulaHTML(profile);
-    await load(true);R.watchChanges(()=>load());
+    store.watch(applySnapshot);await load();
   }
   const api={cleanSelection,research,tableHTML,summaryRows,benchmarkRows};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;

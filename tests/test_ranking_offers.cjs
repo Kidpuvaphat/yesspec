@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const offers = require('../assets/ranking-offers.js');
 const {listingHTML} = require('../assets/shopee-ranking.js');
-const {createLoader} = require('../assets/category-top20.js');
+const RankingData = require('../assets/ranking-data.js');
 const feed = require('../data/archive/shopee_feed_rankings-20261019.json');
 const item = feed.categories[0].items[0];
 const clone = v => JSON.parse(JSON.stringify(v));
@@ -64,8 +64,8 @@ test('a replacement Shopee cart shows flash sale conditions without assigning so
   assert.match(html,new RegExp(`data-rank="${item.rank}"`));
 });
 test('unavailable manual registry fails closed without hiding rankings or restoring cleared carts', async () => {
-  const load=createLoader(async path=>{if(path.endsWith('ranking_manual_offers.json'))throw new Error('offline');return {ok:true,json:async()=>path.endsWith('official_product_specs.json')?require('../data/official_product_specs.json'):feed};});
-  const data=await load();assert.equal(data.categories.length,32);
+  const {load}=RankingData.create({fetcher:async path=>{if(path.endsWith('ranking_manual_offers.json'))throw new Error('offline');return {ok:true,json:async()=>path.endsWith('official_product_specs.json')?require('../data/official_product_specs.json'):feed};}});
+  const {dataset:data}=await load();assert.equal(data.categories.length,32);
   for(const category of data.categories) {assert.equal(category.items.length,20);for(const row of category.items)assert.deepEqual(row.purchase_offers,[]);}
 });
 test('the unchanged feed keeps its 640 Shopee carts with the empty manual registry', () => {
