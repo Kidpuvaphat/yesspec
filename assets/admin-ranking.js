@@ -78,7 +78,10 @@
       const values = drafts.get(row.listing_id)?.offers || Object.fromEntries(Object.keys(names).map(p => [p,formOffer(row.offers[p])]));
       const active = Object.keys(names).filter(p => values[p].url).map(p => names[p]).join(' · ') || 'ยังไม่มีช่องทางซื้อ';
       const score = row.value_result, suitability = row.score_kind==='suitability', decimals = suitability?2:4;
-      const scoreSummary = !Number.isFinite(score.score)?e(score.reason):`${suitability?'คะแนนเหมาะกับการใช้งาน':'ความคุ้มค่า'} · ${e(profileLabel())} ${score.score.toFixed(decimals)}${suitability?' / 100':' คะแนน / 1,000 บาท'}${score.provisional?` · <span class="score-provisional">${mode!=='sales'&&row.rank!=null?'อันดับชั่วคราว · ':''}คะแนนประมาณการ</span>`:''}<br>ข้อมูลยืนยัน ${Number(score.coverage).toFixed(1)}%${score.provisional&&Number.isFinite(score.score_low)&&Number.isFinite(score.score_high)?` · ช่วงคะแนน ${score.score_low.toFixed(decimals)}–${score.score_high.toFixed(decimals)}`:''}`;
+      const measured=score.measured_coverage??0,proxy=score.proxy_coverage??score.coverage??0,missing=score.missing_coverage??Math.max(0,100-(score.coverage||0));
+      const evidence=`<br>ผลทดสอบ ${measured.toFixed(1)}% · ประมาณจากสเปก ${proxy.toFixed(1)}% · ขาดข้อมูล ${missing.toFixed(1)}%`;
+      const provisional=score.provisional||proxy>0||missing>0;
+      const scoreSummary = (!Number.isFinite(score.score)?`รอข้อมูล · ${e(score.reason)}`:`${suitability?'คะแนนเหมาะกับการใช้งาน':'ความคุ้มค่า'} · ${e(profileLabel())} ${score.score.toFixed(decimals)}${suitability?' / 100':' คะแนน / 1,000 บาท'}${provisional?` · <span class="score-provisional">${mode!=='sales'&&row.rank!=null?'อันดับชั่วคราว · ':''}คะแนนประมาณการ</span>`:' · คะแนนจากผลทดสอบ'}${missing>0&&Number.isFinite(score.score_low)&&Number.isFinite(score.score_high)?`<br>ช่วงจากข้อมูลที่ขาด ${score.score_low.toFixed(decimals)}–${score.score_high.toFixed(decimals)}`:''}`)+evidence;
       return `<details class="product-card" data-id="${row.listing_id}" ${index === 0 ? 'open' : ''}><summary><span class="number">${row.rank ?? '—'}</span><div><div class="product-title">${e(row.title)}</div><div class="product-meta">${e(row.price_band_label)} · ร้านในฟีด: ${e(row.shop_name)} · ${e(active)} · เปิดเพื่อแก้ไข</div><div class="product-meta">${scoreSummary}</div></div></summary><form data-product-form>${row.needs_review.length ? '<p class="card-message">ชื่อหรือตัวเลือกในฟีดเปลี่ยน กรุณาจับคู่ตะกร้าใหม่</p>' : ''}${RankingOffers.scoreDetailsHTML(score)}${renderReference(row)}<details class="purchase-editor"><summary>ลิงก์ซื้อ / Affiliate และราคาตะกร้า (กรอกภายหลังได้)</summary><div class="channels">${Object.keys(names).map(p => renderChannel(row,p,values[p])).join('')}</div></details>${renderSpecs(row)}<div class="card-footer"><span class="card-message"></span><button type="submit" class="primary" data-save>บันทึกและคำนวณอันดับ</button></div></form></details>`;
     }).join('') || '<p>ไม่พบรายการตามตัวกรองนี้</p>';
     updateDirty();
@@ -127,7 +130,7 @@
     try {
       const result = await api('/api/admin/save-ranking-offers', {products});
       products.forEach(p => drafts.delete(p.listing_id));
-      localStorage.setItem('yesspec_offers_updated',String(Date.now()));
+      try { localStorage.setItem('yesspec_offers_updated',String(Date.now())); } catch (_) { /* A saved price must still refresh when browser storage is unavailable. */ }
       await load(`บันทึก ${result.updated_count} รายการและคำนวณอันดับใหม่แล้ว · ข้อมูลสเปกที่ขาดแสดงเป็นคะแนนประมาณการและอันดับชั่วคราว`);
     } catch (error) { status(error.message+' · ข้อมูลที่แก้ไขยังอยู่ในฟอร์ม'); }
     finally { busy = false; document.querySelectorAll('#dashboard input, #dashboard select, #dashboard button').forEach(el => {el.disabled = false;}); updateDirty(); }

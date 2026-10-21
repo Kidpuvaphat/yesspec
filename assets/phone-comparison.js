@@ -24,9 +24,11 @@
     return links?`<div class="compare-buy-links">${links}</div>`:'';
   }
   function scoreCell(s,suitability=false) {
-    if(!Number.isFinite(s.score))return `<span class="phone-unknown">รอข้อมูล</span><small>${e(s.reason)}</small>`;
-    const decimals=suitability?2:4;
-    return `<strong>${s.score.toFixed(decimals)}${suitability?' / 100':''}</strong>${s.provisional?'<span class="score-provisional">คะแนนประมาณการ</span>':''}<small>ข้อมูลยืนยัน ${Number(s.coverage).toFixed(1)}% ของน้ำหนักคะแนน${s.provisional&&Number.isFinite(s.score_low)&&Number.isFinite(s.score_high)?`<br>ช่วงคะแนน ${s.score_low.toFixed(decimals)}–${s.score_high.toFixed(decimals)}`:''}</small>`;
+    const measured=s.measured_coverage??0,proxy=s.proxy_coverage??s.coverage??0,missing=s.missing_coverage??Math.max(0,100-(s.coverage||0));
+    const evidence=`<small class="score-evidence-summary">ผลทดสอบ ${measured.toFixed(1)}% · ประมาณจากสเปก ${proxy.toFixed(1)}% · ขาดข้อมูล ${missing.toFixed(1)}%</small>`;
+    if(!Number.isFinite(s.score))return `<span class="phone-unknown">รอข้อมูล</span><small>${e(s.reason)}</small>${evidence}`;
+    const decimals=suitability?2:4,provisional=s.provisional||proxy>0||missing>0;
+    return `<strong>${s.score.toFixed(decimals)}${suitability?' / 100':''}</strong>${provisional?'<span class="score-provisional">คะแนนประมาณการ</span>':'<span class="score-measured">คะแนนจากผลทดสอบ</span>'}${evidence}${missing>0&&Number.isFinite(s.score_low)&&Number.isFinite(s.score_high)?`<small>ช่วงจากข้อมูลที่ขาด ${s.score_low.toFixed(decimals)}–${s.score_high.toFixed(decimals)}</small>`:''}`;
   }
   function summaryRows(items,now,profile='balanced') {
     const scores=items.map(i=>R.valueScore(i,now,profile));

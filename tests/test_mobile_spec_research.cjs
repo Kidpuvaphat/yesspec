@@ -27,11 +27,11 @@ test('research HTML preserves blanks and escapes untrusted evidence',()=>{
   assert.match(html,/ยังไม่ยืนยัน Geekbench 6/);
 });
 
-test('a researched complete model ranks only after a matching manual price, and reprices',()=>{
+test('researched provisional evidence ranks after a matching price and reprices after the research date',()=>{
   const item=feed.categories[0].items.find(i=>i.display_name==='Samsung Galaxy A37 5G');
   const s=offers.researchedSpecs(item);
-  const base={...item,value_specs:s,purchase_offers:[{platform:'shopee',source:'manual',url:'https://s.shopee.co.th/test',price:8000,variant:s.variant,recorded_at:'2026-10-20T10:00:00Z'}]};
-  const now=Date.parse('2026-10-20T10:01:00Z');
+  const base={...item,value_specs:s,purchase_offers:[{platform:'shopee',source:'manual',url:'https://s.shopee.co.th/test',price:8000,variant:s.variant,recorded_at:'2026-10-21T10:00:00Z'}]};
+  const now=Date.parse('2026-10-21T10:01:00Z');
   const before=offers.valueScore(base,now).score;
   const after=offers.valueScore({...base,purchase_offers:[{...base.purchase_offers[0],price:4000}]},now).score;
   assert.ok(before>0);

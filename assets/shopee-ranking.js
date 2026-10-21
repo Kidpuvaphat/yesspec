@@ -86,13 +86,17 @@
     const result = item.value_result, e = escapeHTML;
     const suitability = item.score_kind==='suitability', title = suitability?'คะแนนเหมาะกับการใช้งาน':'ความคุ้มค่า';
     const details = channels.scoreDetailsHTML?.(result) || '';
-    if (!Number.isFinite(result.score)) return `<div class="value-summary pending">${title} · ${e(profileLabel(result.profile))}: รอข้อมูล<br><small>${e(result.reason)}</small>${details}</div>`;
+    const measured = result.measured_coverage ?? 0, proxy = result.proxy_coverage ?? result.coverage ?? 0;
+    const missing = result.missing_coverage ?? Math.max(0,100 - (result.coverage || 0));
+    const evidence = `<small class="score-evidence-summary">ผลทดสอบ ${number(measured)}% · ประมาณจากสเปก ${number(proxy)}% · ขาดข้อมูล ${number(missing)}%</small>`;
+    if (!Number.isFinite(result.score)) return `<div class="value-summary pending">${title} · ${e(profileLabel(result.profile))}: รอข้อมูล<br><small>${e(result.reason)}</small>${evidence}${details}</div>`;
+    const provisional = result.provisional || proxy>0 || missing>0;
     const decimals = suitability?2:4, unit = suitability?' / 100':' คะแนน / 1,000 บาท';
-    const range = result.provisional&&Number.isFinite(result.score_low)&&Number.isFinite(result.score_high)
-      ? `<small>ช่วงคะแนนประมาณการ ${result.score_low.toFixed(decimals)}–${result.score_high.toFixed(decimals)}${unit}</small>`:'';
-    const status = result.provisional ? `<span class="score-provisional">${item.ranking_mode!=='sales'&&item.rank!=null?'อันดับชั่วคราว · ':''}คะแนนประมาณการ</span>` : '';
-    const price = suitability ? '<small>ประเมินจากสเปก · ไม่ใช้ราคาในการเรียงโหมดนี้</small>' : `<small>คะแนนสเปก ${Number(result.spec_score).toFixed(2)}/100 ÷ ${money(result.price)} × 1,000 · ${result.price_source === 'manual_reference' ? 'ราคาต่ำสุดที่ผู้ดูแลพบ' : e(channels.names[result.platform])}<br>ตัวเลือก: ${e(result.variant)}</small>`;
-    return `<div class="value-summary" data-score-kind="${suitability?'suitability':'value'}"><small>${title} · ${e(profileLabel(result.profile))}</small><strong>${result.score.toFixed(decimals)}${unit}</strong>${status}${range}${price}<small>ข้อมูลยืนยันครอบคลุม ${number(result.coverage)}% ของน้ำหนักคะแนน</small>${details}</div>`;
+    const range = missing>0&&Number.isFinite(result.score_low)&&Number.isFinite(result.score_high)
+      ? `<small>ช่วงจากข้อมูลที่ขาด ${result.score_low.toFixed(decimals)}–${result.score_high.toFixed(decimals)}${unit}</small>`:'';
+    const status = provisional ? `<span class="score-provisional">${item.ranking_mode!=='sales'&&item.rank!=null?'อันดับชั่วคราว · ':''}คะแนนประมาณการ</span>` : '<span class="score-measured">คะแนนจากผลทดสอบ</span>';
+    const price = suitability ? '<small>คะแนนความเหมาะสม · ไม่ใช้ราคาในการเรียงโหมดนี้</small>' : `<small>คะแนนความเหมาะสม ${Number(result.spec_score).toFixed(2)}/100 ÷ ${money(result.price)} × 1,000 · ${result.price_source === 'manual_reference' ? 'ราคาต่ำสุดที่ผู้ดูแลพบ' : e(channels.names[result.platform])}<br>ตัวเลือก: ${e(result.variant)}</small>`;
+    return `<div class="value-summary" data-score-kind="${suitability?'suitability':'value'}"><small>${title} · ${e(profileLabel(result.profile))}</small><strong>${result.score.toFixed(decimals)}${unit}</strong>${status}${range}${price}${evidence}${details}</div>`;
   }
   const api = {escapeHTML, productUrl, stalePrice, filterItems, officialHTML, purchaseHTML, listingHTML, valueHTML, validProfile, profileLabel, readProfile, saveProfile, profileOptions, orderLabel};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

@@ -6,45 +6,61 @@ const P=require('../assets/phone-specs');
 const feed=require('../data/shopee_feed_rankings.json');
 const research=require('../data/mobile_spec_research.json');
 const now=Date.parse('2026-10-21T20:00:00Z');
-const base={geekbench6_single:3000,geekbench6_multi:10000,ram_gb:12,storage_gb:512,battery_mah:6000,refresh_hz:120};
-function complete(){
-  return {checked_at:'2026-10-21',metrics:Object.fromEntries(Object.values(V.metrics).flat().filter(([k])=>!(k in base)).map(([key,,,ref])=>[key,{value:typeof ref==='number'?ref:true,url:'https://www.samsung.com/th/',source_field:'test'}]))};
+// Regression coverage retained from v2; the active policy is now usage v3.
+// These records are synthetic controlled outcomes, never production research.
+function complete(score=100){
+  const model='Synthetic fixture phone', date='2026-10-21T10:00:00Z';
+  const metrics=V.profiles.flatMap(profile=>V.evaluate({}, {}, profile.id,now).groups.flatMap(group=>group.metrics));
+  return {model,checked_at:date,metrics:{security_support_end:{value:'2033-10-21',url:'https://www.samsung.com/th/',source_field:'update_policy'}},usage_evidence:Object.fromEntries(metrics.map(metric=>[metric.key,{
+    model,kind:'measured',score,url:'https://example.com/synthetic-phone-test',checked_at:date,tested_at:date,
+    rubric_version:'yesspec-usage-v3',protocol_id:'yesspec-v3:'+metric.key,reviewed:true,
+    method:'Synthetic controlled comparison under identical conditions and a fixed scoring rubric.'
+  }]))};
 }
-test('complete evidence reaches 100 in every profile; unknown inputs keep fixed weights and explicit bounds',()=>{
+test('reviewed outcomes and dated policy evidence reach 100; unknown criteria retain fixed weights and explicit bounds',()=>{
   for(const p of V.profiles){
     assert.equal(Object.values(p.weights).reduce((a,b)=>a+b),100);
-    const s=V.evaluate(base,complete(),p.id,now);
-    assert.equal(s.score,100);assert.equal(s.coverage,100);assert.equal(s.provisional,false);
+    const s=V.evaluate({},complete(),p.id,now);
+    const policyWeight=p.id==='balanced'?10:p.id==='work'?15:0;
+    assert.equal(s.score,100,p.id);assert.equal(s.coverage,100,p.id);assert.equal(s.provisional,policyWeight>0,p.id);
+    assert.equal(s.measured_coverage,100-policyWeight,p.id);assert.equal(s.proxy_coverage,policyWeight,p.id);assert.equal(s.missing_coverage,0,p.id);
+    const inputs=complete();
+    const group=s.groups[0];
+    for(const metric of group.metrics)delete inputs.usage_evidence[metric.key];
+    const partial=V.evaluate({},inputs,p.id,now),known=100-group.weight;
+    assert.equal(partial.spec_score,known+group.weight/2,p.id);
+    assert.equal(partial.score_low,known,p.id);assert.equal(partial.score_high,100,p.id);
+    assert.equal(partial.coverage,known,p.id);assert.equal(partial.provisional,true,p.id);
+    assert.equal(partial.score===null,known<50,p.id);
   }
-  const inputs=complete();delete inputs.metrics.os_upgrades;delete inputs.metrics.security_years;
-  const s=V.evaluate(base,inputs,'balanced',now);
-  assert.equal(s.score,95);assert.equal(s.score_low,90);assert.equal(s.score_high,100);assert.equal(s.coverage,90);
-  assert.equal(s.missing.length,2);assert.equal(s.provisional,true);
   const empty=V.evaluate({},{});assert.equal(empty.score,null);assert.equal(empty.spec_score,50);assert.equal(empty.coverage,0);
 });
-test('unknown, explicit absence, invalid sources and future evidence stay distinct',()=>{
-  const known=complete(), absent=complete(), unknown=complete();
-  absent.metrics.camera_ois.value=false;delete unknown.metrics.camera_ois;
-  const a=V.evaluate(base,known,'photo',now),b=V.evaluate(base,absent,'photo',now),c=V.evaluate(base,unknown,'photo',now);
-  assert.equal(a.score-b.score,13.5);assert.equal(a.score-c.score,6.75);assert.equal(b.provisional,false);assert.equal(c.provisional,true);
-  unknown.metrics.camera_ois={value:true,url:'https://samsung.com.evil.test/',source_field:'main_ois'};
-  assert.equal(V.evaluate(base,unknown,'photo',now).score,c.score);
-  known.checked_at='2099-01-01';assert.equal(V.evaluate(base,known,'balanced',now).coverage,51.5);
+test('a measured zero is evidence; missing, unreviewed, future, wrong-model or invalid-source records are unknown',()=>{
+  const full=V.evaluate({},complete(),'photo',now),key=full.groups[0].metrics[0].key;
+  const zero=complete(),absent=complete();zero.usage_evidence[key].score=0;delete absent.usage_evidence[key];
+  const a=V.evaluate({},zero,'photo',now),b=V.evaluate({},absent,'photo',now);
+  assert.equal(a.coverage,100);assert.equal(a.provisional,false);
+  assert.ok(b.coverage<100);assert.equal(b.provisional,true);assert.ok(a.score<b.score);
+  for(const change of [
+    r=>{r.url='javascript:alert(1)';},r=>{r.checked_at='2099-01-01';},r=>{r.tested_at='2099-01-01';},
+    r=>{r.model='Wrong phone';},r=>{r.reviewed=false;},r=>{r.protocol_id='different-protocol';},
+    r=>{r.rubric_version='v2';},r=>{delete r.method;},r=>{r.score=NaN;}
+  ]) {
+    const inputs=complete();change(inputs.usage_evidence[key]);
+    assert.equal(V.evaluate({},inputs,'photo',now).spec_score,b.spec_score);
+    assert.equal(V.evaluate({},inputs,'photo',now).coverage,b.coverage);
+  }
 });
-test('profiles change actual winners and live prioritizes front video; suitability does not depend on price',()=>{
-  const camera=complete(), speed=complete();
-  for(const [key] of V.metrics.camera)speed.metrics[key].value=['camera_ois','camera_ultrawide'].includes(key)?false:key==='camera_optical_zoom'?0:.2;
-  const slow={...base,geekbench6_single:1200,geekbench6_multi:4000};
-  assert.ok(V.evaluate(slow,camera,'photo',now).score>V.evaluate(base,speed,'photo',now).score);
-  assert.ok(V.evaluate(slow,camera,'gaming',now).score<V.evaluate(base,speed,'gaming',now).score);
-  const live=V.evaluate(base,camera,'live',now).groups.find(g=>g.id==='camera');
-  assert.equal(live.metrics.find(m=>m.key==='camera_front_video').weight,55);
-  const item=R.attach(feed,{schema_version:1,items:{}}).categories[0].items.find(i=>i.display_name==='Samsung Galaxy A37 5G');
-  const original=R.suitabilityScore(item,now,'gaming');
-  item.reference_price={source:'manual_reference',price:8000,variant:item.value_specs.variant,recorded_at:'2026-10-21T10:00:00Z'};
-  const price=R.valueScore(item,now,'gaming');item.reference_price.price=4000;
-  assert.deepEqual(R.suitabilityScore(item,now,'gaming'),original);
-  assert.ok(Math.abs(R.valueScore(item,now,'gaming').score-price.score*2)<.0001);
+test('task-specific evidence changes the winner without unrelated spec bonuses',()=>{
+  const camera=complete(80),gaming=complete(80);
+  const keys=profile=>V.evaluate({}, {},profile,now).groups.flatMap(g=>g.metrics).map(m=>m.key);
+  for(const key of keys('photo')){camera.usage_evidence[key].score=95;gaming.usage_evidence[key].score=30;}
+  for(const key of keys('gaming')){camera.usage_evidence[key].score=30;gaming.usage_evidence[key].score=95;}
+  assert.ok(V.evaluate({},camera,'photo',now).score>V.evaluate({},gaming,'photo',now).score);
+  assert.ok(V.evaluate({},camera,'gaming',now).score<V.evaluate({},gaming,'gaming',now).score);
+  const original=V.evaluate({},camera,'photo',now);
+  const unrelated={geekbench6_single:3000,geekbench6_multi:10000,ram_gb:24,storage_gb:1024};
+  assert.deepEqual(V.evaluate(unrelated,camera,'photo',now),original);
 });
 test('typed data preserves source identity, official citations, unknowns and the full 30-model collection',()=>{
   const items=feed.categories[0].items;
@@ -62,7 +78,13 @@ test('typed data preserves source identity, official citations, unknowns and the
   const oppo=rows.find(i=>i.display_name==='OPPO A6t Pro');
   assert.equal(oppo.value_specs.geekbench6_multi,null);
   assert.equal(R.suitabilityScore(oppo,now).provisional,true);
-  assert.equal(R.suitabilityScore(oppo,now).coverage,50);
+  assert.equal(R.suitabilityScore(oppo,now).measured_coverage,0);
+  assert.ok(R.suitabilityScore(oppo,now).missing.length>0);
+  for(const row of rows){
+    assert.ok(!Object.keys(row.spec_research.value_inputs.usage_evidence||{}).length,'No synthetic outcomes in production data');
+    const result=R.suitabilityScore(row,now);
+    assert.equal(result.measured_coverage,0);assert.equal(result.provisional,true);
+  }
 });
 test('admin and public use the same bound research while explicit drafts, null overrides and changed identity fail closed',()=>{
   const raw=feed.categories[0].items[0], registry={schema_version:1,items:{}};
