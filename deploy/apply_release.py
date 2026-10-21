@@ -44,7 +44,7 @@ def prepare_admin_routes(config, phones_only):
                '        add_header Cache-Control "private, no-store" always;\n        ')
     routes = {
         '/admin': 'return 302 /admin/$is_args$args;',
-        '/admin/': 'default_type text/html;\n        alias /var/www/yesspec/admin-ranking.html;',
+        '/admin/': 'default_type text/html;\n        try_files /admin-ranking.html =404;',
         '/admin-ranking.html': 'return 302 /admin/$is_args$args;',
         '/admin.html': 'return 302 /admin/$is_args$args;' if phones_only else 'try_files $uri =404;',
     }
@@ -162,10 +162,21 @@ try:
     run('nginx','-t')
     run('systemctl','start','yesspec-admin');stopped=False
     run('systemctl','reload','nginx')
-    with urllib.request.urlopen('https://yesspec.com/admin/', timeout=25) as response:
-        assert response.status == 200 and response.geturl() == 'https://yesspec.com/admin/'
-        assert response.headers.get_content_type() == 'text/html'
-        assert '<base href="/">' in response.read().decode(), 'Admin assets must resolve from the site root'
+    # Reload returns before all workers have switched to the new routes.
+    admin_ready = False
+    for attempt in range(20):
+        try:
+            with urllib.request.urlopen('https://yesspec.com/admin/', timeout=25) as response:
+                admin_ready = (response.status == 200
+                    and response.geturl() == 'https://yesspec.com/admin/'
+                    and response.headers.get_content_type() == 'text/html'
+                    and '<base href="/">' in response.read().decode())
+        except (urllib.error.URLError, ConnectionError):
+            pass
+        if admin_ready:
+            break
+        time.sleep(0.5)
+    assert admin_ready, 'Canonical admin page or its asset base failed the live check'
     status,payload=0,{}
     for attempt in range(20):
         try:

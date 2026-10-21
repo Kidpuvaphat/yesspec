@@ -179,7 +179,7 @@ with open(sys.argv[1], "a") as handle:
         self.assertEqual(prepare(result, True), result)
         self.assertEqual(result.count('return 302 /admin/$is_args$args;'), 3)
         canonical = re.search(r'location = /admin/ \{([^}]+)\}', result)[1]
-        self.assertIn('alias /var/www/yesspec/admin-ranking.html;', canonical)
+        self.assertIn('try_files /admin-ranking.html =404;', canonical)
         self.assertIn('default_type text/html;', canonical)
         self.assertIn('"private, no-store" always;', canonical)
         self.assertIn('"noindex, nofollow" always;', canonical)
