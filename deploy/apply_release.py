@@ -36,6 +36,27 @@ def replace(source, dest):
     temp.chmod(0o644)
     os.replace(temp,dest)
 
+def prepare_admin_routes(config, phones_only):
+    """Serve the ranking admin at /admin/ and preserve existing entry points."""
+    marker = '    location = /admin.html {'
+    assert marker in config, 'Expected the legacy admin route'
+    headers = ('add_header X-Robots-Tag "noindex, nofollow" always;\n'
+               '        add_header Cache-Control "private, no-store" always;\n        ')
+    routes = {
+        '/admin': 'return 302 /admin/$is_args$args;',
+        '/admin/': 'default_type text/html;\n        alias /var/www/yesspec/admin-ranking.html;',
+        '/admin-ranking.html': 'return 302 /admin/$is_args$args;',
+        '/admin.html': 'return 302 /admin/$is_args$args;' if phones_only else 'try_files $uri =404;',
+    }
+    for path, body in routes.items():
+        block = '    location = '+path+' {\n        '+headers+body+'\n    }'
+        pattern = r'    location = '+re.escape(path)+r' \{[^}]*\}'
+        config, count = re.subn(pattern, lambda _: block, config)
+        assert count <= 1, 'Duplicate admin route: '+path
+        if count == 0:
+            config = config.replace(marker, block+'\n\n'+marker, 1)
+    return config
+
 files = list(manifest['files'])
 protected_paths = {'data/manual_overrides.json','data/ranking_manual_offers.json','data/daily_prices_feed.json','data/market_observations.jsonl','data/affiliate_config.json'}
 assert not protected_paths.intersection(files), 'Runtime data must not be in a release'
@@ -77,25 +98,10 @@ prepared_nginx = original_nginx
 if 'location ^~ /deploy/' not in prepared_nginx:
     prepared_nginx = prepared_nginx.replace('    location = /admin.html {',
         '    location ^~ /deploy/ { return 404; }\n\n    location = /admin.html {',1)
-if 'location = /admin {' not in prepared_nginx:
+if 'location = /data/ranking_manual_offers.json' not in prepared_nginx:
     marker = '    location = /admin.html {'
     assert marker in prepared_nginx
-    prepared_nginx = prepared_nginx.replace(marker, '''    location = /admin {
-        add_header Cache-Control "private, no-store" always;
-        return 302 /admin-ranking.html;
-    }
-
-'''+marker,1)
-if 'location = /admin-ranking.html' not in prepared_nginx:
-    marker = '    location = /admin.html {'
-    assert marker in prepared_nginx
-    prepared_nginx = prepared_nginx.replace(marker,'''    location = /admin-ranking.html {
-        add_header X-Robots-Tag "noindex, nofollow" always;
-        add_header Cache-Control "private, no-store" always;
-        try_files $uri =404;
-    }
-
-    location = /data/ranking_manual_offers.json {
+    prepared_nginx = prepared_nginx.replace(marker,'''    location = /data/ranking_manual_offers.json {
         default_type application/json;
         add_header Cache-Control "no-store, no-cache, must-revalidate" always;
         try_files $uri =404;
@@ -108,10 +114,7 @@ dist_body = 'add_header Cache-Control "no-store" always;\n        return 302 /;'
 prepared_nginx, dist_matches = re.subn(r'location (?:\^~ )?/dist/ \{[^}]*\}',
     'location ^~ /dist/ {\n        '+dist_body+'\n    }', prepared_nginx)
 assert dist_matches == 1, 'Expected one legacy content route'
-admin_body = 'return 302 /admin-ranking.html;' if phones_only else 'try_files $uri =404;'
-prepared_nginx, admin_matches = re.subn(r'location = /admin\.html \{[^}]*\}',
-    'location = /admin.html {\n        add_header Cache-Control "private, no-store" always;\n        '+admin_body+'\n    }', prepared_nginx)
-assert admin_matches == 1, 'Expected one legacy admin route'
+prepared_nginx = prepare_admin_routes(prepared_nginx, phones_only)
 (stage/'nginx-yesspec.conf').write_text(prepared_nginx)
 
 protected_names = ['data/manual_overrides.json','data/ranking_manual_offers.json','data/daily_prices_feed.json']
@@ -159,6 +162,10 @@ try:
     run('nginx','-t')
     run('systemctl','start','yesspec-admin');stopped=False
     run('systemctl','reload','nginx')
+    with urllib.request.urlopen('https://yesspec.com/admin/', timeout=25) as response:
+        assert response.status == 200 and response.geturl() == 'https://yesspec.com/admin/'
+        assert response.headers.get_content_type() == 'text/html'
+        assert '<base href="/">' in response.read().decode(), 'Admin assets must resolve from the site root'
     status,payload=0,{}
     for attempt in range(20):
         try:

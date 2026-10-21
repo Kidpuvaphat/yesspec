@@ -1,6 +1,7 @@
 import json
 import ast
 import io
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -158,6 +159,44 @@ with open(sys.argv[1], "a") as handle:
             status, payload = scope['request']('/api/admin/ranking-products')
         self.assertEqual(status, 502)
         self.assertFalse(payload['ok'])
+
+    def admin_routes(self):
+        tree = ast.parse((SOURCE/'deploy/apply_release.py').read_text())
+        function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'prepare_admin_routes')
+        scope = {'re': re}
+        exec(compile(ast.Module(body=[function], type_ignores=[]), '<admin-routes>', 'exec'), scope)
+        return scope['prepare_admin_routes']
+
+    def test_canonical_admin_routes_upgrade_old_config_and_are_idempotent(self):
+        config = '''server {
+    location ^~ /api/admin/ { proxy_pass http://127.0.0.1:3195/api/admin/; }
+    location = /admin { return 302 /admin-ranking.html; }
+    location = /admin-ranking.html { try_files $uri =404; }
+    location = /admin.html { return 302 /admin-ranking.html; }
+}'''
+        prepare = self.admin_routes()
+        result = prepare(config, True)
+        self.assertEqual(prepare(result, True), result)
+        self.assertEqual(result.count('return 302 /admin/$is_args$args;'), 3)
+        canonical = re.search(r'location = /admin/ \{([^}]+)\}', result)[1]
+        self.assertIn('alias /var/www/yesspec/admin-ranking.html;', canonical)
+        self.assertIn('default_type text/html;', canonical)
+        self.assertIn('"private, no-store" always;', canonical)
+        self.assertIn('"noindex, nofollow" always;', canonical)
+        self.assertNotIn('return 302', canonical)
+        self.assertIn('location ^~ /api/admin/ { proxy_pass http://127.0.0.1:3195/api/admin/; }', result)
+
+    def test_admin_routes_handle_missing_entries_and_retain_legacy_mode(self):
+        prepare = self.admin_routes()
+        config = 'server {\n    location = /admin.html { try_files $uri =404; }\n}'
+        result = prepare(config, False)
+        self.assertEqual(result.count('location = /admin/ {'), 1)
+        self.assertEqual(result.count('return 302 /admin/$is_args$args;'), 2)
+        legacy = re.search(r'location = /admin\.html \{([^}]+)\}', result)[1]
+        self.assertIn('try_files $uri =404;', legacy)
+        self.assertEqual(prepare(prepare(result, True), False), result)
+        with self.assertRaisesRegex(AssertionError, 'Duplicate admin route'):
+            prepare(config + '\n    location = /admin { return 302 /; }\n    location = /admin { return 302 /; }', True)
 
 
 if __name__ == '__main__':
