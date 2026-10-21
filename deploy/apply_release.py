@@ -372,6 +372,9 @@ def apply_release(stage, paths=None, system=None):
         try:
             system.run('systemctl', 'stop', 'yesspec-admin')
             for name in files:
+                # Git archives may carry group-write bits; keep published files
+                # at the established mode without changing backup restore modes.
+                (stage/name).chmod(0o644)
                 system.replace(stage/name, paths.root/name)
             store = paths.root/'data/ranking_manual_offers.json'
             if not store.exists():

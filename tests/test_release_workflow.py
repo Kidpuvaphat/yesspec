@@ -248,6 +248,28 @@ print('imported safely')
         self.assertGreater(marker, readiness)
         self.assertIn('try_files /admin-ranking.html =404;', self.paths.nginx.read_text())
 
+    def test_publish_normalizes_archived_files_to_0644_without_changing_protected_modes(self):
+        for name in self.manifest['files']:
+            (self.stage / name).chmod(0o664)
+        result = self.apply()
+        self.assertTrue(result['ok'])
+        for name in self.manifest['files']:
+            self.assertEqual(stat.S_IMODE((self.root / name).stat().st_mode), 0o644, name)
+        self.assert_protected()
+
+    def test_rollback_restores_original_live_modes_after_normalized_publish(self):
+        for name in self.manifest['files']:
+            (self.stage / name).chmod(0o664)
+        (self.root / 'assets/app.js').chmod(0o640)
+        (self.root / 'index.html').chmod(0o600)
+        original_modes = {name: stat.S_IMODE((self.root / name).stat().st_mode)
+                          for name in self.manifest['files'] if (self.root / name).exists()}
+        self.system.fail_command = ('nginx', '-t')
+        self.expect_rollback()
+        for name, mode in original_modes.items():
+            self.assertEqual(stat.S_IMODE((self.root / name).stat().st_mode), mode, name)
+        self.assertFalse((self.root / 'assets/z-new.js').exists())
+
     def test_protected_manifest_file_is_rejected_before_service_or_live_mutation(self):
         name = sorted(release.PROTECTED_PATHS)[0]
         (self.stage / name).write_text('{"must_not_replace":true}')
