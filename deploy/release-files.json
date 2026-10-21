@@ -61,5 +61,9 @@
   "deploy/install-hostinger-ops.sh",
   "deploy/yesspec-maintenance.service",
   "deploy/yesspec-maintenance.timer",
-  "data/mobile_spec_research.json"
+  "data/mobile_spec_research.json",
+  "compare.html",
+  "assets/phone-specs.js",
+  "assets/phone-comparison.js",
+  "assets/phone-comparison.css"
 ]

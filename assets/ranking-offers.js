@@ -5,6 +5,7 @@
     lazada: ['lazada.co.th', 'www.lazada.co.th', 's.lazada.co.th'],
     tiktok: ['tiktok.com', 'www.tiktok.com', 'shop.tiktok.com', 'vt.tiktok.com', 'vm.tiktok.com']
   };
+  const phoneSpecs = root.PhoneSpecs || (typeof require === 'function' ? require('./phone-specs.js') : null);
   const names = {shopee: 'Shopee', lazada: 'Lazada', tiktok: 'TikTok Shop'};
   // Editorial scoring rubric v1. Caps are fixed reference points, not market maxima.
   const specMetrics = [
@@ -33,7 +34,7 @@
     const e = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const link = (url,label) => sourceURL(url) ? `<a href="${e(url)}" target="_blank" rel="noopener noreferrer">${e(label)} ↗</a>` : e(label);
     const benchmark = research.benchmark;
-    return `<details class="spec-research"><summary>สเปกและหลักฐาน · ${benchmark ? 'มี Geekbench 6' : 'ยังไม่ยืนยัน Geekbench 6'}</summary><p>ตรวจแหล่งข้อมูล ${e(research.checked_at)} · สเปกอ้างอิงของรุ่น ผู้ดูแลอาจเลือกความจุอื่นได้</p><dl>${research.facts.map(f=>`<div><dt>${e(f.label)}</dt><dd>${f.value == null ? '— ยังไม่ยืนยัน' : link(f.url,f.value)}</dd></div>`).join('')}</dl>${benchmark ? `<p>${link(benchmark.url,`Geekbench ${benchmark.version} · ${benchmark.single} / ${benchmark.multi} (Single / Multi)`)}<br><small>รหัสเครื่อง ${e(benchmark.model_code)} · RAM ที่ระบบรายงาน ${e(benchmark.tested_ram_gb_reported ?? '—')} GB · ทดสอบ ${e(benchmark.upload_date)}<br>ผลสาธารณะหนึ่งครั้ง ไม่ใช่ค่าเฉลี่ยรุ่น และไม่ยืนยันความจุ สี หรือประเทศของเครื่องในตะกร้า</small></p>` : '<p>เว้นคะแนนไว้จนกว่าจะยืนยันผล Geekbench 6 ของรุ่นนี้ได้</p>'}${research.notes?.length ? `<ul>${research.notes.map(n=>`<li>${e(n)}</li>`).join('')}</ul>` : ''}</details>`;
+    return `<details class="spec-research"><summary>สเปกและหลักฐาน · ${benchmark ? 'มี Geekbench 6' : 'ยังไม่ยืนยัน Geekbench 6'}</summary><p>ตรวจแหล่งข้อมูล ${e(research.checked_at)} · สเปกอ้างอิงของรุ่น ผู้ดูแลอาจเลือกความจุอื่นได้</p>${phoneSpecs?.detailsHTML(research) || `<dl>${research.facts.map(f=>`<div><dt>${e(f.label)}</dt><dd>${f.value == null ? '— ยังไม่ยืนยัน' : link(f.url,f.value)}</dd></div>`).join('')}</dl>`}${benchmark ? `<p>${link(benchmark.url,`Geekbench ${benchmark.version} · ${benchmark.single} / ${benchmark.multi} (Single / Multi)`)}<br><small>รหัสเครื่อง ${e(benchmark.model_code)} · RAM ที่ระบบรายงาน ${e(benchmark.tested_ram_gb_reported ?? '—')} GB · ทดสอบ ${e(benchmark.upload_date)}<br>ผลสาธารณะหนึ่งครั้ง ไม่ใช่ค่าเฉลี่ยรุ่น และไม่ยืนยันความจุ สี หรือประเทศของเครื่องในตะกร้า</small></p>` : '<p>เว้นคะแนนไว้จนกว่าจะยืนยันผล Geekbench 6 ของรุ่นนี้ได้</p>'}${research.notes?.length ? `<ul>${research.notes.map(n=>`<li>${e(n)}</li>`).join('')}</ul>` : ''}</details>`;
   }
   function referencePrice(item, now = Date.now()) {
     const price = item.reference_price, recorded = Date.parse(price?.recorded_at);

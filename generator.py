@@ -246,7 +246,7 @@ def main():
     if active_feed.exists() and json.loads(active_feed.read_text()).get('catalog_mode') == 'smartphone_30':
         # Dormant articles stay on disk but their routes are paused on Hostinger.
         url_entries = [f"  <url><loc>{domain}{path}</loc><lastmod>{today}</lastmod></url>"
-                       for path in ('/', '/shopee-ranking.html')]
+                       for path in ('/', '/shopee-ranking.html', '/compare.html')]
     sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {chr(10).join(url_entries)}
