@@ -2,6 +2,7 @@
   'use strict';
   const P=root.PhoneSpecs || (typeof require==='function'?require('./phone-specs.js'):null);
   const R=root.RankingOffers || (typeof require==='function'?require('./ranking-offers.js'):null);
+  const images=root.PhoneImages || (typeof require==='function'?require('./phone-images.js'):null);
   const e=P.esc, storageKey='yesspec_compare_phones_v1';
   const profileKey='yesspec_usage_profile_v2';
   const validProfile=id=>(R.profiles||[]).some(p=>p.id===id)?id:'balanced';
@@ -71,7 +72,7 @@
       }).join('');
       return groupHTML(g.label,g.hint,rows);
     }).join('');
-    return `<table class="comparison-table" style="min-width:${150+items.length*240}px"><caption>เทียบ ${items.length} รุ่น · ${P.keys.length} หัวข้อสเปก พร้อมราคาและผลทดสอบ${differences?' · แสดงเฉพาะข้อมูลที่ต่างกัน':''}</caption><colgroup><col style="width:150px">${items.map(()=>'<col style="width:240px">').join('')}</colgroup><thead><tr><th scope="col">สิ่งที่ใช้เปรียบเทียบ</th>${items.map(i=>`<th scope="col">${e(i.display_name||i.title)}<small>สเปกยืนยันได้ ${P.keys.filter(k=>P.field(research(i),k)).length}/${P.keys.length} ช่อง<br>ตรวจ ${e(research(i)?.comparison?.checked_at||'—')}</small></th>`).join('')}</tr></thead><tbody>${groupHTML('ราคาและตัวเลือกในการจัดอันดับ','ตัวเลือกของราคาและสเปกต้องตรงกัน จึงนำมาคำนวณความคุ้มค่าได้',summary)}${groupHTML('ผลทดสอบประสิทธิภาพอ้างอิง','ผลสาธารณะหนึ่งครั้งต่อรุ่น ไม่ใช่ค่าเฉลี่ย และไม่ยืนยันตัวเลือกในตะกร้า ระบบปฏิบัติการและเวอร์ชันทดสอบอาจต่างกัน',benchmark)}${body}</tbody></table>`;
+    return `<table class="comparison-table" style="min-width:${150+items.length*240}px"><caption>เทียบ ${items.length} รุ่น · ${P.keys.length} หัวข้อสเปก พร้อมราคาและผลทดสอบ${differences?' · แสดงเฉพาะข้อมูลที่ต่างกัน':''}</caption><colgroup><col style="width:150px">${items.map(()=>'<col style="width:240px">').join('')}</colgroup><thead><tr><th scope="col">สิ่งที่ใช้เปรียบเทียบ</th>${items.map(i=>`<th scope="col">${images?.slotHTML(i) || ''}${e(i.display_name||i.title)}<small>สเปกยืนยันได้ ${P.keys.filter(k=>P.field(research(i),k)).length}/${P.keys.length} ช่อง<br>ตรวจ ${e(research(i)?.comparison?.checked_at||'—')}</small></th>`).join('')}</tr></thead><tbody>${groupHTML('ราคาและตัวเลือกในการจัดอันดับ','ตัวเลือกของราคาและสเปกต้องตรงกัน จึงนำมาคำนวณความคุ้มค่าได้',summary)}${groupHTML('ผลทดสอบประสิทธิภาพอ้างอิง','ผลสาธารณะหนึ่งครั้งต่อรุ่น ไม่ใช่ค่าเฉลี่ย และไม่ยืนยันตัวเลือกในตะกร้า ระบบปฏิบัติการและเวอร์ชันทดสอบอาจต่างกัน',benchmark)}${body}</tbody></table>`;
   }
   function installPicker(doc) {
     if(doc.getElementById('phoneCompare'))return;
