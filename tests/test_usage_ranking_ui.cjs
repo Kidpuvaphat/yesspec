@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const P=require('../assets/phone-specs.js');
 const RankingData=require('../assets/ranking-data.js');
+const RankingDraft=require('../assets/ranking-draft.js');
 const profileKey='yesspec_usage_profile_v2';
 const profiles=['balanced','photo','gaming','work','live','battery'].map((id,n)=>({id,label:['สมดุล','ถ่ายรูป','เล่นเกม','ทำงาน','ไลฟ์สด','เน้นแบตเตอรี่'][n]}));
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
@@ -79,7 +80,7 @@ test('admin preserves drafts and filters; saving reranks even when browser stora
  let submitted;
  const adminStorage=storage({yesspec_admin_token:'test-token'}),writeStorage=adminStorage.setItem;
  adminStorage.setItem=(key,value)=>{if(key==='yesspec_offers_updated')throw Error('Storage unavailable');writeStorage(key,value);};
- const sandbox={document,RankingOffers:R,PriceCheck:{create:()=>({close(){}})},localStorage:adminStorage,
+ const sandbox={document,RankingOffers:R,RankingDraft,PriceCheck:{create:()=>({close(){}})},localStorage:adminStorage,
   fetch:async(path,options)=>({ok:true,status:200,json:async()=>{
    if(path.includes('save-ranking-offers')){submitted=JSON.parse(options.body);row.reference_price={...submitted.products[0].reference_price,price:6808};row.revision='saved';return {ok:true,updated_count:1};}
    return feed;

@@ -23,6 +23,7 @@
   "assets/ranking-offers.css",
   "assets/ranking-offers.js",
   "assets/ranking-data.js",
+  "assets/ranking-draft.js",
   "assets/shopee-ranking.css",
   "assets/shopee-ranking.js",
   "data/shopee_feed_rankings.json",

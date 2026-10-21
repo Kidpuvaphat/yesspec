@@ -3,17 +3,6 @@
   const e = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const money = n => '฿' + Number(n).toLocaleString('th-TH',{maximumFractionDigits:2});
   const time = value => new Date(value).toLocaleString('th-TH',{timeZone:'Asia/Bangkok'});
-  function selectedOffer(current, result, index, confirmation) {
-    const candidate = result?.candidates?.[index];
-    if (!confirmation?.matched || !['regular','vip','coupon','flash_sale'].includes(confirmation.price_type) ||
-        result.requested_url !== current.url || result.status !== 'candidates_found' ||
-        !candidate || candidate.currency !== 'THB' || !Number.isFinite(candidate.amount) || candidate.amount <= 0 ||
-        !Number.isFinite(Date.parse(result.checked_at))) return null;
-    return {...current, price:String(candidate.amount), price_type:confirmation.price_type,
-      variant:confirmation.variant.trim(), note:confirmation.note.trim(),
-      price_lookup:{requested_url:result.requested_url,resolved_url:result.resolved_url,
-        amount:candidate.amount,checked_at:result.checked_at,confirmed:true}};
-  }
   function create({dialog, api, apply, manual}) {
     let active = null, request = 0;
     function close() {
@@ -40,10 +29,11 @@
       form.addEventListener('change', () => {dialog.querySelector('#confirmCheckedPrice').disabled = !canConfirm();});
       form.addEventListener('submit', event => {
         event.preventDefault(); if (!active || !canConfirm()) return;
-        const value = selectedOffer(context.offer,result,Number(dialog.querySelector('[name="priceCandidate"]:checked').value),{
+        const index = Number(dialog.querySelector('[name="priceCandidate"]:checked').value);
+        const confirmation = {
           matched:dialog.querySelector('#checkMatched').checked,price_type:dialog.querySelector('#checkPriceType').value,
-          variant:dialog.querySelector('#checkVariant').value,note:dialog.querySelector('#checkNote').value});
-        if (value && apply(context,value)) close();
+          variant:dialog.querySelector('#checkVariant').value,note:dialog.querySelector('#checkNote').value};
+        if (apply(context,result,index,confirmation)) close();
       });
     }
     dialog.addEventListener('click', event => {
@@ -68,7 +58,7 @@
     }
     return {open,close};
   }
-  const api = {create,selectedOffer};
+  const api = {create};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.PriceCheck = api;
 })(typeof window !== 'undefined' ? window : globalThis);
