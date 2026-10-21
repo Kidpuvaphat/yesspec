@@ -1853,12 +1853,14 @@
   <link rel="stylesheet" href="assets/official-specs.css?v=20261019-official">
   <script src="assets/official-specs.js?v=20261019-official"></script>
   <link rel="stylesheet" href="assets/ranking-offers.css?v=20261021-value3">
+  <link rel="stylesheet" href="assets/ranking-ux.css?v=20261021-ux1">
+  <link rel="stylesheet" href="assets/phone-comparison-tray.css?v=20261021-ux1">
   <script src="assets/phone-specs.js?v=20261021-value3"></script>
   <script src="assets/phone-value.js?v=20261021-value3"></script>
   <script src="assets/ranking-offers.js?v=20261021-value3"></script>
-  <script src="assets/shopee-ranking.js?v=20261021-value3"></script>
-  <script src="assets/category-top20.js?v=20261021-value3"></script>
-  <script src="assets/phone-comparison.js?v=20261021-value3" defer></script>
+  <script src="assets/shopee-ranking.js?v=20261021-ux1"></script>
+  <script src="assets/category-top20.js?v=20261021-ux1"></script>
+  <script src="assets/phone-comparison.js?v=20261021-ux1" defer></script>
 </head>
 <body>
 
@@ -2028,19 +2030,29 @@
 
       <section id="categoryTop20" aria-labelledby="categoryTop20Title">
         <div class="catalog-heading">
-          <div><p class="catalog-eyebrow">เลือกมือถือ ดูราคาหลังคูปอง</p><h1 id="categoryTop20Title">มือถือ 30 รุ่น · ราคาหลังคูปอง</h1></div>
+          <div><p class="catalog-eyebrow">เลือกมือถือให้ตรงกับคุณ</p><h1 id="categoryTop20Title">30 รุ่น เทียบตามการใช้งาน</h1></div>
           <span id="categoryTop20Count" role="status">กำลังโหลด…</span>
         </div>
-        <p id="categoryTop20Meta" class="catalog-meta"></p>
-        <div class="catalog-scope"><strong>ยอดขายไม่ระบุช่วงเวลา</strong><p>คัดรุ่นไม่ซ้ำหลายช่วงงบจากข้อมูล Shopee · ยอดขายใช้ประกอบการคัดรุ่น ไม่ใช่อันดับทั้ง Shopee หรือยอด 30 วัน</p></div>
+        <p class="catalog-intro">เลือกสิ่งที่ใช้บ่อย แล้วดูความเหมาะสมหรือความคุ้มค่าต่อราคา</p>
+        <div class="usage-picker"><span class="control-caption">ใช้มือถือทำอะไร</span><div id="categoryTop20ProfileChoices" class="usage-choices" role="group" aria-label="ลักษณะการใช้งาน"></div></div>
+        <label hidden for="categoryTop20Profile">ลักษณะการใช้งาน<select id="categoryTop20Profile" aria-describedby="categoryTop20ScoreNote"></select></label>
+        <div class="catalog-filter-row"><div id="categoryTop20SortChoices" class="sort-choices" role="group" aria-label="วิธีจัดอันดับ"></div>
         <div class="catalog-toolbar">
-          <label for="categoryTop20Search">ค้นหาใน 30 รุ่น<input id="categoryTop20Search" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></label>
-          <label for="categoryTop20Profile">ลักษณะการใช้งาน<select id="categoryTop20Profile" aria-describedby="categoryTop20ScoreNote"></select></label><label for="categoryTop20Sort">จัดอันดับ<select id="categoryTop20Sort"><option value="value">ความคุ้มค่า: คะแนน ÷ ราคา</option><option value="suitability">คะแนนเหมาะกับการใช้งาน</option><option value="sales">ยอดขายต้นทาง</option></select></label><label for="categoryTop20Band">ช่วงงบอ้างอิงก่อนคูปอง<select id="categoryTop20Band"><option value="all">ทุกช่วงงบ</option></select></label><button id="categoryTop20Clear" type="button" disabled>ล้างคำค้น</button>
-          <a id="categoryTop20Review" href="shopee-ranking.html?source=feed">ดูเกณฑ์คัดเลือกและรายการที่ต้องตรวจ ↗</a>
+          <label for="categoryTop20Search">ค้นหารุ่น<input id="categoryTop20Search" type="search" placeholder="เช่น Samsung, iPhone" autocomplete="off" disabled></label>
+          <label for="categoryTop20Band">ช่วงงบจากฟีดก่อนคูปอง<select id="categoryTop20Band"><option value="all">ทุกช่วงงบ</option></select></label>
+          <button id="categoryTop20Clear" type="button" disabled>ล้าง</button>
         </div>
-        <p id="categoryTop20ScoreNote" class="usage-score-note">เลือกการใช้งาน แล้วเรียงด้วยคะแนนความเหมาะสม หรือคะแนนต่อราคา · แสดงผลทดสอบ ส่วนประมาณจากสเปก และข้อมูลที่ขาดแยกกัน คะแนนที่ยังมีส่วนประมาณเป็นอันดับชั่วคราว</p>
-        <p class="catalog-price-note">ราคาตรวจและกรอกโดยผู้ดูแล · คูปองและสิทธิ์สมาชิกอาจต่างกันตามบัญชี · รายการที่ยังไม่มีราคาเว้นไว้</p>
-        <details class="catalog-formula"><summary>สูตรคะแนนตามการใช้งานและความคุ้มค่า</summary><div id="categoryTop20Formula"></div></details>
+        </div>
+        <details class="catalog-formula catalog-guide"><summary>วิธีจัดอันดับ · ราคา · แหล่งข้อมูล</summary>
+          <p id="categoryTop20ScoreNote" class="usage-score-note">ความเหมาะสมไม่ใช้ราคา · ความคุ้มค่าใช้คะแนนต่อ 1,000 บาท และเรียงใหม่เมื่อบันทึกราคา คะแนนประมาณการเป็นอันดับชั่วคราว</p>
+          <p class="catalog-price-note">ราคาตรวจและกรอกโดยผู้ดูแล · คูปองและสิทธิ์สมาชิกอาจต่างกันตามบัญชี · รายการที่ยังไม่มีราคาเว้นไว้ ราคาอ้างอิงอาจต่างจากลิงก์ซื้อ</p>
+          <p>คัดรุ่นไม่ซ้ำหลายช่วงงบจากข้อมูล Shopee · ยอดขายไม่ระบุช่วงเวลา ไม่ใช่อันดับทั้ง Shopee หรือยอด 30 วัน</p>
+          <label for="categoryTop20Sort">วิธีเรียงทั้งหมด<select id="categoryTop20Sort"><option value="suitability">คะแนนเหมาะกับการใช้งาน</option><option value="value">ความคุ้มค่า: คะแนน ÷ ราคา</option><option value="sales">ยอดขายต้นทาง</option></select></label>
+          <details><summary>สูตรและน้ำหนักคะแนน</summary><div id="categoryTop20Formula"></div></details>
+          <a id="categoryTop20Review" href="shopee-ranking.html?source=feed">เกณฑ์คัดเลือกและรายการที่ต้องตรวจ ↗</a>
+        </details>
+        <div class="catalog-status-row"><p class="catalog-source-note">คัดจากฟีด Shopee · ยอดขายไม่ระบุช่วงเวลา</p>
+        <p id="categoryTop20Meta" class="catalog-meta" role="status"></p></div>
         <div id="categoryTop20Results" class="ranking-list" aria-busy="true">กำลังโหลดมือถือ…</div>
       </section>
 

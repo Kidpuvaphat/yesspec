@@ -24,9 +24,9 @@ test('each of three platforms only renders its own price and button when it has 
     assert.doesNotMatch(hidden,/purchase-offers|฿123.45|ดูบน/);
   }
 });
-test('a cart without price shows a dash; no zero, inferred prices or hidden VIP values', () => {
+test('a cart without price clearly says it is missing; no zero, inferred prices or hidden VIP values', () => {
   const html=render(store({shopee:null,tiktok:{url:url.tiktok,price:null,source:'manual'}}));
-  assert.match(html,/class="metric-value">—<\/div>/);
+  assert.match(html,/class="metric-value price-pending">ยังไม่บันทึกราคา<\/div>/);
   assert.doesNotMatch(html,/฿0|data-platform="shopee"|ราคา VIP/);
   const hidden = {...item,vip_reference:{amount:99,variant:'v',observed_at:'2026-10-19T00:00:00Z'},purchase_offers:[]};
   assert.doesNotMatch(listingHTML(hidden,{}),/฿|ดูบน|purchase-offers/);

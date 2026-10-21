@@ -21,6 +21,30 @@
   function profileOptions(selected) {
     return (channels.profiles || []).map(p=>`<option value="${escapeHTML(p.id)}" ${p.id===selected?'selected':''}>${escapeHTML(p.label)}</option>`).join('');
   }
+  function bindChoices(doc, holderId, selectId, choices, selected, onChange) {
+    const holder = doc.getElementById(holderId), select = doc.getElementById(selectId);
+    if (!holder || !select) return () => {};
+    holder.innerHTML = choices.map(p=>`<button type="button" data-choice="${escapeHTML(p.id)}" aria-pressed="${p.id===selected}">${escapeHTML(p.label)}</button>`).join('');
+    function sync(value) {
+      for (const button of holder.querySelectorAll?.('[data-choice]') || []) button.setAttribute('aria-pressed',String(button.dataset.choice===value));
+    }
+    holder.addEventListener('click',event=>{
+      const button = event.target.closest?.('[data-choice]');
+      if (!button || !choices.some(p=>p.id===button.dataset.choice)) return;
+      select.value = button.dataset.choice;
+      sync(select.value);
+      onChange(select.value);
+    });
+    select.addEventListener('change',()=>sync(select.value));
+    return sync;
+  }
+  const sortChoices = [{id:'suitability',label:'เหมาะกับการใช้งาน'},{id:'value',label:'คุ้มค่าต่อราคา'}];
+  function readinessHTML(items, mode) {
+    if (mode==='sales') return 'เรียงยอดขายในฟีด · ไม่ระบุช่วงเวลา';
+    const ready = items.filter(i=>i.rank!=null).length;
+    const pending = items.length-ready;
+    return `<strong>จัดอันดับได้ ${ready}/${items.length} รุ่น</strong>${pending ? ` · รอข้อมูล ${pending} รุ่น` : ''}${ready ? ' · ดูป้ายประมาณการในแต่ละรุ่น' : mode==='value' ? ' · ต้องมีราคา ตัวเลือก และหลักฐานเพียงพอ ลองเลือกความเหมาะสมเพื่อดูคะแนนที่มี' : ' · หลักฐานในโหมดนี้ยังไม่พอ เปรียบเทียบสเปกได้ระหว่างรอข้อมูล'}`;
+  }
   function orderLabel(mode,profile) {
     return mode === 'sales' ? 'เรียงยอดขายต้นทาง (ไม่ระบุช่วงเวลา)' : `${mode==='suitability'?'คะแนนเหมาะกับการใช้งาน / 100':'ความคุ้มค่า · คะแนนต่อ 1,000 บาท'} · ${profileLabel(profile)}`;
   }
@@ -65,7 +89,7 @@
       const caption = money(offer.price) === '—' ? (reference ? 'ตรวจราคาและคูปองที่ปลายทาง' : item.manual_price_only ? 'รอกรอกราคาหลังคูปอง' : 'ยังไม่มีข้อมูลราคายืนยัน') : manual
         ? `${lookup ? 'อ่านจากหน้า' : 'บันทึก'} ${date(lookup?.checked_at || offer.recorded_at)} น.${stale ? ' · เกิน 48 ชม. — ตรวจราคาปัจจุบัน' : ''}`
         : feed ? 'เวลาอัปเดตราคาไม่ระบุ — ตรวจราคาปัจจุบัน' : stale ? 'ข้อมูลราคาเกิน 48 ชม. — ตรวจใหม่' : 'รอตรวจตัวเลือกและเงื่อนไข';
-      return [`<div class="purchase-offer" data-platform="${e(offer.platform)}"><div class="offer-price"><div class="metric-label">${e(channels.names[offer.platform])} · ${label}</div><div class="metric-value">${money(offer.price)}</div><div class="metric-caption ${stale || feed ? 'stale' : ''}">${caption}</div>${manual && offer.price_type === 'flash_sale' ? '<div class="metric-caption">ตรวจราคาและสิทธิ์โปรโมชันที่หน้าร้าน</div>' : ''}${manual && offer.variant ? `<div class="metric-caption">ตัวเลือก: ${e(offer.variant)}</div>` : ''}${manual && offer.note ? `<div class="metric-caption">${e(offer.note)}</div>` : ''}${vip ? `<span class="vip">เคยตรวจราคา VIP ${money(vip.amount)}<br>${e(vip.variant)}<br>${date(vip.observed_at)} น.</span>` : ''}</div><a class="pdp-link" href="${e(url)}" target="_blank" rel="sponsored noopener noreferrer">ดูบน ${e(channels.names[offer.platform])} ↗</a></div>`];
+      return [`<div class="purchase-offer" data-platform="${e(offer.platform)}"><div class="offer-price"><div class="metric-label">${e(channels.names[offer.platform])} · ${label}</div><div class="metric-value ${money(offer.price)==='—'?'price-pending':''}">${money(offer.price)==='—'?'ยังไม่บันทึกราคา':money(offer.price)}</div><div class="metric-caption ${stale || feed ? 'stale' : ''}">${caption}</div>${manual && offer.price_type === 'flash_sale' ? '<div class="metric-caption">ตรวจราคาและสิทธิ์โปรโมชันที่หน้าร้าน</div>' : ''}${manual && offer.variant ? `<div class="metric-caption">ตัวเลือก: ${e(offer.variant)}</div>` : ''}${manual && offer.note ? `<div class="metric-caption">${e(offer.note)}</div>` : ''}${vip ? `<span class="vip">เคยตรวจราคา VIP ${money(vip.amount)}<br>${e(vip.variant)}<br>${date(vip.observed_at)} น.</span>` : ''}</div><a class="pdp-link" href="${e(url)}" target="_blank" rel="sponsored noopener noreferrer">ดูบน ${e(channels.names[offer.platform])} ↗</a></div>`];
     });
     return rows.length || referenceHTML ? `<div class="purchase-offers">${referenceHTML}${rows.join('')}</div>` : '';
   }
@@ -74,12 +98,12 @@
     const feed = item.source === 'shopee_affiliate_csv';
     const flags = item.review_flags || [];
     const manualCart = feed && item.purchase_offers?.some(o => o.platform === 'shopee' && o.source === 'manual');
-    return `<article class="listing" data-listing-id="${e(item.listing_id)}" data-rank="${e(item.rank)}" data-sales="${e(sales.value)}">
+    return `<article class="listing usage-listing" data-listing-id="${e(item.listing_id)}" data-rank="${e(item.rank)}" data-sales="${e(sales.value)}">
       <div class="rank" aria-label="${item.rank!=null&&item.ranking_mode!=='sales'&&item.value_result?.provisional?'อันดับชั่วคราว':'อันดับ'} ${e(item.rank ?? '—')}">${e(item.rank ?? '—')}</div>
-      <div class="product"><h3>${e(item.display_name || item.title)}</h3>${item.value_result ? valueHTML(item) : ''}${item.price_band_label ? `<div class="shop">กลุ่มงบอ้างอิง: ${e(item.price_band_label)}</div>` : ''}<div class="shop">${feed ? 'ร้านต้นทางในฟีด' : 'ร้าน'} ${e(item.shop_name || '—')}</div>${flags.filter(f => ['preorder','repacked'].includes(f)).map(f => `<span class="flag">${e(labels[f])}</span>`).join('')}${channels?.researchedSpecs(item) ? channels.researchHTML(item.spec_research) : officialHTML(item.official_specs)}${item.manual_price_only ? `<button type="button" class="phone-compare-button" data-compare-id="${e(item.listing_id)}" aria-pressed="false">＋ เทียบสเปก</button> <a class="phone-spec-link" href="compare.html?models=${encodeURIComponent(item.listing_id)}&amp;profile=${encodeURIComponent(validProfile(item.value_result?.profile))}">สเปกทุกหัวข้อ ↗</a>` : ''}</div>
-      <div class="sales"><div class="metric-label">${feed ? 'ยอดขายใน Product Feed' : 'ยอดขายที่ปลั๊กอินรายงาน'}</div><div class="metric-value">${number(sales.value)}</div><div class="metric-caption">${e(sales.raw)}<br><strong>ไม่ระบุช่วงเวลา</strong>${manualCart ? '<br>ตะกร้าซื้อเลือกโดยผู้ดูแล · ยอดขายข้างต้นอ้างอิงตะกร้าในฟีด' : ''}</div></div>
+      <div class="product"><h3>${e(item.display_name || item.title)}</h3>${item.value_result ? valueHTML(item) : ''}${flags.filter(f => ['preorder','repacked'].includes(f)).map(f => `<span class="flag">${e(labels[f])}</span>`).join('')}${channels?.researchedSpecs(item) ? channels.researchHTML(item.spec_research) : officialHTML(item.official_specs)}${item.manual_price_only ? `<button type="button" class="phone-compare-button" data-compare-id="${e(item.listing_id)}" aria-pressed="false">＋ เทียบสเปก</button> <a class="phone-spec-link" href="compare.html?models=${encodeURIComponent(item.listing_id)}&amp;profile=${encodeURIComponent(validProfile(item.value_result?.profile))}">สเปกทุกหัวข้อ ↗</a>` : ''}</div>
+
       ${purchaseHTML(item, now, hours)}
-      <details class="listing-details" ${review ? 'open' : ''}><summary>หลักฐานและสิ่งที่ต้องตรวจเพิ่ม</summary>${item.display_name ? `<p>ชื่อหน้าสินค้าต้นทาง: ${e(item.title)}</p>` : ''}<ul>${flags.map(f => `<li>${e(labels[f] || f)}</li>`).join('')}</ul><p>${feed ? 'อ่านไฟล์เมื่อ' : 'เก็บเมื่อ'} ${date(item.observed_at)} น. (เวลาไทย) · แหล่งข้อมูล: ${feed ? 'Shopee Affiliate Product Feed' : 'ปลั๊กอิน Shopee'}</p><p>รหัสร้าน ${e(item.shop_id)} · รหัสสินค้า ${e(item.item_id)}${price.model_id ? ` · รหัสตัวเลือกที่ปลั๊กอินส่งมา ${e(price.model_id)} (ยังไม่จับคู่ชื่อตัวเลือก)` : ''}</p>${feed ? `<p>หมวดในฟีด: ${(item.category_path || []).map(p => `${e(p.name)} (${e(p.id)})`).join(' / ')}</p><p>ตัวเลือกในฟีด ${number(price.model_count)} ตัวเลือก; ราคา sale_price ยังไม่จับคู่กับตัวเลือก ไม่ใช้ราคาตัวเลือกอื่นแทนกัน</p>` : `<p>พบจากคำค้น: ${(item.queries || []).map(e).join(' · ')}</p>`}</details>
+      <details class="listing-details" ${review ? 'open' : ''}><summary>ยอดขายต้นทางและหลักฐานการคัดรุ่น</summary><p>ร้านต้นทาง: ${e(item.shop_name || '—')} · กลุ่มงบอ้างอิง: ${e(item.price_band_label || '—')}</p><div class="sales"><div class="metric-label">${feed ? 'ยอดขายใน Product Feed' : 'ยอดขายที่ปลั๊กอินรายงาน'}</div><div class="metric-value">${number(sales.value)}</div><div class="metric-caption">${e(sales.raw)}<br><strong>ไม่ระบุช่วงเวลา</strong>${manualCart ? '<br>ตะกร้าซื้อเลือกโดยผู้ดูแล · ยอดขายข้างต้นอ้างอิงตะกร้าในฟีด' : ''}</div></div>${item.display_name ? `<p>ชื่อหน้าสินค้าต้นทาง: ${e(item.title)}</p>` : ''}<ul>${flags.map(f => `<li>${e(labels[f] || f)}</li>`).join('')}</ul><p>${feed ? 'อ่านไฟล์เมื่อ' : 'เก็บเมื่อ'} ${date(item.observed_at)} น. (เวลาไทย) · แหล่งข้อมูล: ${feed ? 'Shopee Affiliate Product Feed' : 'ปลั๊กอิน Shopee'}</p><p>รหัสร้าน ${e(item.shop_id)} · รหัสสินค้า ${e(item.item_id)}${price.model_id ? ` · รหัสตัวเลือกที่ปลั๊กอินส่งมา ${e(price.model_id)} (ยังไม่จับคู่ชื่อตัวเลือก)` : ''}</p>${feed ? `<p>หมวดในฟีด: ${(item.category_path || []).map(p => `${e(p.name)} (${e(p.id)})`).join(' / ')}</p><p>ตัวเลือกในฟีด ${number(price.model_count)} ตัวเลือก; ราคา sale_price ยังไม่จับคู่กับตัวเลือก ไม่ใช้ราคาตัวเลือกอื่นแทนกัน</p>` : `<p>พบจากคำค้น: ${(item.queries || []).map(e).join(' · ')}</p>`}</details>
     </article>`;
   }
   function valueHTML(item) {
@@ -89,16 +113,19 @@
     const measured = result.measured_coverage ?? 0, proxy = result.proxy_coverage ?? result.coverage ?? 0;
     const missing = result.missing_coverage ?? Math.max(0,100 - (result.coverage || 0));
     const evidence = `<small class="score-evidence-summary">ผลทดสอบ ${number(measured)}% · ประมาณจากสเปก ${number(proxy)}% · ขาดข้อมูล ${number(missing)}%</small>`;
-    if (!Number.isFinite(result.score)) return `<div class="value-summary pending">${title} · ${e(profileLabel(result.profile))}: รอข้อมูล<br><small>${e(result.reason)}</small>${evidence}${details}</div>`;
+    if (!Number.isFinite(result.score)) {
+      const pending = /ราคา/.test(result.reason || '') ? 'รอราคา / ตัวเลือก' : /ชื่อรุ่น|ยืนยันรุ่น/.test(result.reason || '') ? 'รอยืนยันรุ่น' : 'รอข้อมูลที่ใช้ประเมิน';
+      return `<div class="value-summary pending"><small>${title} · ${e(profileLabel(result.profile))}</small><strong class="pending-title">${pending}</strong><small>${e(result.reason)}</small>${evidence}${details}</div>`;
+    }
     const provisional = result.provisional || proxy>0 || missing>0;
     const decimals = suitability?2:4, unit = suitability?' / 100':' คะแนน / 1,000 บาท';
     const range = missing>0&&Number.isFinite(result.score_low)&&Number.isFinite(result.score_high)
       ? `<small>ช่วงจากข้อมูลที่ขาด ${result.score_low.toFixed(decimals)}–${result.score_high.toFixed(decimals)}${unit}</small>`:'';
     const status = provisional ? `<span class="score-provisional">${item.ranking_mode!=='sales'&&item.rank!=null?'อันดับชั่วคราว · ':''}คะแนนประมาณการ</span>` : '<span class="score-measured">คะแนนจากผลทดสอบ</span>';
     const price = suitability ? '<small>คะแนนความเหมาะสม · ไม่ใช้ราคาในการเรียงโหมดนี้</small>' : `<small>คะแนนความเหมาะสม ${Number(result.spec_score).toFixed(2)}/100 ÷ ${money(result.price)} × 1,000 · ${result.price_source === 'manual_reference' ? 'ราคาต่ำสุดที่ผู้ดูแลพบ' : e(channels.names[result.platform])}<br>ตัวเลือก: ${e(result.variant)}</small>`;
-    return `<div class="value-summary" data-score-kind="${suitability?'suitability':'value'}"><small>${title} · ${e(profileLabel(result.profile))}</small><strong>${result.score.toFixed(decimals)}${unit}</strong>${status}${range}${price}${evidence}${details}</div>`;
+    return `<div class="value-summary" data-score-kind="${suitability?'suitability':'value'}"><small>${title} · ${e(profileLabel(result.profile))}</small><strong>${result.score.toFixed(decimals)}${unit}</strong>${status}${evidence}${details ? details.replace('</summary>','</summary>'+range+price) : range+price}</div>`;
   }
-  const api = {escapeHTML, productUrl, stalePrice, filterItems, officialHTML, purchaseHTML, listingHTML, valueHTML, validProfile, profileLabel, readProfile, saveProfile, profileOptions, orderLabel};
+  const api = {escapeHTML, productUrl, stalePrice, filterItems, officialHTML, purchaseHTML, listingHTML, valueHTML, validProfile, profileLabel, readProfile, saveProfile, profileOptions, orderLabel, bindChoices, sortChoices, readinessHTML};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ShopeeRanking = api;
   if (!root.document || !root.document.getElementById('sourceSelect')) return;
@@ -115,6 +142,7 @@
     const ordered = channels.orderItems(c.items,mode,Date.now(),profile);
     const items = filterItems(ordered, $('listingSearch').value).filter(i => $('budgetBand').value === 'all' || i.price_band === $('budgetBand').value), e = escapeHTML;
     $('rankingOrderLabel').textContent = orderLabel(mode,profile);
+    if ($('rankingReadiness')) $('rankingReadiness').innerHTML = readinessHTML(ordered,mode);
     $('valueFormula').innerHTML = channels.formulaHTML(profile);
     const feed = dataset.source === 'shopee_affiliate_csv';
     $('categoryTitle').textContent = `${c.icon} ${c.name}`;
@@ -186,10 +214,13 @@
     init();
   });
   $('budgetBand').addEventListener('change', render);
+  $('rankingSort').value = 'suitability';
   $('rankingSort').addEventListener('change', render);
+  bindChoices(document,'rankingSortChoices','rankingSort',sortChoices,'suitability',render);
   $('rankingProfile').innerHTML = profileOptions(profile);
   $('rankingProfile').value = profile;
   $('rankingProfile').addEventListener('change',event=>{profile=saveProfile(event.target.value);render();});
+  bindChoices(document,'rankingProfileChoices','rankingProfile',channels.profiles,profile,id=>{profile=saveProfile(id);render();});
   $('valueFormula').innerHTML = channels.formulaHTML(profile);
   channels.watchChanges(async () => {
     if (!dataset) return;

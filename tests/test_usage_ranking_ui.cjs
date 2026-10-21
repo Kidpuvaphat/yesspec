@@ -57,6 +57,7 @@ test('profile changes preserve home search/budget and recalculate the selected s
  await controller.show('smartphone');
  const $=document.getElementById;
  assert.equal($('categoryTop20Profile').value,'photo');
+ assert.equal(calls.at(-1).mode,'suitability');
  controller.search('Example');
  $('categoryTop20Band').value='budget';$('categoryTop20Band').listeners.change({target:{value:'budget'}});
  $('categoryTop20Sort').value='suitability';$('categoryTop20Sort').listeners.change({target:{value:'suitability'}});
@@ -164,4 +165,16 @@ test('formula explains the actual proxies and fixed numeric caps only for the se
  assert.doesNotMatch(photo,/Geekbench 6 Single-core/);
  assert.match(balanced,/ค่าอ้างอิงเต็มคะแนน 3000/);
  assert.match(balanced,/RAM จริง 100% ของหัวข้อนี้/);
+});
+
+ test('visible usage buttons select all six profiles and keep native control and pressed state in sync',()=>{
+ const UI=require('../assets/shopee-ranking.js'), choices=profiles;
+ const buttons=choices.map(p=>({dataset:{choice:p.id},setAttribute(key,value){this[key]=value;}}));
+ const holder={innerHTML:'',listeners:{},querySelectorAll:()=>buttons,addEventListener(key,fn){this.listeners[key]=fn;}};
+ const select={value:'balanced',listeners:{},addEventListener(key,fn){this.listeners[key]=fn;}};
+ const doc={getElementById:id=>id==='choices'?holder:select};
+ const changes=[];UI.bindChoices(doc,'choices','select',choices,'balanced',value=>changes.push(value));
+ for(const button of buttons){holder.listeners.click({target:{closest:()=>button}});assert.equal(select.value,button.dataset.choice);assert.equal(button['aria-pressed'],'true');assert.equal(buttons.filter(b=>b['aria-pressed']==='true').length,1);}
+ assert.deepEqual(changes,choices.map(p=>p.id));
+ select.value='photo';select.listeners.change();assert.equal(buttons[1]['aria-pressed'],'true');assert.equal(buttons[5]['aria-pressed'],'false');
 });

@@ -54,14 +54,12 @@
 
   function createController(doc, load) {
     const $ = id => doc.getElementById(id);
-    let dataset, category, selectedId, query = '', band = 'all', mode = 'value', request = 0, profile = ranking.readProfile();
+    let dataset, category, selectedId, query = '', band = 'all', mode = 'suitability', request = 0, profile = ranking.readProfile();
     function render() {
       if (!category) return;
       const ordered = dataset.catalog_mode === 'smartphone_30' ? channels.orderItems(category.items,mode,Date.now(),profile) : category.items;
       const items = ranking.filterItems(ordered, query).filter(item => band === 'all' || item.price_band === band);
-      $('categoryTop20Meta').textContent = dataset.catalog_mode === 'smartphone_30'
-        ? `${category.listing_count} รุ่น · ${category.price_bands?.length || 0} ช่วงงบ · ${ranking.orderLabel(mode,profile)}${mode==='sales'?'':` · จัดอันดับได้ ${ordered.filter(i=>i.rank!=null).length} รุ่น (ชั่วคราว ${ordered.filter(i=>i.rank!=null&&i.value_result?.provisional).length})`}`
-        : `${category.listing_count} รายการ · เรียงตามยอดขายต้นทางที่เก็บได้`;
+      $('categoryTop20Meta').innerHTML = ranking.readinessHTML(ordered,mode);
       $('categoryTop20Count').textContent = `${items.length} / ${category.listing_count} รายการ`;
       $('categoryTop20Results').innerHTML = items.length
         ? items.map(item => ranking.listingHTML(item, dataset.reason_labels || {}, false, Date.now(), dataset.price_ttl_hours)).join('')
@@ -111,10 +109,17 @@
     $('categoryTop20Search').addEventListener('input', event => search(event.target.value));
     $('categoryTop20Clear').addEventListener('click', () => search(''));
     $('categoryTop20Band')?.addEventListener('change', event => {band = event.target.value; render();});
+    if ($('categoryTop20Sort')) $('categoryTop20Sort').value = mode;
+    ranking.bindChoices(doc,'categoryTop20SortChoices','categoryTop20Sort',ranking.sortChoices,mode,value=>{mode=value;render();});
     $('categoryTop20Sort')?.addEventListener('change', event => {mode = event.target.value; render();});
     if ($('categoryTop20Profile')) {
       $('categoryTop20Profile').innerHTML = ranking.profileOptions(profile);
       $('categoryTop20Profile').value = profile;
+      ranking.bindChoices(doc,'categoryTop20ProfileChoices','categoryTop20Profile',channels.profiles,profile,value=>{
+        profile=ranking.saveProfile(value);
+        if ($('categoryTop20Formula')) $('categoryTop20Formula').innerHTML=channels.formulaHTML(profile);
+        render();
+      });
       $('categoryTop20Profile').addEventListener('change',event=>{
         profile=ranking.saveProfile(event.target.value);
         if ($('categoryTop20Formula')) $('categoryTop20Formula').innerHTML=channels.formulaHTML(profile);

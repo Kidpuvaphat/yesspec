@@ -1,0 +1,42 @@
+/* Comparison picker tray: loaded after ranking-offers.css on catalog pages. */
+.phone-compare-tray {
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:995;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:16px;
+  width:min(960px,calc(100% - 32px));
+  max-width:calc(100% - 32px);
+  padding:12px 16px;
+  border:1px solid #3b624b;
+  border-radius:14px;
+  background:#183e28;
+  color:#fff;
+  box-shadow:0 8px 30px #17372530;
+}
+.phone-compare-tray[hidden] {display:none;}
+.phone-compare-tray .compare-tray-selection {min-width:0;}
+.phone-compare-tray .compare-tray-count {display:block;margin-bottom:7px;font-size:12px;line-height:1.5;color:#e7f3eb;}
+.phone-compare-tray .compare-tray-models {display:flex;gap:8px;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:4px;scrollbar-width:thin;scrollbar-color:#7ba78b transparent;}
+.phone-compare-tray .compare-tray-chip {display:flex;flex:0 0 auto;align-items:center;max-width:260px;min-height:44px;border:1px solid #5b8269;border-radius:8px;background:#274e36;}
+.phone-compare-tray .compare-tray-model-name {display:block;min-width:0;padding-left:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:600;}
+.phone-compare-tray [data-compare-remove] {flex:0 0 44px;width:44px;height:44px;padding:0;border:0;border-radius:7px;background:transparent;color:#fff;font-size:23px;line-height:1;}
+.phone-compare-tray [data-compare-remove]:hover {background:#416c50;}
+.phone-compare-tray .compare-tray-actions {display:flex;align-items:center;gap:8px;white-space:nowrap;}
+.phone-compare-tray .compare-tray-open {display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 15px;border:1px solid #fff;border-radius:8px;background:#fff;color:#163c25;font-size:14px;font-weight:700;text-decoration:none;}
+.phone-compare-tray .compare-tray-open:hover {background:#e4f3e9;}
+.phone-compare-tray [data-compare-clear] {min-height:44px;padding:8px 10px;border:1px solid #759782;border-radius:8px;color:#e4f0e8;font-size:12px;}
+.phone-compare-tray :is(a,button,[tabindex]):focus-visible {outline:3px solid #a5e6b8;outline-offset:2px;}
+body:has(.phone-compare-tray:not([hidden])) {padding-bottom:134px;}
+@media(max-width:650px) {
+  .phone-compare-tray {bottom:10px;grid-template-columns:minmax(0,1fr);gap:9px;width:calc(100% - 20px);max-width:calc(100% - 20px);padding:10px 12px;border-radius:12px;}
+  .phone-compare-tray .compare-tray-count {margin-bottom:5px;font-size:11px;}
+  .phone-compare-tray .compare-tray-chip {max-width:min(250px,75vw);}
+  .phone-compare-tray .compare-tray-actions {justify-content:flex-end;}
+  .phone-compare-tray .compare-tray-open {flex:1;}
+  body:has(.phone-compare-tray:not([hidden])) {padding-bottom:180px;}
+}

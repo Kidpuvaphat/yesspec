@@ -75,17 +75,35 @@
   }
   function installPicker(doc) {
     if(doc.getElementById('phoneCompare'))return;
+    const namesKey='yesspec_compare_names_v1',names=new Map();
     let selected=[];
     try{selected=JSON.parse(root.localStorage.getItem(storageKey)||'[]');}catch(_){}
     selected=[...new Set(Array.isArray(selected)?selected:[])].filter(id=>/^\d+\/\d+$/.test(id)).slice(0,4);
+    try{
+      const saved=JSON.parse(root.localStorage.getItem(namesKey)||'{}');
+      if(saved&&typeof saved==='object'&&!Array.isArray(saved))Object.entries(saved).forEach(([id,name])=>{
+        if(/^\d+\/\d+$/.test(id)&&typeof name==='string'&&name.trim())names.set(id,name.trim().slice(0,160));
+      });
+    }catch(_){}
     const tray=doc.createElement('div');tray.className='phone-compare-tray';tray.setAttribute('aria-label','รุ่นที่เลือกเปรียบเทียบ');doc.body.append(tray);
     function update(message='',persist=false) {
+      const buttons=Array.from(doc.querySelectorAll('[data-compare-id]'));
+      buttons.forEach(b=>{
+        const name=b.dataset.compareName||b.closest?.('.listing')?.querySelector('h3')?.textContent;
+        if(typeof name==='string'&&name.trim())names.set(b.dataset.compareId,name.trim().slice(0,160));
+      });
       tray.hidden=!selected.length&&!message;
-      tray.innerHTML=`<span role="status">${e(message||`เลือกเทียบ ${selected.length}/4 รุ่น`)}</span> <a href="compare.html?models=${encodeURIComponent(selected.join(','))}&amp;profile=${encodeURIComponent(readProfile())}">เปิดตารางเทียบ ↗</a> <button type="button" data-compare-clear>ล้าง</button>`;
-      doc.querySelectorAll('[data-compare-id]').forEach(b=>{
+      tray.innerHTML=`<div class="compare-tray-selection"><span class="compare-tray-count" role="status">เลือกเทียบ ${selected.length}/4 รุ่น${message?' · '+e(message):''}</span><div class="compare-tray-models" role="list" aria-label="รุ่นที่เลือก ปัดหรือเลื่อนเพื่อดูทั้งหมด" tabindex="0">${selected.map(id=>{
+        const name=names.get(id)||`รุ่น ${id}`;
+        return `<span class="compare-tray-chip" role="listitem"><span class="compare-tray-model-name" title="${e(name)}">${e(name)}</span><button type="button" data-compare-remove="${e(id)}" aria-label="นำ ${e(name)} ออกจากการเปรียบเทียบ"><span aria-hidden="true">×</span></button></span>`;
+      }).join('')}</div></div><div class="compare-tray-actions"><a class="compare-tray-open" href="compare.html?models=${encodeURIComponent(selected.join(','))}&amp;profile=${encodeURIComponent(readProfile())}">เทียบ ${selected.length} รุ่น ↗</a><button type="button" data-compare-clear>ล้างทั้งหมด</button></div>`;
+      buttons.forEach(b=>{
         const picked=selected.includes(b.dataset.compareId);b.setAttribute('aria-pressed',String(picked));b.textContent=picked?'✓ เลือกเทียบแล้ว':'＋ เทียบสเปก';
       });
-      if(persist)try{root.localStorage.setItem(storageKey,JSON.stringify(selected));}catch(_){}
+      if(persist)try{
+        root.localStorage.setItem(storageKey,JSON.stringify(selected));
+        root.localStorage.setItem(namesKey,JSON.stringify(Object.fromEntries(selected.filter(id=>names.has(id)).map(id=>[id,names.get(id)]))));
+      }catch(_){}
     }
     doc.addEventListener('click',event=>{
       const button=event.target.closest('[data-compare-id]');
@@ -95,13 +113,32 @@
         else if(selected.length===4){update('เทียบได้สูงสุด 4 รุ่น · กดรุ่นที่เลือกเพื่อนำออก');return;}
         else selected.push(id);
         update('',true);
-      } else if(event.target.closest('[data-compare-clear]')) {selected=[];update('',true);}
+      } else {
+        const remove=event.target.closest('[data-compare-remove]');
+        if(remove){
+          const id=remove.dataset.compareRemove,index=selected.indexOf(id);
+          if(index<0)return;
+          selected=selected.filter(value=>value!==id);update('',true);
+          const next=selected[Math.min(index,selected.length-1)];
+          (next?tray.querySelector?.(`[data-compare-remove="${next}"]`):doc.querySelector?.(`[data-compare-id="${id}"]`))?.focus();
+        } else if(event.target.closest('[data-compare-clear]')) {selected=[];update('',true);}
+      }
     });
     doc.addEventListener('change',event=>{
       if(['categoryTop20Profile','rankingProfile'].includes(event.target.id))update();
     });
     root.addEventListener('storage',event=>{
       if(event.key===profileKey){update();return;}
+      if(event.key===namesKey){
+        try{
+          const next=JSON.parse(event.newValue||'{}');
+          if(next&&typeof next==='object'&&!Array.isArray(next))Object.entries(next).forEach(([id,name])=>{
+            if(/^\d+\/\d+$/.test(id)&&typeof name==='string'&&name.trim())names.set(id,name.trim().slice(0,160));
+          });
+          update();
+        }catch(_){}
+        return;
+      }
       if(event.key!==storageKey)return;
       try{const next=JSON.parse(event.newValue||'[]');selected=[...new Set(Array.isArray(next)?next:[])].filter(id=>/^\d+\/\d+$/.test(id)).slice(0,4);update();}catch(_){}
     });

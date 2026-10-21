@@ -66,7 +66,7 @@ test('missing fields and seller prices are never backfilled from other official 
   const specs=resolve(iphone,partial);
   assert.equal(specs.fields.length,1);
   const html=listingHTML({...iphone,price:{amount:null},official_specs:specs},{});
-  assert.match(html,/class="metric-value">—<\/div>/);
+  assert.match(html,/class="metric-value price-pending">ยังไม่บันทึกราคา<\/div>/);
   assert.doesNotMatch(html,/฿0|฿999|500W/);
 });
 

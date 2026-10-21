@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="assets/official-specs.css?v=20261019-official">
   <script src="assets/official-specs.js?v=20261019-official" defer></script>
   <link rel="stylesheet" href="assets/ranking-offers.css?v=20261021-value3">
+  <link rel="stylesheet" href="assets/ranking-ux.css?v=20261021-ux1">
+  <link rel="stylesheet" href="assets/phone-comparison-tray.css?v=20261021-ux1">
   <script src="assets/phone-specs.js?v=20261021-value3" defer></script>
   <script src="assets/phone-value.js?v=20261021-value3" defer></script>
   <script src="assets/ranking-offers.js?v=20261021-value3" defer></script>
-  <script src="assets/shopee-ranking.js?v=20261021-value3" defer></script>
-  <script src="assets/phone-comparison.js?v=20261021-value3" defer></script>
+  <script src="assets/shopee-ranking.js?v=20261021-ux1" defer></script>
+  <script src="assets/phone-comparison.js?v=20261021-ux1" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -30,26 +32,26 @@
       <p class="eyebrow" id="sourceLabel">SHOPEE · PRODUCT FEED</p>
       <h1 id="page-title">มือถือ 30 รุ่น<span>เลือกตามงบ ดูราคาหลังคูปอง</span></h1>
       <p class="intro-copy">คัดรุ่นไม่ซ้ำหลายช่วงราคา พร้อมลิงก์ซื้อและราคาคูปองที่ผู้ดูแลทยอยตรวจจากมือถือ</p>
-      <div class="stats" id="datasetStats" aria-live="polite">กำลังโหลดข้อมูล…</div>
+      <details class="dataset-details"><summary>ข้อมูลที่ใช้คัดรุ่น</summary><div class="stats" id="datasetStats" aria-live="polite">กำลังโหลดข้อมูล…</div></details>
     </section>
-    <aside class="scope-note">
+    <details class="scope-note"><summary>ขอบเขตชุดข้อมูล · ยอดขายไม่ระบุช่วงเวลา</summary>
       <strong>ยอดขายไม่ระบุช่วงเวลา</strong>
       <p id="scopeDescription">กำลังตรวจขอบเขตชุดข้อมูล…</p>
       <p>ใช้ยอดขายในฟีดประกอบการคัดเลือกและกระจายช่วงงบ ไม่ใช่ 30 อันดับสูงสุดทั้ง Shopee และยังไม่ยืนยันยอด 30 วัน ยอดของหน้าสินค้าอาจรวมหลายตัวเลือก</p>
-    </aside>
+    </details>
     <section class="ranking-section" aria-labelledby="categoryTitle">
-      <div class="controls">
+      <div id="rankingProfileChoices" class="usage-choices" role="group" aria-label="ลักษณะการใช้งาน"></div><div id="rankingSortChoices" class="sort-choices" role="group" aria-label="วิธีจัดอันดับ"></div><div class="controls">
         <div class="field" hidden><label for="sourceSelect">ชุดข้อมูล</label><select id="sourceSelect"><option value="feed">Product Feed ทางการ</option></select></div>
-        <div class="field"><label for="categorySelect">เลือกหมวดสินค้า</label><select id="categorySelect" disabled><option>กำลังโหลด…</option></select></div>
-        <div class="field"><label for="rankingProfile">ลักษณะการใช้งาน</label><select id="rankingProfile" aria-describedby="rankingScoreNote"></select></div><div class="field"><label for="rankingSort">จัดอันดับ</label><select id="rankingSort"><option value="value">ความคุ้มค่า: คะแนน ÷ ราคา</option><option value="suitability">คะแนนเหมาะกับการใช้งาน</option><option value="sales">ยอดขายต้นทาง</option></select></div><div class="field"><label for="budgetBand">ช่วงงบอ้างอิงก่อนคูปอง</label><select id="budgetBand"><option value="all">ทุกช่วงงบ</option></select></div><div class="field search-field"><label for="listingSearch">ค้นหาใน 30 รุ่น</label><input id="listingSearch" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></div>
+        <div class="field" hidden><label for="categorySelect">เลือกหมวดสินค้า</label><select id="categorySelect" disabled><option>กำลังโหลด…</option></select></div>
+        <div class="field" hidden><label for="rankingProfile">ลักษณะการใช้งาน</label><select id="rankingProfile" aria-describedby="rankingScoreNote"></select></div><div class="field secondary-sort"><label for="rankingSort">จัดอันดับ</label><select id="rankingSort"><option value="value">ความคุ้มค่า: คะแนน ÷ ราคา</option><option value="suitability">คะแนนเหมาะกับการใช้งาน</option><option value="sales">ยอดขายต้นทาง</option></select></div><div class="field"><label for="budgetBand">ช่วงงบอ้างอิงก่อนคูปอง</label><select id="budgetBand"><option value="all">ทุกช่วงงบ</option></select></div><div class="field search-field"><label for="listingSearch">ค้นหาใน 30 รุ่น</label><input id="listingSearch" type="search" placeholder="ชื่อสินค้า หรือร้านค้า" autocomplete="off" disabled></div>
       </div>
       <div class="category-heading"><div><p class="eyebrow" id="rankingOrderLabel">อันดับความคุ้มค่า</p><h2 id="categoryTitle">กำลังโหลดอันดับ</h2><p id="categoryMeta" class="muted"></p></div><span class="count-pill" id="resultCount"></span></div>
       <details class="method"><summary>ขอบเขตข้อมูลและเกณฑ์ของหมวดนี้</summary><div id="methodContent"></div></details>
       <div class="view-controls" role="group" aria-label="มุมมองรายการ"><button id="rankingView" class="active" aria-pressed="true">รายการสินค้า</button><button id="reviewView" aria-pressed="false">รายการที่ต้องตรวจเพิ่ม</button></div>
-      <p class="price-note">แสดงเฉพาะราคาที่ผู้ดูแลกรอกหลังตรวจคูปอง หากยังไม่ได้กรอกจะแสดง “รอกรอกราคาหลังคูปอง” พร้อมระบุราคา VIP / เงื่อนไขและเวลาบันทึก ต้องตรวจตัวเลือกสินค้าและราคาปัจจุบันก่อนซื้อ ชื่อและคำโฆษณาสินค้ามาจากผู้ขาย ข้อมูลที่ยังยืนยันไม่ได้แสดง “—” สเปกจากเว็บผู้ผลิตยืนยันเฉพาะรุ่น ไม่ยืนยันตัวเลือกที่ตรงกับราคาหรือการรับประกันของร้าน</p>
-      <p id="rankingScoreNote" class="usage-score-note">ให้คะแนนตามการใช้งานที่เลือก · แสดงผลทดสอบ ส่วนประมาณจากสเปก และข้อมูลที่ขาดแยกกัน คะแนนที่ยังมีส่วนประมาณเป็นอันดับชั่วคราว</p>
+      <details class="method"><summary>เงื่อนไขราคาและข้อมูลที่ยังไม่ยืนยัน</summary><p class="price-note">แสดงเฉพาะราคาที่ผู้ดูแลกรอกหลังตรวจคูปอง หากยังไม่ได้กรอกจะแสดง “รอกรอกราคาหลังคูปอง” พร้อมระบุราคา VIP / เงื่อนไขและเวลาบันทึก ต้องตรวจตัวเลือกสินค้าและราคาปัจจุบันก่อนซื้อ ชื่อและคำโฆษณาสินค้ามาจากผู้ขาย ข้อมูลที่ยังยืนยันไม่ได้แสดง “—” สเปกจากเว็บผู้ผลิตยืนยันเฉพาะรุ่น ไม่ยืนยันตัวเลือกที่ตรงกับราคาหรือการรับประกันของร้าน</p>
+      </details><p id="rankingScoreNote" class="usage-score-note">ให้คะแนนตามการใช้งานที่เลือก · แสดงผลทดสอบ ส่วนประมาณจากสเปก และข้อมูลที่ขาดแยกกัน คะแนนที่ยังมีส่วนประมาณเป็นอันดับชั่วคราว</p>
       <details class="method"><summary>สูตรคะแนนตามการใช้งานและความคุ้มค่า</summary><div id="valueFormula"></div></details>
-      <div id="rankingResults" aria-live="polite"></div>
+      <p id="rankingReadiness" class="catalog-meta" role="status"></p><div id="rankingResults" aria-live="polite"></div>
       <details class="excluded-panel" id="excludedPanel" hidden><summary id="excludedSummary"></summary><div id="excludedItems"></div></details>
     </section>
     <footer><span id="sourceFooter">ข้อมูลจาก Shopee</span><br>แสดงช่องทางซื้อเฉพาะที่มีลิงก์ตะกร้า · ราคาแต่ละร้านอาจเป็นคนละตัวเลือกหรือเงื่อนไข<br>ลิงก์ซื้อ Shopee ใช้รหัส Affiliate ของเว็บไซต์ ค่าคอมมิชชันขึ้นกับสินค้าและคำสั่งซื้อที่เข้าเงื่อนไข<br>ข้อมูลชุดนี้ยังไม่ได้เชื่อม API เพื่ออัปเดตอัตโนมัติ</footer>

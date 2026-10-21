@@ -6,28 +6,32 @@ const vm = require('node:vm');
 const P = require('../assets/phone-specs.js');
 
 const storageKey = 'yesspec_compare_phones_v1';
+const namesKey = 'yesspec_compare_names_v1';
 const source = fs.readFileSync(path.join(__dirname, '../assets/phone-comparison.js'), 'utf8');
 
 // Run the real picker entry point without a browser or changes to the application.
-function picker(initial = []) {
-  const backing = new Map([[storageKey, JSON.stringify(initial)]]);
+function picker(initial = [], savedNames = {}, renderCards = true) {
+  const backing = new Map([[storageKey, JSON.stringify(initial)], [namesKey, JSON.stringify(savedNames)]]);
   const writes = [];
   const documentListeners = new Map();
   const windowListeners = new Map();
   const observers = new Map();
   const targets = new Map(['categoryTop20Results', 'rankingResults'].map(id => [id, {id}]));
   const buttons = Array.from({length: 6}, (_, index) => ({
-    dataset: {compareId: `1/${index + 1}`},
+    dataset: {compareId: `1/${index + 1}`, compareName: `Phone ${index + 1}`},
     attributes: {},
     setAttribute(name, value) { this.attributes[name] = value; }
   }));
+  let visibleButtons = renderCards ? buttons : [];
+  let focused;
   let tray;
   const document = {
     readyState: 'complete',
     getElementById: id => targets.get(id) || null,
-    createElement: () => ({setAttribute() {}}),
+    createElement: () => ({setAttribute() {}, querySelector: selector => ({focus() { focused = selector; }})}),
     body: {append(element) { tray = element; }},
-    querySelectorAll: selector => selector === '[data-compare-id]' ? buttons : [],
+    querySelectorAll: selector => selector === '[data-compare-id]' ? visibleButtons : [],
+    querySelector: selector => ({focus() { focused = selector; }}),
     addEventListener(name, callback) { documentListeners.set(name, callback); }
   };
   const sandbox = {
@@ -49,6 +53,10 @@ function picker(initial = []) {
 
   return {
     writes,
+    selectionWrites: () => writes.filter(write => write.key === storageKey),
+    storedNames: () => JSON.parse(backing.get(namesKey) || '{}'),
+    html: () => tray.innerHTML,
+    focused: () => focused,
     stored: () => JSON.parse(backing.get(storageKey) || '[]'),
     selected: () => {
       const href = /href="([^"]+)"/.exec(tray.innerHTML)[1];
@@ -63,6 +71,13 @@ function picker(initial = []) {
       documentListeners.get('change')({target:{id}});
     },
     rerender(id) { observers.get(id)(); },
+    hideCards() { visibleButtons = []; observers.get('rankingResults')(); },
+    name(id, value, fromHeading = false) {
+      const button = buttons.find(candidate => candidate.dataset.compareId === id);
+      button.dataset.compareName = fromHeading ? undefined : value;
+      button.closest = selector => selector === '.listing' ? {querySelector: () => ({textContent: value})} : null;
+      observers.get('rankingResults')();
+    },
     externalSelection(ids, dispatch = true) {
       const newValue = ids === null ? null : JSON.stringify(ids);
       if (newValue === null) backing.delete(storageKey);
@@ -72,6 +87,11 @@ function picker(initial = []) {
     unrelatedStorageEvent() {
       windowListeners.get('storage')({key: 'another_preference', newValue: '["1/6"]'});
     },
+    externalNames(names) {
+      const newValue = JSON.stringify(names);
+      backing.set(namesKey, newValue);
+      windowListeners.get('storage')({key: namesKey, newValue});
+    },
     click(id) {
       const button = buttons.find(candidate => candidate.dataset.compareId === id);
       assert.ok(button, `Unknown test model: ${id}`);
@@ -79,6 +99,9 @@ function picker(initial = []) {
     },
     clear() {
       documentListeners.get('click')({target: {closest: selector => selector === '[data-compare-clear]' ? {} : null}});
+    },
+    remove(id) {
+      documentListeners.get('click')({target: {closest: selector => selector === '[data-compare-remove]' ? {dataset: {compareRemove: id}} : null}});
     }
   };
 }
@@ -124,19 +147,21 @@ test('user add, remove and clear actions persist the synchronized selection', ()
   page.click('1/4');
   assert.deepEqual(page.stored(), ['1/2', '1/3', '1/4']);
   assert.deepEqual(page.selected(), ['1/2', '1/3', '1/4']);
-  assert.equal(page.writes.length, 1);
+  assert.equal(page.selectionWrites().length, 1);
+  assert.deepEqual(page.storedNames(), {'1/2': 'Phone 2', '1/3': 'Phone 3', '1/4': 'Phone 4'});
 
   page.click('1/2');
   assert.deepEqual(page.stored(), ['1/3', '1/4']);
   assert.equal(page.pressed('1/2'), 'false');
-  assert.equal(page.writes.length, 2);
+  assert.equal(page.selectionWrites().length, 2);
 
   page.clear();
   assert.deepEqual(page.stored(), []);
   assert.deepEqual(page.selected(), []);
   assert.equal(page.hidden(), true);
-  assert.equal(page.writes.length, 3);
-  assert.ok(page.writes.every(write => write.key === storageKey));
+  assert.equal(page.selectionWrites().length, 3);
+  assert.deepEqual(page.storedNames(), {});
+  assert.ok(page.writes.every(write => [storageKey, namesKey].includes(write.key)));
 });
 
 test('attempting to add a fifth model preserves the saved selection without a write', () => {
@@ -157,4 +182,52 @@ test('changing the usage profile in the current page updates the compare link wi
   assert.equal(page.profile(),'gaming');
   assert.deepEqual(page.selected(),['1/1']);
   assert.equal(page.writes.length,0);
+});
+
+test('selected names remain visible after filtering and escape both text and accessible labels', () => {
+  const page = picker(['1/1', '1/2']);
+  page.name('1/1', 'Phone <Pro> "256 GB"', true);
+  page.hideCards();
+  assert.match(page.html(), /Phone &lt;Pro&gt; &quot;256 GB&quot;/);
+  assert.match(page.html(), /aria-label="นำ Phone &lt;Pro&gt; &quot;256 GB&quot; ออกจากการเปรียบเทียบ"/);
+  assert.match(page.html(), /Phone 2/);
+  assert.match(page.html(), /เลือกเทียบ 2\/4 รุ่น/);
+  assert.doesNotMatch(page.html(), /<Pro>/);
+  assert.equal(page.writes.length, 0);
+});
+
+test('removing one tray chip preserves other models and profile and moves keyboard focus', () => {
+  const page = picker(['1/1', '1/2', '1/3']);
+  page.changeProfile('rankingProfile', 'photo');
+  page.remove('1/2');
+  assert.deepEqual(page.selected(), ['1/1', '1/3']);
+  assert.deepEqual(page.stored(), ['1/1', '1/3']);
+  assert.equal(page.profile(), 'photo');
+  assert.equal(page.pressed('1/2'), 'false');
+  assert.equal(page.pressed('1/1'), 'true');
+  assert.equal(page.pressed('1/3'), 'true');
+  assert.equal(page.focused(), '[data-compare-remove="1/3"]');
+  assert.equal(page.selectionWrites().length, 1);
+  assert.doesNotMatch(page.html(), /data-compare-remove="1\/2"/);
+
+  page.remove('1/3');
+  page.remove('1/1');
+  assert.equal(page.hidden(), true);
+  assert.equal(page.focused(), '[data-compare-id="1/1"]');
+});
+
+test('cached names survive navigation without visible cards and synchronize without write echoes', () => {
+  const first = picker();
+  first.click('1/2');
+  const next = picker(first.stored(), first.storedNames(), false);
+  assert.match(next.html(), /Phone 2/);
+  assert.equal(next.writes.length, 0);
+
+  next.externalSelection(['9/99']);
+  assert.match(next.html(), /รุ่น 9\/99/);
+  next.externalNames({'9/99': 'Another phone', 'invalid-id': '<script>'});
+  assert.match(next.html(), /Another phone/);
+  assert.doesNotMatch(next.html(), /<script>/);
+  assert.deepEqual(next.selected(), ['9/99']);
+  assert.equal(next.writes.length, 0);
 });

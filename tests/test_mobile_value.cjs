@@ -155,6 +155,7 @@ test('refresh bypasses the cached registry and updates the active list without c
   }};
   const controller=createController(doc,loader);
   await controller.show('smartphone');
+  doc.getElementById('categoryTop20Sort').listeners.change({target:{value:'value'}});
   controller.search('OPPO');
   doc.getElementById('categoryTop20Band').listeners.change({target:{value:'5000-9999'}});
   registry.items[first.listing_id]={binding:{title:first.title,model_count:first.price.model_count,model_examples:first.price.model_examples.map(m=>({id:m.id,name:m.name}))},
