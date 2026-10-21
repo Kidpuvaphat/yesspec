@@ -1,5 +1,4 @@
 import json
-import ast
 import io
 import re
 from pathlib import Path
@@ -14,6 +13,7 @@ import urllib.error
 import urllib.request
 
 from deploy import maintenance as ops
+from deploy import apply_release as release
 from runtime_lock import runtime_lock
 
 SOURCE = Path(__file__).resolve().parents[1]
@@ -149,23 +149,12 @@ with open(sys.argv[1], "a") as handle:
             self.assertEqual(result.returncode, 64)
 
     def test_deploy_health_probe_handles_nginx_html_during_api_startup(self):
-        # Load only this pure function; importing the release script would deploy.
-        tree = ast.parse((SOURCE/'deploy/apply_release.py').read_text())
-        function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'request')
-        scope = {'json': json, 'urllib': urllib, 'token': 'test-only'}
-        exec(compile(ast.Module(body=[function], type_ignores=[]), '<health-probe>', 'exec'), scope)
         error = urllib.error.HTTPError('https://yesspec.com', 502, 'Bad Gateway', {}, io.BytesIO(b'<html>502</html>'))
-        with patch('urllib.request.urlopen', side_effect=error):
-            status, payload = scope['request']('/api/admin/ranking-products')
+        def opener(*args, **kwargs):
+            raise error
+        status, payload = release.request('/api/admin/ranking-products', token='test-only', opener=opener)
         self.assertEqual(status, 502)
         self.assertFalse(payload['ok'])
-
-    def admin_routes(self):
-        tree = ast.parse((SOURCE/'deploy/apply_release.py').read_text())
-        function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'prepare_admin_routes')
-        scope = {'re': re}
-        exec(compile(ast.Module(body=[function], type_ignores=[]), '<admin-routes>', 'exec'), scope)
-        return scope['prepare_admin_routes']
 
     def test_canonical_admin_routes_upgrade_old_config_and_are_idempotent(self):
         config = '''server {
@@ -174,7 +163,7 @@ with open(sys.argv[1], "a") as handle:
     location = /admin-ranking.html { try_files $uri =404; }
     location = /admin.html { return 302 /admin-ranking.html; }
 }'''
-        prepare = self.admin_routes()
+        prepare = release.prepare_admin_routes
         result = prepare(config, True)
         self.assertEqual(prepare(result, True), result)
         self.assertEqual(result.count('return 302 /admin/$is_args$args;'), 3)
@@ -187,7 +176,7 @@ with open(sys.argv[1], "a") as handle:
         self.assertIn('location ^~ /api/admin/ { proxy_pass http://127.0.0.1:3195/api/admin/; }', result)
 
     def test_admin_routes_handle_missing_entries_and_retain_legacy_mode(self):
-        prepare = self.admin_routes()
+        prepare = release.prepare_admin_routes
         config = 'server {\n    location = /admin.html { try_files $uri =404; }\n}'
         result = prepare(config, False)
         self.assertEqual(result.count('location = /admin/ {'), 1)

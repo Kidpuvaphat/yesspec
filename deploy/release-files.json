@@ -57,6 +57,7 @@
   "dist/sony-wh-1000xm5-vs-sennheiser-momentum-4.html",
   "dist/sony-wh-1000xm5-vs-soundcore-space-one-pro.html",
   "deploy/apply_release.py",
+  "deploy/publish.py",
   "deploy/release-files.json",
   "deploy/sync.sh",
   "deploy/maintenance.py",
